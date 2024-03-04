@@ -6,7 +6,10 @@ output:
     css: style.css
 ---
 
-MONICA - Update styling when your brain isn't mush.
+```{r}
+library(knitr)
+```
+
 
 ## Learning Objectives
 At the end of this lab, you will be able to:
@@ -22,7 +25,9 @@ To complete this lab, you should have:
 - [ ] &nbsp; Attended this week's lectures
 - [ ] &nbsp; Installed SPSS on your computer
 
+
 ## Lab Tasks
+
 
 ### Import Data {.tabset .tabset-fade .tabset-pills}
 
@@ -30,11 +35,17 @@ To complete this lab, you should have:
 Import Data into SPSS
 Describe some data here. Provide the link to download the data. 
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+#### Hint
+Click the *File* tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? What is the file type of ''Week1LabData'?
 
 #### Solution
-Final solution goes here.
+Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file. In this case, the first row is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'. 
+
+```{r, echo = F, out.width='45%'}
+include_graphics('Screenshots/week1_1a.png')
+```
+
+
 
 ### Adjust Variable Types {.tabset .tabset-fade .tabset-pills}
 
