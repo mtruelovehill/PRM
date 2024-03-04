@@ -1,57 +1,108 @@
 ---
-title: 'Week 1 Lab: Intro to NHST'
-subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br>"
-output: 
-  html_document:
-    css: styles.css
+title: "Week 1 - Intro to NHST"
+output: learnr::tutorial
+runtime: shiny_prerendered
 ---
 
-```{r, echo=F, warning=F}
+```{r setup, include=FALSE}
+library(learnr)
 library(knitr)
 ```
 
+<style>
 
+a:link {
+  color: #D95829;
+}
+  
+h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+}
 
-## Learning Objectives
-At the end of this lab, you will be able to:
+h2 {
+  font-size: 18pt;
+}
+
+h3 {
+   color: #18778C;
+   font-size: 14pt;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14pt;
+}
+
+pre {
+    border: 0;
+}
+
+</style>
+
+## Introduction to Today's Lab
+This week, we've reviewed the basics of null-hypothesis statistical testing (NHST). Specifically, we've covered null and alternative hypotheses, samples and populations, measures of central tendency, measures of variance, and frequency distributions.
+
+### Learning Objectives
+After completing this lab, you should be able to:
 
 1.  Import data into SPSS
 2.  Check and reset variable types and codes
 3.  Check the descriptive statistics of your data
 4.  Produce histograms to visually assess your data's distribution
 
-## Requirements
+### Requirements
 To complete this lab, you should have:
 
 - [ ] &nbsp; Attended this week's lectures
 - [ ] &nbsp; Installed SPSS on your computer
 
-## Tasks
+## Import Data
+
+### Description
+Import 'Week1LabData' into SPSS. You can download the data from [Learn (requires university login)](MONICA - ADD LINK HERE)
+
+### Test your Understanding
+```{r Q1, echo = F}
+question_radio(
+  "What type of file is 'Week1LabData'?",
+  answer("xlsx"),
+  answer("csv", correct = TRUE),
+  answer("sav"),
+  answer("docx"),
+  allow_retry = TRUE,
+  random_answer_order = TRUE,
+  incorrect = 'Please try again',
+  correct = 'Well done!'
+)
+```
 
 
-### 1) Import Data {.tabset .tabset-fade .tabset-pills}
+<details>
+<summary> <span style = "color: #18778C; font-size: 14pt; font-weight: bold;"> Hint </span> </summary>
 
-#### Description
-Import 'Week1LabData.csv' into SPSS. You can download the data from [Learn (requires university login)](MONICA - ADD LINK HERE)
+Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? 
+</details>
 
 
-#### Hint
-Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? What is the file type of ''Week1LabData'?
+<details>
+<summary> <span style = "color: #18778C; font-size: 14pt; font-weight: bold;"> Solution  </span> </summary>
 
-#### Solution
 Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV Data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file. 
 
 ```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_1a.png')
+include_graphics('images/week1_1a.png')
 ```
 
 A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'. 
 
-```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_1b.png')
+```{r, echo = F, out.width='60%'}
+include_graphics('images/week1_1b.png')
 ```
 
-### 2) Adjust Variable Measures {.tabset .tabset-fade .tabset-pills}
+</details>
+
+## Adjust Variable Measures {.tabset .tabset-fade .tabset-pills}
 
 #### Description
 Recall that data can be measured in multiple formats, and these scales of measurement will affect how data may be described and analysed. Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
@@ -66,7 +117,7 @@ You'll need to switch from *Data View* to *Variable View* for this step. Do the 
 To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab. 
 
 ```{r, echo = F, out.width='75%'}
-include_graphics('Screenshots/week1_2a.png')
+include_graphics('images/week1_2a.png')
 ```
 
 SPSS labels the data as:
@@ -89,7 +140,7 @@ To adjust the measure type, select the Measure box for a single variable and cli
 
 * **MemoryScore** is also a numeric variable. 
 
-### 3) Add Values to Nondescriptive Nominal Data {.tabset .tabset-fade .tabset-pills}
+## Add Values to Nondescriptive Nominal Data {.tabset .tabset-fade .tabset-pills}
 
 #### Description
 Sometimes categorical data may be recorded as a number. In this example, the gender variable consists of 3 values: 1, 2, 3, which represent the different genders that participated in the study. Instead of recording gender as a character label, participants were given a number to reflect their gender group. However, it is important to always include a coding key, so that anyone who works with the data will know the labels used and can make appropriate interpretations. 
@@ -103,20 +154,20 @@ This should also be done in **Variable View**. The column names may seem a bit m
 To provided an associated label for each value of a variable, you'll use the **Values** column under the **Variable View** tab. 
 
 ```{r, echo = F, out.width='70%'}
-include_graphics('Screenshots/week1_3a.png')
+include_graphics('images/week1_3a.png')
 ```
 
 Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column. 
 
 ```{r, echo = F, out.width='40%'}
-include_graphics('Screenshots/week1_3b.png')
+include_graphics('images/week1_3b.png')
 ```
 
 Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
 
 
 
-### 4) Check Frequency Data {.tabset .tabset-fade .tabset-pills}
+## Check Frequency Data {.tabset .tabset-fade .tabset-pills}
 #### Description
 Before doing any sort of analysis, it's important to first visualise the data to make sure everything is as expected. With categorical data, we can inspect the frequency of observations in each group. When doing this, it allows you to check the following:
 
@@ -147,7 +198,7 @@ Select Analyze>Descriptives>Frequencies. Select Gender and use the arrow to move
 </br>
 
 ```{r, echo = F, out.width='65%'}
-include_graphics('Screenshots/week1_4a.PNG')
+include_graphics('images/week1_4a.PNG')
 ```
 
 </br>
@@ -155,7 +206,7 @@ include_graphics('Screenshots/week1_4a.PNG')
 **Output:**
 
 ```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_4b.PNG')
+include_graphics('images/week1_4b.PNG')
 ```
 
 ### 5) Check Central Tendency {.tabset .tabset-fade .tabset-pills}
