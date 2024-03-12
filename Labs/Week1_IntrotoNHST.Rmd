@@ -1,16 +1,21 @@
 ---
-title: 'Week 1 Lab: Intro to NHST'
-subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br>"
-output: 
+title: "Week 1 Lab - Intro to NHST"
+output:
   html_document:
-    css: styles.css
+    css: style.css
 ---
 
-```{r, echo=F, warning=F}
+```{r, warning = F, message = F, echo = F}
 library(knitr)
 ```
 
 
+# Intro to Today's Lab
+
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer to check your understanding of the material. Please note that the questions are not required and not marked, although you will be able to see whether your answers are correct. 
+
+You'll be working with DATA DESCRIPTION HERE.
 
 ## Learning Objectives
 At the end of this lab, you will be able to:
@@ -26,47 +31,61 @@ To complete this lab, you should have:
 - [ ] &nbsp; Attended this week's lectures
 - [ ] &nbsp; Installed SPSS on your computer
 
-## Tasks
+
+## This Week's Tasks
+
+- [ ] &nbsp; [Task 1 - Import Data](#import-data)
+- [ ] &nbsp; [Task 2 - Adjust Variable Measures](#adjust-variable-measures)
+- [ ] &nbsp; [Task 3 - Add Values to Nondescriptive Data](#add-values-to-nondescriptive-data)
+- [ ] &nbsp; [Task 4 - Check Frequency Data](#check-frequency-data)
+- [ ] &nbsp; [Task 5 - Visualise Distribution of Data](#visualise-distribution-of-data)
+- [ ] &nbsp; [Task 6 - Check Central Tendency](#check-central-tendency)
+- [ ] &nbsp; [Task 7 - Check Variance](#check-variance)
+- [ ] &nbsp; [Task 8 - Calculate Percentiles](#calculate-percentiles)
+- [ ] &nbsp; [Task 9 - Identify Normal Distribution Thresholds](#identify-normal-distribution-thresholds)
+- [ ] &nbsp; [Task 10 - Report & Interpret](#report-and-interpret)
 
 
-### 1) Import Data {.tabset .tabset-fade .tabset-pills}
+# Import Data {.tabset .tabset-fade .tabset-pills}
 
-#### Description
-Import 'Week1LabData.csv' into SPSS. You can download the data from [Learn (requires university login)](MONICA - ADD LINK HERE)
+## Description
+Import 'Week1LabData.csv' into SPSS. You can download the data from <span style = "color: #18778C;"> [Learn (requires university login)](MONICA - ADD LINK HERE) </span>. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your home computer. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
 
+## Hint
 
-#### Hint
-Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? What is the file type of ''Week1LabData'?
+Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? 
 
-#### Solution
+## Solution
+
 Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV Data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file. 
 
 ```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_1a.png')
+include_graphics('images/week1_1a.png')
 ```
 
 A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'. 
 
-```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_1b.png')
+```{r, echo = F, out.width='60%'}
+include_graphics('images/week1_1b.png')
 ```
 
-### 2) Adjust Variable Measures {.tabset .tabset-fade .tabset-pills}
 
-#### Description
+# Adjust Variable Measures {.tabset .tabset-fade .tabset-pills}
+
+## Description
 Recall that data can be measured in multiple formats, and these scales of measurement will affect how data may be described and analysed. Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
 
-**Answer the following:**
-* What type of data are each of your variables?
+## Hint
 
-#### Hint
 You'll need to switch from *Data View* to *Variable View* for this step. Do the labels used by SPSS match the scales of measurement you've learned (Nominal, Ordinal, Interval, Ratio)? Think about what kind of data each of your variables represents. 
 
-#### Solution
+## Solution
+
+
 To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab. 
 
 ```{r, echo = F, out.width='75%'}
-include_graphics('Screenshots/week1_2a.png')
+include_graphics('images/week1_2a.png')
 ```
 
 SPSS labels the data as:
@@ -89,65 +108,61 @@ To adjust the measure type, select the Measure box for a single variable and cli
 
 * **MemoryScore** is also a numeric variable. 
 
-### 3) Add Values to Nondescriptive Nominal Data {.tabset .tabset-fade .tabset-pills}
 
-#### Description
+
+# Add Values to Nondescriptive Data {.tabset .tabset-fade .tabset-pills}
+
+## Description 
+
 Sometimes categorical data may be recorded as a number. In this example, the gender variable consists of 3 values: 1, 2, 3, which represent the different genders that participated in the study. Instead of recording gender as a character label, participants were given a number to reflect their gender group. However, it is important to always include a coding key, so that anyone who works with the data will know the labels used and can make appropriate interpretations. 
 
 Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
 
-#### Hint
-This should also be done in **Variable View**. The column names may seem a bit misleading; you don't use the 'Label' column for this task.
+## Hint
 
-#### Solution
+This should also be done in Variable View. The column names may seem a bit misleading; you don’t use the ‘Label’ column for this task.
+
+## Solution
+
 To provided an associated label for each value of a variable, you'll use the **Values** column under the **Variable View** tab. 
 
 ```{r, echo = F, out.width='70%'}
-include_graphics('Screenshots/week1_3a.png')
+include_graphics('images/week1_3a.png')
 ```
 
 Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column. 
 
 ```{r, echo = F, out.width='40%'}
-include_graphics('Screenshots/week1_3b.png')
+include_graphics('images/week1_3b.png')
 ```
 
 Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
 
 
+# Check Frequency Data {.tabset .tabset-fade .tabset-pills}
 
-### 4) Check Frequency Data {.tabset .tabset-fade .tabset-pills}
-#### Description
+## Description 
 Before doing any sort of analysis, it's important to first visualise the data to make sure everything is as expected. With categorical data, we can inspect the frequency of observations in each group. When doing this, it allows you to check the following:
 
-* Are observations distributed relatively equally or are there major differences across groups?
-* Are there any groups with a limited number of observations?
-* Are there any missing datapoints?
++ Are observations distributed relatively equally or are there major differences across groups?
++ Are there any groups with a limited number of observations?
++ Are there any missing datapoints?
 
 Check the frequency of the Gender variable. Make sure to display a frequency table.
 
-**Answer the following:**
-
-How many total datapoints do you have for the Gender variable?
-
-What percent of the participants are female?
-
-How many nonbinary participants are there in your sample?
-
 Are any of these groups limited in size? If so, how might this affect your ability to make generalisable claims about this group?
 
+## Hint
 
-#### Hint
 You'll find what you need under the *Analyze* tab.
 
-#### Solution
-
+## Solution 
 Select Analyze>Descriptives>Frequencies. Select Gender and use the arrow to move it into the Variable box. Make sure 'Display frequency tables' is checked. 
 
 </br>
 
 ```{r, echo = F, out.width='65%'}
-include_graphics('Screenshots/week1_4a.PNG')
+include_graphics('images/week1_4a.PNG')
 ```
 
 </br>
@@ -155,96 +170,69 @@ include_graphics('Screenshots/week1_4a.PNG')
 **Output:**
 
 ```{r, echo = F, out.width='50%'}
-include_graphics('Screenshots/week1_4b.PNG')
+include_graphics('images/week1_4b.PNG')
 ```
 
-### 5) Check Central Tendency {.tabset .tabset-fade .tabset-pills}
 
-#### Task Description
-Check the measures of central tendency discussed in class and report here. MORE DESCRIPTION
+# Visualise Distribution of Data {.tabset .tabset-fade .tabset-pills}
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+## Description
+MORE DESCRIPTION. Produce plots that allow you to look at the distribution of your continuous variables.
 
-#### Solution
-Final solution goes here.
+## Hint
+A histogram will allow you to visualise the distribution of continuous variables. Bar plots allow you to check the distribution of categorical data. You'll need to produce a separate plot for each variable.
 
-### Check Variability {.tabset .tabset-fade .tabset-pills}
+## Solution
+Select Graphs>Histogram. Use the arrow to add the variable you wish to view to the 'Variable' box.
 
-#### Task Description
-Check the variability measures discussed in lecture and report here. MORE DESCRIPTION
+```{r, echo = F, out.width='55%'}
+include_graphics('images/week1_5a.PNG')
+```
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common.
 
-#### Solution
-Final solution goes here.
+# Check Central Tendency {.tabset .tabset-fade .tabset-pills}
 
+## Description
+Check the measures of central tendency discussed in class and report here. MORE DESCRIPTION Make sure to use the proper central tendency measures given the variable type.
 
-### Create a Frequency Table {.tabset .tabset-fade .tabset-pills}
+## Hint
 
-#### Task Description
-Create a frequency table task description goes here
+## Solution
+While it seems as though you should look under the Descriptive Statistics > Descriptives tab, you actually need to select Analyze > Descriptive Statistics > Frequencies, then select the variables of interest.  
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+# Check Variance {.tabset .tabset-fade .tabset-pills}
 
-#### Solution
-Final solution goes here.
+## Description
+Check the measures of variance discussed in class and report here. MORE DESCRIPTION
 
+## Hint
 
-### Task 6 {.tabset .tabset-fade .tabset-pills}
+## Solution
 
-#### Task Description
-Compute the thresholds for 68%/95%/99% for the dataset. Description Here.
+# Calculate Percentiles {.tabset .tabset-fade .tabset-pills}
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+## Description
+Check the measures of variance discussed in class and report here. MORE DESCRIPTION
 
-#### Solution
-Final solution goes here.
+## Hint
 
+## Solution
 
-### Task 7 {.tabset .tabset-fade .tabset-pills}
+# Identify Normal Distribution Thresholds {.tabset .tabset-fade .tabset-pills}
 
-#### Task Description
-WHAT TASK CAN GO HERE?
+## Description
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+## Hint
 
-#### Solution
-Final solution goes here.
+## Solution
 
-### Create a Histogram {.tabset .tabset-fade .tabset-pills}
+# Report and Interpret{.tabset .tabset-fade .tabset-pills}
 
-#### Task Description
-Produce a histogram task description goes here
+## Description
 
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
+Write a paragraph describing your data. Please be sure to use APA style.
 
-#### Solution
-Final solution goes here.
+## Hint
 
-### Task 9 {.tabset .tabset-fade .tabset-pills}
-
-#### Task Description
-Identify a certain proportion of data task description goes here
-
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
-
-#### Solution
-Final solution goes here.
-
-### Report & Interpret {.tabset .tabset-fade .tabset-pills}
-
-#### Task Description
-Report and Interpret task description goes here
-
-#### Hint/Example
-Have a toggle link they have to click to get hints here. 
-
-#### Solution
-Final solution goes here.
+## Solution
