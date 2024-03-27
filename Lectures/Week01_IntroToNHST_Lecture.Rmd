@@ -73,6 +73,27 @@ exclude: true
 exclude: true
 ## Directional vs nondirectional hypotheses
 
+---
+## Visualising your data: Frequency Distributions
+
++ Frequency distributions allow you to visualise how often each observation occurs
+
++ The type of frequency distribution you use depends on the type of data you have.
+
+--
+
+.pull-left.center[
+**Categorical Data: Bar Plots**
+```{r}
+catDat <- data.frame(EyeColour=sample(c('Blue', 'Green', 'Hazel', 'Amber', 'Brown', 'Gray'), size = 1000, replace = T, 
+                            prob = c(.10, .02, .05, .05, .75, .03)))
+
+ggplot(catDat, aes(EyeColour, fill = as.factor(EyeColour))) + geom_bar() +
+  scale_fill_manual(values = c('#D98825', '#6D90A6', '#592202', '#B8BDB6', '#4E7A23', '#716F3F')) +
+  theme(legend.position = 'none')
+
+```
+]
 
 ---
 ## Describing your data: Central Tendancy
@@ -124,15 +145,20 @@ $$\bar{x} = \frac{1}{n} \displaystyle\sum_{i=1}^{n}x_i$$
 
 .pull-right.center[
 
-$x = \{10, 2, 5, 3, 2, 0, 12\}$
+$y = \{4, 1, 2, 4, 3\}$
+<br />
+<br />
+$\bar{y} = \frac{1}{5}\times(4+1+2+4+3)$ 
+<br />
+$\bar{y} = 2.80$ 
 <br />
 <br />
 <br />
-$\bar{x} = \frac{1}{7}\times(10+2+5+3+2+0+12)$ 
 
-Or: $\bar{x} = \frac{(10+2+5+3+2+0+12)}{7}$
- 
-$\bar{x} = 4.86$
+$x = \{10, 2, 5, 3, 2, 0,8, 2,5,3,4,3,1,1,2,0\}$
+```{r, echo = F, out.width='45%'}
+knitr::include_graphics('images/SPSSmean.PNG')
+```
 
 ]
 
@@ -141,18 +167,18 @@ $\bar{x} = 4.86$
 
 + Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
 
-+ Should not be used with ordinal data or nominal data, even though they may be coded as numeric values
++ Best not to be used with ordinal data or nominal data, even though they may be coded as numeric values
 
 + Say you have the following scale:
 
 [MONICA CHANGE THESE RATINGS]
 
-|Rating Scale | How would you rate your understanding of today's lecture so far? |
+|Rating Scale | Rate your understanding of today's lecture                       |
 |-------------|------------------------------------------------------------------|
-|    1        | I used to think I was smart but you made me look so naive        |                                           |
+|    1        | You know nothing, John Snow                                      |
 |    2        | I'm a bit confused.                                              |
 |    3        | I understand about half of it.                                   |
-|    4        | I am definitely getting most of it.                              |
+|    4        | Clever girl.                                                     |
 |    5        | I'm beginning to feel like a stats god.                          |
 
 > **Test your understanding:** What does a mean of 3.2 actually mean, in the context of this scale?
@@ -167,16 +193,18 @@ $\bar{x} = 4.86$
 .pull-left[
 + The number that appears most frequently in a range of numbers.
 
-+ $x = \{10, \color{#D95829}{2}, 5, 3, \color{#D95829}{2}, 0, 12\}$
-
-+ Mode of x = 2
-
-+ Can be used with nominal or ordinal data.
++ Can be used with all types of data, although may be less useful
 
 ]
 
-.pull-left[
-MONICA - IMAGE OF SPSS FREQUENCY TABLE HERE
+.pull-left.center[
+
+$x = \{10, \color{#D95829}{2}, 5, 3, \color{#D95829}{2}, 0, 12\}$
+
+```{r, echo = F, out.width='85%'}
+knitr::include_graphics('images/SPSSmode.PNG')
+```
+
 ]
   
 ---
