@@ -1,0 +1,67 @@
+---
+title: "<b> t-tests </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#D95829',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+baseColor <- "#18778C"
+accent1 <- '#D95829'
+accent2 <- '#BF3326'
+accent3 <- '#F29422'
+
+```
+
+
+## Directional vs nondirectional hypotheses
+
++ Hypotheses may be directional, or make a prediction about the expected direction of the effect
+  
+  + Treatment X will **reduce** symptoms of anxiety
+  
+  + Test scores will **improve** as hour of study increase
+
++ Hypotheses can also be nondirectional. In this case, an effect is predicted, but the direction is not specified.
+
+  + Treatment X will **have an effect** on symptoms of anxiety
+  
+  + Test scores will **be associated with** hours of study
+
+--
+
++ Directional hypotheses can be tested with one-tailed tests
+
++ Nondirectional hypotheses can be tested with two-tailed tests
