@@ -13,9 +13,22 @@ library(knitr)
 # Intro to Today's Lab
 
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer to check your understanding of the material. Please note that the questions are not required and not marked, although you will be able to see whether your answers are correct. 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-You'll be working with DATA DESCRIPTION HERE.
+You'll be working with simulated data based on a paper by [Hughes and colleagues (2013)](https://journals.sagepub.com/doi/full/10.1177/0956797613494853) that investigates participant's subjective age as it relates to their chronological age and their performance on a memory experiment. Please refer to the paper for details on study design and methods. It will also provide an example of how results may be reported in APA style.
+
+You have the following variables:
+
+| Variable Name | Description                       |
+|:--------------|:----------------------------------|
+| ID            | Participant ID                    |
+| Age           | Age in years                      |
+| Education     | Years of education                |
+| SubAgeT1      | Subjective age before memory test |
+| SubAgeT2      | Subjective age after memory test  |
+| MemoryScore   | Score on memory test              |
+
+
 
 ## Learning Objectives
 At the end of this lab, you will be able to:
@@ -142,7 +155,7 @@ Click 'OK'. If you've done this properly, you'll see that each numeric value is 
 # Check Frequency Data {.tabset .tabset-fade .tabset-pills}
 
 ## Description 
-Before doing any sort of analysis, it's important to first visualise the data to make sure everything is as expected. With categorical data, we can inspect the frequency of observations in each group. When doing this, it allows you to check the following:
+Before doing any sort of analysis, it's important to first check the data to make sure everything is as expected. With categorical data, one way we can do this is to inspect the frequency of observations in each group. When doing this, it allows you to check the following:
 
 + Are observations distributed relatively equally or are there major differences across groups?
 + Are there any groups with a limited number of observations?
@@ -177,38 +190,73 @@ include_graphics('images/week1_4b.PNG')
 # Visualise Distribution of Data {.tabset .tabset-fade .tabset-pills}
 
 ## Description
-MORE DESCRIPTION. Produce plots that allow you to look at the distribution of your continuous variables.
+Another useful way of visualising the data is to check how your variables are distributed. Produce plots that allow you to look at the distribution of your variables. Make sure to use the proper plot type given the type of variables you have.
 
 ## Hint
 A histogram will allow you to visualise the distribution of continuous variables. Bar plots allow you to check the distribution of categorical data. You'll need to produce a separate plot for each variable.
 
 ## Solution
-Select Graphs>Histogram. Use the arrow to add the variable you wish to view to the 'Variable' box.
+<B> For Categorical Variables: </B>
+
+Select *Graphs>Bar*. Select the chart type you'd prefer. When you're checking the distribution of a single variable, you would use a 'Simple' plot.  Use the arrow to add the variable you wish to view to the 'Category Axis' box. When looking at distributions of a categorical variable, you are plotting the total number of participants of each group, so you can leave the 'Bars Represent' portion at the default setting.
 
 ```{r, echo = F, out.width='55%'}
 include_graphics('images/week1_5a.PNG')
 ```
 
+When checking the distribution of categorical variables, check whether all groups are well represented. Consider the questions from the [Frequency Data](#check-frequency-data) portion of this lab. 
+
+
+<B> For Continuous Variables: </B>
+
+
+Select *Graphs>Histogram*. Use the arrow to add the variable you wish to view to the 'Variable' box.
+
+```{r, echo = F, out.width='55%'}
+include_graphics('images/week1_5c.PNG')
+```
+
 Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common.
+
+
+**Note:** You can also produce both of these plots using *Analyze>Descriptive Statistics>Frequencies* and selecting the Charts option.
+
 
 # Check Central Tendency {.tabset .tabset-fade .tabset-pills}
 
 ## Description
-Check the measures of central tendency discussed in class and report here. MORE DESCRIPTION Make sure to use the proper central tendency measures given the variable type.
+Check the measures of central tendency discussed in class. Make sure to use the proper central tendency measures given the variable type.
 
 ## Hint
+Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives* is not what you need.
 
 ## Solution
-While it seems as though you should look under the Descriptive Statistics > Descriptives tab, you actually need to select Analyze > Descriptive Statistics > Frequencies, then select the variables of interest.  
+To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', and 'Mode', as needed. 
+
+```{r, echo = F, out.width='60%'}
+include_graphics('images/week1_6a.PNG')
+```
+
+Note that Gender, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
+
 
 # Check Variance {.tabset .tabset-fade .tabset-pills}
 
 ## Description
-Check the measures of variance discussed in class and report here. MORE DESCRIPTION
+For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, variance, and standard deviation.
 
 ## Hint
+You've already completed the steps to do this. You just need to check different boxes.
 
 ## Solution
+This procedure is identical to getting the measures of central tendency, so in the future, you can do it all at once. You'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
+
+```{r, echo = F, out.width='60%'}
+include_graphics('images/week1_7a.PNG')
+```
+
+Data will be reported in table format in the output. To get the IQR, you'll need to subtract the 25th percentile value from the 75th percentile value.
+
 
 # Calculate Percentiles {.tabset .tabset-fade .tabset-pills}
 
