@@ -1,0 +1,197 @@
+---
+title: "<b> Null Distributions, Effect Sizes, & Power </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#D95829',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+baseColor <- "#18778C"
+accent1 <- '#D95829'
+accent2 <- '#BF3326'
+accent3 <- '#F29422'
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+```
+
+---
+## Null Distribution
+
++ All parametric quantitative tests we learn about in this course evaluate significance by evaluating results against a predefined **null distribution**
+
++ The null distribution is the probability distribution of a statistic **given that $H_0$ is true**. 
+
++ The shape of the null distribution depends on the test statistic (and the degrees of freedom, which we'll get to at a later point in the course)
+
+
+---
+## Comparing Data against null distribution: NHST
+
+.pull-left[
+```{r, echo = F, fig.height=5}
+testDat
+```
+
+]
+
+
+---
+count: false
+
+## Comparing Data against null distribution: NHST
+
+.pull-left[
+
+```{r, echo = F, fig.height=5}
+testDat + geom_vline(xintercept = 24, color = accent1, linewidth = 1.5)
+```
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=5}
+testDat + geom_vline(xintercept = 18, color = accent3, linewidth = 1.5)
+```
+
+]
+
+> **Test Your Understanding:** Which score is less common?
+
+---
+count: false
+
+## Comparing Data against null distribution: NHST
+
+.pull-left[
+```{r, echo = F, fig.height=5}
+testDat +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = baseColor, xlim=c(8, 24), alpha = .8) +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = accent2, xlim=c(24, 30), alpha = .8) +
+  annotate('text', label = '91%', x = 18, y = .02, color = 'white', size = 7) + 
+  annotate('text', label = '9%', x = 25, y = .02, color = 'white', size = 7)+ 
+  geom_vline(xintercept = 24, color = accent1, linewidth = 1.5)
+```
+]
+
+.pull-right[
+```{r, echo = F, fig.height=5}
+testDat +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = accent2, xlim=c(8, 18), alpha = .8) +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = baseColor, xlim=c(18, 30), alpha = .8) +
+  annotate('text', label = '25%', x = 16, y = .02, color = 'white', size = 7) + 
+  annotate('text', label = '75%', x = 22, y = .02, color = 'white', size = 7) + 
+  geom_vline(xintercept = 18, color = accent3, linewidth = 1.5)
+```
+]
+
+> **Test Your Understanding:** Which score is less common?
+
+
+---
+
+## Null Distributions
+
+.pull-left[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(0, 10)), aes(x=x)) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 1), color = baseColor, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 2), color = accent1, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 3), color = accent2, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 4), color = accent3, linewidth=1.5) +
+  scale_y_continuous(limits=c(0, .52), breaks = seq(0, .5, .1)) +
+  annotate('text', label = 'df = 1', color = baseColor, x = 8, y = .45, size = 5) +
+  annotate('text', label = 'df = 2', color = accent1, x = 8, y = .38, size = 5) +
+  annotate('text', label = 'df = 3', color = accent2, x = 8, y = .31, size = 5) +
+  annotate('text', label = 'df = 4', color = accent3, x = 8, y = .24, size = 5) +
+  labs(x = expression(chi^2)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+
+
+.pull-right[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(-6, 6)), aes(x=x)) +
+  stat_function(fun=dt, geom='line', args=c(df = 5), color = baseColor, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 10), color = accent1, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 20), color = accent2, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 50), color = accent3, linewidth=1.5) +
+  annotate('text', label = 'df = 5', color = baseColor, x = 3, y = .4, size = 5) +
+  annotate('text', label = 'df = 10', color = accent1, x = 3, y = .35, size = 5) +
+  annotate('text', label = 'df = 20', color = accent2, x = 3, y = .3, size = 5) +
+  annotate('text', label = 'df = 50', color = accent3, x = 3, y = .25, size = 5) +
+  labs(x = 't-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+
+.center[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(0, 5)), aes(x=x)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2=10), color = baseColor, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2=10), color = accent1, linewidth=1.5) + 
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2=100), color = accent2, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 10, df2=100), color = accent3, linewidth=1.5) +
+  annotate('text', label = 'df1 = 2, df2 = 10', color = baseColor, x = 4, y = .75, size = 5) +
+  annotate('text', label = 'df1 = 5, df2 = 10', color = accent1, x = 4, y = .6, size = 5) +
+  annotate('text', label = 'df1 = 5, df2 = 100', color = accent2, x = 4, y = .45, size = 5) +
+  annotate('text', label = 'df1 = 10, df2 = 100', color = accent3, x = 4, y = .3, size = 5) +
+  labs(x = 'F-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+
+---
+class: center, inverse, middle
+
+## Questions?

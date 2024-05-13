@@ -7,6 +7,9 @@ output:
 
 ```{r, warning = F, message = F, echo = F}
 library(knitr)
+library(kableExtra)
+
+baseColor <- "#18778C"
 ```
 
 
@@ -15,19 +18,23 @@ library(knitr)
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-You'll be working with simulated data based on a paper by [Hughes and colleagues (2013)](https://journals.sagepub.com/doi/full/10.1177/0956797613494853) that investigates participant's subjective age as it relates to their chronological age and their performance on a memory experiment. Please refer to the paper for details on study design and methods. It will also provide an example of how results may be reported in APA style.
+You'll be working with simulated data based on a paper by [Hughes and colleagues (2013)](https://journals.sagepub.com/doi/full/10.1177/0956797613494853) that investigates participant's subjective age as it relates to their chronological age and their performance on a memory experiment. Please refer to the paper for details on study design and methods. It also provides an example of how results may be reported in APA style.
 
 You have the following variables:
 
-| Variable Name | Description                       |
-|:--------------|:----------------------------------|
-| ID            | Participant ID                    |
-| Age           | Age in years                      |
-| Education     | Years of education                |
-| SubAgeT1      | Subjective age before memory test |
-| SubAgeT2      | Subjective age after memory test  |
-| MemoryScore   | Score on memory test              |
+```{r, echo = F}
+dat <- read.csv('Week1LabData.csv')
+datInfo <- data.frame(VariableName=colnames(dat), 
+                      Description=c('Participant ID', 'Age in years', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
+                                    'Years of education', 'Subjective age before memory test',
+                                    'Subjective age after memory test', 'Score on memory test'))
 
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color="#18778C", font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
 
 
 ## Learning Objectives
@@ -227,6 +234,9 @@ Have a look at the output. If a variable is normally distributed, most observati
 ## Description
 Check the measures of central tendency discussed in class. Make sure to use the proper central tendency measures given the variable type.
 
++ Are the measures of central tendency similar within a variable?
++ If not, what might this imply?
+
 ## Hint
 Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives* is not what you need.
 
@@ -240,7 +250,7 @@ include_graphics('images/week1_6a.PNG')
 Note that Gender, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
 
 
-# Check Variance {.tabset .tabset-fade .tabset-pills}
+# Check Measures of Variability {.tabset .tabset-fade .tabset-pills}
 
 ## Description
 For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, variance, and standard deviation.
@@ -279,8 +289,21 @@ Check the measures of variance discussed in class and report here. MORE DESCRIPT
 
 ## Description
 
-Write a paragraph describing your data. Please be sure to use APA style.
+Write a paragraph describing your sample as you would include in a methods section. Please be sure to use APA style. Include an APA-style table to present the descriptive data for each variable (excluding ID). 
+
+When writing a describing your sample, you will need to include, at minimum, the total number of participants included, a description of their available demographic data, and how/where participants were recruited. See the Hughes paper for a brief example.
+
+</br>
+</br>
 
 ## Hint
 
+You might find the [Purdue Owl website](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html) helpful for APA formatting.
+
+</br>
+</br>
+
 ## Solution
+
+</br>
+</br>

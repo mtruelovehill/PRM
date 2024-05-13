@@ -2,6 +2,14 @@ a:link {
   color: #D95829
 }
 
+.btn, .btn:hover {
+  background-color: #F29422;
+}
+
+.btn:active {
+  background-color: #18778C;
+}
+
 
 .nav-pills>li>a:focus, .nav-pills>li.active>a,     .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{
      background-color: #18778C;
@@ -30,7 +38,7 @@ h4 {
 }
 
 p {
-   font-size: 14pt;
+   font-size: 18pt;
 }
 
 ul li {
