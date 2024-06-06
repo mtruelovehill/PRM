@@ -1,0 +1,56 @@
+a:link {
+  color:  #4CA384
+}
+
+.btn {
+  background-color: #4CA384;
+  color: white;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+ol, ul {
+  font-size: 12pt;
+}
+p {
+   font-size: 12pt;
+}
+
+.topicsList .topic.current {
+  background-color: #9AD079;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.topicsList .topic {
+  background-color: #4CA384;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.tutorial-question [id$="message_container"] > div:last-of-type {
+  background-color: #FFF;
+  font-weight: bold;
+  color: #3F4040;
+  border-radius: 8px;
+  border-color: #FFF;
+}
+
+.alert{
+  background-color: #FFF;
+  font-weight: bold;
+  border-color: #FFF;
+}
+
+
+.btn-primary, .btn-success, .btn-info {
+  background-color: #4CA384;
+  background-image: none;
+  border: none; }
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:focus:active, .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success:focus:active, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info:focus:active {
+    background-color: #9AD079; }
+  .btn-primary:focus:hover, .btn-primary:active:hover, .btn-primary:focus:active:hover, .btn-success:focus:hover, .btn-success:active:hover, .btn-success:focus:active:hover, .btn-info:focus:hover, .btn-info:active:hover, .btn-info:focus:active:hover {
+    background-color: #9AD079; }
+  .btn-primary.disabled, .btn-primary:disabled, .btn-primary.disabled:hover, .btn-primary:disabled:hover, .btn-success.disabled, .btn-success:disabled, .btn-success.disabled:hover, .btn-success:disabled:hover, .btn-info.disabled, .btn-info:disabled, .btn-info.disabled:hover, .btn-info:disabled:hover {
+    background-color: #C4C6C7; }
+

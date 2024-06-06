@@ -1,0 +1,252 @@
+---
+title: "<b> Course Intro </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#D95829',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+baseColor <- "#18778C"
+accent1 <- '#D95829'
+accent2 <- '#BF3326'
+accent3 <- '#F29422'
+
+```
+
+```{css, echo=FALSE}
+.link-style1 a {
+  color: #18778C;
+  text-decoration: underline;
+}
+```
+
+
+## Course Team
+
+.pull-left[
+
++ **Monica Truelove-Hill**
+  + Course Organiser and Lecturer
+  + .link-style1[[m.truelovehill@ed.ac.uk](mailto:m.truelovehill@ed.ac.uk)]
+  + Room 1.5, Doorway 6
+  + Office Hours: ADD OFFICE HOURS HERE
+
++ Course Tutors:
+
+  + TBC
+  + TBC
+  + TBC
+  + TBC
+  
+]
+
+
+.pull-right[
+
+MONICA - PUT PICTURE HERE
+
+]
+
+
+---
+
+## Course Objectives
+
+.pull-left[
+
+You'll learn to:
+
+.center[
+```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/IntroObj1Vert.png')
+```
+]
+
+]
+
+--
+
+.pull-right[
+
+Aided by:
+
+.center[
+```{r, echo = F, out.width='40%'}
+knitr::include_graphics('images/IntroObj2Vert.png')
+```
+]
+]
+
+---
+## Why is this good for you?
+
++ Look at all the skills you'll gain/develop!
+
+  + Working with data
+  
+  + Critical thinking
+  
+  + Collaborative working
+  
+  + Taking complex information and presenting it in an accessible way
+  
+---
+## Tentative Course Timeline
+
+| Week     | Lecture Topic                                | Key Lab Tasks                                        |
+|:--------:|:---------------------------------------------|:-----------------------------------------------------|
+|  1       | Intro to Null-Hypothesis Statistical Testing | Describing Data & Working with Distributions         |
+|  2       | Effect Sizes & Power                         | Computing Effect Sizes & Conducting Power Analyses   |
+|  3       | $t$ -tests                                   | Running & Interpreting $t$-tests; Boxplots           |
+|  4       | ANOVA I                                      | One-Way and Repeated Measures ANOVA                  |
+|  5       | ANOVA II                                     | Moderation with ANOVA                                |
+| <B>6</B> |<B> Flexible Learning Week Review Session </B>| <B> No Lab </B>                                      |
+|  7       | Correlation                                  | Running & Interpreting Correlations; Scatterplots    |
+|  8       | Regression I                                 | Simple and Multiple Linear Regression                |
+|  9       | Regression II                                | Moderation with Regression                           |
+|  10      | Nonparametric Testing                        | <B> Formative Assessment </B>                        |
+|  11      | Thematic Analysis                            | Conducting a Thematic Analysis                       |
+
+
+---
+## Course Delivery
+
++ Required:
+  
+  + Weekly 2-hour live lecture
+    
+      + Mix of theory and practical application examples
+
+  + Weekly 1-hour lab
+    
+      + Structured exercises to provide application practice
+      + Self-study expected (may take longer than 1 hour)
+
+--
+
++ Optional (but **strongly** recommended)
+  
+  + Office Hours
+  + Flexible Learning Week review session ***MONICA: MAYBE EDIT THIS**
+
+
+---
+## Assessment
+
++ **Individual Quantitative Report (70% of mark)**
+  + Released 3rd December at noon
+  + Due 5th December at noon
+  + Provided with dataset and must answer question prompts
+  + Will require you to select appropriate tests, given data and research questions
+  + Must use APA format when reporting results
+  
++ **Group Qualitative Report (30% of mark)**
+  + Released after Flexible Learning Week (TBC)
+  + Due 9th December at noon
+  + Provided with a selection of texts and must choose one to analyse using thematic analysis
+  + Produce 3000-word report of methods and analysis
+  + Not eligible for extensions
+
+---
+## Assessment - Academic Integrity
+
++ Acceptable and encouraged:
+
+  + Helping each other think through and solve problems in labs
+  + Revising together for the assessments
+  + Using materials (both course related and not) to troubleshoot SPSS-related issues
+  + Googling how to properly use APA style
+
++ Not acceptable:
+
+  + Copying content from other students on course
+  + Sharing answers for quantitative report
+  + Use of AI tools (e.g. ChatGPT) or online tutoring services (e.g. Chegg) for any assessment
+  + Any form of cheating on either of the exams
+
++ Cases of suspected misconduct will be investigated
+
+---
+## Expectations
+
+.pull-left[
+
+.center[**What you can expect from us**]
+
+1. We will work hard to help you learn
+
+2. We will be open and communicate with you
+
+3. We will be polite, respectful, and treat you like adults
+]
+
+.pull-right[
+
+.center[**What we expect from you**]
+
+1. Work hard
+
+2. Talk to us
+
+3. Be polite and respectful of the teaching team and your classmates
+
+]
+
+---
+## Suggestions on How to Engage
+
++ Statistics cannot be crammed.
+
+  + Much better to consistently work through the content
+
+--
+
++ We want to make sure everyone keeps on top of the course.
+  
+  + We need to know when people are struggling.
+
+--
+  
++ Please help us by being proactive:
+
+  + Come to all sessions
+  + Use office hours to clarify any questions you have.
+  + Form study groups (we can help with this, if you'd like)
+  
+---
+class: center, inverse, middle
+
+## Questions?
+
