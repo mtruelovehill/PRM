@@ -5,5 +5,7 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "About"
-      href: about.html
+    - text: "Lectures"
+      href: lectureOverview.html
+    - text: "Labs"
+      href: labOverview.html
