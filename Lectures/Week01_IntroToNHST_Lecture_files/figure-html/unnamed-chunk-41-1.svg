@@ -165,8 +165,8 @@
 <g clip-path="url(#clip20)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:3.200935;stroke-linecap:butt;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 8.21875 240.9375 L 570.519531 240.9375 "/>
 </g>
-<path style="fill:none;stroke-width:2.133957;stroke-linecap:butt;stroke-linejoin:round;stroke:rgb(85.098039%,34.509804%,16.078431%);stroke-opacity:1;stroke-dasharray:8.535827,8.535827;stroke-miterlimit:10;" d="M 289.371094 240.9375 L 289.371094 17.222656 "/>
-<g style="fill:rgb(85.098039%,34.509804%,16.078431%);fill-opacity:1;">
+<path style="fill:none;stroke-width:3.200935;stroke-linecap:butt;stroke-linejoin:round;stroke:rgb(9.803922%,25.882353%,29.803922%);stroke-opacity:1;stroke-dasharray:12.80374,12.80374;stroke-miterlimit:10;" d="M 289.371094 240.9375 L 289.371094 17.222656 "/>
+<g style="fill:rgb(9.803922%,25.882353%,29.803922%);fill-opacity:1;">
   <use xlink:href="#glyph0-1" x="284.625" y="257.226562"/>
 </g>
 <g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
