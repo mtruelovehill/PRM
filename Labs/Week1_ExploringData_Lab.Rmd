@@ -1,5 +1,5 @@
 ---
-title: "Week 1 Lab - Intro to NHST"
+title: "Week 1 Lab - Exploring Data"
 output:
   html_document:
     css: style.css

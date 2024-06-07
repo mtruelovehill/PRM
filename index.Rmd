@@ -3,7 +3,7 @@ title: 'Psychological Research Methods: Data Management & Analysis'
 subtitle: '2024/2025'
 ---
 
-<link href="style.css" rel="stylesheet"></link> 
+<link href="css/style.css" rel="stylesheet"></link> 
 
 ```{r, echo = F, message = F, warning = F}
 baseColor <- '#4CA384'
@@ -14,12 +14,28 @@ accent3 <- '#19424C'
 
 
 
-## Instructor
+### Instructor
 
 [Monica Truelove-Hill](https://www.ed.ac.uk/profile/monica-truelove-hill)
 
 <p><a href="mailto:m.truelovehill@ed.ac.uk">m.truelovehill@ed.ac.uk</a></p>
 
-## Course Description
+### Course Description
 
 This option is a core course for the MSc in Psychology of Mental Health (Conversion) at the University of Edinburgh. This course aims to provide students with both a theoretical and practical understanding of the use of statistics in psychology. It will familiarise students with both quantitative and qualitative statistical methods, with a primary focus on quantitative methods. Over the course, lectures will cover topics such as t-tests, ANOVA, regression, and thematic analysis, among others. Additionally, students will attend labs during which they gain hands-on practice implementing the content covered in lectures.
+
+### Course Overview
+
+| Week | W/C  | Content                                                 | Lectures | Labs                    | Reading |
+|:----:|:----:|:--------------------------------------------------------|:--------:|:-----------------------:|:--------|
+| 1    |16/09 | Exploring Your Data | [Slides](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html)| [Workbook]()| TBD |
+| 2    |23/09 | Thematic Analysis| [Slides]() | [Workbook]() | TBD |
+| 3    |30/09 | Intro to Null Hypothesis Statistical Testing | [Slides]() | [Workbook]() | TBD |
+| 4    |07/10 | $t$-tests | [Slides]() | [Workbook]() | TBD |
+| 5    |14/10 | ANOVA I | [Slides]() | [Workbook]() | TBD |
+| <b>6</b>|<b>21/10</b>|<b>Flexible Learning Week</b>| |
+| 7    |28/10 | ANOVA II | [Slides]() | [Workbook]() | TBD |
+| 8    |04/11 | Correlation | [Slides]() | [Workbook]() | TBD |
+| 9    |11/11 | Regression I | [Slides]() | [Workbook]() | TBD |
+| 10   |18/11 | Regression II | [Slides]() | [Workbook]() | TBD |
+| 11   |25/11 | Nonparametric Tests | [Slides]() | [Workbook]() | TBD |

@@ -1,5 +1,5 @@
 ---
-title: "<b> Intro to Null-Hypothesis Statistical Testing </b>"
+title: "<b> Exploring Your Data </b>"
 subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
 author: "Monica Truelove-Hill"
 institute: "Department of Clinical Psychology<br>The University of Edinburgh"
