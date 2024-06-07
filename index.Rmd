@@ -3,6 +3,8 @@ title: 'Psychological Research Methods: Data Management & Analysis'
 subtitle: '2024/2025'
 ---
 
+<link href="style.css" rel="stylesheet"></link> 
+
 ```{r, echo = F, message = F, warning = F}
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
