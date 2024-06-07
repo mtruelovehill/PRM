@@ -1,0 +1,6 @@
+---
+title: "Labs"
+---
+
+Base Labs Page
+

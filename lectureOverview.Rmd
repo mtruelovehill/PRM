@@ -1,5 +1,0 @@
----
-title: "Lectures"
----
-
-Test. This is just a test. Don't panic, it's only a test.

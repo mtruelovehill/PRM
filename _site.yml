@@ -6,6 +6,6 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Lectures"
-      href: lectureOverview.html
+      href: lectures.html
     - text: "Labs"
-      href: labOverview.html
+      href: labs.html
