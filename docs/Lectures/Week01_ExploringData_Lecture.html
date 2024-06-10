@@ -927,88 +927,6 @@ class: center, inverse, middle
 &gt; **Test Your Understanding:** Which value of x is most common, according to the probability distribution seen here? Which values are less common?
 
 ---
-## Describing your data: Probability distributions
-
-.pull-left[
-
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution. 
-
-+ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
-
-+ Let's say we randomly select an observation from our dataset.
-
-]
-
-.pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
-]
-
----
-## Describing your data: Probability distributions
-
-.pull-left[
-
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution.
-
-+ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
-
-+ Let's say we randomly select an observation from our dataset.
-
-+ What is the likelihood our randomly selected observation is at least 25?
-
-]
-
-.pull-right[
-
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
-
-]
-
-
----
-count: false
-
-## Describing your data: Probability distributions
-
-.pull-left[
-
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution.
-
-+ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
-
-+ Let's say we randomly select an observation from our dataset.
-
-+ What is the likelihood our randomly selected observation is at least 25?
-
-+ ~95% of our observations are less than 25. This means we only have about a 5% chance of randomly selecting an observation of at least 25. 
-
-]
-
-.pull-right[
-
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
-]
-
----
-## Probability Distributions
-
-+ Why does this matter?
-
---
-
-+ Many of the statistical tests we will learn about in this course all involve testing the probability of a specific value of a test statistic, given that `\(H_0\)` is true. 
-
-+ In other words, if `\(H_0\)` is true, how likely is it that we would get results at least as extreme as ours?
-
-+ If the value is unusual enough (i.e., if it is highly unlikely we would see the value if the null is true), we reject `\(H_0\)`
-
-
----
-class: inverse, center, middle
-
-## Questions?
-
----
 ## The normal distribution
 
 + A probability distribution where values around the mean are most common, and values further from the mean are increasingly less common.
@@ -1030,7 +948,7 @@ class: inverse, center, middle
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1046,7 +964,7 @@ class: inverse, center, middle
 ]
 .pull-right[
 
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
 
 Adjusting the mean changes where the curve is centered on the `\(x\)`-axis
 
@@ -1065,7 +983,7 @@ Adjusting the mean changes where the curve is centered on the `\(x\)`-axis
 ]
 .pull-right[
 
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
 
 Adjusting the `\(SD\)` changes the shape of the curve
 
@@ -1084,7 +1002,7 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1101,7 +1019,7 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-39-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1119,10 +1037,38 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
+]
+
+---
+## The normal distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
+]
+
+---
+## The normal distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-39-1.svg)&lt;!-- --&gt;
+]
+
+---
+## The normal distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
 ![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-40-1.svg)&lt;!-- --&gt;
 ]
 
 ---
+
 ## The normal distribution
 
 &gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
@@ -1138,34 +1084,6 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 .center[
 ![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-42-1.svg)&lt;!-- --&gt;
-]
-
----
-## The normal distribution
-
-&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
-
-.center[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
-]
-
----
-
-## The normal distribution
-
-&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
-
-.center[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-44-1.svg)&lt;!-- --&gt;
-]
-
----
-## The normal distribution
-
-&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
-
-.center[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-45-1.svg)&lt;!-- --&gt;
 ]
 
 
@@ -1189,12 +1107,12 @@ count: false
 
 .pull-left[
 .center[**Negatively Skewed**]
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-46-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
 ]
 
 .pull-right[
 .center[**Positively Skewed**]
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-47-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-44-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -1208,12 +1126,12 @@ count: false
 
 .pull-left[
 .center[**Platykurtic**]
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-48-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-45-1.svg)&lt;!-- --&gt;
 ]
 
 .pull-right[
 .center[**Leptokurtic**]
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-49-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-46-1.svg)&lt;!-- --&gt;
 ]
 
 ---
