@@ -4,13 +4,27 @@ title: 'Week 1: Exploring Your Data'
 
 <link href="css/style.css" rel="stylesheet"></link> 
 
-### Learning Objectives
-
-Coming Soon
+### Course Resources
 
 [Lecture Slides](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html)
 
 Lab Workbook
+
+
+### Learning Objectives
+
+After this week, you should be able to:
+
++ Understand the difference between measures of central tendency and measures of variance
+
++ Apply methods to calculate these measures
+
++ Interpret visualisations of data frequency
+
+
+### What skills are you building?
+
+
 
 
 ### Additional Resources
