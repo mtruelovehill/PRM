@@ -71,14 +71,11 @@ quiz(caption = 'Test Your Understanding',
               answer("comma separated values file", correct = T),
               answer("Excel file"),
               answer("Word file"),
-              message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for
-              spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than
-              SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
+              message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
      question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
               answer('True'),
               answer('False', correct = T),
-              message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only
-              necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
+              message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
      )
 ```
 
