@@ -1,5 +1,5 @@
 a:link {
-  color:  #4CA384
+  color:  #9AD079
 }
 
 .btn {
@@ -54,3 +54,12 @@ p {
   .btn-primary.disabled, .btn-primary:disabled, .btn-primary.disabled:hover, .btn-primary:disabled:hover, .btn-success.disabled, .btn-success:disabled, .btn-success.disabled:hover, .btn-success:disabled:hover, .btn-info.disabled, .btn-info:disabled, .btn-info.disabled:hover, .btn-info:disabled:hover {
     background-color: #C4C6C7; }
 
+
+  .container {
+  border-radius: 10px;
+  color:white;
+  width: 740px;
+  background-color: #18778C;
+  padding: 10px;
+  margin: 10px;
+}
