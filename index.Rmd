@@ -28,7 +28,7 @@ This option is a core course for the MSc in Psychology of Mental Health (Convers
 
 | Week | W/C  | Content                                                 | Lectures | Labs                    | Reading |
 |:----:|:----:|:--------------------------------------------------------|:--------:|:-----------------------:|:--------|
-| 1    |16/09 | Exploring Your Data | [Slides](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html)| [Workbook]()| TBD |
+| 1    |16/09 | Exploring Your Data | [Slides](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html)| [Workbook](https://truelovehill.shinyapps.io/week01_exploringdata_lab/)| TBD |
 | 2    |23/09 | Thematic Analysis| [Slides]() | [Workbook]() | TBD |
 | 3    |30/09 | Intro to Null Hypothesis Statistical Testing | [Slides]() | [Workbook]() | TBD |
 | 4    |07/10 | $t$-tests | [Slides]() | [Workbook]() | TBD |

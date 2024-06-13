@@ -1,0 +1,498 @@
+---
+title: "<b> Null Distributions, Effect Sizes, & Power </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#4CA384',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#18778C'
+accent3 <- '#19424C'
+```
+
+## This Week's Topics
+
++ Samples vs Populations
+
++ The Null Distribution
+
++ p-values and critical values
+
++ Confidence Intervals
+
++ Effect Sizes
+
+---
+## Refresh from Last Week
+
+.pull-left[
+
++ Probability distributions allow you to visualise the probability of specific observations
+
++ Specifically, we can compute the probability of a specific **range** of values within a continuous distribution
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=3.5}
+ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
+  stat_function(fun=dnorm, geom = "line", linewidth = 1.5) + 
+  theme(axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5)
+
+```
+]
+
+--
+
+> Why a range? Why can't we compute the probability of a single score?
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+
+(conPlot <- ggplot(data.frame(x = c(-4, 4)), aes(x = x)) + stat_function(fun=dnorm, geom = "line", linewidth = 1.5) +
+  theme(axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5) +
+  geom_vline(xintercept = 2.4822, color = baseColor, linewidth = 1.5))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2, 3))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.45, 2.52))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.475, 2.488))
+```
+]
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+> Because technically, continuous values go on infinitely
+
+.center[
+```{r, echo = F, fig.height = 4.25, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.475, 2.488))
+```
+]
+
+---
+
+## Continuous Probability Distributions
+
+.pull-left[
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=3.5}
+testDat <- ggplot(data.frame(x = c(8, 32)), aes(x = x)) +
+  stat_function(fun=dnorm, args= list(20, 3), geom = "line", linewidth = 1.5) +
+  theme(axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5)
+
+testDat
+```
+]
+
+---
+## Continuous Probability Distributions
+
+.pull-left[
+
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
+
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=3.5}
+testDat + 
+    geom_vline(xintercept = 25, color = accent3, linewidth = 1.5)
+```
+
+]
+
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+.pull-left[
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
+
++ ~95% of our observations are less than 25. This means we only have about a 5% chance of randomly selecting an observation of at least 25. 
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=3.5}
+testDat + 
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = baseColor, xlim=c(8, 25), alpha = .8) +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = accent2, xlim=c(25, 30), alpha = .8) +
+  annotate('text', label = '95%', x = 20, y = .05, color = 'white', size = 7) + 
+  annotate('text', label = '5%', x = 26, y = .01, color = 'white', size = 7) +
+  geom_vline(xintercept = 25, color = accent3, linewidth = 1)
+```
+]
+
+---
+## Continuous Probability Distributions
+
+.pull-left[
+
+```{r, echo = F, fig.height=5}
+testDat + geom_vline(xintercept = 24, color = accent1, linewidth = 1.5)
+```
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=5}
+testDat + geom_vline(xintercept = 18, color = accent3, linewidth = 1.5)
+```
+
+]
+
+> **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+.pull-left[
+```{r, echo = F, fig.height=5}
+testDat +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = baseColor, xlim=c(8, 24), alpha = .8) +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = accent2, xlim=c(24, 30), alpha = .8) +
+  annotate('text', label = '91%', x = 18, y = .02, color = 'white', size = 7) + 
+  annotate('text', label = '9%', x = 25, y = .02, color = 'white', size = 7)+ 
+  geom_vline(xintercept = 24, color = accent1, linewidth = 1.5)
+```
+]
+
+.pull-right[
+```{r, echo = F, fig.height=5}
+testDat +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = accent2, xlim=c(8, 18), alpha = .8) +
+  geom_area(stat = 'function', fun = dnorm, args= list(20, 3), fill = baseColor, xlim=c(18, 30), alpha = .8) +
+  annotate('text', label = '25%', x = 16, y = .02, color = 'white', size = 7) + 
+  annotate('text', label = '75%', x = 22, y = .02, color = 'white', size = 7) + 
+  geom_vline(xintercept = 18, color = accent3, linewidth = 1.5)
+```
+]
+
+> **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
+
+---
+## Continuous Probability Distributions
+
++ Why does this matter?
+
+--
+
++ Many of the statistical tests we will learn about test the probability of obtaining a specific value of a test statistic, given that the null hypothesis is true. 
+
+  + In other words, if the null hypothesis is true, how likely is it that we would get results at least as extreme as ours?
+
++ If the value is unusual enough, we reject the null hypothesis.
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Null Distribution
+
++ Most of the tests we cover in this course evaluate significance by evaluating results against a predefined **null distribution**
+
++ The null distribution is the probability distribution of a statistic **given that the null hypothesis is true**. 
+
++ The shape of the null distribution depends on the test statistic (and the degrees of freedom, which we'll get to at a later point in the course)
+
+---
+
+## Null Distributions
+
+.pull-left[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(0, 10)), aes(x=x)) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 1), color = baseColor, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 2), color = accent1, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 3), color = accent2, linewidth=1.5) +
+  stat_function(fun=dchisq, geom='line', args=c(df = 4), color = accent3, linewidth=1.5) +
+  scale_y_continuous(limits=c(0, .52), breaks = seq(0, .5, .1)) +
+  annotate('text', label = 'df = 1', color = baseColor, x = 8, y = .45, size = 5) +
+  annotate('text', label = 'df = 2', color = accent1, x = 8, y = .38, size = 5) +
+  annotate('text', label = 'df = 3', color = accent2, x = 8, y = .31, size = 5) +
+  annotate('text', label = 'df = 4', color = accent3, x = 8, y = .24, size = 5) +
+  labs(x = expression(chi^2)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+
+
+.pull-right[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(-6, 6)), aes(x=x)) +
+  stat_function(fun=dt, geom='line', args=c(df = 5), color = baseColor, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 10), color = accent1, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 20), color = accent2, linewidth=1.5) +
+  stat_function(fun=dt, geom='line', args=c(df = 50), color = accent3, linewidth=1.5) +
+  annotate('text', label = 'df = 5', color = baseColor, x = 3, y = .4, size = 5) +
+  annotate('text', label = 'df = 10', color = accent1, x = 3, y = .35, size = 5) +
+  annotate('text', label = 'df = 20', color = accent2, x = 3, y = .3, size = 5) +
+  annotate('text', label = 'df = 50', color = accent3, x = 3, y = .25, size = 5) +
+  labs(x = 't-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+
+.center[
+```{r, echo = F, fig.height=2.5, fig.width=4.5}
+ggplot(data.frame(x=c(0, 5)), aes(x=x)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2=10), color = baseColor, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2=10), color = accent1, linewidth=1.5) + 
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2=100), color = accent2, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 10, df2=100), color = accent3, linewidth=1.5) +
+  annotate('text', label = 'df1 = 2, df2 = 10', color = baseColor, x = 4, y = .75, size = 5) +
+  annotate('text', label = 'df1 = 5, df2 = 10', color = accent1, x = 4, y = .6, size = 5) +
+  annotate('text', label = 'df1 = 5, df2 = 100', color = accent2, x = 4, y = .45, size = 5) +
+  annotate('text', label = 'df1 = 10, df2 = 100', color = accent3, x = 4, y = .3, size = 5) +
+  labs(x = 'F-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 16, face = 'bold'),
+        axis.text.x = element_text(size = 14))
+
+```
+]
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+baset <- ggplot(data.frame(x=c(-6, 6)), aes(x=x)) +
+  stat_function(fun=dt, geom='line', args=c(df = 50), linewidth=1.5) + 
+  labs(x = 't-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 12, face = 'bold'),
+        axis.text.x = element_text(size = 10)) +
+  geom_hline(yintercept = 0, linewidth = 1.5)
+
+baset + geom_vline(xintercept = .75, linewidth = 1.5) +
+  annotate('text', label = 't = 0.75', x = 2.25, y = .3, size = 5)
+```
+]]
+
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+(ns <- baset +
+  annotate('text', label = 't = 0.75', x = 2.25, y = .3, size = 5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(-6, .75), fill = baseColor, alpha = .8) +
+  annotate('text', label = '~77%', x = -.4, y = .05, color = 'white', size = 5) + 
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(.75, 6), fill = accent2, alpha = .8) +
+  annotate('text', label = '~23%', x = 1.4, y = .05, color = 'white', size = 5) +
+  geom_vline(xintercept = .75, linewidth = 1.5))
+```
+]]
+
+---
+count: false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+ns
+```
+<B>Not so unusual.</B>
+]]
+
+--
+
+.pull-right[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+(sigPlot <- baset + 
+  geom_vline(xintercept = 3.05, linewidth = 1.5) +
+  annotate('text', label = 't = 3.05', x = 4.5, y = .3, size = 5))
+```
+]]
+
+---
+count:false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+ns
+```
+<B> Not so unusual. </B>
+]]
+
+.pull-right[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+sigPlot + 
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(-6, 3.05), fill = baseColor, alpha = .8) +
+  annotate('text', label = '~99.8%', x = 0, y = .05, color = 'white', size = 5)
+```
+<B> Quite unusual! </B>
+]]
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## $p$-values
+
+.pull-left[
++ The $p$-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
+]
+
+---
+count: false
+
+## $p$-values
+
+.pull-left[
++ The $p$-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
++ It is not:
+  + The likelihood that the null hypothesis is true.
+  + The likelihood that our hypothesis is false
+
+]
+
+--
+
+.pull-right[
+```{r, echo=F, fig.height=3.5, fig.width=5}
+ns + annotate('text', label = 'p = .230', x = 4.5, y = .05, size = 6, color = accent3) +
+  annotate('segment', x = 2.25, xend = 3.2, y = .045, yend = .045, color = accent3,
+           arrow = arrow(type = "closed", length = unit(0.02, "npc"), ends = 'first'))
+```
+]
+
+
+

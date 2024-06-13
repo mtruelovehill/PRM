@@ -1,0 +1,10 @@
+name: week01_exploringdata_lab
+title:
+username: truelovehill
+account: truelovehill
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 12173556
+bundleId: 8734623
+url: https://truelovehill.shinyapps.io/week01_exploringdata_lab/
+version: 1

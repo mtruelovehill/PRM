@@ -1,0 +1,182 @@
+---
+title: "<b> t-tests </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#D95829',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+# baseColor <- "#18778C"
+# accent1 <- '#D95829'
+# accent2 <- '#BF3326'
+# accent3 <- '#F29422'
+
+baseColor <- "#007382"
+accent1 <- '#008C87'
+accent2 <- '#090074'
+accent3 <- '#7B007B'
+
+```
+
+## Differences between two means
+
++ Imagine that you have two groups with these means. 
+
+** Are these groups different?**
+
+.pull-left[
+```{r, echo = F}
+set.seed(68)
+dat <- data.frame(x1=round(rnorm(1000, mean = 20, sd = 2)), y1=round(rnorm(1000, mean = 26, sd = 2)), x2=round(rnorm(1000, mean = 22, sd = 8)), y2=round(rnorm(100, mean = 32, sd = 8)))
+
+basePlot <- ggplot(dat, aes(x1)) + 
+  scale_x_continuous(breaks=seq(5, 50, by = 5), limits=c(5, 50)) +
+  theme(axis.line.y = element_line(),
+        axis.line.x = element_line(),
+        panel.grid = element_blank(),
+        panel.background = element_blank(),
+        axis.ticks = element_blank(),
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold')) +
+  xlab('x')
+
+basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
+  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2)
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r, echo = F}
+basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1, color = baseColor) +
+  geom_vline(xintercept = mean(dat$y2), linewidth=1, color = accent2)
+```
+
+]
+
+---
+
+## Differences between two means
+
+** Are these means different?**
+
+.pull-left[
+```{r, echo = F, warning=F, message=F}
+basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
+  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2) +
+  geom_histogram(fill=baseColor, color = 'gray32', alpha = .8, binwidth = 1) +
+  geom_histogram(data = dat, aes(x=y1), fill=accent2, color = 'gray32', alpha = .8, binwidth = 1) +
+  theme(axis.title.y = element_blank())
+```
+
+]
+
+
+.pull-right[
+
+```{r, echo = F, warning=F, message = F}
+basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1, color = baseColor) +
+  geom_vline(xintercept = mean(dat$y2), linewidth=1, color = accent2) + 
+  geom_histogram(data = dat, aes(x=x2), fill=baseColor, color = 'gray32', alpha = .8, binwidth = 1) +
+  geom_histogram(data = dat, aes(x=y2), fill=accent2, color = 'gray32', alpha = .8, binwidth = 1) +
+  theme(axis.title.y = element_blank())
+```
+
+]
+
+---
+
+## Directional vs nondirectional hypotheses
+
++ Hypotheses may be directional, or make a prediction about the expected direction of the effect
+  
+  + Treatment X will **reduce** symptoms of anxiety
+  
+  + Test scores will **improve** as hour of study increase
+
++ Hypotheses can also be nondirectional. In this case, an effect is predicted, but the direction is not specified.
+
+  + Treatment X will **have an effect** on symptoms of anxiety
+  
+  + Test scores will **be associated with** hours of study
+
+--
+
++ Directional hypotheses can be tested with one-tailed tests
+
++ Nondirectional hypotheses can be tested with two-tailed tests
+
+---
+exclude: true
+
+## Stating your Hypothesis
+
+---
+exclude: true
+
+## Effect size - Cohen's $d$
+
+$$d = \frac{\bar{x}_1 -\bar{x}_2}{s}$$
+
+.pull-left[
++ $\bar{x}_1$ = mean of group 1
++ $\bar{x}_2$ = mean of group 2
++ $s_{pooled}$ = pooled standard deviation
+]
+
+--
+
+.pull-right[
+
+$$s_{pooled} = \sqrt{\frac{(n_1-1)s_1^2\ + (n_2-1)s_2^2}{n_1+n_2-2}}$$
+
+]
+
+
+---
+exclude: true
+## Effect size - Cohen's $d$
+
++ Works best for larger samples...for smaller samples (<50), it overinflates results **MONICA, VERIFY THIS**
+---
+exclude: true
+## Power
+
+---
+exclude: true
+## Assumptions of $t$-test

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Null Distributions, Effect Sizes, &amp; Power </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Null Distributions, Effect Sizes, &amp; Power </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+## This Week's Topics
+
++ Samples vs Populations
+
++ The Null Distribution
+
++ p-values and critical values
+
++ Confidence Intervals
+
++ Effect Sizes
+
+---
+## Refresh from Last Week
+
+.pull-left[
+
++ Probability distributions allow you to visualise the probability of specific observations
+
++ Specifically, we can compute the probability of a specific **range** of values within a continuous distribution
+]
+
+.pull-right[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+---
+## Continuous Probability Distributions
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Continuous Probability Distributions
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Continuous Probability Distributions
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Continuous Probability Distributions
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+&gt; Why a range? Why can't we compute the probability of a single score?
+
+&gt; Because technically, continuous values go on infinitely
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Continuous Probability Distributions
+
+.pull-left[
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
+
+]
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Continuous Probability Distributions
+
+.pull-left[
+
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
+
+
+]
+
+.pull-right[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+.pull-left[
++ We can instead calculate the probability of a range by computing the area under the curve within that range.
+
++ Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
+
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
+
++ ~95% of our observations are less than 25. This means we only have about a 5% chance of randomly selecting an observation of at least 25. 
+
+]
+
+.pull-right[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Continuous Probability Distributions
+
+.pull-left[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+
+]
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+
+]
+
+&gt; **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+.pull-left[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]
+
+&gt; **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
+
+---
+## Continuous Probability Distributions
+
++ Why does this matter?
+
+--
+
++ Many of the statistical tests we will learn about test the probability of obtaining a specific value of a test statistic, given that the null hypothesis is true. 
+
+  + In other words, if the null hypothesis is true, how likely is it that we would get results at least as extreme as ours?
+
++ If the value is unusual enough, we reject the null hypothesis.
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Null Distribution
+
++ Most of the tests we cover in this course evaluate significance by evaluating results against a predefined **null distribution**
+
++ The null distribution is the probability distribution of a statistic **given that the null hypothesis is true**. 
+
++ The shape of the null distribution depends on the test statistic (and the degrees of freedom, which we'll get to at a later point in the course)
+
+---
+
+## Null Distributions
+
+.pull-left[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+]
+
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+]
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+]]
+
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]]
+
+---
+count: false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+&lt;B&gt;Not so unusual.&lt;/B&gt;
+]]
+
+--
+
+.pull-right[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+]]
+
+---
+count:false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+&lt;B&gt; Not so unusual. &lt;/B&gt;
+]]
+
+.pull-right[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+&lt;B&gt; Quite unusual! &lt;/B&gt;
+]]
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## `\(p\)`-values
+
+.pull-left[
++ The `\(p\)`-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
+]
+
+---
+count: false
+
+## `\(p\)`-values
+
+.pull-left[
++ The `\(p\)`-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
++ It is not:
+  + The likelihood that the null hypothesis is true.
+  + The likelihood that our hypothesis is false
+
+]
+
+--
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
+]
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

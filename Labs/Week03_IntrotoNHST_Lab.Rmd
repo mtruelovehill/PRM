@@ -1,10 +1,10 @@
 ---
-title: "Week 3 Lab: Intro to NHST"
+title: "Week 3: Intro to NHST"
 output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
 
@@ -43,6 +43,7 @@ output$aucPlot <- renderPlot({
 
 ## Intro to Today's Lab
 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
 Intro Goes Here   
 
@@ -64,7 +65,10 @@ Intro Goes Here
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
-1.  
+1. Understand the link between probability and inferential statistics
+2. Describe the difference between effect sizes and p-values
+3. Compute confidence intervals
+4. Run a power analysis
 
 
 ## Task 1:
@@ -89,20 +93,22 @@ Task 1 Here
 #      )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Goes Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution Goes Here
 
 </details>
-
+<div>
 </br>
 
 ## Task 2: Calculate the Area Under the Curve
@@ -357,7 +363,7 @@ Solution here.
 </details>
 </br>
 
-## Task 10: 
+## Interpret & Report 
 
 Task here.
 
