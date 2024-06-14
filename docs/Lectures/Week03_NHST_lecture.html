@@ -209,11 +209,11 @@ count: false
 
 --
 
-+ Many of the statistical tests we will learn about test the probability of obtaining a specific value of a test statistic, given that the null hypothesis is true. 
++ Many of the statistical tests we will learn about work by testing the probability of our results given the null hypothesis
 
   + In other words, if the null hypothesis is true, how likely is it that we would get results at least as extreme as ours?
 
-+ If the value is unusual enough, we reject the null hypothesis.
++ If our results are unusual enough, we reject the null hypothesis.
 
 ---
 class: center, inverse, middle
@@ -221,13 +221,13 @@ class: center, inverse, middle
 ## Questions?
 
 ---
-## Null Distribution
+## Null Distributions
 
 + Most of the tests we cover in this course evaluate significance by evaluating results against a predefined **null distribution**
 
 + The null distribution is the probability distribution of a statistic **given that the null hypothesis is true**. 
 
-+ The shape of the null distribution depends on the test statistic (and the degrees of freedom, which we'll get to at a later point in the course)
++ Each statistical test is associated with a separate null distribution
 
 ---
 
@@ -245,12 +245,25 @@ class: center, inverse, middle
 .center[
 ![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
 ]
+
+---
+## Comparing Results to Null Distribution
+
++ When you run a statistical test, you:
+
+  1. Compute a test statistic based on your data
+  
+  2. Calculate the probability of obtaining this statistic if the null were true
+  
+  3. Use this probability to make a decision whether to reject the null hypothesis.
+  
 ---
 ## Comparing Results to Null Distribution
 
 .pull-left[.center[
 ![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
 ]]
+
 
 ---
 ## Comparing Results to Null Distribution
@@ -296,28 +309,31 @@ class: center, inverse, middle
 ## Questions?
 
 ---
-## `\(p\)`-values
+## `\(p\)` - values
 
 .pull-left[
 + The `\(p\)`-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
 
-+ It provides insight into the strength of our evidence against the null hypothesis. 
-
++ It is not:
+  + The likelihood that the null hypothesis is true.
+  + The likelihood that our hypothesis is false
 ]
 
 ---
 count: false
 
-## `\(p\)`-values
+## `\(p\)` - values
 
 .pull-left[
 + The `\(p\)`-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
 
-+ It provides insight into the strength of our evidence against the null hypothesis. 
-
 + It is not:
   + The likelihood that the null hypothesis is true.
   + The likelihood that our hypothesis is false
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
++ If we get a `\(p\)`-value past a certain threshold, we consider our results to be significant.
 
 ]
 
@@ -327,8 +343,56 @@ count: false
 ![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
 ]
 
+---
+
+## `\(p\)` - values
+
++ Remember, we're comparing our test statistic against a null distribution, so it's *possible* it could occur even if the null hypothesis were true. 
+
+--
+
++ Rejecting the null when it is actually true is known as a **Type I Error**. 
+
+  + We have to make a decision about how much we want to risk making a Type I error
+
+  + Our accepted risk threshold is known as `\(\alpha\)`
+
+--
+
++ If our `\(p\)`-value is equal to or less than our predetermined `\(\alpha\)`, we consider our results to be significant.
+
+---
+## Effect Size
+
++ On it's own, a `\(p\)`-value is not sufficient. 
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
+]]
+
+---
+count: false
+
+## Effect Size
+
++ On it's own, a `\(p\)`-value is not sufficient. 
+
+.pull-left[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
+
+** `\(p\)` &lt; .001**
+]]
 
 
+.pull-right[.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
+
+** `\(p\)` &lt; .001**
+]]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
