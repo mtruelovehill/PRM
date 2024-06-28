@@ -39,6 +39,25 @@ output$aucPlot <- renderPlot({
     annotate('text', label = paste0((input$auc[2]-input$auc[1])*100, '% of observations'),
              x = -3, y = .3, size = 6)
     })
+
+
+output$aucScorePlot <- renderPlot({
+  loLim <- ifelse(input$score[1]==50, 50, input$score[1])
+  hiLim <- ifelse(input$score[2]==150, 150, input$score[2])
+  
+
+  propVal <- round((pnorm(input$score[2], mean = 100, sd = 15)-pnorm(input$score[1], mean = 100, sd = 15))*100)
+  
+  ggplot(data.frame(x=c(50, 150)), aes(x)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 100, sd = 15)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 100, sd = 15), xlim = c(loLim, hiLim),
+              alpha = .7) +
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank(),
+          axis.title = element_blank()) +
+    annotate('text', label = paste0(propVal, '% of observations'), x = 140, y = .02, size = 6)
+    })
+
 ```
 
 ## Intro to Today's Lab
@@ -108,52 +127,56 @@ Hint Goes Here
 Solution Goes Here
 
 </details>
-<div>
+</div>
 </br>
 
-## Task 2: Calculate the Area Under the Curve
+## Calculate the Area Under the Curve
 
+Some kind of introduction to this idea here.
 
 ```{r aucPlot, echo = F}
 sliderInput('auc', 'Thresholds:', min=0, max = 1, step = .01, value = c(0,1), ticks = F)
 plotOutput('aucPlot')
 
-# fluidRow(column(4, 
+# fluidRow(column(4,
 #   sliderInput("lo","Low Threshold:", min = -6, max = 6, value = 0, step = 2),
 #   sliderInput('hi', 'High Threshold:', min = 1, max = 5, value = 1, step = .25)),
 #   column(8, plotOutput('distPlot')))
-# 
+#
 tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
 
 ```
 
+Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to a practical example. Imagine that you have a sample of 4,000 participants who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). The plot below reflects the probability distribution of your sample. Use this plot to answer the following questions:
+
+```{r, echo = F}
+sliderInput('score', 'WAIS-IV Score:', min=50, max = 150, step = 1, value = c(50,150), ticks = F)
+plotOutput('aucScorePlot')
+```
 
 
 ```{r q2, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which type of data is C?",
-#               answer("Categorical"),
-#               answer("Continuous", correct = T),
-#               random_answer_order = T),
-#      question("Which type of data is Gender?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T)),
-#      question("Which type of data is ClassTime?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T),
-#               message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
-#               numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an  
-#               infinite range of values if measurement was precise enough'),
-#      question('Which of the following "Measure" values used by SPSS reflects categorical data?',
-#               answer('Nominal', correct = T),
-#               answer('Ordinal', correct = T),
-#               answer('Scale'),
-#               message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
-#               variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
-#               but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'))
+
+# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
+quiz(caption = 'Test Your Understanding',
+     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
+                      answer(38, correct = T),
+                      message = '38% of the sample scored between 95 and 110.'),
+     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
+                      answer(19, correct = T),
+                      message = '19% of the sample received a score lower than 87.'),
+     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
+                      answer(1, correct = T),
+                      message = 'Only 1% of the sample scored at least 138.'),
+     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
+                      answer(81, correct = T),
+                      message = 'The lowest 10% of the sample scored below 81.')
+)
+
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
@@ -172,7 +195,6 @@ Solution here.
 
 ## Task 3: 
 
-Maybe do one where we start to use scores on the x-axis, so they can start to see how some scores fall within an 'extreme' range. 
 
 Task Description Here
 
@@ -345,7 +367,7 @@ Solution here.
 </br>
 
 
-## Task 9: 
+## Task 9: Power Analyses
 
 Task here.
 

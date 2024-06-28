@@ -59,6 +59,99 @@ accent3 <- '#19424C'
 ---
 ## Refresh from Last Week
 
+
++ **Samples** are a subgroup of observations that you're using to make inferences about the overall **population**
+
++ Probability distributions allow you to visualise the probability of specific observations
+
++ Why is this relevant to Psychology?
+
+--
+
+  + In psychology, we design a study, take measurements from a sample, and use these measurements to calculate a value that carries some meaning.
+ 
+  + We want to know how meaningful this value is in the context of our hypothesis. 
+
+  + One way we assess 'meaningfulness' is through probability
+
+
+
+---
+## Sampling Distributions
+
++ A sampling distribution shows us the frequency of each possible observation within our sample:
+
+
+
+.pull-left[
+
+```{r, echo=F, fig.width=5, fig.height=4}
+set.seed(208)
+# Categorical distribution plot
+dat <- data.frame(x=sample(c('Heads', 'Tails'), size = 40, replace = T, prob = c(.5, .5)), y = rnorm(n = 40))
+
+ggplot(dat, aes(x)) + geom_bar(fill=baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 30, by = 5)) +
+  labs(y='Frequency') +
+  theme(axis.text = element_text(size=14),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 16, face = 'bold'))
+```
+.center[**Categorical Distribution**]
+]
+
+.pull-right[
+
+```{r, echo=F, fig.width=5, fig.height=4, warning = F}
+ggplot(dat, aes(y)) + geom_histogram(fill=baseColor, color=accent3, bins=12) +
+  labs(y='Frequency') +
+  scale_y_continuous(breaks=seq(0, 14, by = 1)) +
+  scale_x_continuous(limits = c(-3, 3)) +
+  theme(axis.text = element_text(size=14),
+        axis.title.y = element_text(size=14, face = 'bold'),
+        axis.title.x = element_blank())
+```
+.center[**Continuous Distribution**]
+]
+
+---
+## Probability Distributions
+
++ A probability distribution shows us the probability of randomly selecting an observation (or range) from our sample:
+
+.pull-left[
+
+```{r, echo=F, fig.width=5, fig.height=4}
+pDat <- data.frame(Outcome = unique(dat$x), Probability = as.numeric(table(dat$x)/nrow(dat)))
+
+ggplot(pDat, aes(x=Outcome, y=Probability)) + 
+  geom_bar(stat='identity', color = accent3, fill=baseColor) +
+  scale_y_continuous(breaks=seq(0, .7, .1)) +
+  theme(axis.text=element_text(size = 14),
+        axis.title.y=element_text(size = 16, face = 'bold'),
+        axis.title.x = element_blank())
+```
+.center[**Categorical Probability Distribution**]
+]
+
+.pull-right[
+
+```{r, echo=F, fig.width=5, fig.height=4, warning = F}
+ggplot(dat, aes(x=y)) + 
+  stat_function(fun = dnorm, geom = 'line', args = c(mean=mean(dat$y), sd = sd(dat$y)), linewidth = 1.5, color = baseColor) +
+  scale_x_continuous(limits = c(-3, 3)) + 
+  scale_y_continuous(breaks=seq(0, .5, by = .1)) +
+  theme(axis.text.x = element_text(size=14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title = element_blank())
+
+```
+.center[**Continuous Probability Distribution**]
+]
+---
+## Continuous Probability Distributions
+
 .pull-left[
 
 + Probability distributions allow you to visualise the probability of specific observations
@@ -157,7 +250,7 @@ conPlot + coord_cartesian(xlim=c(2.475, 2.488))
 ## Continuous Probability Distributions
 
 .pull-left[
-+ We can instead calculate the probability of a range by computing the area under the curve within that range.
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
@@ -184,7 +277,7 @@ testDat
 
 .pull-left[
 
-+ We can instead calculate the probability of a range by computing the area under the curve within that range.
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
@@ -209,7 +302,7 @@ count: false
 ## Continuous Probability Distributions
 
 .pull-left[
-+ We can instead calculate the probability of a range by computing the area under the curve within that range.
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
@@ -301,7 +394,7 @@ class: center, inverse, middle
 ---
 ## Null Distributions
 
-+ Most of the tests we cover in this course evaluate significance by evaluating results against a predefined **null distribution**
++ Most of the tests we cover in this course evaluate significance by evaluating results against a predefined probability distribution known as the **null distribution**
 
 + The null distribution is the probability distribution of a statistic **given that the null hypothesis is true**. 
 
@@ -541,7 +634,7 @@ dat <- data.frame(group = c(rep('A', 15), rep('B', 15)), x=c(rnorm(15, mean = 5,
 set.seed(8)
 dat2 <- data.frame(group = c(rep('A', 100), rep('B', 100)), x=c(rnorm(100, mean = 5, sd = 3), rnorm(100, mean = 6.5, sd = 3)))
 
-ggplot(data.frame(y=c(-10, 30)), aes(y)) + 
+(p1 <- ggplot(data.frame(y=c(-10, 30)), aes(y)) + 
   geom_histogram(data = dat[dat$group=='A',], aes(x, y = after_stat(density)), binwidth = 3, fill = baseColor, color = accent3, alpha = .7) +
   geom_histogram(data = dat[dat$group=='B',], aes(x, y = after_stat(density)), binwidth = 3, fill = accent2, color = accent3, alpha = .7) + 
   stat_function(fun=dnorm, geom='line', args=c(mean = 5.7, sd = 3), linewidth=1.5, color = baseColor) +
@@ -549,15 +642,15 @@ ggplot(data.frame(y=c(-10, 30)), aes(y)) +
   theme(axis.text = element_blank(),
         axis.title = element_blank(),
         axis.ticks = element_blank()) +
-  annotate('text', label = 'n = 15 per group \n p < .001', x = 25, y = .1, size = 5) +
+  annotate('text', label = 'n = 15 per group', x = 25, y = .1, size = 5) +
   geom_vline(xintercept = 5.7, color = baseColor, linewidth = 1.5, linetype = 2) +
-  geom_vline(xintercept = 12.6, color = accent2, linewidth = 1.5, linetype = 2)
+  geom_vline(xintercept = 12.6, color = accent2, linewidth = 1.5, linetype = 2))
 ```
 ]]
 
 .pull-right[.center[
 ```{r, echo = F, fig.width=5, fig.height=3.5}
-ggplot(data.frame(y=c(-10, 25)), aes(y)) + 
+(p2 <- ggplot(data.frame(y=c(-10, 25)), aes(y)) + 
   geom_histogram(data = dat2[dat$group=='A',], aes(x, y = after_stat(density)), binwidth = 3, fill = baseColor, color = accent3, alpha = .7) +
   geom_histogram(data = dat2[dat$group=='B',], aes(x, y = after_stat(density)), binwidth = 3, fill = accent2, color = accent3, alpha = .7) + 
   stat_function(fun=dnorm, geom='line', args=c(mean = 4.7, sd = 3), linewidth=1.5, color = baseColor) +
@@ -567,7 +660,7 @@ ggplot(data.frame(y=c(-10, 25)), aes(y)) +
         axis.ticks = element_blank()) +
   annotate('text', label = 'n = 100 per group', x = 20, y = .1, size = 5) +
   geom_vline(xintercept = 4.7, color = baseColor, linewidth = 1.5, linetype = 2) +
-  geom_vline(xintercept = 6.5, color = accent2, linewidth = 1.5, linetype = 2)
+  geom_vline(xintercept = 6.5, color = accent2, linewidth = 1.5, linetype = 2))
 ```
 ]]
 
@@ -580,23 +673,7 @@ count: false
 
 .pull-left[.center[
 ```{r, echo = F, fig.width=5, fig.height=3.5}
-set.seed(2)
-dat <- data.frame(group = c(rep('A', 15), rep('B', 15)), x=c(rnorm(15, mean = 5, sd = 3), rnorm(15, mean = 12, sd = 3)))
-
-set.seed(8)
-dat2 <- data.frame(group = c(rep('A', 100), rep('B', 100)), x=c(rnorm(100, mean = 5, sd = 3), rnorm(100, mean = 6.5, sd = 3)))
-
-ggplot(data.frame(y=c(-10, 30)), aes(y)) + 
-  geom_histogram(data = dat[dat$group=='A',], aes(x, y = after_stat(density)), binwidth = 3, fill = baseColor, color = accent3, alpha = .7) +
-  geom_histogram(data = dat[dat$group=='B',], aes(x, y = after_stat(density)), binwidth = 3, fill = accent2, color = accent3, alpha = .7) + 
-  stat_function(fun=dnorm, geom='line', args=c(mean = 5.7, sd = 3), linewidth=1.5, color = baseColor) +
-  stat_function(fun=dnorm, geom='line', args=c(mean = 12.6, sd = 3), linewidth=1.5, color = accent2) +
-  theme(axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank()) +
-  annotate('text', label = 'n = 15 per group \n p < .001', x = 25, y = .1, size = 5) +
-  geom_vline(xintercept = 5.7, color = baseColor, linewidth = 1.5, linetype = 2) +
-  geom_vline(xintercept = 12.6, color = accent2, linewidth = 1.5, linetype = 2)
+p1
 ```
 
 ** $p$ < .001**
@@ -605,18 +682,14 @@ ggplot(data.frame(y=c(-10, 30)), aes(y)) +
 
 .pull-right[.center[
 ```{r, echo = F, fig.width=5, fig.height=3.5}
-ggplot(data.frame(y=c(-10, 25)), aes(y)) + 
-  geom_histogram(data = dat2[dat$group=='A',], aes(x, y = after_stat(density)), binwidth = 3, fill = baseColor, color = accent3, alpha = .7) +
-  geom_histogram(data = dat2[dat$group=='B',], aes(x, y = after_stat(density)), binwidth = 3, fill = accent2, color = accent3, alpha = .7) + 
-  stat_function(fun=dnorm, geom='line', args=c(mean = 4.7, sd = 3), linewidth=1.5, color = baseColor) +
-  stat_function(fun=dnorm, geom='line', args=c(mean = 6.5, sd = 3), linewidth=1.5, color = accent2) +
-  theme(axis.text = element_blank(),
-        axis.title = element_blank(),
-        axis.ticks = element_blank()) +
-  annotate('text', label = 'n = 100 per group', x = 20, y = .1, size = 5) +
-  geom_vline(xintercept = 4.7, color = baseColor, linewidth = 1.5, linetype = 2) +
-  geom_vline(xintercept = 6.5, color = accent2, linewidth = 1.5, linetype = 2)
+p2
 ```
 
 ** $p$ < .001**
 ]]
+
+---
+
+## Power
+
++ Sample size - harder to get an unrepresentative sample as $n$ increases

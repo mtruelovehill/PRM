@@ -1,5 +1,5 @@
 ---
-title: "Week 3 Lab: Intro to NHST"
+title: "Week 4 Lab: t-tests"
 output:
   learnr::tutorial:
     progressive: true
@@ -7,8 +7,6 @@ output:
     css: css/style.css
 runtime: shiny_prerendered
 ---
-
-Make a shiny plot that lets them explore how the AUC works with a probability distribution.
 
 
 ```{r setup, include=FALSE}
@@ -78,6 +76,19 @@ At the end of this lab, you will be able to:
 Task 1 Here
 
 ```{r q1, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question('Which of the following hypotheses can be tested using a t-test?',
+              answer('Hypothesis1', correct = T),
+              answer('Hypothesis2'),
+              answer('Hypothesis3'),
+              answer('Hypothesis4'),
+              answer('Hypothesis5'),
+              random_answer_order = T,
+              message = 'Feedback Here'))
+
+# Also include a question where they have to select between the type of t-test (one sample, independent sample, or paired sample)
+
+
 # quiz(caption = 'Test Your Understanding',
 #      question("What kind of file is 'Week1LabData'?",
 #               answer("SPSS datafile"),
