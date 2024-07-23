@@ -176,48 +176,54 @@ quiz(caption = 'Test Your Understanding',
 
 ```
 
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
-
+</div>
 </br>
 
 
-## Task 3: 
+## Evaluating Type I & Type II Errors
 
 
 Task Description Here
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution Here.
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
 
 </details>
-
+</div>
 </br>
 
 
 
 
-## Task 4: 
+## Interpreting Effect Sizes
 
 Task Here.
 
@@ -235,36 +241,46 @@ Task Here.
 #               answer(2, correct=T)))
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution Here
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
 
 </details>
+</div>
 </br>
 
-## Task 5: 
+## Compute a 95% Confidence Interval 
 
 Task Here
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution Here.
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
 
 </details>
+</div>
 </br>
 
 ## Task 6: 
@@ -294,16 +310,23 @@ Task Description.
 # )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
-Hint here.
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
 ## Task 7: 
@@ -322,18 +345,23 @@ Task here.
 # )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
 ## Task 8: 
@@ -352,55 +380,71 @@ Task here.
 
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
 
-## Task 9: Power Analyses
+## Power Analyses
 
 Task here.
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
+
 
 ## Interpret & Report 
 
 Task here.
 
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 

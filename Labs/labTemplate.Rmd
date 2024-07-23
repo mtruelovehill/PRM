@@ -1,13 +1,12 @@
 ---
-title: "Week 4 Lab: t-tests"
+title: "Title Here"
 output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
-
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -26,27 +25,12 @@ accent3 <- '#19424C'
 ```
 
 ```{r, context = 'server'}
-output$distPlot <- renderPlot({
-  set.seed(806)
-      dat <- data.frame(X=rnorm(300, mean = input$mean, sd = input$sd))
-      ggplot(data.frame(X = c(-30, 30)), aes(x = X)) +
-        geom_histogram(data=dat, aes(x=X, y = after_stat(density)), fill = '#4CA384', color = '#19424C',
-                       binwidth = 2) +
-        stat_function(fun=dnorm, geom = "line", args = list(mean = input$mean, sd = input$sd),
-                      linewidth = 1, color = '#19424C') +
-        scale_x_continuous(breaks = seq(-30, 30, 10), limits=c(-30, 30)) +
-        scale_y_continuous(limits=c(0, .4)) +
-        theme(axis.title.x = element_text(size = 16, face = 'bold'),
-              axis.text.x = element_text(size = 16),
-              axis.line.y = element_blank(),
-              axis.text.y = element_blank(),
-              axis.ticks = element_blank(),
-              axis.title.y = element_blank())
-    })
+
 ```
 
 ## Intro to Today's Lab
 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
 Intro Goes Here   
 
@@ -68,30 +52,17 @@ Intro Goes Here
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
-1.  
+1. Objective 1
+2. Objective 2
+3. Objective 3
+4. Objective 4
 
 
-## State your Hypotheses
+## Task 1:
 
-Task 1 Info Here
-
-* Identify IV(s) and DV(s)
-* State Hypotheses (Independent Samples & Paired Samples)
+Task 1 Here
 
 ```{r q1, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('Which of the following hypotheses can be tested using a t-test?',
-              answer('Hypothesis1', correct = T),
-              answer('Hypothesis2'),
-              answer('Hypothesis3'),
-              answer('Hypothesis4'),
-              answer('Hypothesis5'),
-              random_answer_order = T,
-              message = 'Feedback Here'))
-
-# Also include a question where they have to select between the type of t-test (one sample, independent sample, or paired sample)
-
-
 # quiz(caption = 'Test Your Understanding',
 #      question("What kind of file is 'Week1LabData'?",
 #               answer("SPSS datafile"),
@@ -109,92 +80,97 @@ quiz(caption = 'Test Your Understanding',
 #      )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Goes Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution Goes Here
 
 </details>
-
+</div>
 </br>
 
-## Run the Appropriate Power Analyses 
+## Task 2
 
-Task Goes Here
-* Maybe an a priori & a sensitivity
+Task here.
+
 
 ```{r q2, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which type of data is C?",
-#               answer("Categorical"),
-#               answer("Continuous", correct = T),
-#               random_answer_order = T),
-#      question("Which type of data is Gender?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T)),
-#      question("Which type of data is ClassTime?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T),
-#               message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
-#               numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an  
-#               infinite range of values if measurement was precise enough'),
-#      question('Which of the following "Measure" values used by SPSS reflects categorical data?',
-#               answer('Nominal', correct = T),
-#               answer('Ordinal', correct = T),
-#               answer('Scale'),
-#               message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
-#               variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
-#               but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'))
+
+# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
+quiz(caption = 'Test Your Understanding',
+     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
+                      answer(38, correct = T),
+                      message = '38% of the sample scored between 95 and 110.'),
+     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
+                      answer(19, correct = T),
+                      message = '19% of the sample received a score lower than 87.'),
+     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
+                      answer(1, correct = T),
+                      message = 'Only 1% of the sample scored at least 138.'),
+     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
+                      answer(81, correct = T),
+                      message = 'The lowest 10% of the sample scored below 81.')
+)
+
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
-
+</div>
 </br>
 
 
-## Calculate Descriptive Data 
+## Task 3: 
+
 
 Task Description Here
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution Here.
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
 
 </details>
-
+</div>
 </br>
 
 
 
 
-## Visualise Your Data 
+## Task 4: 
 
 Task Here.
 
@@ -212,42 +188,51 @@ Task Here.
 #               answer(2, correct=T)))
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution Here
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
 
 </details>
+</div>
 </br>
 
-## Check Assumptions
+## Task 5: 
 
 Task Here
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here.
-
-</details>
-</br>
-
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
-
-Solution Here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-## Run Independent Samples $t$-test 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Task 6: 
 
 Task Description.
-* Maybe also discuss degrees of freedom here
 
 ```{r q6, echo = FALSE}
 # quiz(caption = 'Test Your Understanding',
@@ -272,19 +257,26 @@ Task Description.
 # )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
-Hint here.
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
-## Calculate Effect Size for Independent-Samples $t$-Test
+## Task 7: 
 
 Task here.
 
@@ -300,21 +292,26 @@ Task here.
 # )
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
-## Run a Paired-Samples $t$-Test 
+## Task 8: 
 
 Task here.
 
@@ -330,55 +327,71 @@ Task here.
 
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
 
-## Calculate Effect Size for a Paired-Samples $t$-Test 
+## Task 9
 
 Task here.
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
-## Report & Interpret
+
+## Interpret & Report 
 
 Task here.
 
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+Hint Here
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 

@@ -1,5 +1,5 @@
 ---
-title: "<b> Null Distributions, Effect Sizes, & Power </b>"
+title: "<b> Introduction to Null-Hypothesis <br> Statistical Testing </b>"
 subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
 author: "Monica Truelove-Hill"
 institute: "Department of Clinical Psychology<br>The University of Edinburgh"
@@ -36,6 +36,8 @@ style_mono_accent(
 
 ```{r, echo = F, message = F, warning = F}
 library(tidyverse)
+library(rstatix)
+
 knitr::opts_chunk$set(dev = 'svg')
 
 baseColor <- '#4CA384'
@@ -44,28 +46,118 @@ accent2 <- '#18778C'
 accent3 <- '#19424C'
 ```
 
-## This Week's Topics
-
-+ Samples vs Populations
+## This Week's Key Topics
 
 + The Null Distribution
 
-+ p-values and critical values
-
-+ Confidence Intervals
++ $p$-Values
 
 + Effect Sizes
 
++ Confidence Intervals & the Standard Error
+
++ $\alpha$ and Power
+
+
 ---
 ## Refresh from Last Week
+
+
++ **Samples** are a subgroup of observations that you're using to make inferences about the overall **population**
+
++ Probability distributions allow you to visualise the probability of specific observations
+
++ Why is this relevant to Psychology?
+
+--
+
+  + In psychology, we design a study, take measurements from a sample, and use these measurements to calculate a value that carries some meaning.
+ 
+  + We want to know how meaningful this value is in the context of our hypothesis. 
+
+  + One way we assess 'meaningfulness' is through probability
+
+---
+## Frequency vs Probability Distributions
+
++ A frequency distribution shows the frequency of each possible observation within our sample:
+
+.pull-left[
+
+```{r, echo=F, fig.width=5, fig.height=4}
+set.seed(208)
+# Categorical distribution plot
+dat <- data.frame(x=sample(c('Heads', 'Tails'), size = 40, replace = T, prob = c(.5, .5)), y = rnorm(n = 40))
+
+ggplot(dat, aes(x)) + geom_bar(fill=baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 30, by = 5)) +
+  labs(y='Frequency') +
+  theme(axis.text = element_text(size=14),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 16, face = 'bold'))
+```
+.center[**Categorical Distribution**]
+]
+
+.pull-right[
+
+```{r, echo=F, fig.width=5, fig.height=4, warning = F}
+ggplot(dat, aes(y)) + geom_histogram(fill=baseColor, color=accent3, bins=12) +
+  labs(y='Frequency') +
+  scale_y_continuous(breaks=seq(0, 14, by = 1)) +
+  scale_x_continuous(limits = c(-3, 3)) +
+  theme(axis.text = element_text(size=14),
+        axis.title.y = element_text(size=14, face = 'bold'),
+        axis.title.x = element_blank())
+```
+.center[**Continuous Distribution**]
+]
+
+---
+
+## Probability Distributions
+
++ A probability distribution shows the probability of randomly selecting an observation (or range) from our sample:
+
+.pull-left[
+
+```{r, echo=F, fig.width=5, fig.height=4}
+pDat <- data.frame(Outcome = unique(dat$x), Probability = as.numeric(table(dat$x)/nrow(dat)))
+
+ggplot(pDat, aes(x=Outcome, y=Probability)) + 
+  geom_bar(stat='identity', color = accent3, fill=baseColor) +
+  scale_y_continuous(breaks=seq(0, .7, .1)) +
+  theme(axis.text=element_text(size = 14),
+        axis.title.y=element_text(size = 16, face = 'bold'),
+        axis.title.x = element_blank())
+```
+.center[**Categorical Probability Distribution**]
+]
+
+.pull-right[
+
+```{r, echo=F, fig.width=5, fig.height=4, warning = F}
+ggplot(dat, aes(x=y)) + 
+  stat_function(fun = dnorm, geom = 'line', args = c(mean=mean(dat$y), sd = sd(dat$y)), linewidth = 1.5, color = baseColor) +
+  scale_x_continuous(limits = c(-3, 3)) + 
+  scale_y_continuous(breaks=seq(0, .5, by = .1)) +
+  theme(axis.text.x = element_text(size=14),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title = element_blank())
+
+```
+.center[**Continuous Probability Distribution**]
+]
+---
+## Continuous Probability Distributions
 
 .pull-left[
 
 + Probability distributions allow you to visualise the probability of specific observations
 
-+ Specifically, we can compute the probability of a specific range of values within a distribution
++ Specifically, we can compute the probability of a specific **range** of values within a continuous distribution
 ]
-
 
 .pull-right[
 
@@ -82,17 +174,86 @@ ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
 ```
 ]
 
+--
+
+> Why a range? Why can't we compute the probability of a single score?
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+
+(conPlot <- ggplot(data.frame(x = c(-4, 4)), aes(x = x)) + stat_function(fun=dnorm, geom = "line", linewidth = 1.5) +
+  theme(axis.text = element_text(size = 12), 
+        axis.title = element_text(size = 14, face = 'bold'),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5) +
+  geom_vline(xintercept = 2.4822, color = baseColor, linewidth = 1.5))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2, 3))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.45, 2.52))
+```
+]
+
+---
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+.center[
+```{r, echo = F, fig.height = 4.5, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.475, 2.488))
+```
+]
+
+---
+count: false
+
+## Continuous Probability Distributions
+
+> Why a range? Why can't we compute the probability of a single score?
+
+> Because technically, continuous values go on infinitely, so the probability of any single value is approximately 0
+
+.center[
+```{r, echo = F, fig.height = 4.25, fig.width = 8}
+conPlot + coord_cartesian(xlim=c(2.475, 2.488))
+```
+]
+
 ---
 
-## Describing your data: Probability distributions
+## Continuous Probability Distributions
 
 .pull-left[
-
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution. 
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
-+ Let's say we randomly select an observation from our dataset.
 
 ]
 
@@ -112,17 +273,16 @@ testDat
 ]
 
 ---
-## Describing your data: Probability distributions
+## Continuous Probability Distributions
 
 .pull-left[
 
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution.
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
-+ Let's say we randomly select an observation from our dataset.
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
 
-+ What is the likelihood our randomly selected observation is at least 25?
 
 ]
 
@@ -139,17 +299,14 @@ testDat +
 ---
 count: false
 
-## Describing your data: Probability distributions
+## Continuous Probability Distributions
 
 .pull-left[
-
-+ We can also use probability distributions to compute the probability of value beyond a specific point on the distribution.
++ We can instead calculate the probability of a range by computing the **area under the curve (AUC)** within that range.
 
 + Imagine we have a range of observations whose values fall between 8 and 32 that are distributed as pictured.
 
-+ Let's say we randomly select an observation from our dataset.
-
-+ What is the likelihood our randomly selected observation is at least 25?
++ If we randomly select an observation from our data, what is the likelihood it will be at least 25?
 
 + ~95% of our observations are less than 25. This means we only have about a 5% chance of randomly selecting an observation of at least 25. 
 
@@ -168,44 +325,7 @@ testDat +
 ]
 
 ---
-## Probability Distributions
-
-+ Why does this matter?
-
---
-
-+ Many of the statistical tests we will learn about in this course all involve testing the probability of a specific value of a test statistic, given that $H_0$ is true. 
-
-+ In other words, if $H_0$ is true, how likely is it that we would get results at least as extreme as ours?
-
-+ If the value is unusual enough (i.e., if it is highly unlikely we would see the value if the null is true), we reject $H_0$
-
-
----
-## Null Distribution
-
-+ All parametric quantitative tests we learn about in this course evaluate significance by evaluating results against a predefined **null distribution**
-
-+ The null distribution is the probability distribution of a statistic **given that $H_0$ is true**. 
-
-+ The shape of the null distribution depends on the test statistic (and the degrees of freedom, which we'll get to at a later point in the course)
-
-
----
-## Comparing Data against null distribution: NHST
-
-.pull-left[
-```{r, echo = F, fig.height=5}
-testDat
-```
-
-]
-
-
----
-count: false
-
-## Comparing Data against null distribution: NHST
+## Continuous Probability Distributions
 
 .pull-left[
 
@@ -222,12 +342,12 @@ testDat + geom_vline(xintercept = 18, color = accent3, linewidth = 1.5)
 
 ]
 
-> **Test Your Understanding:** Which score is less common?
+> **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
 
 ---
 count: false
 
-## Comparing Data against null distribution: NHST
+## Continuous Probability Distributions
 
 .pull-left[
 ```{r, echo = F, fig.height=5}
@@ -251,8 +371,77 @@ testDat +
 ```
 ]
 
-> **Test Your Understanding:** Which score is less common?
+> **Test Your Understanding:** Is it more unusual to have a score of 24 or more or a score of 18 or less?
 
+---
+## Continuous Probability Distributions
+
++ Why does this matter?
+
+--
+
++ Many of the statistical tests we will learn about work by testing the probability of our results given the null hypothesis
+
+  + In other words, if the null hypothesis is true, how likely is it that we would get results at least as extreme as ours?
+
++ If our results are unusual enough, we reject the null hypothesis.
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Testing Against the Null Hypothesis
+
++ In order to make a decision whether our data/values are unusual, we need to have an understanding of what values we might expect to see if the null hypothesis were true.
+
+--
+
+> **Test Your Understanding:** Given the following distributions, do you think a value of 20 would be unusual?
+
+
+--
+.pull-left[
+```{r, echo = F, fig.height=4}
+set.seed(211)
+ggplot(data.frame(x=rnorm(100, mean = 18, sd = 3)), aes(x)) + 
+  geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
+  geom_vline(xintercept = 20, color = accent2, linewidth = 1) + 
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+```
+]
+
+--
+
+.pull-right[
+```{r, echo = F, fig.height=4}
+set.seed(311)
+ggplot(data.frame(x=rnorm(100, mean = 13, sd = 3)), aes(x)) + 
+  geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
+  geom_vline(xintercept = 20, color = accent2, linewidth = 1) + 
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+```
+]
+
+
+
+???
+
++ A value of 20 tells us nothing without context
+
+
+---
+## Null Distributions
+
++ Most of the tests we cover in this course evaluate significance by evaluating results against a predefined probability distribution known as the **null distribution**
+
++ The null distribution is the probability distribution of a statistic **given that the null hypothesis is true**. 
+
++ Each statistical test is associated with a separate null distribution
 
 ---
 
@@ -324,9 +513,712 @@ ggplot(data.frame(x=c(0, 5)), aes(x=x)) +
 ]
 
 ---
+## Comparing Results to Null Distribution
+
++ When you run a statistical test, you:
+
+  1. Compute a test statistic based on your data
+  
+  2. Calculate the probability of obtaining this statistic if the null were true
+  
+  3. Use this probability to make a decision whether to reject the null hypothesis.
+  
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+baset <- ggplot(data.frame(x=c(-6, 6)), aes(x=x)) +
+  stat_function(fun=dt, geom='line', args=c(df = 50), linewidth=1.5) + 
+  labs(x = 't-statistic') +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.x = element_text(size = 12, face = 'bold'),
+        axis.text.x = element_text(size = 10)) +
+  geom_hline(yintercept = 0, linewidth = 1.5)
+
+baset + geom_vline(xintercept = .75, linewidth = 1.5) +
+  annotate('text', label = 't = 0.75', x = 2.25, y = .3, size = 5)
+```
+]]
+
+
+---
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+(ns <- baset +
+  annotate('text', label = 't = 0.75', x = 2.25, y = .3, size = 5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(-6, .75), fill = baseColor, alpha = .8) +
+  annotate('text', label = '~77%', x = -.4, y = .05, color = 'white', size = 5) + 
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(.75, 6), fill = accent2, alpha = .8) +
+  annotate('text', label = '~23%', x = 1.4, y = .05, color = 'white', size = 5) +
+  geom_vline(xintercept = .75, linewidth = 1.5))
+```
+]]
+
+---
+count: false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+ns
+```
+<B>Not so unusual.</B>
+]]
+
+--
+
+.pull-right[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+(sigPlot <- baset + 
+  geom_vline(xintercept = 3.05, linewidth = 1.5) +
+  annotate('text', label = 't = 3.05', x = 4.5, y = .3, size = 5))
+```
+]]
+
+---
+count:false
+
+## Comparing Results to Null Distribution
+
+.pull-left[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+ns
+```
+<B> Not so unusual. </B>
+]]
+
+.pull-right[.center[
+```{r, echo = F, fig.height=4, fig.width=5}
+sigPlot + 
+  geom_area(stat = 'function', fun = dt, args= list(df = 50), xlim=c(-6, 3.05), fill = baseColor, alpha = .8) +
+  annotate('text', label = '~99.8%', x = 0, y = .05, color = 'white', size = 5)
+```
+<B> Quite unusual! </B>
+]]
+
+---
+count: false
+
 class: center, inverse, middle
 
 ## Questions?
 
+---
+## $p$ - values
+
+.pull-left[
++ The $p$-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It is not:
+  + The likelihood that the null hypothesis is true.
+  + The likelihood that our hypothesis is false
+]
 
 ---
+count: false
+
+## $p$ - values
+
+.pull-left[
++ The $p$-value is the **probability** of obtaining data at least as extreme as ours, given that the null hypothesis is true.
+
++ It is not:
+  + The likelihood that the null hypothesis is true.
+  + The likelihood that our hypothesis is false
+
++ It provides insight into the strength of our evidence against the null hypothesis. 
+
++ If we get a $p$-value past a certain threshold, we consider our results to be significant.
+
+]
+
+--
+
+.pull-right[
+```{r, echo=F, fig.height=3.5, fig.width=5}
+ns + annotate('text', label = 'p = .230', x = 4.5, y = .05, size = 6, color = accent3) +
+  annotate('segment', x = 2.25, xend = 3.2, y = .045, yend = .045, color = accent3,
+           arrow = arrow(type = "closed", length = unit(0.02, "npc"), ends = 'first'))
+```
+]
+
+---
+## Effect Size
+
++ On it's own, a $p$-value is not sufficient. 
+
+.pull-left[.center[
+```{r, echo = F, fig.width=5, fig.height=3.5}
+set.seed(1022)
+dat <- data.frame(group = c(rep('A', 10), rep('B', 10)), x=c(rnorm(10, mean = 5, sd = 4), rnorm(10, mean = 10.5, sd = 4)))
+
+set.seed(7)
+dat2 <- data.frame(group = c(rep('A', 100), rep('B', 100)), x=c(rnorm(100, mean = 5, sd = 3.4), rnorm(100, mean = 6.15, sd = 3.4)))
+
+(p1 <- ggplot(dat, aes(x)) + geom_density(data = dat[dat$group=='A',], fill = baseColor, alpha = .7) + 
+  geom_vline(xintercept = mean(dat$x[dat$group=='A']), color = baseColor, linewidth = 1.5, linetype = 2) +
+  geom_density(data = dat[dat$group=='B',], fill = accent2, alpha = .7) +
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank()) +
+  annotate('text', label = 'n = 10 per group', x = 30, y = .05, size = 5) +
+  geom_vline(xintercept = mean(dat$x[dat$group=='B']), color = accent2, linewidth = 1.5, linetype = 2) + 
+  geom_hline(yintercept = 0, linewidth = 1) + 
+  scale_x_continuous(limits = c(-10, 40)))
+
+```
+]]
+
+.pull-right[.center[
+```{r, echo = F, fig.width=5, fig.height=3.5, warning = F}
+(p2 <- ggplot(dat2, aes(x)) + geom_density(data = dat2[dat2$group=='A',], fill = baseColor, alpha = .7) + 
+  geom_vline(xintercept = mean(dat2$x[dat2$group=='A']), color = baseColor, linewidth = 1.5, linetype = 2) +
+  geom_density(data = dat2[dat2$group=='B',], fill = accent2, alpha = .7) +
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.ticks = element_blank()) +
+  annotate('text', label = 'n = 100 per group', x = 30, y = .075, size = 5) +
+  geom_vline(xintercept = mean(dat2$x[dat2$group=='B']), color = accent2, linewidth = 1.5, linetype = 2) + 
+  geom_hline(yintercept = 0, linewidth = 1) + 
+  scale_x_continuous(limits = c(-10, 40)))
+```
+]]
+
+---
+count: false
+
+## Effect Size
+
++ On it's own, a $p$-value is not sufficient. 
+
+.pull-left[.center[
+```{r, echo = F, fig.width=5, fig.height=3.5}
+p1
+```
+
+** $p$ = .015**
+]]
+
+
+.pull-right[.center[
+```{r, echo = F, fig.width=5, fig.height=3.5}
+p2
+```
+
+** $p$ = .015**
+]]
+
+---
+## Effect Size
+
++ The **effect size** describes the magnitude of the effect or relationship
+
++ Unlike a $p$-value, which only tells you the likelihood that an effect or relationship exists, the effect size tells you how strong it is.
+
++ Different measures of effect size depending on your data/the statistical test you use
+
++ Usually standardised so that you can make comparisons across different variables
+
+--
+
+.pull-left.center[
+
+```{r, echo = F, fig.width=4.5, fig.height=2.5}
+dP1 <- cohens_d(dat, formula = x~group)
+p1 + 
+  annotate('segment', x=mean(dat$x[dat$group=='A']), xend = mean(dat$x[dat$group=='B']), y = .1, color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('effect size =', round(abs(dP1$effsize), 2), '(large)'), x=28, y = .1, color = accent3, size = 5)
+```
+
+]
+
+.pull-right.center[
+
+```{r, echo = F, fig.width=4.5, fig.height=2.5}
+dP2 <- cohens_d(dat2, formula = x~group)
+
+p2 + 
+  annotate('segment', x=mean(dat2$x[dat2$group=='A']), xend = mean(dat2$x[dat2$group=='B']), y = .15, color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('effect size =', round(abs(dP2$effsize), 2), '(small)'), x=24, y = .15, color = accent3, size = 5)
+```
+
+]
+
+
+---
+## Confidence Intervals
+
++ Remember, we don't actually know the population parameter; we're trying to estimate this with our data.
+
++ A **confidence interval** defines a plausible range of values for our population parameter. 
+
++ The wider the interval, the more confident that we can be that the interval captures our true value.
+
+--
+
+> How many of you are confident that I'm exactly 35 years old?
+
+--
+
+> How many of you are confident that I'm between 33 & 38 years old?
+
+--
+
+> How many of you are confident that I'm between 29 & 42 years old?
+
+--
+
+> How many of you are confident that I'm between 25 & 46 years old?
+  
+---
+## Confidence Level
+
++ To estimate the confidence interval, we need:
+
+  + To define a confidence level
+  + The standard error
+
++ The **confidence level** refers to the percentage of times confidence intervals would be expected to contain the true population parameter across repeated samples.
+
++ The typical confidence level used is **95%**, although you might also see 90% or 99%
+
++ So, if we were to take 100 samples and calculate a 95% CI on each of them, ~95 of those intervals would contain the true population parameter.
+
+
+???
+
++ What are we 95% confident in?
+
+  + We are 95% confident that our interval contains the true population mean.
+  
+  + The 95% probability comes from the long-run frequencies of our intervals.
+
+---
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+--
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(1, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(2, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(3, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(4, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(5, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+```{r, echo = F, fig.height=3.5, warning = F}
+set.seed(44)
+seDat <- data.frame(MeanScore = rnorm(100, mean = 62, sd = 5))
+
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  xlab('Mean Score') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'))
+```
+]
+
+--
+
++ The average deviation from the mean of the means *between* samples is the **standard error**
+
+---
+## Standard Error
+
++ The **standard error** gives you a sense of how different $\bar{x}$ is likely to be from $\mu$
+
++ It helps you to evaluate how well your sample reflects the population
+
++ A smaller standard error suggests our estimate is likely to be closer to the true population parameter
+
+--
+
+$$SE = \frac{\sigma}{\sqrt{N}}$$
+
+
+???
+
+Why would we calculate this? Who has the time and resources to collect lots of different samples???
+
+Don't worry, brilliant statisticians have figured out how you can estimate this value from a single sample.
+
+---
+## Calculation of Confidence Intervals
+
++ As this is an interval, you'll need to calculate both a lower and upper band.
+
+--
+
+$$CI = \bar{x}\pm z\times SE$$
+
+$\bar{x}$: sample mean
+
+$z$: $z$-score associated with the confidence level
+  + 90% = 1.64
+  + 95% = 1.96
+  + 99% = 2.58
+
+$SE$: the standard error
+
+---
+## Calculation of Confidence Intervals
+
+.pull-left[
+
+$$95\% \ CI = \bar{x}\pm 1.96\times SE$$
+]
+
+.pull-right[
+$$SE = \frac{s}{\sqrt{n}}$$
+]
+
+> Test your Understanding: Imagine you have an attention assessment that you have tested in a sample of 525 university students. The mean score is 42.35 and the sd is 5.62.
+
+--
+
+> What is n?
+
+> What is the SE?
+
+> What is the lower band of the 95% CI?
+
+> What is the upper band of the 95% CI?
+
+
+---
+## Calculation of Confidence Intervals
+
+$$SE = \frac{s}{\sqrt{n}}$$
+
+**Step 1:** Calculate the Standard Error
+
+$SE = \frac{5.62}{\sqrt{525}}$
+
+--
+
+$SE = `r round(5.62/sqrt(525), 2)`$
+
+
+---
+## Calculation of Confidence Intervals
+
+$$95\% \ CI = \bar{x}\pm 1.96\times SE$$
+
+.pull-left[
+
+**Step 2:** Calculate the Lower Band of 95% CI
+
+$95\% \ CI = 42.35 - 1.96\times `r round(5.62/sqrt(525), 2)`$
+
+
+$95\% \ CI = 42.35 - `r 1.96*round(5.62/sqrt(525), 2)`$
+
+
+$95\% \ CI = `r round(42.35 - 1.96*round(5.62/sqrt(525), 2), 2)`$
+
+]
+
+--
+
+.pull-right[
+**Step 3:** Calculate the Higher Band of 95% CI
+
+
+$95\% \ CI = 42.35 + `r 1.96*round(5.62/sqrt(525), 2)`$
+
+
+$95\% \ CI = `r round(42.35 + 1.96*round(5.62/sqrt(525), 2), 2)`$
+
+]
+
+---
+## Visualisation of Confidence Intervals
+
+.pull-left[
+```{r, echo = F, warning = F, fig.height=4.5}
+sumDat <- dat %>%
+  group_by(group) %>%
+  summarise( 
+    n=n(),
+    mean=mean(x),
+    sd=sd(x)
+  ) %>%
+  mutate( se=sd/sqrt(n))  %>%
+  mutate( ic=se*1.96) %>%
+  mutate(ic99=se*2.58)
+
+ggplot(sumDat) + 
+  geom_bar(aes(group, mean), stat = 'identity', fill = c(baseColor, accent1)) +
+  geom_errorbar( aes(x=group, ymin=mean-ic, ymax=mean+ic), width=0.4, colour=accent3, alpha=0.9, size=1.5) +
+  geom_point(aes(group, mean), size = 4, color = accent3) +
+  scale_y_continuous(limits = c(0, 20)) +
+  labs(x = 'Group', y = 'Score') + 
+  theme(legend.position = 'none',
+        axis.text=element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+
+```
+
+]
+
+--
+
+.pull-right[
+
+> **Test Your Understanding:** If you were to instead plot the 99% CI, would the error bars be longer or shorter?
+
+]
+
+
+---
+count: false
+
+## Visualisation of Confidence Intervals
+
+.pull-left[
+```{r, echo = F, warning = F, fig.height=4.5}
+ggplot(sumDat) + 
+  geom_bar(aes(group, mean), stat = 'identity', fill = c(baseColor, accent1)) +
+  geom_errorbar( aes(x=group, ymin=mean-ic, ymax=mean+ic), width=0.4, colour=accent3, alpha=0.9, size=1.5) +
+  geom_point(aes(group, mean), size = 4, color = accent3) +
+  scale_y_continuous(limits = c(0, 20)) +
+  labs(x = 'Group', y = 'Score') + 
+  theme(legend.position = 'none',
+        axis.text=element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+```
+]
+
+.pull-right[
+
+```{r, echo = F, warning = F, fig.height=4.5}
+ggplot(sumDat) + 
+  geom_bar(aes(group, mean), stat = 'identity', fill = c(baseColor, accent1)) +
+  geom_errorbar( aes(x=group, ymin=mean-ic99, ymax=mean+ic99), width=0.4, colour=accent3, alpha=0.9, size=1.5) +
+  geom_point(aes(group, mean), size = 4, color = accent3) +
+  scale_y_continuous(limits = c(0, 20)) +
+  labs(x = 'Group', y = 'Score') + 
+  theme(legend.position = 'none',
+        axis.text=element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+```
+]
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Errors
+
++ Whether your decision is either to reject or not reject the null hypothesis, you may be making an error.
+
+--
+
++ Two types of errors:
+
+  + **Type I Error:** You reject a true null hypothesis (i.e., you believe a result is significant when it is not)
+  
+  + **Type II Error:** You don't reject a false null hypothesis (i.e., you don't think a result is significant when it is)
+
+
+--
+
+.center[
+```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/ErrorTable.png')
+```
+]
+
+---
+
+## $\alpha$
+
++ Rejecting the null when it is actually true is known as a **Type I error**. 
+
+  + We have to make a decision about how much we want to risk making a Type I error
+
+  + Our accepted risk threshold is known as $\alpha$
+  
+  + $\alpha$ reflects the probability of making a Type I error
+
+--
+  
++ Typical $\alpha$ value is .05, but may sometimes be set at .01 or .001.
+
+--
+
++ If our $p$-value is equal to or less than our predetermined $\alpha$, we consider our results to be significant.
+
+---
+
+## Power
+
++ Similarly, we have to make a decision about how much we want to risk making a **Type II error** 
+
+  + The probability of making a Type II error is known as $\beta$
+  
++ An analysis's power is associated with the likelihood of making a Type II error.
+  
+  + It tells us how likely we are to detect an effect *if it exists*
+  
+  + AKA, 1 - $\beta$
+
+--
+  
++ A conventional value for power is .8 (80% power)
+
++ This means there is a 20% chance of making a Type II error
+
+
+---
+
+## Power
+
++ There are typically four numbers that go into a power calculation. If you have 3 of these numbers, you can solve for the fourth:
+
+  + $\alpha$
+  + Effect Size
+  + $n$
+  + Power
+
+--
+
+> **Test Your Understanding:** How do you think each of these values affects your ability to detect an effect?
+
+---
+
+## To summarise...
+
+.center[
+```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/ErrorTableAlphaBeta.png')
+```
+]
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
