@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title> Null Distributions, Effect Sizes, &amp; Power </title>
+    <title> Introduction to Null-Hypothesis   Statistical Testing </title>
     <meta charset="utf-8" />
     <meta name="author" content="Monica Truelove-Hill" />
     <script src="libs/header-attrs/header-attrs.js"></script>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# <b> Null Distributions, Effect Sizes, &amp; Power </b>
+# <b> Introduction to Null-Hypothesis <br> Statistical Testing </b>
 ]
 .subtitle[
 ## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
@@ -33,17 +33,18 @@ class: center, middle, inverse, title-slide
 
 
 
-## This Week's Topics
-
-+ Samples vs Populations
+## This Week's Key Topics
 
 + The Null Distribution
 
-+ p-values and critical values
-
-+ Confidence Intervals
++ `\(p\)`-Values
 
 + Effect Sizes
+
++ Confidence Intervals &amp; the Standard Error
+
++ `\(\alpha\)` and Power
+
 
 ---
 ## Refresh from Last Week
@@ -63,14 +64,10 @@ class: center, middle, inverse, title-slide
 
   + One way we assess 'meaningfulness' is through probability
 
-
-
 ---
-## Sampling Distributions
+## Frequency vs Probability Distributions
 
-+ A sampling distribution shows us the frequency of each possible observation within our sample:
-
-
++ A frequency distribution shows the frequency of each possible observation within our sample:
 
 .pull-left[
 
@@ -85,9 +82,10 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
 ## Probability Distributions
 
-+ A probability distribution shows us the probability of randomly selecting an observation (or range) from our sample:
++ A probability distribution shows the probability of randomly selecting an observation (or range) from our sample:
 
 .pull-left[
 
@@ -162,7 +160,7 @@ count: false
 
 &gt; Why a range? Why can't we compute the probability of a single score?
 
-&gt; Because technically, continuous values go on infinitely
+&gt; Because technically, continuous values go on infinitely, so the probability of any single value is approximately 0
 
 .center[
 ![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
@@ -271,9 +269,38 @@ count: false
 + If our results are unusual enough, we reject the null hypothesis.
 
 ---
+count: false
 class: center, inverse, middle
 
 ## Questions?
+
+---
+## Testing Against the Null Hypothesis
+
++ In order to make a decision whether our data/values are unusual, we need to have an understanding of what values we might expect to see if the null hypothesis were true.
+
+--
+
+&gt; **Test Your Understanding:** Given the following distributions, do you think a value of 20 would be unusual?
+
+
+--
+.pull-left[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+]
+
+
+
+???
+
++ A value of 20 tells us nothing without context
+
 
 ---
 ## Null Distributions
@@ -289,16 +316,16 @@ class: center, inverse, middle
 ## Null Distributions
 
 .pull-left[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
 ]
 
 
 .pull-right[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
 ]
 
 .center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -316,7 +343,7 @@ class: center, inverse, middle
 ## Comparing Results to Null Distribution
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
 ]]
 
 
@@ -324,7 +351,7 @@ class: center, inverse, middle
 ## Comparing Results to Null Distribution
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
 ]]
 
 ---
@@ -333,14 +360,14 @@ count: false
 ## Comparing Results to Null Distribution
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
 &lt;B&gt;Not so unusual.&lt;/B&gt;
 ]]
 
 --
 
 .pull-right[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
 ]]
 
 ---
@@ -349,16 +376,18 @@ count:false
 ## Comparing Results to Null Distribution
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
 &lt;B&gt; Not so unusual. &lt;/B&gt;
 ]]
 
 .pull-right[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
 &lt;B&gt; Quite unusual! &lt;/B&gt;
 ]]
 
 ---
+count: false
+
 class: center, inverse, middle
 
 ## Questions?
@@ -395,26 +424,8 @@ count: false
 --
 
 .pull-right[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
 ]
-
----
-
-## `\(p\)` - values
-
-+ Remember, we're comparing our test statistic against a null distribution, so it's *possible* it could occur even if the null hypothesis were true. 
-
---
-
-+ Rejecting the null when it is actually true is known as a **Type I Error**. 
-
-  + We have to make a decision about how much we want to risk making a Type I error
-
-  + Our accepted risk threshold is known as `\(\alpha\)`
-
---
-
-+ If our `\(p\)`-value is equal to or less than our predetermined `\(\alpha\)`, we consider our results to be significant.
 
 ---
 ## Effect Size
@@ -422,11 +433,11 @@ count: false
 + On it's own, a `\(p\)`-value is not sufficient. 
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
 ]]
 
 .pull-right[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
 ]]
 
 ---
@@ -437,23 +448,409 @@ count: false
 + On it's own, a `\(p\)`-value is not sufficient. 
 
 .pull-left[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
 
-** `\(p\)` &lt; .001**
+** `\(p\)` = .015**
 ]]
 
 
 .pull-right[.center[
-![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
 
-** `\(p\)` &lt; .001**
+** `\(p\)` = .015**
 ]]
+
+---
+## Effect Size
+
++ The **effect size** describes the magnitude of the effect or relationship
+
++ Unlike a `\(p\)`-value, which only tells you the likelihood that an effect or relationship exists, the effect size tells you how strong it is.
+
++ Different measures of effect size depending on your data/the statistical test you use
+
++ Usually standardised so that you can make comparisons across different variables
+
+--
+
+.pull-left.center[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
+
+]
+
+.pull-right.center[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+## Confidence Intervals
+
++ Remember, we don't actually know the population parameter; we're trying to estimate this with our data.
+
++ A **confidence interval** defines a plausible range of values for our population parameter. 
+
++ The wider the interval, the more confident that we can be that the interval captures our true value.
+
+--
+
+&gt; How many of you are confident that I'm exactly 35 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 33 &amp; 38 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 29 &amp; 42 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 25 &amp; 46 years old?
+  
+---
+## Confidence Level
+
++ To estimate the confidence interval, we need:
+
+  + To define a confidence level
+  + The standard error
+
++ The **confidence level** refers to the percentage of times confidence intervals would be expected to contain the true population parameter across repeated samples.
+
++ The typical confidence level used is **95%**, although you might also see 90% or 99%
+
++ So, if we were to take 100 samples and calculate a 95% CI on each of them, ~95 of those intervals would contain the true population parameter.
+
+
+???
+
++ What are we 95% confident in?
+
+  + We are 95% confident that our interval contains the true population mean.
+  
+  + The 95% probability comes from the long-run frequencies of our intervals.
+
+---
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+--
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-39-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-40-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-41-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* our sample is the **standard deviation**
+
++ Now imagine you took multiple samples and plotted their means:
+
+.center[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-42-1.svg)&lt;!-- --&gt;
+]
+
+--
+
++ The average deviation from the mean of the means *between* samples is the **standard error**
+
+---
+## Standard Error
+
++ The **standard error** gives you a sense of how different `\(\bar{x}\)` is likely to be from `\(\mu\)`
+
++ It helps you to evaluate how well your sample reflects the population
+
++ A smaller standard error suggests our estimate is likely to be closer to the true population parameter
+
+--
+
+`$$SE = \frac{\sigma}{\sqrt{N}}$$`
+
+
+???
+
+Why would we calculate this? Who has the time and resources to collect lots of different samples???
+
+Don't worry, brilliant statisticians have figured out how you can estimate this value from a single sample.
+
+---
+## Calculation of Confidence Intervals
+
++ As this is an interval, you'll need to calculate both a lower and upper band.
+
+--
+
+`$$CI = \bar{x}\pm z\times SE$$`
+
+`\(\bar{x}\)`: sample mean
+
+`\(z\)`: `\(z\)`-score associated with the confidence level
+  + 90% = 1.64
+  + 95% = 1.96
+  + 99% = 2.58
+
+`\(SE\)`: the standard error
+
+---
+## Calculation of Confidence Intervals
+
+.pull-left[
+
+`$$95\% \ CI = \bar{x}\pm 1.96\times SE$$`
+]
+
+.pull-right[
+`$$SE = \frac{s}{\sqrt{n}}$$`
+]
+
+&gt; Test your Understanding: Imagine you have an attention assessment that you have tested in a sample of 525 university students. The mean score is 42.35 and the sd is 5.62.
+
+--
+
+&gt; What is n?
+
+&gt; What is the SE?
+
+&gt; What is the lower band of the 95% CI?
+
+&gt; What is the upper band of the 95% CI?
+
+
+---
+## Calculation of Confidence Intervals
+
+`$$SE = \frac{s}{\sqrt{n}}$$`
+
+**Step 1:** Calculate the Standard Error
+
+`\(SE = \frac{5.62}{\sqrt{525}}\)`
+
+--
+
+`\(SE = 0.25\)`
+
+
+---
+## Calculation of Confidence Intervals
+
+`$$95\% \ CI = \bar{x}\pm 1.96\times SE$$`
+
+.pull-left[
+
+**Step 2:** Calculate the Lower Band of 95% CI
+
+`\(95\% \ CI = 42.35 - 1.96\times 0.25\)`
+
+
+`\(95\% \ CI = 42.35 - 0.49\)`
+
+
+`\(95\% \ CI = 41.86\)`
+
+]
+
+--
+
+.pull-right[
+**Step 3:** Calculate the Higher Band of 95% CI
+
+
+`\(95\% \ CI = 42.35 + 0.49\)`
+
+
+`\(95\% \ CI = 42.84\)`
+
+]
+
+---
+## Visualisation of Confidence Intervals
+
+.pull-left[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
+
+]
+
+--
+
+.pull-right[
+
+&gt; **Test Your Understanding:** If you were to instead plot the 99% CI, would the error bars be longer or shorter?
+
+]
+
+
+---
+count: false
+
+## Visualisation of Confidence Intervals
+
+.pull-left[
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-44-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+![](Week03_NHST_lecture_files/figure-html/unnamed-chunk-45-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Errors
+
++ Whether your decision is either to reject or not reject the null hypothesis, you may be making an error.
+
+--
+
++ Two types of errors:
+
+  + **Type I Error:** You reject a true null hypothesis (i.e., you believe a result is significant when it is not)
+  
+  + **Type II Error:** You don't reject a false null hypothesis (i.e., you don't think a result is significant when it is)
+
+
+--
+
+.center[
+&lt;img src="images/ErrorTable.png" width="75%" /&gt;
+]
+
+---
+
+## `\(\alpha\)`
+
++ Rejecting the null when it is actually true is known as a **Type I error**. 
+
+  + We have to make a decision about how much we want to risk making a Type I error
+
+  + Our accepted risk threshold is known as `\(\alpha\)`
+  
+  + `\(\alpha\)` reflects the probability of making a Type I error
+
+--
+  
++ Typical `\(\alpha\)` value is .05, but may sometimes be set at .01 or .001.
+
+--
+
++ If our `\(p\)`-value is equal to or less than our predetermined `\(\alpha\)`, we consider our results to be significant.
 
 ---
 
 ## Power
 
-+ Sample size - harder to get an unrepresentative sample as `\(n\)` increases
++ Similarly, we have to make a decision about how much we want to risk making a **Type II error** 
+
+  + The probability of making a Type II error is known as `\(\beta\)`
+  
++ An analysis's power is associated with the likelihood of making a Type II error.
+  
+  + It tells us how likely we are to detect an effect *if it exists*
+  
+  + AKA, 1 - `\(\beta\)`
+
+--
+  
++ A conventional value for power is .8 (80% power)
+
++ This means there is a 20% chance of making a Type II error
+
+
+---
+
+## Power
+
++ There are typically four numbers that go into a power calculation. If you have 3 of these numbers, you can solve for the fourth:
+
+  + `\(\alpha\)`
+  + Effect Size
+  + `\(n\)`
+  + Power
+
+--
+
+&gt; **Test Your Understanding:** How do you think each of these values affects your ability to detect an effect?
+
+---
+
+## To summarise...
+
+.center[
+&lt;img src="images/ErrorTableAlphaBeta.png" width="75%" /&gt;
+]
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
