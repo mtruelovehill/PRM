@@ -398,7 +398,7 @@ class: center, inverse, middle
 
 2. Conduct a power analysis
 
-3. Look at your data (visualisations/descriptives)
+3. Check your data (visualisations/descriptives)
 
 4. Check assumptions
 
@@ -676,7 +676,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 ---
 ## Independent Samples $t$-test
 
-**Step 3: Look at your data**
+**Step 3: Check your data**
 
 + Compute descriptive statistics
 
@@ -771,7 +771,7 @@ knitr::include_graphics('images/BPeffect.png')
 ---
 ## Independent Samples $t$-test
 
-**Step 6: Report**
+**Step 8: Report**
 
 We conducted a **two-tailed independent-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -3.16, $p$ = .002, $d$ = -.55, 95% CI = [-4.68, -1.08] </span></b>. Specifically, SBP in the treatment group was lower <span style = "color:#19424C"><b> ( $M$ = 136.97, $SD$ = 4.86)</span></b> than SBP in the placebo group <span style = "color:#19424C"><b>( $M$ = 139.85, $SD$ = 5.50)</span></b>.
 
@@ -784,7 +784,7 @@ Although it's not here in the results, you'll also need to specify $\alpha$
 ---
 ## Independent Samples $t$-test
 
-**Step 6: Report**
+**Step 8: Report**
 
 .pull-left[
 
@@ -856,7 +856,14 @@ $$H_1: \bar{d} < \mu_d$$
 + As before, let's check the sample required to achieve 80% power to detect a moderate effect ( $d$ = .5) with $\alpha$ = .05.
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
+
+**Step 3: Check your data**
+
++ Let's use [this sample data](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPpairedDat.csv)
+
+---
+## Running a paired-samples $t$-test
 
 **Step 3: Check Assumptions**
 
@@ -883,7 +890,7 @@ $$H_1: \bar{d} < \mu_d$$
   
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 4: Run the test**
 
@@ -892,7 +899,7 @@ $$H_1: \bar{d} < \mu_d$$
 Again, let's continue in SPSS...
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 5: Interpret results**
 
@@ -901,7 +908,7 @@ knitr::include_graphics('images/BPDesc.png')
 ```
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 5: Interpret results**
 
@@ -910,7 +917,7 @@ knitr::include_graphics('images/BPttest.png')
 ```
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 5: Interpret results**
 
@@ -919,7 +926,7 @@ knitr::include_graphics('images/BPeffect.png')
 ```
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 6: Report**
 
@@ -941,7 +948,7 @@ knitr::include_graphics('images/BPeffect.png')
 
 
 ---
-## Independent Samples $t$-test
+## Running a paired-samples $t$-test
 
 **Step 6: Report**
 
