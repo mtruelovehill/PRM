@@ -1177,6 +1177,61 @@ knitr::include_graphics('images/ErrorTable.png')
 
 ---
 
+## $\alpha$
+
+.pull-left[
+.center[ ** $\alpha$ = .05**
+
+```{r, echo = F, fig.height=4.5}
+ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
+  stat_function(fun=dt, geom='line', args=c(df = 29), color = baseColor, linewidth=1.5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
+            xlim=c(qt(.025, df = 29, lower.tail = F), 5), alpha = .8) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
+            xlim=c(-5, qt(.025, df = 29)), alpha = .8) +
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks = element_blank()) +
+  annotate('text', x = 3, y = .3, parse = T, label = paste('alpha == .05'), size = 8, color = accent2) +
+  annotate('text', x = 3.25, y = .05, parse = T, label = paste('alpha/2 == .025'), size = 6, color = accent2) +
+  annotate('text', x = -3.25, y = .05, parse = T, label = paste('alpha/2 == .025'), size = 6, color = accent2) +
+  annotate('segment', x= -2.25, xend = 3, y = .06, yend = .28, color = accent2, linewidth = 1, linetype = 'dashed') +
+  annotate('segment', x= 2.4, xend = 3, y = .06, yend = .28, color = accent2, linewidth = 1, linetype = 'dashed') +
+  geom_hline(yintercept = 0, color = baseColor, linewidth = 1.5)
+```
+
+]
+]
+
+--
+
+.pull-right[
+.center[ ** $\alpha$ = .01**
+
+```{r, echo = F, fig.height=4.5}
+ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
+  stat_function(fun=dt, geom='line', args=c(df = 29), color = baseColor, linewidth=1.5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
+            xlim=c(qt(.005, df = 29, lower.tail = F), 5), alpha = .8) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
+            xlim=c(-5, qt(.005, df = 29)), alpha = .8) +
+  theme(axis.text = element_blank(),
+        axis.title = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks = element_blank()) +
+  annotate('text', x = 3, y = .3, parse = T, label = paste('alpha == .01'), size = 8, color = accent2) +
+  annotate('text', x = 3.5, y = .03, parse = T, label = paste('alpha/2 == .005'), size = 6, color = accent2) +
+  annotate('text', x = -3.5, y = .03, parse = T, label = paste('alpha/2 == .005'), size = 6, color = accent2) +
+  annotate('segment', x= -2.5, xend = 3, y = .04, yend = .28, color = accent2, linewidth = 1, linetype = 'dashed') +
+  annotate('segment', x= 2.8, xend = 3, y = .04, yend = .28, color = accent2, linewidth = 1, linetype = 'dashed') +
+  geom_hline(yintercept = 0, color = baseColor, linewidth = 1.5)
+```
+
+]
+]
+---
+
 ## Power
 
 + Similarly, we have to make a decision about how much we want to risk making a **Type II error** 

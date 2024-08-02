@@ -440,7 +440,7 @@ class: center, inverse, middle
 ```{r, echo = F, fig.height=2, fig.width = 4}
 ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
   stat_function(fun=dt, geom='line', args=c(df = 29), color = baseColor, linewidth=1.5) +
-  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent1, 
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
             xlim=c(qt(.05, df = 29, lower.tail = F), 5), alpha = .8) +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -448,13 +448,14 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
         axis.ticks.y = element_blank(),
         axis.text.x = element_text(size = 10),
         axis.title.x = element_text(size = 12, face = 'bold')) +
-  annotate('text', x = 3, y = .3, parse = T, label = paste('bar(x) > mu'), size = 6, color = baseColor)
+  annotate('text', x = 3, y = .3, parse = T, label = paste('bar(x) > mu'), size = 6, color = baseColor) +
+  annotate('text', x = 3.25, y = .05, parse = T, label = paste('alpha == .05'), size = 4, color = accent2)
 ```
 
 ```{r, echo = F, fig.height=2, fig.width = 4}
 ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
   stat_function(fun=dt, geom='line', args=c(df = 29), color = baseColor, linewidth=1.5) +
-  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent1, 
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
             xlim=c(-5, qt(.05, df = 29)), alpha = .8) +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -462,7 +463,8 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
         axis.ticks.y = element_blank(),
         axis.text.x = element_text(size = 10),
         axis.title.x = element_text(size = 12, face = 'bold')) +
-  annotate('text', x = -3, y = .3, parse = T, label = paste('bar(x) < mu'), size = 6, color = baseColor)
+  annotate('text', x = -3, y = .3, parse = T, label = paste('bar(x) < mu'), size = 6, color = baseColor) +
+  annotate('text', x = -3.25, y = .05, parse = T, label = paste('alpha == .05'), size = 4, color = accent2)
 ```
 ]]
 
@@ -475,9 +477,9 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
 ```{r, echo = F, fig.height=4.5, fig.width = 6.5}
 ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
   stat_function(fun=dt, geom='line', args=c(df = 29), color = baseColor, linewidth=1.5) +
-  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent1, 
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
             xlim=c(qt(.025, df = 29, lower.tail = F), 5), alpha = .8) +
-  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent1, 
+  geom_area(stat = 'function', fun = dt, args= list(df = 29), fill = accent2, 
             xlim=c(-5, qt(.025, df = 29)), alpha = .8) +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -485,7 +487,9 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
         axis.ticks.y = element_blank(),
         axis.text.x = element_text(size = 14),
         axis.title.x = element_text(size = 16, face = 'bold')) +
-  annotate('text', x = 3, y = .3, parse = T, label = paste('bar(x) != mu'), size = 8, color = baseColor)
+  annotate('text', x = 3, y = .3, parse = T, label = paste('bar(x) != mu'), size = 8, color = baseColor) +
+  annotate('text', x = 3.25, y = .05, parse = T, label = paste('alpha == .025'), size = 6, color = accent2) +
+  annotate('text', x = -3.25, y = .05, parse = T, label = paste('alpha == .025'), size = 6, color = accent2)
 ```
 ]
 
@@ -663,7 +667,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 2: Conduct a Power Analysis**
 
@@ -674,7 +678,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 + Remember, our research question is 'Are there differences in systolic blood pressure between the treatment group and the group that received a placebo?'
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 3: Check your data**
 
@@ -684,11 +688,11 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
   
 --
 
-+ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPdat.csv).
++ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/Data/BPdat.csv).
 
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 4: Check Assumptions**
 
@@ -711,16 +715,16 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
   
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 5: Run the test**
 
 **Step 6: Calculate the effect size/confidence intervals**
 
-Again, let's continue in SPSS...
+Let's continue in SPSS...
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
@@ -729,7 +733,7 @@ knitr::include_graphics('images/BPDesc.png')
 ```
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
@@ -737,17 +741,52 @@ knitr::include_graphics('images/BPDesc.png')
 knitr::include_graphics('images/BPttest.png')
 ```
 
+--
+
+.center[
+```{r, echo = F, fig.height=3}
+ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
+  stat_function(fun=dt, geom='line', args=c(df = 128), color = baseColor, linewidth=1.5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 128), fill = accent1, 
+            xlim=c(qt(.025, df = 128, lower.tail = F), 5), alpha = .8) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 128), fill = accent1, 
+            xlim=c(-5, qt(.025, df = 128)), alpha = .8) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.x = element_text(size = 16, face = 'bold')) +
+  annotate('text', x = -4.25, y = .05, label = 't = -3.16', size = 8, color = accent2) +
+  geom_vline(xintercept = -3.16, color = accent2, linetype = 'dashed', linewidth = 1.5)
+
+```
+]
+
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
+.pull-left[
 ```{r, echo = F}
 knitr::include_graphics('images/BPeffect.png')
 ```
+]
+
+.pull-right[
+
+| Strength | Absolute Magnitude of $d$ |
+|:--------:|:-------------------------:|
+| Weak     | $\leq$ .20                |
+| Moderate | $\approx$ .50             |
+| Strong   | $\geq$ .8                 |
+
+]
+
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
@@ -769,11 +808,11 @@ knitr::include_graphics('images/BPeffect.png')
 
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
-We conducted a **two-tailed independent-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -3.16, $p$ = .002, $d$ = -.55, 95% CI = [-4.68, -1.08] </span></b>. Specifically, SBP in the treatment group was lower <span style = "color:#19424C"><b> ( $M$ = 136.97, $SD$ = 4.86)</span></b> than SBP in the placebo group <span style = "color:#19424C"><b>( $M$ = 139.85, $SD$ = 5.50)</span></b>.
+We conducted a **two-tailed independent-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -3.16, $p$ = .002, 95% CI = [-4.68, -1.08], $d$ = -.55 </span></b>. Specifically, SBP in the treatment group was lower <span style = "color:#19424C"><b> ( $M$ = 136.97, $SD$ = 4.86)</span></b> than SBP in the placebo group <span style = "color:#19424C"><b>( $M$ = 139.85, $SD$ = 5.50)</span></b>.
 
 --
 
@@ -782,7 +821,7 @@ Note number of decimal places and use of italics and brackets
 Although it's not here in the results, you'll also need to specify $\alpha$
 
 ---
-## Independent Samples $t$-test
+## Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
@@ -795,9 +834,9 @@ Although it's not here in the results, you'll also need to specify $\alpha$
 ]
 
 .pull-right[
-```{r, echo = F}
+```{r, echo = F, fig.height=4.5}
 
-bpDat <- read.csv('https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPdat.csv')
+bpDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/BPdat.csv')
 
 ggplot(bpDat, aes(x=Group, y = SystolicBP, fill = Group)) + geom_boxplot() +
   scale_fill_manual(values=c(accent1, accent2)) + 
@@ -840,7 +879,7 @@ $$H_1: \bar{d} < \mu_d$$
 
 --
 
-> **Test Your Understanding:** If your research question is 'Does Medication X decrease blood pressure in participants over time?', is this a directional or nondirectional hypothesis? Do we need a one-tailed or two-tailed test?
+> **Test Your Understanding:** If your research question is 'Does Medication X change blood pressure in participants over time?', is this a directional or nondirectional hypothesis? Do we need a one-tailed or two-tailed test?
 
 
 
@@ -865,100 +904,100 @@ $$H_1: \bar{d} < \mu_d$$
 ---
 ## Running a paired-samples $t$-test
 
-**Step 3: Check Assumptions**
+**Step 4: Check Assumptions**
 
-+ Normality
++ Normality of difference scores
   
   + Have a look at the histograms
   + May also run tests of normality (Shapiro-Wilk or Kolmogorov–Smirnov)
 
 --
 
-+ Independence of Observations
++ Independence (of participants rather than observations)
  
   + Consider study design
 
---
 
-+ Homogeneity of Variance
- 
-  + Check the results of Levene's Test
-
---
-
-+ Let's check these in SPSS using [these data](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPdat.csv).
-  
 
 ---
 ## Running a paired-samples $t$-test
 
-**Step 4: Run the test**
+**Step 5: Run the test**
 
-**Step 5: Calculate the effect size/confidence intervals**
+**Step 6: Calculate the effect size/confidence intervals**
 
 Again, let's continue in SPSS...
 
 ---
 ## Running a paired-samples $t$-test
 
-**Step 5: Interpret results**
+**Step 7: Interpret results**
 
 ```{r, echo = F}
-knitr::include_graphics('images/BPDesc.png')
+knitr::include_graphics('images/pBPcorr.png')
 ```
 
 ---
 ## Running a paired-samples $t$-test
 
-**Step 5: Interpret results**
+**Step 7: Interpret results**
 
 ```{r, echo = F}
-knitr::include_graphics('images/BPttest.png')
+knitr::include_graphics('images/pBPtest.png')
 ```
-
----
-## Running a paired-samples $t$-test
-
-**Step 5: Interpret results**
-
-```{r, echo = F}
-knitr::include_graphics('images/BPeffect.png')
-```
-
----
-## Running a paired-samples $t$-test
-
-**Step 6: Report**
-
-+ Type of test conducted
-
-+ Variables tested
-
-+ Descriptive data
-
-+ Test results:
-  + Test statistic ( $t$)
-  + Degrees of freedom
-  + $p$-value
-  + Effect size
-  + Confidence intervals
-
-+ Brief interpretation (NO DISCUSSION)
-
-
-
----
-## Running a paired-samples $t$-test
-
-**Step 6: Report**
-
-We conducted a **two-tailed independent-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -3.16, $p$ = .002, $d$ = -.55, 95% CI = [-4.68, -1.08] </span></b>. Specifically, SBP in the treatment group was lower <span style = "color:#19424C"><b> ( $M$ = 136.97, $SD$ = 4.86)</span></b> than SBP in the placebo group <span style = "color:#19424C"><b>( $M$ = 139.85, $SD$ = 5.50)</span></b>.
 
 --
 
-Note number of decimal places and use of italics and brackets
+.center[
+```{r, echo = F, fig.height=3}
+ggplot(data = data.frame(t = c(-7, 7)), aes(x=t)) +
+  stat_function(fun=dt, geom='line', args=c(df = 34), color = baseColor, linewidth=1.5) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 34), fill = accent1, 
+            xlim=c(qt(.025, df = 34, lower.tail = F), 7), alpha = .8) +
+  geom_area(stat = 'function', fun = dt, args= list(df = 34), fill = accent1, 
+            xlim=c(-7, qt(.025, df = 34)), alpha = .8) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.x = element_text(size = 16, face = 'bold')) +
+  annotate('text', x = -4.75, y = .05, label = 't = -6.32', size = 8, color = accent2) +
+  geom_vline(xintercept = -6.32, color = accent2, linetype = 'dashed', linewidth = 1.5)
 
-Although it's not here in the results, you'll also need to specify $\alpha$
+```
+]
+
+---
+## Running a paired-samples $t$-test
+
+**Step 7: Interpret results**
+
+.pull-left[
+```{r, echo = F}
+knitr::include_graphics('images/pBPeffect.png')
+```
+]
+
+
+.pull-right[
+
+| Strength | Absolute Magnitude of $d$ |
+|:--------:|:-------------------------:|
+| Weak     | $\leq$ .20                |
+| Moderate | $\approx$ .50             |
+| Strong   | $\geq$ .8                 |
+
+]
+
+
+---
+## Running a paired-samples $t$-test
+
+**Step 8: Report**
+
+We conducted a **two-tailed paired-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment  </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -6.32, $p$ < .001, 95% CI = [-12.05, -6.18], $d$ = -1.07 </span></b>. Specifically, SBP was lower before the medication was administered <span style = "color:#19424C"><b> ( $M$ = 138.60, $SD$ = 6.67)</span></b> than after taking the medication <span style = "color:#19424C"><b>( $M$ = 147.71, $SD$ = 8.48)</span></b>.
+
 
 ---
 count: false
