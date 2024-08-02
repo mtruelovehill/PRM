@@ -751,6 +751,10 @@ p2 +
 ]
 
 
+???
+
+Think about practical significance - a pharmaceutical company tests the effect of their new vitamin and finds that it significantly decreases the amount of time someone is sick over the course of a year. SIGNIFICANCE! But wait...it only decreases the amount of sick days by a single day. EFFECT SIZE. Do they really want to spend an immense amount of money for a single day's improvement?
+
 ---
 ## Confidence Intervals
 
@@ -1206,6 +1210,22 @@ knitr::include_graphics('images/ErrorTable.png')
 --
 
 > **Test Your Understanding:** How do you think each of these values affects your ability to detect an effect?
+
+---
+count: false
+
+## Power
+
++ There are typically four numbers that go into a power calculation. If you have 3 of these numbers, you can solve for the fourth:
+
+  + $\alpha$
+  + Effect Size
+  + $n$
+  + Power
+
++ In most a priori power analyses, you'll want to check the sample required to get 80% power for a specific effect size.
+
++ However, if you already have a set sample, you might want to check the effect size that it has the power to detect.
 
 ---
 
