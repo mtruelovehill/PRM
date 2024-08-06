@@ -82,11 +82,8 @@ After this week, you should be able to:
 .pull-right[
 
 ```{r, echo=F, message = F, fig.width=5, fig.height=3.5}
-set.seed(526)
-dat <- rnorm_multi(100, mu = c(90, 13), sd = c(30,  7), varnames = c('daysInProgram', 'maxDistance'), r = .7)
 
-dat$daysInProgram[dat$daysInProgram<0] <- dat$daysInProgram[dat$daysInProgram<0]-min(dat$daysInProgram)
-dat$maxDistance[dat$maxDistance<0] <- dat$maxDistance[dat$maxDistance<0]-min(dat$maxDistance)
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Data/distDat.csv')
 
 ggplot(dat, aes(daysInProgram, maxDistance)) + geom_point(shape = 21, size = 3, color = accent3, fill = baseColor) + 
   labs(x='Days In Program', y='Max Distance (miles)') + 
@@ -721,7 +718,7 @@ ggplot(negCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(met
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=3.5, fig.width=5}
+```{r, echo = F, fig.height=3.5, fig.width=5, warning = F, message = F}
 ggplot(modCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(method = 'lm', se = F, colour = baseColor) + 
   labs(x='Days in Program', y = 'Max Distance (miles)') +
   scale_y_continuous(breaks = seq(0, 30, 10), limits = c(0, 35)) +
@@ -733,110 +730,154 @@ ggplot(modCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(met
   
 ---
 
-class: center, middle
+class: center, middle, inverse
 ## Questions?
 
 ---
 
-class: inverse, center, middle
-# Part 2: Hypothesis Testing with $r$
+## Hypothesis Testing with Correlation
 
----
-
-# Hypotheses
-
-+ In some cases, $r$ is considered a descriptive statistic.
-
-  + $r$ is actually a direct measure of effect size:
++ $r$ is actually a direct measure of effect size:
   
-      + It provides information about the strength of the relationship between two variables.
+  + It provides information about the strength of the relationship between two variables.
       
-      + It is a standardized measure
+  + It is a standardized measure
 
 + However, there may be times that a correlation is the test of interest, and we can formulate associated hypotheses tests.
 
 ---
+## Conducting a Hypothesis Test using $r$
 
-# Hypotheses
+1. State your hypothesis
 
-+ There is no real relationship between two random variables, so the null hypothesis should reflect this.
+2. Conduct a power analysis
 
-  + $H_0:r=0$
+3. Check your data
 
-  + $H_{1\ two-tailed}:r\not=0$
-  
-  + $H_{1\ one-tailed}:r>0\ \lor\ r<0$
+4. Check assumptions
 
----
+5. Run the correlation
 
-# Assumptions of Pearson correlation
+6. Calculate confidence intervals
 
-1. Variables must be interval or ratio (continuous)
-  
-  + Knowledge of your data
-  
-  + No Likert Scales!
-	
+7. Interpret results
+
+8. Report
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using $r$
 
-1. Variables must be interval or ratio (continuous)
-	
-2. Variables must be normally distributed.
+**Step 1: State your hypothesis**
+
++ You wouldn't expect two random variables to be related; the null hypothesis reflects this.
+
+.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>]
+$H_0:r=0$
+]
+
+.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>]
+<b> Nondirectional </b>
+
+$H_{1\ two-tailed}:r\neq0$
+
+
+<b> Directional </b>
+
+
+$$H_1: r > 0$$
+$$H_1: r < 0$$
+]
+
 
 --
 
-.pull-left[
-.center[**Max Distance**]
-```{r, echo = F, fig.height=2.5, fig.width=5}
-shapiro.test(dat$maxDistance)
-ggplot(dat, aes(maxDistance)) + geom_histogram(aes(y=..density..), bins = 18, fill = baseColor, colour = 'darkgray') +
-  geom_density() + labs(x='Max Distance', y = 'Density') +
-  stat_function(fun = dnorm, args = list(mean = mean(dat$maxDistance), sd = sd(dat$maxDistance)), colour = '#BF1932')
-```
-]
+Research Question: Is there an association between days in a fitness program and maximum running distance?
 
-.pull-right[
-.center[**Days in Program**]
-```{r, echo = F, fig.height=2.5, fig.width=5}
-shapiro.test(dat$daysInProgram)
-ggplot(dat, aes(daysInProgram)) + geom_histogram(aes(y=..density..), bins = 18, fill = baseColor, colour = 'darkgray') +
-  geom_density() + labs(x='Days in Program', y = 'Density') +
-  stat_function(fun = dnorm, args = list(mean = mean(dat$daysInProgram), sd = sd(dat$daysInProgram)), colour = '#BF1932')
-```
+>**Test Your Understanding:** How would you state your hypothesis, given the research question?
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 2: Conduct a power analysis**
+
++ As $r$ itself is an effect size, it is what we will use in our power analysis.
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's check the sample required to achieve 80% power to detect a weak correlation ( $r = .2$) with $\alpha = .05$
+
+--
+
+> **Test Your Understanding:** If you had a sample of 86 and $\alpha = .05$, what is your power to detect a moderate relationship between two variables ( $r = .35$)?
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 3: Check your data**
+
++ Using [this simulated dataset](https://mtruelovehill.github.io/PRM/Data/distDat.csv), let's compute descriptive statistics and visualise our data in SPSS
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous 
+  
+  + No Likert Scales!
+
 ]
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using $r$
 
-1. Variables must be interval or ratio (continuous)
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+
+2. Variables must be normally distributed
+
+]
+
+---
+
+## Conducting a Hypothesis Test using $r$
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
 	
 2. Variables must be normally distributed.
 	
 3. There must be no extreme outliers in your data.
+]
 
---
 
-.pull-left[
-.center[**Ok!**]
-```{r, echo = F, fig.height=3.25, fig.width=5}
-datPlot <- ggplot(dat, aes(daysInProgram, maxDistance)) + geom_point(alpha = 0.5) + 
+.pull-right[
+.center[**Looks ok**]
+```{r, echo = F, fig.height=1.75, fig.width=4.75, message = F}
+set.seed(816)
+sampRows <- sample(1:nrow(dat), 25)
+baseDat <- dat[sampRows,]
+
+(datPlot <- ggplot(baseDat, aes(daysInProgram, maxDistance)) + geom_point(alpha = 0.5) + 
   geom_smooth(method = 'lm', se = F, colour = baseColor) +
   labs(x='Days in Program', y = 'Max Distance (miles)') +
   scale_x_continuous(breaks=seq(0, 160, 40), limits=c(0, 165)) +
-  scale_y_continuous(breaks=seq(0, 30, 10), limits = c(0, 35))
-
-datPlot
+  scale_y_continuous(breaks=seq(0, 30, 10), limits = c(0, 35)))
 ```
-]
 
-.pull-right[
-.center[**Should be investigated**]
-```{r, echo = F, fig.height=3.25, fig.width=5}
-dat2 <- dat
+.center[**Investigate further**]
+```{r, echo = F, fig.height=1.75, fig.width=4.75, message = F}
+dat2 <- baseDat
 dat2[nrow(dat2)+1, ] <- c(100, 49)
 dat2[nrow(dat2)+1, ] <- c(250, 18)
 
@@ -851,11 +892,13 @@ ggplot(dat2, aes(daysInProgram, maxDistance)) + geom_point(alpha = 0.5) + geom_s
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using $r$
+
+**Step 4: Check assumptions**
 
 .pull-left[
 
-1. Variables must be interval or ratio (continuous)
+1. Variables must be continuous
 	
 2. Variables must be normally distributed.
 	
@@ -865,16 +908,14 @@ ggplot(dat2, aes(daysInProgram, maxDistance)) + geom_point(alpha = 0.5) + geom_s
 
 ]
 
---
-
-.pull-right.center[
-**Ok!**
-```{r, echo = F, fig.height = 2.25, fig.width = 5, message=F}
+.pull-right[
+.center[**Looks ok**]
+```{r, echo = F, fig.height = 1.75, fig.width = 4.75, message=F}
 datPlot
 ```
-<br>
-**Should be investigated**
-```{r, echo = F, fig.height = 2.25, fig.width = 5, message = F}
+
+.center[**Investigate further**]
+```{r, echo = F, fig.height = 1.75, fig.width = 4.75, message = F}
 nonLinDat <- read.csv('https://uoepsy.github.io/data/anx_perf.csv')
 nonLinDat <- nonLinDat[nonLinDat$anxiety<30,]
 ggplot(nonLinDat, aes(anxiety, performance)) + geom_point() + geom_smooth(se=F, colour = baseColor)
@@ -883,11 +924,13 @@ ggplot(nonLinDat, aes(anxiety, performance)) + geom_point() + geom_smooth(se=F, 
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using $r$
+
+**Step 4: Check assumptions**
 
 .pull-left[
 
-1. Variables must be interval or ratio (continuous)
+1. Variables must be continuous
 	
 2. Variables must be normally distributed.
 	
@@ -899,16 +942,14 @@ ggplot(nonLinDat, aes(anxiety, performance)) + geom_point() + geom_smooth(se=F, 
 
 ]
 
---
-
-.pull-right.center[
-**Ok!**
-```{r, echo = F, fig.height = 2.25, fig.width = 5, message=F}
+.pull-right[
+.center[**Looks ok**]
+```{r, echo = F, fig.height = 1.75, fig.width = 5, message=F}
 datPlot
 ```
-<br>
-**Should be investigated**
-```{r, echo = F, fig.height = 2.25, fig.width = 5, message = F}
+
+.center[**Investigate further**]
+```{r, echo = F, fig.height = 1.75, fig.width = 5, message = F}
 set.seed(113)
 dat2 <- rbind(dat, rnorm_multi(n=150, mu=c(130, 18), sd = c(15, 20), varnames = c('daysInProgram', 'maxDistance')))
 
@@ -918,128 +959,138 @@ ggplot(dat2, aes(daysInProgram, maxDistance)) + geom_point(alpha = 0.5) + geom_s
 ]
 
 ---
+## Conducting a Hypothesis Test using $r$
 
-# Significance Testing
+**Step 4: Check assumptions**
 
-Remember the key steps of hypothesis testing:
+**Step 5: Run the test**
 
-1. Compute a test statistic
+**Step 6: Calculate confidence intervals**
 
-2. Locate the test statistic on a distribution that reflects the probability of each test statistic value, given that H0 is true.
++ Let's continue in SPSS...
 
-3. Determine whether the probability associated with your test statistic is lower than $\alpha$
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 7: Interpret results**
+
+```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/corrResults.png')
+```
+
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 7: Interpret results**
+
+```{r, echo = F}
+knitr::include_graphics('images/corrCI.png')
+```
+
+---
+## Conducting a Hypothesis Test using $r$
+
+**Step 7: Report**
+
+On average, participants had been in the program for 89.07 days ( $SD$ = 31.39; minimum = 12; maximum = 174) and had a maximum running distance of 13.22 miles ( $SD$ = 6.86, minimum = 0, maximum = 28.93). We conducted a Pearson correlation to determine the association between total days in the fitness program and maximum running distance in miles. Results from this test were evaluated at a threshold of $\alpha$ = .05. There was a strong, positive relationship between the two variables, $r$(98) = .73, $p$ < .001, 95% CI = [.61, .81], indicating that participants who spent more days in the program also demonstrated higher maximum running distances.
+
+
+---
+## VERY IMPORTANT NOTE ABOUT CORRELATION
+
++ Correlation is NOT causal
+
++ Note that when reporting, I did not say 'The program increased participant's running distances.'
+
++ **Causality:** one event directly leads to another event
+    + Sun exposure $\Rightarrow$ sunburn
+
++ This is different from **covariance**, where two variables change together
+
 
 ---
 
-# Significance Testing
+## Causality
 
-**Compute a test statistic**
+.pull-left[
 
-+ The sampling distribution for $r$ is approximately normal with a large $n$, and is $t$ distributed when $n$ is small.
+```{r, echo = F, out.width='80%'}
+knitr::include_graphics('images/sharkPlot.jpg')
+```
+]
 
-  + Thus, significance is assessed using a $t$-distribution
+.pull-right[
+
+```{r, echo = F}
+knitr::include_graphics('images/sharkIceCream.jpg')
+```
+
+]
+
+
+---
+## Conditions for Causality
++ Covariation
 
 --
 
-+ The $t$-statistic for a correlation is calculated as:
++ Plausibility
 
-$$t=r\sqrt{\frac{n-2}{1-r^2}}$$
-+ So in our example:
+--
 
-```{r, echo = F}
-rStat <- round(cor.test(dat$daysInProgram, dat$maxDistance)$estimate, 2)
-denom <-round(1-(rStat^2),2)
-tStat <- as.numeric(round(rStat*(sqrt((nrow(dat)-2)/denom)),2))
-pVal <- as.numeric(round(pt(rStat*(sqrt((nrow(dat)-2)/denom)), df = nrow(dat)-2, lower.tail=F), 2))
-```
++ Temporal Precedence
+    + $A \Rightarrow B$, never $B \Rightarrow A$ or $B \Leftrightarrow A$
 
-$$t\ =\ `r rStat`\sqrt{\frac{`r nrow(dat)`-2}{1-`r rStat`^2}}\ =\ `r rStat`\sqrt{\frac{`r nrow(dat)-2`}{`r denom`}}\ =\ `r rStat`\sqrt{`r round((nrow(dat)-2)/denom, 2)`}\ =\ `r tStat`$$
----
+--
 
-# Significance Testing
++ No Reasonable Alternatives
+  + Very hard to establish
+  + Failing to account for alternative explanations may lead to spurious correlations
 
-**Locate the test statistic on a distribution**
-
-.pull-left[
-+  We use a $t$ distribution with $n-2$ degrees of freedom
-  
-  + $n-2$: we had to calculate the means of *two* variables (`daysInProgram` and `maxDistance`)
-
-]
-
-
-.pull-right[
-```{r, echo=F, fig.height=3.5, fig.width=5, message = F}
-corTestPlot <- ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
-  stat_function(fun = dt, args = list(df = nrow(dat)-2), colour = baseColor, size = 1) +
-  labs(x='t', y = 'Probability') + 
-  annotate(geom = 'text', x = -2, y = 0.3, label = paste('df =',nrow(dat)-2), colour = baseColor, size = 8) +
-  theme(axis.text = element_text(size = 12), axis.title = element_text(size = 14, face = 'bold'))
-
-corTestPlot
-```
-]
 
 ---
+## Conditions for Causality 
 
-# Significance Testing
+**Covariation**
 
-**Locate the test statistic on a distribution**
-
-.pull-left[
-+  We use a $t$ distribution with $n-2$ degrees of freedom
-  
-  + $n-2$: we had to calculate the means of *two* variables (`daysInProgram` and `maxDistance`)
-
-]
+<span style="color: green;"> $\checkmark$ </span> It is true that as ice cream purchases increase, so do shark attacks.
 
 
-.pull-right[
-```{r, echo=F, fig.height=3.5, fig.width=5, message = F}
-corTestPlot + geom_vline(xintercept=tStat, linetype = 'dashed', color = baseColor)
-```
-]
+** $\oslash$ ** However, you can buy ice cream, go for a swim, and fail to be attacked by a shark, or vice versa.
+
+
+--
+**Plausibility**
+
+
+** $\oslash$ ** The idea of ice cream consumption directly causing a shark attack is not plausible.
+
+
+
+--
+**Temporal Precedence**
+
+
+<span style="color: green;"> $\checkmark$ </span> It's reasonable that the ice cream purchase always happens *before* the shark attack...
+
+
+--
+**No Reasonable Alternatives**
+
+
+** $\oslash$ ** There is a much more logical explanation for the positive association between ice cream and shark attacks.
+
+---
+class: center, middle, inverse
+
+## Questions?
+
 
 ---
 
-# Significance Testing
-
-**Determine whether the probability associated with your test statistic is lower than $\alpha$**
-
-.pull-left[
-
-+ We will use two-tailed $\alpha$ = .05
-
-+ The probability of a test statistic at least as extreme as `r tStat` is only `r pVal`. 
-
-+ $`r pVal`<.05$, so we conclude our results are significant.
-
-]
-
-.pull-right[
-```{r, echo=F, fig.height=3.5, fig.width=5, message = F, eval = F}
-testDat <- seq(tStat, 4, by = .1)
-dTest <- dt(testDat, df = nrow(dat)-2)
-testDat <- data.frame(vals=testDat, prob=dTest)
-
-corTestPlot + geom_vline(xintercept=tStat, linetype = 'dashed', color = baseColor) +
-  geom_area(data = testDat, aes(x=vals,y=prob), fill = baseColor) 
-```
-]
-
----
-
-class: center, middle
-# Questions?
-
----
-
-class: inverse, center, middle
-# Part 3: Other Types of Correlation
-
----
-
-# Types of Correlation
+## Other Types of Correlation
 
 | Variable 1  | Variable 2  | Correlation Type |
 |-------------|-------------|------------------|
@@ -1052,146 +1103,9 @@ class: inverse, center, middle
 | Nominal     | Nominal     | Chi-square       |
 
 
----
-# Spearman's Correlation
-
-+ Spearman's $\rho$ (or rank-order correlation) uses data on the rank-ordering of $x$, $y$ responses for each individual.
-  
-+ Spearman's $\rho$ is a nonparametric version of Pearson's $r$, so it doesn't require the same constraints on your data
-
-+ When would we choose to use the Spearman correlation?
-	+ If our data are naturally ranked data (e.g. a survey where the task is to rank foods and drinks in terms of preference)
-	+ Our data are ordinal (e.g., Likert Scales)
-	+ If the data are non-normal or skewed
-	+ If the data shows evidence of non-linearity
-
----
-# Spearman's Correlation
-
-+ Spearman's is not testing for linear relations, it is testing for increasing monotonic relationship.
-
---
-
-  + What?
-
---
-
-.pull-left.center[
-**Linear**
-```{r, echo = F, fig.height=3.5, fig.width=5}
-mono <- tibble(
-  A = c(1,2,3,4,5,6,7,8,9,10),
-  B = c(1,2,3,4,5,6,7,8,9,10),
-  C = c(1,4,5,6,8,9,10,13,15,16)
-)
-
-lp <- mono %>%
-  ggplot(., aes(x=A, y=B)) +
-  geom_point() + 
-  geom_line()
-
-mp <- mono %>%
-  ggplot(., aes(x=A, y=C)) +
-  geom_point() + 
-  geom_line()
-
-lp
-```
-<br>
-A perfectly linear relationship between A & B
-
-]
-
-.pull-right.center[
-**Increasing Monotonic**
-```{r, echo = F, fig.height=3.5, fig.width=5}
-mp
-```
-<br>
-A perfectly increasing monotonic relationship between A & C
-]
-
----
-# Monotonic Relationship
-
-+ **Perfect Monotonic Relationship:** The rank position of all observations on Variable A is the same as the rank position of all observations on Variable C.
-
-.pull-left[
-
-```{r, echo = F}
-tibble(
-  A = c(1,2,3,4,5,6,7,8,9,10),
-  B = c(1,2,3,4,5,6,7,8,9,10),
-  C = c(1,4,5,6,8,9,10,13,15,16)
-) %>%
-  mutate(
-    ID = paste("ID", 1:10, sep = ""),
-    Rank_A = rank(A),
-    Rank_C = rank(C)
-  ) %>%
-  dplyr::select(., ID, A, C, Rank_A, Rank_C) %>%
-  kable() %>%
-  kable_styling(full_width = F)
-
-```
-
-]
-
-.pull-right[
-```{r, echo = F, fig.height=3.5, fig.width=5}
-mp
-```
-
-]
-
----
-
-# Calculating Spearman's $\rho$
-
-$$\rho=1-\frac{6\sum{d^2_i}}{n(n^2-1)}$$
-+ $d_i=$ rank( $x_i$ ) $-$ rank( $y_i$ )
-
-+ Steps
-  1. Rank each variable from largest to smallest 
-  2. Calculate the difference in rank for each person on the two variables
-  3. Square the difference
-  4. Sum the squared values
-
----
-
-# Calculating Spearman's $\rho$ in R
-
-+ You can also use `cor()` and `cor.test()` to calculate Spearman's $\rho$ in R:
-
-+ Imagine we want to know whether the participants' ratings (on a 1-5 scale) of the program are associated with how difficult they found the program (on a 1-5 scale).
-
-.pull-left[
-<br>
-```{r, echo = F}
-ratings <- tibble(Names=sampleDat$Names, ProgRating=c(3, 5, 4, 2, 4, 3, 2), Difficulty=c(2, 3, 2, 5, 3, 1, 4))
-kable(ratings)
-```
-]
-
---
-
-.pull-left[
-```{r}
-cor(ratings$ProgRating, ratings$Difficulty,
-    method='spearman')
-
-cor.test(ratings$ProgRating, ratings$Difficulty,
-         method='spearman')
-```
-
-]
 
 ---
 
 class: center, middle, inverse
-# Questions?
+# Thanks for listening!
 
----
-
-class: center, middle
-# Thanks for Listening!

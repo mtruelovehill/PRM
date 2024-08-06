@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <meta name="author" content="Monica Truelove-Hill" />
     <script src="libs/header-attrs/header-attrs.js"></script>
-    <script src="libs/kePrint/kePrint.js"></script>
-    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -544,156 +542,159 @@ class: inverse, middle, center
 ]
 
 .pull-right[
-
-```
-## `geom_smooth()` using formula = 'y ~ x'
-```
-
 ![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
 ]
   
 ---
 
-class: center, middle
+class: center, middle, inverse
 ## Questions?
 
 ---
 
-class: inverse, center, middle
-# Part 2: Hypothesis Testing with `\(r\)`
+## Hypothesis Testing with Correlation
 
----
-
-# Hypotheses
-
-+ In some cases, `\(r\)` is considered a descriptive statistic.
-
-  + `\(r\)` is actually a direct measure of effect size:
++ `\(r\)` is actually a direct measure of effect size:
   
-      + It provides information about the strength of the relationship between two variables.
+  + It provides information about the strength of the relationship between two variables.
       
-      + It is a standardized measure
+  + It is a standardized measure
 
 + However, there may be times that a correlation is the test of interest, and we can formulate associated hypotheses tests.
 
 ---
+## Conducting a Hypothesis Test using `\(r\)`
 
-# Hypotheses
+1. State your hypothesis
 
-+ There is no real relationship between two random variables, so the null hypothesis should reflect this.
+2. Conduct a power analysis
 
-  + `\(H_0:r=0\)`
+3. Check your data
 
-  + `\(H_{1\ two-tailed}:r\not=0\)`
-  
-  + `\(H_{1\ one-tailed}:r&gt;0\ \lor\ r&lt;0\)`
+4. Check assumptions
 
----
+5. Run the correlation
 
-# Assumptions of Pearson correlation
+6. Calculate confidence intervals
 
-1. Variables must be interval or ratio (continuous)
-  
-  + Knowledge of your data
-  
-  + No Likert Scales!
-	
+7. Interpret results
+
+8. Report
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using `\(r\)`
 
-1. Variables must be interval or ratio (continuous)
-	
-2. Variables must be normally distributed.
+**Step 1: State your hypothesis**
+
++ You wouldn't expect two random variables to be related; the null hypothesis reflects this.
+
+.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;]
+`\(H_0:r=0\)`
+]
+
+.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;]
+&lt;b&gt; Nondirectional &lt;/b&gt;
+
+`\(H_{1\ two-tailed}:r\neq0\)`
+
+
+&lt;b&gt; Directional &lt;/b&gt;
+
+
+`$$H_1: r &gt; 0$$`
+`$$H_1: r &lt; 0$$`
+]
+
 
 --
 
+Research Question: Is there an association between days in a fitness program and maximum running distance?
+
+&gt;**Test Your Understanding:** How would you state your hypothesis, given the research question?
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 2: Conduct a power analysis**
+
++ As `\(r\)` itself is an effect size, it is what we will use in our power analysis.
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's check the sample required to achieve 80% power to detect a weak correlation ( `\(r = .2\)`) with `\(\alpha = .05\)`
+
+--
+
+&gt; **Test Your Understanding:** If you had a sample of 86 and `\(\alpha = .05\)`, what is your power to detect a moderate relationship between two variables ( `\(r = .35\)`)?
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 3: Check your data**
+
++ Using [this simulated dataset](https://mtruelovehill.github.io/PRM/Data/distDat.csv), let's compute descriptive statistics and visualise our data in SPSS
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
 .pull-left[
-.center[**Max Distance**]
 
-```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  dat$maxDistance
-## W = 0.98454, p-value = 0.2942
-```
+1. Variables must be continuous 
+  
+  + No Likert Scales!
 
-```
-## Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-## ℹ Please use `after_stat(density)` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
 ]
 
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+
+2. Variables must be normally distributed
+
+]
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+	
+2. Variables must be normally distributed.
+	
+3. There must be no extreme outliers in your data.
+]
+
+
 .pull-right[
-.center[**Days in Program**]
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
 
-```
-## 
-## 	Shapiro-Wilk normality test
-## 
-## data:  dat$daysInProgram
-## W = 0.98788, p-value = 0.4992
-```
-
+.center[**Investigate further**]
 ![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
 ]
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using `\(r\)`
 
-1. Variables must be interval or ratio (continuous)
-	
-2. Variables must be normally distributed.
-	
-3. There must be no extreme outliers in your data.
-
---
-
-.pull-left[
-.center[**Ok!**]
-
-```
-## `geom_smooth()` using formula = 'y ~ x'
-```
-
-```
-## Warning: Removed 1 row containing non-finite outside the scale range
-## (`stat_smooth()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range
-## (`geom_point()`).
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
-]
-
-.pull-right[
-.center[**Should be investigated**]
-
-```
-## `geom_smooth()` using formula = 'y ~ x'
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
-]
-
----
-
-# Assumptions of Pearson correlation
+**Step 4: Check assumptions**
 
 .pull-left[
 
-1. Variables must be interval or ratio (continuous)
+1. Variables must be continuous
 	
 2. Variables must be normally distributed.
 	
@@ -703,34 +704,23 @@ class: inverse, center, middle
 
 ]
 
---
+.pull-right[
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
 
-.pull-right.center[
-**Ok!**
-
-```
-## Warning: Removed 1 row containing non-finite outside the scale range
-## (`stat_smooth()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range
-## (`geom_point()`).
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
-&lt;br&gt;
-**Should be investigated**
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
+.center[**Investigate further**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
 ]
 
 ---
 
-# Assumptions of Pearson correlation
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
 
 .pull-left[
 
-1. Variables must be interval or ratio (continuous)
+1. Variables must be continuous
 	
 2. Variables must be normally distributed.
 	
@@ -742,137 +732,139 @@ class: inverse, center, middle
 
 ]
 
+.pull-right[
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+
+.center[**Investigate further**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+**Step 5: Run the test**
+
+**Step 6: Calculate confidence intervals**
+
++ Let's continue in SPSS...
+
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Interpret results**
+
+&lt;img src="images/corrResults.png" width="75%" /&gt;
+
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Interpret results**
+
+&lt;img src="images/corrCI.png" width="1525" /&gt;
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Report**
+
+On average, participants had been in the program for 89.07 days ( `\(SD\)` = 31.39; minimum = 12; maximum = 174) and had a maximum running distance of 13.22 miles ( `\(SD\)` = 6.86, minimum = 0, maximum = 28.93). We conducted a Pearson correlation to determine the association between total days in the fitness program and maximum running distance in miles. Results from this test were evaluated at a threshold of `\(\alpha\)` = .05. There was a strong, positive relationship between the two variables, `\(r\)`(98) = .73, `\(p\)` &lt; .001, 95% CI = [.61, .81], indicating that participants who spent more days in the program also demonstrated higher maximum running distances.
+
+
+---
+## VERY IMPORTANT NOTE ABOUT CORRELATION
+
++ Correlation is NOT causal
+
++ Note that when reporting, I did not say 'The program increased participant's running distances.'
+
++ **Causality:** one event directly leads to another event
+    + Sun exposure `\(\Rightarrow\)` sunburn
+
++ This is different from **covariance**, where two variables change together
+
+
+---
+
+## Causality
+
+.pull-left[
+
+&lt;img src="images/sharkPlot.jpg" width="80%" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="images/sharkIceCream.jpg" width="2449" /&gt;
+
+]
+
+
+---
+## Conditions for Causality
++ Covariation
+
 --
 
-.pull-right.center[
-**Ok!**
-
-```
-## Warning: Removed 1 row containing non-finite outside the scale range
-## (`stat_smooth()`).
-```
-
-```
-## Warning: Removed 1 row containing missing values or values outside the scale range
-## (`geom_point()`).
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
-&lt;br&gt;
-**Should be investigated**
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
-]
-
----
-
-# Significance Testing
-
-Remember the key steps of hypothesis testing:
-
-1. Compute a test statistic
-
-2. Locate the test statistic on a distribution that reflects the probability of each test statistic value, given that H0 is true.
-
-3. Determine whether the probability associated with your test statistic is lower than `\(\alpha\)`
-
----
-
-# Significance Testing
-
-**Compute a test statistic**
-
-+ The sampling distribution for `\(r\)` is approximately normal with a large `\(n\)`, and is `\(t\)` distributed when `\(n\)` is small.
-
-  + Thus, significance is assessed using a `\(t\)`-distribution
++ Plausibility
 
 --
 
-+ The `\(t\)`-statistic for a correlation is calculated as:
++ Temporal Precedence
+    + `\(A \Rightarrow B\)`, never `\(B \Rightarrow A\)` or `\(B \Leftrightarrow A\)`
 
-`$$t=r\sqrt{\frac{n-2}{1-r^2}}$$`
-+ So in our example:
+--
 
++ No Reasonable Alternatives
+  + Very hard to establish
+  + Failing to account for alternative explanations may lead to spurious correlations
 
-
-`$$t\ =\ 0.73\sqrt{\frac{100-2}{1-0.73^2}}\ =\ 0.73\sqrt{\frac{98}{0.47}}\ =\ 0.73\sqrt{208.51}\ =\ 10.54$$`
----
-
-# Significance Testing
-
-**Locate the test statistic on a distribution**
-
-.pull-left[
-+  We use a `\(t\)` distribution with `\(n-2\)` degrees of freedom
-  
-  + `\(n-2\)`: we had to calculate the means of *two* variables (`daysInProgram` and `maxDistance`)
-
-]
-
-
-.pull-right[
-
-```
-## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.
-```
-
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
-]
 
 ---
+## Conditions for Causality 
 
-# Significance Testing
+**Covariation**
 
-**Locate the test statistic on a distribution**
-
-.pull-left[
-+  We use a `\(t\)` distribution with `\(n-2\)` degrees of freedom
-  
-  + `\(n-2\)`: we had to calculate the means of *two* variables (`daysInProgram` and `maxDistance`)
-
-]
+&lt;span style="color: green;"&gt; `\(\checkmark\)` &lt;/span&gt; It is true that as ice cream purchases increase, so do shark attacks.
 
 
-.pull-right[
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
-]
+** `\(\oslash\)` ** However, you can buy ice cream, go for a swim, and fail to be attacked by a shark, or vice versa.
+
+
+--
+**Plausibility**
+
+
+** `\(\oslash\)` ** The idea of ice cream consumption directly causing a shark attack is not plausible.
+
+
+
+--
+**Temporal Precedence**
+
+
+&lt;span style="color: green;"&gt; `\(\checkmark\)` &lt;/span&gt; It's reasonable that the ice cream purchase always happens *before* the shark attack...
+
+
+--
+**No Reasonable Alternatives**
+
+
+** `\(\oslash\)` ** There is a much more logical explanation for the positive association between ice cream and shark attacks.
+
+---
+class: center, middle, inverse
+
+## Questions?
+
 
 ---
 
-# Significance Testing
-
-**Determine whether the probability associated with your test statistic is lower than `\(\alpha\)`**
-
-.pull-left[
-
-+ We will use two-tailed `\(\alpha\)` = .05
-
-+ The probability of a test statistic at least as extreme as 10.54 is only 0. 
-
-+ `\(0&lt;.05\)`, so we conclude our results are significant.
-
-]
-
-.pull-right[
-
-]
-
----
-
-class: center, middle
-# Questions?
-
----
-
-class: inverse, center, middle
-# Part 3: Other Types of Correlation
-
----
-
-# Types of Correlation
+## Other Types of Correlation
 
 | Variable 1  | Variable 2  | Correlation Type |
 |-------------|-------------|------------------|
@@ -885,260 +877,12 @@ class: inverse, center, middle
 | Nominal     | Nominal     | Chi-square       |
 
 
----
-# Spearman's Correlation
-
-+ Spearman's `\(\rho\)` (or rank-order correlation) uses data on the rank-ordering of `\(x\)`, `\(y\)` responses for each individual.
-  
-+ Spearman's `\(\rho\)` is a nonparametric version of Pearson's `\(r\)`, so it doesn't require the same constraints on your data
-
-+ When would we choose to use the Spearman correlation?
-	+ If our data are naturally ranked data (e.g. a survey where the task is to rank foods and drinks in terms of preference)
-	+ Our data are ordinal (e.g., Likert Scales)
-	+ If the data are non-normal or skewed
-	+ If the data shows evidence of non-linearity
-
----
-# Spearman's Correlation
-
-+ Spearman's is not testing for linear relations, it is testing for increasing monotonic relationship.
-
---
-
-  + What?
-
---
-
-.pull-left.center[
-**Linear**
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-40-1.svg)&lt;!-- --&gt;
-&lt;br&gt;
-A perfectly linear relationship between A &amp; B
-
-]
-
-.pull-right.center[
-**Increasing Monotonic**
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-41-1.svg)&lt;!-- --&gt;
-&lt;br&gt;
-A perfectly increasing monotonic relationship between A &amp; C
-]
-
----
-# Monotonic Relationship
-
-+ **Perfect Monotonic Relationship:** The rank position of all observations on Variable A is the same as the rank position of all observations on Variable C.
-
-.pull-left[
-
-&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; ID &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; C &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Rank_A &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Rank_C &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 16 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-]
-
-.pull-right[
-![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
-
-]
-
----
-
-# Calculating Spearman's `\(\rho\)`
-
-`$$\rho=1-\frac{6\sum{d^2_i}}{n(n^2-1)}$$`
-+ `\(d_i=\)` rank( `\(x_i\)` ) `\(-\)` rank( `\(y_i\)` )
-
-+ Steps
-  1. Rank each variable from largest to smallest 
-  2. Calculate the difference in rank for each person on the two variables
-  3. Square the difference
-  4. Sum the squared values
-
----
-
-# Calculating Spearman's `\(\rho\)` in R
-
-+ You can also use `cor()` and `cor.test()` to calculate Spearman's `\(\rho\)` in R:
-
-+ Imagine we want to know whether the participants' ratings (on a 1-5 scale) of the program are associated with how difficult they found the program (on a 1-5 scale).
-
-.pull-left[
-&lt;br&gt;
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; Names &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; ProgRating &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Difficulty &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Alfred &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Bernard &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Clarence &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Dorothy &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Edna &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Flora &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; Geraldine &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
-
---
-
-.pull-left[
-
-```r
-cor(ratings$ProgRating, ratings$Difficulty,
-    method='spearman')
-```
-
-```
-## [1] -0.3831943
-```
-
-```r
-cor.test(ratings$ProgRating, ratings$Difficulty,
-         method='spearman')
-```
-
-```
-## Warning in cor.test.default(ratings$ProgRating, ratings$Difficulty, method =
-## "spearman"): Cannot compute exact p-value with ties
-```
-
-```
-## 
-## 	Spearman's rank correlation rho
-## 
-## data:  ratings$ProgRating and ratings$Difficulty
-## S = 77.459, p-value = 0.3962
-## alternative hypothesis: true rho is not equal to 0
-## sample estimates:
-##        rho 
-## -0.3831943
-```
-
-]
 
 ---
 
 class: center, middle, inverse
-# Questions?
+# Thanks for listening!
 
----
-
-class: center, middle
-# Thanks for Listening!
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

@@ -1,0 +1,113 @@
+---
+title: "<b> Nonparametric Tests </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+## Spearman's Correlation
+
++ Spearman's $\rho$ (or rank-order correlation) uses data on the rank-ordering of $x$, $y$ responses for each individual.
+  
++ Spearman's $\rho$ is a nonparametric version of Pearson's $r$, so it doesn't require the same constraints on your data
+
++ When would we choose to use the Spearman correlation?
+	+ If our data are naturally ranked data (e.g. a survey where the task is to rank foods and drinks in terms of preference)
+	+ Our data are ordinal (e.g., Likert Scales)
+	+ If the data are non-normal or skewed
+	+ If the data shows evidence of non-linearity
+
+---
+## Spearman's Correlation
+
++ Spearman's is not testing for linear relations, it is testing for increasing monotonic relationship.
+
+--
+
+  + What?
+
+--
+
+.pull-left.center[
+**Perfectly Linear Relationship**
+```{r, echo = F, fig.height=3, fig.width=5}
+mono <- data.frame(
+  A = c(1,2,3,4,5,6,7,8),
+  B = c(1,2,3,4,5,6,7,8),
+  C = c(1,4,5,6,8,9,10,13)
+)
+
+lp <- mono %>%
+  ggplot(., aes(x=A, y=B)) +
+  geom_point() + 
+  geom_line()
+
+mp <- mono %>%
+  ggplot(., aes(x=A, y=C)) +
+  geom_point() + 
+  geom_line()
+
+lp
+```
+
+]
+
+.pull-right.center[
+**Perfectly Increasing Monotonic Relationship**
+```{r, echo = F, fig.height=3, fig.width=5}
+mp
+```
+
+]
+
+---
+## Monotonic Relationship
+
++ **Perfect Monotonic Relationship:** The rank position of all observations on Variable A is the same as the rank position of all observations on Variable C.
+
+.pull-left[
+
+```{r, echo = F}
+mono %>%
+  mutate(
+    ID = paste("ID", 1:8, sep = ""),
+    Rank_A = rank(A),
+    Rank_C = rank(C)
+  ) %>%
+  dplyr::select(., ID, A, C, Rank_A, Rank_C) %>%
+  kable() %>%
+  kable_styling(full_width = F)
+
+```
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=3.5, fig.width=5}
+mp
+```
+
+]
+
+---
+
+## Calculating Spearman's $\rho$
+
+$$\rho=1-\frac{6\sum{d^2_i}}{n(n^2-1)}$$
++ $d_i=$ rank( $x_i$ ) $-$ rank( $y_i$ )
+
++ Steps
+  1. Rank each variable from largest to smallest 
+  2. Calculate the difference in rank for each person on the two variables
+  3. Square the difference
+  4. Sum the squared values
