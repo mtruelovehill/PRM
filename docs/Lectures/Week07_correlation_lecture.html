@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Correlation </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Correlation </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+## This Week's Learning Objectives
+
+After this week, you should be able to:
+
+1. Describe the difference between variance, covariance, and correlation
+
+2. Calculate both covariance and correlation
+
+3. Interpret the correlation coefficient
+
+4. Perform and interpret the results of a significance test of your correlation
+
+5. Understand which form of correlation is most appropriate to use with your data
+
+---
+## Data for Today
+
+.pull-left[
++ Correlation is a measure of the relationship between two variables
+
++ The primary method we'll use is Pearson's correlation, which measures the association between two **continuous** variables
+
++ When investigating the relationship between two continuous variables, we often visualise them using scatterplots
+]
+
+--
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Variance Refresher
+
+.pull-left[
+`$$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$`
+
++ **Variance:** Deviance around the mean of a single variable
+]
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+count: false
+
+## Variance Refresher
+
+.pull-left[
+`$$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$`
+
++ **Variance:** Deviance around the mean of a single variable
+
++ Raw deviation is the distance between each person's days in the program and the mean number of days in the program. 
+]
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Variance Refresher
+
+.pull-left[
+`$$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$`
+
++ **Variance:** Deviance around the mean of a single variable
+
++ Raw deviation is the distance between each person's days in the program and the mean number of days in the program. 
+
++ To get the variance, we:
+  1. Square the values to get rid of the negative
+  2. Sum them up and divide by `\(n-1\)` to get the average deviation of the group from its mean.
+]
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+## Covariance
+
+.pull-left[
++ **Covariance:** A value that represents how two variables change together
+
++ Do `\(x\)` and `\(y\)` differ from their means in a similar way?
+]
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+count: false
+
+## Covariance
+
+.pull-left[
++ **Covariance:** A value that represents how two variables change together
+
++ Do `\(x\)` and `\(y\)` differ from their means in a similar way?
+
++ Mathematically similar to variance:
+
+
+**Variance**
+`$$s^2_x = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})^2}}{n-1} = \frac{\sum_{i=1}^{n}{(x_i-\bar{x})(x_i-\bar{x})}}{n-1}$$`
+
+
+
+**Covariance**
+
+`$$Cov_{xy} = \frac{\sum_{i=1}^{n}{\color{#4CA384}{(x_i-\bar{x})}\color{#18778C}{(y_i-\bar{y})}}}{n-1}$$`
+]
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Covariance
+
+.pull-left[
++ It's possible two variables are related if their observations differ proportionally from their means in a consistent way
+
++ Covariance gives us a sense of this...
+
+  + High covariance suggests a stronger relationship than a lower covariance
+
+  + Why can't we stop here? 
+  
+  + Why is correlation necessary? 
+
+]
+
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## The Trouble with Covariance
+
+.pull-left[
+
+`$$Cov_{xy}=\frac{\sum_{i=1}^n\color{#18778C}{(x_i-\bar{x})}(y_i-\bar{y})}{n-1}$$`
+
+
+
+
+| Participant           |  `\(x_i - \bar{x}\)`      |
+|:----------------------|:---------------------:|
+| Alfred| 5 |
+| Bernard| -13 |
+| Clarence| -9 |
+| Dorothy| -17 |
+| Edna| 24 |
+| Flora| 14 |
+| Geraldine| -4 |
+]
+
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+count: false
+
+## The Trouble with Covariance
+
+.pull-left[
+
+`$$Cov_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})\color{#18778C}{(y_i-\bar{y})}}{n-1}$$`
+
+| Participant           |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    |
+|:----------------------|:---------------------:|:---------------------:|
+| Alfred| 5 | -5.44 |
+| Bernard| -13 | -3.4 |
+| Clarence| -9 | -5.96 |
+| Dorothy| -17 | 0.66 |
+| Edna| 24 | 13.06 |
+| Flora| 14 | 8.25 |
+| Geraldine| -4 | -7.2 |
+]
+
+
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+count: false
+
+## The Trouble with Covariance
+
+.pull-left[
+
+`$$Cov_{xy}=\frac{\sum_{i=1}^n\color{#18778C}{(x_i-\bar{x})(y_i-\bar{y})}}{n-1}$$`
+
+| Participant           |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    | `\((x_i - \bar{x})(y_i - \bar{y})\)`   |
+|:----------------------|:---------------------:|:---------------------:|:------------------------:|
+| Alfred| 5 | -5.44 |  -27.2  |
+| Bernard| -13 | -3.4 |  44.2  |
+| Clarence| -9 | -5.96 |  53.64  |
+| Dorothy| -17 | 0.66 |  -11.22  |
+| Edna| 24 | 13.06 |  313.44  |
+| Flora| 14 | 8.25 |  115.5  |
+| Geraldine| -4 | -7.2 |  28.8  |
+
+
+]
+
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+count: false
+
+## The Trouble with Covariance
+
+.pull-left[
+
+`$$Cov_{xy}=\frac{\color{#18778C}{\sum_{i=1}^n}(x_i-\bar{x})(y_i-\bar{y})}{n-1}$$`
+
+
+| Participant           |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    | `\((x_i - \bar{x})(y_i - \bar{y})\)`   |
+|:----------------------|:---------------------:|:---------------------:|:------------------------:|
+| Alfred| 5 | -5.44 |  -27.2  |
+| Bernard| -13 | -3.4 |  44.2  |
+| Clarence| -9 | -5.96 |  53.64  |
+| Dorothy| -17 | 0.66 |  -11.22  |
+| Edna| 24 | 13.06 |  313.44  |
+| Flora| 14 | 8.25 |  115.5  |
+| Geraldine| -4 | -7.2 |  28.8  |
+|                       |                       |                       |  **517.16**|
+
+]
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+
+## The Trouble with Covariance
+
+.pull-left[
+
+`$$Cov_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}=\frac{517.16}{7-1}=86.19$$`
+
+
+| Participant           |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    | `\((x_i - \bar{x})(y_i - \bar{y})\)`   |
+|:----------------------|:---------------------:|:---------------------:|:------------------------:|
+| Alfred| 5 | -5.44 |  -27.2  |
+| Bernard| -13 | -3.4 |  44.2  |
+| Clarence| -9 | -5.96 |  53.64  |
+| Dorothy| -17 | 0.66 |  -11.22  |
+| Edna| 24 | 13.06 |  313.44  |
+| Flora| 14 | 8.25 |  115.5  |
+| Geraldine| -4 | -7.2 |  28.8  |
+|                       |                       |                       |  **517.16**|
+
+]
+
+.pull-right[
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+
+## The Trouble with Covariance
+
++ A value of 86.19 seems high...I think. Is it?
+
+  + Maybe? But maybe not. 
+  
+  + Covariance is related specifically to the scales of the variables we are analysing. 
+  
+  + Variables with larger scales will naturally have larger covariance values.
+
+
+---
+
+## The Trouble with Covariance
+
++ Consider what would happen if we converted our distance data to kilometers instead of miles.
+
+
+
+
+.pull-left[
+
+.center[**Miles**]
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+.center[**Kilometers**]
+
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
+
+
+
+]
+
+---
+
+## The Trouble with Covariance
+
+.pull-left[
+
+.center[**Miles**]
+
+`$$Cov_{xy}=86.19$$`
+
+
+| Participant       |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    | `\((x_i - \bar{x})(y_i - \bar{y})\)`   |
+|:------------------|:---------------------:|:---------------------:|:----------------------------------:|
+| Alfred| 5 | -5.44 |  -27.2  |
+| Bernard| -13 | -3.4 |  44.2  |
+| Clarence| -9 | -5.96 |  53.64  |
+| Dorothy| -17 | 0.66 |  -11.22  |
+| Edna| 24 | 13.06 |  313.44  |
+| Flora| 14 | 8.25 |  115.5  |
+| Geraldine| -4 | -7.2 |  28.8  |
+|                       |                       |                       |  **517.16**|
+
+
+]
+
+.pull-right[
+
+.center[**Kilometers**]
+
+`$$Cov_{xy}=138.77$$`
+
+
+| Participant           |  `\(x_i - \bar{x}\)`      |    `\(y_i - \bar{y}\)`    | `\((x_i - \bar{x})(y_i - \bar{y})\)`   |
+|:----------------------|:---------------------:|:---------------------:|:------------------------:|
+| Alfred| 5 | -8.75 |  -43.75  |
+| Bernard| -13 | -5.47 |  71.11  |
+| Clarence| -9 | -9.59 |  86.31  |
+| Dorothy| -17 | 1.07 |  -18.19  |
+| Edna| 24 | 21.03 |  504.72  |
+| Flora| 14 | 13.29 |  186.06  |
+| Geraldine| -4 | -11.59 |  46.36  |
+|                       |                       |                         |  **832.62**|
+
+
+
+]
+
+---
+
+## Correlation
+
++ Correlation allows you to compare continuous variables across different scales without the magnitude of the variables skewing your results.
+
++ **Pearson's correlation**, `\(r\)`, is the standardised version of covariance:
+
+.f4[
+
+`$$r=\frac{\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}}{\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\sqrt{\frac{\sum_{i=1}^n(y_i-\bar{y})^2}{n-1}}}$$`
+]
+
+
+---
+count: false
+
+## Correlation
+
++ Correlation allows you to compare continuous variables across different scales without the magnitude of the variables skewing your results.
+
++ **Pearson's correlation**, `\(r\)`, is the standardised version of covariance:
+
+.f4[
+
+`$$r=\frac{\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}}{\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\sqrt{\frac{\sum_{i=1}^n(y_i-\bar{y})^2}{n-1}}} = \frac{Cov_{xy}}{s_xs_y}$$`
+]
+
+---
+## Correlation
+
+.pull-left[
++ By dividing covariance by the product of the standard deviations of `\(x\)` and `\(y\)`, we remove issues with scale differences in the original variables.
+
++ Because of this, you can use `\(r\)` to investigate the relationships between continuous variables with completely different ranges. 
+
+]
+
+
+.pull-right[
+.center.f3[**Miles**]
+
+&lt;br&gt;
+
+`$$r=\frac{86.19}{15.01\times7.83}=0.73$$`
+
+&lt;br&gt;
+
+.center.f3[**Kilometers**]
+
+&lt;br&gt;
+
+`$$r=\frac{138.77}{15.01\times12.6}=0.73$$`
+
+]
+
+---
+class: inverse, middle, center
+
+## Questions?
+
+---
+## Interpreting `\(r\)`
+
++ Values of `\(r\)` can fall between -1 and 1.
+
+  + Values closer to 0 indicate a weaker relationship
+  
+  + More extreme values indicate a stronger association
+
+--
+
++ Interpretation (somewhat arbitrary):
+
+.center[
+
+| Value   | Interpretation |
+|:-------:|:--------------:|
+| &lt; .1    | Neglible       |
+| .1-.3   | Weak           |
+| .3-.6   | Moderate       |
+|  &gt; .6   | Strong         |
+
+]
+
+---
+## Interpreting `\(r\)`
+
++ Values of `\(r\)` fall between -1 and 1.
+
+  + Values closer to 0 indicate a weaker relationship
+  
+  + More extreme values indicate a stronger association
+
+.center[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Interpreting `\(r\)`
+
++ The sign of `\(r\)` refers to the direction of the relationship
+
+  + Positive values: the two variables increase or decrease together.
+  
+  + Negative values: as one variable increases, the other decreases
+
+.pull-left[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
+]
+  
+---
+
+class: center, middle, inverse
+## Questions?
+
+---
+
+## Hypothesis Testing with Correlation
+
++ `\(r\)` is actually a direct measure of effect size:
+  
+  + It provides information about the strength of the relationship between two variables.
+      
+  + It is a standardized measure
+
++ However, there may be times that a correlation is the test of interest, and we can formulate associated hypotheses tests.
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+1. State your hypothesis
+
+2. Conduct a power analysis
+
+3. Check your data
+
+4. Check assumptions
+
+5. Run the correlation
+
+6. Calculate confidence intervals
+
+7. Interpret results
+
+8. Report
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 1: State your hypothesis**
+
++ You wouldn't expect two random variables to be related; the null hypothesis reflects this.
+
+.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;]
+`\(H_0:r=0\)`
+]
+
+.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;]
+&lt;b&gt; Nondirectional &lt;/b&gt;
+
+`\(H_{1\ two-tailed}:r\neq0\)`
+
+
+&lt;b&gt; Directional &lt;/b&gt;
+
+
+`$$H_1: r &gt; 0$$`
+`$$H_1: r &lt; 0$$`
+]
+
+
+--
+
+Research Question: Is there an association between days in a fitness program and maximum running distance?
+
+&gt;**Test Your Understanding:** How would you state your hypothesis, given the research question?
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 2: Conduct a power analysis**
+
++ As `\(r\)` itself is an effect size, it is what we will use in our power analysis.
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's check the sample required to achieve 80% power to detect a weak correlation ( `\(r = .2\)`) with `\(\alpha = .05\)`
+
+--
+
+&gt; **Test Your Understanding:** If you had a sample of 86 and `\(\alpha = .05\)`, what is your power to detect a moderate relationship between two variables ( `\(r = .35\)`)?
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 3: Check your data**
+
++ Using [this simulated dataset](https://mtruelovehill.github.io/PRM/Data/distDat.csv), let's compute descriptive statistics and visualise our data in SPSS
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous 
+  
+  + No Likert Scales!
+
+]
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+
+2. Variables must be normally distributed
+
+]
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+	
+2. Variables must be normally distributed.
+	
+3. There must be no extreme outliers in your data.
+]
+
+
+.pull-right[
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
+
+.center[**Investigate further**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+	
+2. Variables must be normally distributed.
+	
+3. There must be no extreme outliers in your data.
+
+4. The relationship between the two variables must be linear.
+
+]
+
+.pull-right[
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
+
+.center[**Investigate further**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+.pull-left[
+
+1. Variables must be continuous
+	
+2. Variables must be normally distributed.
+	
+3. There must be no extreme outliers in your data.
+
+4. The relationship between the two variables must be linear.
+	
+5. Homoscedasticity (homogeneity of variance)   
+
+]
+
+.pull-right[
+.center[**Looks ok**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+
+.center[**Investigate further**]
+![](Week07_correlation_lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 4: Check assumptions**
+
+**Step 5: Run the test**
+
+**Step 6: Calculate confidence intervals**
+
++ Let's continue in SPSS...
+
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Interpret results**
+
+&lt;img src="images/corrResults.png" width="75%" /&gt;
+
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Interpret results**
+
+&lt;img src="images/corrCI.png" width="1525" /&gt;
+
+---
+## Conducting a Hypothesis Test using `\(r\)`
+
+**Step 7: Report**
+
+On average, participants had been in the program for 89.07 days ( `\(SD\)` = 31.39; minimum = 12; maximum = 174) and had a maximum running distance of 13.22 miles ( `\(SD\)` = 6.86, minimum = 0, maximum = 28.93). We conducted a Pearson correlation to determine the association between total days in the fitness program and maximum running distance in miles. Results from this test were evaluated at a threshold of `\(\alpha\)` = .05. There was a strong, positive relationship between the two variables, `\(r\)`(98) = .73, `\(p\)` &lt; .001, 95% CI = [.61, .81], indicating that participants who spent more days in the program also demonstrated higher maximum running distances.
+
+
+---
+## VERY IMPORTANT NOTE ABOUT CORRELATION
+
++ Correlation is NOT causal
+
++ Note that when reporting, I did not say 'The program increased participant's running distances.'
+
++ **Causality:** one event directly leads to another event
+    + Sun exposure `\(\Rightarrow\)` sunburn
+
++ This is different from **covariance**, where two variables change together
+
+
+---
+
+## Causality
+
+.pull-left[
+
+&lt;img src="images/sharkPlot.jpg" width="80%" /&gt;
+]
+
+.pull-right[
+
+&lt;img src="images/sharkIceCream.jpg" width="2449" /&gt;
+
+]
+
+
+---
+## Conditions for Causality
++ Covariation
+
+--
+
++ Plausibility
+
+--
+
++ Temporal Precedence
+    + `\(A \Rightarrow B\)`, never `\(B \Rightarrow A\)` or `\(B \Leftrightarrow A\)`
+
+--
+
++ No Reasonable Alternatives
+  + Very hard to establish
+  + Failing to account for alternative explanations may lead to spurious correlations
+
+
+---
+## Conditions for Causality 
+
+**Covariation**
+
+&lt;span style="color: green;"&gt; `\(\checkmark\)` &lt;/span&gt; It is true that as ice cream purchases increase, so do shark attacks.
+
+
+** `\(\oslash\)` ** However, you can buy ice cream, go for a swim, and fail to be attacked by a shark, or vice versa.
+
+
+--
+**Plausibility**
+
+
+** `\(\oslash\)` ** The idea of ice cream consumption directly causing a shark attack is not plausible.
+
+
+
+--
+**Temporal Precedence**
+
+
+&lt;span style="color: green;"&gt; `\(\checkmark\)` &lt;/span&gt; It's reasonable that the ice cream purchase always happens *before* the shark attack...
+
+
+--
+**No Reasonable Alternatives**
+
+
+** `\(\oslash\)` ** There is a much more logical explanation for the positive association between ice cream and shark attacks.
+
+---
+class: center, middle, inverse
+
+## Questions?
+
+
+---
+
+## Other Types of Correlation
+
+| Variable 1  | Variable 2  | Correlation Type |
+|-------------|-------------|------------------|
+| Continuous  | Continuous  | Pearson          |
+| Continuous  | Categorical | Polyserial       |
+| Continuous  | Binary      | Biserial         |
+| Categorical | Categorical | Polychoric       |
+| Binary      | Binary      | Tetrachoric      |
+| Rank        | Rank        | Spearman         |
+| Nominal     | Nominal     | Chi-square       |
+
+
+
+---
+
+class: center, middle, inverse
+# Thanks for listening!
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
