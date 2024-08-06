@@ -28,7 +28,7 @@ style_mono_accent(
   header_font_weight = 500,
   text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
   code_font_google = google_font("Source Code Pro"),
-  text_bold_color = '#D95829',
+  text_bold_color = '#4CA384',
   text_slide_number_color = '#18778C',
   text_font_size = '16pt'
 )
@@ -38,10 +38,10 @@ style_mono_accent(
 library(tidyverse)
 knitr::opts_chunk$set(dev = 'svg')
 
-baseColor <- "#18778C"
-accent1 <- '#D95829'
-accent2 <- '#BF3326'
-accent3 <- '#F29422'
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#18778C'
+accent3 <- '#19424C'
 
 ```
 
@@ -51,36 +51,6 @@ accent3 <- '#F29422'
   text-decoration: underline;
 }
 ```
-
-
-## Course Team
-
-.pull-left[
-
-+ **Monica Truelove-Hill**
-  + Course Organiser and Lecturer
-  + .link-style1[[m.truelovehill@ed.ac.uk](mailto:m.truelovehill@ed.ac.uk)]
-  + Room 1.5, Doorway 6
-  + Office Hours: ADD OFFICE HOURS HERE
-
-+ Course Tutors:
-
-  + TBC
-  + TBC
-  + TBC
-  + TBC
-  
-]
-
-
-.pull-right[
-
-MONICA - PUT PICTURE HERE
-
-]
-
-
----
 
 ## Course Objectives
 
@@ -121,23 +91,51 @@ knitr::include_graphics('images/IntroObj2Vert.png')
   + Collaborative working
   
   + Taking complex information and presenting it in an accessible way
-  
+
+---
+
+## Course Team
+
+.pull-left[.center[**Lecturers**]
+
++ Monica Truelove-Hill
+  + Course Organiser and Lecturer
+  + .link-style1[[m.truelovehill@ed.ac.uk](mailto:m.truelovehill@ed.ac.uk)]
+  + Room 1.5, Doorway 6
+  + Office Hours: Mondays from 12:30-13:30
+
+
++ Emily-Marie Pacheco
+  + Lecturer - Qualitative Content
+  + .link-style1[[epacheco@ed.ac.uk](mailto:epacheco@ed.ac.uk)]
+
+]
+
+.pull-right[.center[**Tutors**]
+
+  + .link-style1[[Rhys Davies](mailto:s2038326@ed.ac.uk)]
+  + .link-style1[[Yanming He](mailto:s1809158@ed.ac.uk)]
+  + .link-style1[[Alexandros Kapatais](mailto:alexandros.kapatais@ed.ac.uk)]
+  + .link-style1[[Hamdullah Tunc](mailto:s2121526@ed.ac.uk)]
+
+]
+
+
 ---
 ## Tentative Course Timeline
 
 | Week     | Lecture Topic                                | Key Lab Tasks                                        |
 |:--------:|:---------------------------------------------|:-----------------------------------------------------|
-|  1       | Intro to Null-Hypothesis Statistical Testing | Describing Data & Working with Distributions         |
-|  2       | Effect Sizes & Power                         | Computing Effect Sizes & Conducting Power Analyses   |
-|  3       | $t$ -tests                                   | Running & Interpreting $t$-tests; Boxplots           |
-|  4       | ANOVA I                                      | One-Way and Repeated Measures ANOVA                  |
-|  5       | ANOVA II                                     | Moderation with ANOVA                                |
-| <B>6</B> |<B> Flexible Learning Week Review Session </B>| <B> No Lab </B>                                      |
+|  1       | Exploring your Data                          | Describing Data & Working with Distributions         |
+|  2       | Thematic Analysis                            | Conducting a Thematic Analysis                       |
+|  3       | Intro to Null-Hypothesis Statistical Testing | Computing Effect Sizes & Conducting Power Analyses   |
+|  4       | $t$ -tests                                   | Running & Interpreting $t$-tests; Boxplots           |
+|  5       | ANOVA I                                      | One-Way and Repeated Measures ANOVA                  |
+|  6       | ANOVA II                                     | Moderation with ANOVA                                |
 |  7       | Correlation                                  | Running & Interpreting Correlations; Scatterplots    |
 |  8       | Regression I                                 | Simple and Multiple Linear Regression                |
 |  9       | Regression II                                | Moderation with Regression                           |
 |  10      | Nonparametric Testing                        | <B> Formative Assessment </B>                        |
-|  11      | Thematic Analysis                            | Conducting a Thematic Analysis                       |
 
 
 ---
@@ -156,28 +154,26 @@ knitr::include_graphics('images/IntroObj2Vert.png')
 
 --
 
-+ Optional (but **strongly** recommended)
++ Optional (but **strongly** recommended):
   
   + Office Hours
-  + Flexible Learning Week review session ***MONICA: MAYBE EDIT THIS**
 
 
 ---
 ## Assessment
 
-+ **Individual Quantitative Report (70% of mark)**
-  + Released 3rd December at noon
-  + Due 5th December at noon
-  + Provided with dataset and must answer question prompts
-  + Will require you to select appropriate tests, given data and research questions
-  + Must use APA format when reporting results
-  
 + **Group Qualitative Report (30% of mark)**
-  + Released after Flexible Learning Week (TBC)
-  + Due 9th December at noon
+  + Due <b> 25th October at noon </b>
   + Provided with a selection of texts and must choose one to analyse using thematic analysis
   + Produce 3000-word report of methods and analysis
   + Not eligible for extensions
+  
++ **Individual Quantitative Report (70% of mark)**
+  + Released 3rd December at noon
+  + Due <b> 5th December at noon </b>
+  + Provided with dataset and must answer question prompts
+  + Will require you to select appropriate tests, given data and research questions
+  + Must use APA format when reporting results
 
 ---
 ## Assessment - Academic Integrity
@@ -244,9 +240,3 @@ knitr::include_graphics('images/IntroObj2Vert.png')
   + Come to all sessions
   + Use office hours to clarify any questions you have.
   + Form study groups (we can help with this, if you'd like)
-  
----
-class: center, inverse, middle
-
-## Questions?
-
