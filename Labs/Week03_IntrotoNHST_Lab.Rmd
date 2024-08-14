@@ -84,33 +84,97 @@ Intro Goes Here
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
-1. Understand the link between probability and inferential statistics
-2. Describe the difference between effect sizes and p-values
-3. Compute confidence intervals
-4. Run a power analysis
+1. Describe requirements of a general power analysis
+2. Understand the link between probability and inferential statistics
+3. Describe the difference between effect sizes and p-values
+4. Compute confidence intervals
 
 
-## Task 1:
 
-Task 1 Here
+## Power Analysis
+
+An a priori power analysis should be conducted when designing the study in order to determine the number of participants needed to detect the effect of interest. In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct our power analyses. We'll begin to conduct power analyses when we run specific statistical tests. For today, we'll focus on improving your understanding of the concept of statistical power. Have a look at the following power curves and spend some time trying to interpret them.
+
+
+
+You run a power analysis and find that, for your analysis, you will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.
+
++ 
+
++ 
+
++ 
+
++ 
+
++ 
+
 
 ```{r q1, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("What kind of file is 'Week1LabData'?",
-#               answer("SPSS datafile"),
-#               answer("comma separated values file", correct = T),
-#               answer("Excel file"),
-#               answer("Word file"),
-#               message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for
-#               spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than
-#               SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
-#      question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
-#               answer('True'),
-#               answer('False', correct = T),
-#               message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only
-#               necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
-#      )
+ quiz(caption = 'Test Your Understanding',
+      question('What is the traditional threshold for power that is considered accdeptable?',
+               answer('70%'),
+               answer('80%', correct = T),
+               answer('90%'),
+               answer('100%'),
+               message = 'Traditionally, a threshold of 80% is considered an acceptable level of power for a study.'),
+      question('Which of the following is not considered when calculating power?',
+               answer('Sample variance', correct = T),
+               answer('Sample size'),
+               answer('Significance level'),
+               answer('Effect size'),
+               random_answer_order = T,
+               message = 'Power is affected by the significance level, sample size, and effect size. Each of these four values is a function of the remaining three.'),
+      question('Which of the following would lead to an increase in statistical power? Please select all that apply.',
+               answer('Decreasing alpha'),
+               answer('Increasing effect size', correct = T),
+               answer('Using a two-tailed test instead of a one-tailed test'),
+               answer('Increasing the number of participants in the sample', correct = T),
+               random_answer_order = T,
+               message = 'Power has a positive relationship with all of the given values, so that as effect size, sample size, and alpha increase, so too does power. Decreasing any of these lowers power. Going from a one-tailed to a two-tailed test decreases alpha by splitting it between each tail, so this would also lower power.'),
+      question('You run a power analysis and find that, for your analysis, you will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.',
+               answer('If you recruit fewer than 136 participants, your chances of detecting an existing effect will decrease.', correct = T),
+               answer('If you recruit at least 136 participants, you have an 80% chance of getting statistically significant results.'),
+               answer('If you recruit 136 participants, you have a 20% chance of making a Type II error.', correct = T),
+               answer('If the actual effect in the population is weaker than d = .5, 136 participants will still provide sufficient power to detect it.'),
+               answer('If the actual effect in the population is stronger than d = .5, 136 participants will still provide sufficient power to detect it.', correct = T),
+               random_answer_order = T,
+               message = 'You only have an 80% chance of getting statistically significant results IF the effect actually exists. Additionally, reducing the effect size decreases power, so you will need to increase your sample size in order to detect a smaller effect. Increasing the effect size increases power, so you will still be sufficiently powered to detect a larger effect without changing the sample.')
+      )
 ```
+
+You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv)</B> or checking this week's folder on Learn (requires university login). 
+
+### Your Task
+Import 'Week2LabData.csv' into SPSS.
+
+
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options?
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV Data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file.
+
+```{r, echo = F, out.width='50%'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1a.png')
+```
+
+A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'.
+
+```{r, echo = F, out.width='60%'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1b.PNG')
+```
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -130,7 +194,7 @@ Solution Goes Here
 </div>
 </br>
 
-## Calculate the Area Under the Curve
+## Calculating the Area Under the Curve
 
 Some kind of introduction to this idea here.
 
@@ -148,7 +212,7 @@ tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-
 
 ```
 
-Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to a practical example. Imagine that you have a sample of 4,000 participants who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). The plot below reflects the probability distribution of your sample. Use this plot to answer the following questions:
+Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to a practical example. Imagine that you have a sample of 250 participants who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). Imagine that the plot below reflects the probability distribution of your sample. Use this plot to answer the following questions:
 
 ```{r, echo = F}
 sliderInput('score', 'WAIS-IV Score:', min=50, max = 150, step = 1, value = c(50,150), ticks = F)
@@ -158,22 +222,20 @@ plotOutput('aucScorePlot')
 
 ```{r q2, echo = FALSE}
 
-# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
 quiz(caption = 'Test Your Understanding',
-     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
+     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS?',
                       answer(38, correct = T),
                       message = '38% of the sample scored between 95 and 110.'),
-     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
+     question_numeric('What percentage of the sample scored 87 or lower?',
                       answer(19, correct = T),
-                      message = '19% of the sample received a score lower than 87.'),
-     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
-                      answer(1, correct = T),
-                      message = 'Only 1% of the sample scored at least 138.'),
+                      message = '19% of the sample received a score 87 or lower.'),
      question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
                       answer(81, correct = T),
-                      message = 'The lowest 10% of the sample scored below 81.')
+                      message = 'The lowest 10% of the sample scored below 81.'),
+     question_numeric('Participant J scored 127. Fill in the blank: __% of the sample received a score at least as high as Participant J.',
+                      answer(4, correct = T),
+                      message = 'Only 4% of the sample scored at least 127')
 )
-
 ```
 
 <div class="container">
@@ -226,6 +288,8 @@ Solution here.
 ## Interpreting Effect Sizes
 
 Task Here.
+
+Plot that the effect size can be manipulated. So two groups, that, as the means grow further apart, the effect size gets larger, etc.
 
 ```{r q4, echo = FALSE}
 # quiz(caption = 'Test Your Understanding',
@@ -402,7 +466,7 @@ Solution here.
 
 ## Power Analyses
 
-Task here.
+In this course, we'll use [WebPower](https://webpower.psychstat.org/wiki/models/index) to perform power analyses. 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>

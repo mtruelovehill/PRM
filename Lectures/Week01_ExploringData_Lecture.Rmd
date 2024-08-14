@@ -67,6 +67,14 @@ Mode <- function(x) {
 }
 ```
 
+## Research process
+
+```{r, echo = F}
+knitr::include_graphics('images/ResearchProcess.png')
+```
+
+---
+
 ## Why????
 
 + Psychology is a science....
@@ -86,18 +94,6 @@ Mode <- function(x) {
 + But how do we decide what is *consistent enough*?
 
 ---
-
-## Research process
-
-```{r, echo = F}
-knitr::include_graphics('images/ResearchProcess.png')
-```
-
----
-exclude: true
-## The truth is out there.
-
----
 ## From sample to population
 
 + In statistics, we often refer to samples and populations
@@ -109,24 +105,11 @@ exclude: true
 + We typically use **sample statistics**, or **point-estimates** to make inferences about **population parameters**
 
 ---
-## Hypotheses
-
-+ **Null Hypothesis ( $H_0$ ):** There is no difference or effect, and any experimentally observed difference is due to chance
-
-+ **Alternative Hypothesis ( $H_1$ ):** There is a relationship or association between variables
-
-+ The burden of proof is on $H_1$
-
-  + Assume $H_0$ is accurate until there is sufficient evidence that it is not
-  
-  + Tests of significance assess strength of the evidence against $H_0$
-
----
 ## Visualising your data: Frequency Distributions
 
 + Frequency distributions allow you to visualise how often each observation occurs
 
-+ The type of frequency distribution you should use depends on the type of data you have:
++ The type of frequency distribution you use depends on the type of data you have:
 
 --
 
@@ -232,9 +215,6 @@ knitr::include_graphics('images/SPSSmean.PNG')
 
 + Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
 
-+ Shouldn't be used with nominal data, and it's best not used with ordinal data, even though they may be coded as numeric values
-
-
 --
 
 
@@ -266,8 +246,6 @@ count: false
 
 + Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
 
-+ Shouldn't be used with nominal data, and it's best not used with ordinal data, even though they may be coded as numeric values
-
 + Say you have the following scale:
 
 .pull-left[
@@ -290,6 +268,11 @@ count: false
 > Is someone who is a bit confused twice as confused as someone for whom it's starting to come together?
 
 ]
+
+--
+
++ Best not used with ordinal data, even though they may be coded as numeric values
+
 ---
 ## Central Tendancy: Median
 
@@ -362,6 +345,7 @@ knitr::include_graphics('images/SPSSmode.PNG')
 
 
 ---
+exclude: true
 
 ####  How useful are the measures of central tendency in each of the following situations?
 
@@ -471,6 +455,12 @@ ggplot(mapping = aes(a)) + geom_histogram(fill = baseColor, color = accent3, bin
 ]
 
 ---
+class: center, inverse, middle
+count: false
+
+## Questions?
+
+---
 ## Variation in Scores
 
 .pull-left[
@@ -483,8 +473,6 @@ ggplot(mapping = aes(a)) + geom_histogram(fill = baseColor, color = accent3, bin
   + Range
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -522,8 +510,6 @@ varPlot
   + Range
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -554,8 +540,6 @@ varPlot + annotate(geom = 'rect', xmin = which.min(sampDat$Age)-.5, xmax = which
   + **Range**
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -566,7 +550,7 @@ varPlot + annotate(geom = 'rect', xmin = which.min(sampDat$Age)-.5, xmax = which
 
 varPlot + 
   annotate(geom = 'rect', xmin = which.min(sampDat$Age)-.5, xmax = which.min(sampDat$Age)+.5, ymin = min(sampDat$Age)-2, ymax = min(sampDat$Age)+2, alpha = .1, color = accent3) + 
-  annotate('text', label = paste0('Range = ', round(min(sampDat$Age),2), ' - ', round(max(sampDat$Age), 2)), x = 10, y = 45, size = 6) +
+  annotate('text', label = paste('Range =', round(max(sampDat$Age), 2), '-', round(min(sampDat$Age),2), '=', round(max(sampDat$Age), 2)-round(min(sampDat$Age),2)), x = 10, y = 45, size = 6) +
   annotate(geom = 'rect', xmin = which.max(sampDat$Age)-.5, xmax = which.max(sampDat$Age)+.5, ymin = max(sampDat$Age)-2, ymax = max(sampDat$Age)+2, alpha = .1, color = accent3) +
   annotate(geom = 'segment', x = 12.5, xend = 12.5, y = min(sampDat$Age), yend = max(sampDat$Age), color = accent3) +
   annotate(geom = 'segment', x = 11.5, xend = 12.5, y = max(sampDat$Age), yend = max(sampDat$Age), color = accent3, linetype = 'dashed') + 
@@ -764,11 +748,13 @@ iqrPlot
 ]   
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
 
-$$s^2 = \frac{\sum(x_i-\bar{x})^2}{n-1}$$
+$$SD = \sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$
++ On average, how far away are individual observations from the mean? 
+
 ]
 
 .pull-right[
@@ -780,27 +766,27 @@ varPlot
 
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
 
-$$s^2 = \frac{\sum(\color{#4CA384}{x_i}-\bar{x})^2}{n-1}$$
+$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i}-\bar{x})^2}{n-1}}$$
 
 + $x_i$ = individual observations of x
 ]
 
 .pull-right[
 ```{r, echo = F, fig.height=4.5}
-varPlot + geom_point(color = accent1, size = 3)
+varPlot + geom_point(color = baseColor, size = 3)
 ```
 
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-$$s^2 = \frac{\sum(x_i-\color{#4CA384}{\bar{x}})^2}{n-1}$$
+$$SD = \sqrt{\frac{\sum(x_i-\color{#4CA384}{\bar{x}})^2}{n-1}}$$
 
 
 + $x_i$ = individual observations of x
@@ -818,10 +804,10 @@ varPlot
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-$$s^2 = \frac{\sum(\color{#4CA384}{x_i-\bar{x}})^2}{n-1}$$
+$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i-\bar{x}})^2}{n-1}}$$
 
 
 + $x_i$ = individual observations of x
@@ -843,10 +829,10 @@ varPlot + geom_segment(aes(x = Participant, y = Age, xend = Participant, yend = 
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-$$s^2 = \frac{\sum(x_i-\bar{x})\color{#4CA384}{^2}}{n-1}$$
+$$SD = \sqrt{\frac{\sum(x_i-\bar{x})\color{#4CA384}{^2}}{n-1}}$$
 
 
 + $x_i$ = individual observations of x
@@ -870,10 +856,10 @@ varPlot + geom_segment(aes(x = Participant, y = Age, xend = Participant, yend = 
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-$$s^2 =\frac{\sum(x_i-\bar{x})^2}{n-1}$$
+$$SD =\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$
 
 
 + $x_i$ = individual observations of x
@@ -882,7 +868,8 @@ $$s^2 =\frac{\sum(x_i-\bar{x})^2}{n-1}$$
 
 + $\sum(x_i-\bar{x})^2$ = sum of squared deviations (AKA the sum of squares)
 
-+ $s^2 = \frac{`r round(sum(sampDat$sqDist), 2)`}{12-1} = `r round(sum(sampDat$sqDist)/(nrow(sampDat)-1),2)`$
++ $SD = \sqrt{\frac{`r round(sum(sampDat$sqDist),2)`}{12-1}} = `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)), 2)`$
+
 
 ]
 
@@ -902,7 +889,7 @@ varPlot + geom_segment(aes(x = Participant, y = Age, xend = Participant, yend = 
 
 + In doing so, we are assuming that our sample mean reflects the population mean
 
-+ Adding -1 allows us to make an estimate of the population variance that's less biased by our specific sample.
++ Adding -1 allows us to make an estimate of the population that's less biased by our specific sample.
 
 --
 
@@ -910,21 +897,14 @@ varPlot + geom_segment(aes(x = Participant, y = Age, xend = Participant, yend = 
 
 --
 
-.pull-left[
-+ Imagine that we have calculated the sum of squares to be 127
-]
 
-.pull-right[
-
-| Sample Size | Variance (n)          | Variance (n - 1)     |
+| Sample Size | SD (n)          | SD (n - 1)     |
 |:-----------:|:---------------------:|:--------------------:|
-|    5        |  `r round(127/5, 2)`  | `r round(127/4, 2)`  |
-|    10       |  `r round(127/10,2)`  | `r round(127/9, 2)`  |
-|    50       |  `r round(127/50,2)`  | `r round(127/49,2)`  |
-|    100      |  `r round(127/100,2)` | `r round(127/99,2)`  |
-|    1000     |  `r round(127/1000,2)`| `r round(127/999,2)` |
-
-]
+|    5        |  `r round(sqrt(526.22/5), 2)`  | `r round(sqrt(526.22/4), 2)`  |
+|    10       |  `r round(sqrt(526.22/10),2)`  | `r round(sqrt(526.22/9), 2)`  |
+|    50       |  `r round(sqrt(526.22/50),2)`  | `r round(sqrt(526.22/49),2)`  |
+|    100      |  `r round(sqrt(526.22/100),2)` | `r round(sqrt(526.22/99),2)`  |
+|    1000     |  `r round(sqrt(526.22/1000),2)`| `r round(sqrt(526.22/999),2)` |
 
 
 ???
@@ -938,12 +918,10 @@ As the sample grows larger, the variance estimated using n or n-1 grows more sim
 ## Variation in Scores - Standard Deviation
 
 .pull-left[
-$$SD =\sqrt\frac{\sum(x_i-\bar{x})^2}{n-1}$$
-+ On average, how far away are individual observations from the mean? 
++ $SD = \sqrt{`r round(sum(sampDat$sqDist)/(nrow(sampDat)-1),2)`} = `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)),2)`$
 
 + Expressed in the units of the variable of interest
 
-+ $SD = \sqrt{`r round(sum(sampDat$sqDist)/(nrow(sampDat)-1),2)`} = `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)),2)`$
 
 + On average, participants in our sample are `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)),2)` years older or younger than the mean of `r round(mean(sampDat$Age),2)`.
 
@@ -978,155 +956,6 @@ ggplot(mapping=aes(m)) + geom_histogram(fill = baseColor, color = accent3, bins=
 
 ]
 
-
----
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-```{r, echo=F}
-distDat <- data.frame(miles=c(4.25, 2.61, 1.13, 5.89, 8.60))
-distDat$km <- round(distDat$miles*1.61,2)
-ssMiles <- round(sum((distDat$miles-mean(distDat$miles))^2),2)
-ssKm <- round(sum((distDat$km-mean(distDat$km))^2),2)
-s2Miles <- round(var(distDat$miles), 2)
-s2Km <- round(var(distDat$km), 2)
-sdMiles <- round(sd(distDat$miles),2)
-sdKm <- round(sd(distDat$km),2)
-```
-
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
---
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  $Sum\ of\ Squares$ | `r ssMiles` | `r ssKm`   |
-|    $s^2$          | `r s2Miles` | `r s2Km`   |
-
-
-]
-
-
----
-count: false
-
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  $Sum\ of\ Squares$ | `r ssMiles` | `r ssKm`   |
-|    $s^2$          | `r s2Miles` | `r s2Km`   |
-
-+ $`r s2Km`/1.6 = `r round(s2Km/1.6, 2)`$
-
-+ $`r round(s2Km/1.6, 2)` \neq `r s2Miles`$ 
-
-+ Variance values are **not in the same units as the original data**, so they won't conform to the same rules
-
-+ This also affects interpretability
-
-]
-
-
----
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  $Sum\ of\ Squares$ | `r ssMiles` | `r ssKm`   |
-|    $s^2$          | `r s2Miles` | `r s2Km`   |
-|    $SD$           | 2.91 | `r sdKm`   |
-
-]
-
----
-count: false
-
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  $Sum\ of\ Squares$ | `r ssMiles` | `r ssKm`   |
-|    $s^2$          | `r s2Miles` | `r s2Km`   |
-|    $SD$           | 2.91 | `r sdKm`   |
-
-+ $`r sdKm`/1.61 = `r round(sdKm/1.61, 2)`$
-
-+ $`r round(sdKm/1.61, 2)` = 2.91$ 
-
-+ This now works, because SD values are measured in the same units as the original data
-]
-
 ---
 ## A Note on Notation
 
@@ -1145,6 +974,7 @@ count: false
 
 ---
 class: center, inverse, middle
+count: false
 
 ## Questions?
 
@@ -1183,7 +1013,7 @@ ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
 > **Test Your Understanding:** Which value of x is most common, according to the probability distribution seen here? Which values are less common?
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 + A probability distribution where values around the mean are most common, and values further from the mean are increasingly less common.
 
@@ -1194,7 +1024,7 @@ ggplot(data.frame(x = c(-4, 4)), aes(x = x)) +
 > **Test Your Understanding:** What kinds of variables can you think of that might follow a normal distribution? 
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1218,7 +1048,7 @@ normDist + geom_vline(xintercept = 0, color=accent2, linewidth = 1.5)
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1244,7 +1074,7 @@ Adjusting the mean changes where the curve is centered on the $x$-axis
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1270,7 +1100,7 @@ Adjusting the $SD$ changes the shape of the curve
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1289,7 +1119,7 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = accent1, xlim=c(-1, 
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1309,7 +1139,7 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = baseColor, xlim=c(-1
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1330,7 +1160,7 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = accent2, xlim=c(-3, 
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1357,7 +1187,7 @@ waisDist +
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1380,7 +1210,7 @@ waisDist +
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1407,7 +1237,7 @@ waisDist +
 
 ---
 
-## The normal distribution
+## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1433,7 +1263,7 @@ waisDist +
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1465,7 +1295,39 @@ waisDist +
 ```
 ]
 
+---
+## The Standard Normal Distribution
 
+.pull-left[
++ A normal distribution in which $\mu$ = 0 and $\sigma$ = 1
+
++ AKA the $z$ distribution
+
++ Comprised of $z$-scores, which represent the number of standard deviations a value is from the mean
+
++ All values from a normal distribution can be converted to $z$-scores (standardised) using the following formula:
+
+$$z = \frac{X-\mu}{\sigma}$$
+
+]
+
+
+.pull-right[
+
+```{r, echo = F, fig.width=5, fig.height=4}
+ggplot(data.frame(z=c(-4, 4)), aes(x=z)) + 
+  stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean=0, sd =1)) +
+  geom_hline(yintercept = 0, linewidth = 1.5) +
+  theme(axis.title.x = element_text(size = 14, face = 'bold'),
+        axis.line.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.text.x = element_text(size = 12, face = 'bold'),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+]
+  
 ---
 ## Assessing Normality in Data
 
@@ -1589,6 +1451,7 @@ ggplot(leptDat, aes(x)) + geom_histogram(aes(y=after_stat(density)), fill = base
 
 ---
 class: center, inverse, middle
+count: false
 
 ## Questions?
 

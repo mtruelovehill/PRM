@@ -60,6 +60,19 @@ accent3 <- '#19424C'
 
 
 ---
+## Hypotheses
+
++ **Null Hypothesis ( $H_0$ ):** There is no difference or effect, and any experimentally observed difference is due to chance
+
++ **Alternative Hypothesis ( $H_1$ ):** There is a relationship or association between variables
+
++ The burden of proof is on $H_1$
+
+  + Assume $H_0$ is accurate until there is sufficient evidence that it is not
+  
+  + Tests of significance assess strength of the evidence against $H_0$
+  
+---
 ## Refresh from Last Week
 
 

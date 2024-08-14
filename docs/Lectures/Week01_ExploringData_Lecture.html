@@ -33,6 +33,12 @@ class: center, middle, inverse, title-slide
 
 
 
+## Research process
+
+&lt;img src="images/ResearchProcess.png" width="2411" /&gt;
+
+---
+
 ## Why????
 
 + Psychology is a science....
@@ -52,16 +58,6 @@ class: center, middle, inverse, title-slide
 + But how do we decide what is *consistent enough*?
 
 ---
-
-## Research process
-
-&lt;img src="images/ResearchProcess.png" width="2411" /&gt;
-
----
-exclude: true
-## The truth is out there.
-
----
 ## From sample to population
 
 + In statistics, we often refer to samples and populations
@@ -73,24 +69,11 @@ exclude: true
 + We typically use **sample statistics**, or **point-estimates** to make inferences about **population parameters**
 
 ---
-## Hypotheses
-
-+ **Null Hypothesis ( `\(H_0\)` ):** There is no difference or effect, and any experimentally observed difference is due to chance
-
-+ **Alternative Hypothesis ( `\(H_1\)` ):** There is a relationship or association between variables
-
-+ The burden of proof is on `\(H_1\)`
-
-  + Assume `\(H_0\)` is accurate until there is sufficient evidence that it is not
-  
-  + Tests of significance assess strength of the evidence against `\(H_0\)`
-
----
 ## Visualising your data: Frequency Distributions
 
 + Frequency distributions allow you to visualise how often each observation occurs
 
-+ The type of frequency distribution you should use depends on the type of data you have:
++ The type of frequency distribution you use depends on the type of data you have:
 
 --
 
@@ -172,9 +155,6 @@ count: false
 
 + Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
 
-+ Shouldn't be used with nominal data, and it's best not used with ordinal data, even though they may be coded as numeric values
-
-
 --
 
 
@@ -206,8 +186,6 @@ count: false
 
 + Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
 
-+ Shouldn't be used with nominal data, and it's best not used with ordinal data, even though they may be coded as numeric values
-
 + Say you have the following scale:
 
 .pull-left[
@@ -230,6 +208,11 @@ count: false
 &gt; Is someone who is a bit confused twice as confused as someone for whom it's starting to come together?
 
 ]
+
+--
+
++ Best not used with ordinal data, even though they may be coded as numeric values
+
 ---
 ## Central Tendancy: Median
 
@@ -298,6 +281,7 @@ count: false
 
 
 ---
+exclude: true
 
 ####  How useful are the measures of central tendency in each of the following situations?
 
@@ -355,6 +339,12 @@ count: false
 ]
 
 ---
+class: center, inverse, middle
+count: false
+
+## Questions?
+
+---
 ## Variation in Scores
 
 .pull-left[
@@ -367,8 +357,6 @@ count: false
   + Range
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -395,8 +383,6 @@ count: false
   + Range
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -419,8 +405,6 @@ count: false
   + **Range**
   
   + Interquartile Range
-
-  + Variance
   
   + Standard Deviation
 ]
@@ -569,11 +553,13 @@ count: false
 ]   
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
 
-`$$s^2 = \frac{\sum(x_i-\bar{x})^2}{n-1}$$`
+`$$SD = \sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$`
++ On average, how far away are individual observations from the mean? 
+
 ]
 
 .pull-right[
@@ -583,11 +569,11 @@ count: false
 
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
 
-`$$s^2 = \frac{\sum(\color{#4CA384}{x_i}-\bar{x})^2}{n-1}$$`
+`$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i}-\bar{x})^2}{n-1}}$$`
 
 + `\(x_i\)` = individual observations of x
 ]
@@ -598,10 +584,10 @@ count: false
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-`$$s^2 = \frac{\sum(x_i-\color{#4CA384}{\bar{x}})^2}{n-1}$$`
+`$$SD = \sqrt{\frac{\sum(x_i-\color{#4CA384}{\bar{x}})^2}{n-1}}$$`
 
 
 + `\(x_i\)` = individual observations of x
@@ -616,10 +602,10 @@ count: false
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-`$$s^2 = \frac{\sum(\color{#4CA384}{x_i-\bar{x}})^2}{n-1}$$`
+`$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i-\bar{x}})^2}{n-1}}$$`
 
 
 + `\(x_i\)` = individual observations of x
@@ -634,10 +620,10 @@ count: false
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-`$$s^2 = \frac{\sum(x_i-\bar{x})\color{#4CA384}{^2}}{n-1}$$`
+`$$SD = \sqrt{\frac{\sum(x_i-\bar{x})\color{#4CA384}{^2}}{n-1}}$$`
 
 
 + `\(x_i\)` = individual observations of x
@@ -654,10 +640,10 @@ count: false
 ]
 
 ---
-## Variation in Scores - Variance
+## Variation in Scores - Standard Deviation
 
 .pull-left[
-`$$s^2 =\frac{\sum(x_i-\bar{x})^2}{n-1}$$`
+`$$SD =\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$`
 
 
 + `\(x_i\)` = individual observations of x
@@ -666,7 +652,8 @@ count: false
 
 + `\(\sum(x_i-\bar{x})^2\)` = sum of squared deviations (AKA the sum of squares)
 
-+ `\(s^2 = \frac{526.22}{12-1} = 47.84\)`
++ `\(SD = \sqrt{\frac{526.22}{12-1}} = 6.92\)`
+
 
 ]
 
@@ -682,7 +669,7 @@ count: false
 
 + In doing so, we are assuming that our sample mean reflects the population mean
 
-+ Adding -1 allows us to make an estimate of the population variance that's less biased by our specific sample.
++ Adding -1 allows us to make an estimate of the population that's less biased by our specific sample.
 
 --
 
@@ -690,21 +677,14 @@ count: false
 
 --
 
-.pull-left[
-+ Imagine that we have calculated the sum of squares to be 127
-]
 
-.pull-right[
-
-| Sample Size | Variance (n)          | Variance (n - 1)     |
+| Sample Size | SD (n)          | SD (n - 1)     |
 |:-----------:|:---------------------:|:--------------------:|
-|    5        |  25.4  | 31.75  |
-|    10       |  12.7  | 14.11  |
-|    50       |  2.54  | 2.59  |
-|    100      |  1.27 | 1.28  |
-|    1000     |  0.13| 0.13 |
-
-]
+|    5        |  10.26  | 11.47  |
+|    10       |  7.25  | 7.65  |
+|    50       |  3.24  | 3.28  |
+|    100      |  2.29 | 2.31  |
+|    1000     |  0.73| 0.73 |
 
 
 ???
@@ -718,12 +698,10 @@ As the sample grows larger, the variance estimated using n or n-1 grows more sim
 ## Variation in Scores - Standard Deviation
 
 .pull-left[
-`$$SD =\sqrt\frac{\sum(x_i-\bar{x})^2}{n-1}$$`
-+ On average, how far away are individual observations from the mean? 
++ `\(SD = \sqrt{47.84} = 6.92\)`
 
 + Expressed in the units of the variable of interest
 
-+ `\(SD = \sqrt{47.84} = 6.92\)`
 
 + On average, participants in our sample are 6.92 years older or younger than the mean of 31.25.
 
@@ -739,146 +717,6 @@ As the sample grows larger, the variance estimated using n or n-1 grows more sim
 
 ![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
 
-]
-
-
----
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-
-
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
---
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  `\(Sum\ of\ Squares\)` | 33.73 | 87.49   |
-|    `\(s^2\)`          | 8.43 | 21.87   |
-
-
-]
-
-
----
-count: false
-
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  `\(Sum\ of\ Squares\)` | 33.73 | 87.49   |
-|    `\(s^2\)`          | 8.43 | 21.87   |
-
-+ `\(21.87/1.6 = 13.67\)`
-
-+ `\(13.67 \neq 8.43\)` 
-
-+ Variance values are **not in the same units as the original data**, so they won't conform to the same rules
-
-+ This also affects interpretability
-
-]
-
-
----
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  `\(Sum\ of\ Squares\)` | 33.73 | 87.49   |
-|    `\(s^2\)`          | 8.43 | 21.87   |
-|    `\(SD\)`           | 2.91 | 4.68   |
-
-]
-
----
-count: false
-
-## Why SD? Why not just variance?
-
-+ To illustrate this, let's look at an example with distance in miles and the corresponding values in kilometers:
-
-.pull-left[
-
-| Miles | Kilometers|
-|:-----:|:---------:|
-| 4.25 | 6.84       |
-| 2.61 | 4.20       |
-| 1.13 | 1.82       |
-| 5.89 | 9.48       |
-| 8.60 | 13.85      |
-
-+ Miles = km/1.61
-
-]
-
-.pull-right[
-
-| Statistic         | Miles       | Kilometers |
-|:-----------------:|:-----------:|:----------:|
-|  `\(Sum\ of\ Squares\)` | 33.73 | 87.49   |
-|    `\(s^2\)`          | 8.43 | 21.87   |
-|    `\(SD\)`           | 2.91 | 4.68   |
-
-+ `\(4.68/1.61 = 2.91\)`
-
-+ `\(2.91 = 2.91\)` 
-
-+ This now works, because SD values are measured in the same units as the original data
 ]
 
 ---
@@ -899,6 +737,7 @@ count: false
 
 ---
 class: center, inverse, middle
+count: false
 
 ## Questions?
 
@@ -917,7 +756,7 @@ class: center, inverse, middle
 
 .pull-right[
 
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
 
 
 ]
@@ -927,7 +766,7 @@ class: center, inverse, middle
 &gt; **Test Your Understanding:** Which value of x is most common, according to the probability distribution seen here? Which values are less common?
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 + A probability distribution where values around the mean are most common, and values further from the mean are increasingly less common.
 
@@ -938,7 +777,7 @@ class: center, inverse, middle
 &gt; **Test Your Understanding:** What kinds of variables can you think of that might follow a normal distribution? 
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -948,11 +787,30 @@ class: center, inverse, middle
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+  
+
+]
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+
+Adjusting the mean changes where the curve is centered on the `\(x\)`-axis
+
+]
+
+---
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -966,31 +824,12 @@ class: center, inverse, middle
 
 ![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
 
-Adjusting the mean changes where the curve is centered on the `\(x\)`-axis
-
-]
-
----
-## The normal distribution
-.pull-left[
-**Characteristics of a normal distribution**
-
-+ Unimodal
-
-+ Its key parameters are mean and standard deviation
-  
-
-]
-.pull-right[
-
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
-
 Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1002,11 +841,11 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1019,11 +858,11 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
 
@@ -1037,11 +876,20 @@ Adjusting the `\(SD\)` changes the shape of the curve
 
 ]
 .pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
+]
+
+---
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
 ![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 &gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1050,7 +898,7 @@ Adjusting the `\(SD\)` changes the shape of the curve
 ]
 
 ---
-## The normal distribution
+## The Normal Distribution
 
 &gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1059,7 +907,8 @@ Adjusting the `\(SD\)` changes the shape of the curve
 ]
 
 ---
-## The normal distribution
+
+## The Normal Distribution
 
 &gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1068,8 +917,7 @@ Adjusting the `\(SD\)` changes the shape of the curve
 ]
 
 ---
-
-## The normal distribution
+## The Normal Distribution
 
 &gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
 
@@ -1078,15 +926,28 @@ Adjusting the `\(SD\)` changes the shape of the curve
 ]
 
 ---
-## The normal distribution
+## The Standard Normal Distribution
 
-&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+.pull-left[
++ A normal distribution in which `\(\mu\)` = 0 and `\(\sigma\)` = 1
 
-.center[
-![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-42-1.svg)&lt;!-- --&gt;
++ AKA the `\(z\)` distribution
+
++ Comprised of `\(z\)`-scores, which represent the number of standard deviations a value is from the mean
+
++ All values from a normal distribution can be converted to `\(z\)`-scores (standardised) using the following formula:
+
+`$$z = \frac{X-\mu}{\sigma}$$`
+
 ]
 
 
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-42-1.svg)&lt;!-- --&gt;
+
+]
+  
 ---
 ## Assessing Normality in Data
 
@@ -1152,6 +1013,7 @@ count: false
 
 ---
 class: center, inverse, middle
+count: false
 
 ## Questions?
 
