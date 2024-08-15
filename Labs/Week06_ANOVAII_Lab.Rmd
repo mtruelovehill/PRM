@@ -1,5 +1,5 @@
 ---
-title: "Week 4 Lab: t-tests"
+title: "Week 6 Lab: ANOVA"
 output:
   learnr::tutorial:
     progressive: true
@@ -68,14 +68,25 @@ Intro Goes Here
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-In this week's lab, you'll be working with data simulated based on [this paper](https://onlinelibrary.wiley.com/doi/10.1111/infa.12238). In this study, researchers tested the effect of infant transport modality on their social interaction. Specifically, they compared the use of buggies and backpacks. 
+In this week's lab, you'll be working with data simulated based on [this paper](https://d1wqtxts1xzle7.cloudfront.net/92405721/vrtherapy-libre.pdf?1665701596=&response-content-disposition=inline%3B+filename%3DVirtual_Reality_Exposure_Therapy_for_the.pdf&Expires=1723672793&Signature=ceCWXs2EIQsAqYQSz5XM5-rSYxHeEbUHIDYv8cXqDjMrFK6~6PO-5bD05ku0EWCSZaCFaKHER1atUcfjFGUASRZ6L5aij5dBBtF~HV7f3QH70Diq~2P4MXCA5KMJYq9tWPWv4My7b~T5vLnSWGHDI9XYFfEqg7dMPBibKUtaiVTmVekzvXVQwt~E4m0cuVcA1j6KLe3nC6kfGRbO20EMfVZeCLW6f-3M5K3gr~xPnnQBjX7V3m97pJ6FoY8S9SbJzJQiyIGYe1DIh0BIYx-cV7O-a9D~Je8fQrg1wNmBhWdTLJu4h6m3SIop9B-HSTIcW0LmHlxp2SltefXxHSRukA__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA). In this study, researchers tested the effectiveness of a virtual reality-based exposure therapy to treat PTSD in victims of the September 11th attacks. Participants were given the Clinician-Administered PTSD Scale (CAPS) and assigned to either a waitlist (n = 8) or treatment group (n = 10). After the treatment group completed therapy, all participants were once again administered the CAPS.
 
-You'll be analysing data from two separate studies. In the first, researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent vocalisations, infant vocalisations, and social interactions with strangers. They also recorded the number of times the parent touched their infant over the course of the walk.
 
-After running the first study, the researchers wanted to support their findings further. They ran a second experiment using a within-subjects design. In this experiment, they recruited 40 participants and sent them out on 2 separate walks over the course of two weeks, once using a backpack and once a buggy. In this experiment, they recorded both infant and parent vocalisations from the same participants across each condition.
+You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv)
 
-You can download the data from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv)
-You can download the data from the second experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv) 
+This dataset contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv')
+datInfo <- data.frame(VariableName=colnames(dat), 
+                      Description=c('Study Group', 'Age in years', 'Sex', 'pre-intervention CAPS score', 'post-intervention CAPS score'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
 
 
 ### Learning Objectives
@@ -89,24 +100,23 @@ At the end of this lab, you will be able to:
 Task 1 Info Here
 
 * Identify IV(s) and DV(s)
-* State Hypotheses (Independent Samples & Paired Samples)
-* Will do this for 2 research questions, one of which is a paired-samples, and one of which is an independent-samples
+* State Hypotheses (Mixed Methods ANOVA)
 
 ```{r q1, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('Which of the following hypotheses can be tested using a t-test? Please select all that apply.',
-              answer('Hypothesis1', correct = T),
-              answer('Hypothesis2'),
-              answer('Hypothesis3'),
-              answer('Hypothesis4'),
-              answer('Hypothesis5'),
-              random_answer_order = T,
-              message = 'Feedback Here'),
-     question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
-              answer('One-sample t-test'),
-              answer('Independent samples t-test'),
-              answer('Paired-samples t-test', correct = T),
-              message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
+# quiz(caption = 'Test Your Understanding',
+#      question('Which of the following hypotheses can be tested using a mixed methods ANOVA? Please select all that apply.',
+#               answer('Hypothesis1', correct = T),
+#               answer('Hypothesis2'),
+#               answer('Hypothesis3'),
+#               answer('Hypothesis4'),
+#               answer('Hypothesis5'),
+#               random_answer_order = T,
+#               message = 'Feedback Here'),
+#      question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
+#               answer('One-sample t-test'),
+#               answer('Independent samples t-test'),
+#               answer('Paired-samples t-test', correct = T),
+#               message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
 
 ```
 
@@ -245,7 +255,7 @@ Solution Here.
 </details>
 </br>
 
-## Run Independent Samples $t$-test 
+## Run ANOVA
 
 Task Description.
 * Maybe also discuss degrees of freedom here
@@ -285,7 +295,7 @@ Solution here.
 </details>
 </br>
 
-## Calculate Effect Size for Independent-Samples $t$-Test
+## Run Post-Hoc Analyses
 
 Task here.
 
@@ -315,7 +325,7 @@ Solution here.
 </details>
 </br>
 
-## Run a Paired-Samples $t$-Test 
+## Calculate Effect Sizes
 
 Task here.
 
@@ -346,7 +356,7 @@ Solution here.
 </br>
 
 
-## Calculate Effect Size for a Paired-Samples $t$-Test 
+## Visualise the Analysis Results
 
 Task here.
 

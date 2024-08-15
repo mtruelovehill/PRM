@@ -16,6 +16,7 @@ library(knitr)
 library(shiny)
 library(shinyjs)
 library(bslib)
+library(pwr)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -58,157 +59,53 @@ output$aucScorePlot <- renderPlot({
     annotate('text', label = paste0(propVal, '% of observations'), x = 140, y = .02, size = 6)
     })
 
+output$effectSizePlot <- renderPlot({
+  pooledSD <- sqrt(((25-1)*input$sdG1^2 + (25-1)*input$sdG2^2) / (25+25-2))
+  
+  ggplot(data.frame(x=c(15, 85)), aes(x)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = input$meanG1, sd = input$sdG1)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = input$meanG2, sd = input$sdG2)) +
+    scale_y_continuous(limits = c(0, .4)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = input$meanG1, sd = input$sdG1),
+              alpha = .7) +
+    geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = input$meanG2, sd = input$sdG2),
+              alpha = .7) + 
+    annotate(geom = 'text', label = paste('Effect Size =', round(abs(input$meanG1-input$meanG2)/pooledSD, 2)), 
+             x = 25, y = .19, size = 7) +
+    theme(axis.text.x = element_text(size = 12),
+          axis.title.x = element_text(size = 14, face = 'bold'),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.ticks.y = element_blank())
+  
+})
 ```
 
 ## Intro to Today's Lab
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-Intro Goes Here   
-
-```{r, echo = F}
-# dat <- read.csv('Week1LabData.csv')
-# datInfo <- data.frame(VariableName=colnames(dat), 
-#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
-#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
-#                                     Version C Scores', 'Assessment Version D Scores'))
-# 
-# datInfo %>%
-#   kbl(col.names=c('Variable Name', 'Description')) %>%
-#   kable_styling(full_width = F) %>%
-#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
-#   column_spec(1, bold = T, width = '4.5cm')
-```
-
+Today, you won't be working with a specific dataset. Instead, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. 
 
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
-1. Describe requirements of a general power analysis
-2. Understand the link between probability and inferential statistics
-3. Describe the difference between effect sizes and p-values
-4. Compute confidence intervals
+1. Understand the link between probability and inferential statistics
+2. Describe the difference between effect sizes and p-values
+3. Compute confidence intervals
+4. Describe general requirements of a power analysis
 
-
-
-## Power Analysis
-
-An a priori power analysis should be conducted when designing the study in order to determine the number of participants needed to detect the effect of interest. In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct our power analyses. We'll begin to conduct power analyses when we run specific statistical tests. For today, we'll focus on improving your understanding of the concept of statistical power. Have a look at the following power curves and spend some time trying to interpret them.
-
-
-
-You run a power analysis and find that, for your analysis, you will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.
-
-+ 
-
-+ 
-
-+ 
-
-+ 
-
-+ 
-
-
-```{r q1, echo = FALSE}
- quiz(caption = 'Test Your Understanding',
-      question('What is the traditional threshold for power that is considered accdeptable?',
-               answer('70%'),
-               answer('80%', correct = T),
-               answer('90%'),
-               answer('100%'),
-               message = 'Traditionally, a threshold of 80% is considered an acceptable level of power for a study.'),
-      question('Which of the following is not considered when calculating power?',
-               answer('Sample variance', correct = T),
-               answer('Sample size'),
-               answer('Significance level'),
-               answer('Effect size'),
-               random_answer_order = T,
-               message = 'Power is affected by the significance level, sample size, and effect size. Each of these four values is a function of the remaining three.'),
-      question('Which of the following would lead to an increase in statistical power? Please select all that apply.',
-               answer('Decreasing alpha'),
-               answer('Increasing effect size', correct = T),
-               answer('Using a two-tailed test instead of a one-tailed test'),
-               answer('Increasing the number of participants in the sample', correct = T),
-               random_answer_order = T,
-               message = 'Power has a positive relationship with all of the given values, so that as effect size, sample size, and alpha increase, so too does power. Decreasing any of these lowers power. Going from a one-tailed to a two-tailed test decreases alpha by splitting it between each tail, so this would also lower power.'),
-      question('You run a power analysis and find that, for your analysis, you will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.',
-               answer('If you recruit fewer than 136 participants, your chances of detecting an existing effect will decrease.', correct = T),
-               answer('If you recruit at least 136 participants, you have an 80% chance of getting statistically significant results.'),
-               answer('If you recruit 136 participants, you have a 20% chance of making a Type II error.', correct = T),
-               answer('If the actual effect in the population is weaker than d = .5, 136 participants will still provide sufficient power to detect it.'),
-               answer('If the actual effect in the population is stronger than d = .5, 136 participants will still provide sufficient power to detect it.', correct = T),
-               random_answer_order = T,
-               message = 'You only have an 80% chance of getting statistically significant results IF the effect actually exists. Additionally, reducing the effect size decreases power, so you will need to increase your sample size in order to detect a smaller effect. Increasing the effect size increases power, so you will still be sufficiently powered to detect a larger effect without changing the sample.')
-      )
-```
-
-You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv)</B> or checking this week's folder on Learn (requires university login). 
-
-### Your Task
-Import 'Week2LabData.csv' into SPSS.
-
-
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options?
-
-</details>
-</div>
-
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV Data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file.
-
-```{r, echo = F, out.width='50%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1a.png')
-```
-
-A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'.
-
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1b.PNG')
-```
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Goes Here
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution Goes Here
-
-</details>
-</div>
-</br>
-
-## Calculating the Area Under the Curve
+## Computing the Area Under the Curve
 
 Some kind of introduction to this idea here.
 
 ```{r aucPlot, echo = F}
-sliderInput('auc', 'Thresholds:', min=0, max = 1, step = .01, value = c(0,1), ticks = F)
-plotOutput('aucPlot')
 
-# fluidRow(column(4,
-#   sliderInput("lo","Low Threshold:", min = -6, max = 6, value = 0, step = 2),
-#   sliderInput('hi', 'High Threshold:', min = 1, max = 5, value = 1, step = .25)),
-#   column(8, plotOutput('distPlot')))
-#
 tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
 tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+
+sliderInput('auc', 'Thresholds:', min=0, max = 1, step = .01, value = c(0,1), ticks = F)
+plotOutput('aucPlot')
 
 ```
 
@@ -220,7 +117,7 @@ plotOutput('aucScorePlot')
 ```
 
 
-```{r q2, echo = FALSE}
+```{r q1, echo = FALSE}
 
 quiz(caption = 'Test Your Understanding',
      question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS?',
@@ -258,10 +155,105 @@ Solution here.
 </br>
 
 
-## Evaluating Type I & Type II Errors
+
+## Identifying the &alpha; cutoff
+
+PLOTS WHERE alpha is set to .05, .01 and .001
+Need both nondirectional and directional plots
+
+Task Description.
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
 
 
-Task Description Here
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Computing <i> p </i>
+
+Task Description.
+
+```{r q3, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
+#               answer("Mean", correct = T),
+#               answer("Median", correct = T),
+#               answer('Mode', correct = T),
+#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
+#               mean, as it includes information from each observation.'),
+#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
+#               answer("Mean"),
+#               answer("Median"),
+#               answer('Mode', correct = T),
+#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
+#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
+#      question_numeric("What is the average score on Assessment A?",
+#               answer(39.10, correct=T)),
+#      question_numeric("What is the most common age in this sample?",
+#               answer(19, correct=T)),
+#      question_numeric("What is the median score on Assessment D?",
+#               answer(81.87, correct=T))
+# )
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Putting it all Together
+
+Task Description.
+
+```{r q4, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
+#               answer("Mean", correct = T),
+#               answer("Median", correct = T),
+#               answer('Mode', correct = T),
+#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
+#               mean, as it includes information from each observation.'),
+#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
+#               answer("Mean"),
+#               answer("Median"),
+#               answer('Mode', correct = T),
+#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
+#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
+#      question_numeric("What is the average score on Assessment A?",
+#               answer(39.10, correct=T)),
+#      question_numeric("What is the most common age in this sample?",
+#               answer(19, correct=T)),
+#      question_numeric("What is the median score on Assessment D?",
+#               answer(81.87, correct=T))
+# )
+```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -283,15 +275,37 @@ Solution here.
 </br>
 
 
-
-
 ## Interpreting Effect Sizes
 
 Task Here.
 
-Plot that the effect size can be manipulated. So two groups, that, as the means grow further apart, the effect size gets larger, etc.
+```{r effSizePlot, echo = F}
 
-```{r q4, echo = FALSE}
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-bar-edge, .js-irs-4 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-bar-edge, .js-irs-5 .irs-bar {background: #4CA384}"))
+
+fluidRow(column(6,
+                sliderInput('meanG1', 'Group 1 Mean', min=30, max = 70, step = 1, value = 50, ticks = F),
+                sliderInput('sdG1', 'Group 1 SD', min=1, max = 10, step = 1, value = 2.5, ticks = F),
+                style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
+  column(6, sliderInput('meanG2', 'Group 2 Mean', min=30, max = 70, step = 1, value = 50, ticks = F),
+         sliderInput('sdG2', 'Group 2 SD', min=1, max = 10, step = 1, value = 2.5, ticks = F), style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
+
+
+plotOutput('effectSizePlot')
+```
+
+```{r q5, echo = FALSE}
+
+quiz(caption = 'Test Your Understanding',
+     question("If the means differ but are held constant, what happens to the effect size when one group's SD is increased?",
+              answer('The effect size increases'),
+              answer('The effect size decreases', correct = T),
+              answer('The effect size stays the same'),
+              message = 'Increasing the standard deviation of one group will decrease the effect size. This is because the variability in the data are increased'))
+
 # quiz(caption = 'Test Your Understanding',
 #      question("At least one of the groups is limited in size compared to the others",
 #               answer("True", correct = T),
@@ -347,168 +361,119 @@ Solution here.
 </div>
 </br>
 
-## Task 6: 
-
-Task Description.
-
-```{r q6, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 7: 
-
-Task here.
-
-```{r q7, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question_numeric("What is the IQR for Assessment B?",
-#               answer(4, correct=T),
-#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
-#      question_numeric("What is the maximum score on Assessment C?",
-#               answer(78, correct=T)),
-#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-#               answer(2.15, correct=T))
-# )
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 8: 
-
-Task here.
-
-```{r distPlot, echo = F}
-# 
-# fluidRow(column(4, 
-#   sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
-#   sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
-#   column(8, plotOutput('distPlot')))
-# 
-# tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
-# tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
-
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
 
 ## Power Analyses
 
-In this course, we'll use [WebPower](https://webpower.psychstat.org/wiki/models/index) to perform power analyses. 
+An a priori power analysis should be conducted when designing the study in order to determine the number of participants needed to detect the effect of interest. To run an a priori power analysis, you will need (at minimum) a power threshold, an alpha value, and an estimated effect size. 
+
+In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct our power analyses. We'll begin to conduct power analyses when we run specific statistical tests. Today, we'll focus on improving your understanding of the concept of statistical power. Have a look at the following power curves and spend some time trying to interpret them.
+
+```{r, echo = F, fig.width = 8, fig.height=4}
+
+powerDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/powerDat.csv')
+powerDat$EffectSize <- factor(powerDat$EffectSize, levels = c('strong', 'moderate', 'weak'))
+
+(powPlot <- ggplot(powerDat, aes(SampleSize, Power, color = EffectSize)) + geom_point() +
+  labs(x = 'Sample Size', y = 'Power', color = 'Effect Size') +
+  scale_x_continuous(breaks = seq(0, 200, by = 20)) +
+  scale_y_continuous(breaks = seq(0, 1, by = .1)) +
+  scale_color_manual(values = c(accent3, accent1, baseColor), labels = c('Strong', 'Moderate', 'Weak')) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'),
+        legend.title = element_text(size = 14, face = 'bold'),
+        legend.text = element_text(size = 12)))
+```
+
+### Your Task
+
+As you interpret this plot, try to answer the following questions:
+
++ What is the effect of sample size on power?
+
++ What is the effect of effect size on power?
+
++ About how many participants are necessary to detect a moderate effect with 80% power? 
+
++ If you expect a weak effect but have only 50 participants, what is your likelihood of making a Type II error?
+
+```{r q1, echo = FALSE}
+ quiz(caption = 'Test Your Understanding',
+      question('What is the traditional threshold for power that is considered accdeptable?',
+               answer('70%'),
+               answer('80%', correct = T),
+               answer('90%'),
+               answer('100%'),
+               message = 'Traditionally, a threshold of 80% is considered an acceptable level of power for a study.'),
+      question('Which of the following is not considered when calculating power?',
+               answer('Sample variance', correct = T),
+               answer('Sample size'),
+               answer('Significance level'),
+               answer('Effect size'),
+               random_answer_order = T,
+               message = 'Power is affected by the significance level, sample size, and effect size. Each of these four values is a function of the remaining three.'),
+      question('Which of the following would lead to an increase in statistical power? Please select all that apply.',
+               answer('Decreasing alpha'),
+               answer('Increasing effect size', correct = T),
+               answer('Using a two-tailed test instead of a one-tailed test'),
+               answer('Increasing the number of participants in the sample', correct = T),
+               random_answer_order = T,
+               message = 'Power has a positive relationship with all of the given values, so that as effect size, sample size, and alpha increase, so too does power. Decreasing any of these lowers power. Going from a one-tailed to a two-tailed test decreases alpha by splitting it between each tail, so this would also lower power.'),
+      question('You run a power analysis and find that, for your analysis, you will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.',
+               answer('If you recruit fewer than 136 participants, your chances of detecting an existing effect will decrease.', correct = T),
+               answer('If you recruit at least 136 participants, you have an 80% chance of getting statistically significant results.'),
+               answer('If you recruit 136 participants, you have a 20% chance of making a Type II error.', correct = T),
+               answer('If the actual effect in the population is weaker than d = .5, 136 participants will still provide sufficient power to detect it.'),
+               answer('If the actual effect in the population is stronger than d = .5, 136 participants will still provide sufficient power to detect it.', correct = T),
+               random_answer_order = T,
+               message = 'You only have an 80% chance of getting statistically significant results IF the effect actually exists. Additionally, reducing the effect size decreases power, so you will need to increase your sample size in order to detect a smaller effect. Increasing the effect size increases power, so you will still be sufficiently powered to detect a larger effect without changing the sample.')
+      )
+```
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+&beta;: the likelihood of making a Type II error
+
+Power = 1 - &beta;
 
 </details>
 </div>
-</br>
 
+</br>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+<i><b> What is the effect of sample size on power? What is the effect of effect size on power? </i></b>
+
+The sample size values can be found on the x-axis of the plot. As these values increase, you can see that power increases as well. Each line represents a different effect size strength. A strong effect size provides more power than a moderate effect size, which provides more power than a weak effect size. 
+
+</br>
+<i><b> About how many participants are necessary to detect a moderate effect with 80% power? </i></b>
+
+```{r, echo = F, fig.width=6, fig.height=3}
+powPlot + 
+  geom_segment(x = 0, xend = 63, y = .8, yend = .8, linetype = 'dashed') +
+  geom_segment(x = 63, xend = 63, y = 0, yend = .8, linetype = 'dashed') +
+  geom_point(x = 63, y = .8, shape = 8, size = 2)
+```
+
+If we check the line associated with moderate strength, we can see that we need about 63 participants to achieve a power of 80%.
+
+</br>
+
+<i><b> If you expect a weak effect but have only 50 participants, what is your likelihood of making a Type II error? </i></b>
+
+```{r, echo = F, fig.width=6, fig.height=3}
+powPlot + 
+  geom_segment(x = 0, xend = 50, y = .16, yend = .16, linetype = 'dashed') +
+  geom_segment(x = 50, xend = 50, y = 0, yend = .16, linetype = 'dashed') +
+  geom_point(x = 50, y = .16, shape = 8, size = 2)
+```
+
+By checking the line associated with a weak effect size, we can see that 50 participants is associated with a power of about .16. To calculate the chances of making a Type II error using our power value, we need to subtract .16 from 1. This leaves us with .84, meaning we have about an 84% chance of making a Type II error. In other words, we have a high likelihood of failing to identify an existing effect.
 
 </details>
 </div>
 </br>
-
-
-## Interpret & Report 
-
-Task here.
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
