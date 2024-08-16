@@ -698,7 +698,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 
 + Normality
   
-  + Have a look at the histograms
+  + Have a look at the histograms & QQ-plots
   + May also run tests of normality (Shapiro-Wilk or Kolmogorov–Smirnov)
 
 --

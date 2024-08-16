@@ -51,7 +51,7 @@ During today's lab, you'll apply the concepts discussed during this week's lectu
 
 In this week's lab, you'll be working with data simulated based on [this paper](https://onlinelibrary.wiley.com/doi/10.1111/infa.12238). In this study, researchers tested the effect of infant transport modality on their social interaction. Specifically, they compared the use of buggies and backpacks. 
 
-You'll be analysing data from two separate studies. In the first, researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent vocalisations, infant vocalisations, and social interactions with strangers. They also recorded the number of times the parent touched their infant over the course of the walk.
+You'll be analysing data from two separate studies. In the first, researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent and infant vocalisations. They also recorded the number of times the parent touched their infant over the course of the walk.
 
 You can download the dataset from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv) This dataset contains the following variables:
 
@@ -63,8 +63,7 @@ datInfo <- data.frame(VariableName=colnames(dat),
                                     'Transport Modality; Levels: Buggy; Backpack',
                                     'Total number of infant vocalisations',
                                     'Total number of infant vocalisations',
-                                    'Total number of times parent touched infant',
-                                    'Total number of interactions with strangers'))
+                                    'Total number of times parent touched infant'))
  
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -123,25 +122,6 @@ For each analysis:
 
 + Specify your hypothesis using statistical notation, [as directed in the lecture](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#42)
 
-
-```{r q1, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('Which of the following research questions can be tested using a t-test? Please select all that apply.',
-              answer('Hypothesis1', correct = T),
-              answer('Hypothesis2'),
-              answer('Hypothesis3'),
-              answer('Hypothesis4'),
-              answer('Hypothesis5'),
-              random_answer_order = T,
-              message = 'Feedback Here'),
-     question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
-              answer('One-sample t-test'),
-              answer('Independent samples t-test'),
-              answer('Paired-samples t-test', correct = T),
-              message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
-
-```
-
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
@@ -156,7 +136,7 @@ In the first study, you will be conducting 4 different analyses. In the second, 
 
 <span style = "font-weight: bold; font-size: 14pt"> Study 1 </span>
 
-<b>Research Question:</b> Does infant transport modality affect the infant's socialisation opportunities? Specifically, we are investigating whether the transportation modality affects the following during its use: (1) infant vocalisation to the parent; (2) parent vocalisation to the infant; (3) physical contact between the parent and infant; (4) interactions with others. 
+<b>Research Question:</b> Does infant transport modality affect the infant's socialisation opportunities? Specifically, we are investigating whether the transportation modality affects the following during its use: (1) infant vocalisation to the parent; (2) parent vocalisation to the infant; (3) physical contact between the parent and infant. 
 
 <b> Variables </b>
 
@@ -166,7 +146,6 @@ In the first study, you will be conducting 4 different analyses. In the second, 
 
 (3) IV: Transportation Modality; DV: Physical Contact
 
-(4) IV: Transportation Modality; DV: Outside Interaction
 
 <b>Hypotheses:</b>
 
@@ -179,8 +158,6 @@ In the first study, you will be conducting 4 different analyses. In the second, 
 (3) $H_0: Contact_{buggy} = Contact_{backpack}$
     $H_1: Contact_{buggy} \neq Contact_{backpack}$
 
-(4) $H_0: Interaction_{buggy} = Interaction_{backpack}$
-    $H_1: Interaction_{buggy} \neq Interaction_{backpack}$
 
 <span style = "font-weight: bold; font-size: 14pt"> Study 2 </span>
 
@@ -210,6 +187,24 @@ Note that in both studies you could also use directional hypotheses, although it
 </div>
 </br>
 
+```{r q1, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question('Which of the following research questions could be tested using a t-test? Please select all that apply.',
+              answer("Is this year's average rice crop yield significantly higher than last year's?", correct = T),
+              answer('How do Therapies A, B, and C compare to each other in reduction of symptoms?'),
+              answer('Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?', correct = T),
+              answer('Is there an association between brain volume and processing speed?'),
+              answer("Is participant performance on a True/False test signficantly better than chance (50%)?", correct = T),
+              random_answer_order = T,
+              message = 'The therapy research question is better suited to an ANOVA or a regression, as it is comparing 3 means. A t-test can only handle two at a time. The brain volume research question asks about an association between two continuous variables. A t-test requires a categorical independent variable. This question is better answered with a correlation or regression.'),
+     question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
+              answer('One-sample t-test'),
+              answer('Independent samples t-test'),
+              answer('Paired-samples t-test', correct = T),
+              message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
+
+```
+
 ## Run the Appropriate Power Analyses 
 
 After deciding on your hypotheses but before gathering data, you should run a power analysis to determine the sample necessary to capture your effect of interest. When running power analyses, you only need to run a single power analysis for each study design. In this case, you have 2 designs, so you will only need to run 2 analyses. 
@@ -230,24 +225,6 @@ Recall the effect size measure for $t$-tests, $d$:
 
 
 Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
-
-```{r q2, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?',
-                      answer('The sample size requirements increase for a one-tailed test'),
-                      answer('The sample size requirements decrease for a one-tailed test', correct = T),
-                      answer('The sample size requirements are identical for both one- and two- tailed tests'),
-                      message = 'When using an alpha = .05, we consider values in the most extreme 5% of the distribution to be significant. When running a two-tailed test, this 5% is split in both directions, so the 2.5% highest AND 2.5% lowest values are considered significant. In a one-tailed test, only the extreme results in one direction are considered significant, so all 5% is grouped in a single area of the distribution. This naturally increases the power to detect an effect as the critical threshold in that direction is closer to the mean. Because of this, a smaller sample size in a one-tailed analysis can produce the same power level as a larger sample size in a two-tailed analysis.'),
-     question_numeric('How many participants do you need to detect a weak effect (d = .2) with a paired-samples t-test, a nondirectional hypothesis, power = .8, and alpha = .05?',
-                      answer(199, correct = T),
-                      message = "You will need 199 participants to detect this effect. You will have needed to round up, as you can't have .2 participants."),
-     question_numeric('How many total participants do you need to detect a strong effect (d = .8) with an independent-samples t-test, a directional hypothesis, power = .8, and alpha = .001?',
-                      answer(102, correct = T),
-                      message = "You will need 102 total participants to detect this effect (51 in each group)."),
-     question_numeric('You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.',
-                      answer(.51, correct = T),
-                      message = 'The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)'))
-```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -302,8 +279,24 @@ With 40 participants and a within subjects design, you'll have 80% power to dete
 </div>
 </br>
 
+```{r q2, echo = F}
 
-## Calculate Descriptive Data 
+quiz(caption = 'Test Your Understanding',
+     question_numeric('You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.',
+                      answer(.51, correct = T),
+                      message = 'The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)'),
+     question_numeric('How many total participants do you need to detect a strong effect (d = .8) with an independent-samples t-test, a directional hypothesis, power = .8, and alpha = .001?',
+                      answer(199, correct = T),
+                      message = 'You will need 199 participants to detect this effect. You will have needed to round up, as you cannot have .2 participants.'),
+     question('You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?',
+              answer('The sample size requirements increase for a one-tailed test'),
+              answer('The sample size requirements decrease for a one-tailed test', correct = T),
+              answer('The sample size requirements are identical for both one- and two-tailed tests'),
+              message='When using an alpha = .05, we consider values in the most extreme 5% of the distribution to be significant. When running a two-tailed test, this 5% is split in both directions, so the 2.5% highest AND 2.5% lowest values are considered significant. In a one-tailed test, only the extreme results in one direction are considered significant, so all 5% is grouped in a single area of the distribution. This naturally increases the power to detect an effect as the critical threshold in that direction is closer to the mean. Because of this, a smaller sample size in a one-tailed analysis can produce the same power level as a larger sample size in a two-tailed analysis.'))
+
+```
+
+## Study 1: Calculate Descriptive Data 
 
 Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task). These things should be dealt with before conducting the analyses.
 
@@ -316,31 +309,11 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
   + Produce frequency tables for categorical variables
   + Compute the mean, standard deviation, minimum, and maximum on continuous data
   + Are there any missing values or outliers?
-  
-+ Check Study 2 data.
-  + Are variables coded correctly in SPSS?
-  + Produce frequency tables for categorical variables
-  + Compute the mean, standard deviation, minimum, and maximum on continuous data
-  + Are there any missing values or outliers?
-
-```{r q3, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question_numeric("How many female infants participated in Study 1?",
-              answer(15, correct = T),
-              message = '15 female infants participated in Study 1.'),
-     question_numeric('What percentage of parent participants were male in Study 1?',
-              answer(11.1, correct = T),
-              message = '11.1% of the parents in this study were male.'),
-     question("Considering the power analysis results from the previous step, Study 1 is adequately powered to detect a moderate effect size, given power = .8 and alpha = .05",
-              answer("True"),
-              answer("False", correct = T),
-              message = 'No; Study 1 only has 18 participants per group. If the effect of transport modality on socialisation is weak or moderate, a Type II error is likely to occur.'))
-```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+There are some issues to address under the *Variable View* tab. Remember to use the *Frequencies* option rather than *Descriptives*. 
 
 </details>
 </div>
@@ -349,11 +322,9 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-<span style = "font-weight: bold; font-size: 14pt"> Study 1 </span>
-
 When you check your data under *Variable View*, you'll notice that your dependent variables have been coded as 'Nominal'. You'll need to change this to 'Scale' in order for the $t$-test to work properly.
 
-Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add your categorical variables to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If you've done this properly, you should get the following output:
+Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add your 3 categorical variables to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If you've done this properly, you should get the following output:
 
 ```{r, echo=F, fig.align='center'}
 knitr::include_graphics('images/week4_3a.png')
@@ -361,41 +332,55 @@ knitr::include_graphics('images/week4_3a.png')
 
 Here, you can see the frequencies of participants in each category. You might note that there were slightly more male infants than females, but there were substantially more female parents than males. You can see that there are equal participants in the 'Buggy' and 'Backpack' groups, as expected.
 
-After checking the categorical variables, you can check the continuous data. 
+After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace your categorical variables with your 5 continuous variables. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
 
-
-<span style = "font-weight: bold; font-size: 14pt"> Study 2 </span>
-
-
-</details>
-</div>
-</br>
-
-
-
-
-## Visualise Your Data 
-
-Task Here.
-
-```{r q4, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("At least one of the groups is limited in size compared to the others",
-#               answer("True", correct = T),
-#               answer("False"),
-#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
-#      question_numeric("How many total datapoints do you have for the gender variable?",
-#               answer(48, correct=T)),
-#      question_numeric("What percentage of participants are female?",
-#               answer(41.7, correct=T)),
-#      question_numeric('How many nonbinary participants are in your sample?',
-#               answer(2, correct=T)))
+```{r, echo=F, fig.align='center'}
+knitr::include_graphics('images/week4_3b.png')
 ```
 
+Have a look at the values here. There is no missing data, and the values seem reasonable, so you can move forward to the next step.
+
+
+</details>
+</div>
+</br>
+
+```{r q3, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("How many female infants participated?",
+              answer(15, correct = T),
+              message = '15 female infants participated in Study 1.'),
+     question_numeric('What percentage of parent participants were male?',
+              answer(11.1, correct = T),
+              message = '11.1% of the parents in this study were male.'),
+     question("Considering the power analysis results from the previous step, Study 1 is adequately powered to detect a moderate effect size, given power = .8 and alpha = .05",
+              answer("True"),
+              answer("False", correct = T),
+              message = 'No; Study 1 only has 18 participants per group. If the effect of transport modality on socialisation is weak or moderate, a Type II error is likely to occur.'),
+     question_numeric('What is the minimum number of infant vocalisations?',
+                      answer(2, correct = T),
+                      message = 'The minimum number of infant vocalisations is 2.'))
+```
+
+
+## Study 1: Check Assumptions
+
+The assumptions of an independent-samples $t$ test are:
+
+(1) Dependent variable must be normally distributed
+
+(2) Observations must be independent of each other
+
+(3) The two groups must exhibit approximately equal variance in the dependent variable 
+
+### Your Task
+
+Check each of these assumptions in your data.
+
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#50) if you're lost.
 
 </details>
 </div>
@@ -404,20 +389,105 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution Here.
+
+<span style = "font-weight: bold; font-size: 14pt"> Normality </span>
+
+Normality can be assessed in multiple ways. I prefer visual assessment, as the statistical tests can be overly sensitive, particularly with larger sample sizes. To check the histograms, click *Analyze > Descriptive Statistics > Frequencies* and add your dependent variables to the 'Variable(s)' box. Click 'Charts', then select 'Histograms' and make sure the box that says, 'Show normal curve on histogram' is checked. Click 'Continue.' While here, you can also go to the 'Statistics' box and select 'Skewness' and 'Kurtosis'. Once this is all done, click 'OK'.
+
+```{r, echo = F, fig.align= 'center'}
+knitr::include_graphics('images/week4_4a.png')
+```
+
+Skewness and kurtosis values are all within the bounds of -1 and 1, which is ideal. Next, you can check the histograms with the normal curve for each of the dependent variables:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4b.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4c.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4d.png')
+```
+
+None of them seem to be perfectly normal, but this is not unexpected with such a small sample. In any case, they're generally normal. There is no evidence of a significant normality violation. 
+
+You can also check the Q-Q plots. To do this, click *Analyze > Descriptive Statistics > Q-Q Plots*. Add your three dependent variables to the 'Variable(s)' box, confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. This will produce several pieces of output, but you want to specifically focus on the Normal Q-Q Plots. Data that are generally normal will more closely follow the black diagonal.
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4e.png')
+```
+
+Looks good!
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4f.png')
+```
+
+The points go very slightly off the line in the upper range, but not in a concerning way. Still ok.
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_4g.png')
+```
+
+Looks good.
+
+These results indicate that the data have not violated the assumption of normality.
+
+<span style = "font-weight: bold; font-size: 14pt"> Independence </span>
+
+Assessing independence requires you to have an understanding of the conditions under which your data were collected. The study design (between-participants) increases the likelihood that the observations are independent of each other, so this assumption is met.
+
+<span style = "font-weight: bold; font-size: 14pt"> Homogeneity of Variance </span>
+
+This can be tested using Levene's test. This test runs automatically when you perform a $t$-test, but you can also run it separately. To run the test outwith the analysis, navigate to *Analyze > Descriptive Statistics > Explore*. Place the dependent variables in the 'Dependent List' box and the Independent/Grouping variable in the 'Factor List' box. Click the 'Plots' button. In the 'Spread vs Level with Levene Test' area, select 'Power Estimation', then click 'Continue' and 'OK'. The results will appear in the output:
+
+```{r, echo = F, fig.align= 'center'}
+knitr::include_graphics('images/week4_4h.png')
+```
+
+You can check the line for each variable that says 'Based on Mean' and evaluate the 'Sig.' column. While the Infant Vocalisations and Touch variables meet the assumption ($p$ > .05), the Parent Vocalisations variable violates the assumption of equal variances ($p$ = .048). This can be accounted for  when the primary analysis is performed. 
 
 </details>
 </div>
 </br>
 
-## Check Assumptions
+```{r q4, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question("At least one of the variables violates an assumption",
+              answer("True", correct = T),
+              answer("False"),
+              message = 'The Parent Vocalisations variable violates the Homogeneity of Variance assumption.'),
+     question("Which of the following can be used to assess normality? Please select all that apply.",
+              answer('Histograms', correct = T),
+              answer('Q-Q Plots', correct = T),
+              answer('Shapiro-Wilk Test', correct = T),
+              answer('Skewness & Kurtosis values', correct = T)))
+```
 
-Task Here
+## Study 1: Perform Primary Analysis
+
+As you are comparing two independent means, you'll run independent-samples $t$-tests to provide statistical support for your hypotheses. Recall that you're testing the following hypotheses:
+
+$$H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$$
+
+$$H_1: Parent\ Vocalisation_{buggy} \neq Parent\ Vocalisation_{backpack}$$
+
+$$H_1: Contact_{buggy} \neq Contact_{backpack}$$
+
+
+### Your Task
+
++ Run an independent-samples $t$-test to test each of your hypotheses
+
++ Compute effect sizes and check confidence intervals for each of your analyses
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+Although you're performing 3 separate tests, you can run them at the same time.
 
 </details>
 </div>
@@ -426,16 +496,74 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution Here.
+Click *Analyze > Compare Means and Proportions > Independent-Samples T test*. Move your DVs into the 'Test Variable(s)' box and your IV into the 'Grouping Variable' box. Click 'Define Groups' and enter the names of your groups exactly as they are provided in the spreadsheet. In the main box, make sure 'Estimate effect sizes' is checked, then click 'OK' to run the test.
+
+The first bit of output will provide the descriptive statistics separated by your IV. This is useful information to report in your paper, so take note.
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_5a.png')
+```
+
+The second bit of output provides the results of your $t$-tests. The first portion provides the results from your Levene's test. In cases where Levene's test is not significant, you can look at the results from the rows that say 'Equal variances assumed'. If the test is significant, there is a slightly different version of a $t$-test that is robust to a violation of the equal variance assumption. The results from this test are provided in the rows that say 'Equal variances not assumed'. 
+
+```{r, echo = F, fig.align= 'center'}
+knitr::include_graphics('images/week4_5bi.png')
+```
+
+The results from the t-test suggest that both vocalisation variables were significantly different between buggy and backpack users, while touch was not significantly different between the two groups. The confidence intervals for the variables further support this; the vocalisation variables CIs do not contain the null value of 0, while the CI associated with Touch does.
+
+```{r, echo = F, fig.align= 'center'}
+knitr::include_graphics('images/week4_5bii.png')
+```
+
+Checking the effect sizes, you can see that the absolute value of Cohen's $d$ is greater than 1 for both vocalisation variables. This indicates there is a strong effect of transport modality on both parent and infant vocalisation. 
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_5c.png')
+```
+
+
 
 </details>
 </div>
 </br>
 
-## Run Independent Samples $t$-test 
+```{r q5, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("What is the t-value associated with infant vocalisation? Please round your answer to two decimal places.",
+              answer(-3.80, correct = T),
+              message = 'The t-value associated with this test is -3.80.'),
+     question("A researcher conducts a Levene's test and finds that the associated p = .02. Which of the following is true? Please select all that apply.",
+              answer('The homogeneity of variance assumption has been violated', correct = T),
+              answer('The assumption of normality has been violated'),
+              answer('No assumptions have been violated'),
+              answer('When looking at the corresponding t-test results, the researcher should check the "Equal variances assumed" row'),
+              answer('When looking at the corresponding t-test results, the researcher should check the "Equal variances not assumed" row', correct = T),
+              message = "When Levene's test is significant, it means the homogeneity assumption has been violated and equal variance cannot be assumed."),
+     question('A researcher makes a nondirectional hypothesis and runs an independent t-test in SPSS. Under which column will they find the appropriate significance value?',
+              answer('One-sided p'),
+              answer('Two-sided p', correct = T),
+              answer('Either of these options will provide an appropriate significance value.'),
+              message = 'When evaluating a nondirectional hypothesis, you must run a two-tailed test, as you are testing for an extreme value in either direction.'),
+     question('A researcher runs an independent test in SPSS and gets the following 95% confidence interval of the difference: [-.28, .83]. Which of the following is true?',
+              answer('The results are significant.'),
+              answer('The results are not significant', correct = T),
+              answer("Significance can't be evaluated using this information"),
+              message = "The null hypothesis of an independent-samples t-test is that the difference between the means of each group is 0. If the confidence interval contains 0, it means that 0 is a plausible value for the true difference between groups. Therefore, you don't have enough evidence to reject the null hypothesis that the true difference between groups is 0."))
+```
 
-Task Description.
-* Maybe also discuss degrees of freedom here
+## Study 2: Check Descriptive Data
+
+As with Study 1, you'll need to check your data for Study 2. 
+
+### Your Task
+
++ Check Study 2 data.
+  + Are variables coded correctly in SPSS?
+  + Produce frequency tables for categorical variables
+  + Compute the mean, standard deviation, minimum, and maximum on continuous data
+  + Are there any missing values or outliers?
+
 
 ```{r q6, echo = FALSE}
 # quiz(caption = 'Test Your Understanding',
@@ -478,7 +606,7 @@ Solution Here.
 </div>
 </br>
 
-## Calculate Effect Size for Independent-Samples $t$-Test
+## Study 2: Check Assumptions
 
 Task here.
 
@@ -513,7 +641,7 @@ Solution Here.
 </br>
 </br>
 
-## Run a Paired-Samples $t$-Test 
+## Study 2: Perform Primary Analysis
 
 Task here.
 
@@ -548,7 +676,7 @@ Solution Here.
 </br>
 
 
-## Calculate Effect Size for a Paired-Samples $t$-Test 
+## Visualise Key Results 
 
 Task here.
 
@@ -570,7 +698,7 @@ Solution Here.
 </div>
 </br>
 
-## Report & Interpret
+## Intepret & Report
 
 Task here.
 
