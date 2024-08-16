@@ -58,10 +58,8 @@ You can download the dataset from the first experiment [here.](https://mtruelove
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv')
 datInfo <- data.frame(VariableName=colnames(dat),
-                      Description=c('Levels: M = Male, F = Female', 'Infant age in weeks', 
-                                    'Levels: M = Male, F = Female', 'Parent age in years',
+                      Description=c('Levels: M = Male, F = Female', 'Infant age in weeks',
                                     'Transport Modality; Levels: Buggy; Backpack',
-                                    'Total number of infant vocalisations',
                                     'Total number of infant vocalisations',
                                     'Total number of times parent touched infant'))
  
@@ -74,20 +72,17 @@ datInfo %>%
 
 <br>
 
-After running the first study, the researchers wanted to further support their findings. They ran a second experiment using a within-subjects design. In this experiment, they recruited 40 participants and sent them out on 2 separate walks over the course of two weeks, once using a backpack and once a buggy. In this experiment, they recorded both infant and parent vocalisations from the same participants across each condition.
+After running the first study, the researchers wanted to further support their findings. They ran a second experiment using a within-subjects design. In this experiment, they recruited 40 participants and sent them out on 2 separate walks over the course of two weeks, once using a backpack and once a buggy. In this experiment, they recorded infant vocalisations from the same participants across each condition.
 
 You can download the dataset from the second experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv) It contains the following variables:
 
 ```{r, echo = F}
 dat2 <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv')
 dat2Info <- data.frame(VariableName=colnames(dat2),
-                      Description=c('Infant age in weeks', 'Parent age in years',
-                                    'Levels: M = Male, F = Female', 
+                      Description=c('Infant age in weeks',
                                     'Levels: M = Male, F = Female', 
                                     'Total number of infant vocalisations while in buggy',
-                                    'Total number of infant vocalisations while in backpack',
-                                    'Total number of parent vocalisations while using buggy',
-                                    'Total number of parent vocalisations while using backpack'))
+                                    'Total number of infant vocalisations while in backpack'))
  
 dat2Info %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -125,7 +120,7 @@ For each analysis:
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-In the first study, you will be conducting 4 different analyses. In the second, you will be conducting two different analyses. You should specify your hypotheses/variables for each.
+In the first study, you will be conducting 2 different analyses. In the second, you will be conducting a single analysis. You should specify your hypotheses/variables for each.
 
 </details>
 </div>
@@ -136,15 +131,13 @@ In the first study, you will be conducting 4 different analyses. In the second, 
 
 <span style = "font-weight: bold; font-size: 14pt"> Study 1 </span>
 
-<b>Research Question:</b> Does infant transport modality affect the infant's socialisation opportunities? Specifically, we are investigating whether the transportation modality affects the following during its use: (1) infant vocalisation to the parent; (2) parent vocalisation to the infant; (3) physical contact between the parent and infant. 
+<b>Research Question:</b> Does infant transport modality affect the infant's socialisation opportunities? Specifically, we are investigating whether the transportation modality affects the following during its use: (1) infant vocalisation to the parent; (2) physical contact between the parent and infant. 
 
 <b> Variables </b>
 
 (1) IV: Transportation Modality; DV: Infant Vocalisation
 
-(2) IV: Transportation Modality; DV: Parent Vocalisation
-
-(3) IV: Transportation Modality; DV: Physical Contact
+(2) IV: Transportation Modality; DV: Physical Contact
 
 
 <b>Hypotheses:</b>
@@ -152,31 +145,23 @@ In the first study, you will be conducting 4 different analyses. In the second, 
 (1) $H_0: Infant\ Vocalisation_{buggy} = Infant\ Vocalisation_{backpack}$
     $H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$
 
-(2) $H_0: Parent\ Vocalisation_{buggy} = Parent\ Vocalisation_{backpack}$
-    $H_1: Parent\ Vocalisation_{buggy} \neq Parent\ Vocalisation_{backpack}$
-
-(3) $H_0: Contact_{buggy} = Contact_{backpack}$
+(2) $H_0: Contact_{buggy} = Contact_{backpack}$
     $H_1: Contact_{buggy} \neq Contact_{backpack}$
 
 
 <span style = "font-weight: bold; font-size: 14pt"> Study 2 </span>
 
-<b>Research Question:</b> Does infant transport modality affect the infant's socialisation opportunities? Specifically, we are investigating whether the transportation modality affects the following during its use: (1) infant vocalisation to the parent; (2) parent vocalisation to the infant.
+<b>Research Question:</b> Does infant transport modality affect the amount of infant vocalisation during use?
 
 <b> Variables </b>
 
-(1) IV: Transportation Modality; DV: Infant Vocalisation
-
-(2) IV: Transportation Modality; DV: Parent Vocalisation
+IV: Transportation Modality; DV: Infant Vocalisation
 
 
 <b>Hypotheses:</b>
 
-(1) $H_0: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} = 0$
-    $H_1: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq 0$
-
-(2) $H_0: Parent\ Vocalisation_{buggy}-Parent\ Vocalisation_{backpack} = 0$
-    $H_1: Parent\ Vocalisation_{buggy}-Parent\ Vocalisation_{backpack} \neq 0$
+$H_0: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} = 0$
+$H_1: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq 0$
 
 
 <br>
@@ -296,7 +281,7 @@ quiz(caption = 'Test Your Understanding',
 
 ```
 
-## Study 1: Calculate Descriptive Data 
+## Study 1: Check Descriptive Data 
 
 Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task). These things should be dealt with before conducting the analyses.
 
@@ -324,7 +309,7 @@ There are some issues to address under the *Variable View* tab. Remember to use 
 
 When you check your data under *Variable View*, you'll notice that your dependent variables have been coded as 'Nominal'. You'll need to change this to 'Scale' in order for the $t$-test to work properly.
 
-Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add your 3 categorical variables to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If you've done this properly, you should get the following output:
+Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add your 2 categorical variables to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If you've done this properly, you should get the following output:
 
 ```{r, echo=F, fig.align='center'}
 knitr::include_graphics('images/week4_3a.png')
@@ -332,7 +317,7 @@ knitr::include_graphics('images/week4_3a.png')
 
 Here, you can see the frequencies of participants in each category. You might note that there were slightly more male infants than females, but there were substantially more female parents than males. You can see that there are equal participants in the 'Buggy' and 'Backpack' groups, as expected.
 
-After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace your categorical variables with your 5 continuous variables. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
+After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace your categorical variables with your 3 continuous variables. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
 
 ```{r, echo=F, fig.align='center'}
 knitr::include_graphics('images/week4_3b.png')
@@ -350,9 +335,6 @@ quiz(caption = 'Test Your Understanding',
      question_numeric("How many female infants participated?",
               answer(15, correct = T),
               message = '15 female infants participated in Study 1.'),
-     question_numeric('What percentage of parent participants were male?',
-              answer(11.1, correct = T),
-              message = '11.1% of the parents in this study were male.'),
      question("Considering the power analysis results from the previous step, Study 1 is adequately powered to detect a moderate effect size, given power = .8 and alpha = .05",
               answer("True"),
               answer("False", correct = T),
@@ -408,33 +390,23 @@ knitr::include_graphics('images/week4_4b.png')
 knitr::include_graphics('images/week4_4c.png')
 ```
 
-```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4d.png')
-```
-
 None of them seem to be perfectly normal, but this is not unexpected with such a small sample. In any case, they're generally normal. There is no evidence of a significant normality violation. 
 
 You can also check the Q-Q plots. To do this, click *Analyze > Descriptive Statistics > Q-Q Plots*. Add your three dependent variables to the 'Variable(s)' box, confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. This will produce several pieces of output, but you want to specifically focus on the Normal Q-Q Plots. Data that are generally normal will more closely follow the black diagonal.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4e.png')
-```
-
-Looks good!
-
-```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4f.png')
+knitr::include_graphics('images/week4_4d.png')
 ```
 
 The points go very slightly off the line in the upper range, but not in a concerning way. Still ok.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4g.png')
+knitr::include_graphics('images/week4_4e.png')
 ```
 
 Looks good.
 
-These results indicate that the data have not violated the assumption of normality.
+These figures indicate that the data have not violated the assumption of normality.
 
 <span style = "font-weight: bold; font-size: 14pt"> Independence </span>
 
@@ -445,10 +417,10 @@ Assessing independence requires you to have an understanding of the conditions u
 This can be tested using Levene's test. This test runs automatically when you perform a $t$-test, but you can also run it separately. To run the test outwith the analysis, navigate to *Analyze > Descriptive Statistics > Explore*. Place the dependent variables in the 'Dependent List' box and the Independent/Grouping variable in the 'Factor List' box. Click the 'Plots' button. In the 'Spread vs Level with Levene Test' area, select 'Power Estimation', then click 'Continue' and 'OK'. The results will appear in the output:
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_4h.png')
+knitr::include_graphics('images/week4_4f.png')
 ```
 
-You can check the line for each variable that says 'Based on Mean' and evaluate the 'Sig.' column. While the Infant Vocalisations and Touch variables meet the assumption ($p$ > .05), the Parent Vocalisations variable violates the assumption of equal variances ($p$ = .048). This can be accounted for  when the primary analysis is performed. 
+You can check the line for each variable that says 'Based on Mean' and evaluate the 'Sig.' column. While the Touch variable meets the assumption ($p$ > .05), the Infant Vocalisation variable violates the assumption of equal variances ($p$ = .048). This can be accounted for when the primary analysis is performed. 
 
 </details>
 </div>
@@ -459,12 +431,13 @@ quiz(caption = 'Test Your Understanding',
      question("At least one of the variables violates an assumption",
               answer("True", correct = T),
               answer("False"),
-              message = 'The Parent Vocalisations variable violates the Homogeneity of Variance assumption.'),
-     question("Which of the following can be used to assess normality? Please select all that apply.",
+              message = 'The Infant Vocalisation variable violates the Homogeneity of Variance assumption.'),
+     question("Which of the following could be used to assess normality? Please select all that apply.",
               answer('Histograms', correct = T),
               answer('Q-Q Plots', correct = T),
               answer('Shapiro-Wilk Test', correct = T),
-              answer('Skewness & Kurtosis values', correct = T)))
+              answer('Skewness & Kurtosis values', correct = T),
+              message = 'All of the above could be used to assess normality. However, statistical tests are not recommended.'))
 ```
 
 ## Study 1: Perform Primary Analysis
@@ -472,8 +445,6 @@ quiz(caption = 'Test Your Understanding',
 As you are comparing two independent means, you'll run independent-samples $t$-tests to provide statistical support for your hypotheses. Recall that you're testing the following hypotheses:
 
 $$H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$$
-
-$$H_1: Parent\ Vocalisation_{buggy} \neq Parent\ Vocalisation_{backpack}$$
 
 $$H_1: Contact_{buggy} \neq Contact_{backpack}$$
 
@@ -487,7 +458,7 @@ $$H_1: Contact_{buggy} \neq Contact_{backpack}$$
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Although you're performing 3 separate tests, you can run them at the same time.
+Although you're performing 2 separate tests, you can run them at the same time.
 
 </details>
 </div>
@@ -507,19 +478,19 @@ knitr::include_graphics('images/week4_5a.png')
 The second bit of output provides the results of your $t$-tests. The first portion provides the results from your Levene's test. In cases where Levene's test is not significant, you can look at the results from the rows that say 'Equal variances assumed'. If the test is significant, there is a slightly different version of a $t$-test that is robust to a violation of the equal variance assumption. The results from this test are provided in the rows that say 'Equal variances not assumed'. 
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_5bi.png')
+knitr::include_graphics('images/week4_5b.png')
 ```
 
-The results from the t-test suggest that both vocalisation variables were significantly different between buggy and backpack users, while touch was not significantly different between the two groups. The confidence intervals for the variables further support this; the vocalisation variables CIs do not contain the null value of 0, while the CI associated with Touch does.
+The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, while touch was not significantly different between the two groups. The confidence intervals for the variables further support this; the CI associated with vocalisation does not contain the null value of 0, while the CI associated with Touch does.
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_5bii.png')
+knitr::include_graphics('images/week4_5c.png')
 ```
 
-Checking the effect sizes, you can see that the absolute value of Cohen's $d$ is greater than 1 for both vocalisation variables. This indicates there is a strong effect of transport modality on both parent and infant vocalisation. 
+Checking the effect sizes, you can see that the absolute value of Cohen's $d$ is greater than 1 for infant vocalisation. This indicates there is a strong effect of transport modality on infant vocalisation. 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_5c.png')
+knitr::include_graphics('images/week4_5d.png')
 ```
 
 
@@ -531,8 +502,8 @@ knitr::include_graphics('images/week4_5c.png')
 ```{r q5, echo = FALSE}
 quiz(caption = 'Test Your Understanding',
      question_numeric("What is the t-value associated with infant vocalisation? Please round your answer to two decimal places.",
-              answer(-3.80, correct = T),
-              message = 'The t-value associated with this test is -3.80.'),
+              answer(-3.70, correct = T),
+              message = 'The t-value associated with this test is -3.70.'),
      question("A researcher conducts a Levene's test and finds that the associated p = .02. Which of the following is true? Please select all that apply.",
               answer('The homogeneity of variance assumption has been violated', correct = T),
               answer('The assumption of normality has been violated'),
@@ -565,33 +536,10 @@ As with Study 1, you'll need to check your data for Study 2.
   + Are there any missing values or outliers?
 
 
-```{r q6, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
-```
-
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+As before, there are some issues to address in Variable View.
 
 </details>
 </div>
@@ -600,15 +548,66 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution Here.
+You can use the same procedure that was previously described in [Study 1: Check Descriptive Data]. 
 
 </details>
 </div>
 </br>
 
+```{r q6, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("What is the mean infant age (in weeks) in the sample? Please round your answer to two decimal places.",
+              answer(34.89, correct=T),
+              message = "The mean age of the infants in the sample is 34.89 weeks."),
+     question_numeric("What is the maximum number of vocalisations made by infants in backpacks?",
+              answer(9, correct=T))
+)
+```
+
 ## Study 2: Check Assumptions
 
-Task here.
+The assumptions of a paired-samples $t$-test are slightly different than an independent-samples $t$-test.
+
+(1) Difference scores must be normally distributed
+
+(2) Participants must be independent of each other
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+You'll need to make a new variable to check the assumption of normality.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Because we have to check the normality of the difference scores rather than the raw variables, we will need to compute a difference score. To do this, navigate to *Transform > Compute Variable*. Name your new variable in the 'Target Variable' box. Next, move the buggyIVocal to the 'Numeric Expression' box, add a minus sign, then add backpackIVocal. Click 'OK'. Notice in *Data View* that you now have a new variable that reflects the difference between your paired variables.
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_7a.png')
+```
+
+Perform the normality tests from [Study 1: Check Assumptions] with this new variable.
+
+```{r, echo = F, fig.align= 'center', out.width='50%'}
+knitr::include_graphics('images/week4_7c.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_7b.png')
+
+knitr::include_graphics('images/week4_7d.png')
+```
+
+
+</details>
+</div>
+</br>
+</br>
 
 ```{r q7, echo = FALSE}
 # quiz(caption = 'Test Your Understanding',
@@ -622,28 +621,18 @@ Task here.
 # )
 ```
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution Here.
-
-</details>
-</div>
-</br>
-</br>
-
 ## Study 2: Perform Primary Analysis
 
-Task here.
+As you are comparing two paired means, you'll run paired-samples $t$-tests to provide statistical support for your hypotheses. Recall that you're testing the following hypothesis:
+
+$$H_1: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq 0$$
+
+### Your Task
+
++ Run a paired-samples $t$-test to test your hypothesis
+
++ Compute the effect size and check the confidence interval
+
 
 ```{r distPlot, echo = F}
 # 
@@ -660,7 +649,7 @@ Task here.
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+No hints...this one is pretty straightforward.
 
 </details>
 </div>
@@ -669,53 +658,61 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution Here.
+Navigate to *Analyze > Compare Means and Proportions > Paired Samples T-Test*. Add one of the paired variables into the Variable1 space and the other into the Variable2 space and click 'OK'.
+
+As before, take note of the descriptive statistics for each group, as you'll need this for reporting purposes. 
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_8a.png')
+```
+
+The results indicate that the difference in infant vocalisation when in a buggy versus a backpack was significant ($p$ < .001). This is further confirmed by the confidence interval, which doesn't contain the null value of 0. The output also provides the average difference score.
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('images/week4_8b.png')
+```
+
+As before, Cohen's $d$ indicates there is a strong effect of transportation modality on infant vocalisation.
+
 
 </details>
 </div>
 </br>
 
-
-## Visualise Key Results 
-
-Task here.
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution Here.
-
-</details>
-</div>
-</br>
 
 ## Intepret & Report
 
-Task here.
+Now that you've completed the analyses, choose one of the studies and write a mini results section about it. In this section, please:
 
++ Describe your sample as you would in a methods section. 
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
++ Report your results and a brief interpretation in APA style.
 
-Hint Here
-
-</details>
-</div>
-</br>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution Here.
+<span style = "font-weight: bold; font-size: 14pt"> Study 1 </span>
+
+In this study, we tested the effect of infant transportation modality on their opportunity for socialisation. We hypothesised that there would be differences in socalisation depending on whether infants were using a buggy or a backpack. To test this, we performed two independent-samples $t$-tests with transportation modality as an independent variable and infant vocalisation and physical contact as dependent variables. $\alpha$ was set at .05 for all analyses. 
+
+An a priori power analysis indicated that 128 participants was necessary to achieve 80% power to detect a moderate effect size ($d$ = .50) with $\alpha$ = .05. Our sample consisted of 36 infants between 21 and 45 weeks old ($M$ = 33.13, $SD$ = 5.48; 15 females, 21 males).
+
+Assumptions checks were conducted through visual assessment. All data met the assumptions of normality and independence. The infant vocalisations variable violated the homogeneity of variance assumption ($p$ = .048), so results from Welch's $t$-test were evaluated. 
+
+Transportation modality had a significant effect on infant vocalisation, $t$(35.34) = -3.70, $p$ = .001, 95% CI[-1.89, -.55], $d$ = 1.23. Specifically, backpack users had significantly more vocalisations ($M$ = 5.17, $SD$ = 1.25) than buggy users ($M$ = 3.94, $SD$ = .64). There was no significant difference in physical contact between backpack ($M$ = 6.22, $SD$ = 1.67) and buggy users ($M$ = 5.61, $SD$ = 1.65), $t$(34) = 1.11, $p$ = .276, 95% CI[-1.73, 0.51], $d$ = 0.37.
+
+
+<span style = "font-weight: bold; font-size: 14pt"> Study 2 </span>
+
+In this study, we tested the effect of infant transportation modality on their vocalisation. We hypothesised that there would be differences in vocalisation depending on whether infants were riding in a buggy or a backpack. This study incorporated a within-subjects design. $\alpha$ values for all analyses were set at .05.
+
+A sensitivity power analysis indicated that the 40 participants in our sample would provide 80% power to detect an effect size of $d$ = 0.45 with $\alpha$ = .05. Our sample consisted of 40 infants between 19 and 54 weeks old ($M$ = 34.89, $SD$ = 6.86; 23 females, 17 males).
+
+Assumptions checks were conducted through visual assessment. All data met the assumptions of normality and independence.
+
+A paired-samples $t$-test indicated that transportation modality had a significant effect on infant vocalisation, $t$(39) = -22.73, $p$ < .001, 95% CI[-4.00, -3.35], $d$ = 3.59. Specifically, infants produced significantly more vocalisations while riding in a backpack ($M$ = 6.70, $SD$ = 1.49) than when riding in a buggy ($M$ = 3.03, $SD$ = 1.33).
+
 
 </details>
 </div>

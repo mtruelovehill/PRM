@@ -83,6 +83,8 @@ output$effectSizePlot <- renderPlot({
 
 ## Intro to Today's Lab
 
+MONICA - MAKE HALF OF IT DEALING WITH SPSS. ONE THING COULD BE TO CHECK DATA THOROUGHLY (LARGE THAN EXPECTED VALUES, MISSING DATA, ETC)
+
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
 Today, you won't be working with a specific dataset. Instead, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. 

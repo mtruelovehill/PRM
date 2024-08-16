@@ -699,7 +699,8 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 + Normality
   
   + Have a look at the histograms & QQ-plots
-  + May also run tests of normality (Shapiro-Wilk or Kolmogorov–Smirnov)
+  + Check skewness and kurtosis values
+  + May also run statistical tests of normality...but this is not recommended
 
 --
 
@@ -908,8 +909,9 @@ $$H_1: \bar{d} < \mu_d$$
 
 + Normality of difference scores
   
-  + Have a look at the histograms
-  + May also run tests of normality (Shapiro-Wilk or Kolmogorov–Smirnov)
+  + Have a look at the histograms & QQ-plots
+  + Check skewness and kurtosis values
+  + May also run statistical tests of normality...but this is not recommended
 
 --
 
