@@ -125,8 +125,7 @@ Imagine that you're a statistician in a Psychology department, and an instructor
 They collected some pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
 
 ```{r, echo = F}
-dat <- read.csv('./Week1LabData.csv')
-#dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat), 
                       Description=c('Participant ID', 'Levels: RA; Student', 'Age in years', 
                       'Time of class in which assessment was given', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
@@ -472,14 +471,6 @@ Select *Analyze>Descriptives>Frequencies*. Select Gender and use the arrow to mo
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7a.PNG')
 ```
 
-</br>
-
-**Output:**
-
-```{r, echo = F, out.width='50%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7b.PNG')
-```
-
 </details>
 </div>
 </br>
@@ -602,7 +593,7 @@ quiz(caption = 'Test Your Understanding',
               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
               the mode is the only measure of central tendency that is appropriate to describe this variable'),
      question_numeric("What is the average score on Assessment A?",
-              answer(39.10, correct=T)),
+              answer(39.09, correct=T)),
      question_numeric("What is the most common age in this sample?",
               answer(19, correct=T)),
      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
