@@ -1,5 +1,5 @@
 ---
-title: "Week 1: Exploring Your Data"
+title: "Week 1: Getting Started in SPSS"
 output:
   learnr::tutorial:
     progressive: true
@@ -118,18 +118,19 @@ output$kurtPlot <- renderPlot({
 ## Intro to Today's Lab
 
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+During today's lab, you'll apply some of the concepts discussed during this week's lecture and familiarise yourself with SPSS. Each lab consists of several tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
 Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 4 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
 
-They've gathered a sample of data from 45 students across 3 of their courses.   
+They collected some pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
 
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat), 
-                      Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
-                                    2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
-                                    Version C Scores', 'Assessment Version D Scores'))
+                      Description=c('Participant ID', 'Levels: RA; Student', 'Age in years', 
+                      'Time of class in which assessment was given', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
+                      'Assessment Version A Raw Scores; min = 0, max = 50', 'Assessment Version B Raw Scores; min = 0, max = 50', 
+                      'Assessment Version C Raw Scores; min = 0, max = 50', 'Assessment Version D Raw Scores; min = 0, max = 50'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -154,7 +155,7 @@ At the end of this lab, you will be able to:
 In this course, you'll be using SPSS to perform the majority of your tasks. You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv)</B> or checking this week's folder on Learn (requires university login). 
 
 ### Your Task
-Import 'Week1LabData.csv' into SPSS. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
+Import 'Week1LabData.csv' into SPSS. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. You'll be using these data for next week's lab. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
 
 
 ```{r q1, echo = FALSE}
@@ -187,15 +188,14 @@ Check under the **File** tab in SPSS. What is the difference between the 'Open' 
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 Click *Import Data* under the **File** tab. The data are in .csv format, so choose *CSV Data*. Navigate to the folder where you've stored  'Week1LabData.csv' and select the file.
 
-```{r, echo = F, out.width='50%'}
+```{r, echo = F, out.width='50%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1a.png')
 ```
 
 A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'.
 
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1b.PNG')
-```
+To save your data, make sure the data window is the primary window (not the output window), and click *File > Save As*. Name your file 
+'Week1LabData_SPSS' and save it to the folder of your choice on your device.
 
 </details>
 
@@ -250,26 +250,28 @@ You'll need to switch from *Data View* to *Variable View* for this step. Do the 
 
 To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab.
 
-```{r, echo = F, out.width='75%'}
+```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_2a.PNG')
 ```
 
 SPSS labels the data as:
 
-* _Nominal:_ data that fall into discrete categories that have no information regarding order (e.g., eye colour)
-* _Ordinal:_ data that fall into discrete categories that have some kind of ordering information (e.g. Likert Scale responses)
-* _Scale:_ continuous/numerical data; data have some kind of numeric relationship and could technically be measured to infinite decimal places, if the measurement was actually capable of doing so.
+* **Nominal:** data that fall into discrete categories that have no information regarding order (e.g., eye colour)
+* **Ordinal:** data that fall into discrete categories that have some kind of ordering information (e.g. Likert Scale responses)
+* **Scale:** continuous/numerical data; data have some kind of numeric relationship and could technically be measured to infinite decimal places, if the measurement was actually capable of doing so.
 
 
 To adjust the measure type, select the Measure box for a single variable and click the arrow that appears.
 
-* **ID** is represented as a number, but there really is no numeric relationship between the numbers (e.g. someone with an ID = 40 didn't complete the study in twice the time of someone with an ID = 20). Technically, the numbers are ordered in a way that reflects the order in which they completed the study, so this could be considered an 'Ordinal' variable.
+* `ID` is represented as a number, but there really is no numeric relationship between the numbers (e.g. someone with an ID = 40 didn't complete the study in twice the time of someone with an ID = 20). Technically, the numbers are ordered in a way that reflects the order in which they completed the study, so this could be considered an 'Ordinal' variable.
 
-* **Age** is continuous. Someone who is 12 is twice as old as someone who is 6, and you could measure age up to infinite decimal places if you had a perfectly precise measurement. This can be considered a 'Scale' variable.
+* `Role` is nominal. It can be captured in discrete categories and there is no inherent order.
 
-* **Gender** is nominal. It can be captured in discrete categories and there is no inherent order.
+* `Age` is continuous. Someone who is 12 is twice as old as someone who is 6, and you could measure age up to infinite decimal places if you had a perfectly precise measurement. This can be considered a 'Scale' variable.
 
-* **ClassTime** is ordinal, because, as with ID, there is no numeric relationship between these values but the times do have some sense of order (10 is earlier than 13, e.g.).
+* `Gender` can be captured categorically, so it is also nominal.
+
+* `ClassTime` is ordinal, because, as with ID, there is no numeric relationship between these values but the times do have some sense of order (10 is earlier than 13, e.g.).
 
 * The assessments were all measured on a continuous scale.
 
@@ -302,7 +304,7 @@ To associate a label with each value of a variable, you'll use the **Values** co
 
 Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column.
 
-```{r, echo = F, out.width='40%'}
+```{r, echo = F, out.width='40%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_3a.PNG')
 ```
 
@@ -313,7 +315,114 @@ Click 'OK'. If you've done this properly, you'll see that each numeric value is 
 </br>
 
 
+## Transforming Variables
 
+There will be times that you would like to transform a pre-existing variable in some way. For example, sometimes you need to reverse code answers on an assessment (e.g., Likert-scale values of 1 should be swapped to 5, and vice versa). In this example, imagine you want to create a variable that indicates whether someone is in a morning or afternoon session.  
+
+### Your Task 
+Transform the `ClassTime` variable to create a new variable titled `Session`. The `Session` variable should have values of 'Morning' (students in AM classes) and 'Afternoon' (students in PM classes). 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+You don't need to do this by hand. You also won't need the **Variable View** tab.
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+To transform a current column into a new column, navigate to *Transform > Recode Into Different Variables*. Put `ClassTime` in the 'Input Variable' box. Add the new variable title, `Session` to the 'Output Variable' box under 'Name', then click 'Change'. Click 'Old and New Values...'
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4a.PNG')
+```
+
+
+To change the current values into the new values, make sure the 'Output variables are strings' box is checked so that you can add character data as a label (rather than just numeric). In the 'Old Value' box, type '9' under 'Value'. In the 'New Value' box, type 'Morning' in the 'Value' box. Then click the 'Add' button next to the 'Old --> New' box. You should see your old and new values appear in the box. Continue doing this for the rest of your class times. Once you're finished, it should look like this if you've done it properly:
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG')
+```
+
+Because 'Afternoon' has 9 letters, you'll need to switch the value in the 'Width' box to 9, otherwise it will be cut off. Click 'Continue', then 'OK'. The variable `Session` will appear in your Data View window. 
+
+</div>
+</details>
+
+</br>
+
+## Computing Variables
+
+Other times, you'll need to use your variables to compute a new value or variable (e.g., a composite score from subscores). SPSS allows you to perform a wide range of calculations on your variables. In this case, you have raw scores for each assessment, and you need to compute the percentage. 
+
+### Your Task 
+Use each of the raw scores to calculate 4 new variables that reflects their mark as a percentage.  
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+The maximum possible raw score for each assessment is 50.
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+To compute a new value from a current column, navigate to *Transform > Compute Variable*. Type a name for the new variable (e.g. `Apercent`) into the 'Target Variable' box. Put `A` in the 'Numeric Expression' box, then type the rest of the numeric expression: 
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_5a.PNG')
+```
+
+Click 'OK', and you should have a new column that shows the score for A as a percentage. Repeat this step for the remaining assessments.
+
+
+</div>
+</details>
+
+</br>
+
+## Filtering Data
+
+Sometimes, you may only want to analyse a subset of your dataset. In this case, the instructor is only interested in the test values from the students, as the RAs were only taking the assessment to check for typos, and their work was not reflective of students taking the course. 
+
+### Your Task 
+Filter out the RA data, so that only the student data will be used for additional analysis. 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+You don't need to delete anything from the dataset.
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+To filter your data, navigate to *Data > Select Cases*. Click 'If condition is satisfied', then the 'If...' box. Here, you want to specify that you only want to include data if the `Role` variable is equal to 'Student'. You'll enter the following expression in the first box. 
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_6a.PNG')
+```
+
+Make sure to use quotes around 'Student'. This is case-specific, so make sure you type 'Student' and not 'student'. Click 'Continue', then 'OK'. A new filtering variable will appear, and slashes will appear over the row numbers of the 'RA' variables. As long as the filtering variable exists, they will not be included in any of the steps you take going forward.
+
+If you'd like to remove the filter, simply delete the filter variable.
+
+</div>
+</details>
+
+</br>
 
 ## Check Frequency Data
 
@@ -322,6 +431,7 @@ Before doing any sort of analysis, it's important to first check the data to mak
 + Are observations distributed relatively equally or are there major differences across groups?
 + Are there any groups with a limited number of observations?
 + Are there any missing datapoints?
++ Are there any values outside the expected range?
 
 ### Your Task 
 Check the frequency of the Gender variable. Make sure to display a frequency table.
@@ -353,20 +463,12 @@ You'll find what you need under the *Analyze* tab.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
-Select Analyze>Descriptives>Frequencies. Select Gender and use the arrow to move it into the Variable box. Make sure 'Display frequency tables' is checked.
+Select *Analyze>Descriptives>Frequencies*. Select Gender and use the arrow to move it into the Variable box. Make sure 'Display frequency tables' is checked.
 
 </br>
 
-```{r, echo = F, out.width='65%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4a.PNG')
-```
-
-</br>
-
-**Output:**
-
-```{r, echo = F, out.width='50%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG')
+```{r, echo = F, out.width='65%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7a.PNG')
 ```
 
 </details>
@@ -440,8 +542,8 @@ A histogram will allow you to visualise the distribution of continuous variables
 
 Select *Graphs>Bar*. Select the chart type you'd prefer. When you're checking the distribution of a single variable, you would use a 'Simple' plot.  Use the arrow to add the variable you wish to view to the 'Category Axis' box. When looking at distributions of a categorical variable, you are plotting the total number of participants of each group, so you can leave the 'Bars Represent' portion at the default setting.
 
-```{r, echo = F, out.width='55%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_5a.PNG')
+```{r, echo = F, out.width='55%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8a.png')
 ```
 
 When checking the distribution of categorical variables, check whether all groups are well represented. Consider the questions from the <B>[Frequency Data](#check-frequency-data)</B> portion of this lab.
@@ -452,8 +554,8 @@ When checking the distribution of categorical variables, check whether all group
 
 Select *Graphs>Histogram*. Use the arrow to add the variable you wish to view to the 'Variable' box.
 
-```{r, echo = F, out.width='55%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_5b.PNG')
+```{r, echo = F, out.width='55%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8b.png')
 ```
 
 Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common.
@@ -463,7 +565,7 @@ Have a look at the output. If a variable is normally distributed, most observati
 </div>
 </br>
 
-## Check Central Tendency
+## Check Central Tendency & Measures of Variability
 
 When preparing to perform analysis, one of the most important steps is to check the descriptive statistics of your variables. These values are useful summary metrics and may provide insight into patterns in your data.
 
@@ -472,6 +574,9 @@ Check the measures of central tendency discussed in class. Make sure to use the 
 
 + Are the measures of central tendency similar within a variable?
 + If not, what might this imply?
+
+For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
+
 
 ```{r q6, echo = FALSE}
 quiz(caption = 'Test Your Understanding',
@@ -488,17 +593,22 @@ quiz(caption = 'Test Your Understanding',
               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
               the mode is the only measure of central tendency that is appropriate to describe this variable'),
      question_numeric("What is the average score on Assessment A?",
-              answer(39.10, correct=T)),
+              answer(39.09, correct=T)),
      question_numeric("What is the most common age in this sample?",
               answer(19, correct=T)),
-     question_numeric("What is the median score on Assessment D?",
-              answer(81.87, correct=T))
+     question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
+              answer(2.15, correct=T)),
+     question_numeric("What is the IQR for Assessment B?",
+              answer(4, correct=T),
+              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile.")
 )
 ```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
 Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives* is not what you need.
+
 </details>
 </div>
 </br>
@@ -507,54 +617,19 @@ Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives*
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', and 'Mode', as needed.
 
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_6a.PNG')
-```
-
 Note that Gender, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
-</div>
-</details>
-</br>
 
-## Check Measures of Variability
+For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
-Similar to measures of central tendancy, measures of variability are helpful summary metrics that can provide a sense of how much observations vary within your sample. 
-
-### Your Task 
-For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, variance, and standard deviation.
-
-```{r q7, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question_numeric("What is the IQR for Assessment B?",
-              answer(4, correct=T),
-              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
-     question_numeric("What is the maximum score on Assessment C?",
-              answer(78, correct=T)),
-     question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-              answer(2.15, correct=T))
-)
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint</summary>
-You've already completed the steps to do this. You just need to check different boxes.
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-This procedure is identical to getting the measures of central tendency, so in the future, you can do it all at once. You'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
-
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7a.PNG')
+```{r, echo = F, out.width='60%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.png')
 ```
 
 Data will be reported in table format in the output. To get the IQR, you'll need to subtract the 25th percentile value from the 75th percentile value.
 
-</details>
+
 </div>
+</details>
 </br>
 
 
@@ -657,194 +732,4 @@ $$23.04+1\times 7.74 = `r round(23.04+(1*7.74),2)`$$
 </div>
 </br>
 
-## Evaluating Normality
 
-Recall from the lecture that many of the statistical tests we'll be learning about work most effectively with normally distributed data. It's important that you understand how to evaluate whether your data are normally distributed, or whether they're skewed or kurtotic. 
-
-```{r, echo = F, fig.height=2}
-
-
-fluidRow(column(6,
-  sliderTextInput(inputId = "skew",label = "Skewness", choices = c('Negatively Skewed', 'Somewhat Negatively Skewed',
-                                                                 'Normal', 'Somewhat Positively Skewed', 
-                                                                 'Positively Skewed'), selected = 'Normal'),
-  plotOutput('skewPlot'), style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
-  column(6, sliderTextInput(inputId = "kurt",label = "Kurtosis", choices = c('Platykurtic', 'Somewhat Platykurtic',
-                                                                 'Normal', 'Somewhat Leptokurtic', 
-                                                                 'Leptokurtic'), selected = 'Normal'),
-         plotOutput('kurtPlot'), style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
-
-tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {background: #4CA384}"))
-
-```
-
-### Your Task 
-Evaluate the normality of your continuous variables by visually checking the histograms, assessing the skewness and kurtosis values, and running an appropriate statistical test. 
-
-```{r q9, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('Which statistical test is most appropriate for use to check normality in the current dataset?',
-              answer('Shapiro-Wilk Test', correct = T),
-              answer('Kolmogorov–Smirnov Test'),
-              answer('t-Test'),
-              answer('Pearson Correlation'),
-              random_answer_order = T,
-              message = 'The Shapiro-Wilk test is appropriate for use with smaller datasets (n < 50), while the Kolmogorov-Smirnov test should be used with datasets of 50 observations or more. t-Tests and Pearson correlations are not used to measure normality in data.'),
-     question('Do any of the assessments violate normality, according to the statistical test you selected?',
-              answer('Assessment A'),
-              answer('Assessment B', correct=T),
-              answer('Assessment C'),
-              answer('Assessment D'),
-              message = 'See the solution below. Both the normality test and the histogram suggest that scores on Assessment B are skewed.'),
-     question_numeric('What is the skewness value of Assessment C?',
-              answer(-.018, correct=T),
-              message = 'See the solution below. Due to a sample of less than 50, you should be using the results from the Shapiro-Wilk test.'),
-     question_numeric('What is the kurtosis value of Assessment D?',
-              answer(.385, correct=T),
-              message = 'See the solution below. Due to a sample of less than 50, you should be using the results from the Shapiro-Wilk test.')
-)
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
-
-You'll find the *Analyze>Descriptive Statistics>Explore* tab helpful here. As results from two types of normality tests are reported, be sure you understand which you should choose to report.
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
-
-Unfortunately, checking normality is not especially straightforward in SPSS. Navigate to the *Analyze>Descriptive Statistics>Explore* tab and add the variables you would like to test to the Dependent List box. Click 'Display: Plots', then click the *Plots* box. In the window that opens, check the 'Normality plots with tests' box, then select 'Histogram' under *Descriptive*. Click 'Continue', then 'OK'.
-
-```{r, echo = F, out.width='60%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG')
-```
-
-The normality tests will display under the 'Tests of Normality' heading. As these tests are checking whether the distribution of your variables is significantly different from a normal distribution, a significant result suggests a variable violates normality (i.e., is not normally distributed). We'll learn more about significance and $p$-values later in the course, but for now, we'll consider a $p$-value less than .05 to be significant. To assess the $p$-values, check the 'Sig.' column. In this case, we'll look at the results for the Shapiro-Wilk test since we have a sample of less than 50 participants. Here, the $p$-value associated with Assessment B is less than .05, so this suggests that scores on Assessment B are not normally distributed.
-
-```{r, echo = F, out.width='70%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9b.PNG')
-```
-
-If you check the histogram, you can confirm that there is a ceiling effect in that most students score near the maximum possible score, leading to negatively skewed data.
-
-```{r, echo = F, out.width='70%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9c.PNG')
-```
-
-
-</details>
-</div>
-</br>
-
-## Report and Interpret
-
-Now that you've evaluated the assessments, write a paragraph with your results that you could present to the instructor, giving them a suggestion of which assessment they should use in their course. In this paragraph, please do the following: 
-
-+ Describe your sample as you would in a methods section. 
-
-+ Provide a recommendation for which exam the instructor should use in their course, using your results to support your suggestion.
-
-Make sure to use APA style. Once you're finished, compare your paragraph to the solution paragraph. Is there anything you included that is not in the solution? Is there anything you left out? Does your suggestion match the solution paragraph? If not, why not?
-
-</br>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-<span style = "color:white">You might find the <span style = "color:#9AD079"> [Purdue Owl website](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html) </span> helpful for APA formatting. See the participants/sample section in <span style = "color:#9AD079"> [this paper](https://journals.sagepub.com/doi/full/10.1177/0956797620939054) </span> for an example of how you might describe your sample. You can see other examples <span style = "color:#9AD079"> [here](https://journals.sagepub.com/doi/full/10.1177/09567976241231572) </span> and <span style = "color:#9AD079"> [here](https://www.sciencedirect.com/science/article/pii/S0022103123001439)</span>.
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-For this analysis, we examined results from 4 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the 4 assessments was presented 15 students in each of the instructor's 3 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 25 male, 19 female, and 2 nonbinary participants).
-
-Student performance varied widely between the assessments (see Table 1).
-
-**Table 1**
-
-*Assessment Scores - Descriptive Data*
-
-```{r, echo = F, out.width='70%'}
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
-
-```
-
-
-As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Additionally, the data exhibited a negative skew. This suggests that there is a ceiling effect, as most students are scoring close to the maximum possible score (see Figure 1).
-
-</br>
-
-**Figure 1**
-
-*Assessment B Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(B)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-*Note.* You cannot produce this figure with SPSS. This is just here to show you an example of an appropriate way to report your results with an APA-style figure.
-
-</br>
-
-Assessments D's average was still too high, and the standard deviation of scores was quite small, indicating that it may not be accurately capturing the variability in student comprehension (see Figure 2).
-
-</br>
-
-**Figure 2**
-
-*Assessment D Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(D)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-</br>
-
-Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 3). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
-
-</br>
-
-**Figure 3**
-
-*Assessment C Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(C)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-</details>
-</div>
-
-
-
-</br>
-</br>

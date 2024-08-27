@@ -1,0 +1,91 @@
+---
+title: "Unused Lab Tasks"
+author: "Monica Truelove-Hill"
+date: "2024-08-26"
+output: html_document
+---
+
+
+## Evaluating Normality
+
+Recall from the lecture that many of the statistical tests we'll be learning about work most effectively with normally distributed data. It's important that you understand how to evaluate whether your data are normally distributed, or whether they're skewed or kurtotic. 
+
+```{r, echo = F, fig.height=2}
+
+
+fluidRow(column(6,
+  sliderTextInput(inputId = "skew",label = "Skewness", choices = c('Negatively Skewed', 'Somewhat Negatively Skewed',
+                                                                 'Normal', 'Somewhat Positively Skewed', 
+                                                                 'Positively Skewed'), selected = 'Normal'),
+  plotOutput('skewPlot'), style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
+  column(6, sliderTextInput(inputId = "kurt",label = "Kurtosis", choices = c('Platykurtic', 'Somewhat Platykurtic',
+                                                                 'Normal', 'Somewhat Leptokurtic', 
+                                                                 'Leptokurtic'), selected = 'Normal'),
+         plotOutput('kurtPlot'), style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
+
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {background: #4CA384}"))
+
+```
+
+### Your Task 
+Evaluate the normality of your continuous variables by visually checking the histograms, assessing the skewness and kurtosis values, and running an appropriate statistical test. 
+
+```{r q9, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question('Which statistical test is most appropriate for use to check normality in the current dataset?',
+              answer('Shapiro-Wilk Test', correct = T),
+              answer('Kolmogorov–Smirnov Test'),
+              answer('t-Test'),
+              answer('Pearson Correlation'),
+              random_answer_order = T,
+              message = 'The Shapiro-Wilk test is appropriate for use with smaller datasets (n < 50), while the Kolmogorov-Smirnov test should be used with datasets of 50 observations or more. t-Tests and Pearson correlations are not used to measure normality in data.'),
+     question('Do any of the assessments violate normality, according to the statistical test you selected?',
+              answer('Assessment A'),
+              answer('Assessment B', correct=T),
+              answer('Assessment C'),
+              answer('Assessment D'),
+              message = 'See the solution below. Both the normality test and the histogram suggest that scores on Assessment B are skewed.'),
+     question_numeric('What is the skewness value of Assessment C?',
+              answer(-.018, correct=T),
+              message = 'See the solution below. Due to a sample of less than 50, you should be using the results from the Shapiro-Wilk test.'),
+     question_numeric('What is the kurtosis value of Assessment D?',
+              answer(.385, correct=T),
+              message = 'See the solution below. Due to a sample of less than 50, you should be using the results from the Shapiro-Wilk test.')
+)
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+You'll find the *Analyze>Descriptive Statistics>Explore* tab helpful here. As results from two types of normality tests are reported, be sure you understand which you should choose to report.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+Unfortunately, checking normality is not especially straightforward in SPSS. Navigate to the *Analyze>Descriptive Statistics>Explore* tab and add the variables you would like to test to the Dependent List box. Click 'Display: Plots', then click the *Plots* box. In the window that opens, check the 'Normality plots with tests' box, then select 'Histogram' under *Descriptive*. Click 'Continue', then 'OK'.
+
+```{r, echo = F, out.width='60%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG')
+```
+
+The normality tests will display under the 'Tests of Normality' heading. As these tests are checking whether the distribution of your variables is significantly different from a normal distribution, a significant result suggests a variable violates normality (i.e., is not normally distributed). We'll learn more about significance and $p$-values later in the course, but for now, we'll consider a $p$-value less than .05 to be significant. To assess the $p$-values, check the 'Sig.' column. In this case, we'll look at the results for the Shapiro-Wilk test since we have a sample of less than 50 participants. Here, the $p$-value associated with Assessment B is less than .05, so this suggests that scores on Assessment B are not normally distributed.
+
+```{r, echo = F, out.width='70%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9b.PNG')
+```
+
+If you check the histogram, you can confirm that there is a ceiling effect in that most students score near the maximum possible score, leading to negatively skewed data.
+
+```{r, echo = F, out.width='70%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9c.PNG')
+```
+
+
+</details>
+</div>
+</br>

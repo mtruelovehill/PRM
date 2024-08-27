@@ -118,7 +118,7 @@ output$kurtPlot <- renderPlot({
 ## Intro to Today's Lab
 
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of several tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+During today's lab, you'll apply some of the concepts discussed during this week's lecture and familiarise yourself with SPSS. Each lab consists of several tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
 Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 4 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
 
@@ -256,22 +256,22 @@ include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_2a.PNG')
 
 SPSS labels the data as:
 
-* _Nominal:_ data that fall into discrete categories that have no information regarding order (e.g., eye colour)
-* _Ordinal:_ data that fall into discrete categories that have some kind of ordering information (e.g. Likert Scale responses)
-* _Scale:_ continuous/numerical data; data have some kind of numeric relationship and could technically be measured to infinite decimal places, if the measurement was actually capable of doing so.
+* **Nominal:** data that fall into discrete categories that have no information regarding order (e.g., eye colour)
+* **Ordinal:** data that fall into discrete categories that have some kind of ordering information (e.g. Likert Scale responses)
+* **Scale:** continuous/numerical data; data have some kind of numeric relationship and could technically be measured to infinite decimal places, if the measurement was actually capable of doing so.
 
 
 To adjust the measure type, select the Measure box for a single variable and click the arrow that appears.
 
-* **ID** is represented as a number, but there really is no numeric relationship between the numbers (e.g. someone with an ID = 40 didn't complete the study in twice the time of someone with an ID = 20). Technically, the numbers are ordered in a way that reflects the order in which they completed the study, so this could be considered an 'Ordinal' variable.
+* `ID` is represented as a number, but there really is no numeric relationship between the numbers (e.g. someone with an ID = 40 didn't complete the study in twice the time of someone with an ID = 20). Technically, the numbers are ordered in a way that reflects the order in which they completed the study, so this could be considered an 'Ordinal' variable.
 
-* **Role** is nominal. It can be captured in discrete categories and there is no inherent order.
+* `Role` is nominal. It can be captured in discrete categories and there is no inherent order.
 
-* **Age** is continuous. Someone who is 12 is twice as old as someone who is 6, and you could measure age up to infinite decimal places if you had a perfectly precise measurement. This can be considered a 'Scale' variable.
+* `Age` is continuous. Someone who is 12 is twice as old as someone who is 6, and you could measure age up to infinite decimal places if you had a perfectly precise measurement. This can be considered a 'Scale' variable.
 
-* **Gender** can be captured categorically, so it is also nominal.
+* `Gender` can be captured categorically, so it is also nominal.
 
-* **ClassTime** is ordinal, because, as with ID, there is no numeric relationship between these values but the times do have some sense of order (10 is earlier than 13, e.g.).
+* `ClassTime` is ordinal, because, as with ID, there is no numeric relationship between these values but the times do have some sense of order (10 is earlier than 13, e.g.).
 
 * The assessments were all measured on a continuous scale.
 
@@ -337,14 +337,14 @@ You don't need to do this by hand. You also won't need the **Variable View** tab
 
 To transform a current column into a new column, navigate to *Transform > Recode Into Different Variables*. Put `ClassTime` in the 'Input Variable' box. Add the new variable title, `Session` to the 'Output Variable' box under 'Name', then click 'Change'. Click 'Old and New Values...'
 
-```{r, fig.align='center'}
+```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4a.PNG')
 ```
 
 
 To change the current values into the new values, make sure the 'Output variables are strings' box is checked so that you can add character data as a label (rather than just numeric). In the 'Old Value' box, type '9' under 'Value'. In the 'New Value' box, type 'Morning' in the 'Value' box. Then click the 'Add' button next to the 'Old --> New' box. You should see your old and new values appear in the box. Continue doing this for the rest of your class times. Once you're finished, it should look like this if you've done it properly:
 
-```{r, fig.align='center'}
+```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG')
 ```
 
@@ -377,7 +377,7 @@ The maximum possible raw score for each assessment is 50.
 
 To compute a new value from a current column, navigate to *Transform > Compute Variable*. Type a name for the new variable (e.g. `Apercent`) into the 'Target Variable' box. Put `A` in the 'Numeric Expression' box, then type the rest of the numeric expression: 
 
-```{r, fig.align='center'}
+```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_5a.PNG')
 ```
 
@@ -411,7 +411,7 @@ You don't need to delete anything from the dataset.
 
 To filter your data, navigate to *Data > Select Cases*. Click 'If condition is satisfied', then the 'If...' box. Here, you want to specify that you only want to include data if the `Role` variable is equal to 'Student'. You'll enter the following expression in the first box. 
 
-```{r, fig.align='center'}
+```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_6a.PNG')
 ```
 
@@ -467,7 +467,7 @@ Select *Analyze>Descriptives>Frequencies*. Select Gender and use the arrow to mo
 
 </br>
 
-```{r, echo = F, out.width='65%'}
+```{r, echo = F, out.width='65%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7a.PNG')
 ```
 
@@ -542,8 +542,8 @@ A histogram will allow you to visualise the distribution of continuous variables
 
 Select *Graphs>Bar*. Select the chart type you'd prefer. When you're checking the distribution of a single variable, you would use a 'Simple' plot.  Use the arrow to add the variable you wish to view to the 'Category Axis' box. When looking at distributions of a categorical variable, you are plotting the total number of participants of each group, so you can leave the 'Bars Represent' portion at the default setting.
 
-```{r, echo = F, out.width='55%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8a.PNG')
+```{r, echo = F, out.width='55%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8a.png')
 ```
 
 When checking the distribution of categorical variables, check whether all groups are well represented. Consider the questions from the <B>[Frequency Data](#check-frequency-data)</B> portion of this lab.
@@ -554,8 +554,8 @@ When checking the distribution of categorical variables, check whether all group
 
 Select *Graphs>Histogram*. Use the arrow to add the variable you wish to view to the 'Variable' box.
 
-```{r, echo = F, out.width='55%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8b.PNG')
+```{r, echo = F, out.width='55%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8b.png')
 ```
 
 Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common.
@@ -575,7 +575,7 @@ Check the measures of central tendency discussed in class. Make sure to use the 
 + Are the measures of central tendency similar within a variable?
 + If not, what might this imply?
 
-For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, variance, and standard deviation.
+For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
 
 
 ```{r q6, echo = FALSE}
@@ -606,7 +606,9 @@ quiz(caption = 'Test Your Understanding',
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
 Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives* is not what you need.
+
 </details>
 </div>
 </br>
@@ -615,16 +617,12 @@ Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives*
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', and 'Mode', as needed.
 
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG')
-```
-
 Note that Gender, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
 
 For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
-```{r, echo = F, out.width='60%'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9b.PNG')
+```{r, echo = F, out.width='60%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.png')
 ```
 
 Data will be reported in table format in the output. To get the IQR, you'll need to subtract the 25th percentile value from the 75th percentile value.

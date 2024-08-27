@@ -23,6 +23,8 @@ accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
 #tutorial_options(exercise.timelimit = 60)
+
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
 ```
 
 ```{r, context = 'server'}
@@ -43,20 +45,20 @@ output$aucPlot <- renderPlot({
 
 
 output$aucScorePlot <- renderPlot({
-  loLim <- ifelse(input$score[1]==50, 50, input$score[1])
-  hiLim <- ifelse(input$score[2]==150, 150, input$score[2])
+  loLim <- ifelse(input$score[1]==38, 38, input$score[1])
+  hiLim <- ifelse(input$score[2]==78, 78, input$score[2])
   
 
-  propVal <- round((pnorm(input$score[2], mean = 100, sd = 15)-pnorm(input$score[1], mean = 100, sd = 15))*100)
+  propVal <- round((pnorm(input$score[2], mean = 58, sd = 9.4)-pnorm(input$score[1], mean = 58, sd = 9.4))*100)
   
-  ggplot(data.frame(x=c(50, 150)), aes(x)) +
-    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 100, sd = 15)) +
-    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 100, sd = 15), xlim = c(loLim, hiLim),
+  ggplot(data.frame(x=c(38, 78)), aes(x)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 58, sd = 9.4)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 58, sd = 9.4), xlim = c(loLim, hiLim),
               alpha = .7) +
     theme(axis.text = element_blank(),
           axis.ticks = element_blank(),
           axis.title = element_blank()) +
-    annotate('text', label = paste0(propVal, '% of observations'), x = 140, y = .02, size = 6)
+    annotate('text', label = paste0(propVal, '% of observations'), x = 60, y = .02, size = 6)
     })
 
 output$effectSizePlot <- renderPlot({
@@ -83,18 +85,15 @@ output$effectSizePlot <- renderPlot({
 
 ## Intro to Today's Lab
 
-MONICA - MAKE HALF OF IT DEALING WITH SPSS. ONE THING COULD BE TO CHECK DATA THOROUGHLY (LARGE THAN EXPECTED VALUES, MISSING DATA, ETC)
-transforming variables (dummy coding); computing variables such as summing or reverse scoring.
+During today's lab, you'll apply the concepts discussed during this week's lecture. You'll also review a few concepts from last week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
-
-Today, you won't be working with a specific dataset. Instead, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. 
+Today, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. You'll also work with the dataset you created last week.
 
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
 1. Understand the link between probability and inferential statistics
-2. Describe the difference between effect sizes and p-values
+2. Describe the difference between effect sizes and $p$-values
 3. Compute confidence intervals
 4. Describe general requirements of a power analysis
 
@@ -112,10 +111,13 @@ plotOutput('aucPlot')
 
 ```
 
-Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to a practical example. Imagine that you have a sample of 250 participants who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). Imagine that the plot below reflects the probability distribution of your sample. Use this plot to answer the following questions:
+Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to the data from last week.
+Recall that you have 45 students who completed each of the four assessments. Imagine that the plot below reflects the probability distribution of performance on Assessment A. Use this plot to answer the following questions:
+
+THIS IS OLD; SHOULD TAKE OUT: Imagine that you have a sample of 250 students who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). Imagine that the plot below reflects the probability distribution of your sample. 
 
 ```{r, echo = F}
-sliderInput('score', 'WAIS-IV Score:', min=50, max = 150, step = 1, value = c(50,150), ticks = F)
+sliderInput('score', 'Assessment C Score:', min=38, max = 78, step = 1, value = c(38,78), ticks = F)
 plotOutput('aucScorePlot')
 ```
 
@@ -280,7 +282,7 @@ Solution here.
 
 ## Interpreting Effect Sizes
 
-Task Here.
+MAYBE COMPARING DIFFERENCES BETWEEN ASSESSMENT SCORES
 
 ```{r effSizePlot, echo = F}
 
@@ -399,7 +401,7 @@ As you interpret this plot, try to answer the following questions:
 
 + If you expect a weak effect but have only 50 participants, what is your likelihood of making a Type II error?
 
-```{r q1, echo = FALSE}
+```{r q9, echo = FALSE}
  quiz(caption = 'Test Your Understanding',
       question('What is the traditional threshold for power that is considered accdeptable?',
                answer('70%'),
@@ -479,4 +481,113 @@ By checking the line associated with a weak effect size, we can see that 50 part
 
 </details>
 </div>
+</br>
+
+
+## Report and Interpret
+
+Now that you've evaluated the assessments, write a paragraph with your results that you could present to the instructor, giving them a suggestion of which assessment they should use in their course. In this paragraph, please do the following: 
+
++ Describe your sample as you would in a methods section. 
+
++ Provide a recommendation for which exam the instructor should use in their course, using your results to support your suggestion.
+
+Make sure to use APA style. Once you're finished, compare your paragraph to the solution paragraph. Is there anything you included that is not in the solution? Is there anything you left out? Does your suggestion match the solution paragraph? If not, why not?
+
+</br>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+<span style = "color:white">You might find the <span style = "color:#9AD079"> [Purdue Owl website](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html) </span> helpful for APA formatting. See the participants/sample section in <span style = "color:#9AD079"> [this paper](https://journals.sagepub.com/doi/full/10.1177/0956797620939054) </span> for an example of how you might describe your sample. You can see other examples <span style = "color:#9AD079"> [here](https://journals.sagepub.com/doi/full/10.1177/09567976241231572) </span> and <span style = "color:#9AD079"> [here](https://www.sciencedirect.com/science/article/pii/S0022103123001439)</span>.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+For this analysis, we examined results from 4 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the 4 assessments was presented 15 students in each of the instructor's 3 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 25 male, 19 female, and 2 nonbinary participants).
+
+Student performance varied widely between the assessments (see Table 1).
+
+**Table 1**
+
+*Assessment Scores - Descriptive Data*
+
+```{r, echo = F, out.width='70%'}
+
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
+
+```
+
+
+As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Additionally, the data exhibited a negative skew. This suggests that there is a ceiling effect, as most students are scoring close to the maximum possible score (see Figure 1).
+
+</br>
+
+**Figure 1**
+
+*Assessment B Scores*
+
+```{r, echo = F, message = F, warning=FALSE}
+ggplot(dat, aes(B)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+*Note.* You cannot produce this figure with SPSS. This is just here to show you an example of an appropriate way to report your results with an APA-style figure.
+
+</br>
+
+Assessments D's average was still too high, and the standard deviation of scores was quite small, indicating that it may not be accurately capturing the variability in student comprehension (see Figure 2).
+
+</br>
+
+**Figure 2**
+
+*Assessment D Scores*
+
+```{r, echo = F, message = F, warning=FALSE}
+ggplot(dat, aes(D)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+</br>
+
+Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 3). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
+
+</br>
+
+**Figure 3**
+
+*Assessment C Scores*
+
+```{r, echo = F, message = F, warning=FALSE}
+ggplot(dat, aes(C)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+</details>
+</div>
+
+
+
+</br>
 </br>
