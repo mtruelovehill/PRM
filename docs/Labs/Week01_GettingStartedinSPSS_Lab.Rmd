@@ -13,11 +13,6 @@ runtime: shiny_prerendered
 library(learnr)
 pacman::p_load('tidyverse', 'kableExtra', 'knitr')
 
-# library(shiny)
-# library(shinyjs)
-# library(bslib)
-# library(shinyWidgets)
-
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
@@ -621,7 +616,7 @@ Note that Gender, as a categorical variable, should only be described using Mode
 For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
 ```{r, echo = F, out.width='60%', fig.align='center'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.png')
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG')
 ```
 
 Data will be reported in table format in the output. To get the IQR, you'll need to subtract the 25th percentile value from the 75th percentile value.
