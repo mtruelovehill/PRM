@@ -10,21 +10,27 @@ runtime: shiny_prerendered
 
 ```{r setup, include=FALSE}
 library(learnr)
-library(tidyverse)
-library(kableExtra)
-library(knitr)
-library(shiny)
-library(shinyjs)
-library(bslib)
-library(pwr)
+
+pacman::p_load('tidyverse')
+# library(tidyverse)
+# library(kableExtra)
+# library(knitr)
+# library(shiny)
+# library(shinyjs)
+# library(bslib)
+# library(pwr)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
+studentDat <- dat[dat$Role=='Student',]
+studentDat$Cperc <- (studentDat$C/50)*100
+Cdens <- data.frame(cPerc=density(studentDat$Cperc, from = 0, to = 100)$x, dens=density(studentDat$Cperc, from = 0, to = 100)$y)
+
+
 ```
 
 ```{r, context = 'server'}
@@ -44,14 +50,15 @@ output$aucPlot <- renderPlot({
     })
 
 
+
 output$aucScorePlot <- renderPlot({
-  loLim <- ifelse(input$score[1]==38, 38, input$score[1])
-  hiLim <- ifelse(input$score[2]==78, 78, input$score[2])
-  
+  loLim <- ifelse(input$score[1]==20, 20, input$score[1])
+  hiLim <- ifelse(input$score[2]==96, 96, input$score[2])
+
 
   propVal <- round((pnorm(input$score[2], mean = 58, sd = 9.4)-pnorm(input$score[1], mean = 58, sd = 9.4))*100)
-  
-  ggplot(data.frame(x=c(38, 78)), aes(x)) +
+
+  ggplot(data.frame(x=c(20, 96)), aes(x)) +
     stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 58, sd = 9.4)) +
     geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 58, sd = 9.4), xlim = c(loLim, hiLim),
               alpha = .7) +
@@ -99,25 +106,30 @@ At the end of this lab, you will be able to:
 
 ## Computing the Area Under the Curve
 
-Some kind of introduction to this idea here.
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#16) that the total area under the curve (AUC) allows us to compute the probability of an observation falling within a given range. Use the plot below to visualise how the AUC corresponds to different proportions of observations in a normal distribution.
 
 ```{r aucPlot, echo = F}
 
-tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-0 .irs-from, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-from, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
+
 
 sliderInput('auc', 'Thresholds:', min=0, max = 1, step = .01, value = c(0,1), ticks = F)
 plotOutput('aucPlot')
 
 ```
 
-Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to the data from last week.
-Recall that you have 45 students who completed each of the four assessments. Imagine that the plot below reflects the probability distribution of performance on Assessment A. Use this plot to answer the following questions:
+Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to the example from last week.
+Recall that you had 45 students who completed each of the four assessments.  the plot below reflects the probability distribution of performance on Assessment A. 
 
-THIS IS OLD; SHOULD TAKE OUT: Imagine that you have a sample of 250 students who took the Wechsler Adult Intelligence Scale-IV (WAIS-IV). Imagine that the plot below reflects the probability distribution of your sample. 
+### Your Tasks
+Use this plot to answer the following questions:
+
+MONICA - need to make it accurately reflect the distribution. Because it's 'real' data, using the dnorm function is skewing it just a bit, so just make a density curve that reflects the actual data. It should still provide the same understanding of the area under the curve.
+
 
 ```{r, echo = F}
-sliderInput('score', 'Assessment C Score:', min=38, max = 78, step = 1, value = c(38,78), ticks = F)
+sliderInput('score', 'Assessment C Score:', min=20, max = 96, step = 1, value = c(38,78), ticks = F)
 plotOutput('aucScorePlot')
 ```
 
@@ -286,10 +298,10 @@ MAYBE COMPARING DIFFERENCES BETWEEN ASSESSMENT SCORES
 
 ```{r effSizePlot, echo = F}
 
-tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar-edge, .js-irs-2 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar-edge, .js-irs-3 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-bar-edge, .js-irs-4 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-bar-edge, .js-irs-5 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-bar {background: #4CA384}"))
 
 fluidRow(column(6,
                 sliderInput('meanG1', 'Group 1 Mean', min=30, max = 70, step = 1, value = 50, ticks = F),

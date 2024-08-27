@@ -9,20 +9,14 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
+
 library(learnr)
-library(tidyverse)
-library(kableExtra)
-library(knitr)
-#library(shiny)
-library(shinyjs)
-library(bslib)
-library(shinyWidgets)
+pacman::p_load('tidyverse', 'kableExtra', 'knitr')
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ```{r, context = 'server'}
@@ -205,12 +199,18 @@ To save your data, make sure the data window is the primary window (not the outp
 </br>
 
 
-## Adjust Variable Measures
+## Check Variable View
 
-Recall that data can be measured in multiple formats, and these scales of measurement will affect how data may be described and analysed. 
+The **Variable View** tab allows you to make adjustments to your variable characteristics. Recall that data can be measured in multiple formats, and these scales of measurement will affect how data may be described and analysed. In **Variable View**, you can adjust this measurement format. This is useful, as SPSS does not always properly identify your variable format. 
 
-### Your Task
+Additionally, you can add labels to your variable levels in **Variable View**. This is useful when nominal data are coded numerically (e.g., 'No' = 0; 'Yes' = 1). When you add labels, you can easily see what the values of nominal variables represent. It is important to always include a coding key, so that anyone who works with the data will know how to interpret the numeric labels used and can make appropriate interpretations. 
+
+### Your Tasks
 Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
+
+Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
+
+
 
 ```{r q2, echo = FALSE}
 quiz(caption = 'Test Your Understanding',
@@ -238,7 +238,7 @@ quiz(caption = 'Test Your Understanding',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-You'll need to switch from *Data View* to *Variable View* for this step. Do the labels used by SPSS match the scales of measurement you've learned about in RMAP (Nominal, Ordinal, Interval, Ratio)? Think about what kind of data each of your variables represents.
+Do the labels used by SPSS match the scales of measurement you've learned about in RMAP (Nominal, Ordinal, Interval, Ratio)? Think about what kind of data each of your variables represents.
 
 </details>
 </div>
@@ -247,6 +247,7 @@ You'll need to switch from *Data View* to *Variable View* for this step. Do the 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
+<span style = "font-weight: bold; font-size: 14pt"> Adjust Variable Measure Format </span>
 
 To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab.
 
@@ -275,30 +276,7 @@ To adjust the measure type, select the Measure box for a single variable and cli
 
 * The assessments were all measured on a continuous scale.
 
-</details>
-</div>
-</br>
-
-
-## Add Values to Nondescriptive Data
-
-Sometimes categorical data may be recorded as a number. In today's example, the gender variable consists of 3 values which represent the different gender groups that participated in the study. Instead of recording gender as a character label, participants were given a number to reflect their gender group. However, it is important to always include a coding key, so that anyone who works with the data will know how to interpret the numeric labels used and can make appropriate interpretations. 
-
-### Your Task 
-Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
-
-This should also be done in Variable View. The column names may seem a bit misleading; you don’t use the ‘Label’ column for this task.
-
-</details>
-</div>
-
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+<span style = "font-weight: bold; font-size: 14pt"> Adding Labels to Variables </span>
 
 To associate a label with each value of a variable, you'll use the **Values** column under the **Variable View** tab.
 
@@ -309,9 +287,8 @@ include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_3a.PNG')
 ```
 
 Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
-</div>
 </details>
-
+</div>
 </br>
 
 
@@ -622,7 +599,7 @@ Note that Gender, as a categorical variable, should only be described using Mode
 For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
 ```{r, echo = F, out.width='60%', fig.align='center'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.png')
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG')
 ```
 
 Data will be reported in table format in the output. To get the IQR, you'll need to subtract the 25th percentile value from the 75th percentile value.
@@ -733,3 +710,111 @@ $$23.04+1\times 7.74 = `r round(23.04+(1*7.74),2)`$$
 </br>
 
 
+## Report and Interpret
+
+Now that you've evaluated the assessments, write a paragraph with your results that you could present to the instructor, giving them a suggestion of which assessment they should use in their course. In this paragraph, please do the following: 
+
++ Describe your sample as you would in a methods section. 
+
++ Provide a recommendation for which exam the instructor should use in their course, using your results to support your suggestion.
+
+Make sure to use APA style. Once you're finished, compare your paragraph to the solution paragraph. Is there anything you included that is not in the solution? Is there anything you left out? Does your suggestion match the solution paragraph? If not, why not?
+
+</br>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+<span style = "color:white">You might find the <span style = "color:#9AD079"> [Purdue Owl website](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html) </span> helpful for APA formatting. See the participants/sample section in <span style = "color:#9AD079"> [this paper](https://journals.sagepub.com/doi/full/10.1177/0956797620939054) </span> for an example of how you might describe your sample. You can see other examples <span style = "color:#9AD079"> [here](https://journals.sagepub.com/doi/full/10.1177/09567976241231572) </span> and <span style = "color:#9AD079"> [here](https://www.sciencedirect.com/science/article/pii/S0022103123001439)</span>.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+For this analysis, we examined results from 4 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the assessments was presented to students in each of the instructor's 4 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 24 male, 19 female, and 2 nonbinary participants).
+
+Student performance varied widely between the assessments (see Table 1).
+
+**Table 1**
+
+*Assessment Scores - Descriptive Data*
+
+```{r, echo = F, out.width='70%'}
+
+dat$percA <- (dat$A/50)*100
+dat$percB <- (dat$B/50)*100
+dat$percC <- (dat$C/50)*100
+dat$percD <- (dat$D/50)*100
+
+dat <- dat[dat$Role=='Student',]
+
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
+
+```
+
+
+As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Most students scored close to the maximum possible score, suggesting that there is a ceiling effect (see Figure 1).
+
+</br>
+
+**Figure 1**
+
+*Assessment B Scores*
+
+```{r, echo = F, message = F, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
+ggplot(dat, aes(percB)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+*Note.* You cannot produce this figure with SPSS. This is just here to show you an example of an appropriate way to report your results with an APA-style figure.
+</br>
+
+Assessments D's average was still too high, and the standard deviation of scores was quite small, indicating that it may not be accurately capturing the variability in student comprehension (see Figure 2).
+
+</br>
+
+**Figure 2**
+
+*Assessment D Scores*
+
+```{r, echo = F, message = F, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
+ggplot(dat, aes(percD)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 3) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+</br>
+
+Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 3). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
+
+</br>
+
+**Figure 3**
+
+*Assessment C Scores*
+
+```{r, echo = F, message = F, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
+ggplot(dat, aes(percC)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 3) +
+  labs(x='Score', y='Count') +
+  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
+  theme(axis.title = element_text(size = 16, face = 'bold'),
+        axis.text = element_text(size = 14),
+        panel.background = element_blank(),
+        axis.line = element_line())
+```
+
+</details>
+</div>
