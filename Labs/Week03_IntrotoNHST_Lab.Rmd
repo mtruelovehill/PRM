@@ -11,7 +11,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 
-pacman::p_load('tidyverse')
+pacman::p_load('tidyverse', 'rstatix')
 # library(tidyverse)
 # library(kableExtra)
 # library(knitr)
@@ -52,49 +52,176 @@ output$aucPlot <- renderPlot({
 
 
 output$aucScorePlot <- renderPlot({
-  loLim <- ifelse(input$score[1]==20, 20, input$score[1])
-  hiLim <- ifelse(input$score[2]==96, 96, input$score[2])
+  loLim <- ifelse(input$score[1]==31, 31, input$score[1])
+  hiLim <- ifelse(input$score[2]==84, 84, input$score[2])
 
 
   propVal <- round((pnorm(input$score[2], mean = 58, sd = 9.4)-pnorm(input$score[1], mean = 58, sd = 9.4))*100)
 
-  ggplot(data.frame(x=c(20, 96)), aes(x)) +
-    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 58, sd = 9.4)) +
-    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 58, sd = 9.4), xlim = c(loLim, hiLim),
+  ggplot(data.frame(x=c(31, 84)), aes(x)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 58, sd = 9)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 58, sd = 9), xlim = c(loLim, hiLim),
               alpha = .7) +
     theme(axis.text = element_blank(),
           axis.ticks = element_blank(),
           axis.title = element_blank()) +
-    annotate('text', label = paste0(propVal, '% of observations'), x = 60, y = .02, size = 6)
+    annotate('text', label = paste0(propVal, '% of observations'), x = 42, y = .03, size = 6)
     })
 
+
+output$alphaPlot <- renderPlot({
+  ggplot(data.frame(x=c(-5, 5)), aes(x)) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 0, sd = 1)) + 
+    geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = 0, sd = 1),
+              xlim = c(qnorm(1-(as.numeric(input$alpha)/2)), 5), alpha = .7) +
+    geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = 0, sd = 1),
+              xlim = c(-5, qnorm(1-(as.numeric(input$alpha)/2), lower.tail = F)), alpha = .7) +
+    scale_x_continuous(breaks = seq(-5, 5, by = .5)) +
+    xlab('test statistic') +
+    geom_vline(xintercept = qnorm(1-(as.numeric(input$alpha)/2), lower.tail = F), color = baseColor, linewidth = 1.5, linetype='dashed') +
+    geom_vline(xintercept = qnorm(1-(as.numeric(input$alpha)/2)), color = baseColor, linewidth = 1.5, linetype='dashed') +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 14, face = 'bold'),
+          axis.title.x = element_text(size = 16, face = 'bold'))
+})
+
+output$pPlot <- renderPlot({
+  lowProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1), 4)*100
+  hiProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F),4)*100
+  
+  limVal <- ifelse(input$testStatistic<0, input$testStatistic, input$testStatistic*-1)
+  
+  pVal <- ifelse(input$testStatistic<0, round(pnorm(input$testStatistic, mean = 0, sd = 1), 3)*2, 
+                 round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F), 3)*2)
+  
+  ggplot(data.frame(x=c(-5, 5)), aes(x)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+              xlim = c(-5, limVal), alpha = .7) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+              xlim = c(abs(limVal), 5), alpha = .7) +
+    geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = 0, sd = 1),
+              xlim = c(limVal, abs(limVal)), alpha = .7) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 0, sd = 1)) +
+    scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+    scale_y_continuous(limits=c(0, .4)) +
+    xlab('test statistic') +
+    geom_vline(xintercept = input$testStatistic, color = accent3, linewidth = 1.5, linetype='dashed') +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 14, face = 'bold'),
+          axis.title.x = element_text(size = 16, face = 'bold')) +
+    geom_rect(aes(xmin = -3.8, xmax = -2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
+    geom_rect(aes(xmin = 1.2, xmax = 2.3, ymin = .28, ymax = .32), fill = accent1, alpha = .5) +
+    geom_rect(aes(xmin = 3.8, xmax = 2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
+    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = 3.25, y = .05, size = 6) +
+    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = -3.25, y = .05, size = 6) +
+    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', 1-pVal))), x = 1.75, y = .3, size = 6)
+})
+
+
+
+output$testPlot <- renderPlot({
+  limVal <- ifelse(input$testStat2<0, input$testStat2, input$testStat2*-1)
+  
+  pVal <- ifelse(input$testStat2<0, round(pnorm(input$testStat2, mean = 0, sd = 1), 3)*2, 
+                 round(pnorm(input$testStat2, mean = 0, sd = 1, lower.tail = F), 3)*2)
+  
+  ggplot(data.frame(x=c(-5, 5)), aes(x)) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+              xlim = c(-5, limVal), alpha = .7) +
+    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+              xlim = c(abs(limVal), 5), alpha = .7) +
+    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 0, sd = 1)) +
+    scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+    xlab('test statistic') +
+    geom_vline(xintercept = input$testStat2, color = accent3, linewidth = 1.5, linetype='dashed') +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.text.x = element_text(size = 14, face = 'bold'),
+          axis.title.x = element_text(size = 16, face = 'bold')) +
+    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal))), x = 3.25, y = .2, size = 6)
+})
+
 output$effectSizePlot <- renderPlot({
-  pooledSD <- sqrt(((25-1)*input$sdG1^2 + (25-1)*input$sdG2^2) / (25+25-2))
+  
+  set.seed(820)
+  G1 <- rnorm(as.numeric(input$n), mean = 50, sd = input$sdG1)
+  testDat <- data.frame(Group = c(rep('G1', as.numeric(input$n)), rep('G2', as.numeric(input$n))), 
+                        x = c(G1, G1+as.numeric(input$meanDiff)))
+  
+  pVal <- round(t.test(x~Group, data = testDat)$p.value,3)
+  effSize <- as.numeric(round(cohens_d(testDat, x~Group)$effsize,2))
   
   ggplot(data.frame(x=c(15, 85)), aes(x)) +
-    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = input$meanG1, sd = input$sdG1)) +
-    stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = input$meanG2, sd = input$sdG2)) +
-    scale_y_continuous(limits = c(0, .4)) +
-    geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = input$meanG1, sd = input$sdG1),
-              alpha = .7) +
-    geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = input$meanG2, sd = input$sdG2),
-              alpha = .7) + 
-    annotate(geom = 'text', label = paste('Effect Size =', round(abs(input$meanG1-input$meanG2)/pooledSD, 2)), 
-             x = 25, y = .19, size = 7) +
+    geom_histogram(data = testDat[testDat$Group=='G1',], aes(x, y = after_stat(density)), binwidth = 2, fill = baseColor, color = accent3, alpha = .7) +
+    geom_histogram(data = testDat[testDat$Group=='G2',], aes(x, y = after_stat(density)), binwidth = 2, fill = accent1, color = accent3, alpha = .7) +
+    geom_density(data = testDat[testDat$Group=='G1',], aes(x), color = accent3, linewidth = 1) +
+    geom_density(data = testDat[testDat$Group=='G2',], aes(x), color = accent3, linewidth = 1) +
+    scale_x_continuous(limits = c(15, 85), breaks = seq(15, 85, by = 10)) +
     theme(axis.text.x = element_text(size = 12),
           axis.title.x = element_text(size = 14, face = 'bold'),
           axis.text.y = element_blank(),
           axis.title.y = element_blank(),
-          axis.ticks.y = element_blank())
+          axis.ticks.y = element_blank()) +
+    annotate(geom = 'text', label = paste('Effect Size =', effSize), x = 25, y = .19, size = 6) +
+    annotate(geom = 'text', label = paste('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal))), 
+             x = 25, y = .17, size = 6)
   
 })
+
+
+  observeEvent(input$do, {
+    CIs <- data.frame(Sample = 1:100, mean = rep(NA,100), lowBound = rep(NA, 100), hiBound = rep(NA, 100))
+    ciDat <- data.frame(Cscore = rnorm(10000, mean = 58, sd = 7))
+    
+    for(x in 1:nrow(CIs)) {
+      sampDat <- sample(ciDat$Cscore, size = 50)
+      margin <- 1.96*sd(sampDat)/sqrt(50)
+      CIs$mean[x] <- round(mean(sampDat), 2)
+      CIs$lowBound[x] <- mean(sampDat)-margin
+      CIs$hiBound[x] <- mean(sampDat)+margin
+    }
+    
+    CIs$plotColors <- ifelse(mean(ciDat$Cscore)>=CIs$lowBound&mean(ciDat$Cscore)<=CIs$hiBound, baseColor, '#D83535')
+    
+    output$ciPlot <- renderPlot({
+      ggplot(CIs, aes(mean, y = Sample)) +
+        geom_errorbar(data=CIs, aes(xmin = lowBound, xmax = hiBound, y = Sample), width=0.2, linewidth=1, 
+                    color=CIs$plotColors) + 
+        geom_point(color = CIs$plotColors) +
+        labs(x = 'Score', y = 'Sample Number') +
+        scale_x_continuous(limits = c(45, 75), breaks = seq(45, 75, by = 5)) +
+        scale_y_continuous(limits = c(1, 100), breaks = seq(0, 100, by = 1)) +
+        geom_vline(xintercept = mean(ciDat$Cscore), color = accent3, linewidth = 1) +
+        theme(axis.text = element_text(size = 12),
+              axis.title = element_text(size = 14, face = 'bold'))
+    })
+  })
+  
+```
+
+
+```{r, echo = F}
+tags$style(HTML(".js-irs-0 .irs-from, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-from, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-6 .irs-single, .js-irs-6 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-7 .irs-single, .js-irs-7 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-8 .irs-single, .js-irs-8 .irs-bar {background: #4CA384}"))
 ```
 
 ## Intro to Today's Lab
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. You'll also review a few concepts from last week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-Today, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. You'll also work with the dataset you created last week.
+Today, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. You will not be using SPSS. 
 
 ### Learning Objectives
 At the end of this lab, you will be able to:
@@ -110,26 +237,17 @@ Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NH
 
 ```{r aucPlot, echo = F}
 
-tags$style(HTML(".js-irs-0 .irs-from, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-1 .irs-from, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
-
-
 sliderInput('auc', 'Thresholds:', min=0, max = 1, step = .01, value = c(0,1), ticks = F)
 plotOutput('aucPlot')
 
 ```
+<br>
 
 Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to the example from last week.
-Recall that you had 45 students who completed each of the four assessments.  the plot below reflects the probability distribution of performance on Assessment A. 
-
-### Your Tasks
-Use this plot to answer the following questions:
-
-MONICA - need to make it accurately reflect the distribution. Because it's 'real' data, using the dnorm function is skewing it just a bit, so just make a density curve that reflects the actual data. It should still provide the same understanding of the area under the curve.
-
+Recall that you had a small sample of students who completed each of the four assessments. The optimal assessment was determined to be Assessment C. Imagine that the instructor adopted Assessment C for use in their course. The plot below reflects the probability distribution of assessment performance across all students on the course. 
 
 ```{r, echo = F}
-sliderInput('score', 'Assessment C Score:', min=20, max = 96, step = 1, value = c(38,78), ticks = F)
+sliderInput('score', 'Assessment Score:', min=31, max = 84, step = 1, value = c(31,84), ticks = F)
 plotOutput('aucScorePlot')
 ```
 
@@ -137,140 +255,124 @@ plotOutput('aucScorePlot')
 ```{r q1, echo = FALSE}
 
 quiz(caption = 'Test Your Understanding',
-     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS?',
-                      answer(38, correct = T),
-                      message = '38% of the sample scored between 95 and 110.'),
-     question_numeric('What percentage of the sample scored 87 or lower?',
-                      answer(19, correct = T),
-                      message = '19% of the sample received a score 87 or lower.'),
-     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
-                      answer(81, correct = T),
-                      message = 'The lowest 10% of the sample scored below 81.'),
-     question_numeric('Participant J scored 127. Fill in the blank: __% of the sample received a score at least as high as Participant J.',
-                      answer(4, correct = T),
-                      message = 'Only 4% of the sample scored at least 127')
+     question_numeric('What was the maximum score on the assessment?',
+                      answer(84, correct = T),
+                      message = 'The maximum score was 84'),
+     question_numeric('What percentage of students recieved an A (70+) on the assessment?',
+                      answer(10, correct = T),
+                      message = '10% of the sample scored 70 or above on the assessment.'),
+     question_numeric('If we were to randomly select an exam booklet from the entire pile of assessments, what is the probability that the mark will be between 55 and 65?',
+                      answer(40, correct = T),
+                      answer(.40, correct = T),
+                      message = 'The probability that we the mark will be between 55 and 65 is .40, or 40%'),
+     question_numeric('The instructor wants to identify the students who scored in the lowest 5% so that they can check in and offer additional help. Fill in the blank: Students scoring __ and below will be contacted by the instructor.',
+                      answer(43, correct = T),
+                      message = '5% of the sample scored 43 or below.'),
+     question_numeric('Assume this distribution is perfectly normal. What was the mean score on the assessment?',
+                      answer(58, correct = T),
+                      message = 'In a normal distribution, all observations are centred around then mean. The mean score on this assessment is 58, as 50% of students scored 58 or above, and 50% of students scored 58 or below.')
 )
 ```
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+## The Null Distribution
 
-</details>
-</div>
-</br>
+When we run an inferential statistical test, it produces a test statistic. The null distribution for that test is the distribution of test statistics we would expect if the null hypothesis were true. If we run a statistical test and our statistic falls in the extreme region of the distribution, we consider our results to be significant and reject the null hypothesis (because our results would be really unusual if the null hypothesis were true!). See the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#26) if you need a refresher. 
+
+Before running a test, we use $\alpha$ to determine our cutoff for significance. $\alpha$ refers to the proportion of values in the null distribution we consider to be extreme. 
 
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+```{r, echo = F}
+fluidRow(column(width = 2, 
+                selectInput('alpha', 'Choose an alpha value:', choices = list('.05' = .05, '.01' = .01, '.001' = .001))))
 
-Solution here.
-
-</details>
-</div>
-</br>
+plotOutput('alphaPlot')
+```
 
 
+```{r q2, echo = FALSE}
 
-## Identifying the &alpha; cutoff
+quiz(caption = 'Test Your Understanding',
+     question('Given an alpha of .05, would a test statistic of -1.5 be significant?',
+              answer('Yes'),
+              answer('No', correct = T),
+              message = 'A value of -1.5 would not fall past the alpha threshold, so would not be considered significant.'),
+     question('Given an alpha of .001, would a test statistic of 3.5 be significant?',
+              answer('Yes', correct = T),
+              answer('No'),
+              message = 'A value of 3.5 would fall past the alpha threshold and would be considered significant.'),
+     question('Given an alpha of .01, would a test statistic of 2.5 be significant?',
+              answer('Yes'),
+              answer('No', correct = T),
+              message = 'A value of 2.5 would not fall past the alpha threshold, so would not be considered significant.')
+)
+```
 
-PLOTS WHERE alpha is set to .05, .01 and .001
-Need both nondirectional and directional plots
-
-Task Description.
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
 
 ## Computing <i> p </i>
 
-Task Description.
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#37) that a $p$-value is the probability of obtaining a statistical test result at least as extreme as ours, given that the null hypothesis is true. Keep in mind that we're interested in the probability of values **at least as extreme as our value**, regardless of whether they are positive or negative.
 
-```{r q3, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
+The plot below shows the probability of values on either side of the line representing the test statistic value. Use this plot to answer the following questions.
+
+```{r, echo = F}
+sliderInput('testStatistic', 'Value of Test Statistic:', min=-5, max = 5, step = .01, value = 0, ticks = F)
+plotOutput('pPlot')
 ```
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+```{r q3, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("What is the p-value associated with obtaining a test statistic at least as extreme as 2.25? Please report your answer to 3 decimal places.",
+              answer(.024, correct = T),
+              message = 'For a test statistic of 2.25, p = .024. Because you need the probability of values as extreme as yours (regardless of whether they are positive or negative) you must add the probabilities in each tail. .012 + .012 = .024'),
+     question_numeric("What is the p-value associated with obtaining a test statistic at least as extreme as -1.36? Please report your answer to 3 decimal places.",
+               answer(.174, correct = T),
+              message = "For a test statistic of -1.50, p = .174 Because you need the probability of values as extreme as yours (regardless of whether they are positive or negative) you must add the probabilities in each tail. .087 + .087 = .174"),
+     question_numeric('Which test statistic reflects the cutoff for the most extreme 5% of the data?',
+              answer(-1.96, correct = T),
+              answer(1.96, correct = T),
+              message = "Because 5% is split between each tail of the distribution, any statistic with a corresponding probability of 2.5% or less would fall into the most extreme 5% of the values. The cutoff point is 1.96."),
+     question('Which of the following test statistics are in the most extreme 1% of the data?',
+              answer(-2.76, correct = T),
+              answer(2.34),
+              answer(1.74),
+              answer(-2.58, correct = T),
+              message = "Because 1% is split between each tail of the distribution, any statistic with a corresponding probability of .5% or less would fall into the most extreme 1% of the values.")
+)
+```
 
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
 
 ## Putting it all Together
 
-Task Description.
+In the last few tasks, we've broken down the general steps of an inferential statistical test. This gives you a glimpse of what's going on under the hood of SPSS. Now, let's put the steps together. 
+
+
+Use the plot below to answer the following questions. Remember that the shaded area reflects $p$ (the probability of getting a test statistic at least as extreme as yours given the null is true).
+
+```{r, echo = F}
+sliderInput('testStat2', 'Value of Test Statistic:', min=-5, max = 5, step = .01, value = 0, ticks = F)
+plotOutput('testPlot')
+```
+
 
 ```{r q4, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
+quiz(caption = 'Test Your Understanding',
+     question("If alpha = .001, is the p-value associated with a test statistic of 3.00 significant?",
+              answer('Yes'),
+              answer('No', correct = T),
+              message = 'For a test statistic of 3.00, p = .002, which is more than the alpha threshold of .001, so we would not consider this result significant.'),
+     question("If alpha = .01, is the p-value associated with a test statistic of -2.55 significant?",
+               answer('Yes', correct = T),
+              answer('No'),
+              message = "For a test statistic of -2.55, p = .010. As this is equal to the alpha threshold of .01, this result would be significant."),
+     question_numeric('Which test statistic value is the cutoff associated with an alpha = .05?',
+              answer(1.96, correct = T),
+              answer(-1.96, correct = T),
+              message = "In this distribution, all values greater than or equal to the absolute value of 1.96 would be considered significant at alpha = .05")
+)
 ```
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -294,89 +396,112 @@ Solution here.
 
 ## Interpreting Effect Sizes
 
-MAYBE COMPARING DIFFERENCES BETWEEN ASSESSMENT SCORES
+Although a $p$-value provides you with evidence of whether the null hypothesis can be rejected, it doesn't provide information about the strength of the effect being tested. Even weak relationships may be significant under certain circumstances. Significance does not guarantee an effect is meaningful. To get a better sense of this, we use effect size. Use the plot below to explore the relationships between means, standard deviations, effect size, sample size, and the $p$-value. While you interact with the plot, consider the following:
+
++ How does changing the difference between means affect the effect size? The $p$-value?
+
++ How does changing the standard deviation affect the effect size? The $p$-value?
+
++ How does changing the sample size affect the effect size? The $p$-value?
+
+**Please note** that due to the way the data are simulated, there will not be a perfect negative or positive relationship between these values. It's more important that you grasp the general trend in their relationship than note the specific values being produced. The answers to the quiz questions will reflect this.
 
 ```{r effSizePlot, echo = F}
-
-tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-bar {background: #4CA384}"))
-
 fluidRow(column(6,
-                sliderInput('meanG1', 'Group 1 Mean', min=30, max = 70, step = 1, value = 50, ticks = F),
-                sliderInput('sdG1', 'Group 1 SD', min=1, max = 10, step = 1, value = 2.5, ticks = F),
+                selectInput('meanDiff', 'Select the Difference between Group Means:', 
+                            choices = list('.10' = .10, '.5' = .5, '1' = 1, '3' = 3, '5' = 5)),
+                selectInput('n', 'Sample Size per Group:', 
+                            choices = list('5' = 5, '30' = 50, '100' = 100, '500' = 500, '1000' = 1000, '5000' = 5000)),
                 style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
-  column(6, sliderInput('meanG2', 'Group 2 Mean', min=30, max = 70, step = 1, value = 50, ticks = F),
-         sliderInput('sdG2', 'Group 2 SD', min=1, max = 10, step = 1, value = 2.5, ticks = F), style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
-
+  column(6, sliderInput('sdG1', 'Pooled SD', min=1, max = 5, step = 1, value = 2.5, ticks = F),
+         style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
 
 plotOutput('effectSizePlot')
 ```
 
 ```{r q5, echo = FALSE}
-
 quiz(caption = 'Test Your Understanding',
-     question("If the means differ but are held constant, what happens to the effect size when one group's SD is increased?",
+     question("If the difference between means and the sample size is held constant, what generally happens to the effect size when one group's SD is increased?",
               answer('The effect size increases'),
               answer('The effect size decreases', correct = T),
-              answer('The effect size stays the same'),
-              message = 'Increasing the standard deviation of one group will decrease the effect size. This is because the variability in the data are increased'))
-
-# quiz(caption = 'Test Your Understanding',
-#      question("At least one of the groups is limited in size compared to the others",
-#               answer("True", correct = T),
-#               answer("False"),
-#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
-#      question_numeric("How many total datapoints do you have for the gender variable?",
-#               answer(48, correct=T)),
-#      question_numeric("What percentage of participants are female?",
-#               answer(41.7, correct=T)),
-#      question_numeric('How many nonbinary participants are in your sample?',
-#               answer(2, correct=T)))
+              answer('The effect size stays about the same'),
+              message = 'Increasing the standard deviation of one group will decrease the effect size. This is because the variability in the data are increased'),
+     question("If the group SD and the sample size is held constant, what generally happens to the effect size when the difference between means is increased?",
+              answer('The effect size increases', correct = T),
+              answer('The effect size decreases'),
+              answer('The effect size stays about the same'),
+              message = 'Increasing the difference between means indicates a stronger effect of the independent/grouping variable, so the effect size increases.'),
+     question("If the difference between means and the group SD is held constant, what generally happens to the effect size when the sample size is increased?",
+              answer('The effect size increases'),
+              answer('The effect size decreases'),
+              answer('The effect size stays about the same', correct = T),
+              message = 'Increasing the sample size does not have much of an effect on the effect size.'),
+     question("If the difference between means and the group SD is held constant, what generally happens to the p-value when the sample size is increased?",
+              answer('The p-value increases'),
+              answer('The p-value decreases', correct = T),
+              answer('The p-value stays about the same'),
+              message = 'Increasing the sample size can also decrease the p-value, causing results to appear more significant even if the effect is quite small.'))
 ```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
 
 ## Compute a 95% Confidence Interval 
 
-Task Here
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#47) that a 95% confidence level indicates that, were we to collect 100 samples and compute 95% confidence intervals each time, ~95 of those confidence intervals would be expected to contain the true population value. 
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+Here, we'll perform a simulation to illustrate this idea. 
 
-Hint Here
+Let's think back to our instructor, who adapted Assessment C for use in their course. The instructor would like to know the average Assessment score for all students who have ever taken and will ever take the course. Although that's not possible, they can estimate this value by giving their current students the assessment and inspecting the average score.
 
-</details>
-</div>
-</br>
+```{r q6, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question("In the above example, which of the following is the sample?",
+              answer("All students who have ever taken and will ever take the instructor's course"),
+              answer("The current students on the course", correct = T),
+              answer("The mean score for all students who have ever taken and will ever take the course"),
+              answer("The mean score for current students on the course"),
+              message = 'All students who have ever taken/will ever take the course comprise the total population. The current students on the course comprise a sample of that population.'),
+      question("In the above example, which of the following is considered the population parameter?",
+              answer("The mean score for all students who have ever taken and will ever take the course", correct = T),
+              answer("The mean score for current students on the course"),
+              message = 'The population parameter is the value we are attempting to estimate by using sample data. In this case, it is the mean score for all students who have ever taken or will ever take the course.')
+     )
+```
 
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+We often cannot know the true population parameter, but for the purposes of illustration, let's imagine that we have access to the performance of all past/present/future students who take this instructors course, and it looks something like this:
 
-Solution here.
+```{r, echo = F, message = F, warning = F}
 
-</details>
-</div>
-</br>
+set.seed(806)
+ciDat <- data.frame(Cscore = rnorm(10000, mean = 58, sd = 7))
+
+ggplot(ciDat, aes(Cscore)) + geom_histogram(fill = baseColor, color = accent3) + 
+  xlab('Score') +
+  theme(axis.text.x = element_text(size = 12),
+          axis.title.x = element_text(size = 14, face = 'bold'),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.ticks.y = element_blank()) +
+  annotate('text', label = paste0('Mean = ', round(mean(ciDat$Cscore), 2)), x = 40, y = 700, size = 6)
+  
+```
+
+```{r q7, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("What is the value of the population parameter in this example? Please round your answer to 2 decimal places.",
+              answer(57.97, correct = T),
+              message = 'The population parameter is the mean score on the assessment, 57.97.')
+     )
+```
+
+
+To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a confidence interval is telling us, if we were to take 100 samples and compute a confidence interval with each, we would expect around 95 of those confidence intervals to include a value of 57.97. Use the button below to generate a new set of samples.
+
+
+```{r, echo = F, fig.height=20}
+actionButton("do", "Collect 20 New Samples")
+plotOutput('ciPlot')
+```
+
 
 
 ## Power Analyses
@@ -400,8 +525,6 @@ powerDat$EffectSize <- factor(powerDat$EffectSize, levels = c('strong', 'moderat
         legend.title = element_text(size = 14, face = 'bold'),
         legend.text = element_text(size = 12)))
 ```
-
-### Your Task
 
 As you interpret this plot, try to answer the following questions:
 
@@ -496,110 +619,4 @@ By checking the line associated with a weak effect size, we can see that 50 part
 </br>
 
 
-## Report and Interpret
 
-Now that you've evaluated the assessments, write a paragraph with your results that you could present to the instructor, giving them a suggestion of which assessment they should use in their course. In this paragraph, please do the following: 
-
-+ Describe your sample as you would in a methods section. 
-
-+ Provide a recommendation for which exam the instructor should use in their course, using your results to support your suggestion.
-
-Make sure to use APA style. Once you're finished, compare your paragraph to the solution paragraph. Is there anything you included that is not in the solution? Is there anything you left out? Does your suggestion match the solution paragraph? If not, why not?
-
-</br>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-<span style = "color:white">You might find the <span style = "color:#9AD079"> [Purdue Owl website](https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html) </span> helpful for APA formatting. See the participants/sample section in <span style = "color:#9AD079"> [this paper](https://journals.sagepub.com/doi/full/10.1177/0956797620939054) </span> for an example of how you might describe your sample. You can see other examples <span style = "color:#9AD079"> [here](https://journals.sagepub.com/doi/full/10.1177/09567976241231572) </span> and <span style = "color:#9AD079"> [here](https://www.sciencedirect.com/science/article/pii/S0022103123001439)</span>.
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-For this analysis, we examined results from 4 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the 4 assessments was presented 15 students in each of the instructor's 3 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 25 male, 19 female, and 2 nonbinary participants).
-
-Student performance varied widely between the assessments (see Table 1).
-
-**Table 1**
-
-*Assessment Scores - Descriptive Data*
-
-```{r, echo = F, out.width='70%'}
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
-
-```
-
-
-As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Additionally, the data exhibited a negative skew. This suggests that there is a ceiling effect, as most students are scoring close to the maximum possible score (see Figure 1).
-
-</br>
-
-**Figure 1**
-
-*Assessment B Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(B)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-*Note.* You cannot produce this figure with SPSS. This is just here to show you an example of an appropriate way to report your results with an APA-style figure.
-
-</br>
-
-Assessments D's average was still too high, and the standard deviation of scores was quite small, indicating that it may not be accurately capturing the variability in student comprehension (see Figure 2).
-
-</br>
-
-**Figure 2**
-
-*Assessment D Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(D)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-</br>
-
-Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 3). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
-
-</br>
-
-**Figure 3**
-
-*Assessment C Scores*
-
-```{r, echo = F, message = F, warning=FALSE}
-ggplot(dat, aes(C)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 2) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-</details>
-</div>
-
-
-
-</br>
-</br>

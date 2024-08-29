@@ -149,7 +149,7 @@ At the end of this lab, you will be able to:
 In this course, you'll be using SPSS to perform the majority of your tasks. You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv)</B> or checking this week's folder on Learn (requires university login). 
 
 ### Your Task
-Import 'Week1LabData.csv' into SPSS. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. You'll be using these data for next week's lab. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
+Import 'Week1LabData.csv' into SPSS. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
 
 
 ```{r q1, echo = FALSE}
