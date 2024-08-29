@@ -175,8 +175,8 @@ output$effectSizePlot <- renderPlot({
 
 
   observeEvent(input$do, {
-    CIs <- data.frame(Sample = 1:100, mean = rep(NA,100), lowBound = rep(NA, 100), hiBound = rep(NA, 100))
-    ciDat <- data.frame(Cscore = rnorm(10000, mean = 58, sd = 7))
+    CIs <- data.frame(Sample = 1:20, mean = rep(NA,20), lowBound = rep(NA, 20), hiBound = rep(NA, 20))
+    ciDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/ciDat.csv')
     
     for(x in 1:nrow(CIs)) {
       sampDat <- sample(ciDat$Cscore, size = 50)
@@ -195,7 +195,7 @@ output$effectSizePlot <- renderPlot({
         geom_point(color = CIs$plotColors) +
         labs(x = 'Score', y = 'Sample Number') +
         scale_x_continuous(limits = c(45, 75), breaks = seq(45, 75, by = 5)) +
-        scale_y_continuous(limits = c(1, 100), breaks = seq(0, 100, by = 1)) +
+        scale_y_continuous(limits = c(1, 20), breaks = seq(0, 20, by = 1)) +
         geom_vline(xintercept = mean(ciDat$Cscore), color = accent3, linewidth = 1) +
         theme(axis.text = element_text(size = 12),
               axis.title = element_text(size = 14, face = 'bold'))
@@ -311,9 +311,9 @@ quiz(caption = 'Test Your Understanding',
 
 ## Computing <i> p </i>
 
-Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#37) that a $p$-value is the probability of obtaining a statistical test result at least as extreme as ours, given that the null hypothesis is true. Keep in mind that we're interested in the probability of values **at least as extreme as our value**, regardless of whether they are positive or negative.
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#37) that a $p$-value is the probability of obtaining a statistical test result at least as extreme as ours, given that the null hypothesis is true. Keep in mind that we're interested in the probability of any value **at least as extreme as our value**, regardless of whether it is positive or negative.
 
-The plot below shows the probability of values on either side of the line representing the test statistic value. Use this plot to answer the following questions.
+The plot below shows the probability of each shaded region, as well as a line representing the test statistic value. Use this plot to answer the following questions.
 
 ```{r, echo = F}
 sliderInput('testStatistic', 'Value of Test Statistic:', min=-5, max = 5, step = .01, value = 0, ticks = F)
@@ -348,7 +348,7 @@ quiz(caption = 'Test Your Understanding',
 In the last few tasks, we've broken down the general steps of an inferential statistical test. This gives you a glimpse of what's going on under the hood of SPSS. Now, let's put the steps together. 
 
 
-Use the plot below to answer the following questions. Remember that the shaded area reflects $p$ (the probability of getting a test statistic at least as extreme as yours given the null is true).
+Use the plot below to answer the following questions. The shaded area reflects $p$ (the probability of getting a test statistic at least as extreme as yours given the null is true).
 
 ```{r, echo = F}
 sliderInput('testStat2', 'Value of Test Statistic:', min=-5, max = 5, step = .01, value = 0, ticks = F)
@@ -365,34 +365,9 @@ quiz(caption = 'Test Your Understanding',
      question("If alpha = .01, is the p-value associated with a test statistic of -2.55 significant?",
                answer('Yes', correct = T),
               answer('No'),
-              message = "For a test statistic of -2.55, p = .010. As this is equal to the alpha threshold of .01, this result would be significant."),
-     question_numeric('Which test statistic value is the cutoff associated with an alpha = .05?',
-              answer(1.96, correct = T),
-              answer(-1.96, correct = T),
-              message = "In this distribution, all values greater than or equal to the absolute value of 1.96 would be considered significant at alpha = .05")
+              message = "For a test statistic of -2.55, p = .010. As this is equal to the alpha threshold of .01, this result would be significant.")
 )
 ```
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
 
 ## Interpreting Effect Sizes
 
@@ -413,7 +388,7 @@ fluidRow(column(6,
                 selectInput('n', 'Sample Size per Group:', 
                             choices = list('5' = 5, '30' = 50, '100' = 100, '500' = 500, '1000' = 1000, '5000' = 5000)),
                 style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
-  column(6, sliderInput('sdG1', 'Pooled SD', min=1, max = 5, step = 1, value = 2.5, ticks = F),
+  column(6, sliderInput('sdG1', 'Pooled SD', min=1, max = 5, step = 1, value = 1, ticks = F),
          style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
 
 plotOutput('effectSizePlot')
@@ -421,7 +396,7 @@ plotOutput('effectSizePlot')
 
 ```{r q5, echo = FALSE}
 quiz(caption = 'Test Your Understanding',
-     question("If the difference between means and the sample size is held constant, what generally happens to the effect size when one group's SD is increased?",
+     question("If the difference between means and the sample size is held constant, what generally happens to the effect size when the SD is increased?",
               answer('The effect size increases'),
               answer('The effect size decreases', correct = T),
               answer('The effect size stays about the same'),
@@ -449,15 +424,13 @@ Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NH
 
 Here, we'll perform a simulation to illustrate this idea. 
 
-Let's think back to our instructor, who adapted Assessment C for use in their course. The instructor would like to know the average Assessment score for all students who have ever taken and will ever take the course. Although that's not possible, they can estimate this value by giving their current students the assessment and inspecting the average score.
+Let's think back to our instructor, who adapted Assessment C for use in their course. The instructor would like to know the average  score for all students who have ever taken and will ever take the course. Although that's not possible, they can estimate this value by giving their current students the assessment and inspecting the average score.
 
 ```{r q6, echo = F}
 quiz(caption = 'Test Your Understanding',
      question("In the above example, which of the following is the sample?",
               answer("All students who have ever taken and will ever take the instructor's course"),
               answer("The current students on the course", correct = T),
-              answer("The mean score for all students who have ever taken and will ever take the course"),
-              answer("The mean score for current students on the course"),
               message = 'All students who have ever taken/will ever take the course comprise the total population. The current students on the course comprise a sample of that population.'),
       question("In the above example, which of the following is considered the population parameter?",
               answer("The mean score for all students who have ever taken and will ever take the course", correct = T),
@@ -470,9 +443,7 @@ quiz(caption = 'Test Your Understanding',
 We often cannot know the true population parameter, but for the purposes of illustration, let's imagine that we have access to the performance of all past/present/future students who take this instructors course, and it looks something like this:
 
 ```{r, echo = F, message = F, warning = F}
-
-set.seed(806)
-ciDat <- data.frame(Cscore = rnorm(10000, mean = 58, sd = 7))
+ciDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/ciDat.csv')
 
 ggplot(ciDat, aes(Cscore)) + geom_histogram(fill = baseColor, color = accent3) + 
   xlab('Score') +
@@ -494,15 +465,26 @@ quiz(caption = 'Test Your Understanding',
 ```
 
 
-To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a confidence interval is telling us, if we were to take 100 samples and compute a confidence interval with each, we would expect around 95 of those confidence intervals to include a value of 57.97. Use the button below to generate a new set of samples.
+To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a confidence interval is telling us, if we were to take 20 samples of 50 students on the course and compute a confidence interval with each, we would expect around 19 of those confidence intervals to include a value of 57.97. 
 
+Use the button to generate 20 new samples. In the plot, the points represent the mean of each sample, and the error bars show the 95% confidence intervals. The true population mean is represented by the black line. Red error bars indicate confidence intervals that do not include the true population mean. If you were to press the button many times, eventually you would find that, on average, 95% of the confidence intervals contain the true population mean of 57.97.
 
-```{r, echo = F, fig.height=20}
-actionButton("do", "Collect 20 New Samples")
+```{r, echo = F}
+actionButton("do", "Collect 20 Samples")
 plotOutput('ciPlot')
 ```
 
+You'll also note that while each sample's mean falls near the true population value, it is rare for a sample mean to perfectly capture the population mean. Confidence intervals are useful because our CI is more likely than the sample mean to capture the population mean.
 
+```{r q8, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question("Margot conducted a memory test on a sample of students, and found that the mean score was 75 points, with a 95% confidence interval of 65 - 85. Which of the following can she conclude?",
+              answer('If Margot were to conduct this test over and over, 95% of the sample would always achieve a score between 65 and 85 points.'),
+              answer('There is a .95 probability that the population mean is between 65 and 85 points.'),
+              answer('If she calculated the 95% confidence interval using the same method on a large number samples, then 95% of the resulting confidence intervals would contain the population mean.', correct = T),
+              answer('She can be 95% confident that he has done the correct calculation.'),
+              message = 'The population mean is fixed, so any individual confidence interval that has already been calculated either contains the popultion mean or does not contain it. However, if you calculate an X% confidence interval on multiple samples, then X% of those intervals will contain the population mean.'))
+```
 
 ## Power Analyses
 
@@ -538,7 +520,7 @@ As you interpret this plot, try to answer the following questions:
 
 ```{r q9, echo = FALSE}
  quiz(caption = 'Test Your Understanding',
-      question('What is the traditional threshold for power that is considered accdeptable?',
+      question('What is the traditional threshold for power that is considered acceptable?',
                answer('70%'),
                answer('80%', correct = T),
                answer('90%'),
