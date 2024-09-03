@@ -88,6 +88,13 @@ datInfo %>%
 ```
 
 
+MONICA: UPDATE THIS: In this lab you'll be working with the following: In this investigation, researchers explored the association between adolescent life satisfaction and their parents’ marital transitions. Across two studies, they collected data on multiple measures, including age, adolescent gender, siblings and stepsiblings, primary caregiver, and overall life satisfaction. 
+
+Study 1
+In the first study, the researchers wanted to explore whether adolescent gender affected life satisfaction after their household merged with that of a stepparent. To investigate this question, they used a secondary dataset with measures of life satisfaction at multiple timepoints across adolescence. They created a sub-dataset with life satisfaction measured in the year before their primary caregiver married or moved in with their new partner and the year after their primary caregiver married or moved in with their new partner. They used the Students’ Life Satisfaction Scale (SLSS) to measure participants’ life satisfaction. Higher scores indicate greater life satisfaction. 
+Research Question 1 
+(a) Is there an association between timepoint (before or after the merging of households) and life satisfaction? (b) Is there an association between relationship with parents (CUSTODIAL AND NONCUSTODIAL) and life satisfaction? (c) Does the association between timepoint and life satisfaction differ depending on the relationship with the secondary parent?
+
 
 ### Learning Objectives
 At the end of this lab, you will be able to:
