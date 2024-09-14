@@ -2,3 +2,6 @@ a:link {
   color:  #4CA384
 }
 
+ul {
+  list-style-type: none;
+}

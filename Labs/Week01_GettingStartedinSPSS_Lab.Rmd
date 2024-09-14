@@ -108,7 +108,6 @@ output$kurtPlot <- renderPlot({
     }, height = 300)
 ```
 
-
 ## Intro to Today's Lab
 
 
@@ -116,7 +115,7 @@ During today's lab, you'll apply some of the concepts discussed during this week
 
 Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 4 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
 
-They collected some pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
+They collected pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
 
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
@@ -148,25 +147,20 @@ At the end of this lab, you will be able to:
 
 In this course, you'll be using SPSS to perform the majority of your tasks. You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv)</B> or checking this week's folder on Learn (requires university login). 
 
-### Your Task
-Import 'Week1LabData.csv' into SPSS. Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
+### Your Tasks
+
+<ul>
+    <li> <dt> <input type="checkbox"> Import 'Week1LabData.csv' into SPSS. </dt>
+          <dd> Black, Strong <dd>
+    </li>
+    <li> <dt> <input type="checkbox"> Tea </dt>
+          <dd> Exotic </dd>
+</ul>
 
 
-```{r q1, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question("What kind of file is 'Week1LabData'?",
-              answer("SPSS datafile"),
-              answer("comma separated values file", correct = T),
-              answer("Excel file"),
-              answer("Word file"),
-              message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
-     question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
-              answer('True'),
-              answer('False', correct = T),
-              message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
-     )
-```
-
++ [ ] $\ $ Import 'Week1LabData.csv' into SPSS. 
++ [ ] $\ $ Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. 
++ [ ] $\ $ Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -206,34 +200,8 @@ The **Variable View** tab allows you to make adjustments to your variable charac
 Additionally, you can add labels to your variable levels in **Variable View**. This is useful when nominal data are coded numerically (e.g., 'No' = 0; 'Yes' = 1). When you add labels, you can easily see what the values of nominal variables represent. It is important to always include a coding key, so that anyone who works with the data will know how to interpret the numeric labels used and can make appropriate interpretations. 
 
 ### Your Tasks
-Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
-
-Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
-
-
-
-```{r q2, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question("Which type of data is C?",
-              answer("Categorical"),
-              answer("Continuous", correct = T),
-              random_answer_order = T),
-     question("Which type of data is Gender?",
-              answer("Continuous"),
-              answer('Categorical', correct = T)),
-     question("Which type of data is ClassTime?",
-              answer("Continuous"),
-              answer('Categorical', correct = T),
-              message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
-              numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an infinite range of values if measurement was precise enough'),
-     question('Which of the following "Measure" values used by SPSS reflects categorical data?',
-              answer('Nominal', correct = T),
-              answer('Ordinal', correct = T),
-              answer('Scale'),
-              message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
-              variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
-              but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'))
-```
++ [ ] $\ $ Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
++ [ ] $\ $ Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -818,3 +786,42 @@ ggplot(dat, aes(percC)) + geom_histogram(fill=baseColor, color = accent3, binwid
 
 </details>
 </div>
+
+
+## Test Your Understanding
+
+These questions will allow you to check your understanding of the this week's material. They are not marked, but you will receive feedback after you submit an answer. You can retry the questions as many times as you'd like by clicking 'Start Over' under the tabs to the left. Please note that if you click 'Start Over', answers to all questions will be reset. 
+
+```{r weeklyQuiz, echo = FALSE}
+quiz(caption = '',
+     question("What kind of file is 'Week1LabData' (the data you downloaded from the course Learn page)?",
+              answer("SPSS datafile"),
+              answer("comma separated values file", correct = T),
+              answer("Excel file"),
+              answer("Word file"),
+              message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
+     question('If you were to restart SPSS, you would open "Week1LabData_SPSS" (the file you created as part of Task 1) using "File>Import".',
+              answer('True'),
+              answer('False', correct = T),
+              message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.'),
+     question("Which type of data is C?",
+              answer("Categorical"),
+              answer("Continuous", correct = T),
+              random_answer_order = T),
+     question("Which type of data is Gender?",
+              answer("Continuous"),
+              answer('Categorical', correct = T)),
+     question("Which type of data is ClassTime?",
+              answer("Continuous"),
+              answer('Categorical', correct = T),
+              message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
+              numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an infinite range of values if measurement was precise enough'),
+     question('Which of the following "Measure" values used by SPSS reflects categorical data? Please select all that apply.',
+              answer('Nominal', correct = T),
+              answer('Ordinal', correct = T),
+              answer('Scale'),
+              message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
+              variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
+              but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).')
+     )
+```
