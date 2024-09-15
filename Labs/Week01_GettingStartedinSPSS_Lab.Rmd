@@ -113,7 +113,7 @@ output$kurtPlot <- renderPlot({
 
 During today's lab, you'll apply some of the concepts discussed during this week's lecture and familiarise yourself with SPSS. Each lab consists of several tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 4 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
+Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 3 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
 
 They collected pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
 
@@ -123,7 +123,7 @@ datInfo <- data.frame(VariableName=colnames(dat),
                       Description=c('Participant ID', 'Levels: RA; Student', 'Age in years', 
                       'Time of class in which assessment was given', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
                       'Assessment Version A Raw Scores; min = 0, max = 50', 'Assessment Version B Raw Scores; min = 0, max = 50', 
-                      'Assessment Version C Raw Scores; min = 0, max = 50', 'Assessment Version D Raw Scores; min = 0, max = 50'))
+                      'Assessment Version C Raw Scores; min = 0, max = 50'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -288,7 +288,9 @@ To change the current values into the new values, you'll need to specify both th
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG')
 ```
 
-Click 'Continue', then 'OK'. The variable `Session` will appear in your Data View window. To change the labels of this variable, navigate to  **Variable View** and click the corresponding *Values* cell. Add a value of 0 and set the Label to 'AM'. Add a label of 'PM' to the value of 1. Click 'OK'. You might also want to change the decimal places under the *Decimals* column to 0.
+Click 'Continue', then 'OK'. The variable `Session` will appear in your Data View window. 
+
+To change the labels of this variable, navigate to  **Variable View** and click the corresponding *Values* cell. Add a value of 0 and set the Label to 'AM'. Add a label of 'PM' to the value of 1. Click 'OK'. You might also want to change the decimal places under the *Decimals* column to 0.
 
 </div>
 </details>
@@ -300,8 +302,8 @@ Click 'Continue', then 'OK'. The variable `Session` will appear in your Data Vie
 Other times, you'll need to use your variables to compute a new value or variable (e.g., a composite score from subscores). SPSS allows you to perform a wide range of calculations on your variables. In this case, you have raw scores for each assessment, and you need to compute the percentage. 
 
 ### Your Task 
-+ [ ] $\ $ Use each of the score variables (`A`, `B`, `C`, and `D`) to calculate 4 new variables that reflects the raw score as a percentage. 
-+ [ ] $\ $ Name the new variables `Apercent`, `Bpercent`, `Cpercent` and `Dpercent`
++ [ ] $\ $ Use each of the score variables (`A`, `B`, and `C`) to calculate 3 new variables that reflects the raw score as a percentage. 
++ [ ] $\ $ Name the new variables `Apercent`, `Bpercent`, and `Cpercent`
 
 The maximum possible raw score for each assessment is 50, so you'll need to use the following equation to convert the raw scores to percentages:
 
@@ -365,9 +367,9 @@ To filter your data, navigate to *Data > Select Cases*. Click 'If condition is s
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_6a.PNG')
 ```
 
-Make sure to use quotes around 'Student'. This is case-specific, so make sure you type 'Student' and not 'student'. Click 'Continue', then 'OK'. A new filtering variable will appear, and slashes will appear over the row numbers of the 'RA' variables. As long as the filtering variable exists, they will not be included in any of the steps you take going forward.
+Make sure to use quotes around 'Student'. This is case-specific, so make sure you type 'Student' and not 'student'. Click 'Continue', then 'OK'. A new filtering variable (`filter_$`) will appear, and slashes will appear over the row numbers of the 'RA' variables. As long as the filtering variable exists, they will not be included in any of the steps you take going forward.
 
-If you'd like to remove the filter, simply delete the filter variable.
+As the remaining lab tasks for today require you to use this filtered dataset, you should leave the filter in place. However, if you'd ever like to remove a filter, simply delete the filter variable. 
 
 </div>
 </details>
@@ -384,7 +386,7 @@ Before doing any sort of analysis, it's important to first check the data to mak
 + Are there any values outside the expected range?
 
 ### Your Task 
-+ [ ] $\ $ Check the frequency of `Gender`. Make sure to display a frequency table.
++ [ ] $\ $ Check the frequency of `Gender` and `Session`. Make sure to display frequency tables.
 
 Are any of these groups limited in size? If so, consider how this might affect your ability to make generalisable claims about this group.
 
@@ -406,6 +408,8 @@ Select *Analyze>Descriptives>Frequencies*. Select Gender and use the arrow to mo
 ```{r, echo = F, out.width='65%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_7a.PNG')
 ```
+
+Notice that if you've set labels properly in previous steps, you should see the names (e.g., 'AM'/'PM') listed in the frequency tables, rather than numeric values. If you have different values in your frequency tables, check that you've properly filtered the data.
 
 </details>
 </div>
@@ -436,8 +440,8 @@ ggplot(freqDat, aes(Histogram)) + geom_histogram(fill = baseColor, color=accent3
 
 
 ### Your Task 
-+ [ ] $\ $ Produce plots to visualise the distribution of each of your variables. 
-+ [ ] $\ $ Make sure to use the proper plot type given the type of variables you have.
++ [ ] $\ $ Produce plots to visualise the distribution of the variables `Gender`, `Session`, `Age`, `Apercent`, `Bpercent`, and `Cpercent`
++ [ ] $\ $ Make sure to use the proper plot type given the variable type.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
@@ -452,27 +456,19 @@ A histogram will allow you to visualise the distribution of continuous variables
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 <B> For Categorical Variables: </B>
 
-Select *Graphs>Bar*. Select the chart type you'd prefer. When you're checking the distribution of a single variable, you would use a 'Simple' plot.  Use the arrow to add the variable you wish to view to the 'Category Axis' box. When looking at distributions of a categorical variable, you are plotting the total number of participants of each group, so you can leave the 'Bars Represent' portion at the default setting.
-
-```{r, echo = F, out.width='55%', fig.align='center'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8a.png')
-```
+Select *Analyze>Descriptive Statistics>Frequencies*. Add your categorical variables to the 'Variable(s)' box, uncheck 'Display frequency tables', and then click 'Charts...'. Select 'Bar charts'. Note at the bottom that you can either plot the raw frequencies or percentages. Here, you can leave 'Frequencies' checked. Click 'Continue', then 'OK'.  
 
 When checking the distribution of categorical variables, check whether all groups are well represented. Consider the questions from the <B>[Frequency Data](#check-frequency-data)</B> portion of this lab.
 
 
 <B> For Continuous Variables: </B>
 
+Select *Analyze>Descriptive Statistics>Frequencies*. Add your categorical variables to the 'Variable(s)' box, uncheck 'Display frequency tables', and then click 'Charts...'. Select 'Histograms', then tick 'Show normal curve on histogram.' Click 'Continue', then 'OK'. 
 
-Select *Graphs>Histogram*. Use the arrow to add the variable you wish to view to the 'Variable' box.
+Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common. The bars should generally fall along the normal curve.
 
-```{r, echo = F, out.width='55%', fig.align='center'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_8b.png')
-```
+**Note:** You can also produce bar plots using *Graphs>Bar*, selecting 'Simple', and adding the variable you wish to visualise to the 'Category Axis' box. You can produce histograms using *Graphs>Histogram* and adding the variable you wish to visualise to the 'Variable' box. 
 
-Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common.
-
-**Note:** You can also produce both of these plots using *Analyze>Descriptive Statistics>Frequencies* and selecting the Charts option.
 </details>
 </div>
 </br>
@@ -482,13 +478,13 @@ Have a look at the output. If a variable is normally distributed, most observati
 When preparing to perform analysis, one of the most important steps is to check the descriptive statistics of your variables. These values are useful summary metrics and may provide insight into patterns in your data.
 
 ### Your Task 
-+ [ ] $\ $ Check the measures of central tendency discussed in class. Make sure to use the proper central tendency measures given the variable type.
-+ [ ] $\ $ For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
++ [ ] $\ $ Check the measures of central tendency discussed in class for `Gender`, `Session`, `Age`, `Apercent`, `Bpercent`, and `Cpercent`. Make sure to use the proper central tendency measures given the variable type.
++ [ ] $\ $ For all of the above continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
 
-Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives* is not what you need.
+You'll be using *Analyze>Descriptive Statistics>Frequencies* again.
 
 </details>
 </div>
@@ -498,7 +494,7 @@ Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives*
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', and 'Mode', as needed.
 
-Note that `Gender`, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
+Note that `Gender` and `Session`, as categorical variables, should only be described using Mode. The other variables can be described using all 3 measures.
 
 For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
@@ -514,103 +510,6 @@ Data will be reported in table format in the output. To get the IQR, you'll need
 </br>
 
 
-
-## Identify Normal Distribution Thresholds 
-
-A normal distribution is a unimodal distribution of data in which observations fall symmetrically around the mean. Use the sliders to adjust the mean and standard deviation of the data to explore their effects on the shape of the distribution.   
-
-```{r, echo = F}
-
-fluidRow(column(4, 
-  sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
-  sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
-  column(8, plotOutput('distPlot')))
-
-tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
-
-
-```
-
-Remember that a perfectly normal distribution has the following criteria:
-
-+ 68% of scores fall within 1 SD of the mean
-+ 95% of scores fall within 1.96 SD of the mean
-+ 99.75% of scores fall within 3 SD of the mean
-
-### Your Task 
-+ [ ] $\ $ Using these criteria, answer the following questions. You may need to use a calculator.
-
-```{r q8, echo = FALSE}
-quiz(caption = '',
-     question_numeric('If scores on Assessment A were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 95% of scores would fall. What is the upper threshold value? Please round your answer to 2 decimal places.',
-              answer(48.28, correct = T),
-              tolerance = .02,
-              message = 'See the solution below'),
-     question_numeric('If scores on Assessment D were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 99.75% of scores would fall. What is the lower threshold value? Please round your answer to 2 decimal places.',
-              answer(75.51, correct=T),
-              tolerance = .02,
-              message = 'See the solution below'),
-     question('Imagine the age variable is perfectly normally distributed. What is the age range within which 68% of the sample falls?',
-              answer('[15.30, 30.78]', correct=T),
-              answer('[7.87, 38.21]'),
-              answer('[19.00, 24.50]'),
-              answer('[7.56, 38.52]'),
-              random_answer_order = T,
-              message = 'See the solution below')
-)
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-You'll need to get two values from SPSS for each variable to perform these calculations. You may find it helpful to review the normal distribution material from the <span style = "color:#9AD079"><B><a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">lecture</a></span></B>. 
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
-
-You'll need to extract the mean and standard deviation for each variable from SPSS:
-
-```{r, echo = F}
-descDat <- data.frame(Variable=c('A', 'D', 'Age'), Mean = c(39.09, 81.96, 23.04),SD=c(4.69, 2.15, 7.74))
-
-descDat %>%
-  kbl(table.attr = "style = \"color: white;\"") %>%
-  kable_styling(full_width = F) %>%
-  row_spec(0, bold = T, color='white', font_size = 18, align='l') %>%
-  column_spec(1, bold = T)
-```
-
-
-We know that a normal distribution is symmetrical with the mean as its center point, so to get these thresholds, we can use the following equations:</span>
-
-**68%:** $\bar{x}\ \pm\ 1\times s$
-
-**95%:** $\bar{x}\ \pm\ 1.96\times s$
-
-**99.75%:** $\bar{x}\ \pm\ 3\times s$
-
-
-So, for example, to get the upper 95% threshold for Assessment A, you would use the following equation:
-
-$$39.09+1.96\times 4.69 = `r round(39.09+(1.96*4.69),2)`$$
-
-To get the lower 99.75% threshold, as in the second question, you just subtract instead of add:
-
-$$81.96-3\times 2.15 = `r round(81.96-(3*2.15),2)`$$
-
-To get the range of data in which 68% of observations fall, as in the third question, you'll do both:
-
-$$23.04-1\times 7.74 = `r round(23.04-(1*7.74),2)`$$
-
-$$23.04+1\times 7.74 = `r round(23.04+(1*7.74),2)`$$
-
-</details>
-</div>
-</br>
 
 
 ## Report and Interpret
@@ -638,7 +537,7 @@ Make sure to use APA style. Once you're finished, compare your paragraph to the 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-For this analysis, we examined results from 4 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the assessments was presented to students in each of the instructor's 4 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 24 male, 19 female, and 2 nonbinary participants).
+For this analysis, we examined results from 3 different assessments in an attempt to identify the one that most accurately captures the range of student abilities. Each of the assessments was presented to students in each of the instructor's 4 courses, providing a total sample of 45 students between ages 17 and 52 ($M$ = 23.04, $SD$ = 7.74; 24 male, 19 female, and 2 nonbinary participants).
 
 Student performance varied widely between the assessments (see Table 1).
 
@@ -651,14 +550,13 @@ Student performance varied widely between the assessments (see Table 1).
 dat$percA <- (dat$A/50)*100
 dat$percB <- (dat$B/50)*100
 dat$percC <- (dat$C/50)*100
-dat$percD <- (dat$D/50)*100
 
 dat <- dat[dat$Role=='Student',]
 
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.png')
 
 ```
-
+*Note.* This table reflects the percentages, rather than the raw scores on each assessment.
 
 As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Most students scored close to the maximum possible score, suggesting that there is a ceiling effect (see Figure 1).
 
@@ -681,31 +579,12 @@ ggplot(dat, aes(percB)) + geom_histogram(fill=baseColor, color = accent3, binwid
 *Note.* You cannot produce this figure with SPSS. This is just here to show you an example of an appropriate way to report your results with an APA-style figure.
 </br>
 
-Assessments D's average was still too high, and the standard deviation of scores was quite small, indicating that it may not be accurately capturing the variability in student comprehension (see Figure 2).
+
+Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 2). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
 
 </br>
 
 **Figure 2**
-
-*Assessment D Scores*
-
-```{r, echo = F, message = F, warning=FALSE, fig.align='center', fig.height=3, fig.width=5}
-ggplot(dat, aes(percD)) + geom_histogram(fill=baseColor, color = accent3, binwidth = 3) +
-  labs(x='Score', y='Count') +
-  scale_x_continuous(breaks=seq(0, 100, 10), limits = c(0,100)) +
-  theme(axis.title = element_text(size = 16, face = 'bold'),
-        axis.text = element_text(size = 14),
-        panel.background = element_blank(),
-        axis.line = element_line())
-```
-
-</br>
-
-Assessment C had a reasonable average, as well as higher variability in the range of scores (see Figure 3). This indicates that, of these assessments, Assessment C may best capture the range of student abilities within the course.
-
-</br>
-
-**Figure 3**
 
 *Assessment C Scores*
 
@@ -796,14 +675,19 @@ quiz(caption = '',
               answer('Mode', correct = T),
               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-     question_numeric("What is the average score on Assessment A?",
-              answer(39.09, correct=T)),
+     question_numeric("What is the average percentage on Assessment A?",
+              answer(39.09, correct=T),
+              tolerance = .01,
+              message = 'The mean score on Assessment A is 39.09.'),
      question_numeric("What is the most common age in this sample?",
-              answer(19, correct=T)),
-     question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-              answer(2.15, correct=T)),
-     question_numeric("What is the IQR for Assessment B?",
+              answer(19, correct=T),
+              message = 'The most common age in this sample is 19'),
+     question_numeric("What is the standard deviation of percentages on Assessment C? Please report your answer to two decimal places.",
+              answer(9.44, correct=T),
+              tolerance = .01,
+              message = 'The standard deviation of percentage scores on Assessment C is 9.44'),
+     question_numeric("What is the IQR for percentages on Assessment B?",
               answer(4, correct=T),
-              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile.")
+              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile (94) from the 75th percentile (98). This gives an IQR of 4.")
      )
 ```

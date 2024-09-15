@@ -5,6 +5,103 @@ date: "2024-08-26"
 output: html_document
 ---
 
+## Identify Normal Distribution Thresholds 
+
+A normal distribution is a unimodal distribution of data in which observations fall symmetrically around the mean. Use the sliders to adjust the mean and standard deviation of the data to explore their effects on the shape of the distribution.   
+
+```{r, echo = F}
+
+fluidRow(column(4, 
+  sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
+  sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
+  column(8, plotOutput('distPlot')))
+
+tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+
+
+```
+
+Remember that a perfectly normal distribution has the following criteria:
+
++ 68% of scores fall within 1 SD of the mean
++ 95% of scores fall within 1.96 SD of the mean
++ 99.75% of scores fall within 3 SD of the mean
+
+### Your Task 
++ [ ] $\ $ Using these criteria, answer the following questions. You may need to use a calculator.
+
+```{r q8, echo = FALSE}
+quiz(caption = '',
+     question_numeric('If scores on Assessment A were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 95% of scores would fall. What is the upper threshold value? Please round your answer to 2 decimal places.',
+              answer(48.28, correct = T),
+              tolerance = .02,
+              message = 'See the solution below'),
+     question_numeric('If scores on Assessment D were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 99.75% of scores would fall. What is the lower threshold value? Please round your answer to 2 decimal places.',
+              answer(75.51, correct=T),
+              tolerance = .02,
+              message = 'See the solution below'),
+     question('Imagine the age variable is perfectly normally distributed. What is the age range within which 68% of the sample falls?',
+              answer('[15.30, 30.78]', correct=T),
+              answer('[7.87, 38.21]'),
+              answer('[19.00, 24.50]'),
+              answer('[7.56, 38.52]'),
+              random_answer_order = T,
+              message = 'See the solution below')
+)
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+You'll need to get two values from SPSS for each variable to perform these calculations. You may find it helpful to review the normal distribution material from the <span style = "color:#9AD079"><B><a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">lecture</a></span></B>. 
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+You'll need to extract the mean and standard deviation for each variable from SPSS:
+
+```{r, echo = F}
+descDat <- data.frame(Variable=c('A', 'D', 'Age'), Mean = c(39.09, 81.96, 23.04),SD=c(4.69, 2.15, 7.74))
+
+descDat %>%
+  kbl(table.attr = "style = \"color: white;\"") %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color='white', font_size = 18, align='l') %>%
+  column_spec(1, bold = T)
+```
+
+
+We know that a normal distribution is symmetrical with the mean as its center point, so to get these thresholds, we can use the following equations:</span>
+
+**68%:** $\bar{x}\ \pm\ 1\times s$
+
+**95%:** $\bar{x}\ \pm\ 1.96\times s$
+
+**99.75%:** $\bar{x}\ \pm\ 3\times s$
+
+
+So, for example, to get the upper 95% threshold for Assessment A, you would use the following equation:
+
+$$39.09+1.96\times 4.69 = `r round(39.09+(1.96*4.69),2)`$$
+
+To get the lower 99.75% threshold, as in the second question, you just subtract instead of add:
+
+$$81.96-3\times 2.15 = `r round(81.96-(3*2.15),2)`$$
+
+To get the range of data in which 68% of observations fall, as in the third question, you'll do both:
+
+$$23.04-1\times 7.74 = `r round(23.04-(1*7.74),2)`$$
+
+$$23.04+1\times 7.74 = `r round(23.04+(1*7.74),2)`$$
+
+</details>
+</div>
+</br>
+
 
 ## Evaluating Normality
 
