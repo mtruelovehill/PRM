@@ -1100,6 +1100,8 @@ Adjusting the $SD$ changes the shape of the curve
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
@@ -1119,6 +1121,8 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = accent1, xlim=c(-1, 
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
@@ -1139,6 +1143,8 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = baseColor, xlim=c(-1
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 .pull-left[
 **Characteristics of a normal distribution**
@@ -1160,6 +1166,8 @@ normDist + geom_area(stat = 'function', fun = dnorm, fill = accent2, xlim=c(-3, 
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
@@ -1187,6 +1195,8 @@ waisDist +
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
@@ -1210,6 +1220,8 @@ waisDist +
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
@@ -1236,6 +1248,7 @@ waisDist +
 ]
 
 ---
+exclude: true
 
 ## The Normal Distribution
 
@@ -1263,6 +1276,8 @@ waisDist +
 ]
 
 ---
+exclude: true
+
 ## The Normal Distribution
 
 > **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
@@ -1296,6 +1311,8 @@ waisDist +
 ]
 
 ---
+exclude: true
+
 ## The Standard Normal Distribution
 
 .pull-left[
