@@ -545,7 +545,7 @@ Student performance varied widely between the assessments (see Table 1).
 
 *Assessment Scores - Descriptive Data*
 
-```{r, echo = F, out.width='70%'}
+```{r, echo = F, out.width='70%', fig.align='center'}
 
 dat$percA <- (dat$A/50)*100
 dat$percB <- (dat$B/50)*100
@@ -553,9 +553,11 @@ dat$percC <- (dat$C/50)*100
 
 dat <- dat[dat$Role=='Student',]
 
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_10a.PNG')
 
 ```
+
+
 *Note.* This table reflects the percentages, rather than the raw scores on each assessment.
 
 As the average score on Assessment A corresponded to a failing mark, this assessment is not recommended. Conversely, the average score on Assessment B was quite high. Most students scored close to the maximum possible score, suggesting that there is a ceiling effect (see Figure 1).
