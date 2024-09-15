@@ -150,11 +150,8 @@ In this course, you'll be using SPSS to perform the majority of your tasks. You 
 ### Your Tasks
 
 <ul>
-    <li> <dt> <input type="checkbox"> Import 'Week1LabData.csv' into SPSS. </dt>
-          <dd> Black, Strong <dd>
-    </li>
-    <li> <dt> <input type="checkbox"> Tea </dt>
-          <dd> Exotic </dd>
+    <li> <dt> <input type="checkbox"> Import 'Week1LabData.csv' into SPSS. </dt> </li>
+    <li> <dt> <input type="checkbox"> Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. </dt> </li>
 </ul>
 
 
