@@ -149,14 +149,8 @@ In this course, you'll be using SPSS to perform the majority of your tasks. You 
 
 ### Your Tasks
 
-<ul>
-    <li> <dt> <input type="checkbox"> Import 'Week1LabData.csv' into SPSS. </dt> </li>
-    <li> <dt> <input type="checkbox"> Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. </dt> </li>
-</ul>
-
-
 + [ ] $\ $ Import 'Week1LabData.csv' into SPSS. 
-+ [ ] $\ $ Once you have imported the file, save it as 'Week1LabData_SPSS' in the folder of your choice on your device. 
++ [ ] $\ $ Once you have imported the file, save it as 'Week1LabData_SPSS' to your device. 
 + [ ] $\ $ Note the difference in filetype between 'Week1LabData' and 'Week1LabData_SPSS'. 
 
 <div class="container">
@@ -197,8 +191,11 @@ The **Variable View** tab allows you to make adjustments to your variable charac
 Additionally, you can add labels to your variable levels in **Variable View**. This is useful when nominal data are coded numerically (e.g., 'No' = 0; 'Yes' = 1). When you add labels, you can easily see what the values of nominal variables represent. It is important to always include a coding key, so that anyone who works with the data will know how to interpret the numeric labels used and can make appropriate interpretations. 
 
 ### Your Tasks
-+ [ ] $\ $ Have a look at your data - were all variables imported into SPSS as the correct measurement type? If not, change the variable's measure so that it appropriately describes the data. 
-+ [ ] $\ $ Add a key to the Gender variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
+Within **Variable View:**
+
++ [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type. 
++ [ ] $\ $ If they were not, change the variable's measure so that it appropriately describes the data. 
++ [ ] $\ $ Add a key to the `Gender` variable so that 1 = 'Male', 2 = 'Female', and 3 = 'Nonbinary'. 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -262,12 +259,13 @@ Click 'OK'. If you've done this properly, you'll see that each numeric value is 
 There will be times that you would like to transform a pre-existing variable in some way. For example, sometimes you need to reverse code answers on an assessment (e.g., Likert-scale values of 1 should be swapped to 5, and vice versa). In this example, imagine you want to create a variable that indicates whether someone is in a morning or afternoon session.  
 
 ### Your Task 
-Transform the `ClassTime` variable to create a new variable titled `Session`. The `Session` variable should have values of 'Morning' (students in AM classes) and 'Afternoon' (students in PM classes). 
++ [ ] $\ $ Transform the `ClassTime` variable to create a new variable titled `Session`, which has values of 0 for students in AM classes and 1 for students in PM classes. 
++ [ ] $\ $ Update the labels of the new `Session` variable, so that 0 = 'AM' and 1 = 'PM'
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
 
-You don't need to do this by hand. You also won't need the **Variable View** tab.
+You'll need to use the *Transform* tab for this. You can change the labels as you did with the Gender variable in the previous task.
 
 </details>
 </div>
@@ -284,13 +282,13 @@ include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4a.PNG')
 ```
 
 
-To change the current values into the new values, make sure the 'Output variables are strings' box is checked so that you can add character data as a label (rather than just numeric). In the 'Old Value' box, type '9' under 'Value'. In the 'New Value' box, type 'Morning' in the 'Value' box. Then click the 'Add' button next to the 'Old --> New' box. You should see your old and new values appear in the box. Continue doing this for the rest of your class times. Once you're finished, it should look like this if you've done it properly:
+To change the current values into the new values, you'll need to specify both the value in the original column and the desired label. In the 'Old Value' box, type '9' under 'Value'. In the 'New Value' box, type '0' in the 'Value' box. Then click the 'Add' button next to the 'Old --> New' box. You should see your old and new values appear in the box. Continue doing this for the rest of your class times. Once you're finished, it should look like this if you've done it properly:
 
 ```{r, echo = F, out.width='75%', fig.align='center'}
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG')
 ```
 
-Because 'Afternoon' has 9 letters, you'll need to switch the value in the 'Width' box to 9, otherwise it will be cut off. Click 'Continue', then 'OK'. The variable `Session` will appear in your Data View window. 
+Click 'Continue', then 'OK'. The variable `Session` will appear in your Data View window. To change the labels of this variable, navigate to  **Variable View** and click the corresponding *Values* cell. Add a value of 0 and set the Label to 'AM'. Add a label of 'PM' to the value of 1. Click 'OK'. You might also want to change the decimal places under the *Decimals* column to 0.
 
 </div>
 </details>
@@ -302,12 +300,20 @@ Because 'Afternoon' has 9 letters, you'll need to switch the value in the 'Width
 Other times, you'll need to use your variables to compute a new value or variable (e.g., a composite score from subscores). SPSS allows you to perform a wide range of calculations on your variables. In this case, you have raw scores for each assessment, and you need to compute the percentage. 
 
 ### Your Task 
-Use each of the raw scores to calculate 4 new variables that reflects their mark as a percentage.  
++ [ ] $\ $ Use each of the score variables (`A`, `B`, `C`, and `D`) to calculate 4 new variables that reflects the raw score as a percentage. 
++ [ ] $\ $ Name the new variables `Apercent`, `Bpercent`, `Cpercent` and `Dpercent`
+
+The maximum possible raw score for each assessment is 50, so you'll need to use the following equation to convert the raw scores to percentages:
+
+$$(x/50)\times 100$$
+
+where $x$ reflects the raw score.
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
 
-The maximum possible raw score for each assessment is 50.
+Look under the *Transform* tab to find the function you need.
 
 </details>
 </div>
@@ -323,7 +329,7 @@ To compute a new value from a current column, navigate to *Transform > Compute V
 include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_5a.PNG')
 ```
 
-Click 'OK', and you should have a new column that shows the score for A as a percentage. Repeat this step for the remaining assessments.
+Click 'OK', and you should have a new column that shows the score for Assessment A as a percentage. Repeat this step for the remaining raw score variables.
 
 
 </div>
@@ -333,15 +339,17 @@ Click 'OK', and you should have a new column that shows the score for A as a per
 
 ## Filtering Data
 
-Sometimes, you may only want to analyse a subset of your dataset. In this case, the instructor is only interested in the test values from the students, as the RAs were only taking the assessment to check for typos, and their work was not reflective of students taking the course. 
+Sometimes, you may only want to analyse a subset of your dataset. In this case, the instructor is only interested in the student data, as the RAs were only taking the assessment to check for typos and their scores were not reflective of students on the course. 
 
 ### Your Task 
-Filter out the RA data, so that only the student data will be used for additional analysis. 
++ [ ] $\ $ Filter out the RA data, so that only the student data will be used for additional analysis. 
+
++ [ ] $\ $ Note that all remaining analyses should be completed on the filtered data.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
 
-You don't need to delete anything from the dataset.
+You don't need to delete anything from the dataset. You can find the function you're looking for under the *Data* tab.
 
 </details>
 </div>
@@ -376,23 +384,9 @@ Before doing any sort of analysis, it's important to first check the data to mak
 + Are there any values outside the expected range?
 
 ### Your Task 
-Check the frequency of the Gender variable. Make sure to display a frequency table.
++ [ ] $\ $ Check the frequency of `Gender`. Make sure to display a frequency table.
 
-Are any of these groups limited in size? If so, how might this affect your ability to make generalisable claims about this group?
-
-```{r q4, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question("At least one of the groups is limited in size compared to the others",
-              answer("True", correct = T),
-              answer("False"),
-              message = 'The nonbinary group is much smaller than the other two measured groups.'),
-     question_numeric("How many total datapoints do you have for the gender variable?",
-              answer(45, correct=T)),
-     question_numeric("What percentage of participants are female?",
-              answer(42.2, correct=T)),
-     question_numeric('How many nonbinary participants are in your sample?',
-              answer(2, correct=T)))
-```
+Are any of these groups limited in size? If so, consider how this might affect your ability to make generalisable claims about this group.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -442,32 +436,8 @@ ggplot(freqDat, aes(Histogram)) + geom_histogram(fill = baseColor, color=accent3
 
 
 ### Your Task 
-Produce plots to visualise the distribution of each of your variables. Make sure to use the proper plot type given the type of variables you have.
-
-```{r q5, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question('Which of the following is appropriate for visualising the frequency distribution of continuous variables?',
-              answer('Bar Chart'),
-              answer('Histogram', correct = T),
-              answer('Both bar charts & histograms can be used for this.'),
-              message = 'Histograms should be used to visualise the frequency distribution of a continuous variable. Bar charts should be used to visualise the frequency distribution of a categorical variable.'),
-     question("What does the x-axis of a histogram represent?",
-              answer("The values of the continuous variable being inspected", correct = T),
-              answer("The frequency of each value of the variable being inspected"),
-              answer('The levels of a categorical variable being inspected'),
-              answer('The normal distribution associated with the variable being inspected'),
-              random_answer_order = T),
-     question("What does the y-axis of a histogram represent?",
-              answer("The values of the continuous variable being inspected"),
-              answer("The frequency of each value of the variable being inspected", correct = T),
-              answer('The levels of a categorical variable being inspected'),
-              answer('The normal distribution associated with the variable being inspected'),
-              random_answer_order = T,
-              message = 'Histograms should be used with continuous data. The x-axis is the horizontal axis and reflects the values of the variable being inspected. The y-axis reflects the frequency, of each value (or, more often, a range of values) of the plotted variable. The normal curve associated with a specific variable can be plotted as a line overlaying the histogram.'),
-     question_numeric("Approximately how many students scored between 40 and 50 on Assessment A?",
-              answer(18, correct=T),
-              message='You can find this answer by checking the histogram for A. You could also check the frequency table.'))
-```
++ [ ] $\ $ Produce plots to visualise the distribution of each of your variables. 
++ [ ] $\ $ Make sure to use the proper plot type given the type of variables you have.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
@@ -512,39 +482,8 @@ Have a look at the output. If a variable is normally distributed, most observati
 When preparing to perform analysis, one of the most important steps is to check the descriptive statistics of your variables. These values are useful summary metrics and may provide insight into patterns in your data.
 
 ### Your Task 
-Check the measures of central tendency discussed in class. Make sure to use the proper central tendency measures given the variable type.
-
-+ Are the measures of central tendency similar within a variable?
-+ If not, what might this imply?
-
-For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
-
-
-```{r q6, echo = FALSE}
-quiz(caption = 'Test Your Understanding',
-     question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-              answer("Mean", correct = T),
-              answer("Median", correct = T),
-              answer('Mode', correct = T),
-              message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-              mean, as it includes information from each observation.'),
-     question("Which of the following central tendency measures could be used to describe gender?",
-              answer("Mean"),
-              answer("Median"),
-              answer('Mode', correct = T),
-              message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-              the mode is the only measure of central tendency that is appropriate to describe this variable'),
-     question_numeric("What is the average score on Assessment A?",
-              answer(39.09, correct=T)),
-     question_numeric("What is the most common age in this sample?",
-              answer(19, correct=T)),
-     question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-              answer(2.15, correct=T)),
-     question_numeric("What is the IQR for Assessment B?",
-              answer(4, correct=T),
-              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile.")
-)
-```
++ [ ] $\ $ Check the measures of central tendency discussed in class. Make sure to use the proper central tendency measures given the variable type.
++ [ ] $\ $ For all continuous variables, check the measures of variance described in class. These include the maximum, minimum, range, interquartile range, and standard deviation.
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
@@ -559,7 +498,7 @@ Although this is descriptive data, *Analyze>Descriptive Statistics>Descriptives*
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', and 'Mode', as needed.
 
-Note that Gender, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
+Note that `Gender`, as a categorical variable, should only be described using Mode. The other variables can be described using all 3 measures.
 
 For measures of variance, click 'Statistics' and select the options needed. For IQR, you'll need to select 'Quartiles':
 
@@ -600,7 +539,7 @@ Remember that a perfectly normal distribution has the following criteria:
 + 99.75% of scores fall within 3 SD of the mean
 
 ### Your Task 
-Using these criteria, answer the following questions. You may need to use a calculator.
++ [ ] $\ $ Using these criteria, answer the following questions. You may need to use a calculator.
 
 ```{r q8, echo = FALSE}
 quiz(caption = '',
@@ -624,8 +563,7 @@ quiz(caption = '',
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-You'll need to get two values from SPSS for each variable to perform these calculations. You may find it helpful to review the normal distribution material from the <span style = "color:#9AD079"> <B>[lecture](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1)</span></B>. 
+You'll need to get two values from SPSS for each variable to perform these calculations. You may find it helpful to review the normal distribution material from the <span style = "color:#9AD079"><B><a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">lecture</a></span></B>. 
 
 </details>
 </div>
@@ -819,6 +757,53 @@ quiz(caption = '',
               answer('Scale'),
               message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
               variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
-              but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).')
+              but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'),
+     question("At least one of the Gender groups is limited in size compared to the others",
+              answer("True", correct = T),
+              answer("False"),
+              message = 'The nonbinary group is much smaller than the other two measured groups.'),
+     question_numeric("How many total datapoints do you have for the gender variable?",
+              answer(45, correct=T)),
+     question_numeric("What percentage of participants are female?",
+              answer(42.2, correct=T)),
+     question('Which of the following is appropriate for visualising the frequency distribution of continuous variables?',
+              answer('Bar Chart'),
+              answer('Histogram', correct = T),
+              answer('Both bar charts & histograms can be used for this.'),
+              message = 'Histograms should be used to visualise the frequency distribution of a continuous variable. Bar charts should be used to visualise the frequency distribution of a categorical variable.'),
+     question("What does the x-axis of a histogram represent?",
+              answer("The values of the continuous variable being inspected", correct = T),
+              answer("The frequency of each value of the variable being inspected"),
+              answer('The levels of a categorical variable being inspected'),
+              answer('The normal distribution associated with the variable being inspected'),
+              random_answer_order = T),
+     question("What does the y-axis of a histogram represent?",
+              answer("The values of the continuous variable being inspected"),
+              answer("The frequency of each value of the variable being inspected", correct = T),
+              answer('The levels of a categorical variable being inspected'),
+              answer('The normal distribution associated with the variable being inspected'),
+              random_answer_order = T,
+              message = 'Histograms should be used with continuous data. The x-axis is the horizontal axis and reflects the values of the variable being inspected. The y-axis reflects the frequency, of each value (or, more often, a range of values) of the plotted variable. The normal curve associated with a specific variable can be plotted as a line overlaying the histogram.'),
+     question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
+              answer("Mean", correct = T),
+              answer("Median", correct = T),
+              answer('Mode', correct = T),
+              message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
+              mean, as it includes information from each observation.'),
+     question("Which of the following central tendency measures could be used to describe gender?",
+              answer("Mean"),
+              answer("Median"),
+              answer('Mode', correct = T),
+              message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
+              the mode is the only measure of central tendency that is appropriate to describe this variable'),
+     question_numeric("What is the average score on Assessment A?",
+              answer(39.09, correct=T)),
+     question_numeric("What is the most common age in this sample?",
+              answer(19, correct=T)),
+     question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
+              answer(2.15, correct=T)),
+     question_numeric("What is the IQR for Assessment B?",
+              answer(4, correct=T),
+              message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile.")
      )
 ```

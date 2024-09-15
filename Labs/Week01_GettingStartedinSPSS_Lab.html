@@ -233,25 +233,12 @@ here</a></B> or checking this week’s folder on Learn (requires
 university login).</p>
 <div id="section-your-tasks" class="section level3">
 <h3>Your Tasks</h3>
-<ul>
-<li>
-<dt>
-<input type="checkbox"> Import ‘Week1LabData.csv’ into SPSS.
-</dt>
-</li>
-<li>
-<dt>
-<input type="checkbox"> Once you have imported the file, save it as
-‘Week1LabData_SPSS’ in the folder of your choice on your device.
-</dt>
-</li>
-</ul>
 <ul class="task-list">
 <li><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Import ‘Week1LabData.csv’ into SPSS.</li>
 <li><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Once you have imported the file, save it as ‘Week1LabData_SPSS’ in the
-folder of your choice on your device.</li>
+Once you have imported the file, save it as ‘Week1LabData_SPSS’ to your
+device.</li>
 <li><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Note the difference in filetype between ‘Week1LabData’ and
 ‘Week1LabData_SPSS’.</li>
@@ -308,14 +295,17 @@ the data will know how to interpret the numeric labels used and can make
 appropriate interpretations.</p>
 <div id="section-your-tasks-1" class="section level3">
 <h3>Your Tasks</h3>
+<p>Within <strong>Variable View:</strong></p>
 <ul class="task-list">
 <li><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Have a look at your data - were all variables imported into SPSS as the
-correct measurement type? If not, change the variable’s measure so that
-it appropriately describes the data.</li>
+Check whether all variables imported into SPSS as the correct
+measurement type.</li>
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> If
+they were not, change the variable’s measure so that it appropriately
+describes the data.</li>
 <li><input type="checkbox" /><span class="math inline">\(\ \)</span> Add
-a key to the Gender variable so that 1 = ‘Male’, 2 = ‘Female’, and 3 =
-‘Nonbinary’.</li>
+a key to the <code>Gender</code> variable so that 1 = ‘Male’, 2 =
+‘Female’, and 3 = ‘Nonbinary’.</li>
 </ul>
 <div class="container">
 <details>
@@ -406,18 +396,24 @@ create a variable that indicates whether someone is in a morning or
 afternoon session.</p>
 <div id="section-your-task" class="section level3">
 <h3>Your Task</h3>
-<p>Transform the <code>ClassTime</code> variable to create a new
-variable titled <code>Session</code>. The <code>Session</code> variable
-should have values of ‘Morning’ (students in AM classes) and ‘Afternoon’
-(students in PM classes).</p>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Transform the <code>ClassTime</code> variable to create a new variable
+titled <code>Session</code>, which has values of 0 for students in AM
+classes and 1 for students in PM classes.</li>
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Update the labels of the new <code>Session</code> variable, so that 0 =
+‘AM’ and 1 = ‘PM’</li>
+</ul>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt">Click here for a hint
 </span>
 </summary>
-<p>You don’t need to do this by hand. You also won’t need the
-<strong>Variable View</strong> tab.</p>
+<p>You’ll need to use the <em>Transform</em> tab for this. You can
+change the labels as you did with the Gender variable in the previous
+task.</p>
 </details>
 </div>
 <p></br></p>
@@ -433,19 +429,21 @@ solution </span>
 title, <code>Session</code> to the ‘Output Variable’ box under ‘Name’,
 then click ‘Change’. Click ‘Old and New Values…’</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week1_4a.PNG" width="75%" style="display: block; margin: auto;" /></p>
-<p>To change the current values into the new values, make sure the
-‘Output variables are strings’ box is checked so that you can add
-character data as a label (rather than just numeric). In the ‘Old Value’
-box, type ‘9’ under ‘Value’. In the ‘New Value’ box, type ‘Morning’ in
-the ‘Value’ box. Then click the ‘Add’ button next to the ‘Old –&gt; New’
-box. You should see your old and new values appear in the box. Continue
-doing this for the rest of your class times. Once you’re finished, it
-should look like this if you’ve done it properly:</p>
+<p>To change the current values into the new values, you’ll need to
+specify both the value in the original column and the desired label. In
+the ‘Old Value’ box, type ‘9’ under ‘Value’. In the ‘New Value’ box,
+type ‘0’ in the ‘Value’ box. Then click the ‘Add’ button next to the
+‘Old –&gt; New’ box. You should see your old and new values appear in
+the box. Continue doing this for the rest of your class times. Once
+you’re finished, it should look like this if you’ve done it
+properly:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week1_4b.PNG" width="75%" style="display: block; margin: auto;" /></p>
-<p>Because ‘Afternoon’ has 9 letters, you’ll need to switch the value in
-the ‘Width’ box to 9, otherwise it will be cut off. Click ‘Continue’,
-then ‘OK’. The variable <code>Session</code> will appear in your Data
-View window.</p>
+<p>Click ‘Continue’, then ‘OK’. The variable <code>Session</code> will
+appear in your Data View window. To change the labels of this variable,
+navigate to <strong>Variable View</strong> and click the corresponding
+<em>Values</em> cell. Add a value of 0 and set the Label to ‘AM’. Add a
+label of ‘PM’ to the value of 1. Click ‘OK’. You might also want to
+change the decimal places under the <em>Decimals</em> column to 0.</p>
 </div>
 </details>
 <p></br></p>
@@ -460,15 +458,29 @@ you have raw scores for each assessment, and you need to compute the
 percentage.</p>
 <div id="section-your-task-1" class="section level3">
 <h3>Your Task</h3>
-<p>Use each of the raw scores to calculate 4 new variables that reflects
-their mark as a percentage.</p>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Use
+each of the score variables (<code>A</code>, <code>B</code>,
+<code>C</code>, and <code>D</code>) to calculate 4 new variables that
+reflects the raw score as a percentage.</li>
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Name the new variables <code>Apercent</code>, <code>Bpercent</code>,
+<code>Cpercent</code> and <code>Dpercent</code></li>
+</ul>
+<p>The maximum possible raw score for each assessment is 50, so you’ll
+need to use the following equation to convert the raw scores to
+percentages:</p>
+<p><span class="math display">\[(x/50)\times 100\]</span></p>
+<p>where <span class="math inline">\(x\)</span> reflects the raw
+score.</p>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt">Click here for a hint
 </span>
 </summary>
-<p>The maximum possible raw score for each assessment is 50.</p>
+<p>Look under the <em>Transform</em> tab to find the function you
+need.</p>
 </details>
 </div>
 <p></br></p>
@@ -485,7 +497,8 @@ Put <code>A</code> in the ‘Numeric Expression’ box, then type the rest
 of the numeric expression:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week1_5a.PNG" width="75%" style="display: block; margin: auto;" /></p>
 <p>Click ‘OK’, and you should have a new column that shows the score for
-A as a percentage. Repeat this step for the remaining assessments.</p>
+Assessment A as a percentage. Repeat this step for the remaining raw
+score variables.</p>
 </div>
 </details>
 <p></br></p>
@@ -494,20 +507,27 @@ A as a percentage. Repeat this step for the remaining assessments.</p>
 <div id="section-filtering-data" class="section level2">
 <h2>Filtering Data</h2>
 <p>Sometimes, you may only want to analyse a subset of your dataset. In
-this case, the instructor is only interested in the test values from the
-students, as the RAs were only taking the assessment to check for typos,
-and their work was not reflective of students taking the course.</p>
+this case, the instructor is only interested in the student data, as the
+RAs were only taking the assessment to check for typos and their scores
+were not reflective of students on the course.</p>
 <div id="section-your-task-2" class="section level3">
 <h3>Your Task</h3>
-<p>Filter out the RA data, so that only the student data will be used
-for additional analysis.</p>
+<ul class="task-list">
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Filter out the RA data, so that only the student data will be used for
+additional analysis.</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Note that all remaining analyses should be completed on the filtered
+data.</p></li>
+</ul>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt">Click here for a hint
 </span>
 </summary>
-<p>You don’t need to delete anything from the dataset.</p>
+<p>You don’t need to delete anything from the dataset. You can find the
+function you’re looking for under the <em>Data</em> tab.</p>
 </details>
 </div>
 <p></br></p>
@@ -551,43 +571,14 @@ differences across groups?</li>
 </ul>
 <div id="section-your-task-3" class="section level3">
 <h3>Your Task</h3>
-<p>Check the frequency of the Gender variable. Make sure to display a
-frequency table.</p>
-<p>Are any of these groups limited in size? If so, how might this affect
-your ability to make generalisable claims about this group?</p>
-<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q4-1" class="tutorial-question panel-body">
-<div id="q4-1-answer_container" class="shiny-html-output"></div>
-<div id="q4-1-message_container" class="shiny-html-output"></div>
-<div id="q4-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q4-2" class="tutorial-question panel-body">
-<div id="q4-2-answer_container" class="shiny-html-output"></div>
-<div id="q4-2-message_container" class="shiny-html-output"></div>
-<div id="q4-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q4-3" class="tutorial-question panel-body">
-<div id="q4-3-answer_container" class="shiny-html-output"></div>
-<div id="q4-3-message_container" class="shiny-html-output"></div>
-<div id="q4-3-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q4-4" class="tutorial-question panel-body">
-<div id="q4-4-answer_container" class="shiny-html-output"></div>
-<div id="q4-4-message_container" class="shiny-html-output"></div>
-<div id="q4-4-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Check the frequency of <code>Gender</code>. Make sure to display a
+frequency table.</li>
+</ul>
+<p>Are any of these groups limited in size? If so, consider how this
+might affect your ability to make generalisable claims about this
+group.</p>
 <div class="container">
 <details>
 <summary>
@@ -622,42 +613,14 @@ could use a bar chart or a histogram.</p>
 <p><img src="Week01_GettingStartedinSPSS_Lab_files/figure-html/unnamed-chunk-11-1.png" width="336" /><img src="Week01_GettingStartedinSPSS_Lab_files/figure-html/unnamed-chunk-11-2.png" width="336" /></p>
 <div id="section-your-task-4" class="section level3">
 <h3>Your Task</h3>
-<p>Produce plots to visualise the distribution of each of your
-variables. Make sure to use the proper plot type given the type of
-variables you have.</p>
-<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q5-1" class="tutorial-question panel-body">
-<div id="q5-1-answer_container" class="shiny-html-output"></div>
-<div id="q5-1-message_container" class="shiny-html-output"></div>
-<div id="q5-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q5-2" class="tutorial-question panel-body">
-<div id="q5-2-answer_container" class="shiny-html-output"></div>
-<div id="q5-2-message_container" class="shiny-html-output"></div>
-<div id="q5-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q5-3" class="tutorial-question panel-body">
-<div id="q5-3-answer_container" class="shiny-html-output"></div>
-<div id="q5-3-message_container" class="shiny-html-output"></div>
-<div id="q5-3-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q5-4" class="tutorial-question panel-body">
-<div id="q5-4-answer_container" class="shiny-html-output"></div>
-<div id="q5-4-message_container" class="shiny-html-output"></div>
-<div id="q5-4-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Produce plots to visualise the distribution of each of your
+variables.</li>
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Make sure to use the proper plot type given the type of variables you
+have.</li>
+</ul>
 <div class="container">
 <details>
 <summary>
@@ -714,64 +677,15 @@ are useful summary metrics and may provide insight into patterns in your
 data.</p>
 <div id="section-your-task-5" class="section level3">
 <h3>Your Task</h3>
-<p>Check the measures of central tendency discussed in class. Make sure
-to use the proper central tendency measures given the variable type.</p>
-<ul>
-<li>Are the measures of central tendency similar within a variable?</li>
-<li>If not, what might this imply?</li>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Check the measures of central tendency discussed in class. Make sure to
+use the proper central tendency measures given the variable type.</li>
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> For
+all continuous variables, check the measures of variance described in
+class. These include the maximum, minimum, range, interquartile range,
+and standard deviation.</li>
 </ul>
-<p>For all continuous variables, check the measures of variance
-described in class. These include the maximum, minimum, range,
-interquartile range, and standard deviation.</p>
-<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-1" class="tutorial-question panel-body">
-<div id="q6-1-answer_container" class="shiny-html-output"></div>
-<div id="q6-1-message_container" class="shiny-html-output"></div>
-<div id="q6-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-2" class="tutorial-question panel-body">
-<div id="q6-2-answer_container" class="shiny-html-output"></div>
-<div id="q6-2-message_container" class="shiny-html-output"></div>
-<div id="q6-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-3" class="tutorial-question panel-body">
-<div id="q6-3-answer_container" class="shiny-html-output"></div>
-<div id="q6-3-message_container" class="shiny-html-output"></div>
-<div id="q6-3-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-4" class="tutorial-question panel-body">
-<div id="q6-4-answer_container" class="shiny-html-output"></div>
-<div id="q6-4-message_container" class="shiny-html-output"></div>
-<div id="q6-4-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-5" class="tutorial-question panel-body">
-<div id="q6-5-answer_container" class="shiny-html-output"></div>
-<div id="q6-5-message_container" class="shiny-html-output"></div>
-<div id="q6-5-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q6-6" class="tutorial-question panel-body">
-<div id="q6-6-answer_container" class="shiny-html-output"></div>
-<div id="q6-6-message_container" class="shiny-html-output"></div>
-<div id="q6-6-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
 <div class="container">
 <details>
 <summary>
@@ -793,9 +707,9 @@ solution </span>
 <em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then put the
 variables of interest into the ‘Variable(s)’ box. Click ‘Statistics’ and
 select the options for ‘Mean’, ‘Median’, and ‘Mode’, as needed.</p>
-<p>Note that Gender, as a categorical variable, should only be described
-using Mode. The other variables can be described using all 3
-measures.</p>
+<p>Note that <code>Gender</code>, as a categorical variable, should only
+be described using Mode. The other variables can be described using all
+3 measures.</p>
 <p>For measures of variance, click ‘Statistics’ and select the options
 needed. For IQR, you’ll need to select ‘Quartiles’:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week1_9a.PNG" width="60%" style="display: block; margin: auto;" /></p>
@@ -840,8 +754,11 @@ criteria:</p>
 </ul>
 <div id="section-your-task-6" class="section level3">
 <h3>Your Task</h3>
-<p>Using these criteria, answer the following questions. You may need to
-use a calculator.</p>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Using these criteria, answer the following questions. You may need to
+use a calculator.</li>
+</ul>
 <div class="panel-heading tutorial-quiz-title"></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="q8-1" class="tutorial-question panel-body">
@@ -875,8 +792,8 @@ use a calculator.</p>
 </summary>
 <p>You’ll need to get two values from SPSS for each variable to perform
 these calculations. You may find it helpful to review the normal
-distribution material from the <span style="color:#9AD079"> <B><a
-href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1">lecture</a></span></B>.</p>
+distribution material from the <span
+style="color:#9AD079"><B><a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">lecture</a></span></B>.</p>
 </details>
 </div>
 <p></br></p>
@@ -1107,6 +1024,102 @@ reset.</p>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-7" class="tutorial-question panel-body">
+<div id="weeklyQuiz-7-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-7-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-7-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-8" class="tutorial-question panel-body">
+<div id="weeklyQuiz-8-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-8-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-8-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-9" class="tutorial-question panel-body">
+<div id="weeklyQuiz-9-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-9-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-9-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-10" class="tutorial-question panel-body">
+<div id="weeklyQuiz-10-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-10-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-10-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-11" class="tutorial-question panel-body">
+<div id="weeklyQuiz-11-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-11-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-11-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-12" class="tutorial-question panel-body">
+<div id="weeklyQuiz-12-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-12-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-12-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-13" class="tutorial-question panel-body">
+<div id="weeklyQuiz-13-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-13-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-13-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-14" class="tutorial-question panel-body">
+<div id="weeklyQuiz-14-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-14-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-14-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-15" class="tutorial-question panel-body">
+<div id="weeklyQuiz-15-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-15-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-15-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-16" class="tutorial-question panel-body">
+<div id="weeklyQuiz-16-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-16-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-16-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-17" class="tutorial-question panel-body">
+<div id="weeklyQuiz-17-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-17-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-17-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="weeklyQuiz-18" class="tutorial-question panel-body">
+<div id="weeklyQuiz-18-answer_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-18-message_container" class="shiny-html-output"></div>
+<div id="weeklyQuiz-18-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 
@@ -1230,312 +1243,8 @@ output$kurtPlot <- renderPlot({
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q4-1", question = structure("At least one of the groups is limited in size compared to the others", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d59ade7", 
-    option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6daeaf4", 
-    option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The nonbinary group is much smaller than the other two measured groups.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q4-1-answer", 
-    question = "q4-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 752962840.649374, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q4-2", question = structure("How many total datapoints do you have for the gender variable?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8a811c", 
-    option = "45", value = 45, label = structure("45", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q4-2-answer", question = "q4-2"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1390934425.8523, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q4-3", question = structure("What percentage of participants are female?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_4695ef6", 
-    option = "42.2", value = 42.2, label = structure("42.2", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q4-3-answer", question = "q4-3"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1799878888.16187, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q4-4", question = structure("How many nonbinary participants are in your sample?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_11a5667", 
-    option = "2", value = 2, label = structure("2", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q4-4-answer", question = "q4-4"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 22328015.4896027, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q5-1", question = structure("Which of the following is appropriate for visualising the frequency distribution of continuous variables?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_4bdadd", 
-    option = "Bar Chart", value = "Bar Chart", label = structure("Bar Chart", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_996ec69", 
-    option = "Histogram", value = "Histogram", label = structure("Histogram", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2a3ec9f", 
-    option = "Both bar charts & histograms can be used for this.", 
-    value = "Both bar charts & histograms can be used for this.", 
-    label = structure("Both bar charts &amp; histograms can be used for this.", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Histograms should be used to visualise the frequency distribution of a continuous variable. Bar charts should be used to visualise the frequency distribution of a categorical variable.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q5-1-answer", 
-    question = "q5-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 184221651.914215, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q5-2", question = structure("What does the x-axis of a histogram represent?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ebc265", 
-    option = "The values of the continuous variable being inspected", 
-    value = "The values of the continuous variable being inspected", 
-    label = structure("The values of the continuous variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_498e9a5", 
-    option = "The frequency of each value of the variable being inspected", 
-    value = "The frequency of each value of the variable being inspected", 
-    label = structure("The frequency of each value of the variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9ef44ae", 
-    option = "The levels of a categorical variable being inspected", 
-    value = "The levels of a categorical variable being inspected", 
-    label = structure("The levels of a categorical variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c8fea43", 
-    option = "The normal distribution associated with the variable being inspected", 
-    value = "The normal distribution associated with the variable being inspected", 
-    label = structure("The normal distribution associated with the variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q5-2-answer", question = "q5-2"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 2098796603.02267, 
-    options = list()), class = c("learnr_radio", "tutorial_question"
-)), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q5-3", question = structure("What does the y-axis of a histogram represent?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_4c51c6e", 
-    option = "The values of the continuous variable being inspected", 
-    value = "The values of the continuous variable being inspected", 
-    label = structure("The values of the continuous variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ec689e7", 
-    option = "The frequency of each value of the variable being inspected", 
-    value = "The frequency of each value of the variable being inspected", 
-    label = structure("The frequency of each value of the variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5db18a1", 
-    option = "The levels of a categorical variable being inspected", 
-    value = "The levels of a categorical variable being inspected", 
-    label = structure("The levels of a categorical variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5759524", 
-    option = "The normal distribution associated with the variable being inspected", 
-    value = "The normal distribution associated with the variable being inspected", 
-    label = structure("The normal distribution associated with the variable being inspected", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Histograms should be used with continuous data. The x-axis is the horizontal axis and reflects the values of the variable being inspected. The y-axis reflects the frequency, of each value (or, more often, a range of values) of the plotted variable. The normal curve associated with a specific variable can be plotted as a line overlaying the histogram.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q5-3-answer", 
-    question = "q5-3"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1925751731.60325, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q5-4", question = structure("Approximately how many students scored between 40 and 50 on Assessment A?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_47d01d", 
-    option = "18", value = 18, label = structure("18", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("You can find this answer by checking the histogram for A. You could also check the frequency table.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q5-4-answer", 
-    question = "q5-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 971704938.047515, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "q6-1", question = structure("Which of the following central tendency measures could be used to describe age? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_405eb06", 
-    option = "Mean", value = "Mean", label = structure("Mean", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dbc9013", 
-    option = "Median", value = "Median", label = structure("Median", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3b54473", 
-    option = "Mode", value = "Mode", label = structure("Mode", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("All of the above could technically be used to describe the Age variable. However, it is most common to use the\nmean, as it includes information from each observation.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q6-1-answer", 
-    question = "q6-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 141253645.434224, options = list()), class = c("learnr_checkbox", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q6-2", question = structure("Which of the following central tendency measures could be used to describe gender?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_4878b2a", 
-    option = "Mean", value = "Mean", label = structure("Mean", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_da68b60", 
-    option = "Median", value = "Median", label = structure("Median", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3405c9b", 
-    option = "Mode", value = "Mode", label = structure("Mode", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore,\nthe mode is the only measure of central tendency that is appropriate to describe this variable", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q6-2-answer", 
-    question = "q6-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1051469472.01037, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-3", question = structure("What is the average score on Assessment A?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_5497a38", 
-    option = "39.09", value = 39.09, label = structure("39.09", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q6-3-answer", question = "q6-3"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1591762128.25878, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-4", question = structure("What is the most common age in this sample?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_60c8113", 
-    option = "19", value = 19, label = structure("19", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q6-4-answer", question = "q6-4"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1117750614.97951, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-5", question = structure("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_16962f", 
-    option = "2.15", value = 2.15, label = structure("2.15", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = NULL, post_message = NULL), ids = list(
-    answer = "q6-5-answer", question = "q6-5"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 251927919.382687, 
-    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-6", question = structure("What is the IQR for Assessment B?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_db7e0d6", 
-    option = "4", value = 4, label = structure("4", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("To get the IQR for a variable, you’ll need to subtract the 25th percentile from the 75th percentile.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q6-6-answer", 
-    question = "q6-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2109518131.01768, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q8-1", question = structure("If scores on Assessment A were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 95% of scores would fall. What is the upper threshold value? Please round your answer to 2 decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ac267bf", 
+"character")), answers = list(structure(list(id = "lnr_ans_7b4978", 
     option = "48.28", value = 48.28, label = structure("48.28", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1546,14 +1255,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("See the solution below", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q8-1-answer", 
     question = "q8-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1326466139.38232, options = list(
+    allow_retry = FALSE, seed = 1629526125.24119, options = list(
         min = NA, max = NA, step = NA, tolerance = 0.02)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q8-2", question = structure("If scores on Assessment D were perfectly normally distributed, there would be symmetrical upper and lower thresholds between which 99.75% of scores would fall. What is the lower threshold value? Please round your answer to 2 decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b9bec9e", 
+"character")), answers = list(structure(list(id = "lnr_ans_9f03729", 
     option = "75.51", value = 75.51, label = structure("75.51", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1564,7 +1273,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("See the solution below", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q8-2-answer", 
     question = "q8-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1343798768.37424, options = list(
+    allow_retry = FALSE, seed = 406125743.810883, options = list(
         min = NA, max = NA, step = NA, tolerance = 0.02)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1572,16 +1281,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q8-3", question = structure("Imagine the age variable is perfectly normally distributed. What is the age range within which 68% of the sample falls?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_80b443c", 
+"character")), answers = list(structure(list(id = "lnr_ans_9d68489", 
     option = "[15.30, 30.78]", value = "[15.30, 30.78]", label = structure("[15.30, 30.78]", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c38f3f7", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d751315", 
     option = "[7.87, 38.21]", value = "[7.87, 38.21]", label = structure("[7.87, 38.21]", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d7d0e79", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4710392", 
     option = "[19.00, 24.50]", value = "[19.00, 24.50]", label = structure("[19.00, 24.50]", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2d25afa", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_352a693", 
     option = "[7.56, 38.52]", value = "[7.56, 38.52]", label = structure("[7.56, 38.52]", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1592,24 +1301,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("See the solution below", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q8-3-answer", 
     question = "q8-3"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1389315133.35305, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 831856819.112636, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-1", 
     question = structure("What kind of file is ‘Week1LabData’ (the data you downloaded from the course Learn page)?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_633b576", 
+    "character")), answers = list(structure(list(id = "lnr_ans_25d0d40", 
         option = "SPSS datafile", value = "SPSS datafile", label = structure("SPSS datafile", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6180b05", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6a0a608", 
         option = "comma separated values file", value = "comma separated values file", 
         label = structure("comma separated values file", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3577982", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_20fe5d7", 
         option = "Excel file", value = "Excel file", label = structure("Excel file", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c781574", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_29794ed", 
         option = "Word file", value = "Word file", label = structure("Word file", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1620,7 +1329,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The .csv file extension indicates the file is a comma separated values file. This filetype is meant for spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-1-answer", 
         question = "weeklyQuiz-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1314660298.88781, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 30746597.4856825, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1628,10 +1337,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-2", 
     question = structure("If you were to restart SPSS, you would open “Week1LabData_SPSS” (the file you created as part of Task 1) using “File&gt;Import”.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_3fd4b87", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4bc8c00", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bb05775", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b452fff", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1642,17 +1351,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Because “Week1LabData_SPSS” is a .sav file, it can be opened using “File&gt;Open”. Using the Import option is only necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-2-answer", 
         question = "weeklyQuiz-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 630730207.706293, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1861384035.13323, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-3", 
     question = structure("Which type of data is C?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_92fe785", 
+    "character")), answers = list(structure(list(id = "lnr_ans_7405533", 
         option = "Categorical", value = "Categorical", label = structure("Categorical", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e2b315f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_58cf6bf", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1663,7 +1372,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "weeklyQuiz-3-answer", question = "weeklyQuiz-3"), 
     loading = NULL, random_answer_order = TRUE, allow_retry = FALSE, 
-    seed = 1616386174.24731, options = list()), class = c("learnr_radio", 
+    seed = 1737678141.69083, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1671,10 +1380,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-4", 
     question = structure("Which type of data is Gender?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_71c6cd2", 
+    "character")), answers = list(structure(list(id = "lnr_ans_f265438", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c50d0c1", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b7b5b67", 
         option = "Categorical", value = "Categorical", label = structure("Categorical", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1685,17 +1394,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "weeklyQuiz-4-answer", question = "weeklyQuiz-4"), 
     loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 739086447.655836, options = list()), class = c("learnr_radio", 
+    seed = 37835330.4823816, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-5", 
     question = structure("Which type of data is ClassTime?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_ba2fb3e", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4b23f54", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fe08de0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1fed094", 
         option = "Categorical", value = "Categorical", label = structure("Categorical", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1706,7 +1415,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented\nnumerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an infinite range of values if measurement was precise enough", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-5-answer", 
         question = "weeklyQuiz-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 56721684.9735869, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 424251984.302442, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1714,13 +1423,13 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "weeklyQuiz-6", 
     question = structure("Which of the following “Measure” values used by SPSS reflects categorical data? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5754cba", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9a18ba4", 
         option = "Nominal", value = "Nominal", label = structure("Nominal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_92b2d40", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e675160", 
         option = "Ordinal", value = "Ordinal", label = structure("Ordinal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a6efb70", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e579c86", 
         option = "Scale", value = "Scale", label = structure("Scale", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1731,7 +1440,292 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical\nvariables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,\nbut ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-6-answer", 
         question = "weeklyQuiz-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1629854644.74104, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 940956977.561833, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-7", 
+    question = structure("At least one of the Gender groups is limited in size compared to the others", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_c2872fb", 
+        option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c2fdb", 
+        option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("The nonbinary group is much smaller than the other two measured groups.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-7-answer", 
+        question = "weeklyQuiz-7"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1872205820.12819, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-8", 
+    question = structure("How many total datapoints do you have for the gender variable?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_d94a5ab", 
+        option = "45", value = 45, label = structure("45", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-8-answer", question = "weeklyQuiz-8"), 
+    loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
+    seed = 6079408.99716906, options = list(min = NA, max = NA, 
+        step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-9", 
+    question = structure("What percentage of participants are female?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_1c82c09", 
+        option = "42.2", value = 42.2, label = structure("42.2", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-9-answer", question = "weeklyQuiz-9"), 
+    loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
+    seed = 2029931757.55474, options = list(min = NA, max = NA, 
+        step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-10", 
+    question = structure("Which of the following is appropriate for visualising the frequency distribution of continuous variables?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_17ff45", 
+        option = "Bar Chart", value = "Bar Chart", label = structure("Bar Chart", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cfc23a4", 
+        option = "Histogram", value = "Histogram", label = structure("Histogram", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_82cad4f", 
+        option = "Both bar charts & histograms can be used for this.", 
+        value = "Both bar charts & histograms can be used for this.", 
+        label = structure("Both bar charts &amp; histograms can be used for this.", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Histograms should be used to visualise the frequency distribution of a continuous variable. Bar charts should be used to visualise the frequency distribution of a categorical variable.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-10-answer", 
+        question = "weeklyQuiz-10"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 128414828.440202, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-11", 
+    question = structure("What does the x-axis of a histogram represent?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_7056f48", 
+        option = "The values of the continuous variable being inspected", 
+        value = "The values of the continuous variable being inspected", 
+        label = structure("The values of the continuous variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_beb942b", 
+        option = "The frequency of each value of the variable being inspected", 
+        value = "The frequency of each value of the variable being inspected", 
+        label = structure("The frequency of each value of the variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_51ddbe1", 
+        option = "The levels of a categorical variable being inspected", 
+        value = "The levels of a categorical variable being inspected", 
+        label = structure("The levels of a categorical variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7309542", 
+        option = "The normal distribution associated with the variable being inspected", 
+        value = "The normal distribution associated with the variable being inspected", 
+        label = structure("The normal distribution associated with the variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-11-answer", question = "weeklyQuiz-11"), 
+    loading = NULL, random_answer_order = TRUE, allow_retry = FALSE, 
+    seed = 762723880.144829, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-12", 
+    question = structure("What does the y-axis of a histogram represent?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_6ddd343", 
+        option = "The values of the continuous variable being inspected", 
+        value = "The values of the continuous variable being inspected", 
+        label = structure("The values of the continuous variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c1242a0", 
+        option = "The frequency of each value of the variable being inspected", 
+        value = "The frequency of each value of the variable being inspected", 
+        label = structure("The frequency of each value of the variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2a0858", 
+        option = "The levels of a categorical variable being inspected", 
+        value = "The levels of a categorical variable being inspected", 
+        label = structure("The levels of a categorical variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b7d98c", 
+        option = "The normal distribution associated with the variable being inspected", 
+        value = "The normal distribution associated with the variable being inspected", 
+        label = structure("The normal distribution associated with the variable being inspected", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Histograms should be used with continuous data. The x-axis is the horizontal axis and reflects the values of the variable being inspected. The y-axis reflects the frequency, of each value (or, more often, a range of values) of the plotted variable. The normal curve associated with a specific variable can be plotted as a line overlaying the histogram.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-12-answer", 
+        question = "weeklyQuiz-12"), loading = NULL, random_answer_order = TRUE, 
+    allow_retry = FALSE, seed = 1015861902.52695, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "weeklyQuiz-13", 
+    question = structure("Which of the following central tendency measures could be used to describe age? Please select all that apply.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_172c2bf", 
+        option = "Mean", value = "Mean", label = structure("Mean", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a9e2c22", 
+        option = "Median", value = "Median", label = structure("Median", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d61587c", 
+        option = "Mode", value = "Mode", label = structure("Mode", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("All of the above could technically be used to describe the Age variable. However, it is most common to use the\nmean, as it includes information from each observation.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-13-answer", 
+        question = "weeklyQuiz-13"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 900717041.080571, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "weeklyQuiz-14", 
+    question = structure("Which of the following central tendency measures could be used to describe gender?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_7b5e5dd", 
+        option = "Mean", value = "Mean", label = structure("Mean", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7b241b2", 
+        option = "Median", value = "Median", label = structure("Median", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6147d58", 
+        option = "Mode", value = "Mode", label = structure("Mode", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore,\nthe mode is the only measure of central tendency that is appropriate to describe this variable", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-14-answer", 
+        question = "weeklyQuiz-14"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 321895330.850106, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-15", 
+    question = structure("What is the average score on Assessment A?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_3cbb52e", 
+        option = "39.09", value = 39.09, label = structure("39.09", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-15-answer", question = "weeklyQuiz-15"), 
+    loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
+    seed = 1685480181.71514, options = list(min = NA, max = NA, 
+        step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-16", 
+    question = structure("What is the most common age in this sample?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_bfb85e0", 
+        option = "19", value = 19, label = structure("19", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-16-answer", question = "weeklyQuiz-16"), 
+    loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
+    seed = 1885681797.62191, options = list(min = NA, max = NA, 
+        step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-17", 
+    question = structure("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_6b92ad5", 
+        option = "2.15", value = 2.15, label = structure("2.15", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = NULL, post_message = NULL), ids = list(
+        answer = "weeklyQuiz-17-answer", question = "weeklyQuiz-17"), 
+    loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
+    seed = 1120421648.47826, options = list(min = NA, max = NA, 
+        step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "weeklyQuiz-18", 
+    question = structure("What is the IQR for Assessment B?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9ce0be4", 
+        option = "4", value = 4, label = structure("4", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("To get the IQR for a variable, you’ll need to subtract the 25th percentile from the 75th percentile.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "weeklyQuiz-18-answer", 
+        question = "weeklyQuiz-18"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 177344371.417418, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 </p>
