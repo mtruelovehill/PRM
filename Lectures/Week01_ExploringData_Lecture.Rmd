@@ -47,6 +47,16 @@ style_mono_accent(
 )
 ```
 
+```{css, echo = F}
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+```
+
+
 ```{r, echo = F, message = F, warning = F}
 library(tidyverse)
 knitr::opts_chunk$set(dev = 'svg')
@@ -455,6 +465,7 @@ ggplot(mapping = aes(a)) + geom_histogram(fill = baseColor, color = accent3, bin
 ]
 
 ---
+
 class: center, inverse, middle
 count: false
 
@@ -972,7 +983,9 @@ ggplot(mapping=aes(m)) + geom_histogram(fill = baseColor, color = accent3, bins=
 ]
 
 
+
 ---
+
 class: center, inverse, middle
 count: false
 
@@ -1345,7 +1358,9 @@ ggplot(data.frame(z=c(-4, 4)), aes(x=z)) +
 
 ]
 
+
 ---
+
 class: center, inverse, middle
 count: false
 
@@ -1356,3 +1371,10 @@ exclude: true
 
 ## Wooclap questions slide!
 
+```{css, echo=FALSE}
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+```
