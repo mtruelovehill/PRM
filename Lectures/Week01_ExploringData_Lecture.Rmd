@@ -1090,7 +1090,7 @@ Adjusting the mean changes where the curve is centered on the $x$-axis
 normDist + geom_vline(xintercept = 0, color=accent2, linewidth = 1.5) + 
   stat_function(fun=dnorm, geom = "line", args = list(sd = .5), linewidth = 1.5, color = baseColor) +
   stat_function(fun=dnorm, geom = "line", args = list(sd = 1.5), linewidth = 1.5, color = accent1) +
-  annotate(geom='text', label=paste0('mu == -2'), parse = T, x=-5, y=0.61, size = 6, colour = accent1, hjust = 0) +
+  annotate(geom='text', label=paste0('mu == 1.5'), parse = T, x=-5, y=0.61, size = 6, colour = accent1, hjust = 0) +
   annotate(geom='text', label=paste0('mu == 0'), parse = T, x=-5, y=0.68, size = 6, hjust = 0) +
   annotate(geom='text', label=paste0('mu == .5'), parse = T, x=-5, y=.75, size = 6, colour = baseColor, hjust = 0)
 ```
