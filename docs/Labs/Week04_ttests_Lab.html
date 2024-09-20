@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="true" />
+<meta name="allow-skip" content="true" />
+<meta name="learnr-version-prerender" content="0.11.5" />
+
+<title>Week 4 Lab: t-tests</title>
+
+<!-- header-includes START -->
+<!-- HEAD_CONTENT -->
+<!-- header-includes END -->
+<!-- HEAD_CONTENT -->
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+<!-- taken from https://github.com/rstudio/rmarkdown/blob/de8a9c38618903627ca509f5401d50a0876079f7/inst/rmd/h/default.html#L293-L343 -->
+<!-- tabsets -->
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+<!-- end tabsets -->
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+
+</head>
+
+<body>
+<a class='sr-only sr-only-focusable visually-hidden-focusable' href='#learnr-tutorial-content'>Skip to Tutorial Content</a>
+
+
+
+<div class="pageContent band">
+<main class="bandContent page">
+
+<article class="topics" id="learnr-tutorial-content">
+
+<div id="section-intro-to-todays-lab" class="section level2">
+<h2>Intro to Today’s Lab</h2>
+<p>During today’s lab, you’ll apply the concepts discussed during this
+week’s lecture. Each lab consists of a range of tasks, with
+corresponding questions you can answer. Please note that the questions
+are not required and not marked, although they do provide a helpful
+source of formative feedback that will help you gauge your
+understanding.</p>
+<p>In this week’s lab, you’ll be working with data simulated based on <a
+href="https://onlinelibrary.wiley.com/doi/10.1111/infa.12238">this
+paper</a>. In this study, researchers tested the effect of infant
+transport modality on their social interaction. Specifically, they
+compared the use of buggies and backpacks.</p>
+<p>You’ll be analysing data from two separate studies. In the first,
+researchers recruited 36 participants and split them into a backpack
+group and a buggy group. They then sent participants on a 15-minute walk
+with their infant and recorded the total number of parent and infant
+vocalisations. They also recorded the number of times the parent touched
+their infant over the course of the walk.</p>
+<p>You can download the dataset from the first experiment <a
+href="https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv">here.</a>
+This dataset contains the following variables:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 18px;">
+Variable Name
+</th>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 18px;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+infantGender
+</td>
+<td style="text-align:left;">
+Levels: M = Male, F = Female
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+infantAge
+</td>
+<td style="text-align:left;">
+Infant age in weeks
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Transport
+</td>
+<td style="text-align:left;">
+Transport Modality; Levels: Buggy; Backpack
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+infantVocalisations
+</td>
+<td style="text-align:left;">
+Total number of infant vocalisations
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Touch
+</td>
+<td style="text-align:left;">
+Total number of times parent touched infant
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>After running the first study, the researchers wanted to further
+support their findings. They ran a second experiment using a
+within-subjects design. In this experiment, they recruited 40
+participants and sent them out on 2 separate walks over the course of
+two weeks, once using a backpack and once a buggy. In this experiment,
+they recorded infant vocalisations from the same participants across
+each condition.</p>
+<p>You can download the dataset from the second experiment <a
+href="https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv">here.</a>
+It contains the following variables:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 18px;">
+Variable Name
+</th>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 18px;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+infantAge
+</td>
+<td style="text-align:left;">
+Infant age in weeks
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+infantGender
+</td>
+<td style="text-align:left;">
+Levels: M = Male, F = Female
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+buggyIVocal
+</td>
+<td style="text-align:left;">
+Total number of infant vocalisations while in buggy
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+backpackIVocal
+</td>
+<td style="text-align:left;">
+Total number of infant vocalisations while in backpack
+</td>
+</tr>
+</tbody>
+</table>
+<div id="section-learning-objectives" class="section level3">
+<h3>Learning Objectives</h3>
+<p>At the end of this lab, you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Identify hypotheses which may be tested using <span
+class="math inline">\(t\)</span>-tests</li>
+<li>Run an appropriate power analysis for both independent and
+paired-samples <span class="math inline">\(t\)</span>-tests</li>
+<li>Check assumptions for both independent- and paired-samples <span
+class="math inline">\(t\)</span>-tests</li>
+<li>Use SPSS to perform both independent- and paired-samples <span
+class="math inline">\(t\)</span>-tests</li>
+<li>Interpret and report results from both independent- and
+paired-samples <span class="math inline">\(t\)</span>-tests</li>
+</ol>
+</div>
+</div>
+<div id="section-state-your-hypotheses" class="section level2">
+<h2>State your Hypotheses</h2>
+<p>The first step when planning your analysis is to specify your
+research questions and associated hypotheses. You should make a separate
+hypothesis for every analysis.</p>
+<div id="section-your-task" class="section level3">
+<h3>Your Task</h3>
+<p>For each analysis:</p>
+<ul>
+<li><p>State your research question</p></li>
+<li><p>Identify the independent and dependent variables</p></li>
+<li><p>State both the null and alternative hypothesis</p></li>
+<li><p>Specify your hypothesis using statistical notation, <a
+href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#42">as
+directed in the lecture</a></p></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>In the first study, you will be conducting 2 different analyses. In
+the second, you will be conducting a single analysis. You should specify
+your hypotheses/variables for each.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 1 </span></p>
+<p><b>Research Question:</b> Does infant transport modality affect the
+infant’s socialisation opportunities? Specifically, we are investigating
+whether the transportation modality affects the following during its
+use: (1) infant vocalisation to the parent; (2) physical contact between
+the parent and infant.</p>
+<p><b> Variables </b></p>
+<ol style="list-style-type: decimal">
+<li><p>IV: Transportation Modality; DV: Infant Vocalisation</p></li>
+<li><p>IV: Transportation Modality; DV: Physical Contact</p></li>
+</ol>
+<p><b>Hypotheses:</b></p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(H_0: Infant\ Vocalisation_{buggy} =
+Infant\ Vocalisation_{backpack}\)</span> <span
+class="math inline">\(H_1: Infant\ Vocalisation_{buggy} \neq Infant\
+Vocalisation_{backpack}\)</span></p></li>
+<li><p><span class="math inline">\(H_0: Contact_{buggy} =
+Contact_{backpack}\)</span> <span class="math inline">\(H_1:
+Contact_{buggy} \neq Contact_{backpack}\)</span></p></li>
+</ol>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 2 </span></p>
+<p><b>Research Question:</b> Does infant transport modality affect the
+amount of infant vocalisation during use?</p>
+<p><b> Variables </b></p>
+<p>IV: Transportation Modality; DV: Infant Vocalisation</p>
+<p><b>Hypotheses:</b></p>
+<p><span class="math inline">\(H_0: Infant\ Vocalisation_{buggy}-Infant\
+Vocalisation_{backpack} = 0\)</span> <span class="math inline">\(H_1:
+Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq
+0\)</span></p>
+<p><br></p>
+<p>Note that in both studies you could also use directional hypotheses,
+although it is not recommended. To specify direction, you would use
+<span class="math inline">\(&gt;\)</span> or <span
+class="math inline">\(&lt;\)</span> rather than <span
+class="math inline">\(\neq\)</span>.</p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q1-1" class="tutorial-question panel-body">
+<div id="q1-1-answer_container" class="shiny-html-output"></div>
+<div id="q1-1-message_container" class="shiny-html-output"></div>
+<div id="q1-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q1-2" class="tutorial-question panel-body">
+<div id="q1-2-answer_container" class="shiny-html-output"></div>
+<div id="q1-2-message_container" class="shiny-html-output"></div>
+<div id="q1-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-run-the-appropriate-power-analyses"
+class="section level2">
+<h2>Run the Appropriate Power Analyses</h2>
+<p>After deciding on your hypotheses but before gathering data, you
+should run a power analysis to determine the sample necessary to capture
+your effect of interest. When running power analyses, you only need to
+run a single power analysis for each study design. In this case, you
+have 2 designs, so you will only need to run 2 analyses.</p>
+<p>Recall the effect size measure for <span
+class="math inline">\(t\)</span>-tests, <span
+class="math inline">\(d\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Strength</th>
+<th align="center">Absolute Magnitude of <span
+class="math inline">\(d\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Weak</td>
+<td align="center"><span class="math inline">\(\leq\)</span> .20</td>
+</tr>
+<tr class="even">
+<td align="center">Moderate</td>
+<td align="center"><span class="math inline">\(\approx\)</span> .50</td>
+</tr>
+<tr class="odd">
+<td align="center">Strong</td>
+<td align="center"><span class="math inline">\(\geq\)</span> .8</td>
+</tr>
+</tbody>
+</table>
+<div id="section-your-task-1" class="section level3">
+<h3>Your Task</h3>
+<ul>
+<li><p>For your first study, run a power analysis using <span
+class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
+the sample size necessary to detect a moderate effect size (d = .5).
+Assume you will have an equal number of participants in each
+group.</p></li>
+<li><p>For the second study, let’s imagine that you already had data
+from 40 participants recruited as part of a larger study. You want to
+determine the effect size this sample has the power to detect, given an
+<span class="math inline">\(\alpha\)</span> = .05 and a power = .8. Run
+the appropriate power analysis.</p></li>
+</ul>
+<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
+to use WebPower to run your analysis</a>.</p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>Two important hints:</p>
+<ol style="list-style-type: decimal">
+<li>The power analysis uses/outputs the number of participants in each
+group, rather than the total number of participants.</li>
+<li>Remember, the study design of your second study is slightly
+different from the first. This will affect the input to your power
+analysis.</li>
+</ol>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Navigate to the WebPower site. For <span
+class="math inline">\(t\)</span>-tests, you’ll be using one of these
+options, depending on whether your sample within each group will be
+equal or not.</p>
+<p><img src="images/week4_2a.png" width="526" style="display: block; margin: auto;" /></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 1 </span></p>
+<p>Because you’re assuming an equal sample size within each group, you
+will click the first option: “Power of t-test.” You’ll leave the Sample
+Size option blank, as that’s the value you want to calculate. You’ll
+fill in the other options as follows:</p>
+<p><img src="images/week4_2b.png" width="408" style="display: block; margin: auto;" /></p>
+<p>Because you’ll be running an independent-samples <span
+class="math inline">\(t\)</span>-test, the ‘Type of Test’ option will be
+‘Two sample.’ Note that if you choose to use a directional hypothesis,
+you’ll need to change the ‘H1’ value to ‘Greater.’ WebPower doesn’t seem
+to work with ‘Lesser’ for some reason, but you can use ‘Greater’
+regardless of the direction, as the results would be identical either
+way. Once you’ve entered the appropriate information, click ‘Calculate’
+and the results will appear below.</p>
+<p><img src="images/week4_2c.png" width="446" style="display: block; margin: auto;" /></p>
+<p>Note that the sample size refers to the sample PER GROUP, not the
+total sample. In other words, to achieve 80% power to detect a moderate
+effect size with an alpha = .05, you would need 64 participants per
+group, or 128 total participants.</p>
+<p><br></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 2 </span></p>
+<p>In the case of your paired-samples analysis, you will once again have
+an equal sample size within each group. In this case, you want to
+calculate effect size, so you will leave that box blank and fill in the
+other values. You’ll need to update ‘Type of Test’ to ‘Paired.’ If you
+entered everything properly, you’ll get the following output:</p>
+<p><img src="images/week4_2d.png" width="446" style="display: block; margin: auto;" /></p>
+<p>With 40 participants and a within subjects design, you’ll have 80%
+power to detect an effect of <span class="math inline">\(d\)</span> =
+.45, given <span class="math inline">\(\alpha\)</span> = .05.</p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q2-1" class="tutorial-question panel-body">
+<div id="q2-1-answer_container" class="shiny-html-output"></div>
+<div id="q2-1-message_container" class="shiny-html-output"></div>
+<div id="q2-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q2-2" class="tutorial-question panel-body">
+<div id="q2-2-answer_container" class="shiny-html-output"></div>
+<div id="q2-2-message_container" class="shiny-html-output"></div>
+<div id="q2-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q2-3" class="tutorial-question panel-body">
+<div id="q2-3-answer_container" class="shiny-html-output"></div>
+<div id="q2-3-message_container" class="shiny-html-output"></div>
+<div id="q2-3-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-study-1-check-descriptive-data" class="section level2">
+<h2>Study 1: Check Descriptive Data</h2>
+<p>Before running any analyses, you should first check your data. In
+many cases, some kind of cleaning or data wrangling will be necessary.
+For instance, are there any missing values? Do you have any unexpected
+values or extreme outliers? Do you need to create a variable from the
+existing data (e.g., a summary metric for a cognitive task). These
+things should be dealt with before conducting the analyses.</p>
+<p>Additionally, you’ll need to compute descriptive data. You’ll do this
+for both your main variables of interest and your sample’s demographic
+data (this must be included in the Sample portion of your Methods
+section).</p>
+<div id="section-your-task-2" class="section level3">
+<h3>Your Task</h3>
+<ul>
+<li>Check Study 1 data.
+<ul>
+<li>Are variables coded correctly in SPSS?</li>
+<li>Produce frequency tables for categorical variables</li>
+<li>Compute the mean, standard deviation, minimum, and maximum on
+continuous data</li>
+<li>Are there any missing values or outliers?</li>
+</ul></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>There are some issues to address under the <em>Variable View</em>
+tab. Remember to use the <em>Frequencies</em> option rather than
+<em>Descriptives</em>.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>When you check your data under <em>Variable View</em>, you’ll notice
+that your dependent variables have been coded as ‘Nominal’. You’ll need
+to change this to ‘Scale’ in order for the <span
+class="math inline">\(t\)</span>-test to work properly.</p>
+<p>Next, produce frequency tables and descriptive statistics by
+navigating to <em>Analyze &gt; Descriptive Statistics &gt;
+Frequencies</em>. Add your 2 categorical variables to the
+<em>Variable(s)</em> box and make sure ‘Display Frequency Tables’ is
+checked, then click ‘OK’. If you’ve done this properly, you should get
+the following output:</p>
+<p><img src="images/week4_3a.png" width="455" style="display: block; margin: auto;" /></p>
+<p>Here, you can see the frequencies of participants in each category.
+You might note that there were slightly more male infants than females,
+but there were substantially more female parents than males. You can see
+that there are equal participants in the ‘Buggy’ and ‘Backpack’ groups,
+as expected.</p>
+<p>After checking the categorical variables, you can check the
+continuous data. Open the <em>Frequencies</em> box once again and
+replace your categorical variables with your 3 continuous variables.
+Uncheck ‘Display Frequency Tables’ and click the ‘Statistics’ box.
+Select ‘Mean’, ‘Std. deviation’, ‘Maximum’ and ‘Minimum’, then click
+‘Continue’. Click ‘OK’. You should get the following table:</p>
+<p><img src="images/week4_3b.png" width="359" style="display: block; margin: auto;" /></p>
+<p>Have a look at the values here. There is no missing data, and the
+values seem reasonable, so you can move forward to the next step.</p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q3-1" class="tutorial-question panel-body">
+<div id="q3-1-answer_container" class="shiny-html-output"></div>
+<div id="q3-1-message_container" class="shiny-html-output"></div>
+<div id="q3-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q3-2" class="tutorial-question panel-body">
+<div id="q3-2-answer_container" class="shiny-html-output"></div>
+<div id="q3-2-message_container" class="shiny-html-output"></div>
+<div id="q3-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q3-3" class="tutorial-question panel-body">
+<div id="q3-3-answer_container" class="shiny-html-output"></div>
+<div id="q3-3-message_container" class="shiny-html-output"></div>
+<div id="q3-3-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-study-1-check-assumptions" class="section level2">
+<h2>Study 1: Check Assumptions</h2>
+<p>The assumptions of an independent-samples <span
+class="math inline">\(t\)</span> test are:</p>
+<ol style="list-style-type: decimal">
+<li><p>Dependent variable must be normally distributed</p></li>
+<li><p>Observations must be independent of each other</p></li>
+<li><p>The two groups must exhibit approximately equal variance in the
+dependent variable</p></li>
+</ol>
+<div id="section-your-task-3" class="section level3">
+<h3>Your Task</h3>
+<p>Check each of these assumptions in your data.</p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>Have a look at the <a
+href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#50">lecture
+slides</a> if you’re lost.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><span style="font-weight: bold; font-size: 14pt"> Normality
+</span></p>
+<p>Normality can be assessed in multiple ways. I prefer visual
+assessment, as the statistical tests can be overly sensitive,
+particularly with larger sample sizes. To check the histograms, click
+<em>Analyze &gt; Descriptive Statistics &gt; Frequencies</em> and add
+your dependent variables to the ‘Variable(s)’ box. Click ‘Charts’, then
+select ‘Histograms’ and make sure the box that says, ‘Show normal curve
+on histogram’ is checked. Click ‘Continue.’ While here, you can also go
+to the ‘Statistics’ box and select ‘Skewness’ and ‘Kurtosis’. Once this
+is all done, click ‘OK’.</p>
+<p><img src="images/week4_4a.png" width="330" style="display: block; margin: auto;" /></p>
+<p>Skewness and kurtosis values are all within the bounds of -1 and 1,
+which is ideal. Next, you can check the histograms with the normal curve
+for each of the dependent variables:</p>
+<p><img src="images/week4_4b.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/week4_4c.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>None of them seem to be perfectly normal, but this is not unexpected
+with such a small sample. In any case, they’re generally normal. There
+is no evidence of a significant normality violation.</p>
+<p>You can also check the Q-Q plots. To do this, click <em>Analyze &gt;
+Descriptive Statistics &gt; Q-Q Plots</em>. Add your three dependent
+variables to the ‘Variable(s)’ box, confirm that the ‘Test Distribution’
+is set to ‘Normal’ and then click ‘OK’. This will produce several pieces
+of output, but you want to specifically focus on the Normal Q-Q Plots.
+Data that are generally normal will more closely follow the black
+diagonal.</p>
+<p><img src="images/week4_4d.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The points go very slightly off the line in the upper range, but not
+in a concerning way. Still ok.</p>
+<p><img src="images/week4_4e.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Looks good.</p>
+<p>These figures indicate that the data have not violated the assumption
+of normality.</p>
+<p><span style="font-weight: bold; font-size: 14pt"> Independence
+</span></p>
+<p>Assessing independence requires you to have an understanding of the
+conditions under which your data were collected. The study design
+(between-participants) increases the likelihood that the observations
+are independent of each other, so this assumption is met.</p>
+<p><span style="font-weight: bold; font-size: 14pt"> Homogeneity of
+Variance </span></p>
+<p>This can be tested using Levene’s test. This test runs automatically
+when you perform a <span class="math inline">\(t\)</span>-test, but you
+can also run it separately. To run the test outwith the analysis,
+navigate to <em>Analyze &gt; Descriptive Statistics &gt; Explore</em>.
+Place the dependent variables in the ‘Dependent List’ box and the
+Independent/Grouping variable in the ‘Factor List’ box. Click the
+‘Plots’ button. In the ‘Spread vs Level with Levene Test’ area, select
+‘Power Estimation’, then click ‘Continue’ and ‘OK’. The results will
+appear in the output:</p>
+<p><img src="images/week4_4f.png" width="599" style="display: block; margin: auto;" /></p>
+<p>You can check the line for each variable that says ‘Based on Mean’
+and evaluate the ‘Sig.’ column. While the Touch variable meets the
+assumption (<span class="math inline">\(p\)</span> &gt; .05), the Infant
+Vocalisation variable violates the assumption of equal variances (<span
+class="math inline">\(p\)</span> = .048). This can be accounted for when
+the primary analysis is performed.</p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q4-1" class="tutorial-question panel-body">
+<div id="q4-1-answer_container" class="shiny-html-output"></div>
+<div id="q4-1-message_container" class="shiny-html-output"></div>
+<div id="q4-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q4-2" class="tutorial-question panel-body">
+<div id="q4-2-answer_container" class="shiny-html-output"></div>
+<div id="q4-2-message_container" class="shiny-html-output"></div>
+<div id="q4-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-study-1-perform-primary-analysis"
+class="section level2">
+<h2>Study 1: Perform Primary Analysis</h2>
+<p>As you are comparing two independent means, you’ll run
+independent-samples <span class="math inline">\(t\)</span>-tests to
+provide statistical support for your hypotheses. Recall that you’re
+testing the following hypotheses:</p>
+<p><span class="math display">\[H_1: Infant\ Vocalisation_{buggy} \neq
+Infant\ Vocalisation_{backpack}\]</span></p>
+<p><span class="math display">\[H_1: Contact_{buggy} \neq
+Contact_{backpack}\]</span></p>
+<div id="section-your-task-4" class="section level3">
+<h3>Your Task</h3>
+<ul>
+<li><p>Run an independent-samples <span
+class="math inline">\(t\)</span>-test to test each of your
+hypotheses</p></li>
+<li><p>Compute effect sizes and check confidence intervals for each of
+your analyses</p></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>Although you’re performing 2 separate tests, you can run them at the
+same time.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Click <em>Analyze &gt; Compare Means and Proportions &gt;
+Independent-Samples T test</em>. Move your DVs into the ‘Test
+Variable(s)’ box and your IV into the ‘Grouping Variable’ box. Click
+‘Define Groups’ and enter the names of your groups exactly as they are
+provided in the spreadsheet. In the main box, make sure ‘Estimate effect
+sizes’ is checked, then click ‘OK’ to run the test.</p>
+<p>The first bit of output will provide the descriptive statistics
+separated by your IV. This is useful information to report in your
+paper, so take note.</p>
+<p><img src="images/week4_5a.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The second bit of output provides the results of your <span
+class="math inline">\(t\)</span>-tests. The first portion provides the
+results from your Levene’s test. In cases where Levene’s test is not
+significant, you can look at the results from the rows that say ‘Equal
+variances assumed’. If the test is significant, there is a slightly
+different version of a <span class="math inline">\(t\)</span>-test that
+is robust to a violation of the equal variance assumption. The results
+from this test are provided in the rows that say ‘Equal variances not
+assumed’.</p>
+<p><img src="images/week4_5b.png" width="495" style="display: block; margin: auto;" /></p>
+<p>The results from the t-test suggest that infant vocalisation was
+significantly different between buggy and backpack users, while touch
+was not significantly different between the two groups. The confidence
+intervals for the variables further support this; the CI associated with
+vocalisation does not contain the null value of 0, while the CI
+associated with Touch does.</p>
+<p><img src="images/week4_5c.png" width="700" style="display: block; margin: auto;" /></p>
+<p>Checking the effect sizes, you can see that the absolute value of
+Cohen’s <span class="math inline">\(d\)</span> is greater than 1 for
+infant vocalisation. This indicates there is a strong effect of
+transport modality on infant vocalisation.</p>
+<p><img src="images/week4_5d.png" width="75%" style="display: block; margin: auto;" /></p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q5-1" class="tutorial-question panel-body">
+<div id="q5-1-answer_container" class="shiny-html-output"></div>
+<div id="q5-1-message_container" class="shiny-html-output"></div>
+<div id="q5-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q5-2" class="tutorial-question panel-body">
+<div id="q5-2-answer_container" class="shiny-html-output"></div>
+<div id="q5-2-message_container" class="shiny-html-output"></div>
+<div id="q5-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q5-3" class="tutorial-question panel-body">
+<div id="q5-3-answer_container" class="shiny-html-output"></div>
+<div id="q5-3-message_container" class="shiny-html-output"></div>
+<div id="q5-3-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q5-4" class="tutorial-question panel-body">
+<div id="q5-4-answer_container" class="shiny-html-output"></div>
+<div id="q5-4-message_container" class="shiny-html-output"></div>
+<div id="q5-4-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-study-2-check-descriptive-data" class="section level2">
+<h2>Study 2: Check Descriptive Data</h2>
+<p>As with Study 1, you’ll need to check your data for Study 2.</p>
+<div id="section-your-task-5" class="section level3">
+<h3>Your Task</h3>
+<ul>
+<li>Check Study 2 data.
+<ul>
+<li>Are variables coded correctly in SPSS?</li>
+<li>Produce frequency tables for categorical variables</li>
+<li>Compute the mean, standard deviation, minimum, and maximum on
+continuous data</li>
+<li>Are there any missing values or outliers?</li>
+</ul></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>As before, there are some issues to address in Variable View.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>You can use the same procedure that was previously described in <a
+href="#section-study-1-check-descriptive-data">Study 1: Check
+Descriptive Data</a>.</p>
+</details>
+</div>
+<p></br></p>
+<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q6-1" class="tutorial-question panel-body">
+<div id="q6-1-answer_container" class="shiny-html-output"></div>
+<div id="q6-1-message_container" class="shiny-html-output"></div>
+<div id="q6-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q6-2" class="tutorial-question panel-body">
+<div id="q6-2-answer_container" class="shiny-html-output"></div>
+<div id="q6-2-message_container" class="shiny-html-output"></div>
+<div id="q6-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+</div>
+<div id="section-study-2-check-assumptions" class="section level2">
+<h2>Study 2: Check Assumptions</h2>
+<p>The assumptions of a paired-samples <span
+class="math inline">\(t\)</span>-test are slightly different than an
+independent-samples <span class="math inline">\(t\)</span>-test.</p>
+<ol style="list-style-type: decimal">
+<li><p>Difference scores must be normally distributed</p></li>
+<li><p>Participants must be independent of each other</p></li>
+</ol>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>You’ll need to make a new variable to check the assumption of
+normality.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Because we have to check the normality of the difference scores
+rather than the raw variables, we will need to compute a difference
+score. To do this, navigate to <em>Transform &gt; Compute Variable</em>.
+Name your new variable in the ‘Target Variable’ box. Next, move the
+buggyIVocal to the ‘Numeric Expression’ box, add a minus sign, then add
+backpackIVocal. Click ‘OK’. Notice in <em>Data View</em> that you now
+have a new variable that reflects the difference between your paired
+variables.</p>
+<p><img src="images/week4_7a.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Perform the normality tests from <a
+href="#section-study-1-check-assumptions">Study 1: Check Assumptions</a>
+with this new variable.</p>
+<p><img src="images/week4_7c.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/week4_7b.png" width="75%" style="display: block; margin: auto;" /><img src="images/week4_7d.png" width="75%" style="display: block; margin: auto;" /></p>
+</details>
+</div>
+<p></br> </br></p>
+</div>
+<div id="section-study-2-perform-primary-analysis"
+class="section level2">
+<h2>Study 2: Perform Primary Analysis</h2>
+<p>As you are comparing two paired means, you’ll run paired-samples
+<span class="math inline">\(t\)</span>-tests to provide statistical
+support for your hypotheses. Recall that you’re testing the following
+hypothesis:</p>
+<p><span class="math display">\[H_1: Infant\
+Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq 0\]</span></p>
+<div id="section-your-task-6" class="section level3">
+<h3>Your Task</h3>
+<ul>
+<li><p>Run a paired-samples <span class="math inline">\(t\)</span>-test
+to test your hypothesis</p></li>
+<li><p>Compute the effect size and check the confidence
+interval</p></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>No hints…this one is pretty straightforward.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Navigate to <em>Analyze &gt; Compare Means and Proportions &gt;
+Paired Samples T-Test</em>. Add one of the paired variables into the
+Variable1 space and the other into the Variable2 space and click
+‘OK’.</p>
+<p>As before, take note of the descriptive statistics for each group, as
+you’ll need this for reporting purposes.</p>
+<p><img src="images/week4_8a.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The results indicate that the difference in infant vocalisation when
+in a buggy versus a backpack was significant (<span
+class="math inline">\(p\)</span> &lt; .001). This is further confirmed
+by the confidence interval, which doesn’t contain the null value of 0.
+The output also provides the average difference score.</p>
+<p><img src="images/week4_8b.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>As before, Cohen’s <span class="math inline">\(d\)</span> indicates
+there is a strong effect of transportation modality on infant
+vocalisation.</p>
+</details>
+</div>
+<p></br></p>
+</div>
+</div>
+<div id="section-intepret-report" class="section level2">
+<h2>Intepret &amp; Report</h2>
+<p>Now that you’ve completed the analyses, choose one of the studies and
+write a mini results section about it. In this section, please:</p>
+<ul>
+<li><p>Describe your sample as you would in a methods section.</p></li>
+<li><p>Report your results and a brief interpretation in APA
+style.</p></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 1 </span></p>
+<p>In this study, we tested the effect of infant transportation modality
+on their opportunity for socialisation. We hypothesised that there would
+be differences in socalisation depending on whether infants were using a
+buggy or a backpack. To test this, we performed two independent-samples
+<span class="math inline">\(t\)</span>-tests with transportation
+modality as an independent variable and infant vocalisation and physical
+contact as dependent variables. <span
+class="math inline">\(\alpha\)</span> was set at .05 for all
+analyses.</p>
+<p>An a priori power analysis indicated that 128 participants was
+necessary to achieve 80% power to detect a moderate effect size (<span
+class="math inline">\(d\)</span> = .50) with <span
+class="math inline">\(\alpha\)</span> = .05. Our sample consisted of 36
+infants between 21 and 45 weeks old (<span
+class="math inline">\(M\)</span> = 33.13, <span
+class="math inline">\(SD\)</span> = 5.48; 15 females, 21 males).</p>
+<p>Assumptions checks were conducted through visual assessment. All data
+met the assumptions of normality and independence. The infant
+vocalisations variable violated the homogeneity of variance assumption
+(<span class="math inline">\(p\)</span> = .048), so results from Welch’s
+<span class="math inline">\(t\)</span>-test were evaluated.</p>
+<p>Transportation modality had a significant effect on infant
+vocalisation, <span class="math inline">\(t\)</span>(35.34) = -3.70,
+<span class="math inline">\(p\)</span> = .001, 95% CI[-1.89, -.55],
+<span class="math inline">\(d\)</span> = 1.23. Specifically, backpack
+users had significantly more vocalisations (<span
+class="math inline">\(M\)</span> = 5.17, <span
+class="math inline">\(SD\)</span> = 1.25) than buggy users (<span
+class="math inline">\(M\)</span> = 3.94, <span
+class="math inline">\(SD\)</span> = .64). There was no significant
+difference in physical contact between backpack (<span
+class="math inline">\(M\)</span> = 6.22, <span
+class="math inline">\(SD\)</span> = 1.67) and buggy users (<span
+class="math inline">\(M\)</span> = 5.61, <span
+class="math inline">\(SD\)</span> = 1.65), <span
+class="math inline">\(t\)</span>(34) = 1.11, <span
+class="math inline">\(p\)</span> = .276, 95% CI[-1.73, 0.51], <span
+class="math inline">\(d\)</span> = 0.37.</p>
+<p><span style="font-weight: bold; font-size: 14pt"> Study 2 </span></p>
+<p>In this study, we tested the effect of infant transportation modality
+on their vocalisation. We hypothesised that there would be differences
+in vocalisation depending on whether infants were riding in a buggy or a
+backpack. This study incorporated a within-subjects design. <span
+class="math inline">\(\alpha\)</span> values for all analyses were set
+at .05.</p>
+<p>A sensitivity power analysis indicated that the 40 participants in
+our sample would provide 80% power to detect an effect size of <span
+class="math inline">\(d\)</span> = 0.45 with <span
+class="math inline">\(\alpha\)</span> = .05. Our sample consisted of 40
+infants between 19 and 54 weeks old (<span
+class="math inline">\(M\)</span> = 34.89, <span
+class="math inline">\(SD\)</span> = 6.86; 23 females, 17 males).</p>
+<p>Assumptions checks were conducted through visual assessment. All data
+met the assumptions of normality and independence.</p>
+<p>A paired-samples <span class="math inline">\(t\)</span>-test
+indicated that transportation modality had a significant effect on
+infant vocalisation, <span class="math inline">\(t\)</span>(39) =
+-22.73, <span class="math inline">\(p\)</span> &lt; .001, 95% CI[-4.00,
+-3.35], <span class="math inline">\(d\)</span> = 3.59. Specifically,
+infants produced significantly more vocalisations while riding in a
+backpack (<span class="math inline">\(M\)</span> = 6.70, <span
+class="math inline">\(SD\)</span> = 1.49) than when riding in a buggy
+(<span class="math inline">\(M\)</span> = 3.03, <span
+class="math inline">\(SD\)</span> = 1.33).</p>
+</details>
+</div>
+<p></br></p>
+<p>
+<script type="application/shiny-prerendered" data-context="server-start">
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(shiny)
+library(shinyjs)
+library(bslib)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+#tutorial_options(exercise.timelimit = 60)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::register_http_handlers(session, metadata = NULL)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::prepare_tutorial_state(session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::i18n_observe_tutorial_language(input, session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+session$onSessionEnded(function() {
+        learnr:::event_trigger(session, "session_stop")
+      })
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+output$distPlot <- renderPlot({
+  set.seed(806)
+      dat <- data.frame(X=rnorm(300, mean = input$mean, sd = input$sd))
+      ggplot(data.frame(X = c(-30, 30)), aes(x = X)) +
+        geom_histogram(data=dat, aes(x=X, y = after_stat(density)), fill = '#4CA384', color = '#19424C',
+                       binwidth = 2) +
+        stat_function(fun=dnorm, geom = "line", args = list(mean = input$mean, sd = input$sd),
+                      linewidth = 1, color = '#19424C') +
+        scale_x_continuous(breaks = seq(-30, 30, 10), limits=c(-30, 30)) +
+        scale_y_continuous(limits=c(0, .4)) +
+        theme(axis.title.x = element_text(size = 16, face = 'bold'),
+              axis.text.x = element_text(size = 16),
+              axis.line.y = element_blank(),
+              axis.text.y = element_blank(),
+              axis.ticks = element_blank(),
+              axis.title.y = element_blank())
+    })
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "q1-1", question = structure("Which of the following research questions could be tested using a t-test? Please select all that apply.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_8096bda", 
+    option = "Is this year's average rice crop yield significantly higher than last year's?", 
+    value = "Is this year's average rice crop yield significantly higher than last year's?", 
+    label = structure("Is this year’s average rice crop yield significantly higher than last year’s?", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9a1c944", 
+    option = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
+    value = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
+    label = structure("How do Therapies A, B, and C compare to each other in reduction of symptoms?", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d0a0c3f", 
+    option = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
+    value = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
+    label = structure("Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_461129", 
+    option = "Is there an association between brain volume and processing speed?", 
+    value = "Is there an association between brain volume and processing speed?", 
+    label = structure("Is there an association between brain volume and processing speed?", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_67ed452", 
+    option = "Is participant performance on a True/False test signficantly better than chance (50%)?", 
+    value = "Is participant performance on a True/False test signficantly better than chance (50%)?", 
+    label = structure("Is participant performance on a True/False test signficantly better than chance (50%)?", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The therapy research question is better suited to an ANOVA or a regression, as it is comparing 3 means. A t-test can only handle two at a time. The brain volume research question asks about an association between two continuous variables. A t-test requires a categorical independent variable. This question is better answered with a correlation or regression.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
+    question = "q1-1"), loading = NULL, random_answer_order = TRUE, 
+    allow_retry = FALSE, seed = 621381605.710647, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-2", question = structure("You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_ffa5c4e", 
+    option = "One-sample t-test", value = "One-sample t-test", 
+    label = structure("One-sample t-test", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_edd788", 
+    option = "Independent samples t-test", value = "Independent samples t-test", 
+    label = structure("Independent samples t-test", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9c61928", 
+    option = "Paired-samples t-test", value = "Paired-samples t-test", 
+    label = structure("Paired-samples t-test", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual’s score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q1-2-answer", 
+    question = "q1-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1444222581.82748, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-1", question = structure("You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_be28010", 
+    option = "0.51", value = 0.51, label = structure("0.51", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q2-1-answer", 
+    question = "q2-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 732221324.659033, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-2", question = structure("How many total participants do you need to detect a strong effect (d = .8) with an independent-samples t-test, a directional hypothesis, power = .8, and alpha = .001?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_14db5bf", 
+    option = "199", value = 199, label = structure("199", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("You will need 199 participants to detect this effect. You will have needed to round up, as you cannot have .2 participants.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q2-2-answer", 
+    question = "q2-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 815939066.620049, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q2-3", question = structure("You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_d3b5f0a", 
+    option = "The sample size requirements increase for a one-tailed test", 
+    value = "The sample size requirements increase for a one-tailed test", 
+    label = structure("The sample size requirements increase for a one-tailed test", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_76254aa", 
+    option = "The sample size requirements decrease for a one-tailed test", 
+    value = "The sample size requirements decrease for a one-tailed test", 
+    label = structure("The sample size requirements decrease for a one-tailed test", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_edbe369", 
+    option = "The sample size requirements are identical for both one- and two-tailed tests", 
+    value = "The sample size requirements are identical for both one- and two-tailed tests", 
+    label = structure("The sample size requirements are identical for both one- and two-tailed tests", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("When using an alpha = .05, we consider values in the most extreme 5% of the distribution to be significant. When running a two-tailed test, this 5% is split in both directions, so the 2.5% highest AND 2.5% lowest values are considered significant. In a one-tailed test, only the extreme results in one direction are considered significant, so all 5% is grouped in a single area of the distribution. This naturally increases the power to detect an effect as the critical threshold in that direction is closer to the mean. Because of this, a smaller sample size in a one-tailed analysis can produce the same power level as a larger sample size in a two-tailed analysis.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q2-3-answer", 
+    question = "q2-3"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1556127500.27537, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q3-1", question = structure("How many female infants participated?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_8a6b72b", 
+    option = "15", value = 15, label = structure("15", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("15 female infants participated in Study 1.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q3-1-answer", 
+    question = "q3-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1978643554.07862, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q3-2", question = structure("Considering the power analysis results from the previous step, Study 1 is adequately powered to detect a moderate effect size, given power = .8 and alpha = .05", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_a724d4b", 
+    option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd0bb09", 
+    option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("No; Study 1 only has 18 participants per group. If the effect of transport modality on socialisation is weak or moderate, a Type II error is likely to occur.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q3-2-answer", 
+    question = "q3-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1595245899.25716, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q3-3", question = structure("What is the minimum number of infant vocalisations?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_8700dda", 
+    option = "2", value = 2, label = structure("2", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The minimum number of infant vocalisations is 2.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q3-3-answer", 
+    question = "q3-3"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 976595080.545237, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q4-1", question = structure("At least one of the variables violates an assumption", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_1fc7cec", 
+    option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_31bd340", 
+    option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The Infant Vocalisation variable violates the Homogeneity of Variance assumption.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q4-1-answer", 
+    question = "q4-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1553166519.27675, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "q4-2", question = structure("Which of the following could be used to assess normality? Please select all that apply.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_562dd18", 
+    option = "Histograms", value = "Histograms", label = structure("Histograms", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_58ec10b", 
+    option = "Q-Q Plots", value = "Q-Q Plots", label = structure("Q-Q Plots", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bb8468f", 
+    option = "Shapiro-Wilk Test", value = "Shapiro-Wilk Test", 
+    label = structure("Shapiro-Wilk Test", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5d9f7e3", 
+    option = "Skewness & Kurtosis values", value = "Skewness & Kurtosis values", 
+    label = structure("Skewness &amp; Kurtosis values", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("All of the above could be used to assess normality. However, statistical tests are not recommended.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q4-2-answer", 
+    question = "q4-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 2090400954.02658, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q5-1", question = structure("What is the t-value associated with infant vocalisation? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_fa7e38d", 
+    option = "-3.7", value = -3.7, label = structure("-3.7", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The t-value associated with this test is -3.70.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q5-1-answer", 
+    question = "q5-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 236130603.390043, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "q5-2", question = structure("A researcher conducts a Levene’s test and finds that the associated p = .02. Which of the following is true? Please select all that apply.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_67ab01e", 
+    option = "The homogeneity of variance assumption has been violated", 
+    value = "The homogeneity of variance assumption has been violated", 
+    label = structure("The homogeneity of variance assumption has been violated", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e968a27", 
+    option = "The assumption of normality has been violated", 
+    value = "The assumption of normality has been violated", 
+    label = structure("The assumption of normality has been violated", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5f821b4", 
+    option = "No assumptions have been violated", value = "No assumptions have been violated", 
+    label = structure("No assumptions have been violated", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3304e9b", 
+    option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
+    value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
+    label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances assumed” row", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ef2f7bf", 
+    option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
+    value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
+    label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances not assumed” row", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("When Levene’s test is significant, it means the homogeneity assumption has been violated and equal variance cannot be assumed.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q5-2-answer", 
+    question = "q5-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1072691693.00049, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q5-3", question = structure("A researcher makes a nondirectional hypothesis and runs an independent t-test in SPSS. Under which column will they find the appropriate significance value?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_4411c97", 
+    option = "One-sided p", value = "One-sided p", label = structure("One-sided p", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a403e31", 
+    option = "Two-sided p", value = "Two-sided p", label = structure("Two-sided p", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d6dbed0", 
+    option = "Either of these options will provide an appropriate significance value.", 
+    value = "Either of these options will provide an appropriate significance value.", 
+    label = structure("Either of these options will provide an appropriate significance value.", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("When evaluating a nondirectional hypothesis, you must run a two-tailed test, as you are testing for an extreme value in either direction.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q5-3-answer", 
+    question = "q5-3"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 319741522.351109, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q5-4", question = structure("A researcher runs an independent test in SPSS and gets the following 95% confidence interval of the difference: [-.28, .83]. Which of the following is true?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_1aead94", 
+    option = "The results are significant.", value = "The results are significant.", 
+    label = structure("The results are significant.", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7045963", 
+    option = "The results are not significant", value = "The results are not significant", 
+    label = structure("The results are not significant", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6e7882a", 
+    option = "Significance can't be evaluated using this information", 
+    value = "Significance can't be evaluated using this information", 
+    label = structure("Significance can’t be evaluated using this information", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The null hypothesis of an independent-samples t-test is that the difference between the means of each group is 0. If the confidence interval contains 0, it means that 0 is a plausible value for the true difference between groups. Therefore, you don’t have enough evidence to reject the null hypothesis that the true difference between groups is 0.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q5-4-answer", 
+    question = "q5-4"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 535316154.750724, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-1", question = structure("What is the mean infant age (in weeks) in the sample? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_d6f0927", 
+    option = "34.89", value = 34.89, label = structure("34.89", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The mean age of the infants in the sample is 34.89 weeks.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "q6-1-answer", 
+    question = "q6-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 780256216.136665, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q6-2", question = structure("What is the maximum number of vocalisations made by infants in backpacks?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_17becb7", 
+    option = "9", value = 9, label = structure("9", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "q6-2-answer", question = "q6-2"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1925229118.6035, 
+    options = list(min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+</p>
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["header-attrs"]},{"type":"character","attributes":{},"value":["2.14"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pandoc"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["header-attrs.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"character","attributes":{},"value":["<style>h1 {font-size: 34px;}\n       h1.title {font-size: 38px;}\n       h2 {font-size: 30px;}\n       h3 {font-size: 24px;}\n       h4 {font-size: 18px;}\n       h5 {font-size: 16px;}\n       h6 {font-size: 12px;}\n       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}\n       pre:not([class]) { background-color: white }<\/style>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["i18n"]},{"type":"character","attributes":{},"value":["21.6.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/i18n"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["i18next.min.js","tutorial-i18n-init.js"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["<script id=\"i18n-cstm-trns\" type=\"application/json\">{\"language\":\"en\",\"resources\":{\"en\":{\"translation\":{\"button\":{\"runcode\":\"Run Code\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Hint\",\"hint_plural\":\"Hints\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Next Hint\",\"hintprev\":\"Previous Hint\",\"solution\":\"Solution\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copy to Clipboard\",\"startover\":\"Start Over\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continue\",\"submitanswer\":\"Submit Answer\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Previous Topic\",\"nexttopic\":\"Next Topic\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Try Again\"},\"text\":{\"startover\":\"Start Over\",\"areyousure\":\"Are you sure you want to start over? (all exercise progress will be reset)\",\"youmustcomplete\":\"You must complete the\",\"exercise\":\"exercise\",\"exercise_plural\":\"exercises\",\"inthissection\":\"in this section before continuing.\",\"code\":\"Code\",\"enginecap\":\"{{engine}} $t(text.code)\",\"quiz\":\"Quiz\",\"blank\":\"blank\",\"blank_plural\":\"blanks\",\"exercisecontainsblank\":\"This exercise contains {{count}} $t(text.blank).\",\"pleasereplaceblank\":\"Please replace {{blank}} with valid code.\",\"unparsable\":\"It looks like this might not be valid R code. R cannot determine how to turn your text into a complete command. You may have forgotten to fill in a blank, to remove an underscore, to include a comma between arguments, or to close an opening <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> or <code>{<\\/code> with a matching <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> or <code>}<\\/code>.\\n\",\"unparsablequotes\":\"<p>It looks like your R code contains specially formatted quotation marks or &quot;curly&quot; quotes (<code>{{character}}<\\/code>) around character strings, making your code invalid. R requires character values to be contained in straight quotation marks (<code>&quot;<\\/code> or <code>'<\\/code>).<\\/p> {{code}} <p>Don't worry, this is a common source of errors when you copy code from another app that applies its own formatting to text. You can try replacing the code on that line with the following. There may be other places that need to be fixed, too.<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>It looks like your R code contains an unexpected special character (<code>{{character}}<\\/code>) that makes your code invalid.<\\/p> {{code}} <p>Sometimes your code may contain a special character that looks like a regular character, especially if you copy and paste the code from another app. Try deleting the special character from your code and retyping it manually.<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>It looks like your R code contains an unexpected special character (<code>{{character}}<\\/code>) that makes your code invalid.<\\/p> {{code}} <p>Sometimes your code may contain a special character that looks like a regular character, especially if you copy and paste the code from another app. You can try replacing the code on that line with the following. There may be other places that need to be fixed, too.<\\/p> {{suggestion}}\\n\",\"and\":\"and\",\"or\":\"or\",\"listcomma\":\", \",\"oxfordcomma\":\",\"}}},\"fr\":{\"translation\":{\"button\":{\"runcode\":\"Lancer le Code\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Indication\",\"hint_plural\":\"Indications\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Indication Suivante\",\"hintprev\":\"Indication Précédente\",\"solution\":\"Solution\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copier dans le Presse-papier\",\"startover\":\"Recommencer\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuer\",\"submitanswer\":\"Soumettre\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Chapitre Précédent\",\"nexttopic\":\"Chapitre Suivant\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Réessayer\"},\"text\":{\"startover\":\"Recommencer\",\"areyousure\":\"Êtes-vous certains de vouloir recommencer? (La progression sera remise à zéro)\",\"youmustcomplete\":\"Vous devez d'abord compléter\",\"exercise\":\"l'exercice\",\"exercise_plural\":\"des exercices\",\"inthissection\":\"de cette section avec de continuer.\",\"code\":\"Code\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"and\":\"et\",\"or\":\"ou\",\"oxfordcomma\":\"\"}}},\"es\":{\"translation\":{\"button\":{\"runcode\":\"Ejecutar código\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Pista\",\"hint_plural\":\"Pistas\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Siguiente pista\",\"hintprev\":\"Pista anterior\",\"solution\":\"Solución\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copiar al portapapeles\",\"startover\":\"Reiniciar\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuar\",\"submitanswer\":\"Enviar respuesta\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Tema anterior\",\"nexttopic\":\"Tema siguiente\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Volver a intentar\"},\"text\":{\"startover\":\"Reiniciar\",\"areyousure\":\"¿De verdad quieres empezar de nuevo? (todo el progreso del ejercicio se perderá)\",\"youmustcomplete\":\"Debes completar\",\"exercise\":\"el ejercicio\",\"exercise_plural\":\"los ejercicios\",\"inthissection\":\"en esta sección antes de continuar.\",\"code\":\"Código\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Cuestionario\",\"and\":\"y\",\"or\":\"o\",\"oxfordcomma\":\"\"}}},\"pt\":{\"translation\":{\"button\":{\"runcode\":\"Executar código\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Dica\",\"hint_plural\":\"Dicas\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Próxima dica\",\"hintprev\":\"Dica anterior\",\"solution\":\"Solução\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copiar para a área de transferência\",\"startover\":\"Reiniciar\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuar\",\"submitanswer\":\"Enviar resposta\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Tópico anterior\",\"nexttopic\":\"Próximo tópico\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Tentar novamente\"},\"text\":{\"startover\":\"Reiniciar\",\"areyousure\":\"Tem certeza que deseja começar novamente? (todo o progresso feito será perdido)\",\"youmustcomplete\":\"Você deve completar\",\"exercise\":\"o exercício\",\"exercise_plural\":\"os exercícios\",\"inthissection\":\"nesta seção antes de continuar.\",\"code\":\"Código\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"and\":\"e\",\"or\":\"ou\",\"oxfordcomma\":\"\"}}},\"tr\":{\"translation\":{\"button\":{\"runcode\":\"Çalıştırma Kodu\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Ipucu\",\"hint_plural\":\"İpuçları\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Sonraki İpucu\",\"hintprev\":\"Önceki İpucu\",\"solution\":\"Çözüm\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Pano'ya Kopyala\",\"startover\":\"Baştan Başlamak\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Devam et\",\"submitanswer\":\"Cevabı onayla\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Önceki Konu\",\"nexttopic\":\"Sonraki Konu\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Tekrar Deneyin\"},\"text\":{\"startover\":\"Baştan Başlamak\",\"areyousure\":\"Baştan başlamak istediğinizden emin misiniz? (tüm egzersiz ilerlemesi kaybolacak)\",\"youmustcomplete\":\"Tamamlamalısın\",\"exercise\":\"egzersiz\",\"exercise_plural\":\"egzersizler\",\"inthissection\":\"devam etmeden önce bu bölümde\",\"code\":\"Kod\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Sınav\",\"oxfordcomma\":\"\"}}},\"emo\":{\"translation\":{\"button\":{\"runcode\":\"🏃\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"💡\",\"hint_plural\":\"$t(button.hint)\",\"hinttitle\":\"$t(button.hint)\",\"solution\":\"🎯\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"📋\",\"startover\":\"⏮\",\"startovertitle\":\"Start Over\",\"continue\":\"✅\",\"submitanswer\":\"🆗\",\"submitanswertitle\":\"Submit Answer\",\"previoustopic\":\"⬅\",\"nexttopic\":\"➡\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"🔁\"},\"text\":{\"startover\":\"⏮\",\"areyousure\":\"🤔\",\"youmustcomplete\":\"⚠️ 👉 🧑‍💻\",\"exercise\":\"\",\"exercise_plural\":\"\",\"inthissection\":\"\",\"code\":\"💻\",\"enginecap\":\"$t(text.code) {{engine}}\",\"oxfordcomma\":\"\"}}},\"eu\":{\"translation\":{\"button\":{\"runcode\":\"Kodea egikaritu\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Laguntza\",\"hint_plural\":\"Laguntza\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Aurreko laguntza\",\"hintprev\":\"Hurrengo laguntza\",\"solution\":\"Ebazpena\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Arbelean kopiatu\",\"startover\":\"Berrabiarazi\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Jarraitu\",\"submitanswer\":\"Erantzuna bidali\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Aurreko atala\",\"nexttopic\":\"Hurrengo atala\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Berriro saiatu\"},\"text\":{\"startover\":\"Berrabiarazi\",\"areyousure\":\"Berriro hasi nahi duzu? (egindako lana galdu egingo da)\",\"youmustcomplete\":\"Aurrera egin baino lehen atal honetako\",\"exercise\":\"ariketa egin behar duzu.\",\"exercise_plural\":\"ariketak egin behar dituzu.\",\"inthissection\":\"\",\"code\":\"Kodea\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Galdetegia\",\"oxfordcomma\":\"\"}}},\"de\":{\"translation\":{\"button\":{\"runcode\":\"Code ausführen\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Tipp\",\"hint_plural\":\"Tipps\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Nächster Tipp\",\"hintprev\":\"Vorheriger Tipp\",\"solution\":\"Lösung\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"In die Zwischenablage kopieren\",\"startover\":\"Neustart\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Weiter\",\"submitanswer\":\"Antwort einreichen\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Vorheriges Kapitel\",\"nexttopic\":\"Nächstes Kapitel\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Nochmal versuchen\"},\"text\":{\"startover\":\"Neustart\",\"areyousure\":\"Bist du sicher, dass du neustarten willst? (der gesamte Lernfortschritt wird gelöscht)\",\"youmustcomplete\":\"Vervollstädinge\",\"exercise\":\"die Übung\",\"exercise_plural\":\"die Übungen\",\"inthissection\":\"in diesem Kapitel, bevor du fortfährst.\",\"code\":\"Code\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"blank\":\"Lücke\",\"blank_plural\":\"Lücken\",\"pleasereplaceblank\":\"Bitte ersetze {{blank}} mit gültigem Code.\",\"unparsable\":\"Dies scheint kein gültiger R Code zu sein. R kann deinen Text nicht in einen gültigen Befehl übersetzen. Du hast vielleicht vergessen, die Lücke zu füllen, einen Unterstrich zu entfernen, ein Komma zwischen Argumente zu setzen oder ein eröffnendes <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> oder <code>{<\\/code> mit einem zugehörigen <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> oder <code>}<\\/code> zu schließen.\\n\",\"and\":\"und\",\"or\":\"oder\",\"listcomma\":\", \",\"oxfordcomma\":\",\"}}},\"ko\":{\"translation\":{\"button\":{\"runcode\":\"코드 실행\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"힌트\",\"hint_plural\":\"힌트들\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"다음 힌트\",\"hintprev\":\"이전 힌트\",\"solution\":\"솔루션\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"클립보드에 복사\",\"startover\":\"재학습\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"다음 학습으로\",\"submitanswer\":\"정답 제출\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"이전 토픽\",\"nexttopic\":\"다음 토픽\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"재시도\"},\"text\":{\"startover\":\"재학습\",\"areyousure\":\"다시 시작 하시겠습니까? (모든 예제의 진행 정보가 재설정됩니다)\",\"youmustcomplete\":\"당신은 완료해야 합니다\",\"exercise\":\"연습문제\",\"exercise_plural\":\"연습문제들\",\"inthissection\":\"이 섹션을 실행하기 전에\",\"code\":\"코드\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"퀴즈\",\"blank\":\"공백\",\"blank_plural\":\"공백들\",\"exercisecontainsblank\":\"이 연습문제에는 {{count}}개의 $t(text.blank)이 포함되어 있습니다.\",\"pleasereplaceblank\":\"{{blank}}를 유효한 코드로 바꾸십시오.\",\"unparsable\":\"이것은 유효한 R 코드가 아닐 수 있습니다. R은 텍스트를 완전한 명령으로 변환하는 방법을 결정할 수 없습니다. 당신은 공백이나 밑줄을 대체하여 채우기, 인수를 컴마로 구분하기, 또는 <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> , <code>{<\\/code>로 시작하는 구문을 닫는 <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code>, <code>}<\\/code>을 잊었을 수도 있습니다.\\n\",\"and\":\"그리고\",\"or\":\"혹은\",\"listcomma\":\", \",\"oxfordcomma\":\"\"}}},\"zh\":{\"translation\":{\"button\":{\"runcode\":\"运行代码\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"提示\",\"hint_plural\":\"提示\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"下一个提示\",\"hintprev\":\"上一个提示\",\"solution\":\"答案\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"复制到剪切板\",\"startover\":\"重新开始\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"继续\",\"submitanswer\":\"提交答案\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"上一专题\",\"nexttopic\":\"下一专题\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"再试一次\"},\"text\":{\"startover\":\"重置\",\"areyousure\":\"你确定要重新开始吗? (所有当前进度将被重置)\",\"youmustcomplete\":\"你必须完成\",\"exercise\":\"练习\",\"exercise_plural\":\"练习\",\"inthissection\":\"在进行本节之前\",\"code\":\"代码\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"测试\",\"blank\":\"空\",\"blank_plural\":\"空\",\"exercisecontainsblank\":\"本练习包含{{count}}个$t(text.blank)\",\"pleasereplaceblank\":\"请在{{blank}}内填写恰当的代码\",\"unparsable\":\"这似乎不是有效的R代码。 R不知道如何将您的文本转换为完整的命令。 您是否忘了填空，忘了删除下划线，忘了在参数之间包含逗号，或者是忘了用<code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code>,<code>}<\\/code>来封闭<code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code>。 or <code>{<\\/code>。\\n\",\"unparsablequotes\":\"<p>您的R代码中似乎含有特殊格式的引号，或者弯引号(<code>{{character}}<\\/code>) 在字符串前后，在R中字符串应该被直引号(<code>&quot;<\\/code> 或者 <code>'<\\/code>)包裹。<\\/p> {{code}} <p>别担心，该错误经常在复制粘贴包含格式的代码时遇到， 您可以尝试将该行中的代码替换为以下代码，也许还有其他地方需要修改。<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>您的代码中似乎包含有异常字符(<code>{{character}}<\\/code>),导致代码无效。<\\/p> {{code}} <p>有时候你的代码可能含有看似正常字符的特殊字符，特别是当你复制粘贴其他来源代码的时候。 请试着删除这些特殊字符,重新输入<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>您的代码中似乎包含有异常字符(<code>{{character}}<\\/code>),导致代码无效。<\\/p> {{code}} <p>有时候你的代码可能含有看似正常字符的特殊字符，特别是当你复制粘贴其他来源代码的时候。 请试着删除这些特殊字符,重新输入<\\/p>\\n\",\"and\":\"且\",\"or\":\"或\",\"listcomma\":\",\",\"oxfordcomma\":\",\"}}},\"pl\":{\"translation\":{\"button\":{\"runcode\":\"Uruchom kod\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Podpowiedź\",\"hint_plural\":\"Podpowiedzi\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Następna podpowiedź\",\"hintprev\":\"Poprzednia podpowiedź\",\"solution\":\"Rozwiązanie\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Kopiuj do schowka\",\"startover\":\"Zacznij od początku\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Kontynuuj\",\"submitanswer\":\"Wyślij\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Poprzednia sekcja\",\"nexttopic\":\"Następna sekcja\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Spróbuj ponownie\"},\"text\":{\"startover\":\"Zacznij od początku\",\"areyousure\":\"Czy na pewno chcesz zacząć od początku? (cały postęp w zadaniu zostanie utracony)\",\"youmustcomplete\":\"Musisz ukończyć\",\"exercise\":\"ćwiczenie\",\"exercise_plural\":\"ćwiczenia\",\"inthissection\":\"w tej sekcji przed kontynuowaniem\",\"code\":\"Kod\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"blank\":\"luka\",\"blank_plural\":\"luk(i)\",\"exercisecontainsblank\":\"To ćwiczenie zawiera {{count}} $t(text.blank).\",\"pleasereplaceblank\":\"Proszę uzupełnić {{blank}} prawidłowym kodem.\",\"unparsable\":\"Wygląda na to, że może to nie być prawidłowy kod R. R nie jest w stanie przetworzyć Twojego tekstu na polecenie. Mogłeś(-aś) zapomnieć wypełnić luki, usunąć podkreślnik, umieścić przecinka między argumentami, lub zamknąć znak <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> lub <code>{<\\/code> odpowiadającym <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> lub <code>}<\\/code>.\\n\",\"unparsablequotes\":\"<p>Wygląda na to, że Twój kod zawiera szczególnie sformatowane cudzysłowy lub cudzysłowy typograficzne (<code>{{character}}<\\/code>) przy ciągach znaków, co sprawia, że kod jest niepoprawny. R wymaga cudzysłowów prostych (<code>&quot;<\\/code> albo <code>'<\\/code>).<\\/p> {{code}} <p>Nie martw się, to powszechne źródło błędów, gdy kopiuje się kod z innego programu, który sam formatuje teskt. Możesz spróbować zastąpić swój kod następującym kodem. Mogą być też inne miejsca, które wymagają poprawienia.<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>Wygląda na to, że Twój kod zawiera niespodziewany znak specjalny (<code>{{character}}<\\/code>), co sprawia, że kod jest niepoprawny.<\\/p> {{code}} <p>Czasami Twój kod może zawierać znak specjalny, który wygląda jak zwykły znak, zwłaszcza jeśli kopiujesz kod z innego programu. Spróbuj usunąć znak specjalny i wpisać do ponownie ręcznie.<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>Wygląda na to, że Twój kod zawiera niespodziewany znak specjalny (<code>{{character}}<\\/code>), co sprawia, że kod jest niepoprawny.<\\/p> {{code}} <p>Czasami Twój kod może zawierać znak specjalny, który wygląda jak zwykły znak, zwłaszcza jeśli kopiujesz kod z innego programu. Możesz spróbować zastąpić swój kod następującym kodem. Mogą być też inne miejsca, które wymagają poprawienia.<\\/p> {{suggestion}}\\n\",\"and\":\"i\",\"or\":\"lub\",\"listcomma\":\", \",\"oxfordcomma\":\"\"}}}}}<\/script>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.11.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["navigation"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/navigation-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tabsets.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["default.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["5.1.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.css","css/v4-shims.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.14"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["kePrint"]},{"type":"character","attributes":{},"value":["0.0.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["kePrint-0.0.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["kePrint.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["kableExtra"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.3.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["lightable"]},{"type":"character","attributes":{},"value":["0.0.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lightable-0.0.1"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["lightable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["kableExtra"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.3.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["kePrint"]},{"type":"character","attributes":{},"value":["0.0.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["kePrint-0.0.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["kePrint.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["kableExtra"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.3.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["lightable"]},{"type":"character","attributes":{},"value":["0.0.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lightable-0.0.1"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["lightable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["kableExtra"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["1.3.4"]}]}]}
+</script>
+<!--/html_preserve-->
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="execution_dependencies">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cachem","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","png","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyjs","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","0.1-8","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.1.1","2.14","2.0.3","0.13","1.0.2","0.4.9","1.3.0","1.7.4","2.1.0","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+
+</article> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h1 class="title toc-ignore" style="display:none;">Week 4 Lab:
+t-tests</h1>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</main> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+<!-- Build Tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+</body>
+
+</html>

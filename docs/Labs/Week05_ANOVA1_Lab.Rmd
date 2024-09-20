@@ -1,0 +1,400 @@
+---
+title: "Week 5: ANOVA I"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(shiny)
+library(shinyjs)
+library(bslib)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+#tutorial_options(exercise.timelimit = 60)
+```
+
+```{r, context = 'server'}
+
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+Intro Goes Here   
+
+```{r, echo = F}
+# dat <- read.csv('Week1LabData.csv')
+# datInfo <- data.frame(VariableName=colnames(dat), 
+#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
+#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
+#                                     Version C Scores', 'Assessment Version D Scores'))
+# 
+# datInfo %>%
+#   kbl(col.names=c('Variable Name', 'Description')) %>%
+#   kable_styling(full_width = F) %>%
+#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+#   column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Objective 1
+2. Objective 2
+3. Objective 3
+4. Objective 4
+
+
+## State Your Hypotheses
+
+Task 1 Here
+
+* Identify IV & DV
+* State Hypotheses for One Way, Between-Subjects, and RM ANOVA
+
+```{r q1, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("What kind of file is 'Week1LabData'?",
+#               answer("SPSS datafile"),
+#               answer("comma separated values file", correct = T),
+#               answer("Excel file"),
+#               answer("Word file"),
+#               message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for
+#               spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than
+#               SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
+#      question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
+#               answer('True'),
+#               answer('False', correct = T),
+#               message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only
+#               necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
+#      )
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Goes Here
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution Goes Here
+
+</details>
+</div>
+</br>
+
+## Run Power Analyses
+
+Task here.
+
+
+```{r q2, echo = FALSE}
+
+# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
+quiz(caption = 'Test Your Understanding',
+     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
+                      answer(38, correct = T),
+                      message = '38% of the sample scored between 95 and 110.'),
+     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
+                      answer(19, correct = T),
+                      message = '19% of the sample received a score lower than 87.'),
+     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
+                      answer(1, correct = T),
+                      message = 'Only 1% of the sample scored at least 138.'),
+     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
+                      answer(81, correct = T),
+                      message = 'The lowest 10% of the sample scored below 81.')
+)
+
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+
+## Check Assumptions 
+
+
+Task Description Here
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+
+
+
+## Compute Descriptive Data 
+
+Task Here.
+
+```{r q4, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("At least one of the groups is limited in size compared to the others",
+#               answer("True", correct = T),
+#               answer("False"),
+#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
+#      question_numeric("How many total datapoints do you have for the gender variable?",
+#               answer(48, correct=T)),
+#      question_numeric("What percentage of participants are female?",
+#               answer(41.7, correct=T)),
+#      question_numeric('How many nonbinary participants are in your sample?',
+#               answer(2, correct=T)))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Data Visualisation 
+
+Task Here
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## One-Way ANOVA 
+
+Task Description.
+
+```{r q6, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
+#               answer("Mean", correct = T),
+#               answer("Median", correct = T),
+#               answer('Mode', correct = T),
+#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
+#               mean, as it includes information from each observation.'),
+#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
+#               answer("Mean"),
+#               answer("Median"),
+#               answer('Mode', correct = T),
+#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
+#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
+#      question_numeric("What is the average score on Assessment A?",
+#               answer(39.10, correct=T)),
+#      question_numeric("What is the most common age in this sample?",
+#               answer(19, correct=T)),
+#      question_numeric("What is the median score on Assessment D?",
+#               answer(81.87, correct=T))
+# )
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Between-Subjects ANOVA 
+
+Task here.
+
+```{r q7, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question_numeric("What is the IQR for Assessment B?",
+#               answer(4, correct=T),
+#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
+#      question_numeric("What is the maximum score on Assessment C?",
+#               answer(78, correct=T)),
+#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
+#               answer(2.15, correct=T))
+# )
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Repeated Measures ANOVA 
+
+Task here.
+
+```{r distPlot, echo = F}
+# 
+# fluidRow(column(4, 
+#   sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
+#   sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
+#   column(8, plotOutput('distPlot')))
+# 
+# tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
+# tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+
+## Compute Effect Sizes
+
+Task here.
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+
+## Interpret & Report 
+
+Task here.
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
