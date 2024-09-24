@@ -1,15 +1,18 @@
-name: "my-website"
+name: "statistics-for-clinical-psychology-students"
 output_dir: docs
 output:
   html_document:
+    theme: yeti
     includes:
       in_header: header.html
 navbar:
-  title: "My Website"
+  title: "Statistics for Clinical Psychology Students"
   left:
-    - text: "Home"
-      href: index.html
-    - text: "Lectures"
-      href: lectures.html
-    - text: "Labs"
-      href: labs.html
+    - text: "Available Courses"
+      menu:
+      - text: Psychological Research Methods
+        href: https://mtruelovehill.github.io/PsychologicalResearchMethods.html
+      - text: Inferential Statistics in Applied Psychology
+        href: https://mtruelovehill.github.io/InferentialStatisticsinAppliedPsychology.html
+    - text: "About the Instructor"
+      href: https://mtruelovehill.github.io/about.html

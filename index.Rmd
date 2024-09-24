@@ -1,44 +1,33 @@
 ---
-title: 'Psychological Research Methods: Data Management & Analysis'
-subtitle: '2024/2025'
+layout: page
+permalink: /PRM
 ---
 
 <link href="css/style.css" rel="stylesheet"></link> 
 
-```{r, echo = F, message = F, warning = F}
-baseColor <- '#4CA384'
-accent1 <- '#9AD079'
-accent2 <- '#18778C'
-accent3 <- '#19424C'
-```
+<br>
 
+<p align = 'center'>
+<img src = 'https://mtruelovehill.github.io/images/PRMimg.png' width = '400px'>
+</p>
 
-
-### Instructor
-
-[Monica Truelove-Hill](https://www.ed.ac.uk/profile/monica-truelove-hill)
-
-<p><a href="mailto:m.truelovehill@ed.ac.uk">m.truelovehill@ed.ac.uk</a></p>
+<br>
 
 ### Course Description
+This course aims to provide students with both a theoretical and practical understanding of the use of statistics in psychology. The lectures shared here will familiarise students with a range of quantitative statistical methods. Here, you can find content on topics such as t-tests, ANOVA, and regression, among other inferential statistical analyses.
 
-This option is a core course for the MSc in Psychology of Mental Health (Conversion) at the University of Edinburgh. This course aims to provide students with both a theoretical and practical understanding of the use of statistics in psychology. It will familiarise students with both quantitative and qualitative statistical methods, with a primary focus on quantitative methods. Over the course, lectures will cover topics such as t-tests, ANOVA, regression, and thematic analysis, among others. Additionally, students will attend labs during which they gain hands-on practice implementing the content covered in lectures.
+<br>
 
-### Course Overview
+### Lectures
 
-| Week | W/C  | Content                                                 | Lectures | Labs                    | Reading |
-|:----:|:----:|:--------------------------------------------------------|:--------:|:-----------------------:|:--------|
-| 1    |16/09 | Exploring Your Data | [Slides](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html)| [Workbook](https://truelovehill.shinyapps.io/week01_exploringdata_lab/)| TBD |
-| 2    |23/09 | Thematic Analysis| [Slides]() | [Workbook]() | TBD |
-| 3    |30/09 | Intro to Null Hypothesis Statistical Testing | [Slides]() | [Workbook]() | TBD |
-| 4    |07/10 | $t$-tests | [Slides]() | [Workbook]() | TBD |
-| 5    |14/10 | ANOVA I | [Slides]() | [Workbook]() | TBD |
-| <b>6</b>|<b>21/10</b>|<b>Flexible Learning Week</b>| |
-| 7    |28/10 | ANOVA II | [Slides]() | [Workbook]() | TBD |
-| 8    |04/11 | Correlation | [Slides]() | [Workbook]() | TBD |
-| 9    |11/11 | Regression I | [Slides]() | [Workbook]() | TBD |
-| 10   |18/11 | Regression II | [Slides]() | [Workbook]() | TBD |
-| 11   |25/11 | Nonparametric Tests | [Slides]() | [Workbook]() | TBD |
+This course is ongoing; more lectures will be added as the semester progresses.
 
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">Exploring Your Data </a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#1" target="_blank">Introduction to Null-Hypothesis Statistical Testing </a>
 
-  <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">All work available on this site</span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a></p> 
+<br>
+<br>
+<br>
+
+ 
+<p style = 'font-size: 10px' xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span property="dct:title">All work available on this site</span> is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0<img style="height:12px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img style="height:12px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img style="height:12px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img style="height:12px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt=""></a> Basically, if you use it, give me credit. Don't use it for commercial purposes. If you adapt this material and share it with others, it should be licensed under the same terms. </p>
