@@ -51,7 +51,7 @@ During today's lab, you'll apply the concepts discussed during this week's lectu
 
 In this week's lab, you'll be working with data simulated based on [this paper](https://onlinelibrary.wiley.com/doi/10.1111/infa.12238). In this study, researchers tested the effect of infant transport modality on their social interaction. Specifically, they compared the use of buggies and backpacks. 
 
-You'll be analysing data from two separate studies. In the first, researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent and infant vocalisations. They also recorded the number of times the parent touched their infant over the course of the walk.
+You'll be analysing data from two separate experiments In the first, researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent and infant vocalisations. They also recorded the number of times the parent touched their infant over the course of the walk.
 
 You can download the dataset from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv) This dataset contains the following variables:
 

@@ -21,7 +21,6 @@ baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ```{r, context = 'server'}
@@ -30,9 +29,22 @@ accent3 <- '#19424C'
 
 ## Intro to Today's Lab
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-Intro Goes Here   
+### This Week's Study
+
+You'll be working with data adapted from studies on emotion recognition (see [here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243708)). Specifically, you're testing whether mask-wearing during COVID influenced children's ability to correctly identify emotions during social interactions. You'll be investigating this through two separate experiments.
+
+#### Experiment 1
+In the first experiment, you investigated whether the region of the face covered affects a child's ability to recognize emotions conveyed by facial expressions. You recruited a sample of primary-school aged children. All participants were presented with photos of people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). However, participants were grouped into one of three conditions. In the first condition, stimuli were unobstructed. In the second condition, stimuli were wearing sunglasses so that the eyes were obstructed. In the third condition, stimuli were wearing masks so that the mouth was obstructed (see examples below).
+
+```{r, echo = F}
+knitr::include_graphics('images/Week5_expStimuli.png')
+```
+
+Participants viewed 10 photos per emotion, for a total of 50 photos. Photos were presented in random order for each participant. 
+
+You can download the dataset from the first experiment [here](). It contains the following variables:
 
 ```{r, echo = F}
 # dat <- read.csv('Week1LabData.csv')
@@ -52,10 +64,11 @@ Intro Goes Here
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
-1. Objective 1
-2. Objective 2
-3. Objective 3
-4. Objective 4
+1. Identify hypotheses which may be tested using ANOVAs
+2. Run an appropriate power analysis for both one-way and repeated-measures ANOVAs
+3. Check assumptions for both one-way and repeated-measures ANOVAs
+4. Use SPSS to perform both one-way and repeated-measures ANOVAs
+5. Interpret and report results from both one-way and repeated-measures ANOVAs
 
 
 ## State Your Hypotheses

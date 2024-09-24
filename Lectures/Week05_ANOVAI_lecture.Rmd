@@ -55,81 +55,11 @@ accent3 <- '#19424C'
 + Conducting a power analysis for ANOVA
 
 ---
-## Differences between two means
+## Moving on from $t$-tests
 
---
++ $t$-tests allow for the comparison of two means...what if we want to compare more than two?
 
-** Are these means different? (Yes/No/It Depends)**
-
-.pull-left[
-```{r, echo = F, fig.height=5}
-set.seed(68)
-dat <- data.frame(x1=round(rnorm(1000, mean = 20, sd = 2)), y1=round(rnorm(1000, mean = 26, sd = 2)), x2=round(rnorm(1000, mean = 22, sd = 15)), y2=round(rnorm(100, mean = 32, sd = 15)))
-
-basePlot <- ggplot(dat, aes(x1)) + 
-  scale_x_continuous(breaks=seq(5, 50, by = 5), limits=c(5, 50)) +
-  theme(axis.line.y = element_line(),
-        axis.line.x = element_line(),
-        panel.grid = element_blank(),
-        panel.background = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_text(size = 14),
-        axis.title = element_text(size = 16, face = 'bold')) +
-  xlab('x')
-
-basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2)
-```
-
-]
-
---
-
-.pull-right[
-
-```{r, echo = F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y2), linewidth=1, color = accent2)
-```
-
-]
-
-
----
-
-## Differences between two means
-
-** Are these means different? (Yes/No/It Depends)**
-
-.pull-left[
-```{r, echo = F, warning=F, message=F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2) +
-  geom_histogram(fill=baseColor, color = accent3, alpha = .8, binwidth = 1) +
-  geom_histogram(data = dat, aes(x=y1), fill=accent2, color = accent3, alpha = .8, binwidth = 1) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.line.y = element_blank())
-```
-
-]
-
-
-.pull-right[
-
-```{r, echo = F, warning=F, message = F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1.5, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y2), linewidth=1.5, color = accent2) + 
-  geom_histogram(data = dat, aes(x=x2), fill=baseColor, color = accent3, alpha = .8, binwidth = 1) +
-  geom_histogram(data = dat, aes(x=y2), fill=accent2, color = accent3, alpha = .8, binwidth = 1) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.line.y = element_blank())
-```
-
-]
++ 
 
 ---
 ## The $t$-test
