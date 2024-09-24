@@ -7,11 +7,12 @@ output:
       in_header: header.html
 navbar:
   title: "Statistics for Clinical Psychology Students"
+  href: https://mtruelovehill.github.io/
   left:
     - text: "Available Courses"
       menu:
       - text: Psychological Research Methods
-        href: https://mtruelovehill.github.io/PsychologicalResearchMethods.html
+        href: https://mtruelovehill.github.io/PRM
       - text: Inferential Statistics in Applied Psychology
         href: https://mtruelovehill.github.io/InferentialStatisticsinAppliedPsychology.html
     - text: "About the Instructor"
