@@ -90,12 +90,12 @@ output$alphaPlot <- renderPlot({
 output$pPlot <- renderPlot({
   lowProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1), 4)*100
   hiProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F),4)*100
-  
+
   limVal <- ifelse(input$testStatistic<0, input$testStatistic, input$testStatistic*-1)
-  
-  pVal <- ifelse(input$testStatistic<0, round(pnorm(input$testStatistic, mean = 0, sd = 1), 3)*2, 
+
+  pVal <- ifelse(input$testStatistic<0, round(pnorm(input$testStatistic, mean = 0, sd = 1), 3)*2,
                  round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F), 3)*2)
-  
+
   ggplot(data.frame(x=c(-5, 5)), aes(x)) +
     geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
               xlim = c(-5, limVal), alpha = .7) +
@@ -114,12 +114,44 @@ output$pPlot <- renderPlot({
           axis.text.x = element_text(size = 14, face = 'bold'),
           axis.title.x = element_text(size = 16, face = 'bold')) +
     geom_rect(aes(xmin = -3.8, xmax = -2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
-    geom_rect(aes(xmin = 1.2, xmax = 2.3, ymin = .28, ymax = .32), fill = accent1, alpha = .5) +
     geom_rect(aes(xmin = 3.8, xmax = 2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
-    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = 3.25, y = .05, size = 6) +
-    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = -3.25, y = .05, size = 6) +
-    annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', 1-pVal))), x = 1.75, y = .3, size = 6)
+    annotate('text', label = paste0('P', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = 3.25, y = .05, size = 6) +
+    annotate('text', label = paste0('P', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = -3.25, y = .05, size = 6)
 })
+
+# output$pPlot <- renderPlot({
+#   lowProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1), 4)*100
+#   hiProb <- round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F),4)*100
+#   
+#   limVal <- ifelse(input$testStatistic<0, input$testStatistic, input$testStatistic*-1)
+#   
+#   pVal <- ifelse(input$testStatistic<0, round(pnorm(input$testStatistic, mean = 0, sd = 1), 3)*2, 
+#                  round(pnorm(input$testStatistic, mean = 0, sd = 1, lower.tail = F), 3)*2)
+#   
+#   ggplot(data.frame(x=c(-5, 5)), aes(x)) +
+#     geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+#               xlim = c(-5, limVal), alpha = .7) +
+#     geom_area(stat = "function", fun = dnorm, fill = baseColor, args = c(mean = 0, sd = 1),
+#               xlim = c(abs(limVal), 5), alpha = .7) +
+#     geom_area(stat = "function", fun = dnorm, fill = accent1, args = c(mean = 0, sd = 1),
+#               xlim = c(limVal, abs(limVal)), alpha = .7) +
+#     stat_function(fun=dnorm, geom = "line", linewidth = 1.5, args = c(mean = 0, sd = 1)) +
+#     scale_x_continuous(breaks = seq(-5, 5, by = 1)) +
+#     scale_y_continuous(limits=c(0, .4)) +
+#     xlab('test statistic') +
+#     geom_vline(xintercept = input$testStatistic, color = accent3, linewidth = 1.5, linetype='dashed') +
+#     theme(axis.text.y = element_blank(),
+#           axis.ticks.y = element_blank(),
+#           axis.title.y = element_blank(),
+#           axis.text.x = element_text(size = 14, face = 'bold'),
+#           axis.title.x = element_text(size = 16, face = 'bold')) +
+#     geom_rect(aes(xmin = -3.8, xmax = -2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
+#     geom_rect(aes(xmin = 1.2, xmax = 2.3, ymin = .28, ymax = .32), fill = accent1, alpha = .5) +
+#     geom_rect(aes(xmin = 3.8, xmax = 2.7, ymin = .03, ymax = .07), fill = baseColor, alpha = .5) +
+#     annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = 3.25, y = .05, size = 6) +
+#     annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal/2))), x = -3.25, y = .05, size = 6) +
+#     annotate('text', label = paste0('p', ifelse(pVal==0, ' < .001', paste0(' = ', 1-pVal))), x = 1.75, y = .3, size = 6)
+# })
 
 
 
@@ -167,9 +199,9 @@ output$effectSizePlot <- renderPlot({
           axis.text.y = element_blank(),
           axis.title.y = element_blank(),
           axis.ticks.y = element_blank()) +
-    annotate(geom = 'text', label = paste('Effect Size =', effSize), x = 25, y = .19, size = 6) +
+    annotate(geom = 'text', label = paste('Effect Size =', abs(effSize)), x = 25, y = .19, size = 6) +
     annotate(geom = 'text', label = paste('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal))), 
-             x = 25, y = .17, size = 6)
+             x = 25, y = .16, size = 6)
   
 })
 
@@ -244,7 +276,7 @@ plotOutput('aucPlot')
 <br>
 
 Now that you've started to get a grasp on what the area under the curve corresponds to, let's apply this to the example from last week.
-Recall that you had a small sample of students who completed each of the four assessments. The optimal assessment was determined to be Assessment C. Imagine that the instructor adopted Assessment C for use in their course. The plot below reflects the probability distribution of assessment performance across all students on the course. 
+Recall that you had a small sample of students who completed each of the three assessments. The optimal assessment was determined to be Assessment C. Imagine that the instructor adopted Assessment C for use in their course. The plot below reflects the probability distribution of assessment performance across all students on the course. 
 
 ```{r, echo = F}
 sliderInput('score', 'Assessment Score:', min=31, max = 84, step = 1, value = c(31,84), ticks = F)
@@ -270,7 +302,7 @@ quiz(caption = 'Test Your Understanding',
                       message = '5% of the sample scored 43 or below.'),
      question_numeric('Assume this distribution is perfectly normal. What was the mean score on the assessment?',
                       answer(58, correct = T),
-                      message = 'In a normal distribution, all observations are centred around then mean. The mean score on this assessment is 58, as 50% of students scored 58 or above, and 50% of students scored 58 or below.')
+                      message = 'In a normal distribution, all observations are centred around the mean. The mean score on this assessment is 58, as 50% of students scored 58 or above, and 50% of students scored 58 or below.')
 )
 ```
 
@@ -279,7 +311,7 @@ quiz(caption = 'Test Your Understanding',
 
 When we run an inferential statistical test, it produces a test statistic. The null distribution for that test is the distribution of test statistics we would expect if the null hypothesis were true. If we run a statistical test and our statistic falls in the extreme region of the distribution, we consider our results to be significant and reject the null hypothesis (because our results would be really unusual if the null hypothesis were true!). See the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#26) if you need a refresher. 
 
-Before running a test, we use $\alpha$ to determine our cutoff for significance. $\alpha$ refers to the proportion of values in the null distribution we consider to be extreme. 
+Before running a test, we use $\alpha$ to determine our cutoff for significance. $\alpha$ refers to the proportion of values in the null distribution we consider to be extreme. In the plot below, the shaded region indicates the 'extreme' region associated with each value of $\alpha$. 
 
 
 ```{r, echo = F}
@@ -311,7 +343,7 @@ quiz(caption = 'Test Your Understanding',
 
 ## Computing <i> p </i>
 
-Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#37) that a $p$-value is the probability of obtaining a statistical test result at least as extreme as ours, given that the null hypothesis is true. Keep in mind that we're interested in the probability of any value **at least as extreme as our value**, regardless of whether it is positive or negative.
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#37) that a $p$-value is the probability of obtaining a statistical test result at least as extreme as ours, given that the null hypothesis is true. Keep in mind that we're interested in the probability of any value **at least as extreme as our value**, regardless of whether it is positive or negative. This means that the $p$-value is calculated by summing the probability of scores more extreme than our value on **both** sides of the distribution. 
 
 The plot below shows the probability of each shaded region, as well as a line representing the test statistic value. Use this plot to answer the following questions.
 
@@ -333,7 +365,7 @@ quiz(caption = 'Test Your Understanding',
               answer(-1.96, correct = T),
               answer(1.96, correct = T),
               message = "Because 5% is split between each tail of the distribution, any statistic with a corresponding probability of 2.5% or less would fall into the most extreme 5% of the values. The cutoff point is 1.96."),
-     question('Which of the following test statistics are in the most extreme 1% of the data?',
+     question('Which of the following test statistics are in the most extreme 1% of the data? Please select all that apply.',
               answer(-2.76, correct = T),
               answer(2.34),
               answer(1.74),
@@ -348,12 +380,15 @@ quiz(caption = 'Test Your Understanding',
 In the last few tasks, we've broken down the general steps of an inferential statistical test. This gives you a glimpse of what's going on under the hood of SPSS. Now, let's put the steps together. 
 
 
-Use the plot below to answer the following questions. The shaded area reflects $p$ (the probability of getting a test statistic at least as extreme as yours given the null is true).
+Use the plot below to answer the following questions. The shaded area reflects $p$, the probability of getting a test statistic at least as extreme as yours given the null is true.
+
+Please note that in the previous sections, $P$ (capital) reflected the probability of scores within each region. Here, $p$ (lowercase) refers to the $p$-value (the total probability of both shaded regions). 
 
 ```{r, echo = F}
 sliderInput('testStat2', 'Value of Test Statistic:', min=-5, max = 5, step = .01, value = 0, ticks = F)
 plotOutput('testPlot')
 ```
+
 
 
 ```{r q4, echo = FALSE}
@@ -365,7 +400,7 @@ quiz(caption = 'Test Your Understanding',
      question("If alpha = .01, is the p-value associated with a test statistic of -2.55 significant?",
                answer('Yes', correct = T),
               answer('No'),
-              message = "For a test statistic of -2.55, p = .010. As this is equal to the alpha threshold of .01, this result would be significant.")
+              message = "For a test statistic of -2.55, p = .010. As this is equal to the alpha threshold of .01, this result would be significant. Or not. There is actually debate about this circumstance. Either answer is fine, because honestly, there is no meaningful difference between a p-value of .049 and .050, so your decision doesn't really matter anyways. However, we need some kind of threshold to avoid a slippery slope, so anything above your alpha is definitively nonsignificant.")
 )
 ```
 
@@ -400,7 +435,7 @@ quiz(caption = 'Test Your Understanding',
               answer('The effect size increases'),
               answer('The effect size decreases', correct = T),
               answer('The effect size stays about the same'),
-              message = 'Increasing the standard deviation of one group will decrease the effect size. This is because the variability in the data are increased'),
+              message = 'Increasing the standard deviation of will decrease the effect size. This is because the variability in the data is increased.'),
      question("If the group SD and the sample size is held constant, what generally happens to the effect size when the difference between means is increased?",
               answer('The effect size increases', correct = T),
               answer('The effect size decreases'),
@@ -432,7 +467,7 @@ quiz(caption = 'Test Your Understanding',
               answer("All students who have ever taken and will ever take the instructor's course"),
               answer("The current students on the course", correct = T),
               message = 'All students who have ever taken/will ever take the course comprise the total population. The current students on the course comprise a sample of that population.'),
-      question("In the above example, which of the following is considered the population parameter?",
+      question("In the above example, which of the following would be considered the population parameter?",
               answer("The mean score for all students who have ever taken and will ever take the course", correct = T),
               answer("The mean score for current students on the course"),
               message = 'The population parameter is the value we are attempting to estimate by using sample data. In this case, it is the mean score for all students who have ever taken or will ever take the course.')
@@ -465,7 +500,7 @@ quiz(caption = 'Test Your Understanding',
 ```
 
 
-To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a confidence interval is telling us, if we were to take 20 samples of 50 students on the course and compute a confidence interval with each, we would expect around 19 of those confidence intervals to include a value of 57.97. 
+To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a 95% confidence interval is telling us, if we were to take 20 samples of 50 students on the course and compute a confidence interval with each, we would expect around 19 (95%) of those confidence intervals to include a value of 57.97. 
 
 Use the button to generate 20 new samples. In the plot, the points represent the mean of each sample, and the error bars show the 95% confidence intervals. The true population mean is represented by the black line. Red error bars indicate confidence intervals that do not include the true population mean. If you were to press the button many times, eventually you would find that, on average, 95% of the confidence intervals contain the true population mean of 57.97.
 
@@ -481,8 +516,8 @@ quiz(caption = 'Test Your Understanding',
      question("Margot conducted a memory test on a sample of students, and found that the mean score was 75 points, with a 95% confidence interval of 65 - 85. Which of the following can she conclude?",
               answer('If Margot were to conduct this test over and over, 95% of the sample would always achieve a score between 65 and 85 points.'),
               answer('There is a .95 probability that the population mean is between 65 and 85 points.'),
-              answer('If she calculated the 95% confidence interval using the same method on a large number samples, then 95% of the resulting confidence intervals would contain the population mean.', correct = T),
-              answer('She can be 95% confident that he has done the correct calculation.'),
+              answer('If she calculated the 95% CI using the same method on a large number of samples, 95% of those CIs would contain the population mean. Therefore, she can be 95% confident that her CI contains the population mean.', correct = T),
+              answer('She can be 95% confident that she has done the correct calculation.'),
               message = 'The population mean is fixed, so any individual confidence interval that has already been calculated either contains the popultion mean or does not contain it. However, if you calculate an X% confidence interval on multiple samples, then X% of those intervals will contain the population mean.'))
 ```
 

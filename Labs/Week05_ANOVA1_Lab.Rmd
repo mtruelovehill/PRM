@@ -12,10 +12,10 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-library(knitr)
-library(shiny)
-library(shinyjs)
-library(bslib)
+#library(knitr)
+#library(shiny)
+#library(shinyjs)
+#library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -31,36 +31,6 @@ accent3 <- '#19424C'
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-### This Week's Study
-
-You'll be working with data adapted from studies on emotion recognition (see [here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243708)). Specifically, you're testing whether mask-wearing during COVID influenced children's ability to correctly identify emotions during social interactions. You'll be investigating this through two separate experiments.
-
-#### Experiment 1
-In the first experiment, you investigated whether the region of the face covered affects a child's ability to recognize emotions conveyed by facial expressions. You recruited a sample of primary-school aged children. All participants were presented with photos of people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). However, participants were grouped into one of three conditions. In the first condition, stimuli were unobstructed. In the second condition, stimuli were wearing sunglasses so that the eyes were obstructed. In the third condition, stimuli were wearing masks so that the mouth was obstructed (see examples below).
-
-```{r, echo = F}
-knitr::include_graphics('images/Week5_expStimuli.png')
-```
-
-Participants viewed 10 photos per emotion, for a total of 50 photos. Photos were presented in random order for each participant. 
-
-You can download the dataset from the first experiment [here](). It contains the following variables:
-
-```{r, echo = F}
-# dat <- read.csv('Week1LabData.csv')
-# datInfo <- data.frame(VariableName=colnames(dat), 
-#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
-#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
-#                                     Version C Scores', 'Assessment Version D Scores'))
-# 
-# datInfo %>%
-#   kbl(col.names=c('Variable Name', 'Description')) %>%
-#   kable_styling(full_width = F) %>%
-#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
-#   column_spec(1, bold = T, width = '4.5cm')
-```
-
-
 ### Learning Objectives
 At the end of this lab, you will be able to:
 
@@ -70,6 +40,289 @@ At the end of this lab, you will be able to:
 4. Use SPSS to perform both one-way and repeated-measures ANOVAs
 5. Interpret and report results from both one-way and repeated-measures ANOVAs
 
+### This Week's Study
+
+You'll be working with data adapted from studies on emotion recognition (see [here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243708)). Specifically, you're testing whether mask-wearing during COVID influenced children's ability to correctly identify emotions during social interactions. You'll be investigating this through two separate experiments.
+
+## Experiment 1 Overview
+
+<br>
+In the first experiment, you'll investigate whether the region of the face covered affects a child's ability to recognize emotions conveyed by facial expressions. You recruited a sample of primary-school aged children. All participants were presented with photos of people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). However, participants were grouped into one of three conditions. Participants in the first condition viewed unobstructed faces Participants in the second condition viewed faces wearing sunglasses so that the eyes were obstructed. Participants in the third condition viewed faces wearing masks so that the mouth was obstructed (see examples below).
+
+```{r, echo = F, out.width='90%', fig.align='center'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/Week5_expStimuli.png')
+```
+
+Participants viewed 10 photos per emotion, for a total of 50 photos. Photos were presented in random order for each participant. 
+
+You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week5LabData1.csv). It contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week5LabData1.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Levels: 1 = Female; 2 = Male',
+                                    'Age in years',
+                                    'Levels: Control; Mouth Obstructed; Eyes Obstructed',
+                                    'Total number of correctly identified emotions; possible scores = 0 - 50'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+```{r q1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("t-test"),
+              answer("One-Way ANOVA", correct = T),
+              answer("Repeated-Measures ANOVA"),
+              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used."))
+```
+
+### Your Tasks
++ [ ] $\ $ Identify your independent and dependent variables for this experiment. 
++ [ ] $\ $ State your research question for this experiment.
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
+
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+
+In your research question, you should mention the independent variable, the dependent variable, and the population being studied.
+
+To state hypotheses statistically, you should structure them in the framework of the statistical values being tested.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
+
+<b>Dependent Variable:</b> Correct Identifications of Emotion
+
+<br>
+<b>Possible Research Questions:</b>
+
+Does the region of the face being obstructed affect the ability of school-aged children to make emotional inferences?
+
+Do different types of facial coverage impact a child's ability to correctly identify emotions?
+
+<br>
+<b>Hypotheses:</b>
+
+<i> General: </i>
+
+$H_0:$ Facial obstruction will not affect the ability of school-aged children to make emotion inferences.
+
+$H_1:$ Facial obstruction will affect the ability of school-aged children to make emotion inferences.
+
+
+<i> Statistical: </i>
+
+$H_0: \mu_{control} = \mu_{eyes} = \mu_{mouth}$
+
+$H_1:$ at least one $\mu \neq$ the other $\mu$s
+
+</details>
+</div>
+</br>
+
+## Experiment 1 Power Analyses
+
+<br>
+
+Recall the effect size measure for ANOVA, $\eta^2$:
+
+```{r, echo = F}
+
+eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
+
+eta2Tab %>%
+  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+### Your Task
+
++ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect size ( $\eta^2$ = .06) using a One-Way ANOVA. Note that WebPower uses $f$ as its measure of effect size for ANOVA, so you'll need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
+
+$$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
+
+Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+<br>
+Unlike the power analysis for $t$-tests, this power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
+
+If you're completely lost, you might find the section on One-Way ANOVA in the [WebPower manual](https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf) helpful.
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+Navigate to the WebPower site and click One-Way ANOVA:
+
+```{r, echo = F, fig.align='center'}
+knitr::include_graphics('images/week5_powerAnalysisChoice.png')
+```
+<br>
+<i> Number of groups </i> refers to the number of levels in your independent variable. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
+
+$$f = \sqrt{\frac{.06}{1-.06}} = .25$$
+You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
+
+```{r, echo = F, fig.align='center'}
+knitr::include_graphics('images/week5_oneWayPower.png')
+```
+
+You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
+
+
+</details>
+</div>
+
+</br>
+
+## Experiment 1 Data Review
+
+## Experiment 1 Assumptions
+
+The requirements/assumptions of a One-Way ANOVA are:
+
+(1) **Normality:** Values are normally distributed *within levels*
+
+(2) **Independence of Observations:** Individual observations should not be dependent upon any others
+
+(3) **Homogeneity of Variance:** Variances within each level should be generally similar
+
+(4) The dependent/outcome variable must be continuous and the independent/predictor variable must be categorical
+
+### Your Tasks
+
++ [ ] $\ $ Decide whether your data meet the assumption of normality
+
++ [ ] $\ $ Decide whether your data meet the assumption of independence
+
++ [ ] $\ $ Decide whether your data meet the assumption of homogeneity
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Have a look at the [lecture slides]() if you're lost. Because normality must be tested within levels, you should use *Analyze>Descriptive Statistics>Explore* to get the plots you need.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To check the assumptions of normality and homogeneity, click *Analyze > Descriptive Statistics > Explore* and add your dependent variable to the 'Dependent List' box and your independent variable to the 'Factor List' box. Click the 'Plots' button on the right. Under 'Boxplots', select 'None', under 'Descriptive', tick 'Histogram', and tick 'Normality plots with tests.' Under 'Spread vs Level with Levene Test', click 'Power Estimation'
+
+
+```{r, echo = F, fig.align= 'center'}
+knitr::include_graphics('images/week5_assumptionPlots.png')
+```
+
+Click 'Continue' and then 'OK.'
+
+<br>
+
+<span style = "font-weight: bold; font-size: 14pt"> Normality </span>
+
+Have a look at the histograms and Q-Q Plots.
+
+Remember that normally distributed data will be primarily clustered around the mean, with ends tapering off on either side. The histograms show that the data generally follow this pattern across the levels:
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_histogramControl.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_histogramEyesObs.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_histogramMouthObs.png')
+```
+
+However, they are perhaps very slightly flatter than would be expected, so the Q-Q plots can help bolster our confidence that the data are sufficiently normally distributed:
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_qqControl.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_qqEyesObs.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='65%'}
+knitr::include_graphics('images/week5_qqMouthObs.png')
+```
+
+Here you can see that the points follow the diagonal pretty closely, so we'll consider the data to have met the normality assumption.
+
+
+<span style = "font-weight: bold; font-size: 14pt"> Independence </span>
+
+Assessing independence requires you to have an understanding of the conditions under which your data were collected. The study design (between-participants) increases the likelihood that the observations are independent of each other, so you can consider this assumption to be met.
+
+<span style = "font-weight: bold; font-size: 14pt"> Homogeneity of Variance </span>
+
+Find the box in the output labeled 'Test of Homogeneity of Variance' and check the row labeled 'Based on Mean'. If Levene's statistic is not significant, we can assume that our data meet the homogeneity of variance assumption. Here, the $p$-value is greater than the threshold of .05, so this test is not significant. 
+
+</details>
+</div>
+
+## Experiment 1 Analysis
+
+
+
+## Experiment 2
+In the second experiment, you investigated whether a mask differentially effects a child's ability to recognize specific emotions. You recruited a new sample of primary-school aged children. All participants were presented with photos of masked people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). All participants viewed 50 photos per emotion. Photos were presented in random order for each participant. 
+
+You can download the dataset from the second experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv). It contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Levels: 1 = Female; 2 = Male',
+                                    'Age in years',
+                                    'Total number of correctly identified photos where the subject was emoting happiness; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting sadness; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting fear; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting anger; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting disgust; possible scores = 0-50'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+
 
 ## State Your Hypotheses
 
@@ -77,24 +330,6 @@ Task 1 Here
 
 * Identify IV & DV
 * State Hypotheses for One Way, Between-Subjects, and RM ANOVA
-
-```{r q1, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("What kind of file is 'Week1LabData'?",
-#               answer("SPSS datafile"),
-#               answer("comma separated values file", correct = T),
-#               answer("Excel file"),
-#               answer("Word file"),
-#               message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for
-#               spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than
-#               SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
-#      question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
-#               answer('True'),
-#               answer('False', correct = T),
-#               message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only
-#               necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
-#      )
-```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -292,40 +527,6 @@ Solution here.
 </div>
 </br>
 
-## Between-Subjects ANOVA 
-
-Task here.
-
-```{r q7, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question_numeric("What is the IQR for Assessment B?",
-#               answer(4, correct=T),
-#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
-#      question_numeric("What is the maximum score on Assessment C?",
-#               answer(78, correct=T)),
-#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-#               answer(2.15, correct=T))
-# )
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
 
 ## Repeated Measures ANOVA 
 

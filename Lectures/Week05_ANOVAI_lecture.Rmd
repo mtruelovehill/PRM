@@ -62,6 +62,15 @@ accent3 <- '#19424C'
 + 
 
 ---
+# MONICA EDIT - hypotheses
+
++ null is that $\mu_1 = \mu_2 =...\mu_n$
++ at least one $\mu$ is different from the other $\mu$s
+
+Monica - show a plot that shows how if even one group is significantly different, the ANOVA can produce significant results.But on its own it doesn't tell you WHICH group is significantly different.
+
+
+---
 ## The $t$-test
 
 + $t$-tests take account of both the mean and the variance of the data to determine whether two means are significantly different from each other. 
@@ -334,26 +343,6 @@ class: center, inverse, middle
 7. Interpret results
 
 8. Report
-
----
-
-## A note about hypotheses...
-
-+ Hypotheses may be directional, or make a prediction about the expected direction of the effect
-  
-  + Treatment X will **reduce** symptoms of anxiety
-  
-  + Test scores will **improve** as hour of study increase
-
-+ Hypotheses can also be nondirectional. In this case, an effect is predicted, but the direction is not specified.
-
-  + Treatment X will **have an effect** on symptoms of anxiety
-  
-  + Test scores will **be associated with** hours of study
-
---
-
-+ Directional hypotheses can be tested with one-tailed tests, while nondirectional hypotheses can be tested with two-tailed tests
 
 ---
 ## One-Tailed vs Two-Tailed Tests
