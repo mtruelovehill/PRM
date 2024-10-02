@@ -390,6 +390,80 @@ need 158 participants.</p>
 </div>
 <div id="section-experiment-1-data-review" class="section level2">
 <h2>Experiment 1 Data Review</h2>
+<div id="section-your-tasks-1" class="section level3">
+<h3>Your Tasks</h3>
+<ul class="task-list">
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Import ‘Week5LabData1.csv’ into SPSS</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Check whether all variables imported into SPSS as the correct
+measurement type.</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Check the descriptive statistics of your data</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Produce the proper plot to visualise the distribution of your dependent
+variable, <code>Correct</code>.</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Add a key to the <code>Gender</code> variable so that 1 = ‘Female’ and 2
+= ‘Male’.</p></li>
+</ul>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>For continuous variables, the descriptive statistics you’ll want to
+check are mean and standard deviation. It’s also useful to check the
+minimum and maximum so you can easily identify values outside of your
+expected range. For categorical variables, you’ll check the frequency of
+participants in each group. It may also be useful to check the mode.</p>
+<p>Your dependent variable, <code>Correct</code>, is continuous.
+Consider whether either a bar plot or a histogram is more appropriate
+for use with continuous variables.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><span style="font-weight: bold; font-size: 14pt"> Adjust Variable
+Measure Format </span></p>
+<p>To check that your variables are labeled as the correct scale of
+measurement, look at the <strong>Measure</strong> column under the
+<em>Variable View</em> tab.</p>
+<ul>
+<li><p><code>ID</code> - Ordinal</p></li>
+<li><p><code>Gender</code> - Nominal</p></li>
+<li><p><code>Age</code> - Scale</p></li>
+<li><p><code>Group</code> - Nominal</p></li>
+<li><p><code>Correct</code> - Scale</p></li>
+</ul>
+<p>In this instance, SPSS assigned the proper measures by default, so no
+changes are needed.</p>
+<p><span style="font-weight: bold; font-size: 14pt"> Adding Labels to
+Variables </span></p>
+<p>To associate a label with each value of a variable, you’ll use the
+<strong>Values</strong> column under the <strong>Variable View</strong>
+tab.</p>
+<p>Select the Gender x Values cell and click the dots to bring up the
+<em>Value Labels</em> box. Use the <span
+class="math inline">\(+\)</span> to add a new label. In the Value
+column, type the value <strong>exactly as it is recorded in your
+data.</strong> In the Label column, add the label you would like to
+associate with that specific value. Continue adding labels using <span
+class="math inline">\(+\)</span> until you’ve labeled all values in the
+Gender column.</p>
+<p><img src="images/week5_GenderLabels.png" width="40%" style="display: block; margin: auto;" /></p>
+Click ‘OK’. If you’ve done this properly, you’ll see that each numeric
+value is now associated with a character label.
+</details>
+</div>
+<p></br></p>
+</div>
 </div>
 <div id="section-experiment-1-assumptions" class="section level2">
 <h2>Experiment 1 Assumptions</h2>
@@ -404,7 +478,7 @@ level should be generally similar</p></li>
 <li><p>The dependent/outcome variable must be continuous and the
 independent/predictor variable must be categorical</p></li>
 </ol>
-<div id="section-your-tasks-1" class="section level3">
+<div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
@@ -482,8 +556,8 @@ class="math inline">\(p\)</span>-value is greater than the threshold of
 <div id="section-experiment-1-analysis" class="section level2">
 <h2>Experiment 1 Analysis</h2>
 </div>
-<div id="section-experiment-2" class="section level2">
-<h2>Experiment 2</h2>
+<div id="section-experiment-2-overview" class="section level2">
+<h2>Experiment 2 Overview</h2>
 <p>In the second experiment, you investigated whether a mask
 differentially effects a child’s ability to recognize specific emotions.
 You recruited a new sample of primary-school aged children. All
@@ -874,13 +948,13 @@ session$onSessionEnded(function() {
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8b3cbc9", 
+"character")), answers = list(structure(list(id = "lnr_ans_8316f27", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_36a8039", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a73f38f", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e9aa9e3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_30c984d", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -892,13 +966,13 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 707716490.170444, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 666297793.189731, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-1", question = structure("What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_96ed6b1", 
+"character")), answers = list(structure(list(id = "lnr_ans_3fd5baf", 
     option = "38", value = 38, label = structure("38", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -909,7 +983,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("38% of the sample scored between 95 and 110.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q2-1-answer", 
     question = "q2-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 408425166.309812, options = list(
+    allow_retry = FALSE, seed = 541835211.747688, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -917,7 +991,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-2", question = structure("What percentage of the sample scored below 87? Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_e2002f1", 
+"character")), answers = list(structure(list(id = "lnr_ans_8b904e", 
     option = "19", value = 19, label = structure("19", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -928,14 +1002,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("19% of the sample received a score lower than 87.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q2-2-answer", 
     question = "q2-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1073925027.49991, options = list(
+    allow_retry = FALSE, seed = 835976687.610718, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-3", question = structure("You have a participant, J, who scored 138. Fill in the blank: “_% of the sample received a score at least as high as Participant J.” Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d827e15", 
+"character")), answers = list(structure(list(id = "lnr_ans_f68b8c1", 
     option = "1", value = 1, label = structure("1", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -946,7 +1020,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("Only 1% of the sample scored at least 138.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q2-3-answer", 
     question = "q2-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2086779153.52827, options = list(
+    allow_retry = FALSE, seed = 220283791.397422, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -954,7 +1028,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-4", question = structure("If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ec0aa38", 
+"character")), answers = list(structure(list(id = "lnr_ans_212a061", 
     option = "81", value = 81, label = structure("81", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -965,7 +1039,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("The lowest 10% of the sample scored below 81.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q2-4-answer", 
     question = "q2-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1677065961.21906, options = list(
+    allow_retry = FALSE, seed = 2062011357.0398, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>

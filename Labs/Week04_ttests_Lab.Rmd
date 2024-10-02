@@ -228,7 +228,7 @@ Two important hints:
 Navigate to the WebPower site. For $t$-tests, you'll be using one of these options, depending on whether your sample within each group will be equal or not.
 
 ```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week4_2a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2a.png')
 ```
 
 
@@ -237,13 +237,13 @@ knitr::include_graphics('images/week4_2a.png')
 Because you're assuming an equal sample size within each group, you will click the first option: "Power of t-test." You'll leave the Sample Size option blank, as that's the value you want to calculate. You'll fill in the other options as follows:
 
 ```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week4_2b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2b.png')
 ```
 
 Because you'll be running an independent-samples $t$-test, the 'Type of Test' option will be 'Two sample.' Note that if you choose to use a directional hypothesis, you'll need to change the 'H1' value to 'Greater.' WebPower doesn't seem to work with 'Lesser' for some reason, but you can use 'Greater' regardless of the direction, as the results would be identical either way. Once you've entered the appropriate information, click 'Calculate' and the results will appear below. 
 
 ```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week4_2c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2c.png')
 ```
 
 Note that the sample size refers to the sample PER GROUP, not the total sample. In other words, to achieve 80% power to detect a moderate effect size with an alpha = .05, you would need 64 participants per group, or 128 total participants.
@@ -255,7 +255,7 @@ Note that the sample size refers to the sample PER GROUP, not the total sample. 
 In the case of your paired-samples analysis, you will once again have an equal sample size within each group. In this case, you want to calculate effect size, so you will leave that box blank and fill in the other values. You'll need to update 'Type of Test' to 'Paired.' If you entered everything properly, you'll get the following output:
 
 ```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week4_2d.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2d.png')
 ```
 
 With 40 participants and a within subjects design, you'll have 80% power to detect an effect of $d$ = .45, given $\alpha$ = .05. 
@@ -312,7 +312,7 @@ When you check your data under *Variable View*, you'll notice that your dependen
 Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add your 2 categorical variables to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If you've done this properly, you should get the following output:
 
 ```{r, echo=F, fig.align='center'}
-knitr::include_graphics('images/week4_3a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_3a.png')
 ```
 
 Here, you can see the frequencies of participants in each category. You might note that there were slightly more male infants than females, but there were substantially more female parents than males. You can see that there are equal participants in the 'Buggy' and 'Backpack' groups, as expected.
@@ -320,7 +320,7 @@ Here, you can see the frequencies of participants in each category. You might no
 After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace your categorical variables with your 3 continuous variables. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
 
 ```{r, echo=F, fig.align='center'}
-knitr::include_graphics('images/week4_3b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_3b.png')
 ```
 
 Have a look at the values here. There is no missing data, and the values seem reasonable, so you can move forward to the next step.
@@ -377,17 +377,17 @@ Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures
 Normality can be assessed in multiple ways. I prefer visual assessment, as the statistical tests can be overly sensitive, particularly with larger sample sizes. To check the histograms, click *Analyze > Descriptive Statistics > Frequencies* and add your dependent variables to the 'Variable(s)' box. Click 'Charts', then select 'Histograms' and make sure the box that says, 'Show normal curve on histogram' is checked. Click 'Continue.' While here, you can also go to the 'Statistics' box and select 'Skewness' and 'Kurtosis'. Once this is all done, click 'OK'.
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_4a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png')
 ```
 
 Skewness and kurtosis values are all within the bounds of -1 and 1, which is ideal. Next, you can check the histograms with the normal curve for each of the dependent variables:
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4b.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4c.png')
 ```
 
 None of them seem to be perfectly normal, but this is not unexpected with such a small sample. In any case, they're generally normal. There is no evidence of a significant normality violation. 
@@ -417,7 +417,7 @@ Assessing independence requires you to have an understanding of the conditions u
 This can be tested using Levene's test. This test runs automatically when you perform a $t$-test, but you can also run it separately. To run the test outwith the analysis, navigate to *Analyze > Descriptive Statistics > Explore*. Place the dependent variables in the 'Dependent List' box and the Independent/Grouping variable in the 'Factor List' box. Click the 'Plots' button. In the 'Spread vs Level with Levene Test' area, select 'Power Estimation', then click 'Continue' and 'OK'. The results will appear in the output:
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_4f.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4f.png')
 ```
 
 You can check the line for each variable that says 'Based on Mean' and evaluate the 'Sig.' column. While the Touch variable meets the assumption ($p$ > .05), the Infant Vocalisation variable violates the assumption of equal variances ($p$ = .048). This can be accounted for when the primary analysis is performed. 
@@ -472,25 +472,25 @@ Click *Analyze > Compare Means and Proportions > Independent-Samples T test*. Mo
 The first bit of output will provide the descriptive statistics separated by your IV. This is useful information to report in your paper, so take note.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_5a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5a.png')
 ```
 
 The second bit of output provides the results of your $t$-tests. The first portion provides the results from your Levene's test. In cases where Levene's test is not significant, you can look at the results from the rows that say 'Equal variances assumed'. If the test is significant, there is a slightly different version of a $t$-test that is robust to a violation of the equal variance assumption. The results from this test are provided in the rows that say 'Equal variances not assumed'. 
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_5b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5b.png')
 ```
 
 The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, while touch was not significantly different between the two groups. The confidence intervals for the variables further support this; the CI associated with vocalisation does not contain the null value of 0, while the CI associated with Touch does.
 
 ```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week4_5c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5c.png')
 ```
 
 Checking the effect sizes, you can see that the absolute value of Cohen's $d$ is greater than 1 for infant vocalisation. This indicates there is a strong effect of transport modality on infant vocalisation. 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_5d.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5d.png')
 ```
 
 
@@ -522,6 +522,8 @@ quiz(caption = 'Test Your Understanding',
               answer("Significance can't be evaluated using this information"),
               message = "The null hypothesis of an independent-samples t-test is that the difference between the means of each group is 0. If the confidence interval contains 0, it means that 0 is a plausible value for the true difference between groups. Therefore, you don't have enough evidence to reject the null hypothesis that the true difference between groups is 0."))
 ```
+
+## Study 1: Visualise Results
 
 ## Study 2: Check Descriptive Data
 
@@ -588,19 +590,19 @@ You'll need to make a new variable to check the assumption of normality.
 Because we have to check the normality of the difference scores rather than the raw variables, we will need to compute a difference score. To do this, navigate to *Transform > Compute Variable*. Name your new variable in the 'Target Variable' box. Next, move the buggyIVocal to the 'Numeric Expression' box, add a minus sign, then add backpackIVocal. Click 'OK'. Notice in *Data View* that you now have a new variable that reflects the difference between your paired variables.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_7a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7a.png')
 ```
 
 Perform the normality tests from [Study 1: Check Assumptions] with this new variable.
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
-knitr::include_graphics('images/week4_7c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7c.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_7b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7b.png')
 
-knitr::include_graphics('images/week4_7d.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7d.png')
 ```
 
 
@@ -663,13 +665,13 @@ Navigate to *Analyze > Compare Means and Proportions > Paired Samples T-Test*. A
 As before, take note of the descriptive statistics for each group, as you'll need this for reporting purposes. 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_8a.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_8a.png')
 ```
 
 The results indicate that the difference in infant vocalisation when in a buggy versus a backpack was significant ($p$ < .001). This is further confirmed by the confidence interval, which doesn't contain the null value of 0. The output also provides the average difference score.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_8b.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_8b.png')
 ```
 
 As before, Cohen's $d$ indicates there is a strong effect of transportation modality on infant vocalisation.
@@ -687,6 +689,35 @@ Now that you've completed the analyses, choose one of the studies and write a mi
 + Describe your sample as you would in a methods section. 
 
 + Report your results and a brief interpretation in APA style.
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+There are many ways you could write this up, but you'll need to at least include the following information:
+
++ alpha level
++ number of participants (n)
++ power analysis information (effect size used, power level, n, and alpha level)
++ results from assumptions checks
++ descriptive data for each group (M and SD)
++ the type of test used (independent or paired-samples?)
++ independent and dependent variables tested
++ $t$-statistics
++ degrees of freedom
++ p-values
++ confidence intervals
++ effect sizes
+
+The proper style of reporting the results from a $t$-test looks like this:
+
+$t$(##) = #.##, $p$ = .###, 95% CI = [#.##, #.##], $d$ = #.##.
+
+Note that the numbers inside the curly brackets refer to the degrees of freedom. Please refer to the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#57) for a specific example.
+
+
+</details>
+</div>
+</br>
 
 
 <div class="container">
