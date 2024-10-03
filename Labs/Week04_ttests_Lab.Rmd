@@ -243,7 +243,7 @@ Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures
 
 Normality can be assessed in multiple ways. I prefer visual assessment, as the statistical tests can be overly sensitive, particularly with larger sample sizes. To check the histograms, click *Analyze > Descriptive Statistics > Frequencies* and add your dependent variable, `infantVocalisations`,  to the 'Variable(s)' box. Click 'Charts', then select 'Histograms' and make sure the box that says, 'Show normal curve on histogram' is checked. Click 'Continue.' While here, you can also go to the 'Statistics' box and select 'Skewness' and 'Kurtosis'. Once this is all done, click 'OK'.
 
-```{r, echo = F, fig.align= 'center', out.width='75%'}
+```{r, echo = F, fig.align= 'center', out.width='30%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png')
 ```
 
@@ -650,7 +650,7 @@ Two important hints:
 
 Navigate to the WebPower site. For $t$-tests, you'll be using one of these options, depending on whether your sample within each group will be equal or not.
 
-```{r, echo = F, fig.align='center'}
+```{r, echo = F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2a.png')
 ```
 
@@ -659,13 +659,13 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2
 
 Because you're assuming an equal sample size within each group, you will click the first option: "Power of t-test." You'll leave the Sample Size option blank, as that's the value you want to calculate. You'll fill in the other options as follows:
 
-```{r, echo = F, fig.align='center'}
+```{r, echo = F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2b.png')
 ```
 
 Because you'll be running an independent-samples $t$-test, the 'Type of Test' option will be 'Two sample.' 
 
-```{r, echo = F, fig.align='center'}
+```{r, echo = F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2c.png')
 ```
 
@@ -680,7 +680,7 @@ To report these results, you could say something like
 
 In the case of your paired-samples analysis, you will once again have an equal sample size within each group. In this case, you want to calculate effect size, so you will leave that box blank and fill in the other values. You'll need to update 'Type of Test' to 'Paired.' If you entered everything properly, you'll get the following output:
 
-```{r, echo = F, fig.align='center'}
+```{r, echo = F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2d.png')
 ```
 
@@ -704,9 +704,9 @@ quiz(caption = 'Test Your Understanding',
      question_numeric('You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.',
                       answer(.51, correct = T),
                       message = 'The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)'),
-     question_numeric('How many total participants do you need per group to detect a strong effect (d = .8) with an independent-samples t-test, a nondirectional hypothesis, power = .8, and alpha = .001?',
+     question_numeric('How many participants do you need per group to detect a strong effect (d = .8) with an independent-samples t-test, a nondirectional hypothesis, power = .8, and alpha = .001?',
                       answer(57, correct = T),
-                      message = 'You will need 114 participants to detect this effect. You will have needed to round up, as you cannot have .2 participants.'),
+                      message = 'You will need 57 participants per group to detect this effect. You will have needed to round up, as you cannot have .09 participants.'),
      question('You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?',
               answer('The sample size requirements increase for a one-tailed test'),
               answer('The sample size requirements decrease for a one-tailed test', correct = T),
