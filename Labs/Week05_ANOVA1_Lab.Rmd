@@ -12,10 +12,6 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-#library(knitr)
-#library(shiny)
-#library(shinyjs)
-#library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -35,10 +31,17 @@ During today's lab, you'll apply the concepts discussed during this week's lectu
 At the end of this lab, you will be able to:
 
 1. Identify hypotheses which may be tested using ANOVAs
+2. Check assumptions for a one-way ANOVA
+3. Use SPSS to perform one-way ANOVAs
+4. Interpret and report results from one-way ANOVAs
+
+If you also complete the bonus material, you'll be able to:
+
+1. Produce a box-plot to visualise the results from a one-way ANOVA
 2. Run an appropriate power analysis for both one-way and repeated-measures ANOVAs
-3. Check assumptions for both one-way and repeated-measures ANOVAs
-4. Use SPSS to perform both one-way and repeated-measures ANOVAs
-5. Interpret and report results from both one-way and repeated-measures ANOVAs
+3. Check assumptions for a repeated-measures ANOVA 
+4. Use SPSS to perform one-way and repeated-measures ANOVAs
+5. Interpret and report results from repeated-measures ANOVAs
 
 ### This Week's Study
 
@@ -104,11 +107,6 @@ To state hypotheses statistically, you should structure them in the framework of
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 <br>
-<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
-
-<b>Dependent Variable:</b> Correct Identifications of Emotion
-
-<br>
 <b>Possible Research Questions:</b>
 
 Does the region of the face being obstructed affect the ability of school-aged children to make emotional inferences?
@@ -116,6 +114,13 @@ Does the region of the face being obstructed affect the ability of school-aged c
 Do different types of facial coverage impact a child's ability to correctly identify emotions?
 
 <br>
+
+<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
+
+<b>Dependent Variable:</b> Correct Identifications of Emotion
+
+<br>
+
 <b>Hypotheses:</b>
 
 <i> General: </i>
@@ -135,70 +140,6 @@ $H_1:$ at least one $\mu \neq$ the other $\mu$s
 </div>
 </br>
 
-## Experiment 1 Power Analyses
-
-<br>
-
-Recall the effect size measure for ANOVA, $\eta^2$:
-
-```{r, echo = F}
-
-eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
-
-eta2Tab %>%
-  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
-  kable_styling(full_width = F) %>%
-  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
-  column_spec(1, bold = T, width = '4.5cm')
-```
-
-
-
-### Your Task
-
-+ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect size ( $\eta^2$ = .06) using a One-Way ANOVA. Note that WebPower uses $f$ as its measure of effect size for ANOVA, so you'll need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
-
-$$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
-
-Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-<br>
-Unlike the power analysis for $t$-tests, this power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
-
-If you're completely lost, you might find the section on One-Way ANOVA in the [WebPower manual](https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf) helpful.
-
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-<br>
-Navigate to the WebPower site and click One-Way ANOVA:
-
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_powerAnalysisChoice.png')
-```
-<br>
-<i> Number of groups </i> refers to the number of levels in your independent variable. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
-
-$$f = \sqrt{\frac{.06}{1-.06}} = .25$$
-You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
-
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_oneWayPower.png')
-```
-
-You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
-
-
-</details>
-</div>
-
-</br>
 
 ## Experiment 1 Data Review
 
@@ -208,11 +149,11 @@ You'll obviously need a whole number of participants, so you should round up. To
 
 + [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type. 
 
++ [ ] $\ $ Add a key to the `Gender` variable so that 1 = 'Female' and 2 = 'Male'.
+
 + [ ] $\ $ Check the descriptive statistics of your data
 
 + [ ] $\ $ Produce the proper plot to visualise the distribution of your dependent variable, `Correct`.
-
-+ [ ] $\ $ Add a key to the `Gender` variable so that 1 = 'Female' and 2 = 'Male'.
 
 
 <div class="container">
@@ -245,6 +186,7 @@ To check that your variables are labeled as the correct scale of measurement, lo
 
 In this instance, SPSS assigned the proper measures by default, so no changes are needed.
 
+<br>
 <span style = "font-weight: bold; font-size: 14pt"> Adding Labels to Variables </span>
 
 To associate a label with each value of a variable, you'll use the **Values** column under the **Variable View** tab.
@@ -256,6 +198,37 @@ knitr::include_graphics('images/week5_GenderLabels.png')
 ```
 
 Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
+
+**Categorical Variables:** Your categorical variables are `Group` and `Gender`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('images/week5_freqTables.png')
+```
+
+Note that if you set up the labels for the Gender variable properly, you should see 'Female' and 'Male' in the frequency table for `Gender`, rather than '1' and '2'.
+
+**Continuous Variables:** Your categorical variables are `Age` and `Correct`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '40%'}
+knitr::include_graphics('images/week5_descStats.png')
+```
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Produce Distribution Plot </span>
+
+You can also use *Analyze>Descriptive Statistics>Frequencies* to produce a distribution plot. Add `Correct` to the 'Variable(s)' box, then click 'Charts'. As `Correct` is a continuous variable, you will visualise it using a histogram. Click 'Histogram', then tick 'Show normal curve on histogram'. Click 'Continue' and then 'OK'. 
+
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('images/week5_corrHist.png')
+```
+
+Here, you can have a look at your dependent variable's distribution. There are no concerning outliers or unusual values, so you can move forward with assumptions checks.
+
+
 </details>
 </div>
 </br>
@@ -352,36 +325,10 @@ Find the box in the output labeled 'Test of Homogeneity of Variance' and check t
 
 ## Experiment 1 Analysis
 
+ANOVA requires that you use a number variable for your grouping variable (IV) even though it's categorical.
+*Transform>Recode Into Different Variables* Add `Group` into the box, then type a name ('GroupNum') into the 'Name' box in the 'Output Variable' section. Click 'Change'. Next, click 'Old and New Values'. Add the old name to the 'Value' box in the 'Old Value' section, then add a number to assign that category to in the 'New Value' section. Click 'Add', and you'll see it appear in the 'Old --> New' box. Do this until you've assigned all three categories to a number. Click 'Continue' and then 'OK'. You'll notice a new column appear in the *Data View* window. It will default to 2 decimals, so if you'd like to adjust it to 0, go to *Variable View* and change the value in the 'Decimal' column for `GroupNum` to 0.
 
-
-## Experiment 2 Overview
-In the second experiment, you investigated whether a mask differentially effects a child's ability to recognize specific emotions. You recruited a new sample of primary-school aged children. All participants were presented with photos of masked people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). All participants viewed 50 photos per emotion. Photos were presented in random order for each participant. 
-
-You can download the dataset from the second experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv). It contains the following variables:
-
-```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv')
-datInfo <- data.frame(VariableName = colnames(dat),
-                      Description=c('Participant ID',
-                                    'Levels: 1 = Female; 2 = Male',
-                                    'Age in years',
-                                    'Total number of correctly identified photos where the subject was emoting happiness; possible scores = 0-50',
-                                    'Total number of correctly identified photos where the subject was emoting sadness; possible scores = 0-50',
-                                    'Total number of correctly identified photos where the subject was emoting fear; possible scores = 0-50',
-                                    'Total number of correctly identified photos where the subject was emoting anger; possible scores = 0-50',
-                                    'Total number of correctly identified photos where the subject was emoting disgust; possible scores = 0-50'))
-
-datInfo %>%
-  kbl(col.names=c('Variable Name', 'Description')) %>%
-  kable_styling(full_width = F) %>%
-  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
-  column_spec(1, bold = T, width = '4.5cm')
-```
-
-
-
-
-
+Once you have your IV set as a number, navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*. Add your new number column, `GroupNum`, to the 'Factor' box, and add `Correct` to the 'Dependent List'. Make sure 'Estimate effect size for overall tests' is ticked. To get the post-hoc comparisons, click 'Post-Hoc', then 'Tukey'. Under 'Options', click 'Descriptive'. You can also tick 'Means plot' to generate a boxplot of the means of each group. Click 'Continue' and then 'Ok'. 
 ## State Your Hypotheses
 
 Task 1 Here
@@ -406,51 +353,6 @@ Solution Goes Here
 </details>
 </div>
 </br>
-
-## Run Power Analyses
-
-Task here.
-
-
-```{r q2, echo = FALSE}
-
-# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
-quiz(caption = 'Test Your Understanding',
-     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
-                      answer(38, correct = T),
-                      message = '38% of the sample scored between 95 and 110.'),
-     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
-                      answer(19, correct = T),
-                      message = '19% of the sample received a score lower than 87.'),
-     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
-                      answer(1, correct = T),
-                      message = 'Only 1% of the sample scored at least 138.'),
-     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
-                      answer(81, correct = T),
-                      message = 'The lowest 10% of the sample scored below 81.')
-)
-
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
 
 ## Check Assumptions 
 
@@ -519,52 +421,6 @@ Solution here.
 ## Data Visualisation 
 
 Task Here
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## One-Way ANOVA 
-
-Task Description.
-
-```{r q6, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
-```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -672,3 +528,92 @@ Solution here.
 
 
 ## Bonus Material: Visualise results (boxplot)
+## Bonus Material: Repeated-Measures ANOVA
+
+In the second experiment, you investigated whether a mask differentially effects a child's ability to recognize specific emotions. You recruited a new sample of primary-school aged children. All participants were presented with photos of masked people making stereotypical facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). All participants viewed 50 photos per emotion. Photos were presented in random order for each participant. 
+
+You can download the dataset from the second experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv). It contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week5LabData2.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Levels: 1 = Female; 2 = Male',
+                                    'Age in years',
+                                    'Total number of correctly identified photos where the subject was emoting happiness; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting sadness; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting fear; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting anger; possible scores = 0-50',
+                                    'Total number of correctly identified photos where the subject was emoting disgust; possible scores = 0-50'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+
+## Bonus Material: Power Analysis
+<br>
+
+Recall the effect size measure for ANOVA, $\eta^2$:
+
+```{r, echo = F}
+
+eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
+
+eta2Tab %>%
+  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+### Your Task
+
++ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect size ( $\eta^2$ = .06) using a One-Way ANOVA. Note that WebPower uses $f$ as its measure of effect size for ANOVA, so you'll need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
+
+$$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
+
+Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+<br>
+Unlike the power analysis for $t$-tests, this power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
+
+If you're completely lost, you might find the section on One-Way ANOVA in the [WebPower manual](https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf) helpful.
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+Navigate to the WebPower site and click One-Way ANOVA:
+
+```{r, echo = F, fig.align='center'}
+knitr::include_graphics('images/week5_powerAnalysisChoice.png')
+```
+<br>
+<i> Number of groups </i> refers to the number of levels in your independent variable. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
+
+$$f = \sqrt{\frac{.06}{1-.06}} = .25$$
+You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
+
+```{r, echo = F, fig.align='center'}
+knitr::include_graphics('images/week5_oneWayPower.png')
+```
+
+You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
+
+
+</details>
+</div>

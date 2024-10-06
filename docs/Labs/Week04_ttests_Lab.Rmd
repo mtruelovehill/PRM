@@ -4,7 +4,7 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
 
@@ -258,7 +258,7 @@ The histogram bars don't perfectly follow the black line (indicating the data ar
 You can also verify this using a Q-Q plot. To do this, click *Analyze > Descriptive Statistics > Q-Q Plots*. Add `infantVocalisations` to the 'Variable(s)' box, confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. This will produce several pieces of output, but you can ignore most of it. You want to specifically focus on the Normal Q-Q Plots. Data that are generally normal will more closely follow the black diagonal.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4c.png')
 ```
 
 The points go very slightly off the line in the upper range, but not in a concerning way. Still ok. On the whole, these results indicate that the data have not violated the assumption of normality.

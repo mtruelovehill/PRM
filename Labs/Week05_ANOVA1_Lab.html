@@ -123,12 +123,19 @@ understanding.</p>
 <p>At the end of this lab, you will be able to:</p>
 <ol style="list-style-type: decimal">
 <li>Identify hypotheses which may be tested using ANOVAs</li>
+<li>Check assumptions for a one-way ANOVA</li>
+<li>Use SPSS to perform one-way ANOVAs</li>
+<li>Interpret and report results from one-way ANOVAs</li>
+</ol>
+<p>If you also complete the bonus material, you’ll be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Produce a box-plot to visualise the results from a one-way
+ANOVA</li>
 <li>Run an appropriate power analysis for both one-way and
 repeated-measures ANOVAs</li>
-<li>Check assumptions for both one-way and repeated-measures ANOVAs</li>
-<li>Use SPSS to perform both one-way and repeated-measures ANOVAs</li>
-<li>Interpret and report results from both one-way and repeated-measures
-ANOVAs</li>
+<li>Check assumptions for a repeated-measures ANOVA</li>
+<li>Use SPSS to perform one-way and repeated-measures ANOVAs</li>
+<li>Interpret and report results from repeated-measures ANOVAs</li>
 </ol>
 </div>
 <div id="section-this-weeks-study" class="section level3">
@@ -256,15 +263,17 @@ framework of the statistical values being tested.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p><br> <b>Independent Variable:</b> Region of Face Obstructed (3
-levels: Control/Mouth/Eyes)</p>
-<p><b>Dependent Variable:</b> Correct Identifications of Emotion</p>
 <p><br> <b>Possible Research Questions:</b></p>
 <p>Does the region of the face being obstructed affect the ability of
 school-aged children to make emotional inferences?</p>
 <p>Do different types of facial coverage impact a child’s ability to
 correctly identify emotions?</p>
-<p><br> <b>Hypotheses:</b></p>
+<p><br></p>
+<p><b>Independent Variable:</b> Region of Face Obstructed (3 levels:
+Control/Mouth/Eyes)</p>
+<p><b>Dependent Variable:</b> Correct Identifications of Emotion</p>
+<p><br></p>
+<p><b>Hypotheses:</b></p>
 <p><i> General: </i></p>
 <p><span class="math inline">\(H_0:\)</span> Facial obstruction will not
 affect the ability of school-aged children to make emotion
@@ -283,111 +292,6 @@ class="math inline">\(\mu\)</span>s</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-experiment-1-power-analyses" class="section level2">
-<h2>Experiment 1 Power Analyses</h2>
-<p><br></p>
-<p>Recall the effect size measure for ANOVA, <span
-class="math inline">\(\eta^2\)</span>:</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
-Variable Name
-</th>
-<th style="text-align:right;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
-Magnitude of <span class="math inline">\(\eta^2\)</span>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Weak
-</td>
-<td style="text-align:right;">
-0.01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Moderate
-</td>
-<td style="text-align:right;">
-0.06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Strong
-</td>
-<td style="text-align:right;">
-0.14
-</td>
-</tr>
-</tbody>
-</table>
-<div id="section-your-task" class="section level3">
-<h3>Your Task</h3>
-<ul class="task-list">
-<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Run
-a power analysis using <span class="math inline">\(\alpha\)</span> = .05
-and power = .8 to determine the sample size necessary to detect a
-moderate effect size ( <span class="math inline">\(\eta^2\)</span> =
-.06) using a One-Way ANOVA. Note that WebPower uses <span
-class="math inline">\(f\)</span> as its measure of effect size for
-ANOVA, so you’ll need to convert <span
-class="math inline">\(\eta^2\)</span> to <span
-class="math inline">\(f\)</span> before running the power analysis. You
-can do this with the following equation:</li>
-</ul>
-<p><span class="math display">\[f =
-\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span></p>
-<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
-to use WebPower to run your analysis</a>.</p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p><br> Unlike the power analysis for <span
-class="math inline">\(t\)</span>-tests, this power analysis
-requires/outputs the total number of participants, rather than the
-number of participants per group.</p>
-<p>If you’re completely lost, you might find the section on One-Way
-ANOVA in the <a
-href="https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf">WebPower
-manual</a> helpful.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p><br> Navigate to the WebPower site and click One-Way ANOVA:</p>
-<p><img src="images/week5_powerAnalysisChoice.png" width="429" style="display: block; margin: auto;" />
-<br> <i> Number of groups </i> refers to the number of levels in your
-independent variable. In this case, you have 3 (Control/Eyes
-Obstructed/Mouth Obstructed). You’ll leave the Sample Size option blank,
-as that’s the value you want to calculate. To compute the effect size,
-<span class="math inline">\(f\)</span>, you’ll do the following:</p>
-<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
-.25\]</span> You can enter in the appropriate values for <span
-class="math inline">\(\alpha\)</span> and power. When you’re finished,
-click ‘Calculate’ and you should see the following results if you’ve
-entered everything properly:</p>
-<p><img src="images/week5_oneWayPower.png" width="438" style="display: block; margin: auto;" /></p>
-<p>You’ll obviously need a whole number of participants, so you should
-round up. To detect the desired effect with the given constraints, you
-need 158 participants.</p>
-</details>
-</div>
-<p></br></p>
-</div>
-</div>
 <div id="section-experiment-1-data-review" class="section level2">
 <h2>Experiment 1 Data Review</h2>
 <div id="section-your-tasks-1" class="section level3">
@@ -399,13 +303,13 @@ Import ‘Week5LabData1.csv’ into SPSS</p></li>
 Check whether all variables imported into SPSS as the correct
 measurement type.</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Add a key to the <code>Gender</code> variable so that 1 = ‘Female’ and 2
+= ‘Male’.</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Check the descriptive statistics of your data</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Produce the proper plot to visualise the distribution of your dependent
 variable, <code>Correct</code>.</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Add a key to the <code>Gender</code> variable so that 1 = ‘Female’ and 2
-= ‘Male’.</p></li>
 </ul>
 <div class="container">
 <details>
@@ -444,8 +348,8 @@ measurement, look at the <strong>Measure</strong> column under the
 </ul>
 <p>In this instance, SPSS assigned the proper measures by default, so no
 changes are needed.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Adding Labels to
-Variables </span></p>
+<p><br> <span style="font-weight: bold; font-size: 14pt"> Adding Labels
+to Variables </span></p>
 <p>To associate a label with each value of a variable, you’ll use the
 <strong>Values</strong> column under the <strong>Variable View</strong>
 tab.</p>
@@ -458,8 +362,40 @@ associate with that specific value. Continue adding labels using <span
 class="math inline">\(+\)</span> until you’ve labeled all values in the
 Gender column.</p>
 <p><img src="images/week5_GenderLabels.png" width="40%" style="display: block; margin: auto;" /></p>
-Click ‘OK’. If you’ve done this properly, you’ll see that each numeric
-value is now associated with a character label.
+<p>Click ‘OK’. If you’ve done this properly, you’ll see that each
+numeric value is now associated with a character label.</p>
+<p><br> <span style="font-weight: bold; font-size: 14pt"> Check
+Descriptive Statistics </span></p>
+<p><strong>Categorical Variables:</strong> Your categorical variables
+are <code>Group</code> and <code>Gender</code>. Click
+<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then add
+these two variables to the ‘Variable(s)’ box. Make sure ‘Display
+frequency tables’ is checked, then click ‘OK’. You should see the
+following output:</p>
+<p><img src="images/week5_freqTables.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Note that if you set up the labels for the Gender variable properly,
+you should see ‘Female’ and ‘Male’ in the frequency table for
+<code>Gender</code>, rather than ‘1’ and ‘2’.</p>
+<p><strong>Continuous Variables:</strong> Your categorical variables are
+<code>Age</code> and <code>Correct</code>. Click
+<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then add
+these two variables to the ‘Variable(s)’ box. Make sure ‘Display
+frequency tables’ is not ticked, then click ‘Statistics’. Tick ‘Mean’,
+‘Std. Deviation’, ‘Minimum’, and ‘Maximum’. Click ‘Continue’, then ‘OK’.
+You should see the following output:</p>
+<p><img src="images/week5_descStats.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><br> <span style="font-weight: bold; font-size: 14pt"> Produce
+Distribution Plot </span></p>
+<p>You can also use <em>Analyze&gt;Descriptive
+Statistics&gt;Frequencies</em> to produce a distribution plot. Add
+<code>Correct</code> to the ‘Variable(s)’ box, then click ‘Charts’. As
+<code>Correct</code> is a continuous variable, you will visualise it
+using a histogram. Click ‘Histogram’, then tick ‘Show normal curve on
+histogram’. Click ‘Continue’ and then ‘OK’.</p>
+<p><img src="images/week5_corrHist.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Here, you can have a look at your dependent variable’s distribution.
+There are no concerning outliers or unusual values, so you can move
+forward with assumptions checks.</p>
 </details>
 </div>
 <p></br></p>
@@ -681,63 +617,6 @@ solution </span>
 </div>
 <p></br></p>
 </div>
-<div id="section-run-power-analyses" class="section level2">
-<h2>Run Power Analyses</h2>
-<p>Task here.</p>
-<div class="panel-heading tutorial-quiz-title">Test Your Understanding</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q2-1" class="tutorial-question panel-body">
-<div id="q2-1-answer_container" class="shiny-html-output"></div>
-<div id="q2-1-message_container" class="shiny-html-output"></div>
-<div id="q2-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q2-2" class="tutorial-question panel-body">
-<div id="q2-2-answer_container" class="shiny-html-output"></div>
-<div id="q2-2-message_container" class="shiny-html-output"></div>
-<div id="q2-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q2-3" class="tutorial-question panel-body">
-<div id="q2-3-answer_container" class="shiny-html-output"></div>
-<div id="q2-3-message_container" class="shiny-html-output"></div>
-<div id="q2-3-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="q2-4" class="tutorial-question panel-body">
-<div id="q2-4-answer_container" class="shiny-html-output"></div>
-<div id="q2-4-message_container" class="shiny-html-output"></div>
-<div id="q2-4-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>Hint Here</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p>Solution here.</p>
-</details>
-</div>
-<p></br></p>
-</div>
 <div id="section-check-assumptions" class="section level2">
 <h2>Check Assumptions</h2>
 <p>Task Description Here</p>
@@ -789,30 +668,6 @@ solution </span>
 <div id="section-data-visualisation" class="section level2">
 <h2>Data Visualisation</h2>
 <p>Task Here</p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>Hint Here</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p>Solution here.</p>
-</details>
-</div>
-<p></br></p>
-</div>
-<div id="section-one-way-anova" class="section level2">
-<h2>One-Way ANOVA</h2>
-<p>Task Description.</p>
 <div class="container">
 <details>
 <summary>
@@ -905,15 +760,122 @@ solution </span>
 </details>
 </div>
 <p></br></p>
+</div>
+<div id="section-bonus-material-visualise-results-boxplot"
+class="section level2">
+<h2>Bonus Material: Visualise results (boxplot)</h2>
+</div>
+<div id="section-bonus-material-repeated-measures-anova"
+class="section level2">
+<h2>Bonus Material: Repeated-Measures ANOVA</h2>
+</div>
+<div id="section-bonus-material-power-analysis" class="section level2">
+<h2>Bonus Material: Power Analysis</h2>
+<p><br></p>
+<p>Recall the effect size measure for ANOVA, <span
+class="math inline">\(\eta^2\)</span>:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
+Variable Name
+</th>
+<th style="text-align:right;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
+Magnitude of <span class="math inline">\(\eta^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Weak
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Moderate
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Strong
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+</tbody>
+</table>
+<div id="section-your-task" class="section level3">
+<h3>Your Task</h3>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Run
+a power analysis using <span class="math inline">\(\alpha\)</span> = .05
+and power = .8 to determine the sample size necessary to detect a
+moderate effect size ( <span class="math inline">\(\eta^2\)</span> =
+.06) using a One-Way ANOVA. Note that WebPower uses <span
+class="math inline">\(f\)</span> as its measure of effect size for
+ANOVA, so you’ll need to convert <span
+class="math inline">\(\eta^2\)</span> to <span
+class="math inline">\(f\)</span> before running the power analysis. You
+can do this with the following equation:</li>
+</ul>
+<p><span class="math display">\[f =
+\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span></p>
+<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
+to use WebPower to run your analysis</a>.</p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p><br> Unlike the power analysis for <span
+class="math inline">\(t\)</span>-tests, this power analysis
+requires/outputs the total number of participants, rather than the
+number of participants per group.</p>
+<p>If you’re completely lost, you might find the section on One-Way
+ANOVA in the <a
+href="https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf">WebPower
+manual</a> helpful.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><br> Navigate to the WebPower site and click One-Way ANOVA:</p>
+<p><img src="images/week5_powerAnalysisChoice.png" width="429" style="display: block; margin: auto;" />
+<br> <i> Number of groups </i> refers to the number of levels in your
+independent variable. In this case, you have 3 (Control/Eyes
+Obstructed/Mouth Obstructed). You’ll leave the Sample Size option blank,
+as that’s the value you want to calculate. To compute the effect size,
+<span class="math inline">\(f\)</span>, you’ll do the following:</p>
+<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
+.25\]</span> You can enter in the appropriate values for <span
+class="math inline">\(\alpha\)</span> and power. When you’re finished,
+click ‘Calculate’ and you should see the following results if you’ve
+entered everything properly:</p>
+<p><img src="images/week5_oneWayPower.png" width="438" style="display: block; margin: auto;" /></p>
+<p>You’ll obviously need a whole number of participants, so you should
+round up. To detect the desired effect with the given constraints, you
+need 158 participants.</p>
+</details>
+</div>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-#library(knitr)
-#library(shiny)
-#library(shinyjs)
-#library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -948,13 +910,13 @@ session$onSessionEnded(function() {
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8316f27", 
+"character")), answers = list(structure(list(id = "lnr_ans_df639bf", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a73f38f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e9fd9f0", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_30c984d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_594c046", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -966,81 +928,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 666297793.189731, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-1", question = structure("What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3fd5baf", 
-    option = "38", value = 38, label = structure("38", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("38% of the sample scored between 95 and 110.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q2-1-answer", 
-    question = "q2-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 541835211.747688, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-2", question = structure("What percentage of the sample scored below 87? Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8b904e", 
-    option = "19", value = 19, label = structure("19", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("19% of the sample received a score lower than 87.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q2-2-answer", 
-    question = "q2-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 835976687.610718, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-3", question = structure("You have a participant, J, who scored 138. Fill in the blank: “_% of the sample received a score at least as high as Participant J.” Please enter your answer as a whole number.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f68b8c1", 
-    option = "1", value = 1, label = structure("1", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Only 1% of the sample scored at least 138.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q2-3-answer", 
-    question = "q2-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 220283791.397422, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "q2-4", question = structure("If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_212a061", 
-    option = "81", value = 81, label = structure("81", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The lowest 10% of the sample scored below 81.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "q2-4-answer", 
-    question = "q2-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2062011357.0398, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+    allow_retry = FALSE, seed = 1130990422.47334, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>
@@ -1054,6 +942,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cachem","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","png","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","0.1-8","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.1.1","2.14","2.0.3","0.13","1.0.2","0.4.9","1.3.0","1.7.4","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
 </script>
 <!--/html_preserve-->
+</div>
 </div>
 
 </article> <!-- topics -->
