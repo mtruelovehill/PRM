@@ -4,7 +4,7 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
 
@@ -258,7 +258,7 @@ The histogram bars don't perfectly follow the black line (indicating the data ar
 You can also verify this using a Q-Q plot. To do this, click *Analyze > Descriptive Statistics > Q-Q Plots*. Add `infantVocalisations` to the 'Variable(s)' box, confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. This will produce several pieces of output, but you can ignore most of it. You want to specifically focus on the Normal Q-Q Plots. Data that are generally normal will more closely follow the black diagonal.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week4_4c.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4c.png')
 ```
 
 The points go very slightly off the line in the upper range, but not in a concerning way. Still ok. On the whole, these results indicate that the data have not violated the assumption of normality.
@@ -410,11 +410,11 @@ Note that the numbers inside the curly brackets refer to the degrees of freedom.
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-In this study, we tested the effect of infant transportation modality on their opportunity for socialisation. We hypothesised that there would be differences in socalisation depending on whether infants were using a buggy or a backpack. To test this, we performed two independent-samples $t$-tests with transportation modality as an independent variable and infant vocalisation and physical contact as dependent variables. $\alpha$ was set at .05 for all analyses. 
+In this study, we tested the effect of infant transportation modality on their opportunity for socialisation. We hypothesised that there would be differences in socalisation depending on whether infants were using a buggy or a backpack. To test this, we performed an independent-samples $t$-tests with transportation modality as an independent variable and infant vocalisation as the dependent variable. $\alpha$ was set at .05 for all analyses. 
 
 Our sample consisted of 36 infants between 21 and 45 weeks old ($M$ = 33.13, $SD$ = 5.48; 15 females, 21 males). Assumptions checks were conducted through visual assessment. All data met the assumptions of normality and independence. The infant vocalisations variable violated the homogeneity of variance assumption ($p$ = .048), so results from Welch's $t$-test were evaluated. 
 
-Transportation modality had a significant effect on infant vocalisation, $t$(35.34) = -3.70, $p$ = .001, 95% CI[-1.89, -.55], $d$ = 1.23. Specifically, backpack users had significantly more vocalisations ($M$ = 5.17, $SD$ = 1.25) than buggy users ($M$ = 3.94, $SD$ = .64). There was no significant difference in physical contact between backpack ($M$ = 6.22, $SD$ = 1.67) and buggy users ($M$ = 5.61, $SD$ = 1.65), $t$(34) = 1.11, $p$ = .276, 95% CI[-1.73, 0.51], $d$ = 0.37.
+Transportation modality had a significant effect on infant vocalisation, $t$(35.34) = -3.70, $p$ = .001, 95% CI[-1.89, -.55], $d$ = 1.23. Specifically, backpack users had significantly more vocalisations ($M$ = 5.17, $SD$ = 1.25) than buggy users ($M$ = 3.94, $SD$ = .64). 
 
 </details>
 </div>
@@ -671,7 +671,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_2
 Note that the sample size refers to the sample PER GROUP, not the total sample. In other words, to achieve 80% power to detect a moderate effect size with an alpha = .05, you would need 64 participants per group, or 128 total participants.
 
 To report these results, you could say something like
-"An a priori power analysis indicated that 128 participants was necessary to achieve 80% power to detect a moderate effect size ($d$ = .50) with $\alpha$ = .05."
+"An a priori power analysis indicated that 128 participants (64 per group) was necessary to achieve 80% power to detect a moderate effect size ($d$ = .50) with $\alpha$ = .05 using an independent-samples $t$-test."
 
 <br>
 
