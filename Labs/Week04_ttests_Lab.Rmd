@@ -385,7 +385,6 @@ There are many ways you could write this up, but you'll need to at least include
 + alpha level
 + number of participants (n)
 + participant demographics (mean age, age sd, and age range of sample; gender distribution of sample)
-+ power analysis information (effect size used, power level, n, and alpha level)
 + results from assumptions checks
 + descriptive data for each group (M and SD)
 + the type of test used (independent or paired-samples?)
