@@ -183,8 +183,8 @@ If you're completely lost, you might find the section on One-Way ANOVA in the [W
 <br>
 Navigate to the WebPower site and click One-Way ANOVA:
 
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_powerAnalysisChoice.png')
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_powerAnalysisChoice.png')
 ```
 <br>
 <i> Number of groups </i> refers to the number of independent groups you're comparing. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
@@ -192,8 +192,8 @@ knitr::include_graphics('images/week5_powerAnalysisChoice.png')
 $$f = \sqrt{\frac{.06}{1-.06}} = .25$$
 You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
 
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_oneWayPower.png')
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_oneWayPower.png')
 ```
 
 You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
@@ -255,7 +255,7 @@ To associate a label with each value of a variable, you'll use the **Values** co
 Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column.
 
 ```{r, echo = F, out.width='40%', fig.align='center'}
-knitr::include_graphics('images/week5_GenderLabels.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_GenderLabels.png')
 ```
 
 Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
@@ -266,7 +266,7 @@ Click 'OK'. If you've done this properly, you'll see that each numeric value is 
 **Categorical Variables:** Your categorical variables are `Group` and `Gender`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('images/week5_freqTables.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_freqTables.png')
 ```
 
 Note that if you set up the labels for the Gender variable properly, you should see 'Female' and 'Male' in the frequency table for `Gender`, rather than '1' and '2'.
@@ -274,7 +274,7 @@ Note that if you set up the labels for the Gender variable properly, you should 
 **Continuous Variables:** Your categorical variables are `Age` and `Correct`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width = '40%'}
-knitr::include_graphics('images/week5_descStats.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_descStats.png')
 ```
 
 <br>
@@ -284,7 +284,7 @@ You can also use *Analyze>Descriptive Statistics>Frequencies* to produce a distr
 
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('images/week5_corrHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_corrHist.png')
 ```
 
 Here, you can have a look at your dependent variable's distribution. There are no concerning outliers or unusual values, so you can move forward with assumptions checks.
@@ -330,8 +330,8 @@ Have a look at the [lecture slides]() if you're lost. Because normality must be 
 To check the assumptions of normality and homogeneity, click *Analyze > Descriptive Statistics > Explore* and add your dependent variable to the 'Dependent List' box and your independent variable to the 'Factor List' box. Click the 'Plots' button on the right. Under 'Boxplots', select 'None', under 'Descriptive', tick 'Histogram', and tick 'Normality plots with tests.' Under 'Spread vs Level with Levene Test', click 'Power Estimation'
 
 
-```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week5_assumptionPlots.png')
+```{r, echo = F, fig.align= 'center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_assumptionPlots.png')
 ```
 
 Click 'Continue' and then 'OK.'
@@ -345,29 +345,29 @@ Have a look at the histograms and Q-Q Plots.
 Remember that normally distributed data will be primarily clustered around the mean, with ends tapering off on either side. The histograms show that the data generally follow this pattern across the levels:
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_histogramControl.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_histogramControl.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_histogramEyesObs.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_histogramEyesObs.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_histogramMouthObs.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_histogramMouthObs.png')
 ```
 
 However, they are perhaps very slightly flatter than would be expected, so the Q-Q plots can help bolster our confidence that the data are sufficiently normally distributed:
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_qqControl.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_qqControl.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_qqEyesObs.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_qqEyesObs.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='65%'}
-knitr::include_graphics('images/week5_qqMouthObs.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_qqMouthObs.png')
 ```
 
 Here you can see that the points follow the diagonal pretty closely, so we'll consider the data to have met the normality assumption.
@@ -423,7 +423,7 @@ Before running the analysis, you will need to transform you independent variable
 ANOVA requires that you use a number for your independent variable, `Group`, even though it's categorical. Navigate to *Transform>Recode Into Different Variables*. Add `Group` into the box, then type a name (e.g., 'GroupNum') into the 'Name' box in the 'Output Variable' section. Click 'Change'. Next, click 'Old and New Values'. Add the old category label (e.g., 'Control') to the 'Value' box in the 'Old Value' section, then add a number to assign that category to in the 'New Value' section. Remember that you must enter the category label *exactly* as it is represented in the data, and this process is case-sensitive. Click 'Add', and you'll see it appear in the 'Old --> New' box. Do this until you've assigned all three categories to a number. 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week5_IVnum.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_IVnum.png')
 ```
 
 Click 'Continue' and then 'OK'. You'll notice a new column appear in the *Data View* window. It will default to 2 decimals, so if you'd like to adjust it to 0, go to *Variable View* and change the value in the 'Decimal' column for `GroupNum` to 0. You can also add labels to your new numeric variable, so that when you run your tests later, the label will be used in the output, making it easier to interpret your results. 
@@ -433,16 +433,16 @@ Once you have your `Group` variable transformed into a numeric value, navigate t
 
 You'll see the following output for your One-Way ANOVA:
 
-```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week5_ANOVA.png')
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_ANOVA.png')
 ```
 
 If you look at the .sig column, you can see that the $p$-value is less than .001, which is smaller than our $/alpha$ threshold of .05. This means that our results are significantly. Specifically, there is a less than 0.1% chance that we would have differences this large in recognition between facial obstruction groups if the null hypothesis were true. This tells us that there is a significant difference in the case of least one of our pairings. To get a sense of how meaningful this difference is, we check the effect size.
 
 Although there are several effects reported, you can use the effect size $\eta^2$. 
 
-```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week5_effectSize.png')
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_effectSize.png')
 ```
 
 $\eta^2$ has the following interpretation standards:
@@ -458,8 +458,8 @@ The value for $\eta^2$ in this analysis is .15, which would be considered a stro
 
 These tables provided the results and effect size from the overall group comparison, but it's important to understand which groups are actually different from each other. To determine this, post-hoc analysis should be conducted. If you checked the Tukey's posthoc option when setting up your analysis (and added labels to your `GroupNum` variable), you should see the following output:
 
-```{r, echo = F, fig.align= 'center'}
-knitr::include_graphics('images/week5_posthocs.png')
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_posthocs.png')
 ```
 
 If you don't see the labels and instead see numbers in the first two columns, it just means you didn't actually add labels to your `GroupNum` variable in *Variable View*. The results should still look the same.
@@ -626,7 +626,7 @@ Navigate to *Variable View* and check the variable measures. In this instance, `
 To check the descriptives of the continuous variables `Age`,  `Happiness`, `Sadness`, `Fear`, `Anger`, and `Disgust`, click *Analyze>Descriptive Statistics>Frequencies*, remove `infantGender` from the Variable(s) box and add the continuous variables instead. Make sure to untick the 'Display Frequency Tables' box. Click 'Statistics' and then click 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue' and then 'OK'. You should get the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week5_RMdesc.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMdesc.png')
 ```
 
 Looking at the output shows that all recognition values fall within the expected range (between 0 and 50) and ages range between 6 and 12 (the expected range for our sample). There are no missing values. We can move forward with assumptions checks.
@@ -639,22 +639,22 @@ Looking at the output shows that all recognition values fall within the expected
 Produce histograms for each recognition variable by navigating to *Analyze>Descriptive Statistics>Frequencies*. Add `Happiness`, `Sadness`, `Fear`, `Anger`, and  `Disgust` to the Variable(s) box. Click 'Charts', then check 'Histograms' and tick 'Show normal curve on histograms'. Click 'Continue' and 'OK'. Note that you could have completed this step alongside the previous step.
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
-knitr::include_graphics('images/week5_happinessHist.png')
-knitr::include_graphics('images/week5_sadnessHist.png')
-knitr::include_graphics('images/week5_fearHist.png')
-knitr::include_graphics('images/week5_angerHist.png')
-knitr::include_graphics('images/week5_disgustHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_happinessHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sadnessHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_fearHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_angerHist.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_disgustHist.png')
 ```
 
 
 The data generally follow the normal curve (black line), so normality can be assumed. However, it's still good to check the Q-Q plots to be certain. Navigate to *Analyze > Descriptive Statistics > Q-Q Plots*. Add `Happiness`, `Sadness`, `Fear`, `Anger`, and  `Disgust` to the Variable(s) box. Confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. Ignore all output aside from the Normal Q-Q plots. Data that are generally normal will more closely follow the black diagonal.
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
-knitr::include_graphics('images/week5_happinessQQ.png')
-knitr::include_graphics('images/week5_sadnessQQ.png')
-knitr::include_graphics('images/week5_fearQQ.png')
-knitr::include_graphics('images/week5_angerQQ.png')
-knitr::include_graphics('images/week5_disgustQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_happinessQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sadnessQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_fearQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_angerQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_disgustQQ.png')
 ```
 
 These all look ok; points follow the black diagonals relatively closely.
@@ -664,7 +664,7 @@ These all look ok; points follow the black diagonals relatively closely.
 To test the assumption of sphericity, you can use Mauchly's test. This test is computed automatically when you run your Repeated-Measures ANOVA. When you run the test, you will view this output to determine whether sphericity has been violated:
 
 ```{r, echo = F, fig.align = 'center', out.width='75%'}
-knitr::include_graphics('images/week5_mauchley.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_mauchley.png')
 ```
 
 The $p$-value for this test is provided in the 'Sig.' column. If $p$ is less than the $\alpha$ threshold of .05, this test is significant and sphericity is violated. In this instance, $p$ = .021, suggesting that sphericity is violated. This can be addressed when interpreting the results from the ANOVA.
@@ -675,7 +675,7 @@ The $p$-value for this test is provided in the 'Sig.' column. If $p$ is less tha
 Navigate to *Analyze > General Linear Model > Repeated Measures*. Provide a name for your repeated measures variable in the 'Within-Subject Factor Name' box. In this example, I've used 'Emotion'. Add the number of levels of your IV. In this example, you have 5 (Happiness; Sadness; Fear; Anger; Disgust). Next, you can add a label for your DV if you'd like in the 'Measure Name' box, but this is optional. I named my DV 'Recognition'. Once you've added these to their respective boxes, click 'Define'. 
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
-knitr::include_graphics('images/week5_RMfactors.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMfactors.png')
 ```
 
 Add each of your 5 recognition variables to the 'Within-Subjects Variables' box. To check for differences between each emotion, you'll need to click 'EM means' and add 'Emotion' to the 'Display Means for' box. Tick the 'Compare main effects' box, then select 'Bonferroni' under the 'Confidence interval adjustment' dropdown. This allows you to perform tests between each emotion, so that you can see, for example, whether recognition scores for `Anger` are significantly different from those for `Happiness`. The Bonferroni adjustment is used to correct for multiple comparisons. Click 'Continue'.
@@ -690,7 +690,7 @@ Once you've set all of your desired options, click 'OK' to run the test.
 Scroll down to Mauchly's test. As noted in the previous step, it is significant, which means sphericity cannot be assumed. Continue to the next table, 'Tests of Within-Subjects Effects.' 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week5_RMeffects.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMeffects.png')
 ```
 
 Because sphericity was violated, you cannot interpret the results on the line that says, 'Sphericity Assumed.' Instead, you should interpret the results from the line that says, 'Greenhouse-Geisser'. The Greenhouse-Geisser method is a correction that adjusts data that lack sphericity so the results can be interpreted with confidence.
@@ -700,13 +700,13 @@ In this table, you can see that the $F$-statistic of 179.65 is much larger than 
 To determine which emotions are significantly different from each other, scroll down to the 'Pairwise Comparisons' box. 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('images/week5_pwc.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_pwc.png')
 ```
 
 This can be a bit tricky to interpret, because it swaps all of the emotions to numbers. If you need to remind yourself which emotion is associated with which number, you can have a look at the 'Within Subjects Factors' box at the very top of the test output:
 
 ```{r, echo = F, fig.align= 'center', out.width='40%'}
-knitr::include_graphics('images/week5_emotionKey.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_emotionKey.png')
 ```
 
 The first chunk shows the differences between `Happiness` (Emotion 1) and all other emotions. We can see from the .Sig column that all values of $p$ are < .001, so they are all smaller than the $\alpha$ threshold of .05 and can be considered significant. This means `Happiness` was recognised at a significantly different rate than the other emotions. Looking at the mean difference, we see that the values are positive, indicating that `Happiness` was recognised significantly MORE often than other emotions. 
@@ -729,7 +729,7 @@ Our sample consisted of 200 children between 6.01 and 12.87 years old ($M$ = 9.4
 A repeated-measures ANOVA indicated that emotion had a significant effect on recognition, $F$(3.81, 758.58) = 179.65, $p$ < .001, $\eta^2_p$ = .47. Pairwise comparisons with a Bonferroni correction indicated that happiness was recognised significantly more often than sadness ($p$ < .001, 95% CI = [5.59, 8.59]), fear ($p$ < .001, 95% CI = [9.15, 12.37]), anger ($p$ < .001, 95% CI = [9.07, 12.18]), and disgust ($p$ < .001, 95% CI = [10.11, 13.03]). Sadness was recognised significantly more often than fear ($p$ < .001, 95% CI = [2.34, 5.02]), anger ($p$ < .001, 95% CI = [2.18, 4.90]), and disgust ($p$ < .001, 95% CI = [3.14, 5.84]). There was no significant differences in recognition rates between fear and anger, ($p$ ~ 1, 95% CI = [-1.62, 1.62]), fear and disgust, ($p$ = .726, 95% CI = [-0.46, 2.08]), or anger and disgust, ($p$ = .573, 95% CI = [-0.46, 2.35]). See Table 1 for the mean recognition scores for each emotion. 
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
-knitr::include_graphics('images/week5_RMTable.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMTable.png')
 ```
 
 
@@ -783,8 +783,8 @@ If you're completely lost, you might find the section on One-Way ANOVA in the [W
 <br>
 Navigate to the WebPower site and click Repeated Measures ANOVA:
 
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_RMpowerChoice.png')
+```{r, echo = F, fig.align='center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMpowerChoice.png')
 ```
 <br>
 <i> Number of groups </i> refers to the number of independent groups you're comparing. In this case, you only have a single group, as you have a repeated-measures design (you have an emotional recognition score for each emotion from all participants).<i> Number of measurements </i> refers to the number of values you have from each participant. In this case, you have 5, as you have a score for each of 5 emotions (Happiness; Sadness; Fear; Anger; Disgust) You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
@@ -792,8 +792,8 @@ knitr::include_graphics('images/week5_RMpowerChoice.png')
 $$f = \sqrt{\frac{.06}{1-.06}} = .25$$
 You can enter in the appropriate values for $\alpha$ (.05) and power (.8). When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
 
-```{r, echo = F, fig.align='center'}
-knitr::include_graphics('images/week5_RMpower.png')
+```{r, echo = F, fig.align='center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMpower.png')
 ```
 
 To report these results, you would say something like,
