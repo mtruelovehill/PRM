@@ -153,11 +153,12 @@ paired-samples <span class="math inline">\(t\)</span>-tests.</li>
 <div id="section-experiment-1-overview" class="section level2">
 <h2>Experiment 1 Overview</h2>
 <p>In the first experiment, researchers wanted to test whether the
-number of infant vocalisations differed depending on whether parents
-used a buggy or a backpack to transport their infant. They recruited 36
+amount of infant vocalisation differed depending on whether parents used
+a buggy or a backpack to transport their infant. They recruited 36
 participants and split them into a backpack group and a buggy group.
 They then sent participants on a 15-minute walk with their infant and
-recorded the total number of parent and infant vocalisations.</p>
+recorded the amount of time infants spent vocalising over the course of
+the walk.</p>
 <p><strong>You can download the dataset from the first experiment <a
 href="https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv">here.</a></strong>
 This dataset contains the following variables:</p>
@@ -199,10 +200,10 @@ Transport Modality; Levels: Buggy; Backpack
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-infantVocalisations
+vocalisationTime
 </td>
 <td style="text-align:left;">
-Total number of infant vocalisations
+Time infant spent vocalising (in seconds)
 </td>
 </tr>
 </tbody>
@@ -242,25 +243,25 @@ solution </span>
 <p><br></p>
 <p><b>Research Question:</b></p>
 <p>Does infant transport modality affect the infant’s vocalisation
-during transport? Specifically, is there a difference in the number of
-infant vocalisations when they are being pushed in a buggy as compared
-to when they are carried in a backpack?</p>
+during transport? Specifically, is there a difference in the time the
+infant spent vocalising while being pushed in a buggy as compared to
+being carried in a backpack?</p>
 <p><br></p>
 <p><b> Variables: </b></p>
 <p>Independent Variable: Transportation Modality</p>
-<p>Dependent Variable: Infant Vocalisation</p>
+<p>Dependent Variable: Amount of Infant Vocalisation (in seconds)</p>
 <p><br></p>
 <p><b>Hypotheses:</b></p>
-<p>Null Hypothesis: There is no difference in infant vocalisations
+<p>Null Hypothesis: There is no difference in infant vocalisation time
 between buggy users and backpack users.</p>
-<p>Alternative Hypothesis: There is a difference in infant vocalisations
-between buggy users and backpack users.</p>
+<p>Alternative Hypothesis: There is a difference in infant vocalisation
+time between buggy users and backpack users.</p>
 <p><br></p>
 <p><b>Hypotheses in Statistical Notation:</b></p>
-<p><span class="math inline">\(H_0: Infant\ Vocalisation_{buggy} =
-Infant\ Vocalisation_{backpack}\)</span></p>
-<p><span class="math inline">\(H_1: Infant\ Vocalisation_{buggy} \neq
-Infant\ Vocalisation_{backpack}\)</span></p>
+<p><span class="math inline">\(H_0: Vocalisation_{buggy} =
+Vocalisation_{backpack}\)</span></p>
+<p><span class="math inline">\(H_1: Vocalisation_{buggy} \neq
+Vocalisation_{backpack}\)</span></p>
 </details>
 </div>
 <p></br></p>
@@ -1168,7 +1169,7 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-1", question = structure("How many female infants participated?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_fadd016", 
+"character")), answers = list(structure(list(id = "lnr_ans_426873a", 
     option = "15", value = 15, label = structure("15", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1179,15 +1180,15 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("15 female infants participated in Experiment 1.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrDD-1-answer", 
     question = "cyrDD-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1609076275.25072, options = list(
+    allow_retry = FALSE, seed = 1108472353.48383, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-2", question = structure("What is the minimum number of infant vocalisations?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_815959a", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-2", question = structure("What is the minimum amount of time infants spent vocalising?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_4cf8da8", 
     option = "2", value = 2, label = structure("2", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1198,7 +1199,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("The minimum number of infant vocalisations is 2.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrDD-2-answer", 
     question = "cyrDD-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 434500195.79767, options = list(
+    allow_retry = FALSE, seed = 1202006441.94027, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1206,10 +1207,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAssumptions-1", 
     question = structure("At least one of the assumptions is violated.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_108b2ee", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b71c65b", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_12ddb98", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9aef7d8", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1220,7 +1221,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Results from Levene’s test suggest the Homogeneity of Variance assumption is violated.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAssumptions-1-answer", 
         question = "cyrAssumptions-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1596889374.25639, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 323658058.349285, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1228,10 +1229,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-1", 
     question = structure("What is the t-statistic associated with infant vocalisation? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a41b871", 
+    "character")), answers = list(structure(list(id = "lnr_ans_41749e2", 
         option = "-3.7", value = -3.7, label = structure("-3.7", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c2367df", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_874a734", 
         option = "3.7", value = 3.7, label = structure("3.7", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1242,17 +1243,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The t-statistic associated with this test is -3.70.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-1-answer", 
         question = "cyrIndT-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 811384322.62217, options = list(
+    allow_retry = FALSE, seed = 1371353310.86141, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrIndT-2", question = structure("Given an alpha = .05, the difference in infant vocalisations between buggy users and backpack users is significant .", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ab283b7", 
+"character")), answers = list(structure(list(id = "lnr_ans_f6d6a2c", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1c992d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_476a73", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1263,29 +1264,29 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The p-value for this test is .001. This means that if the null hypothesis were true, the likelihood that we would see this big of a difference in infant vocalisations between buggy and backpack users is only .1%. This provides strong evidence against the null hypothesis. Practically speaking, as our p-value is less than our alpha threshold is .05, we will reject the null hypothesis and claim that there is a significant difference in infant vocalisations between buggy and backpack users.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrIndT-2-answer", 
     question = "cyrIndT-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2067508654.53724, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1784775381.1689, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-1", question = structure("Which of the following research questions could be tested using a t-test? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_214aab1", 
+"character")), answers = list(structure(list(id = "lnr_ans_957c53", 
     option = "Is this year's average rice crop yield significantly higher than last year's?", 
     value = "Is this year's average rice crop yield significantly higher than last year's?", 
     label = structure("Is this year’s average rice crop yield significantly higher than last year’s?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_79d3f5d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a93766a", 
     option = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
     value = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
     label = structure("How do Therapies A, B, and C compare to each other in reduction of symptoms?", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_afb3fc1", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_14b4b48", 
     option = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
     value = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
     label = structure("Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9db8cba", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2cc5b40", 
     option = "Is there an association between brain volume and processing speed?", 
     value = "Is there an association between brain volume and processing speed?", 
     label = structure("Is there an association between brain volume and processing speed?", html = TRUE, class = c("html", 
@@ -1298,21 +1299,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("The therapy research question is better suited to an ANOVA or a regression, as it is comparing 3 means. A t-test can only handle two at a time. The brain volume research question asks about an association between two continuous variables. A t-test requires a categorical independent variable. This question is better answered with a correlation or regression.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-1-answer", 
     question = "tyo-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1620800400.74526, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1210152317.93648, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-2", question = structure("You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3800696", 
+"character")), answers = list(structure(list(id = "lnr_ans_ecd4d74", 
     option = "One-sample t-test", value = "One-sample t-test", 
     label = structure("One-sample t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f27c744", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8622445", 
     option = "Independent samples t-test", value = "Independent samples t-test", 
     label = structure("Independent samples t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c8ba9b7", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9ace0b1", 
     option = "Paired-samples t-test", value = "Paired-samples t-test", 
     label = structure("Paired-samples t-test", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1324,24 +1325,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual’s score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-2-answer", 
     question = "tyo-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 728497881.660767, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 419270300.304762, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-3", question = structure("Which of the following could be used to assess normality? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b1ad263", 
+"character")), answers = list(structure(list(id = "lnr_ans_b3685", 
     option = "Histograms", value = "Histograms", label = structure("Histograms", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6aea58b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e909a44", 
     option = "Q-Q Plots", value = "Q-Q Plots", label = structure("Q-Q Plots", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ff77e4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f3a1213", 
     option = "Shapiro-Wilk Test", value = "Shapiro-Wilk Test", 
     label = structure("Shapiro-Wilk Test", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f3a14f3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5781ff5", 
     option = "Skewness & Kurtosis values", value = "Skewness & Kurtosis values", 
     label = structure("Skewness &amp; Kurtosis values", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1353,32 +1354,32 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("All of the above could be used to assess normality. However, statistical tests (e.g., the Shapiro-Wilk test) are not recommended.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-3-answer", 
     question = "tyo-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1521969175.79128, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1180615374.45023, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-4", question = structure("A researcher conducts a Levene’s test and finds that the associated p = .02. Which of the following is true, assuming alpha = .05? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_bc8f9f2", 
+"character")), answers = list(structure(list(id = "lnr_ans_a263907", 
     option = "The homogeneity of variance assumption has been violated", 
     value = "The homogeneity of variance assumption has been violated", 
     label = structure("The homogeneity of variance assumption has been violated", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_74a2b6c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_af45383", 
     option = "The assumption of normality has been violated", 
     value = "The assumption of normality has been violated", 
     label = structure("The assumption of normality has been violated", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f9af85", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ce6d98f", 
     option = "No assumptions have been violated", value = "No assumptions have been violated", 
     label = structure("No assumptions have been violated", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ea6aec4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_52885b4", 
     option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
     value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
     label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances assumed” row", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd9f111", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd4c864", 
     option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
     value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
     label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances not assumed” row", html = TRUE, class = c("html", 
@@ -1391,20 +1392,20 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("When Levene’s test is significant, it means the homogeneity assumption has been violated and equal variance cannot be assumed.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-4-answer", 
     question = "tyo-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 225187557.895139, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1081463476.9964, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-5", question = structure("A researcher makes a nondirectional hypothesis and runs an independent t-test in SPSS. Under which column will they find the appropriate significance value?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f71fd4e", 
+"character")), answers = list(structure(list(id = "lnr_ans_45f546d", 
     option = "One-sided p", value = "One-sided p", label = structure("One-sided p", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4e3200d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5985c1a", 
     option = "Two-sided p", value = "Two-sided p", label = structure("Two-sided p", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c71c531", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f32edfd", 
     option = "Either of these options will provide an appropriate significance value.", 
     value = "Either of these options will provide an appropriate significance value.", 
     label = structure("Either of these options will provide an appropriate significance value.", html = TRUE, class = c("html", 
@@ -1417,21 +1418,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("When evaluating a nondirectional hypothesis, you must run a two-tailed test, as you are testing for an extreme value in either direction.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-5-answer", 
     question = "tyo-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 796735153.128991, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 116785757.445617, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-6", question = structure("A researcher runs an independent test in SPSS and gets the following 95% confidence interval of the difference: [-.28, .83]. Which of the following is true, assuming alpha = .05?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ace51fe", 
+"character")), answers = list(structure(list(id = "lnr_ans_ddeeba8", 
     option = "The results are significant.", value = "The results are significant.", 
     label = structure("The results are significant.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_81aca1a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d69368e", 
     option = "The results are not significant", value = "The results are not significant", 
     label = structure("The results are not significant", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4626520", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b0b2aad", 
     option = "Significance can't be evaluated using this information", 
     value = "Significance can't be evaluated using this information", 
     label = structure("Significance can’t be evaluated using this information", html = TRUE, class = c("html", 
@@ -1444,7 +1445,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The null hypothesis of an independent-samples t-test is that the difference between the means of each group is 0. If the confidence interval contains 0, it means that 0 is a plausible value for the true difference between groups. Therefore, you don’t have enough evidence to reject the null hypothesis that the true difference between groups is 0.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-6-answer", 
     question = "tyo-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 239174978.888625, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 960369565.552793, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1452,10 +1453,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "powerQuiz-1", 
     question = structure("Recall that there were 18 participants per group in Experiment 1. True or False: Experiment 1 is adequately powered to detect a moderate effect size (d = .50), given power = .8 and alpha = .05", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c0f139b", 
+    "character")), answers = list(structure(list(id = "lnr_ans_e76747b", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_53dad97", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_72e8033", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1466,14 +1467,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("No; Study 1 only has 18 participants per group. If the effect of transport modality on infant vocalisation is weak or moderate, a Type II error is likely to occur.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-1-answer", 
         question = "powerQuiz-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 617565861.712423, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1514410574.2948, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "powerQuiz-2", 
     question = structure("You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_ade5b0", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b6b6a6f", 
         option = "0.51", value = 0.51, label = structure("0.51", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1484,7 +1485,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-2-answer", 
         question = "powerQuiz-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 753789816.648989, options = list(
+    allow_retry = FALSE, seed = 1862508058.6327, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1493,7 +1494,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "powerQuiz-3", 
     question = structure("How many participants do you need per group to detect a strong effect (d = .8) with an independent-samples t-test, a nondirectional hypothesis, power = .8, and alpha = .001?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_1e1fe76", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9334841", 
         option = "57", value = 57, label = structure("57", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1504,7 +1505,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("You will need 57 participants per group to detect this effect. You will have needed to round up, as you cannot have .09 participants.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-3-answer", 
         question = "powerQuiz-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1087831301.49344, options = list(
+    allow_retry = FALSE, seed = 2055520583.54282, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1512,17 +1513,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "powerQuiz-4", 
     question = structure("You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_db90729", 
+    "character")), answers = list(structure(list(id = "lnr_ans_bee973c", 
         option = "The sample size requirements increase for a one-tailed test", 
         value = "The sample size requirements increase for a one-tailed test", 
         label = structure("The sample size requirements increase for a one-tailed test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_156fd99", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d8e93f4", 
         option = "The sample size requirements decrease for a one-tailed test", 
         value = "The sample size requirements decrease for a one-tailed test", 
         label = structure("The sample size requirements decrease for a one-tailed test", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6b9bea0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_47f7fc3", 
         option = "The sample size requirements are identical for both one- and two-tailed tests", 
         value = "The sample size requirements are identical for both one- and two-tailed tests", 
         label = structure("The sample size requirements are identical for both one- and two-tailed tests", html = TRUE, class = c("html", 
@@ -1535,7 +1536,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("When using an alpha = .05, we consider values in the most extreme 5% of the distribution to be significant. When running a two-tailed test, this 5% is split in both directions, so the 2.5% highest AND 2.5% lowest values are considered significant. In a one-tailed test, only the extreme results in one direction are considered significant, so all 5% is grouped in a single area of the distribution. This naturally increases the power to detect an effect as the critical threshold in that direction is closer to the mean. Because of this, a smaller sample size in a one-tailed analysis can produce the same power level as a larger sample size in a two-tailed analysis.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-4-answer", 
         question = "powerQuiz-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 289212076.865325, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1787329331.16771, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

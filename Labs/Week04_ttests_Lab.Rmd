@@ -48,7 +48,7 @@ If you complete the bonus material, you'll also be able to:
 
 ## Experiment 1 Overview 
 
-In the first experiment, researchers wanted to test whether the number of infant vocalisations differed depending on whether parents used a buggy or a backpack to transport their infant. They recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the total number of parent and infant vocalisations.
+In the first experiment, researchers wanted to test whether the amount of infant vocalisation differed depending on whether parents used a buggy or a backpack to transport their infant. They recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the amount of time infants spent vocalising over the course of the walk.
 
 **You can download the dataset from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv)** This dataset contains the following variables:
 
@@ -57,7 +57,7 @@ dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv')
 datInfo <- data.frame(VariableName=colnames(dat),
                       Description=c('Levels: M = Male, F = Female', 'Infant age in weeks',
                                     'Transport Modality; Levels: Buggy; Backpack',
-                                    'Total number of infant vocalisations'))
+                                    'Time infant spent vocalising (in seconds)'))
  
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -94,7 +94,7 @@ If you need guidance on how to specify your hypothesis using statistical notatio
 
 <b>Research Question:</b>
 
-Does infant transport modality affect the infant's vocalisation during transport? Specifically, is there a difference in the number of infant vocalisations when they are being pushed in a buggy as compared to when they are carried in a backpack?
+Does infant transport modality affect the infant's vocalisation during transport? Specifically, is there a difference in the time the infant spent vocalising while being pushed in a buggy as compared to being carried in a backpack?
 
 <br>
 
@@ -102,23 +102,23 @@ Does infant transport modality affect the infant's vocalisation during transport
 
 Independent Variable: Transportation Modality
 
-Dependent Variable: Infant Vocalisation
+Dependent Variable: Amount of Infant Vocalisation (in seconds)
 
 <br>
 
 <b>Hypotheses:</b>
 
-Null Hypothesis: There is no difference in infant vocalisations between buggy users and backpack users.
+Null Hypothesis: There is no difference in infant vocalisation time between buggy users and backpack users.
 
-Alternative Hypothesis: There is a difference in infant vocalisations between buggy users and backpack users.
+Alternative Hypothesis: There is a difference in infant vocalisation time between buggy users and backpack users.
 
 <br>
 
 <b>Hypotheses in Statistical Notation:</b>
 
-$H_0: Infant\ Vocalisation_{buggy} = Infant\ Vocalisation_{backpack}$
+$H_0: Vocalisation_{buggy} = Vocalisation_{backpack}$
 
-$H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$
+$H_1: Vocalisation_{buggy} \neq Vocalisation_{backpack}$
 
 </details>
 </div>
@@ -150,7 +150,7 @@ quiz(caption = 'Check Your Results',
      question_numeric("How many female infants participated?",
               answer(15, correct = T),
               message = '15 female infants participated in Experiment 1.'),
-     question_numeric('What is the minimum number of infant vocalisations?',
+     question_numeric('What is the minimum amount of time infants spent vocalising?',
                       answer(2, correct = T),
                       message = 'The minimum number of infant vocalisations is 2.'))
 ```
