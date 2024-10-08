@@ -253,7 +253,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4b.png')
 ```
 
-The histogram bars don't perfectly follow the black line (indicating the data are not perfectly normal), but this is not unexpected with such a small sample. In any case, `vocalisationTime` is generally normal within each `Transport` group. There is no evidence of a significant normality violation. 
+The histogram bars aren't perfectly symmetrical (indicating the data are not perfectly normal), but this is not unexpected with such a small sample. In any case, `vocalisationTime` is generally normal within each `Transport` group. There is no evidence of a significant normality violation. 
 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
@@ -329,7 +329,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5
 
 <br>
 
-The second bit of output provides the results of the $t$-test. The first portion provides the results from Levene's test. In cases where Levene's test is not significant, you use the results from the row that says 'Equal variances assumed'. If the test is significant, there is a slightly different version of a $t$-test that is robust to a violation of the equal variance assumption. The results from this test are provided in the row that says 'Equal variances not assumed'. Because your data violated the assumption of equal variance, you should use results from the row that says, 'Equal variances not assumed'.
+The second bit of output provides the results of the $t$-test. The first portion provides the results from Levene's test. In cases where Levene's test is not significant (such as this instance), you interpret the results from the row that says 'Equal variances assumed'. If the test is significant, there is a slightly different version of a $t$-test that is robust to a violation of the equal variance assumption. The results from this test are provided in the row that says 'Equal variances not assumed'. This row should be interpreted in cases where the assumption homogeneity of variance has been violated
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5b.png')
@@ -339,7 +339,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5
 
 Recall that you tested a nondirectional hypothesis (*There will be a difference in infant vocalisation between backpack and buggy users* rather than *Backpack users will vocalise more than buggy users*). Because of this, you'll evaluate significance using the $p$-value in the 'Two-sided p' column. Had you tested a directional hypothesis, you would check the $p$-value in the 'one-sided p' column.
 
-The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, as the $p$-value of .001 is less than the $\alpha$ threshold of .05. The confidence intervals for the variables further support this; the 95% CI associated with `vocalisationTime`, [-1.94, -0.51], does not contain the null value of 0.
+The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, as the $p$-value of < .001 is less than the $\alpha$ threshold of .05. The confidence intervals for the variables further support this; the 95% CI associated with `vocalisationTime`, [-6.47, -2.37], does not contain the null value of 0.
 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
@@ -348,7 +348,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5
 
 <br>
 
-To check the effect size, look under the 'Point Estimate' column for Cohen's $d$. The absolute value of Cohen's $d$ for`infantVocalisation` = 1.23.
+To check the effect size, look under the 'Point Estimate' column for Cohen's $d$. The absolute value of Cohen's $d$ for`infantVocalisation` = 1.46.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5d.png')
@@ -411,11 +411,11 @@ Note that the numbers inside the curly brackets refer to the degrees of freedom.
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-In this study, we tested the effect of infant transportation modality on their opportunity for socialisation. We hypothesised that there would be differences in socalisation depending on whether infants were using a buggy or a backpack. To test this, we performed an independent-samples $t$-tests with transportation modality as an independent variable and infant vocalisation as the dependent variable. $\alpha$ was set at .05 for all analyses. 
+In this study, we tested the effect of infant transportation modality on their opportunity for socialisation. We hypothesised that there would be differences in socalisation depending on whether infants were using a buggy or a backpack. To test this, we performed an independent-samples $t$-tests with transportation modality as an independent variable and the time infants spent vocalising (in seconds) as the dependent variable. $\alpha$ was set at .05 for all analyses. 
 
-Our sample consisted of 36 infants between 21 and 45 weeks old ($M$ = 33.13, $SD$ = 5.48; 15 females, 21 males). Assumptions checks were conducted through visual assessment. All data met the assumptions of normality and independence. The infant vocalisations variable violated the homogeneity of variance assumption ($p$ = .048), so results from Welch's $t$-test were evaluated. 
+Our sample consisted of 36 infants between 21 and 45 weeks old ($M$ = 33.13, $SD$ = 5.48; 15 females, 21 males). Assumptions checks were conducted through visual assessment and interpretation of Levene's test. All data met the assumptions of normality, independence, and homogeneity of variance. 
 
-Transportation modality had a significant effect on infant vocalisation, $t$(35.34) = -3.70, $p$ = .001, 95% CI[-1.89, -.55], $d$ = 1.23. Specifically, backpack users had significantly more vocalisations ($M$ = 5.17, $SD$ = 1.25) than buggy users ($M$ = 3.94, $SD$ = .64). 
+Transportation modality had a significant effect on infant vocalisation, $t$(34) = -4.38, $p$ < .001, 95% CI[-6.47, -2.36], $d$ = -1.46. Specifically, backpack users spent significantly more time vocalising ($M$ = 18.40, $SD$ = 3.55) than buggy users ($M$ = 13.97, $SD$ = 2.40). 
 
 </details>
 </div>
@@ -464,7 +464,7 @@ quiz(caption = '',
 ```
 
 ## Bonus Material: Paired-Samples $t$-test
-After running the first experiment, the researchers wanted to further support their findings. They ran a second experiment using a within-subjects design. They recruited 40 participants and sent them out on 2 separate walks over the course of two weeks, once using a backpack and once a buggy. In this experiment, they recorded infant vocalisations from the same participants across each condition.
+After running the first experiment, the researchers wanted to further support their findings. They ran a second experiment using a within-subjects design. They recruited 40 participants and sent them out on 2 separate walks over the course of two weeks, once using a backpack and once a buggy. In this experiment, they recorded the time infants spent vocalising from the same participants across each condition.
 
 **Please download the dataset from the second experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv)** It contains the following variables:
 
@@ -473,8 +473,8 @@ dat2 <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv')
 dat2Info <- data.frame(VariableName=colnames(dat2),
                       Description=c('Infant age in weeks',
                                     'Levels: M = Male, F = Female', 
-                                    'Total number of infant vocalisations while in buggy',
-                                    'Total number of infant vocalisations while in backpack'))
+                                    'Time infants spent vocalising while in buggy',
+                                    'Time infants spent vocalising while in backpack'))
  
 dat2Info %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
