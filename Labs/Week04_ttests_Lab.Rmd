@@ -150,9 +150,9 @@ quiz(caption = 'Check Your Results',
      question_numeric("How many female infants participated?",
               answer(15, correct = T),
               message = '15 female infants participated in Experiment 1.'),
-     question_numeric('What is the minimum amount of time infants spent vocalising?',
-                      answer(2, correct = T),
-                      message = 'The minimum number of infant vocalisations is 2.'))
+     question_numeric('What is the minimum amount of time infants spent vocalising? Please round your answer to 2 decimal places.',
+                      answer(9.36, correct = T),
+                      message = 'The minimum number of infant vocalisations is 9.36.'))
 ```
 
 <br>
@@ -160,7 +160,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-There are some issues to address under the *Variable View* tab. Remember to use the *Frequencies* option rather than *Descriptives*. 
+To calculate descriptive statistics, navigate to *Analyze > Descriptive Statistics > Frequencies*
 
 </details>
 </div>
@@ -169,7 +169,7 @@ There are some issues to address under the *Variable View* tab. Remember to use 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-When you check the data under *Variable View*, you'll notice that the dependent variable, `infantVocalisations`, has been coded as 'Nominal'. You'll need to change this to 'Scale' in order for the $t$-test to work properly.
+When you check the data under *Variable View*, you'll see that all variables were imported as the proper measurement.
 
 Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add the 2 categorical variables, `infantGender` and `Transport`, to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If this is done this properly, you'll get the following output:
 
@@ -179,7 +179,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_3
 
 Here, you can see the frequencies of participants in each category. You might note that there were slightly more male infants than females. You can see that there are equal participants in the 'Buggy' and 'Backpack' groups, as expected.
 
-After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace the categorical variables with the 2 continuous variables, `infantAge` and `infantVocalisations`. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
+After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace the categorical variables with the 2 continuous variables, `infantAge` and `vocalisationTime`. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
 
 ```{r, echo=F, fig.align='center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_3b.png')
@@ -197,11 +197,11 @@ Have a look at the values here. There is no missing data, and the values seem re
 
 The assumptions of an independent-samples $t$ test are:
 
-(1) The dependent variable (`infantVocalisations`) must be normally distributed
+(1) The dependent variable (`vocalisationTime`) must be normally distributed within each group
 
 (2) Observations must be independent of each other
 
-(3) The two groups (*Buggy* and *Backpack*) must exhibit approximately equal variance (homogeneity) in the dependent variable (`infantVocalisations`)
+(3) The two groups (*Buggy* and *Backpack*) must exhibit approximately equal variance (homogeneity) in the dependent variable (`vocalisationTime`)
 
 
 ### Your Tasks
@@ -217,15 +217,17 @@ The assumptions of an independent-samples $t$ test are:
 ```{r cyrAssumptions, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question("At least one of the assumptions is violated.",
-              answer("True", correct = T),
-              answer("False"),
-              message = "Results from Levene's test suggest the Homogeneity of Variance assumption is violated."))
+              answer("True"),
+              answer("False", correct = T),
+              message = "The normality plots show no major issues in normality, and Levene's test is not significant, indicating that homogeneity of variance can be assumed."))
 ```
 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-To check normality, you can use histograms, Q-Q plots, and skewness and kurtosis values. To check independence, you'll need to consider the design of the study. To check homogeneity of variance, you can check results from Levene's test.
+To check normality, you can use histograms and Q-Q plots. You'll need to do this for each level of `Transport` separately. Navigate to *Analyze>DescriptiveStatistics>Explore* to do this. 
+
+To check independence, you'll need to consider the design of the study. To check homogeneity of variance, you can check results from Levene's test.
 
 Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#50) if you're lost. [This article](https://link.springer.com/article/10.3758/s13428-023-02072-x) to provide helpful guidance on why we check assumptions, and why certain assumption checking methods are more strongly recommended than others.
 
@@ -241,27 +243,26 @@ Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures
 
 <span style = "font-weight: bold; font-size: 14pt"> Checking Normality </span>
 
-Normality can be assessed in multiple ways. I prefer visual assessment, as the statistical tests can be overly sensitive, particularly with larger sample sizes. To check the histograms, click *Analyze > Descriptive Statistics > Frequencies* and add your dependent variable, `infantVocalisations`,  to the 'Variable(s)' box. Click 'Charts', then select 'Histograms' and make sure the box that says, 'Show normal curve on histogram' is checked. Click 'Continue.' While here, you can also go to the 'Statistics' box and select 'Skewness' and 'Kurtosis'. Once this is all done, click 'OK'.
+Normality can be assessed in multiple ways. I prefer visual assessment, as the statistical tests can be overly sensitive, particularly with larger sample sizes. 
 
-```{r, echo = F, fig.align= 'center', out.width='30%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png')
-```
-
-Skewness and kurtosis values are all within the bounds of -1 and 1, which is ideal. Next, you can check the histogram with the normal curve:
+To check the histograms and Q-Q plots of the dependent variable separated by Group, click *Analyze > Descriptive Statistics > Explore* and add your dependent variable, `vocalisationTime`,  to the 'Dependent List' box. Add your independent variable, `Transport`, to the Factor List box. At the bottom, change the 'Display' setting from 'Both' to 'Plots'. Click 'Plots', deselect 'Stem-and-Leaf' and select 'Histograms' instead. Tick the box that says 'Normality Plots with Tests'. Click 'Continue', then 'OK'.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png')
+
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4b.png')
 ```
 
-The histogram bars don't perfectly follow the black line (indicating the data are not perfectly normal), but this is not unexpected with such a small sample. In any case, this variable is generally normal. There is no evidence of a significant normality violation. 
+The histogram bars don't perfectly follow the black line (indicating the data are not perfectly normal), but this is not unexpected with such a small sample. In any case, `vocalisationTime` is generally normal within each `Transport` group. There is no evidence of a significant normality violation. 
 
-You can also verify this using a Q-Q plot. To do this, click *Analyze > Descriptive Statistics > Q-Q Plots*. Add `infantVocalisations` to the 'Variable(s)' box, confirm that the 'Test Distribution' is set to 'Normal' and then click 'OK'. This will produce several pieces of output, but you can ignore most of it. You want to specifically focus on the Normal Q-Q Plots. Data that are generally normal will more closely follow the black diagonal.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4c.png')
+
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4d.png')
 ```
 
-The points go very slightly off the line in the upper range, but not in a concerning way. Still ok. On the whole, these results indicate that the data have not violated the assumption of normality.
+Inspecting the Q-Q plots, you'll note that the points go very slightly off the line in the tails, but not in a concerning way. On the whole, these results indicate that the data have not violated the assumption of normality.
 
 <span style = "font-weight: bold; font-size: 14pt"> Independence </span>
 
@@ -269,13 +270,13 @@ Assessing independence requires you to have an understanding of the conditions u
 
 <span style = "font-weight: bold; font-size: 14pt"> Homogeneity of Variance </span>
 
-This can be tested using Levene's test. This test runs automatically when you perform a $t$-test, but you can also run it separately. To run the test outwith the analysis, navigate to *Analyze > Descriptive Statistics > Explore*. Place the dependent variable, `infantVocalisations`, in the 'Dependent List' box and the independent/grouping variable, `Transport`, in the 'Factor List' box. Click the 'Plots' button. In the 'Spread vs Level with Levene Test' area, select 'Power Estimation', then click 'Continue' and 'OK'. The results will appear in the output:
+This can be tested using Levene's test. This test runs automatically when you perform a $t$-test, but you can also run it separately. To run the test outwith the analysis, navigate to *Analyze > Descriptive Statistics > Explore*. Place the dependent variable, `vocalisationTime`, in the 'Dependent List' box and the independent/grouping variable, `Transport`, in the 'Factor List' box. Click the 'Plots' button. In the 'Spread vs Level with Levene Test' area, select 'Power Estimation', then click 'Continue' and 'OK'. The results will appear in the output:
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4d.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4e.png')
 ```
 
-You can check the line for each variable that says 'Based on Mean' and evaluate the 'Sig.' column. A significant Levene's test indicates that the data violate the assumption. If we set $\alpha$ = .05, `Infant Vocalisation` violates the assumption of equal variances, as $p$ = .048, which is less than the $\alpha$ threshold. This violation can be accounted for when the primary analysis is performed. 
+You can check the line that says 'Based on Mean' and evaluate the 'Sig.' column. A significant Levene's test indicates that the data violate the assumption. If we set $\alpha$ = .05, `Infant Vocalisation` does not violate the assumption of equal variances, as $p$ = .146, which is less than the $\alpha$ threshold. 
 
 </details>
 </div>
@@ -285,7 +286,7 @@ You can check the line for each variable that says 'Based on Mean' and evaluate 
 
 As you are comparing two independent means, you'll use results from an independent-samples $t$-tests to provide statistical support for your hypothesis. Recall that you're testing the following hypothesis:
 
-$$H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$$
+$$H_1: Vocalisation_{buggy} \neq Vocalisation_{backpack}$$
 
 
 ### Your Tasks
@@ -296,14 +297,14 @@ $$H_1: Infant\ Vocalisation_{buggy} \neq Infant\ Vocalisation_{backpack}$$
 
 ```{r cyrIndT, echo = FALSE}
 quiz(caption = 'Check Your Results',
-     question_numeric("What is the t-statistic associated with infant vocalisation? Please round your answer to two decimal places.",
-              answer(-3.70, correct = T),
-              answer(3.70, correct = T),
-              message = 'The t-statistic associated with this test is -3.70.'),
-question("Given an alpha = .05, the difference in infant vocalisations between buggy users and backpack users is significant .",
+     question_numeric("What is the t-statistic associated with vocalisation time? Please round your answer to two decimal places.",
+              answer(-4.38, correct = T),
+              answer(4.38, correct = T),
+              message = 'The t-statistic associated with this test is -4.38 (or 4.38, depending on which order you entered the levels of the independent variable.'),
+question("Given an alpha = .05, the difference in vocalisation time between buggy users and backpack users is significant .",
               answer('True', correct = T),
               answer('False'),
-              message = 'The p-value for this test is .001. This means that if the null hypothesis were true, the likelihood that we would see this big of a difference in infant vocalisations between buggy and backpack users is only .1%. This provides strong evidence against the null hypothesis. Practically speaking, as our p-value is less than our alpha threshold is .05, we will reject the null hypothesis and claim that there is a significant difference in infant vocalisations between buggy and backpack users.'))
+              message = 'The p-value for this test is < .001. This means that if the null hypothesis were true, the likelihood that we would see this big of a difference in vocalisation time between buggy and backpack users is less than .1%. This provides strong evidence against the null hypothesis. Practically speaking, as our p-value is less than our alpha threshold is .05, we will reject the null hypothesis and claim that there is a significant difference in infant vocalisation between buggy and backpack users.'))
 ```
 
 <div class="container">
@@ -318,7 +319,7 @@ You can run the test by clicking *Analyze > Compare Means and Proportions > Inde
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Click *Analyze > Compare Means and Proportions > Independent-Samples T test*. Move your dependent variable, `infantVocalisations` into the 'Test Variable(s)' box and your independent variable, `Transport`, into the 'Grouping Variable' box. Click 'Define Groups' and enter the names of your two groups (*Buggy* and *Backpack*) exactly as they are provided in the spreadsheet. In the main box, make sure 'Estimate effect sizes' is checked, then click 'OK' to run the test.
+Click *Analyze > Compare Means and Proportions > Independent-Samples T test*. Move your dependent variable, `vocalisationTime` into the 'Test Variable(s)' box and your independent variable, `Transport`, into the 'Grouping Variable' box. Click 'Define Groups' and enter the names of your two groups (*Buggy* and *Backpack*) exactly as they are provided in the spreadsheet. In the main box, make sure 'Estimate effect sizes' is checked, then click 'OK' to run the test.
 
 The first bit of output will provide the descriptive statistics separated by `Transport` groups. This is useful information to include in your final report, so take note.
 
@@ -338,7 +339,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_5
 
 Recall that you tested a nondirectional hypothesis (*There will be a difference in infant vocalisation between backpack and buggy users* rather than *Backpack users will vocalise more than buggy users*). Because of this, you'll evaluate significance using the $p$-value in the 'Two-sided p' column. Had you tested a directional hypothesis, you would check the $p$-value in the 'one-sided p' column.
 
-The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, as the $p$-value of .001 is less than the $\alpha$ threshold of .05. The confidence intervals for the variables further support this; the 95% CI associated with `infantVocalisations`, [-1.94, -0.51], does not contain the null value of 0.
+The results from the t-test suggest that infant vocalisation was significantly different between buggy and backpack users, as the $p$-value of .001 is less than the $\alpha$ threshold of .05. The confidence intervals for the variables further support this; the 95% CI associated with `vocalisationTime`, [-1.94, -0.51], does not contain the null value of 0.
 
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
