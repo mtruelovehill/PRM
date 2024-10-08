@@ -24,6 +24,7 @@ This course is ongoing; more lectures will be added as the semester progresses.
 
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">Exploring Your Data </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#1" target="_blank">Introduction to Null-Hypothesis Statistical Testing </a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#1" target="_blank"><i>t</i>-tests </a>
 
 <br>
 <br>

@@ -1,0 +1,394 @@
+---
+title: "Week 7 Lab: Correlation"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(knitr)
+library(shiny)
+library(shinyjs)
+library(bslib)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+#tutorial_options(exercise.timelimit = 60)
+```
+
+```{r, context = 'server'}
+output$distPlot <- renderPlot({
+  set.seed(806)
+      dat <- data.frame(X=rnorm(300, mean = input$mean, sd = input$sd))
+      ggplot(data.frame(X = c(-30, 30)), aes(x = X)) +
+        geom_histogram(data=dat, aes(x=X, y = after_stat(density)), fill = '#4CA384', color = '#19424C',
+                       binwidth = 2) +
+        stat_function(fun=dnorm, geom = "line", args = list(mean = input$mean, sd = input$sd),
+                      linewidth = 1, color = '#19424C') +
+        scale_x_continuous(breaks = seq(-30, 30, 10), limits=c(-30, 30)) +
+        scale_y_continuous(limits=c(0, .4)) +
+        theme(axis.title.x = element_text(size = 16, face = 'bold'),
+              axis.text.x = element_text(size = 16),
+              axis.line.y = element_blank(),
+              axis.text.y = element_blank(),
+              axis.ticks = element_blank(),
+              axis.title.y = element_blank())
+    })
+```
+
+## Intro to Today's Lab
+
+MONICA - MAKE STUDENTS CREATE A SUMMARY METRIC FROM AN ASSESSMENT USING THE CALCULATE FUNCTION; THIS NEW VALUE WILL THEN BE USED AS PART OF THE CORRELATION.
+
+Intro Goes Here   
+
+```{r, echo = F}
+# dat <- read.csv('Week1LabData.csv')
+# datInfo <- data.frame(VariableName=colnames(dat), 
+#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
+#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
+#                                     Version C Scores', 'Assessment Version D Scores'))
+# 
+# datInfo %>%
+#   kbl(col.names=c('Variable Name', 'Description')) %>%
+#   kable_styling(full_width = F) %>%
+#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+#   column_spec(1, bold = T, width = '4.5cm')
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+LAB INTRO HERE
+
+This dataset contains the following variables:
+
+UPDATE THIS TABLE:
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv')
+datInfo <- data.frame(VariableName=colnames(dat), 
+                      Description=c('Study Group', 'Age in years', 'Sex', 'pre-intervention CAPS score', 'post-intervention CAPS score'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1.  
+
+
+## State your Hypotheses
+
+Task 1 Info Here
+
+* Identify IV(s) and DV(s)
+* State Hypotheses (Mixed Methods ANOVA)
+
+```{r q1, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question('Which of the following hypotheses can be tested using a mixed methods ANOVA? Please select all that apply.',
+#               answer('Hypothesis1', correct = T),
+#               answer('Hypothesis2'),
+#               answer('Hypothesis3'),
+#               answer('Hypothesis4'),
+#               answer('Hypothesis5'),
+#               random_answer_order = T,
+#               message = 'Feedback Here'),
+#      question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
+#               answer('One-sample t-test'),
+#               answer('Independent samples t-test'),
+#               answer('Paired-samples t-test', correct = T),
+#               message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
+
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint Goes Here
+
+</details>
+
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution Goes Here
+
+</details>
+
+</br>
+
+## Run the Appropriate Power Analyses 
+
+Task Goes Here
+* Maybe an a priori & a sensitivity
+
+```{r q2, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("Which type of data is C?",
+#               answer("Categorical"),
+#               answer("Continuous", correct = T),
+#               random_answer_order = T),
+#      question("Which type of data is Gender?",
+#               answer("Continuous"),
+#               answer('Categorical', correct = T)),
+#      question("Which type of data is ClassTime?",
+#               answer("Continuous"),
+#               answer('Categorical', correct = T),
+#               message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
+#               numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an  
+#               infinite range of values if measurement was precise enough'),
+#      question('Which of the following "Measure" values used by SPSS reflects categorical data?',
+#               answer('Nominal', correct = T),
+#               answer('Ordinal', correct = T),
+#               answer('Scale'),
+#               message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
+#               variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
+#               but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'))
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+
+</br>
+
+
+## Calculate Descriptive Data 
+
+Task Description Here
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution Here.
+
+</details>
+
+</br>
+
+
+
+
+## Visualise Your Data 
+
+Task Here.
+
+```{r q4, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("At least one of the groups is limited in size compared to the others",
+#               answer("True", correct = T),
+#               answer("False"),
+#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
+#      question_numeric("How many total datapoints do you have for the gender variable?",
+#               answer(48, correct=T)),
+#      question_numeric("What percentage of participants are female?",
+#               answer(41.7, correct=T)),
+#      question_numeric('How many nonbinary participants are in your sample?',
+#               answer(2, correct=T)))
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution Here
+
+</details>
+</br>
+
+## Check Assumptions
+
+Task Here
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint Here.
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution Here.
+
+</details>
+</br>
+
+## Run ANOVA
+
+Task Description.
+* Maybe also discuss degrees of freedom here
+
+```{r q6, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
+#               answer("Mean", correct = T),
+#               answer("Median", correct = T),
+#               answer('Mode', correct = T),
+#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
+#               mean, as it includes information from each observation.'),
+#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
+#               answer("Mean"),
+#               answer("Median"),
+#               answer('Mode', correct = T),
+#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
+#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
+#      question_numeric("What is the average score on Assessment A?",
+#               answer(39.10, correct=T)),
+#      question_numeric("What is the most common age in this sample?",
+#               answer(19, correct=T)),
+#      question_numeric("What is the median score on Assessment D?",
+#               answer(81.87, correct=T))
+# )
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+Hint here.
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</br>
+
+## Run Post-Hoc Analyses
+
+Task here.
+
+```{r q7, echo = FALSE}
+# quiz(caption = 'Test Your Understanding',
+#      question_numeric("What is the IQR for Assessment B?",
+#               answer(4, correct=T),
+#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
+#      question_numeric("What is the maximum score on Assessment C?",
+#               answer(78, correct=T)),
+#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
+#               answer(2.15, correct=T))
+# )
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</br>
+
+## Calculate Effect Sizes
+
+Task here.
+
+```{r distPlot, echo = F}
+# 
+# fluidRow(column(4, 
+#   sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
+#   sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
+#   column(8, plotOutput('distPlot')))
+# 
+# tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
+# tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+
+```
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</br>
+
+
+## Visualise the Analysis Results
+
+Task here.
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</br>
+
+## Report & Interpret
+
+Task here.
+
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</br>
+
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</br>
+

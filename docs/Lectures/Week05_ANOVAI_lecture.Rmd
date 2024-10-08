@@ -55,127 +55,73 @@ accent3 <- '#19424C'
 + Conducting a power analysis for ANOVA
 
 ---
-## Differences between two means
+## Moving on from $t$-tests
+
+MONICA - CHECK THIS...not sure if I currently feel okay about it, because we also need to set up the idea of post-hocs. Maybe compare it to using a shoe to hammer a nail?
+
++ $t$-tests allow for the comparison of two means...what if we need to compare more than two?
+
++ 'We can just run more $t$-tests'...
 
 --
 
-** Are these means different? (Yes/No/It Depends)**
-
-.pull-left[
-```{r, echo = F, fig.height=5}
-set.seed(68)
-dat <- data.frame(x1=round(rnorm(1000, mean = 20, sd = 2)), y1=round(rnorm(1000, mean = 26, sd = 2)), x2=round(rnorm(1000, mean = 22, sd = 15)), y2=round(rnorm(100, mean = 32, sd = 15)))
-
-basePlot <- ggplot(dat, aes(x1)) + 
-  scale_x_continuous(breaks=seq(5, 50, by = 5), limits=c(5, 50)) +
-  theme(axis.line.y = element_line(),
-        axis.line.x = element_line(),
-        panel.grid = element_blank(),
-        panel.background = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text = element_text(size = 14),
-        axis.title = element_text(size = 16, face = 'bold')) +
-  xlab('x')
-
-basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2)
-```
-
-]
++ **NO.**
 
 --
 
-.pull-right[
++ *Type I Errors:* rejecting the null when it is actually true.
 
-```{r, echo = F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y2), linewidth=1, color = accent2)
-```
++ $\alpha$ reflects our Type I error rate, or the probability of rejecting the null given that it is true.
 
-]
+--
 
++ When we run a statistical test, we have a Type I error probability equal to $\alpha$ (usually .05, or 5%). This probability is not across ALL tests, but within each test. 
+
++ When you run multiple tests when a single test would do, you're inflating the risk of making a Type I error.
 
 ---
+## ANOVA
 
-## Differences between two means
++ ANOVAs produce an $F$-statistic that reflects the ratio of the variation in the dependent variable explained by our independent variable(s) and the variation explained by other unmeasured factors.
 
-** Are these means different? (Yes/No/It Depends)**
++ ANOVAs can be used to compare more than two means. 
 
-.pull-left[
-```{r, echo = F, warning=F, message=F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x1), linewidth=1, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y1), linewidth=1, color = accent2) +
-  geom_histogram(fill=baseColor, color = accent3, alpha = .8, binwidth = 1) +
-  geom_histogram(data = dat, aes(x=y1), fill=accent2, color = accent3, alpha = .8, binwidth = 1) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.line.y = element_blank())
-```
-
-]
-
-
-.pull-right[
-
-```{r, echo = F, warning=F, message = F, fig.height=5}
-basePlot + geom_vline(xintercept = mean(dat$x2), linewidth=1.5, color = baseColor) +
-  geom_vline(xintercept = mean(dat$y2), linewidth=1.5, color = accent2) + 
-  geom_histogram(data = dat, aes(x=x2), fill=baseColor, color = accent3, alpha = .8, binwidth = 1) +
-  geom_histogram(data = dat, aes(x=y2), fill=accent2, color = accent3, alpha = .8, binwidth = 1) +
-  theme(axis.title.y = element_blank(),
-        axis.text.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.line.y = element_blank())
-```
-
-]
-
----
-## The $t$-test
-
-+ $t$-tests take account of both the mean and the variance of the data to determine whether two means are significantly different from each other. 
-
-+ $t$-tests produce a $t$-statistic that reflects the standardised difference between two mean values
+  + **One-Way ANOVA** test for differences between 3 or more independent means
+  
+  + **Repeated-Measures ANOVA** test for differences in a single sample at 3 or more timepoints or conditions
+  
+  + **Multiway ANOVA** tests for differences between multiple means across multiple independent variables
 
 --
 
-+ Generally used to test the difference between two means
-
-  + **One-sample $t$-tests** test the difference between a sample mean and a known mean
-  
-  + **Independent-sample $t$-tests** test the difference between two separate sample means
-  
-  + **Paired-samples $t$-tests** test the difference in a single sample at two points in time or across different conditions
-  
---
-
-+ Because of this, all $t$-tests require:
++ Because of this, all ANOVAs require:
 
   + A continuous dependent variable
   
-  + A categorical (binary) independent variable
+  + At least one categorical independent variable with three or more levels
 
 ---
-## The $t$-test
+## ANOVA
 
-+ Running a $t$-test involves:
++ Running an ANOVA involves:
 
-  + Computing $t$
+  + Computing $F$
   
-  + Calculating the probability of obtaining our value of $t$ if the null were true
+  + Calculating the probability of obtaining our value of $F$ if the null were true
 
   + Using this probability to make a decision whether to reject the null hypothesis
   
 ---
-## Calculating $t$
+## Calculating $F$
+
+$$F = \frac{MS_{between}}{MS_{within}}$$
 
 + Although there are 3 types of $t$-tests, they generally involve some form of the following calculation:
 
 $$t = \frac{Observed\ Mean(s) - What\ we\ expect\ if\ null\ is\ true}{Some\ combination\ of\ the\ SE}$$
 
 ---
-## One-sample $t$-test
+## One-Way ANOVA
 
 $$t = \frac{\bar{x}-\mu_0}{SE_\bar{x}}$$
 + Compare a sample mean ( $\bar{x}$ ) and a known mean ( $\mu_0$ )
@@ -252,10 +198,10 @@ $$t = \frac{\bar{d}-\mu_d}{SE_\bar{d}}$$
 .pull-right[
 
 ```{r, echo = F, fig.height=4}
-ggplot(data = data.frame(x = c(-5, 5)), aes(x=x)) +
-  stat_function(fun=dt, geom='line', args=c(df = 2), color = baseColor, linewidth=1.5) +
-  stat_function(fun=dt, geom='line', args=c(df = 5), color = accent1, linewidth=1.5) +
-  stat_function(fun=dt, geom='line', args=c(df = 15), color = accent2, linewidth=1.5) +
+ggplot(data = data.frame(f = c(0, 5)), aes(x=f)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 10), color = baseColor, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 10), color = accent1, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 30), color = accent2, linewidth=1.5) +
   xlab('t') +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
@@ -315,35 +261,37 @@ count: false
 
 
 ---
-## The $t$ distribution
+## The $F$ distribution
 
 .pull-left[
-+ The $t$-distribution is the null distribution against which our calculated $t$-value is compared. 
++ The $F$-distribution is the null distribution against which our calculated $F$-statistic is compared. 
 
-+ The shape of the $t$-distribution depends on the degrees of freedom ( $df$ ) of our data.
++ Like the $t$ distribution, the shape of the $F$-distribution depends on the degrees of freedom in our data.
 
-+ Consider how the shape of the distribution changes as $df$ increases
++ Values of 0 or 1 are most common in the null distribution, with values farther from than 1 increasingly less likely.
 
-**Test your Understanding:** What does the change in shape suggest?
++ Note that $F$ will never be less than 0. 
 
 ]
 
 .pull-right[
 
 ```{r, echo = F, fig.height=4}
-ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
-  stat_function(fun=dt, geom='line', args=c(df = 2), color = baseColor, linewidth=1.5) +
-  stat_function(fun=dt, geom='line', args=c(df = 5), color = accent1, linewidth=1.5) +
-  stat_function(fun=dt, geom='line', args=c(df = 15), color = accent2, linewidth=1.5) +
+ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 10), color = baseColor, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 100), color = accent1, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 10), color = accent2, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 100), color = accent3, linewidth=1.5) +
   theme(axis.text.y = element_blank(),
         axis.title.y = element_blank(),
         axis.line.y = element_blank(),
         axis.ticks.y = element_blank(),
         axis.text.x = element_text(size = 14),
         axis.title.x = element_text(size = 16, face = 'bold')) +
-  annotate('text', label = 'df = 2', x = 2.25, y = .27, color = baseColor, size = 7) + 
-  annotate('text', label = 'df = 5', x = 2.25, y = .32, color = accent1, size = 7) +
-  annotate('text', label = 'df = 15', x = 2.25, y = .37, color = accent2, size = 7)
+  annotate('text', label = 'df = 2, 10', x = 4, y = .25, color = baseColor, size = 7) + 
+  annotate('text', label = 'df = 2, 100', x = 4, y = .35, color = accent1, size = 7) +
+  annotate('text', label = 'df = 5, 10', x = 4, y = .45, color = accent2, size = 7) +
+  annotate('text', label = 'df = 5, 100', x = 4, y = .55, color = accent3, size = 7)
 ```
 
 ]
@@ -380,7 +328,6 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
 ]
 
 ---
-count: false
 class: center, inverse, middle
 
 ## Questions?
@@ -406,24 +353,13 @@ class: center, inverse, middle
 8. Report
 
 ---
+# MONICA EDIT - hypotheses
 
-## A note about hypotheses...
++ null is that $\mu_1 = \mu_2 =...\mu_n$
++ at least one $\mu$ is different from the other $\mu$s
 
-+ Hypotheses may be directional, or make a prediction about the expected direction of the effect
-  
-  + Treatment X will **reduce** symptoms of anxiety
-  
-  + Test scores will **improve** as hour of study increase
+Monica - show a plot that shows how if even one group is significantly different, the ANOVA can produce significant results.But on its own it doesn't tell you WHICH group is significantly different.
 
-+ Hypotheses can also be nondirectional. In this case, an effect is predicted, but the direction is not specified.
-
-  + Treatment X will **have an effect** on symptoms of anxiety
-  
-  + Test scores will **be associated with** hours of study
-
---
-
-+ Directional hypotheses can be tested with one-tailed tests, while nondirectional hypotheses can be tested with two-tailed tests
 
 ---
 ## One-Tailed vs Two-Tailed Tests
