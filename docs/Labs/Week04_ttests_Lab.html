@@ -96,7 +96,7 @@ if (window.hljs) {
 </style>
 <!-- end tabsets -->
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="https://mtruelovehill.github.io/PRM/Labs/css/style.css" type="text/css" />
 
 </head>
 
@@ -153,11 +153,12 @@ paired-samples <span class="math inline">\(t\)</span>-tests.</li>
 <div id="section-experiment-1-overview" class="section level2">
 <h2>Experiment 1 Overview</h2>
 <p>In the first experiment, researchers wanted to test whether the
-number of infant vocalisations differed depending on whether parents
-used a buggy or a backpack to transport their infant. They recruited 36
+amount of infant vocalisation differed depending on whether parents used
+a buggy or a backpack to transport their infant. They recruited 36
 participants and split them into a backpack group and a buggy group.
 They then sent participants on a 15-minute walk with their infant and
-recorded the total number of parent and infant vocalisations.</p>
+recorded the amount of time infants spent vocalising over the course of
+the walk.</p>
 <p><strong>You can download the dataset from the first experiment <a
 href="https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv">here.</a></strong>
 This dataset contains the following variables:</p>
@@ -199,10 +200,10 @@ Transport Modality; Levels: Buggy; Backpack
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-infantVocalisations
+vocalisationTime
 </td>
 <td style="text-align:left;">
-Total number of infant vocalisations
+Time infant spent vocalising (in seconds)
 </td>
 </tr>
 </tbody>
@@ -242,25 +243,25 @@ solution </span>
 <p><br></p>
 <p><b>Research Question:</b></p>
 <p>Does infant transport modality affect the infant’s vocalisation
-during transport? Specifically, is there a difference in the number of
-infant vocalisations when they are being pushed in a buggy as compared
-to when they are carried in a backpack?</p>
+during transport? Specifically, is there a difference in the time the
+infant spent vocalising while being pushed in a buggy as compared to
+being carried in a backpack?</p>
 <p><br></p>
 <p><b> Variables: </b></p>
 <p>Independent Variable: Transportation Modality</p>
-<p>Dependent Variable: Infant Vocalisation</p>
+<p>Dependent Variable: Amount of Infant Vocalisation (in seconds)</p>
 <p><br></p>
 <p><b>Hypotheses:</b></p>
-<p>Null Hypothesis: There is no difference in infant vocalisations
+<p>Null Hypothesis: There is no difference in infant vocalisation time
 between buggy users and backpack users.</p>
-<p>Alternative Hypothesis: There is a difference in infant vocalisations
-between buggy users and backpack users.</p>
+<p>Alternative Hypothesis: There is a difference in infant vocalisation
+time between buggy users and backpack users.</p>
 <p><br></p>
 <p><b>Hypotheses in Statistical Notation:</b></p>
-<p><span class="math inline">\(H_0: Infant\ Vocalisation_{buggy} =
-Infant\ Vocalisation_{backpack}\)</span></p>
-<p><span class="math inline">\(H_1: Infant\ Vocalisation_{buggy} \neq
-Infant\ Vocalisation_{backpack}\)</span></p>
+<p><span class="math inline">\(H_0: Vocalisation_{buggy} =
+Vocalisation_{backpack}\)</span></p>
+<p><span class="math inline">\(H_1: Vocalisation_{buggy} \neq
+Vocalisation_{backpack}\)</span></p>
 </details>
 </div>
 <p></br></p>
@@ -320,9 +321,8 @@ Check for any missing values or outliers.</p></li>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>There are some issues to address under the <em>Variable View</em>
-tab. Remember to use the <em>Frequencies</em> option rather than
-<em>Descriptives</em>.</p>
+<p>To calculate descriptive statistics, navigate to <em>Analyze &gt;
+Descriptive Statistics &gt; Frequencies</em></p>
 </details>
 </div>
 <p></br></p>
@@ -332,10 +332,8 @@ tab. Remember to use the <em>Frequencies</em> option rather than
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>When you check the data under <em>Variable View</em>, you’ll notice
-that the dependent variable, <code>infantVocalisations</code>, has been
-coded as ‘Nominal’. You’ll need to change this to ‘Scale’ in order for
-the <span class="math inline">\(t\)</span>-test to work properly.</p>
+<p>When you check the data under <em>Variable View</em>, you’ll see that
+all variables were imported as the proper measurement.</p>
 <p>Next, produce frequency tables and descriptive statistics by
 navigating to <em>Analyze &gt; Descriptive Statistics &gt;
 Frequencies</em>. Add the 2 categorical variables,
@@ -351,7 +349,7 @@ You can see that there are equal participants in the ‘Buggy’ and
 <p>After checking the categorical variables, you can check the
 continuous data. Open the <em>Frequencies</em> box once again and
 replace the categorical variables with the 2 continuous variables,
-<code>infantAge</code> and <code>infantVocalisations</code>. Uncheck
+<code>infantAge</code> and <code>vocalisationTime</code>. Uncheck
 ‘Display Frequency Tables’ and click the ‘Statistics’ box. Select
 ‘Mean’, ‘Std. deviation’, ‘Maximum’ and ‘Minimum’, then click
 ‘Continue’. Click ‘OK’. You should get the following table:</p>
@@ -369,12 +367,12 @@ class="section level2">
 <p>The assumptions of an independent-samples <span
 class="math inline">\(t\)</span> test are:</p>
 <ol style="list-style-type: decimal">
-<li><p>The dependent variable (<code>infantVocalisations</code>) must be
-normally distributed</p></li>
+<li><p>The dependent variable (<code>vocalisationTime</code>) must be
+normally distributed within each group</p></li>
 <li><p>Observations must be independent of each other</p></li>
 <li><p>The two groups (<em>Buggy</em> and <em>Backpack</em>) must
 exhibit approximately equal variance (homogeneity) in the dependent
-variable (<code>infantVocalisations</code>)</p></li>
+variable (<code>vocalisationTime</code>)</p></li>
 </ol>
 <div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
@@ -402,10 +400,12 @@ Check whether your data meet the assumption of homogeneity</p></li>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>To check normality, you can use histograms, Q-Q plots, and skewness
-and kurtosis values. To check independence, you’ll need to consider the
-design of the study. To check homogeneity of variance, you can check
-results from Levene’s test.</p>
+<p>To check normality, you can use histograms and Q-Q plots. You’ll need
+to do this for each level of <code>Transport</code> separately. Navigate
+to <em>Analyze&gt;DescriptiveStatistics&gt;Explore</em> to do this.</p>
+<p>To check independence, you’ll need to consider the design of the
+study. To check homogeneity of variance, you can check results from
+Levene’s test.</p>
 <p>Have a look at the <a
 href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#50">lecture
 slides</a> if you’re lost. <a
@@ -427,34 +427,27 @@ solution </span>
 </span></p>
 <p>Normality can be assessed in multiple ways. I prefer visual
 assessment, as the statistical tests can be overly sensitive,
-particularly with larger sample sizes. To check the histograms, click
-<em>Analyze &gt; Descriptive Statistics &gt; Frequencies</em> and add
-your dependent variable, <code>infantVocalisations</code>, to the
-‘Variable(s)’ box. Click ‘Charts’, then select ‘Histograms’ and make
-sure the box that says, ‘Show normal curve on histogram’ is checked.
-Click ‘Continue.’ While here, you can also go to the ‘Statistics’ box
-and select ‘Skewness’ and ‘Kurtosis’. Once this is all done, click
+particularly with larger sample sizes.</p>
+<p>To check the histograms and Q-Q plots of the dependent variable
+separated by Group, click <em>Analyze &gt; Descriptive Statistics &gt;
+Explore</em> and add your dependent variable,
+<code>vocalisationTime</code>, to the ‘Dependent List’ box. Add your
+independent variable, <code>Transport</code>, to the Factor List box. At
+the bottom, change the ‘Display’ setting from ‘Both’ to ‘Plots’. Click
+‘Plots’, deselect ‘Stem-and-Leaf’ and select ‘Histograms’ instead. Tick
+the box that says ‘Normality Plots with Tests’. Click ‘Continue’, then
 ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png" width="30%" style="display: block; margin: auto;" /></p>
-<p>Skewness and kurtosis values are all within the bounds of -1 and 1,
-which is ideal. Next, you can check the histogram with the normal
-curve:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4b.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>The histogram bars don’t perfectly follow the black line (indicating
-the data are not perfectly normal), but this is not unexpected with such
-a small sample. In any case, this variable is generally normal. There is
-no evidence of a significant normality violation.</p>
-<p>You can also verify this using a Q-Q plot. To do this, click
-<em>Analyze &gt; Descriptive Statistics &gt; Q-Q Plots</em>. Add
-<code>infantVocalisations</code> to the ‘Variable(s)’ box, confirm that
-the ‘Test Distribution’ is set to ‘Normal’ and then click ‘OK’. This
-will produce several pieces of output, but you can ignore most of it.
-You want to specifically focus on the Normal Q-Q Plots. Data that are
-generally normal will more closely follow the black diagonal.</p>
-<p><img src="images/week4_4c.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>The points go very slightly off the line in the upper range, but not
-in a concerning way. Still ok. On the whole, these results indicate that
-the data have not violated the assumption of normality.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4a.png" width="75%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4b.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The histogram bars aren’t perfectly symmetrical (indicating the data
+are not perfectly normal), but this is not unexpected with such a small
+sample. In any case, <code>vocalisationTime</code> is generally normal
+within each <code>Transport</code> group. There is no evidence of a
+significant normality violation.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4c.png" width="75%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4d.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Inspecting the Q-Q plots, you’ll note that the points go very
+slightly off the line in the tails, but not in a concerning way. On the
+whole, these results indicate that the data have not violated the
+assumption of normality.</p>
 <p><span style="font-weight: bold; font-size: 14pt"> Independence
 </span></p>
 <p>Assessing independence requires you to have an understanding of the
@@ -467,22 +460,21 @@ Variance </span></p>
 when you perform a <span class="math inline">\(t\)</span>-test, but you
 can also run it separately. To run the test outwith the analysis,
 navigate to <em>Analyze &gt; Descriptive Statistics &gt; Explore</em>.
-Place the dependent variable, <code>infantVocalisations</code>, in the
+Place the dependent variable, <code>vocalisationTime</code>, in the
 ‘Dependent List’ box and the independent/grouping variable,
 <code>Transport</code>, in the ‘Factor List’ box. Click the ‘Plots’
 button. In the ‘Spread vs Level with Levene Test’ area, select ‘Power
 Estimation’, then click ‘Continue’ and ‘OK’. The results will appear in
 the output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4d.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>You can check the line for each variable that says ‘Based on Mean’
-and evaluate the ‘Sig.’ column. A significant Levene’s test indicates
-that the data violate the assumption. If we set <span
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_4e.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>You can check the line that says ‘Based on Mean’ and evaluate the
+‘Sig.’ column. A significant Levene’s test indicates that the data
+violate the assumption. If we set <span
 class="math inline">\(\alpha\)</span> = .05,
-<code>Infant Vocalisation</code> violates the assumption of equal
-variances, as <span class="math inline">\(p\)</span> = .048, which is
-less than the <span class="math inline">\(\alpha\)</span> threshold.
-This violation can be accounted for when the primary analysis is
-performed.</p>
+<code>Infant Vocalisation</code> does not violate the assumption of
+equal variances, as <span class="math inline">\(p\)</span> = .146, which
+is less than the <span class="math inline">\(\alpha\)</span>
+threshold.</p>
 </details>
 </div>
 <p></br></p>
@@ -494,8 +486,8 @@ performed.</p>
 an independent-samples <span class="math inline">\(t\)</span>-tests to
 provide statistical support for your hypothesis. Recall that you’re
 testing the following hypothesis:</p>
-<p><span class="math display">\[H_1: Infant\ Vocalisation_{buggy} \neq
-Infant\ Vocalisation_{backpack}\]</span></p>
+<p><span class="math display">\[H_1: Vocalisation_{buggy} \neq
+Vocalisation_{backpack}\]</span></p>
 <div id="section-your-tasks-3" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
@@ -543,8 +535,8 @@ solution </span>
 </summary>
 <p>Click <em>Analyze &gt; Compare Means and Proportions &gt;
 Independent-Samples T test</em>. Move your dependent variable,
-<code>infantVocalisations</code> into the ‘Test Variable(s)’ box and
-your independent variable, <code>Transport</code>, into the ‘Grouping
+<code>vocalisationTime</code> into the ‘Test Variable(s)’ box and your
+independent variable, <code>Transport</code>, into the ‘Grouping
 Variable’ box. Click ‘Define Groups’ and enter the names of your two
 groups (<em>Buggy</em> and <em>Backpack</em>) exactly as they are
 provided in the spreadsheet. In the main box, make sure ‘Estimate effect
@@ -557,13 +549,14 @@ to include in your final report, so take note.</p>
 <p>The second bit of output provides the results of the <span
 class="math inline">\(t\)</span>-test. The first portion provides the
 results from Levene’s test. In cases where Levene’s test is not
-significant, you use the results from the row that says ‘Equal variances
-assumed’. If the test is significant, there is a slightly different
-version of a <span class="math inline">\(t\)</span>-test that is robust
-to a violation of the equal variance assumption. The results from this
-test are provided in the row that says ‘Equal variances not assumed’.
-Because your data violated the assumption of equal variance, you should
-use results from the row that says, ‘Equal variances not assumed’.</p>
+significant (such as this instance), you interpret the results from the
+row that says ‘Equal variances assumed’. If the test is significant,
+there is a slightly different version of a <span
+class="math inline">\(t\)</span>-test that is robust to a violation of
+the equal variance assumption. The results from this test are provided
+in the row that says ‘Equal variances not assumed’. This row should be
+interpreted in cases where the assumption homogeneity of variance has
+been violated</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_5b.png" width="75%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>Recall that you tested a nondirectional hypothesis (<em>There will be
@@ -576,17 +569,17 @@ column. Had you tested a directional hypothesis, you would check the
 column.</p>
 <p>The results from the t-test suggest that infant vocalisation was
 significantly different between buggy and backpack users, as the <span
-class="math inline">\(p\)</span>-value of .001 is less than the <span
-class="math inline">\(\alpha\)</span> threshold of .05. The confidence
-intervals for the variables further support this; the 95% CI associated
-with <code>infantVocalisations</code>, [-1.94, -0.51], does not contain
-the null value of 0.</p>
+class="math inline">\(p\)</span>-value of &lt; .001 is less than the
+<span class="math inline">\(\alpha\)</span> threshold of .05. The
+confidence intervals for the variables further support this; the 95% CI
+associated with <code>vocalisationTime</code>, [-6.47, -2.37], does not
+contain the null value of 0.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_5c.png" width="75%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>To check the effect size, look under the ‘Point Estimate’ column for
 Cohen’s <span class="math inline">\(d\)</span>. The absolute value of
 Cohen’s <span class="math inline">\(d\)</span>
-for<code>infantVocalisation</code> = 1.23.</p>
+for<code>infantVocalisation</code> = 1.46.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_5d.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Recall the interpretation standards for Cohen’s <span
 class="math inline">\(d\)</span>:</p>
@@ -674,37 +667,27 @@ solution </span>
 <p>In this study, we tested the effect of infant transportation modality
 on their opportunity for socialisation. We hypothesised that there would
 be differences in socalisation depending on whether infants were using a
-buggy or a backpack. To test this, we performed two independent-samples
+buggy or a backpack. To test this, we performed an independent-samples
 <span class="math inline">\(t\)</span>-tests with transportation
-modality as an independent variable and infant vocalisation and physical
-contact as dependent variables. <span
+modality as an independent variable and the time infants spent
+vocalising (in seconds) as the dependent variable. <span
 class="math inline">\(\alpha\)</span> was set at .05 for all
 analyses.</p>
 <p>Our sample consisted of 36 infants between 21 and 45 weeks old (<span
 class="math inline">\(M\)</span> = 33.13, <span
 class="math inline">\(SD\)</span> = 5.48; 15 females, 21 males).
-Assumptions checks were conducted through visual assessment. All data
-met the assumptions of normality and independence. The infant
-vocalisations variable violated the homogeneity of variance assumption
-(<span class="math inline">\(p\)</span> = .048), so results from Welch’s
-<span class="math inline">\(t\)</span>-test were evaluated.</p>
+Assumptions checks were conducted through visual assessment and
+interpretation of Levene’s test. All data met the assumptions of
+normality, independence, and homogeneity of variance.</p>
 <p>Transportation modality had a significant effect on infant
-vocalisation, <span class="math inline">\(t\)</span>(35.34) = -3.70,
-<span class="math inline">\(p\)</span> = .001, 95% CI[-1.89, -.55],
-<span class="math inline">\(d\)</span> = 1.23. Specifically, backpack
-users had significantly more vocalisations (<span
-class="math inline">\(M\)</span> = 5.17, <span
-class="math inline">\(SD\)</span> = 1.25) than buggy users (<span
-class="math inline">\(M\)</span> = 3.94, <span
-class="math inline">\(SD\)</span> = .64). There was no significant
-difference in physical contact between backpack (<span
-class="math inline">\(M\)</span> = 6.22, <span
-class="math inline">\(SD\)</span> = 1.67) and buggy users (<span
-class="math inline">\(M\)</span> = 5.61, <span
-class="math inline">\(SD\)</span> = 1.65), <span
-class="math inline">\(t\)</span>(34) = 1.11, <span
-class="math inline">\(p\)</span> = .276, 95% CI[-1.73, 0.51], <span
-class="math inline">\(d\)</span> = 0.37.</p>
+vocalisation, <span class="math inline">\(t\)</span>(34) = -4.38, <span
+class="math inline">\(p\)</span> &lt; .001, 95% CI[-6.47, -2.36], <span
+class="math inline">\(d\)</span> = -1.46. Specifically, backpack users
+spent significantly more time vocalising (<span
+class="math inline">\(M\)</span> = 18.40, <span
+class="math inline">\(SD\)</span> = 3.55) than buggy users (<span
+class="math inline">\(M\)</span> = 13.97, <span
+class="math inline">\(SD\)</span> = 2.40).</p>
 </details>
 </div>
 <p></br></p>
@@ -769,8 +752,8 @@ class="math inline">\(t\)</span>-test</h2>
 support their findings. They ran a second experiment using a
 within-subjects design. They recruited 40 participants and sent them out
 on 2 separate walks over the course of two weeks, once using a backpack
-and once a buggy. In this experiment, they recorded infant vocalisations
-from the same participants across each condition.</p>
+and once a buggy. In this experiment, they recorded the time infants
+spent vocalising from the same participants across each condition.</p>
 <p><strong>Please download the dataset from the second experiment <a
 href="https://mtruelovehill.github.io/PRM/Labs/Week4LabData2.csv">here.</a></strong>
 It contains the following variables:</p>
@@ -807,7 +790,7 @@ Levels: M = Male, F = Female
 buggyIVocal
 </td>
 <td style="text-align:left;">
-Total number of infant vocalisations while in buggy
+Time infants spent vocalising while in buggy
 </td>
 </tr>
 <tr>
@@ -815,7 +798,7 @@ Total number of infant vocalisations while in buggy
 backpackIVocal
 </td>
 <td style="text-align:left;">
-Total number of infant vocalisations while in backpack
+Time infants spent vocalising while in backpack
 </td>
 </tr>
 </tbody>
@@ -867,8 +850,8 @@ Data</a></p>
 normality, as you need to check the normality of the difference between
 your paired variables. To do this, use <em>Transform &gt; Compute
 Variable</em> and create a new variable that is the difference between
-the values in the <code>buggyIVocal</code> column and the
-<code>backpackIVocal</code> column. Once you have this difference
+the values in the <code>buggyVocal</code> column and the
+<code>backpackVocal</code> column. Once you have this difference
 variable, follow the steps for normality testing from <a
 href="#section-experiment-1-checking-assumptions">Experiment 1: Checking
 Assumptions</a>.</p>
@@ -891,32 +874,31 @@ solution </span>
 </summary>
 <p><span style="font-weight: bold; font-size: 14pt"> Task 1 </span></p>
 <p><b>Research Question:</b> Does infant transport modality affect the
-amount of infant vocalisation during use?</p>
+time infants spend vocalising during use?</p>
 <p><b> Variables </b></p>
 <p>Independent Variable: Transportation Modality</p>
 <p>Dependent Variable: Infant Vocalisation</p>
-<p><b>Hypotheses:</b> Null hypothesis: There is no difference in infant
-vocalisations when infants are riding in a buggy compared to when they
+<p><b>Hypotheses:</b> Null hypothesis: There is no difference in the
+time infants spend vocalising when they are riding in a buggy compared
+to when they are riding in a backpack.</p>
+<p><span class="math inline">\(H_0:
+Vocalisation_{buggy}-Vocalisation_{backpack} = 0\)</span></p>
+<p>Alternative hypothesis: There is a difference in the time infants
+spend vocalising when they are riding in a buggy compared to when they
 are riding in a backpack.</p>
-<p><span class="math inline">\(H_0: Infant\ Vocalisation_{buggy}-Infant\
-Vocalisation_{backpack} = 0\)</span></p>
-<p>Alternative hypothesis: There is a difference in infant vocalisations
-when they are riding in a buggy compared to when they are riding in a
-backpack.</p>
-<p><span class="math inline">\(H_1: Infant\ Vocalisation_{buggy}-Infant\
-Vocalisation_{backpack} \neq 0\)</span></p>
+<p><span class="math inline">\(H_1:
+Vocalisation_{buggy}-Vocalisation_{backpack} \neq 0\)</span></p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Task 2
 </span></p>
-<p>Navigate to <em>Variable View</em> and set both
-<code>buggyIVocal</code> and <code>backpackIVocal</code> to ‘Scale’. You
-can check the frequency of participants in each level of the categorical
-<code>Gender</code> variable by clicking <em>Analyze&gt;Descriptive
-Statistics&gt;Frequencies</em>, moving <code>infantGender</code> into
-the ‘Variable(s)’ box, then clicking ‘Ok’. In this case, you’ll note
-that you have slightly more female infants than male infants.</p>
+<p>You can check the frequency of participants in each level of the
+categorical <code>Gender</code> variable by clicking
+<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, moving
+<code>infantGender</code> into the ‘Variable(s)’ box, then clicking
+‘Ok’. In this case, you’ll note that you have slightly more female
+infants than male infants.</p>
 <p>To check the descriptives of the continuous variables
-<code>infantAge</code>, <code>buggyIVocal</code> and
-<code>backpackIVocal</code>, click <em>Analyze&gt;Descriptive
+<code>infantAge</code>, <code>buggyVocal</code> and
+<code>backpackVocal</code>, click <em>Analyze&gt;Descriptive
 Statistics&gt;Frequencies</em>, remove <code>infantGender</code> from
 the Variable(s) box and add the three continuous variables instead. Make
 sure to untick the ‘Display Frequency Tables’ box. Click ‘Statistics’
@@ -927,24 +909,24 @@ and then click ‘Mean’, ‘Std. Deviation’, ‘Minimum’, and ‘Maximum�
 <p>Because we have to check the normality of the difference scores
 rather than the raw variables, we will need to compute a difference
 score. To do this, navigate to <em>Transform &gt; Compute Variable</em>.
-Name your new variable in the ‘Target Variable’ box. Next, move the
-buggyIVocal to the ‘Numeric Expression’ box, add a minus sign, then add
-backpackIVocal. Click ‘OK’. Notice in <em>Data View</em> that you now
-have a new variable that reflects the difference between your paired
-variables.</p>
+Name your new variable in the ‘Target Variable’ box. Next, move
+<code>buggyVocal</code> to the ‘Numeric Expression’ box, add a minus
+sign, then add <code>backpackVocal.</code> Click ‘OK’. Notice in
+<em>Data View</em> that you now have a new variable that reflects the
+difference between your paired variables.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7a.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Perform the normality tests from <a
 href="#section-experiment-1-checking-assumptions">Experiment 1: Checking
 Assumptions</a> with this new variable.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7c.png" width="50%" style="display: block; margin: auto;" /></p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7b.png" width="75%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7d.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7c.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_7b.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>The difference variable looks to be normally distributed, so we will
 assume normality.</p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Task 4
 </span></p>
 <p>Navigate to <em>Analyze &gt; Compare Means and Proportions &gt;
-Paired Samples T-Test</em>. Add either <code>buggyIVocal</code> or
-<code>backpackIVocal</code> into the Variable1 space and the other into
+Paired Samples T-Test</em>. Add either <code>buggyVocal</code> or
+<code>backpackVocal</code> into the Variable1 space and the other into
 the Variable2 space and click ‘OK’. Note that it doesn’t matter which
 goes where. It won’t change the values of your results, but it will
 determine whether your <span class="math inline">\(t\)</span>-statistic
@@ -952,21 +934,22 @@ and effect size is positive or negative.</p>
 <p>As before, take note of the descriptive statistics for each group, as
 you’ll need this for reporting purposes.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_8a.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>The results indicate that the difference in infant vocalisation when
-in a buggy versus a backpack was significant (<span
-class="math inline">\(p\)</span> &lt; .001). This is further confirmed
-by the confidence interval, which doesn’t contain the null value of 0.
-The output also provides the average difference score.</p>
+<p>The results indicate that the difference in time that infants spent
+vocalising when in a buggy versus a backpack was significant (<span
+class="math inline">\(p\)</span> = .013). This is further confirmed by
+the confidence interval, which doesn’t contain the null value of 0. The
+output also provides the average difference score.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week4_8b.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>As before, Cohen’s <span class="math inline">\(d\)</span> indicates
-there is a strong effect of transportation modality on infant
-vocalisation.</p>
+<p>Cohen’s <span class="math inline">\(d\)</span> indicates there is a
+moderate effect of transportation modality on time infants spend
+vocalising.</p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Task 5
 </span></p>
 <p>In this study, we tested the effect of infant transportation modality
-on their vocalisation. We hypothesised that there would be differences
-in vocalisation depending on whether infants were riding in a buggy or a
-backpack. This study incorporated a within-subjects design. <span
+on the time (in seconds) they spent vocalising while being transported.
+We hypothesised that there would be differences in vocalisation time
+depending on whether infants were riding in a buggy or a backpack. This
+study incorporated a within-subjects design. <span
 class="math inline">\(\alpha\)</span> values for all analyses were set
 at .05.</p>
 <p>Our sample consisted of 40 infants between 19 and 54 weeks old (<span
@@ -976,14 +959,14 @@ Assumptions checks were conducted through visual assessment. All data
 met the assumptions of normality and independence.</p>
 <p>A paired-samples <span class="math inline">\(t\)</span>-test
 indicated that transportation modality had a significant effect on
-infant vocalisation, <span class="math inline">\(t\)</span>(39) =
--22.73, <span class="math inline">\(p\)</span> &lt; .001, 95% CI[-4.00,
--3.35], <span class="math inline">\(d\)</span> = 3.59. Specifically,
-infants produced significantly more vocalisations while riding in a
-backpack (<span class="math inline">\(M\)</span> = 6.70, <span
-class="math inline">\(SD\)</span> = 1.49) than when riding in a buggy
-(<span class="math inline">\(M\)</span> = 3.03, <span
-class="math inline">\(SD\)</span> = 1.33).</p>
+infant vocalisation, <span class="math inline">\(t\)</span>(39) = -2.59,
+<span class="math inline">\(p\)</span> = .013, 95% CI[-2.37, -0.29],
+<span class="math inline">\(d\)</span> = -0.41. Specifically, infants
+vocalised significantly more while riding in a backpack (<span
+class="math inline">\(M\)</span> = 15.35, <span
+class="math inline">\(SD\)</span> = 3.64) than when riding in a buggy
+(<span class="math inline">\(M\)</span> = 14.02, <span
+class="math inline">\(SD\)</span> = 3.39).</p>
 </details>
 </div>
 <p></br></p>
@@ -1081,10 +1064,11 @@ total sample. In other words, to achieve 80% power to detect a moderate
 effect size with an alpha = .05, you would need 64 participants per
 group, or 128 total participants.</p>
 <p>To report these results, you could say something like “An a priori
-power analysis indicated that 128 participants was necessary to achieve
-80% power to detect a moderate effect size (<span
+power analysis indicated that 128 participants (64 per group) was
+necessary to achieve 80% power to detect a moderate effect size (<span
 class="math inline">\(d\)</span> = .50) with <span
-class="math inline">\(\alpha\)</span> = .05.”</p>
+class="math inline">\(\alpha\)</span> = .05 using an independent-samples
+<span class="math inline">\(t\)</span>-test.”</p>
 <p><br></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Study 2 </span></p>
 <p>In the case of your paired-samples analysis, you will once again have
@@ -1176,7 +1160,7 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-1", question = structure("How many female infants participated?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b6cf35a", 
+"character")), answers = list(structure(list(id = "lnr_ans_ba43465", 
     option = "15", value = 15, label = structure("15", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1187,26 +1171,26 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("15 female infants participated in Experiment 1.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrDD-1-answer", 
     question = "cyrDD-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 231119579.392377, options = list(
+    allow_retry = FALSE, seed = 1451973685.32387, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-2", question = structure("What is the minimum number of infant vocalisations?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_5994726", 
-    option = "2", value = 2, label = structure("2", html = TRUE, class = c("html", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDD-2", question = structure("What is the minimum amount of time infants spent vocalising? Please round your answer to 2 decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_fcdaba5", 
+    option = "9.36", value = 9.36, label = structure("9.36", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The minimum number of infant vocalisations is 2.", html = TRUE, class = c("html", 
+"character")), message = structure("The minimum number of infant vocalisations is 9.36.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrDD-2-answer", 
     question = "cyrDD-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1322776652.88403, options = list(
+    allow_retry = FALSE, seed = 1572254998.26786, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1214,53 +1198,53 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAssumptions-1", 
     question = structure("At least one of the assumptions is violated.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_4ffff34", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2d8ce83", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
-        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b9e479a", 
-        option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_98d4e6b", 
+        option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("Results from Levene’s test suggest the Homogeneity of Variance assumption is violated.", html = TRUE, class = c("html", 
+    "character")), message = structure("The normality plots show no major issues in normality, and Levene’s test is not significant, indicating that homogeneity of variance can be assumed.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAssumptions-1-answer", 
         question = "cyrAssumptions-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 226042819.894741, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 2130058526.50811, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-1", 
-    question = structure("What is the t-statistic associated with infant vocalisation? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a1303df", 
-        option = "-3.7", value = -3.7, label = structure("-3.7", html = TRUE, class = c("html", 
+    question = structure("What is the t-statistic associated with vocalisation time? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_41fa621", 
+        option = "-4.38", value = -4.38, label = structure("-4.38", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6f7746b", 
-        option = "3.7", value = 3.7, label = structure("3.7", html = TRUE, class = c("html", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d26463c", 
+        option = "4.38", value = 4.38, label = structure("4.38", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The t-statistic associated with this test is -3.70.", html = TRUE, class = c("html", 
+    "character")), message = structure("The t-statistic associated with this test is -4.38 (or 4.38, depending on which order you entered the levels of the independent variable.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-1-answer", 
         question = "cyrIndT-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 299854354.860369, options = list(
+    allow_retry = FALSE, seed = 2042531529.04887, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrIndT-2", question = structure("Given an alpha = .05, the difference in infant vocalisations between buggy users and backpack users is significant .", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_cbfc8e1", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrIndT-2", question = structure("Given an alpha = .05, the difference in vocalisation time between buggy users and backpack users is significant .", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_6c34ff", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4454395", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_842a0e1", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1268,32 +1252,32 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The p-value for this test is .001. This means that if the null hypothesis were true, the likelihood that we would see this big of a difference in infant vocalisations between buggy and backpack users is only .1%. This provides strong evidence against the null hypothesis. Practically speaking, as our p-value is less than our alpha threshold is .05, we will reject the null hypothesis and claim that there is a significant difference in infant vocalisations between buggy and backpack users.", html = TRUE, class = c("html", 
+"character")), message = structure("The p-value for this test is &lt; .001. This means that if the null hypothesis were true, the likelihood that we would see this big of a difference in vocalisation time between buggy and backpack users is less than .1%. This provides strong evidence against the null hypothesis. Practically speaking, as our p-value is less than our alpha threshold is .05, we will reject the null hypothesis and claim that there is a significant difference in infant vocalisation between buggy and backpack users.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrIndT-2-answer", 
     question = "cyrIndT-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 419126894.304829, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 790616885.13184, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-1", question = structure("Which of the following research questions could be tested using a t-test? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8d606da", 
+"character")), answers = list(structure(list(id = "lnr_ans_e726d57", 
     option = "Is this year's average rice crop yield significantly higher than last year's?", 
     value = "Is this year's average rice crop yield significantly higher than last year's?", 
     label = structure("Is this year’s average rice crop yield significantly higher than last year’s?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_92f3ab", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7be3df6", 
     option = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
     value = "How do Therapies A, B, and C compare to each other in reduction of symptoms?", 
     label = structure("How do Therapies A, B, and C compare to each other in reduction of symptoms?", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b30565f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d132578", 
     option = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
     value = "Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", 
     label = structure("Does a 30-minute weightlifting routine burn more calories than a 30-minute cardio routine?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_82890d7", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4a5298e", 
     option = "Is there an association between brain volume and processing speed?", 
     value = "Is there an association between brain volume and processing speed?", 
     label = structure("Is there an association between brain volume and processing speed?", html = TRUE, class = c("html", 
@@ -1306,21 +1290,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("The therapy research question is better suited to an ANOVA or a regression, as it is comparing 3 means. A t-test can only handle two at a time. The brain volume research question asks about an association between two continuous variables. A t-test requires a categorical independent variable. This question is better answered with a correlation or regression.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-1-answer", 
     question = "tyo-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1285657963.90132, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 702644935.172805, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-2", question = structure("You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_44466a9", 
+"character")), answers = list(structure(list(id = "lnr_ans_78d64ad", 
     option = "One-sample t-test", value = "One-sample t-test", 
     label = structure("One-sample t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b24834", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8962f2", 
     option = "Independent samples t-test", value = "Independent samples t-test", 
     label = structure("Independent samples t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_971992d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ff365be", 
     option = "Paired-samples t-test", value = "Paired-samples t-test", 
     label = structure("Paired-samples t-test", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1332,24 +1316,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual’s score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-2-answer", 
     question = "tyo-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1699785074.70848, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1024104826.52311, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-3", question = structure("Which of the following could be used to assess normality? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_1e2761c", 
+"character")), answers = list(structure(list(id = "lnr_ans_f64a77d", 
     option = "Histograms", value = "Histograms", label = structure("Histograms", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_225742d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4b4bed0", 
     option = "Q-Q Plots", value = "Q-Q Plots", label = structure("Q-Q Plots", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_488358b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c534bfa", 
     option = "Shapiro-Wilk Test", value = "Shapiro-Wilk Test", 
     label = structure("Shapiro-Wilk Test", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_85348a9", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bc1df87", 
     option = "Skewness & Kurtosis values", value = "Skewness & Kurtosis values", 
     label = structure("Skewness &amp; Kurtosis values", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1361,32 +1345,32 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("All of the above could be used to assess normality. However, statistical tests (e.g., the Shapiro-Wilk test) are not recommended.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-3-answer", 
     question = "tyo-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 21136879.9901574, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 7142644.49667395, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "tyo-4", question = structure("A researcher conducts a Levene’s test and finds that the associated p = .02. Which of the following is true, assuming alpha = .05? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_52b3fe", 
+"character")), answers = list(structure(list(id = "lnr_ans_aaf3659", 
     option = "The homogeneity of variance assumption has been violated", 
     value = "The homogeneity of variance assumption has been violated", 
     label = structure("The homogeneity of variance assumption has been violated", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5f64861", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1910319", 
     option = "The assumption of normality has been violated", 
     value = "The assumption of normality has been violated", 
     label = structure("The assumption of normality has been violated", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_da508f2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6686f81", 
     option = "No assumptions have been violated", value = "No assumptions have been violated", 
     label = structure("No assumptions have been violated", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7979a38", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f2106d2", 
     option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
     value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances assumed\" row", 
     label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances assumed” row", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a1306c3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6ee45f0", 
     option = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
     value = "When looking at the corresponding t-test results, the researcher should check the \"Equal variances not assumed\" row", 
     label = structure("When looking at the corresponding t-test results, the researcher should check the “Equal variances not assumed” row", html = TRUE, class = c("html", 
@@ -1399,20 +1383,20 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("When Levene’s test is significant, it means the homogeneity assumption has been violated and equal variance cannot be assumed.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-4-answer", 
     question = "tyo-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1793773991.16471, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 401421888.313073, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-5", question = structure("A researcher makes a nondirectional hypothesis and runs an independent t-test in SPSS. Under which column will they find the appropriate significance value?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_778a9d4", 
+"character")), answers = list(structure(list(id = "lnr_ans_e98a68", 
     option = "One-sided p", value = "One-sided p", label = structure("One-sided p", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4f64c99", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1d98e2a", 
     option = "Two-sided p", value = "Two-sided p", label = structure("Two-sided p", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7941b70", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_97f1f7b", 
     option = "Either of these options will provide an appropriate significance value.", 
     value = "Either of these options will provide an appropriate significance value.", 
     label = structure("Either of these options will provide an appropriate significance value.", html = TRUE, class = c("html", 
@@ -1425,21 +1409,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("When evaluating a nondirectional hypothesis, you must run a two-tailed test, as you are testing for an extreme value in either direction.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-5-answer", 
     question = "tyo-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 418636346.305057, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1501688163.80072, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo-6", question = structure("A researcher runs an independent test in SPSS and gets the following 95% confidence interval of the difference: [-.28, .83]. Which of the following is true, assuming alpha = .05?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_449ccc5", 
+"character")), answers = list(structure(list(id = "lnr_ans_9e9124e", 
     option = "The results are significant.", value = "The results are significant.", 
     label = structure("The results are significant.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f28c04e", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9c4c260", 
     option = "The results are not significant", value = "The results are not significant", 
     label = structure("The results are not significant", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_28a04a4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_735ab47", 
     option = "Significance can't be evaluated using this information", 
     value = "Significance can't be evaluated using this information", 
     label = structure("Significance can’t be evaluated using this information", html = TRUE, class = c("html", 
@@ -1452,7 +1436,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The null hypothesis of an independent-samples t-test is that the difference between the means of each group is 0. If the confidence interval contains 0, it means that 0 is a plausible value for the true difference between groups. Therefore, you don’t have enough evidence to reject the null hypothesis that the true difference between groups is 0.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo-6-answer", 
     question = "tyo-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 37046431.4827489, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 327965562.347279, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1460,10 +1444,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "powerQuiz-1", 
     question = structure("Recall that there were 18 participants per group in Experiment 1. True or False: Experiment 1 is adequately powered to detect a moderate effect size (d = .50), given power = .8 and alpha = .05", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_2bc7221", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b0b3f3e", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7838304", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a089177", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1474,14 +1458,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("No; Study 1 only has 18 participants per group. If the effect of transport modality on infant vocalisation is weak or moderate, a Type II error is likely to occur.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-1-answer", 
         question = "powerQuiz-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1326770720.88217, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 815956171.620041, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "powerQuiz-2", 
     question = structure("You are running a secondary analysis with 134 participants (85 in group 1; 49 in group 2). You make a nondirectional hypothesis and set alpha = .05. What is the maximum effect size you can detect with a power of 80%? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_b5e4a9f", 
+    "character")), answers = list(structure(list(id = "lnr_ans_326141c", 
         option = "0.51", value = 0.51, label = structure("0.51", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1492,7 +1476,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The maximum effect size you could detect in this instance is .51. In this example, you were working with an unbalanced sample, so you needed to run a power analysis that accounts for this. A power analysis that assumes equal group sizes would have given you a slightly different answer (.49). You would have also received an inaccurate result if you used the total sample size rather than sample per group (.34)", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-2-answer", 
         question = "powerQuiz-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1344098142.87411, options = list(
+    allow_retry = FALSE, seed = 661254920.692079, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1501,7 +1485,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "powerQuiz-3", 
     question = structure("How many participants do you need per group to detect a strong effect (d = .8) with an independent-samples t-test, a nondirectional hypothesis, power = .8, and alpha = .001?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_11867a4", 
+    "character")), answers = list(structure(list(id = "lnr_ans_c0d157b", 
         option = "57", value = 57, label = structure("57", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1512,7 +1496,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("You will need 57 participants per group to detect this effect. You will have needed to round up, as you cannot have .09 participants.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-3-answer", 
         question = "powerQuiz-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1258701068.41387, options = list(
+    allow_retry = FALSE, seed = 2134579770.50601, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1520,17 +1504,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "powerQuiz-4", 
     question = structure("You run a power analysis for a one-tailed (directional) test. Holding power, effect size, and alpha constant, how do the sample size requirements change compared to a two-tailed (nondirectional) test?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_7f5e2f9", 
+    "character")), answers = list(structure(list(id = "lnr_ans_86dc886", 
         option = "The sample size requirements increase for a one-tailed test", 
         value = "The sample size requirements increase for a one-tailed test", 
         label = structure("The sample size requirements increase for a one-tailed test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a7237ec", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_220f6dc", 
         option = "The sample size requirements decrease for a one-tailed test", 
         value = "The sample size requirements decrease for a one-tailed test", 
         label = structure("The sample size requirements decrease for a one-tailed test", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9869fd6", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cd19635", 
         option = "The sample size requirements are identical for both one- and two-tailed tests", 
         value = "The sample size requirements are identical for both one- and two-tailed tests", 
         label = structure("The sample size requirements are identical for both one- and two-tailed tests", html = TRUE, class = c("html", 
@@ -1543,7 +1527,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("When using an alpha = .05, we consider values in the most extreme 5% of the distribution to be significant. When running a two-tailed test, this 5% is split in both directions, so the 2.5% highest AND 2.5% lowest values are considered significant. In a one-tailed test, only the extreme results in one direction are considered significant, so all 5% is grouped in a single area of the distribution. This naturally increases the power to detect an effect as the critical threshold in that direction is closer to the mean. Because of this, a smaller sample size in a one-tailed analysis can produce the same power level as a larger sample size in a two-tailed analysis.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "powerQuiz-4-answer", 
         question = "powerQuiz-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1757712630.6815, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1315987738.8872, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

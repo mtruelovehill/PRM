@@ -512,7 +512,7 @@ You can follow the steps from [Experiment 1: Descriptive Data]
 
 <span style = "font-weight: bold; font-size: 14pt"> Task 3 </span>
 
-You'll need to make a new variable to check the assumption of normality, as you need to check the normality of the difference between your paired variables. To do this, use *Transform > Compute Variable* and create a new variable that is the difference between the values in the `buggyIVocal` column and the `backpackIVocal` column. Once you have this difference variable, follow the steps for normality testing from [Experiment 1: Checking Assumptions].
+You'll need to make a new variable to check the assumption of normality, as you need to check the normality of the difference between your paired variables. To do this, use *Transform > Compute Variable* and create a new variable that is the difference between the values in the `buggyVocal` column and the `backpackVocal` column. Once you have this difference variable, follow the steps for normality testing from [Experiment 1: Checking Assumptions].
 
 <span style = "font-weight: bold; font-size: 14pt"> Task 4 </span>
 
@@ -532,7 +532,7 @@ See the hint from [Experiment 1: Intepret & Report].
 <span style = "font-weight: bold; font-size: 14pt"> Task 1 </span>
 
 
-<b>Research Question:</b> Does infant transport modality affect the amount of infant vocalisation during use?
+<b>Research Question:</b> Does infant transport modality affect the time infants spend vocalising during use?
 
 
 <b> Variables </b>
@@ -543,25 +543,25 @@ Dependent Variable: Infant Vocalisation
 
 
 <b>Hypotheses:</b>
-Null hypothesis: There is no difference in infant vocalisations when infants are riding in a buggy compared to when they are riding in a backpack.
+Null hypothesis: There is no difference in the time infants spend vocalising when they are riding in a buggy compared to when they are riding in a backpack.
 
-$H_0: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} = 0$
+$H_0: Vocalisation_{buggy}-Vocalisation_{backpack} = 0$
 
-Alternative hypothesis: There is a difference in infant vocalisations when they are riding in a buggy compared to when they are riding in a backpack.
+Alternative hypothesis: There is a difference in the time infants spend vocalising when they are riding in a buggy compared to when they are riding in a backpack.
 
-$H_1: Infant\ Vocalisation_{buggy}-Infant\ Vocalisation_{backpack} \neq 0$
+$H_1: Vocalisation_{buggy}-Vocalisation_{backpack} \neq 0$
 
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Task 2 </span>
 
-Navigate to *Variable View* and set both `buggyIVocal` and `backpackIVocal` to 'Scale'. You can check the frequency of participants in each level of the categorical `Gender` variable by clicking *Analyze>Descriptive Statistics>Frequencies*, moving `infantGender` into the 'Variable(s)' box, then clicking 'Ok'. In this case, you'll note that you have slightly more female infants than male infants.
+You can check the frequency of participants in each level of the categorical `Gender` variable by clicking *Analyze>Descriptive Statistics>Frequencies*, moving `infantGender` into the 'Variable(s)' box, then clicking 'Ok'. In this case, you'll note that you have slightly more female infants than male infants.
 
-To check the descriptives of the continuous variables `infantAge`, `buggyIVocal` and `backpackIVocal`, click *Analyze>Descriptive Statistics>Frequencies*, remove `infantGender` from the Variable(s) box and add the three continuous variables instead. Make sure to untick the 'Display Frequency Tables' box. Click 'Statistics' and then click 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue' and then 'OK'. 
+To check the descriptives of the continuous variables `infantAge`, `buggyVocal` and `backpackVocal`, click *Analyze>Descriptive Statistics>Frequencies*, remove `infantGender` from the Variable(s) box and add the three continuous variables instead. Make sure to untick the 'Display Frequency Tables' box. Click 'Statistics' and then click 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue' and then 'OK'. 
 
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Task 3 </span>
 
-Because we have to check the normality of the difference scores rather than the raw variables, we will need to compute a difference score. To do this, navigate to *Transform > Compute Variable*. Name your new variable in the 'Target Variable' box. Next, move the buggyIVocal to the 'Numeric Expression' box, add a minus sign, then add backpackIVocal. Click 'OK'. Notice in *Data View* that you now have a new variable that reflects the difference between your paired variables.
+Because we have to check the normality of the difference scores rather than the raw variables, we will need to compute a difference score. To do this, navigate to *Transform > Compute Variable*. Name your new variable in the 'Target Variable' box. Next, move `buggyVocal` to the 'Numeric Expression' box, add a minus sign, then add `backpackVocal.` Click 'OK'. Notice in *Data View* that you now have a new variable that reflects the difference between your paired variables.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7a.png')
@@ -569,14 +569,12 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7
 
 Perform the normality tests from [Experiment 1: Checking Assumptions] with this new variable.
 
-```{r, echo = F, fig.align= 'center', out.width='50%'}
+```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7c.png')
 ```
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7b.png')
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_7d.png')
 ```
 
 The difference variable looks to be normally distributed, so we will assume normality.
@@ -584,7 +582,7 @@ The difference variable looks to be normally distributed, so we will assume norm
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Task 4 </span>
 
-Navigate to *Analyze > Compare Means and Proportions > Paired Samples T-Test*. Add either `buggyIVocal` or `backpackIVocal` into the Variable1 space and the other into the Variable2 space and click 'OK'. Note that it doesn't matter which goes where. It won't change the values of your results, but it will determine whether your $t$-statistic and effect size is positive or negative.
+Navigate to *Analyze > Compare Means and Proportions > Paired Samples T-Test*. Add either `buggyVocal` or `backpackVocal` into the Variable1 space and the other into the Variable2 space and click 'OK'. Note that it doesn't matter which goes where. It won't change the values of your results, but it will determine whether your $t$-statistic and effect size is positive or negative.
 
 As before, take note of the descriptive statistics for each group, as you'll need this for reporting purposes. 
 
@@ -592,22 +590,22 @@ As before, take note of the descriptive statistics for each group, as you'll nee
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_8a.png')
 ```
 
-The results indicate that the difference in infant vocalisation when in a buggy versus a backpack was significant ($p$ < .001). This is further confirmed by the confidence interval, which doesn't contain the null value of 0. The output also provides the average difference score.
+The results indicate that the difference in time that infants spent vocalising when in a buggy versus a backpack was significant ($p$ = .013). This is further confirmed by the confidence interval, which doesn't contain the null value of 0. The output also provides the average difference score.
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_8b.png')
 ```
 
-As before, Cohen's $d$ indicates there is a strong effect of transportation modality on infant vocalisation.
+Cohen's $d$ indicates there is a moderate effect of transportation modality on time infants spend vocalising.
 
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Task 5 </span>
 
-In this study, we tested the effect of infant transportation modality on their vocalisation. We hypothesised that there would be differences in vocalisation depending on whether infants were riding in a buggy or a backpack. This study incorporated a within-subjects design. $\alpha$ values for all analyses were set at .05. 
+In this study, we tested the effect of infant transportation modality on the time (in seconds) they spent vocalising while being transported. We hypothesised that there would be differences in vocalisation time depending on whether infants were riding in a buggy or a backpack. This study incorporated a within-subjects design. $\alpha$ values for all analyses were set at .05. 
 
 Our sample consisted of 40 infants between 19 and 54 weeks old ($M$ = 34.89, $SD$ = 6.86; 23 females, 17 males). Assumptions checks were conducted through visual assessment. All data met the assumptions of normality and independence.
 
-A paired-samples $t$-test indicated that transportation modality had a significant effect on infant vocalisation, $t$(39) = -22.73, $p$ < .001, 95% CI[-4.00, -3.35], $d$ = 3.59. Specifically, infants produced significantly more vocalisations while riding in a backpack ($M$ = 6.70, $SD$ = 1.49) than when riding in a buggy ($M$ = 3.03, $SD$ = 1.33).
+A paired-samples $t$-test indicated that transportation modality had a significant effect on infant vocalisation, $t$(39) = -2.59, $p$ = .013, 95% CI[-2.37, -0.29], $d$ = -0.41. Specifically, infants vocalised significantly more while riding in a backpack ($M$ = 15.35, $SD$ = 3.64) than when riding in a buggy ($M$ = 14.02, $SD$ = 3.39).
 
 </details>
 </div>
