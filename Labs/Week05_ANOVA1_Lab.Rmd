@@ -8,8 +8,6 @@ output:
 runtime: shiny_prerendered
 ---
 
-MONICA - Check Simpson's paradox in iris dataset (sepal.width & petal.length when you do and don't account for species). Add Hamdullah's image for sphericity decision. 
-
 ```{r setup, include=FALSE}
 library(learnr)
 library(tidyverse)
@@ -31,15 +29,15 @@ At the end of this lab, you will be able to:
 1. Identify hypotheses which may be tested using ANOVAs
 2. Check assumptions for a one-way ANOVA
 3. Use SPSS to perform one-way ANOVAs
-4. Interpret and report results from one-way ANOVAs
+4. Run a power analysis for a one-way ANOVA
+5. Interpret and report results from one-way ANOVAs
 
 If you also complete the bonus material, you'll be able to:
 
-1. Produce a box-plot to visualise the results from a one-way ANOVA
-2. Run an appropriate power analysis for both one-way and repeated-measures ANOVAs
-3. Check assumptions for a repeated-measures ANOVA 
-4. Use SPSS to perform one-way and repeated-measures ANOVAs
-5. Interpret and report results from repeated-measures ANOVAs
+1. Run an appropriate power analysis for a repeated-measures ANOVAs
+2. Check assumptions for a repeated-measures ANOVA 
+3. Use SPSS to perform a repeated-measures ANOVAs
+4. Interpret and report results from repeated-measures ANOVAs
 
 ### This Week's Study
 
@@ -427,7 +425,22 @@ There are many possible measures of effect size that are used across statistical
 $$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
 Be sure to use $f$ when entering the effect size into WebPower. 
 
+
 Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+```{r cyrPower, echo = F}
+quiz(caption = 'Check Your Results',
+     question_numeric("How many participants do you need for your One-Way ANOVA to have 80% power to detect a moderate effect with alpha = .05?",
+              answer("158", correct = T),
+              message = "You will need 158 total participants for this analysis to have an 80% chance of avoiding a Type II error."),
+     question('What effect size does WebPower use in power calculations for One-Way ANOVAs?',
+              answer('f', correct = T),
+              answer("Cohen's d"),
+              answer('eta squared'),
+              answer('r'),
+              random_answer_order = T,
+              message = "While SPSS (and this course) will use eta squared as our effect size for ANOVA, WebPower uses f. You'll have to convert eta-squared to f to get correct results for your power analysis."))
+```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -744,7 +757,14 @@ Scroll down to Mauchly's test. As noted in the previous step, it is significant,
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMeffects.png')
 ```
 
-Because sphericity was violated, you cannot interpret the results on the line that says, 'Sphericity Assumed.' Instead, you should interpret the results from the line that says, 'Greenhouse-Geisser'. The Greenhouse-Geisser method is a correction that adjusts data that lack sphericity so the results can be interpreted with confidence.
+Because sphericity was violated, you cannot interpret the results on the line that says, 'Sphericity Assumed.' Instead, you need to make a decision about whether to intepret the Greenhouse-Geisser or Huynh-Feldt line. These methods are corrections that adjusts data that lack sphericity so the results can be interpreted with confidence. You can use this flowchart:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png')
+```
+
+
+As the Greenhouse-Geisser $\epsilon$ is equal to .953, which is greater than 0.75, you should interpret the results from the line that says, 'Huynh-Feldt'. 
 
 In this table, you can see that the $F$-statistic of 179.65 is much larger than the null value of 1, so, unsurprisingly, the $p$-value (< .001) is below the $\alpha$ threshold of .05. We can consider the results to be significant. The effect size ($\eta^2_p$, AKA partial $\eta^2$) is equal to .47, which is equivalent to a strong effect (see the solution box from [Experiment 1 Analysis] for interpretation standards). This tells us that the type of feeling being emoted does affect a child's ability to recognise it in masked individuals. 
 
@@ -795,7 +815,7 @@ In this study, we tested whether the type of feeling being emoted affected child
 
 Our sample consisted of 200 children between 6.01 and 12.87 years old ($M$ = 9.44, $SD$ = 1.97; 104 females, 96 males). Normality checks were conducted through visual assessment of histograms and Q-Q plots. All data met the assumptions of normality. Mauchly's test indicated that sphericity was violated ($p$ = .021), so a Greenhouse-Geiser correction was applied. 
 
-A repeated-measures ANOVA indicated that emotion had a significant effect on recognition, $F$(3.81, 758.58) = 179.65, $p$ < .001, $\eta^2_p$ = .47. Pairwise comparisons with a Bonferroni correction indicated that happiness was recognised significantly more often than sadness, $p$ < .001, fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. Sadness was recognised significantly more often than fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. There was no significant differences in recognition rates between fear and anger, $p$ ~ 1, fear and disgust, $p$ = .726, or anger and disgust, $p$ = .573. See Table 1 for the mean recognition scores for each emotion. 
+A repeated-measures ANOVA indicated that emotion had a significant effect on recognition, $F$(3.90, 775.24) = 179.65, $p$ < .001, $\eta^2_p$ = .47. Pairwise comparisons with a Bonferroni correction indicated that happiness was recognised significantly more often than sadness, $p$ < .001, fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. Sadness was recognised significantly more often than fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. There was no significant differences in recognition rates between fear and anger, $p$ ~ 1, fear and disgust, $p$ = .726, or anger and disgust, $p$ = .573. See Table 1 for the mean recognition scores for each emotion. 
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMTable.png')
