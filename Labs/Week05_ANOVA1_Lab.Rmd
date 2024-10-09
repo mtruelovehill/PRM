@@ -8,6 +8,8 @@ output:
 runtime: shiny_prerendered
 ---
 
+MONICA - Check Simpson's paradox in iris dataset (sepal.width & petal.length when you do and don't account for species). Add Hamdullah's image for sphericity decision. 
+
 ```{r setup, include=FALSE}
 library(learnr)
 library(tidyverse)
@@ -62,7 +64,7 @@ datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Participant ID',
                                     'Levels: 1 = Female; 2 = Male',
                                     'Age in years',
-                                    'Levels: Control; Mouth Obstructed; Eyes Obstructed',
+                                    'Levels: 0 = Control; 1 = Mouth Obstructed; 2 = Eyes Obstructed',
                                     'Total number of correctly identified emotions; possible scores = 0 - 50'))
 
 datInfo %>%
@@ -136,72 +138,6 @@ $H_1:$ at least one $\mu \neq$ the other $\mu$s
 </div>
 </br>
 
-## Experiment 1 Power Analysis
-<br>
-
-Recall the effect size measure for ANOVA, $\eta^2$:
-
-```{r, echo = F}
-
-eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
-
-eta2Tab %>%
-  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
-  kable_styling(full_width = F) %>%
-  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
-  column_spec(1, bold = T, width = '4.5cm')
-```
-
-
-
-### Your Task
-
-+ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect ( $\eta^2$ = .06) using a One-Way ANOVA. 
-
-
-There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. In SPSS, it uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
-
-$$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
-Be sure to use $f$ when entering the effect size into WebPower. 
-
-Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-<br>
-Unlike the power analysis for $t$-tests, this power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
-
-If you're completely lost, you might find the section on One-Way ANOVA in the [WebPower manual](https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf) helpful.
-
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-<br>
-Navigate to the WebPower site and click One-Way ANOVA:
-
-```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_powerAnalysisChoice.png')
-```
-<br>
-<i> Number of groups </i> refers to the number of independent groups you're comparing. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
-
-$$f = \sqrt{\frac{.06}{1-.06}} = .25$$
-You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
-
-```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_oneWayPower.png')
-```
-
-You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
-
-
-</details>
-</div>
-
 ## Experiment 1 Data Review
 
 ### Your Tasks
@@ -211,6 +147,8 @@ You'll obviously need a whole number of participants, so you should round up. To
 + [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type. 
 
 + [ ] $\ $ Add a key to the `Gender` variable so that 1 = 'Female' and 2 = 'Male'.
+
++ [ ] $\ $ Add a key to the `Group` variable so that 0 = 'Control', 1 = 'Mouth Obstructed' and 2 = 'Eyes Obstructed'
 
 + [ ] $\ $ Check the descriptive statistics of your data
 
@@ -245,20 +183,20 @@ To check that your variables are labeled as the correct scale of measurement, lo
 
 * `Correct` - Scale
 
-In this instance, SPSS assigned the proper measures by default, so no changes are needed.
+In this instance, SPSS assigned the proper measures by default (with the exception of ID, which won't be used as part of any analysis, so you ignore it). No changes are required.
 
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Adding Labels to Variables </span>
 
 To associate a label with each value of a variable, you'll use the **Values** column under the **Variable View** tab.
 
-Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column.
+Select the Gender x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** In the Label column, add the label you would like to associate with that specific value. Continue adding labels using  $+$ until you've labeled all values in the Gender column. 
 
 ```{r, echo = F, out.width='40%', fig.align='center'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_GenderLabels.png')
 ```
 
-Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
+Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label. Repeat this process for the `Group` variable, setting 0 = 'Control', 1 = 'Mouth Obstructed', and 2 = 'Eyes Obstructed'.
 
 <br>
 <span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
@@ -269,7 +207,7 @@ Click 'OK'. If you've done this properly, you'll see that each numeric value is 
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_freqTables.png')
 ```
 
-Note that if you set up the labels for the Gender variable properly, you should see 'Female' and 'Male' in the frequency table for `Gender`, rather than '1' and '2'.
+Note that if you set up the labels for the `Group` and `Gender` properly, these will appear in the frequency tables, rather than the numeric values you see in 'Data View'. 
 
 **Continuous Variables:** Your categorical variables are `Age` and `Correct`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
 
@@ -403,14 +341,14 @@ $H_1$ - At least one of the following is true:
 ```{r cyrIndT, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question_numeric("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.",
-              answer(15.40, correct = T),
-              message = 'The F-statistic associated with this test is 15.40.'))
+              answer(15.14, correct = T),
+              message = 'The F-statistic associated with this test is 15.14.'))
 ```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Before running the analysis, you will need to transform you independent variable into numeric form. You can do this using *Transform>Recode Into Different Variables*. You have 3 categories ('Control', 'Eyes Obstructed', 'Mouth Obstructed') that need to be recoded.
+To run a One-Way ANOVA, you should navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*
 
 </details>
 </div>
@@ -420,16 +358,7 @@ Before running the analysis, you will need to transform you independent variable
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-ANOVA requires that you use a number for your independent variable, `Group`, even though it's categorical. Navigate to *Transform>Recode Into Different Variables*. Add `Group` into the box, then type a name (e.g., 'GroupNum') into the 'Name' box in the 'Output Variable' section. Click 'Change'. Next, click 'Old and New Values'. Add the old category label (e.g., 'Control') to the 'Value' box in the 'Old Value' section, then add a number to assign that category to in the 'New Value' section. Remember that you must enter the category label *exactly* as it is represented in the data, and this process is case-sensitive. Click 'Add', and you'll see it appear in the 'Old --> New' box. Do this until you've assigned all three categories to a number. 
-
-```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_IVnum.png')
-```
-
-Click 'Continue' and then 'OK'. You'll notice a new column appear in the *Data View* window. It will default to 2 decimals, so if you'd like to adjust it to 0, go to *Variable View* and change the value in the 'Decimal' column for `GroupNum` to 0. You can also add labels to your new numeric variable, so that when you run your tests later, the label will be used in the output, making it easier to interpret your results. 
-
-
-Once you have your `Group` variable transformed into a numeric value, navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*. Add your new number column, `GroupNum`, to the 'Factor' box, and add `Correct` to the 'Dependent List'. Make sure 'Estimate effect size for overall tests' is ticked. To get the post-hoc comparisons, click 'Post-Hoc', then 'Tukey'. Under 'Options', click 'Descriptive'. You can also tick 'Means plot' to generate a boxplot of the means of each group. Click 'Continue' and then 'Ok'. 
+Navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*. Add your new number column, `GroupNum`, to the 'Factor' box, and add `Correct` to the 'Dependent List'. Make sure 'Estimate effect size for overall tests' is ticked. To get the post-hoc comparisons, click 'Post-Hoc', then 'Tukey'. Under 'Options', click 'Descriptive'. You can also tick 'Means plot' to generate a boxplot of the means of each group. Click 'Continue' and then 'Ok'. 
 
 You'll see the following output for your One-Way ANOVA:
 
@@ -437,7 +366,7 @@ You'll see the following output for your One-Way ANOVA:
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_ANOVA.png')
 ```
 
-If you look at the .sig column, you can see that the $p$-value is less than .001, which is smaller than our $/alpha$ threshold of .05. This means that our results are significantly. Specifically, there is a less than 0.1% chance that we would have differences this large in recognition between facial obstruction groups if the null hypothesis were true. This tells us that there is a significant difference in the case of least one of our pairings. To get a sense of how meaningful this difference is, we check the effect size.
+If you look at the .sig column, you can see that the $p$-value is less than .001, which is smaller than our $\alpha$ threshold of .05. This means that our results are significantly. Specifically, there is a less than 0.1% chance that we would have differences this large in recognition between facial obstruction groups if the null hypothesis were true. This tells us that there is a significant difference in the case of least one of our pairings. To get a sense of how meaningful this difference is, we check the effect size.
 
 Although there are several effects reported, you can use the effect size $\eta^2$. 
 
@@ -456,7 +385,7 @@ $\eta^2$ has the following interpretation standards:
 The value for $\eta^2$ in this analysis is .15, which would be considered a strong effect. 
 
 
-These tables provided the results and effect size from the overall group comparison, but it's important to understand which groups are actually different from each other. To determine this, post-hoc analysis should be conducted. If you checked the Tukey's posthoc option when setting up your analysis (and added labels to your `GroupNum` variable), you should see the following output:
+These tables provided the results and effect size from the overall group comparison, but it's important to understand which groups are actually different from each other. To determine this, post-hoc analysis should be conducted. If you checked the Tukey's posthoc option when setting up your analysis, you should see the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_posthocs.png')
@@ -469,6 +398,72 @@ Here, we can see that two of our three comparisons are significant, while the th
 </details>
 </div>
 </br>
+
+## Experiment 1 Power Analysis
+<br>
+
+Recall the effect size measure for ANOVA, $\eta^2$:
+
+```{r, echo = F}
+
+eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
+
+eta2Tab %>%
+  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+### Your Task
+
++ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect ( $\eta^2$ = .06) using a One-Way ANOVA. 
+
+
+There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. In SPSS, it uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
+
+$$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
+Be sure to use $f$ when entering the effect size into WebPower. 
+
+Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+<br>
+Unlike the power analysis for $t$-tests, this power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
+
+If you're completely lost, you might find the section on One-Way ANOVA in the [WebPower manual](https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf) helpful.
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+Navigate to the WebPower site and click One-Way ANOVA:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_powerAnalysisChoice.png')
+```
+<br>
+<i> Number of groups </i> refers to the number of independent groups you're comparing. In this case, you have 3 (Control/Eyes Obstructed/Mouth Obstructed). You'll leave the Sample Size option blank, as that's the value you want to calculate. To compute the effect size, $f$, you'll do the following:
+
+$$f = \sqrt{\frac{.06}{1-.06}} = .25$$
+You can enter in the appropriate values for $\alpha$ and power. When you're finished, click 'Calculate' and you should see the following results if you've entered everything properly:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_oneWayPower.png')
+```
+
+You'll obviously need a whole number of participants, so you should round up. To detect the desired effect with the given constraints, you need 158 participants.
+
+
+</details>
+</div>
 
 ## Experiment 1 Interpret & Report 
 
@@ -495,12 +490,11 @@ There are many ways you could write this up, but you'll need to at least include
 + $F$-statistic
 + degrees of freedom
 + p-values
-+ confidence intervals
 + effect sizes
 
 The proper style of reporting the results from an ANOVA looks like this:
 
-$F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], 95% CI = [[lower band of CI], [upper band of CI]], $\eta^2$ = [$\eta^2$ value].
+$F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], $\eta^2$ = [$\eta^2$ value].
 
 Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides]() for a specific example.
 
@@ -516,7 +510,7 @@ In this study, we tested children's ability to recognise emotions in images wher
 
 Our sample consisted of 180 children between the ages of 6 and 13 ($M$ = 9.37, $SD$ = 2.01; 102 females, 78 males). Assumptions checks were conducted through visual assessment. All data met the assumptions of normality, independence, and homogeneity of variance. 
 
-Type of facial obstruction had a significant effect on emotion identification, $F$(2, 177) = 15.14, $p$ < .001, $\eta^2$ = .15 Specifically, those who viewed images with eyes obstructed ($M$ = 15.73, $SD$ = 7.84) recognised significantly fewer emotions in images than the control group ($M$ = 23.37, $SD$ = 9.16), $p$ < .001, 95% CI = [4.15, 11.12]. Those who viewed images with the mouth obstructed ($M$ = 17.15, $SD$ = 7.12) also recognised significantly fewer emotions in images than the control group, $p$ < .001, 95% CI = [2.73, 9.70]. There was no significant difference between the two obstruction groups, $p$ = .603, 95% CI = [-2.07, 4.90].
+Type of facial obstruction had a significant effect on emotion identification, $F$(2, 177) = 15.14, $p$ < .001, $\eta^2$ = .15. Specifically, those who viewed images with eyes obstructed ($M$ = 15.73, $SD$ = 7.84) recognised significantly fewer emotions in images than the control group ($M$ = 23.37, $SD$ = 9.16), $p$ < .001. Those who viewed images with the mouth obstructed ($M$ = 17.15, $SD$ = 7.12) also recognised significantly fewer emotions in images than the control group, $p$ < .001. There was no significant difference between the two obstruction groups, $p$ = .603.
 
 </details>
 </div>
@@ -562,31 +556,31 @@ datInfo %>%
   + Normality - the distribution of your recognition variables should be normal
   + Sphericity - the variances of the differences between each group combination are generally equal
   
-+ [ ] $\ $ Task 4: Run a repeated-measures ANOVA to test your hypothesis; make sure to also check the effect size and 95% confidence intervals
++ [ ] $\ $ Task 4: Run a repeated-measures ANOVA to test your hypothesis; make sure to also check the effect size.
 
 + [ ] $\ $ Task 5: Report your results using APA style
 
+```{r cyrBonus, echo = F}
+quiz(caption = 'Check Your Results',
+     question_numeric("What was the F-statistic associated with emotion? Please round your answer to two decimal places.",
+              answer("179.65", correct = T),
+              message = "The F-statistic associated with emotion is 179.65."),
+     question('Is the difference in recognition rate between happiness and anger significant?',
+              answer('Yes', correct = T),
+              answer('No'),
+              message = 'The p-value associated with the comparison between happiness and anger is < .001, which is less than our alpha threshold of .05. We would consider this result significant.'),
+     question('Is the difference in recognition rate between fear and disgust significant?',
+              answer('Yes'),
+              answer('No', correct = T),
+              message = 'The p-value associated with the comparison between fear and disgust is .726, which is greater than our alpha threshold of .05. We would not consider this result significant.'))
+```
+
+
+<span style = "font-weight: bold; font-size: 16pt"> Task 1: State Your Research Question, Hypotheses, and Variables </span>
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-<span style = "font-weight: bold; font-size: 14pt"> Task 1 </span>
 
 Have a look at the [lecture slides]() if you need guidance here.
-
-<span style = "font-weight: bold; font-size: 14pt"> Task 2 </span>
-
-You can follow the steps from [Experiment 1 Data Review]
-
-<span style = "font-weight: bold; font-size: 14pt"> Task 3 </span>
-
-As usual, you can use histograms and Q-Q plots to assess the normality of each of your recognition variables. To assess sphericity, you can use Mauchly's test of sphericity.
-
-<span style = "font-weight: bold; font-size: 14pt"> Task 4 </span>
-
-To perform a repeated-measures ANOVA, navigate to *Analyze > General Linear Model > Repeated Measures*.
-
-<span style = "font-weight: bold; font-size: 14pt"> Task 5 </span>
-
-See the hint from [Experiment 1 Interpret & Report].
 
 </details>
 </div>
@@ -594,9 +588,6 @@ See the hint from [Experiment 1 Interpret & Report].
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-<span style = "font-weight: bold; font-size: 14pt"> Task 1 </span>
-
 
 <b>Research Question:</b> Does a child's ability to recognise emotions in masked individuals differ across emotions?
 
@@ -618,8 +609,23 @@ Alternative hypothesis: There is an effect of emotion type on a child's ability 
 
 $H_1:$ at least one $\mu \neq$ the other $\mu s$
 
-<br>
-<span style = "font-weight: bold; font-size: 14pt"> Task 2 </span>
+</details>
+</div>
+</br>
+
+<span style = "font-weight: bold; font-size: 16pt"> Task 2: Check Experiment 2 data </span>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+You can follow the steps from [Experiment 1 Data Review]
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Navigate to *Variable View* and check the variable measures. In this instance, `ID` could be changed to an ordinal variable, but the others are all accurate. You could add labels to your gender variable using the 'Values' column if you'd like. You can check the frequency of participants in each level of the categorical `Gender` variable by clicking *Analyze>Descriptive Statistics>Frequencies*, moving `Gender` into the 'Variable(s)' box, then clicking 'Ok'. In this case, you'll note that you have more females than males in your sample.
 
@@ -631,8 +637,30 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_R
 
 Looking at the output shows that all recognition values fall within the expected range (between 0 and 50) and ages range between 6 and 12 (the expected range for our sample). There are no missing values. We can move forward with assumptions checks.
 
-<br>
-<span style = "font-weight: bold; font-size: 14pt"> Task 3 </span>
+</details>
+</div>
+</br>
+
+
+
+<span style = "font-weight: bold; font-size: 16pt"> Task 3: Check Experiment 2 assumptions </span>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+As usual, you can use histograms and Q-Q plots to assess the normality of each of your recognition variables. To assess sphericity, you can use Mauchly's test of sphericity. You can use this flowchart to help you make a decision about sphericity:
+
+```{r, echo = F, fig.align = 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png')
+```
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 **Normality**
 
@@ -669,8 +697,26 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_m
 
 The $p$-value for this test is provided in the 'Sig.' column. If $p$ is less than the $\alpha$ threshold of .05, this test is significant and sphericity is violated. In this instance, $p$ = .021, suggesting that sphericity is violated. This can be addressed when interpreting the results from the ANOVA.
 
-<br>
+</details>
+</div>
+</br>
+
+
+<span style = "font-weight: bold; font-size: 16pt"> Task 4: Run RM ANOVA & get effect sizes </span>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
 <span style = "font-weight: bold; font-size: 14pt"> Task 4 </span>
+
+To perform a repeated-measures ANOVA, navigate to *Analyze > General Linear Model > Repeated Measures*.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Navigate to *Analyze > General Linear Model > Repeated Measures*. Provide a name for your repeated measures variable in the 'Within-Subject Factor Name' box. In this example, I've used 'Emotion'. Add the number of levels of your IV. In this example, you have 5 (Happiness; Sadness; Fear; Anger; Disgust). Next, you can add a label for your DV if you'd like in the 'Measure Name' box, but this is optional. I named my DV 'Recognition'. Once you've added these to their respective boxes, click 'Define'. 
 
@@ -678,9 +724,14 @@ Navigate to *Analyze > General Linear Model > Repeated Measures*. Provide a name
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMfactors.png')
 ```
 
-Add each of your 5 recognition variables to the 'Within-Subjects Variables' box. To check for differences between each emotion, you'll need to click 'EM means' and add 'Emotion' to the 'Display Means for' box. Tick the 'Compare main effects' box, then select 'Bonferroni' under the 'Confidence interval adjustment' dropdown. This allows you to perform tests between each emotion, so that you can see, for example, whether recognition scores for `Anger` are significantly different from those for `Happiness`. The Bonferroni adjustment is used to correct for multiple comparisons. Click 'Continue'.
+Add each of your 5 recognition variables to the 'Within-Subjects Variables' box. To check for differences between each emotion, you'll need to click 'EM means' and add 'Emotion' to the 'Display Means for' box. Tick the 'Compare main effects' box, then select 'Bonferroni' under the 'Confidence interval adjustment' dropdown. The Bonferroni adjustment is used to correct for multiple comparisons. If you've done everything properly, it should look like this: 
 
-Next, click the 'Options' box. You've already calculated descriptive statistics (e.g., mean/sd) in an earlier step, so you can leave that blank. Click 'Estimates of effect size' to produce your effect size measures. Click 'Continue'. 
+```{r, echo = F, fig.align= 'center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_week5_EMmeans.png')
+```
+
+
+Click 'Continue'. Next, click the 'Options' box. You've already calculated descriptive statistics (e.g., mean/sd) in an earlier step, so you can leave that blank. Click 'Estimates of effect size' to produce your effect size measures. Click 'Continue'. 
 
 *Optional:* To do a quick and dirty visualisation of the differences between groups, click 'Plots' and add 'Emotion' to the horizontal axis. Click 'Add'. Under 'Chart Type', click 'Line Chart'. Make sure 'Include Error Bars' is ticked. The error bars can represent either the 95% confidence interval or the standard error, as long as you report it properly if you ever use the plot. I like to also tick 'Include a reference line for the grand mean'. Click 'Continue'.
 
@@ -719,19 +770,36 @@ The fourth chunk shows differences between `Anger` (Emotion 4) and all other emo
 
 To summarise, in this experiment, children viewing images of masked individuals recognised happiness significantly more often than all other emotions. They recognised sadness significantly more often than anger, fear, and disgust. There was no significant difference in their ability to recognise anger, fear, and disgust. 
 
-<br>
-<span style = "font-weight: bold; font-size: 14pt"> Task 5 </span>
+</details>
+</div>
+</br>
+
+
+<span style = "font-weight: bold; font-size: 16pt"> Task 5: Interpret & Report </span>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+See the hint from [Experiment 1 Interpret & Report].
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+
 
 In this study, we tested whether the type of feeling being emoted affected children's ability to successfully identify it in masked individuals. We hypothesised that there would be an effect of emotion type on a child's recognition ability. This study incorporated a within-subjects design, with emotion (5 levels: Happiness; Sadness; Fear; Anger; Disgust) as the independent variable and recognition scores (range = 0-50) as the dependent variable. $\alpha$ values for all analyses were set at .05. 
 
 Our sample consisted of 200 children between 6.01 and 12.87 years old ($M$ = 9.44, $SD$ = 1.97; 104 females, 96 males). Normality checks were conducted through visual assessment of histograms and Q-Q plots. All data met the assumptions of normality. Mauchly's test indicated that sphericity was violated ($p$ = .021), so a Greenhouse-Geiser correction was applied. 
 
-A repeated-measures ANOVA indicated that emotion had a significant effect on recognition, $F$(3.81, 758.58) = 179.65, $p$ < .001, $\eta^2_p$ = .47. Pairwise comparisons with a Bonferroni correction indicated that happiness was recognised significantly more often than sadness ($p$ < .001, 95% CI = [5.59, 8.59]), fear ($p$ < .001, 95% CI = [9.15, 12.37]), anger ($p$ < .001, 95% CI = [9.07, 12.18]), and disgust ($p$ < .001, 95% CI = [10.11, 13.03]). Sadness was recognised significantly more often than fear ($p$ < .001, 95% CI = [2.34, 5.02]), anger ($p$ < .001, 95% CI = [2.18, 4.90]), and disgust ($p$ < .001, 95% CI = [3.14, 5.84]). There was no significant differences in recognition rates between fear and anger, ($p$ ~ 1, 95% CI = [-1.62, 1.62]), fear and disgust, ($p$ = .726, 95% CI = [-0.46, 2.08]), or anger and disgust, ($p$ = .573, 95% CI = [-0.46, 2.35]). See Table 1 for the mean recognition scores for each emotion. 
+A repeated-measures ANOVA indicated that emotion had a significant effect on recognition, $F$(3.81, 758.58) = 179.65, $p$ < .001, $\eta^2_p$ = .47. Pairwise comparisons with a Bonferroni correction indicated that happiness was recognised significantly more often than sadness, $p$ < .001, fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. Sadness was recognised significantly more often than fear, $p$ < .001, anger, $p$ < .001, and disgust, $p$ < .001. There was no significant differences in recognition rates between fear and anger, $p$ ~ 1, fear and disgust, $p$ = .726, or anger and disgust, $p$ = .573. See Table 1 for the mean recognition scores for each emotion. 
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_RMTable.png')
 ```
-
 
 
 </details>

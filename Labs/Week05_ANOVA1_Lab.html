@@ -110,6 +110,11 @@ if (window.hljs) {
 
 <article class="topics" id="learnr-tutorial-content">
 
+<p>MONICA -adding a screenshot of wall of text to clarify EM means
+section would be helpful. Check Simpson’s paradox in iris dataset
+(sepal.width &amp; petal.length when you do and don’t account for
+species). Add Hamdullah’s image for sphericity decision. CYU questions
+on Bonus Material.</p>
 <div id="section-intro-to-todays-lab" class="section level2">
 <h2>Intro to Today’s Lab</h2>
 <p>During today’s lab, you’ll apply the concepts discussed during this
@@ -209,7 +214,7 @@ Age in years
 Group
 </td>
 <td style="text-align:left;">
-Levels: Control; Mouth Obstructed; Eyes Obstructed
+Levels: 0 = Control; 1 = Mouth Obstructed; 2 = Eyes Obstructed
 </td>
 </tr>
 <tr>
@@ -292,115 +297,6 @@ class="math inline">\(\mu\)</span>s</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-experiment-1-power-analysis" class="section level2">
-<h2>Experiment 1 Power Analysis</h2>
-<p><br></p>
-<p>Recall the effect size measure for ANOVA, <span
-class="math inline">\(\eta^2\)</span>:</p>
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
-Variable Name
-</th>
-<th style="text-align:right;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
-Magnitude of <span class="math inline">\(\eta^2\)</span>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Weak
-</td>
-<td style="text-align:right;">
-0.01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Moderate
-</td>
-<td style="text-align:right;">
-0.06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Strong
-</td>
-<td style="text-align:right;">
-0.14
-</td>
-</tr>
-</tbody>
-</table>
-<div id="section-your-task" class="section level3">
-<h3>Your Task</h3>
-<ul class="task-list">
-<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Run
-a power analysis using <span class="math inline">\(\alpha\)</span> = .05
-and power = .8 to determine the sample size necessary to detect a
-moderate effect ( <span class="math inline">\(\eta^2\)</span> = .06)
-using a One-Way ANOVA.</li>
-</ul>
-<p>There are many possible measures of effect size that are used across
-statistical tests. The software that we use to run power analyses,
-WebPower, uses <span class="math inline">\(f\)</span> as its measure of
-effect size for ANOVA. In SPSS, it uses <span
-class="math inline">\(\eta^2\)</span>, so we need to convert <span
-class="math inline">\(\eta^2\)</span> to <span
-class="math inline">\(f\)</span> before running the power analysis. You
-can do this with the following equation:</p>
-<p><span class="math display">\[f =
-\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span> Be sure to use <span
-class="math inline">\(f\)</span> when entering the effect size into
-WebPower.</p>
-<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
-to use WebPower to run your analysis</a>.</p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p><br> Unlike the power analysis for <span
-class="math inline">\(t\)</span>-tests, this power analysis
-requires/outputs the total number of participants, rather than the
-number of participants per group.</p>
-<p>If you’re completely lost, you might find the section on One-Way
-ANOVA in the <a
-href="https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf">WebPower
-manual</a> helpful.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p><br> Navigate to the WebPower site and click One-Way ANOVA:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_powerAnalysisChoice.png" width="50%" style="display: block; margin: auto;" />
-<br> <i> Number of groups </i> refers to the number of independent
-groups you’re comparing. In this case, you have 3 (Control/Eyes
-Obstructed/Mouth Obstructed). You’ll leave the Sample Size option blank,
-as that’s the value you want to calculate. To compute the effect size,
-<span class="math inline">\(f\)</span>, you’ll do the following:</p>
-<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
-.25\]</span> You can enter in the appropriate values for <span
-class="math inline">\(\alpha\)</span> and power. When you’re finished,
-click ‘Calculate’ and you should see the following results if you’ve
-entered everything properly:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_oneWayPower.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You’ll obviously need a whole number of participants, so you should
-round up. To detect the desired effect with the given constraints, you
-need 158 participants.</p>
-</details>
-</div>
-</div>
-</div>
 <div id="section-experiment-1-data-review" class="section level2">
 <h2>Experiment 1 Data Review</h2>
 <div id="section-your-tasks-1" class="section level3">
@@ -414,6 +310,9 @@ measurement type.</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Add a key to the <code>Gender</code> variable so that 1 = ‘Female’ and 2
 = ‘Male’.</p></li>
+<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
+Add a key to the <code>Group</code> variable so that 0 = ‘Control’, 1 =
+‘Mouth Obstructed’ and 2 = ‘Eyes Obstructed’</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Check the descriptive statistics of your data</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
@@ -455,8 +354,9 @@ measurement, look at the <strong>Measure</strong> column under the
 <li><p><code>Group</code> - Nominal</p></li>
 <li><p><code>Correct</code> - Scale</p></li>
 </ul>
-<p>In this instance, SPSS assigned the proper measures by default, so no
-changes are needed.</p>
+<p>In this instance, SPSS assigned the proper measures by default (with
+the exception of ID, which won’t be used as part of any analysis, so you
+ignore it). No changes are required.</p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Adding Labels
 to Variables </span></p>
 <p>To associate a label with each value of a variable, you’ll use the
@@ -472,7 +372,9 @@ class="math inline">\(+\)</span> until you’ve labeled all values in the
 Gender column.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_GenderLabels.png" width="40%" style="display: block; margin: auto;" /></p>
 <p>Click ‘OK’. If you’ve done this properly, you’ll see that each
-numeric value is now associated with a character label.</p>
+numeric value is now associated with a character label. Repeat this
+process for the <code>Group</code> variable, setting 0 = ‘Control’, 1 =
+‘Mouth Obstructed’, and 2 = ‘Eyes Obstructed’.</p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Check
 Descriptive Statistics </span></p>
 <p><strong>Categorical Variables:</strong> Your categorical variables
@@ -482,9 +384,9 @@ these two variables to the ‘Variable(s)’ box. Make sure ‘Display
 frequency tables’ is checked, then click ‘OK’. You should see the
 following output:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_freqTables.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Note that if you set up the labels for the Gender variable properly,
-you should see ‘Female’ and ‘Male’ in the frequency table for
-<code>Gender</code>, rather than ‘1’ and ‘2’.</p>
+<p>Note that if you set up the labels for the <code>Group</code> and
+<code>Gender</code> properly, these will appear in the frequency tables,
+rather than the numeric values you see in ‘Data View’.</p>
 <p><strong>Continuous Variables:</strong> Your categorical variables are
 <code>Age</code> and <code>Correct</code>. Click
 <em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then add
@@ -638,11 +540,8 @@ analysis</p></li>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>Before running the analysis, you will need to transform you
-independent variable into numeric form. You can do this using
-<em>Transform&gt;Recode Into Different Variables</em>. You have 3
-categories (‘Control’, ‘Eyes Obstructed’, ‘Mouth Obstructed’) that need
-to be recoded.</p>
+<p>To run a One-Way ANOVA, you should navigate to <em>Analyze&gt;Compare
+Means &amp; Proportions&gt;One-Way ANOVA</em></p>
 </details>
 </div>
 <p></br></p>
@@ -652,40 +551,18 @@ to be recoded.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>ANOVA requires that you use a number for your independent variable,
-<code>Group</code>, even though it’s categorical. Navigate to
-<em>Transform&gt;Recode Into Different Variables</em>. Add
-<code>Group</code> into the box, then type a name (e.g., ‘GroupNum’)
-into the ‘Name’ box in the ‘Output Variable’ section. Click ‘Change’.
-Next, click ‘Old and New Values’. Add the old category label (e.g.,
-‘Control’) to the ‘Value’ box in the ‘Old Value’ section, then add a
-number to assign that category to in the ‘New Value’ section. Remember
-that you must enter the category label <em>exactly</em> as it is
-represented in the data, and this process is case-sensitive. Click
-‘Add’, and you’ll see it appear in the ‘Old –&gt; New’ box. Do this
-until you’ve assigned all three categories to a number.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_IVnum.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Continue’ and then ‘OK’. You’ll notice a new column appear in
-the <em>Data View</em> window. It will default to 2 decimals, so if
-you’d like to adjust it to 0, go to <em>Variable View</em> and change
-the value in the ‘Decimal’ column for <code>GroupNum</code> to 0. You
-can also add labels to your new numeric variable, so that when you run
-your tests later, the label will be used in the output, making it easier
-to interpret your results.</p>
-<p>Once you have your <code>Group</code> variable transformed into a
-numeric value, navigate to <em>Analyze&gt;Compare Means &amp;
-Proportions&gt;One-Way ANOVA</em>. Add your new number column,
-<code>GroupNum</code>, to the ‘Factor’ box, and add <code>Correct</code>
-to the ‘Dependent List’. Make sure ‘Estimate effect size for overall
-tests’ is ticked. To get the post-hoc comparisons, click ‘Post-Hoc’,
-then ‘Tukey’. Under ‘Options’, click ‘Descriptive’. You can also tick
-‘Means plot’ to generate a boxplot of the means of each group. Click
-‘Continue’ and then ‘Ok’.</p>
+<p>Navigate to <em>Analyze&gt;Compare Means &amp; Proportions&gt;One-Way
+ANOVA</em>. Add your new number column, <code>GroupNum</code>, to the
+‘Factor’ box, and add <code>Correct</code> to the ‘Dependent List’. Make
+sure ‘Estimate effect size for overall tests’ is ticked. To get the
+post-hoc comparisons, click ‘Post-Hoc’, then ‘Tukey’. Under ‘Options’,
+click ‘Descriptive’. You can also tick ‘Means plot’ to generate a
+boxplot of the means of each group. Click ‘Continue’ and then ‘Ok’.</p>
 <p>You’ll see the following output for your One-Way ANOVA:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_ANOVA.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>If you look at the .sig column, you can see that the <span
 class="math inline">\(p\)</span>-value is less than .001, which is
-smaller than our <span class="math inline">\(/alpha\)</span> threshold
+smaller than our <span class="math inline">\(\alpha\)</span> threshold
 of .05. This means that our results are significantly. Specifically,
 there is a less than 0.1% chance that we would have differences this
 large in recognition between facial obstruction groups if the null
@@ -726,8 +603,7 @@ analysis is .15, which would be considered a strong effect.</p>
 group comparison, but it’s important to understand which groups are
 actually different from each other. To determine this, post-hoc analysis
 should be conducted. If you checked the Tukey’s posthoc option when
-setting up your analysis (and added labels to your <code>GroupNum</code>
-variable), you should see the following output:</p>
+setting up your analysis, you should see the following output:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_posthocs.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>If you don’t see the labels and instead see numbers in the first two
 columns, it just means you didn’t actually add labels to your
@@ -749,6 +625,115 @@ further.</p>
 </details>
 </div>
 <p></br></p>
+</div>
+</div>
+<div id="section-experiment-1-power-analysis" class="section level2">
+<h2>Experiment 1 Power Analysis</h2>
+<p><br></p>
+<p>Recall the effect size measure for ANOVA, <span
+class="math inline">\(\eta^2\)</span>:</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
+Variable Name
+</th>
+<th style="text-align:right;font-weight: bold;color: #4CA384 !important;text-align: left;font-size: 16px;">
+Magnitude of <span class="math inline">\(\eta^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Weak
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Moderate
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Strong
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+</tbody>
+</table>
+<div id="section-your-task" class="section level3">
+<h3>Your Task</h3>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Run
+a power analysis using <span class="math inline">\(\alpha\)</span> = .05
+and power = .8 to determine the sample size necessary to detect a
+moderate effect ( <span class="math inline">\(\eta^2\)</span> = .06)
+using a One-Way ANOVA.</li>
+</ul>
+<p>There are many possible measures of effect size that are used across
+statistical tests. The software that we use to run power analyses,
+WebPower, uses <span class="math inline">\(f\)</span> as its measure of
+effect size for ANOVA. In SPSS, it uses <span
+class="math inline">\(\eta^2\)</span>, so we need to convert <span
+class="math inline">\(\eta^2\)</span> to <span
+class="math inline">\(f\)</span> before running the power analysis. You
+can do this with the following equation:</p>
+<p><span class="math display">\[f =
+\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span> Be sure to use <span
+class="math inline">\(f\)</span> when entering the effect size into
+WebPower.</p>
+<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
+to use WebPower to run your analysis</a>.</p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p><br> Unlike the power analysis for <span
+class="math inline">\(t\)</span>-tests, this power analysis
+requires/outputs the total number of participants, rather than the
+number of participants per group.</p>
+<p>If you’re completely lost, you might find the section on One-Way
+ANOVA in the <a
+href="https://webpower.psychstat.org/wiki/_media/grant/webpower_manual_book.pdf">WebPower
+manual</a> helpful.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><br> Navigate to the WebPower site and click One-Way ANOVA:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_powerAnalysisChoice.png" width="50%" style="display: block; margin: auto;" />
+<br> <i> Number of groups </i> refers to the number of independent
+groups you’re comparing. In this case, you have 3 (Control/Eyes
+Obstructed/Mouth Obstructed). You’ll leave the Sample Size option blank,
+as that’s the value you want to calculate. To compute the effect size,
+<span class="math inline">\(f\)</span>, you’ll do the following:</p>
+<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
+.25\]</span> You can enter in the appropriate values for <span
+class="math inline">\(\alpha\)</span> and power. When you’re finished,
+click ‘Calculate’ and you should see the following results if you’ve
+entered everything properly:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_oneWayPower.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You’ll obviously need a whole number of participants, so you should
+round up. To detect the desired effect with the given constraints, you
+need 158 participants.</p>
+</details>
+</div>
 </div>
 </div>
 <div id="section-experiment-1-interpret-report" class="section level2">
@@ -783,7 +768,6 @@ gender distribution of sample)</li>
 <li><span class="math inline">\(F\)</span>-statistic</li>
 <li>degrees of freedom</li>
 <li>p-values</li>
-<li>confidence intervals</li>
 <li>effect sizes</li>
 </ul>
 <p>The proper style of reporting the results from an ANOVA looks like
@@ -793,9 +777,9 @@ class="math inline">\(df\)</span>], [within groups <span
 class="math inline">\(df\)</span>]) = [<span
 class="math inline">\(F\)</span>-statistic], <span
 class="math inline">\(p\)</span> = [<span
-class="math inline">\(p\)</span>-value], 95% CI = [[lower band of CI],
-[upper band of CI]], <span class="math inline">\(\eta^2\)</span> =
-[<span class="math inline">\(\eta^2\)</span> value].</p>
+class="math inline">\(p\)</span>-value], <span
+class="math inline">\(\eta^2\)</span> = [<span
+class="math inline">\(\eta^2\)</span> value].</p>
 <p>Note that the numbers inside the curly brackets refer to the degrees
 of freedom. ANOVA has two types of <span
 class="math inline">\(df\)</span> that should be reported. Please refer
@@ -830,21 +814,20 @@ variance.</p>
 <p>Type of facial obstruction had a significant effect on emotion
 identification, <span class="math inline">\(F\)</span>(2, 177) = 15.14,
 <span class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .15 Specifically, those who
+class="math inline">\(\eta^2\)</span> = .15. Specifically, those who
 viewed images with eyes obstructed (<span
 class="math inline">\(M\)</span> = 15.73, <span
 class="math inline">\(SD\)</span> = 7.84) recognised significantly fewer
 emotions in images than the control group (<span
 class="math inline">\(M\)</span> = 23.37, <span
 class="math inline">\(SD\)</span> = 9.16), <span
-class="math inline">\(p\)</span> &lt; .001, 95% CI = [4.15, 11.12].
-Those who viewed images with the mouth obstructed (<span
-class="math inline">\(M\)</span> = 17.15, <span
-class="math inline">\(SD\)</span> = 7.12) also recognised significantly
-fewer emotions in images than the control group, <span
-class="math inline">\(p\)</span> &lt; .001, 95% CI = [2.73, 9.70]. There
-was no significant difference between the two obstruction groups, <span
-class="math inline">\(p\)</span> = .603, 95% CI = [-2.07, 4.90].</p>
+class="math inline">\(p\)</span> &lt; .001. Those who viewed images with
+the mouth obstructed (<span class="math inline">\(M\)</span> = 17.15,
+<span class="math inline">\(SD\)</span> = 7.12) also recognised
+significantly fewer emotions in images than the control group, <span
+class="math inline">\(p\)</span> &lt; .001. There was no significant
+difference between the two obstruction groups, <span
+class="math inline">\(p\)</span> = .603.</p>
 </details>
 </div>
 <p></br></p>
@@ -971,34 +954,29 @@ combination are generally equal</li>
 </ul></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Task 4: Run a repeated-measures ANOVA to test your hypothesis; make sure
-to also check the effect size and 95% confidence intervals</p></li>
+to also check the effect size.</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Task 5: Report your results using APA style</p></li>
 </ul>
+<div class="panel-heading tutorial-quiz-title"></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyuBonus-1" class="tutorial-question panel-body">
+<div id="cyuBonus-1-answer_container" class="shiny-html-output"></div>
+<div id="cyuBonus-1-message_container" class="shiny-html-output"></div>
+<div id="cyuBonus-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<span style="font-weight: bold; font-size: 16pt"> Task 1: State Your
+Research Question, Hypotheses, and Variables </span>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 1 </span></p>
 <p>Have a look at the <a href="">lecture slides</a> if you need guidance
 here.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 2 </span></p>
-<p>You can follow the steps from <a
-href="#section-experiment-1-data-review">Experiment 1 Data
-Review</a></p>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 3 </span></p>
-<p>As usual, you can use histograms and Q-Q plots to assess the
-normality of each of your recognition variables. To assess sphericity,
-you can use Mauchly’s test of sphericity.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 4 </span></p>
-<p>To perform a repeated-measures ANOVA, navigate to <em>Analyze &gt;
-General Linear Model &gt; Repeated Measures</em>.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 5 </span></p>
-<p>See the hint from <a
-href="#section-experiment-1-interpret-report">Experiment 1 Interpret
-&amp; Report</a>.</p>
 </details>
 </div>
 <p></br></p>
@@ -1008,7 +986,6 @@ href="#section-experiment-1-interpret-report">Experiment 1 Interpret
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p><span style="font-weight: bold; font-size: 14pt"> Task 1 </span></p>
 <p><b>Research Question:</b> Does a child’s ability to recognise
 emotions in masked individuals differ across emotions?</p>
 <p><b> Variables </b></p>
@@ -1026,8 +1003,29 @@ child’s ability to recognise emotions in masked individuals.</p>
 <p><span class="math inline">\(H_1:\)</span> at least one <span
 class="math inline">\(\mu \neq\)</span> the other <span
 class="math inline">\(\mu s\)</span></p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Task 2
-</span></p>
+</details>
+</div>
+<p></br></p>
+<p><span style="font-weight: bold; font-size: 16pt"> Task 2: Check
+Experiment 2 data </span></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>You can follow the steps from <a
+href="#section-experiment-1-data-review">Experiment 1 Data
+Review</a></p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
 <p>Navigate to <em>Variable View</em> and check the variable measures.
 In this instance, <code>ID</code> could be changed to an ordinal
 variable, but the others are all accurate. You could add labels to your
@@ -1051,8 +1049,29 @@ the following output:</p>
 the expected range (between 0 and 50) and ages range between 6 and 12
 (the expected range for our sample). There are no missing values. We can
 move forward with assumptions checks.</p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Task 3
-</span></p>
+</details>
+</div>
+<p></br></p>
+<p><span style="font-weight: bold; font-size: 16pt"> Task 3: Check
+Experiment 2 assumptions </span></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>As usual, you can use histograms and Q-Q plots to assess the
+normality of each of your recognition variables. To assess sphericity,
+you can use Mauchly’s test of sphericity.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
 <p><strong>Normality</strong></p>
 <p>Produce histograms for each recognition variable by navigating to
 <em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>. Add
@@ -1087,8 +1106,29 @@ of .05, this test is significant and sphericity is violated. In this
 instance, <span class="math inline">\(p\)</span> = .021, suggesting that
 sphericity is violated. This can be addressed when interpreting the
 results from the ANOVA.</p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Task 4
-</span></p>
+</details>
+</div>
+<p></br></p>
+<p><span style="font-weight: bold; font-size: 16pt"> Task 4: Run RM
+ANOVA &amp; get effect sizes </span></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p><span style="font-weight: bold; font-size: 14pt"> Task 4 </span></p>
+<p>To perform a repeated-measures ANOVA, navigate to <em>Analyze &gt;
+General Linear Model &gt; Repeated Measures</em>.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
 <p>Navigate to <em>Analyze &gt; General Linear Model &gt; Repeated
 Measures</em>. Provide a name for your repeated measures variable in the
 ‘Within-Subject Factor Name’ box. In this example, I’ve used ‘Emotion’.
@@ -1192,8 +1232,29 @@ individuals recognised happiness significantly more often than all other
 emotions. They recognised sadness significantly more often than anger,
 fear, and disgust. There was no significant difference in their ability
 to recognise anger, fear, and disgust.</p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Task 5
-</span></p>
+</details>
+</div>
+<p></br></p>
+<p><span style="font-weight: bold; font-size: 16pt"> Task 5: Interpret
+&amp; Report </span></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>See the hint from <a
+href="#section-experiment-1-interpret-report">Experiment 1 Interpret
+&amp; Report</a>.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
 <p>In this study, we tested whether the type of feeling being emoted
 affected children’s ability to successfully identify it in masked
 individuals. We hypothesised that there would be an effect of emotion
@@ -1216,23 +1277,20 @@ effect on recognition, <span class="math inline">\(F\)</span>(3.81,
 758.58) = 179.65, <span class="math inline">\(p\)</span> &lt; .001,
 <span class="math inline">\(\eta^2_p\)</span> = .47. Pairwise
 comparisons with a Bonferroni correction indicated that happiness was
-recognised significantly more often than sadness (<span
-class="math inline">\(p\)</span> &lt; .001, 95% CI = [5.59, 8.59]), fear
-(<span class="math inline">\(p\)</span> &lt; .001, 95% CI = [9.15,
-12.37]), anger (<span class="math inline">\(p\)</span> &lt; .001, 95% CI
-= [9.07, 12.18]), and disgust (<span class="math inline">\(p\)</span>
-&lt; .001, 95% CI = [10.11, 13.03]). Sadness was recognised
-significantly more often than fear (<span
-class="math inline">\(p\)</span> &lt; .001, 95% CI = [2.34, 5.02]),
-anger (<span class="math inline">\(p\)</span> &lt; .001, 95% CI = [2.18,
-4.90]), and disgust (<span class="math inline">\(p\)</span> &lt; .001,
-95% CI = [3.14, 5.84]). There was no significant differences in
-recognition rates between fear and anger, (<span
-class="math inline">\(p\)</span> ~ 1, 95% CI = [-1.62, 1.62]), fear and
-disgust, (<span class="math inline">\(p\)</span> = .726, 95% CI =
-[-0.46, 2.08]), or anger and disgust, (<span
-class="math inline">\(p\)</span> = .573, 95% CI = [-0.46, 2.35]). See
-Table 1 for the mean recognition scores for each emotion.</p>
+recognised significantly more often than sadness, <span
+class="math inline">\(p\)</span> &lt; .001, fear, <span
+class="math inline">\(p\)</span> &lt; .001, anger, <span
+class="math inline">\(p\)</span> &lt; .001, and disgust, <span
+class="math inline">\(p\)</span> &lt; .001. Sadness was recognised
+significantly more often than fear, <span
+class="math inline">\(p\)</span> &lt; .001, anger, <span
+class="math inline">\(p\)</span> &lt; .001, and disgust, <span
+class="math inline">\(p\)</span> &lt; .001. There was no significant
+differences in recognition rates between fear and anger, <span
+class="math inline">\(p\)</span> ~ 1, fear and disgust, <span
+class="math inline">\(p\)</span> = .726, or anger and disgust, <span
+class="math inline">\(p\)</span> = .573. See Table 1 for the mean
+recognition scores for each emotion.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_RMTable.png" width="50%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
@@ -1386,13 +1444,13 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_138519", 
+"character")), answers = list(structure(list(id = "lnr_ans_9757673", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_24d4c0a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_66a35f2", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a2913", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1a19172", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1404,7 +1462,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 775554250.138854, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 685169702.680943, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1412,19 +1470,43 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-1", 
     question = structure("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_cfaa0ab", 
-        option = "15.4", value = 15.4, label = structure("15.4", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ab22639", 
+        option = "15.14", value = 15.14, label = structure("15.14", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The F-statistic associated with this test is 15.40.", html = TRUE, class = c("html", 
+    "character")), message = structure("The F-statistic associated with this test is 15.14.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-1-answer", 
         question = "cyrIndT-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1045702374.01306, options = list(
+    allow_retry = FALSE, seed = 857144550.100861, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyuBonus-1", question = structure("What", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_2f43754", 
+    option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_eb44e16", 
+    option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a0ef914", 
+    option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
+    label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "cyuBonus-1-answer", 
+    question = "cyuBonus-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 678378743.184105, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

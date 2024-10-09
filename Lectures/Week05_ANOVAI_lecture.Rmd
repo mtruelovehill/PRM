@@ -44,7 +44,7 @@ accent2 <- '#18778C'
 accent3 <- '#19424C'
 ```
 
-## This Week's Key Topics
+### This Week's Key Topics
 
 + Types of ANOVAs and their assumptions
 
@@ -55,7 +55,7 @@ accent3 <- '#19424C'
 + Conducting a power analysis for ANOVA
 
 ---
-## Moving on from $t$-tests
+### Moving on from $t$-tests
 
 MONICA - CHECK THIS...not sure if I currently feel okay about it, because we also need to set up the idea of post-hocs. Maybe compare it to using a shoe to hammer a nail?
 
@@ -80,9 +80,235 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 + When you run multiple tests when a single test would do, you're inflating the risk of making a Type I error.
 
 ---
-## ANOVA
+### The Logic Behind ANOVA
 
-+ ANOVAs produce an $F$-statistic that reflects the ratio of the variation in the dependent variable explained by our independent variable(s) and the variation explained by other unmeasured factors.
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
+<br>
+<br>
+<br>
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+set.seed(526)
+dat <- data.frame(IV = c(rep('Group A', 4), rep('Group B', 4), rep('Group C', 4)),
+                  DV = c(rnorm(4, mean = 15, sd = 3), rnorm(4, mean = 18, sd = 3), rnorm(4, mean = 12, sd = 3)),
+                  ID = 1:12)
+
+
+(basePlot <- ggplot(dat, aes(ID, DV)) + geom_point() +
+    labs(x = 'Participant', y = 'Dependent Variable') +
+  scale_x_continuous(breaks = seq(1, 12, 1)) + 
+    geom_hline(yintercept = mean(dat$DV), linewidth = 1) +
+    theme(axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8, face = 'bold')))
+```
+
+]
+
+
+---
+count: false
+
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+---
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+.pull-right[
+
++ Often, researchers are testing whether they can more accurately capture variation in the dependent variable using the independent variable(s).
+
+<br>
+<br>
+<br>
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75, warning = F}
+plotDat <- data.frame(y = c(mean(dat$DV[dat$IV=='Group A']), mean(dat$DV[dat$IV=='Group B']), mean(dat$DV[dat$IV=='Group C'])))
+
+(groupPlot <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank()))
+```
+
+]
+
+
+---
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+.pull-right[
+
++ Often, researchers are testing whether they can more accurately capture variation in the dependent variable using the independent variable(s).
+
++ ANOVAs test whether the IV does a significantly better job than the mean of modeling variance in the DV
+
+
+```{r, echo = F, fig.width=5, fig.height=2.75, warning = F}
+basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank())
+```
+
+]
+
+---
+### The Logic Behind ANOVA
+
+
+$$F = \frac{MS_{model}}{MS_{residual}}$$
+
++ ANOVAs produce an $F$-statistic that is the ratio of the variation in the DV explained by our IV(s) and the variation explained by other unmeasured factors.
+
+
++ $MS_{model} = \frac{SS_{model}}{df_{model}}$ - reflects the variation in DV explained by the IV
+
+  + AKA $MS_{between}$ or $MS_{treatment}$
+
++ $MS_{residual} = \frac{SS_{residual}}{df_{residual}}$ - reflects the variation in DV unexplained by IV
+
+  + AKA $MS_{within}$ or $MS_{error}$
+
+--
+
++ Recall the sum of squared deviations from the [standard deviation calculation in Week 1](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#37). 
+
++ Here, the sums of squares (SS) is once again referring to a sum of squared distances between values.
+
+---
+### The Logic Behind ANOVA
+
+
+.pull-left[
+.center[** $SS_{model}$ **
+
+```{r, echo = F, fig.height=2.75, fig.width = 4.5, warning = F}
+SSmodel <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank())
+```
+]
+
++ Difference between grand mean and IV group means of the DV
+
++ Reflects the variance in the DV explained by IV over and above the mean
+
+
+]
+
+--
+
+.pull-right[
+.center[ ** $SS_{residual}$ **
+
+```{r, echo = F, fig.height=2.75, fig.width = 4.5, warning = F}
+(SSresidPlot <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = mean(DV), xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank()))
+```
+]
+
++ Difference between IV group means of the DV and the observed data
+
++ Reflects the amount of variation left unexplained by the IV
+]
+
+---
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$
+
+$MS_{model} = \frac{SS_{model}}{df_{model}}$
+]
+
+.pull-right[
+
+
+]
++ MONICA - USE PREVIOUS PLOTS TO DEMONSTRATE HOW F IS CALCULATED (AS WITH STANDARD DEVIATION IN WEEK 1)
+
+---
+### Types of ANOVA
 
 + ANOVAs can be used to compare more than two means. 
 
@@ -101,7 +327,7 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
   + At least one categorical independent variable with three or more levels
 
 ---
-## ANOVA
+### ANOVA
 
 + Running an ANOVA involves:
 
@@ -110,47 +336,37 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
   + Calculating the probability of obtaining our value of $F$ if the null were true
 
   + Using this probability to make a decision whether to reject the null hypothesis
-  
----
-## Calculating $F$
 
-$$F = \frac{MS_{between}}{MS_{within}}$$
-
-+ Although there are 3 types of $t$-tests, they generally involve some form of the following calculation:
-
-$$t = \frac{Observed\ Mean(s) - What\ we\ expect\ if\ null\ is\ true}{Some\ combination\ of\ the\ SE}$$
 
 ---
-## One-Way ANOVA
+### One-Way ANOVA
 
-$$t = \frac{\bar{x}-\mu_0}{SE_\bar{x}}$$
-+ Compare a sample mean ( $\bar{x}$ ) and a known mean ( $\mu_0$ )
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
 
-+ Used to check whether your sample's mean is significantly different from a known value
++ Each level of the independent variable reflects an independent sample
+
++ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
 
 --
 
-+ **Example research questions:**
++ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
 
   + Are speeds along Road A significantly higher than the speed limit?
   
   + Do a beauty product's results last longer than 3 months?
 
 ---
-## Independent-samples $t$-test
+### Repeated-Measures ANOVA
 
-$$t = \frac{(\bar{x_1}-\bar{x_2})-(\mu_1 - \mu_2)}{\sqrt{\frac{s_p^2}{n_1}+\frac{s_p^2}{n2}}}$$
-$s_p^2$: a pooled variance estimate that weights variance by sample size
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
 
---
++ Each member of the sample provided data for all levels of the independent variable
 
-+ Compares the mean of group 1 ( $\bar{x_1}$ ) to the mean of group 2 ( $\bar{x_2}$ )
-
-+ Used to determine whether there is a difference between two independently measured groups
++ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
 
 --
 
-+ **Example research questions:**
++ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
 
   + Are there differences in symptoms between the treatment group and the group that received a placebo?
   
@@ -158,66 +374,10 @@ $s_p^2$: a pooled variance estimate that weights variance by sample size
   
   + Are there differences in TBI rate between boxers and Muay Thai fighters?
   
----
-## Paired-samples $t$-test
-
-
-$$t = \frac{\bar{d}-\mu_d}{SE_\bar{d}}$$
-
-
-+ where:
-
-  + $\bar{d}$: the mean of the individual difference scores (e.g. $d_i = x_{i1} - x_{i2}$)
-
-  + $\mu_d$: The hypothesised null mean difference
-
-  + $SE_\bar{d} = \frac{sd_\bar{d}}{\sqrt{n}}$
-
---
-
-+ Compares the mean of the same group of participants across two timepoints/conditions
-
---
-
-+ **Example research questions:**
-
-  + Does time of day affect one's attention span?
-  
-  + Is a new fitness routine effective in improving one's cardiovascular health?
 
 
 ---
-## The $t$ distribution
-
-.pull-left[
-+ The $t$-distribution is the null distribution against which our calculated $t$-value is compared. 
-
-+ The shape of the $t$-distribution depends on the degrees of freedom ( $df$ ) of our data.
-]
-
-.pull-right[
-
-```{r, echo = F, fig.height=4}
-ggplot(data = data.frame(f = c(0, 5)), aes(x=f)) +
-  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 10), color = baseColor, linewidth=1.5) +
-  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 10), color = accent1, linewidth=1.5) +
-  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 30), color = accent2, linewidth=1.5) +
-  xlab('t') +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank(),
-        axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.x = element_text(size = 16, face = 'bold')) +
-  annotate('text', label = 'df = 2', x = 2.25, y = .27, color = baseColor, size = 7) + 
-  annotate('text', label = 'df = 5', x = 2.25, y = .32, color = accent1, size = 7) +
-  annotate('text', label = 'df = 15', x = 2.25, y = .37, color = accent2, size = 7)
-```
-
-]
-
----
-## Degrees of freedom
+### Degrees of freedom
 
 .pull-left[
 
@@ -235,7 +395,7 @@ Imagine we have a set of 3 values and we know that the mean is 4. In this case, 
 ---
 count: false
 
-## Degrees of freedom
+### Degrees of freedom
 
 .pull-left[
 
@@ -261,7 +421,7 @@ count: false
 
 
 ---
-## The $F$ distribution
+### The $F$ distribution
 
 .pull-left[
 + The $F$-distribution is the null distribution against which our calculated $F$-statistic is compared. 
@@ -297,7 +457,7 @@ ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
 ]
 
 ---
-## Putting it all together
+### Putting it all together
 
 .pull-left[
 Basically:
@@ -330,11 +490,11 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
 ---
 class: center, inverse, middle
 
-## Questions?
+### Questions?
 
 ---
 
-### Conducting a $t$-test...or really, most inferential statistical tests
+### Conducting an ANOVA
 
 1. State your hypothesis
 
@@ -353,7 +513,7 @@ class: center, inverse, middle
 8. Report
 
 ---
-# MONICA EDIT - hypotheses
+### MONICA EDIT - hypotheses
 
 + null is that $\mu_1 = \mu_2 =...\mu_n$
 + at least one $\mu$ is different from the other $\mu$s
@@ -362,7 +522,7 @@ Monica - show a plot that shows how if even one group is significantly different
 
 
 ---
-## One-Tailed vs Two-Tailed Tests
+### One-Tailed vs Two-Tailed Tests
 
 .pull-left[
 .center[**One-Tailed**: hypothesis is *directional*
@@ -425,7 +585,7 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
 ]
 
 ---
-## Assumptions of $t$-tests
+### Assumptions of $t$-tests
 
 + **Normality:** Dependent data should be normally distributed
   
@@ -459,7 +619,7 @@ ggplot(assumpDat, aes(floorDat)) + geom_histogram(fill = baseColor, color = acce
 ```
 ]
 ---
-## Assumptions of $t$-tests
+### Assumptions of $t$-tests
 
 + **Normality:** Dependent data should be normally distributed
   
@@ -501,7 +661,7 @@ ggplot(assumpDat) + geom_histogram(aes(normDat), fill = baseColor, color = accen
 
 ---
 
-## Effect size - Cohen's $d$
+### Effect size - Cohen's $d$
 
 + Cohen's $d$ is the standardized difference between the means
 
@@ -526,7 +686,7 @@ $$s_{pooled} = \sqrt{\frac{(n_1-1)s_1^2\ + (n_2-1)s_2^2}{n_1+n_2-2}}$$
 
 ---
 
-## Interpretation of Cohen's $d$
+### Interpretation of Cohen's $d$
 
 + Proposed by Cohen (1998):
 
@@ -541,12 +701,12 @@ $$s_{pooled} = \sqrt{\frac{(n_1-1)s_1^2\ + (n_2-1)s_2^2}{n_1+n_2-2}}$$
 
 ---
 exclude: true
-## Effect size - Cohen's $d$
+### Effect size - Cohen's $d$
 
 + Works best for larger samples...for smaller samples (<50), it overinflates results **MONICA, VERIFY THIS**
 
 ---
-## Checking Power
+### Checking Power
 
 + Recall that power usually involves some combination of the following values:
   
@@ -563,10 +723,10 @@ exclude: true
 ---
 class: middle, inverse, center
 
-## Questions?
+### Questions?
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 1: State Your Hypotheses**
 
@@ -598,7 +758,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 2: Conduct a Power Analysis**
 
@@ -623,7 +783,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 4: Check Assumptions**
 
@@ -647,7 +807,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
   
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 5: Run the test**
 
@@ -656,7 +816,7 @@ $$H_1: \bar{x_1} < \bar{x_2}$$
 Let's continue in SPSS...
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
@@ -665,7 +825,7 @@ knitr::include_graphics('images/BPDesc.png')
 ```
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
@@ -696,7 +856,7 @@ ggplot(data = data.frame(t = c(-5, 5)), aes(x=t)) +
 ]
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 7: Interpret results**
 
@@ -718,7 +878,7 @@ knitr::include_graphics('images/BPeffect.png')
 
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
@@ -740,7 +900,7 @@ knitr::include_graphics('images/BPeffect.png')
 
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
@@ -753,7 +913,7 @@ Note number of decimal places and use of italics and brackets
 Although it's not here in the results, you'll also need to specify $\alpha$
 
 ---
-## Running an Independent-Samples $t$-Test
+### Running an Independent-Samples $t$-Test
 
 **Step 8: Report**
 
@@ -785,10 +945,10 @@ ggplot(bpDat, aes(x=Group, y = SystolicBP, fill = Group)) + geom_boxplot() +
 count: false
 class: center, inverse, middle
 
-## Questions?
+### Questions?
 
 ---
-## Running a paired-samples $t$-test
+### Running a paired-samples $t$-test
 
 **Step 1: State Your Hypotheses**
 
@@ -816,7 +976,7 @@ $$H_1: \bar{d} < \mu_d$$
 
 
 ---
-## Running a paired-samples $t$-test
+### Running a paired-samples $t$-test
 
 **Step 2: Conduct a Power Analysis**
 
