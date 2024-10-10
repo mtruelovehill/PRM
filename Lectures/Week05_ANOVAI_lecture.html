@@ -69,6 +69,74 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 + When you run multiple tests when a single test would do, you're inflating the risk of making a Type I error.
 
 ---
+### Types of ANOVA
+
++ ANOVAs can be used to compare more than two means. 
+
+  + **One-Way ANOVA** test for differences between 3 or more independent means
+  
+  + **Repeated-Measures ANOVA** test for differences in a single sample at 3 or more timepoints or conditions
+  
+  + **Multiway ANOVA** tests for differences between multiple means across multiple independent variables
+
+--
+
++ Because of this, all ANOVAs require:
+
+  + A continuous dependent variable
+  
+  + At least one categorical independent variable with three or more levels
+
+---
+### One-Way ANOVA
+
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
+
++ Each level of the independent variable reflects an independent sample
+
++ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
+
+--
+
++ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
+
+  + Are speeds along Road A significantly higher than the speed limit?
+  
+  + Do a beauty product's results last longer than 3 months?
+
+---
+### Repeated-Measures ANOVA
+
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
+
++ Each member of the sample provided data for all levels of the independent variable
+
++ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
+
+--
+
++ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
+
+  + Are there differences in symptoms between the treatment group and the group that received a placebo?
+  
+  + Do inmates who are put in solitary confinement exhibit more aggressive behaviour than those who are not?
+  
+  + Are there differences in TBI rate between boxers and Muay Thai fighters?
+  
+
+---
+### ANOVA
+
++ Running an ANOVA involves:
+
+  + Computing `\(F\)`
+  
+  + Calculating the probability of obtaining our value of `\(F\)` if the null were true
+
+  + Using this probability to make a decision whether to reject the null hypothesis
+
+
+---
 ### The Logic Behind ANOVA
 
 .pull-left[
@@ -180,7 +248,7 @@ count: false
 .pull-left[
 .center[** `\(SS_{model}\)` **
 
-
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
 ]
 
 + Difference between grand mean and IV group means of the DV
@@ -209,127 +277,252 @@ count: false
 .pull-left[
 `$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$`
 
-`\(MS_{model} = \frac{SS_{model}}{df_{model}}\)`
+`\(MS_{model} = \frac{\color{#4CA384}{SS_{model}}}{df_{model}}\)`
+
++ Compute distance between each observation 
 ]
 
 .pull-right[
 
-
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
 ]
-+ MONICA - USE PREVIOUS PLOTS TO DEMONSTRATE HOW F IS CALCULATED (AS WITH STANDARD DEVIATION IN WEEK 1)
 
 ---
-### Types of ANOVA
+count: false 
 
-+ ANOVAs can be used to compare more than two means. 
-
-  + **One-Way ANOVA** test for differences between 3 or more independent means
-  
-  + **Repeated-Measures ANOVA** test for differences in a single sample at 3 or more timepoints or conditions
-  
-  + **Multiway ANOVA** tests for differences between multiple means across multiple independent variables
-
---
-
-+ Because of this, all ANOVAs require:
-
-  + A continuous dependent variable
-  
-  + At least one categorical independent variable with three or more levels
-
----
-### ANOVA
-
-+ Running an ANOVA involves:
-
-  + Computing `\(F\)`
-  
-  + Calculating the probability of obtaining our value of `\(F\)` if the null were true
-
-  + Using this probability to make a decision whether to reject the null hypothesis
-
-
----
-### One-Way ANOVA
-
-+ Compare the mean of the dependent variable across multiple levels of a single independent variable
-
-+ Each level of the independent variable reflects an independent sample
-
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
-
---
-
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
-
-  + Are speeds along Road A significantly higher than the speed limit?
-  
-  + Do a beauty product's results last longer than 3 months?
-
----
-### Repeated-Measures ANOVA
-
-+ Compare the mean of the dependent variable across multiple levels of a single independent variable
-
-+ Each member of the sample provided data for all levels of the independent variable
-
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
-
---
-
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
-
-  + Are there differences in symptoms between the treatment group and the group that received a placebo?
-  
-  + Do inmates who are put in solitary confinement exhibit more aggressive behaviour than those who are not?
-  
-  + Are there differences in TBI rate between boxers and Muay Thai fighters?
-  
-
-
----
-### Degrees of freedom
+### Calculating `\(F\)`
 
 .pull-left[
+`$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$`
 
-+ The number of values within the data that are free to vary
+`\(MS_{model} = \frac{\color{#4CA384}{SS_{model}}}{df_{model}}\)`
 
-+ df = items within dataset - parameters to be estimated
++ Compute distance between each observation 
+
++ Square them
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$`
+
+`\(MS_{model} = \frac{\color{#4CA384}{114.72}}{df_{model}}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
 
 ]
 
+.pull-right[
 
-???
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+]
 
-Imagine we have a set of 3 values and we know that the mean is 4. In this case, the parameter we wish to estimate is the mean, so there is 1 parameter. We have 3 values within our dataset. In this case, the degrees of freedom in this set is 2, because 3-1 is 2. To understand what this means in terms of 'free to vary', if we know the mean is 4, Value 1 could be anything...it could be 3 or 8, or 12. Value 2 could be the same, any value at all. But the third value is fixed, because it has to be whatever makes the mean equal to 4. So Value 1 and 2 are free to vary, but the 3rd value has a constraint, which is that it must be equal to whatever value makes the mean equal to 4. 
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$`
+
+
+`\(MS_{model} = \frac{114.72}{\color{#4CA384}{2}}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ `\(df_{model}\)` = number of levels - 1
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{\color{#4CA384}{57.36}}{MS_{residual}}$$`
+
+
+`\(MS_{model} = \frac{114.72}{2}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ `\(df_{model}\)` = number of levels - 1
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{57.36}{\color{#4CA384}{MS_{residual}}}$$`
+
+
+`\(MS_{residual} = \frac{\color{#4CA384}{SS_{residual}}}{df_{residual}}\)`
+
++ Compute distance between each observation 
+
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+
+]
 
 ---
 count: false
 
-### Degrees of freedom
+### Calculating `\(F\)`
 
 .pull-left[
+`$$F = \frac{57.36}{\color{#4CA384}{MS_{residual}}}$$`
 
-+ The number of values within the data that are free to vary
 
-+ df = items within dataset - parameters to be estimated
+`\(MS_{residual} = \frac{\color{#4CA384}{SS_{residual}}}{df_{residual}}\)`
 
-+ The number of parameters we estimate depends on the type of `\(t\)`-test
++ Compute distance between each observation 
+
++ Square them
 
 ]
-
 
 .pull-right[
-+ **One-sample `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean of our data &lt;/span&gt;
-    + `\(df = n - 1\)`
-  
-+ **Independent samples `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean of each of our two groups &lt;/span&gt;
-    + `\(df = n - 2\)`
-  
-+ **Paired-samples `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean difference between observations &lt;/span&gt;
-    + `\(df = n - 1\)`
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
 ]
 
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{57.36}{\color{#4CA384}{MS_{residual}}}$$`
+
+
+`\(MS_{residual} = \frac{\color{#4CA384}{198.61}}{df_{residual}}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{57.36}{\color{#4CA384}{MS_{residual}}}$$`
+
+
+`\(MS_{residual} = \frac{198.61}{\color{#4CA384}{9}}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ `\(df_{residual}\)` = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false 
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{57.36}{\color{#4CA384}{22.07}}$$`
+
+
+`\(MS_{residual} = \frac{198.61}{9}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ `\(df_{residual}\)` = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+### Calculating `\(F\)`
+
+.pull-left[
+`$$F = \frac{57.36}{22.07} = 2.6$$`
+
+
+`\(MS_{residual} = \frac{198.61}{9}\)`
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ `\(df_{residual}\)` = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+]
 
 ---
 ### The `\(F\)` distribution
@@ -347,7 +540,7 @@ count: false
 
 .pull-right[
 
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
 
 ]
 
@@ -357,18 +550,18 @@ count: false
 .pull-left[
 Basically:
 
-1) Calculate your `\(t\)`-statistic
+1) Calculate your `\(F\)`-statistic
 
-2) Identify the proper null distribution using `\(df\)`
+2) Identify the proper null distribution using `\(df_{model}\)` and `\(df_{residual}\)`
 
-3) Using this distribution, compute the probability of getting a `\(t\)`-statistic at least as extreme as yours
+3) Using this distribution, compute the probability of getting an `\(F\)`-statistic at least as extreme as yours
 
 ]
 
 --
 
 .pull-right[
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -397,133 +590,82 @@ class: center, inverse, middle
 8. Report
 
 ---
-### MONICA EDIT - hypotheses
+### State Your Hypotheses
 
-+ null is that `\(\mu_1 = \mu_2 =...\mu_n\)`
-+ at least one `\(\mu\)` is different from the other `\(\mu\)`s
++ `\(H_0: \mu_1 = \mu_2 =...\mu_n\)`
 
-Monica - show a plot that shows how if even one group is significantly different, the ANOVA can produce significant results.But on its own it doesn't tell you WHICH group is significantly different.
++ `\(H_1:\)` at least one `\(\mu\)` is different from the other `\(\mu\)`s
+
++ Note that the ANOVA distribution only has one tail, due to the nature of the `\(F\)`-statistic calculation (a ratio cannot be less than 0)
+
++ However, `\(H_1\)` is still nondirectional
+  + ANOVA doesn't tell you the direction of group differences, just that (at least) one exists.
 
 
 ---
-### One-Tailed vs Two-Tailed Tests
+### State Your Hypotheses
 
 .pull-left[
-.center[**One-Tailed**: hypothesis is *directional*
+.center[**ANOVA results not significant**]
 
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+]
 
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+.pull-right[
+.center[**ANOVA results significant**]
 
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
-]]
-
---
-
-.pull-left[
-.center[**Two-Tailed**: hypothesis is *nondirectional*]
-
-
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-24-2.svg)&lt;!-- --&gt;
 ]
 
 ---
-### Assumptions of `\(t\)`-tests
+### Assumptions of ANOVA
 
-+ **Normality:** Dependent data should be normally distributed
++ **Normality:** Dependent data should be normally distributed *within groups*
+
+--
   
---
-
-.pull-left[
-.center[**Normally Distributed**]
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
-]
-
-.pull-right[
-.center[**Not so normally distributed**]
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-16-2.svg)&lt;!-- --&gt;
-]
----
-### Assumptions of `\(t\)`-tests
-
-+ **Normality:** Dependent data should be normally distributed
-  
-+ **Independence:** Observations should be sampled independently
++ **Independence:** Observations/individuals should be sampled independently
 
 --
 
-+ Independent-samples `\(t\)`-tests also require **Homogeneity of Variance:** Equal variance between the two groups
++ **Homogeneity of Variance:** Equal variance between each group/category
 
---
-
-.pull-left[
-.center[**Equal Variance**]
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
-]
-
-.pull-right[
-.center[**Not So Equal Variance**]
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
-]
+  + This is called sphericity in the case of repeated-measures ANOVA, but it's the same general idea. 
 
 ---
 
-### Effect size - Cohen's `\(d\)`
+### Effect size - `\(\eta^2\)`
 
-+ Cohen's `\(d\)` is the standardized difference between the means
+`$$\eta^2 = \frac{SS_{model}}{SS_{total}}$$`
 
-  + in other words, how many standard deviations separate the two values?
++ `\(\eta^2\)` is the proportion of variance in the dependent variable that is explained by the independent variable
 
-`$$d = \frac{\bar{x}_1 -\bar{x}_2}{s_{pooled}}$$`
++ Values range from 0 to 1
 
-.pull-left[
-+ `\(\bar{x}_1\)` = mean of group 1
-+ `\(\bar{x}_2\)` = mean of group 2
-+ `\(s_{pooled}\)` = pooled standard deviation
++ When you have multiple variables, you instead use `\(\eta^2_p\)`, which is the proportion of variance in the dependent variable that is explained by the independent variable *while controlling for the other variables in the model*. 
+
+.pull-left.center[
+`\(SS_{model}\)`
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
 ]
 
---
-
-.pull-right[
-
-`$$s_{pooled} = \sqrt{\frac{(n_1-1)s_1^2\ + (n_2-1)s_2^2}{n_1+n_2-2}}$$`
-
+.pull-right.center[
+`\(SS_{residual}\)`
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
 ]
 
 
 ---
 
-### Interpretation of Cohen's `\(d\)`
-
-+ Proposed by Cohen (1998):
+### Interpretation of `\(\eta^2\)`
 
 
-| Strength | Absolute Magnitude of `\(d\)` |
+| Strength | Magnitude of `\(\eta^2\)` |
 |:--------:|:-------------------------:|
-| Weak     | `\(\leq\)` .20                |
-| Moderate | `\(\approx\)` .50             |
-| Strong   | `\(\geq\)` .8                 |
+| Weak     | `\(\leq\)` .01                |
+| Moderate | `\(\approx\)` .06             |
+| Strong   | `\(\geq\)` .14                |
 
-
-
----
-exclude: true
-### Effect size - Cohen's `\(d\)`
-
-+ Works best for larger samples...for smaller samples (&lt;50), it overinflates results **MONICA, VERIFY THIS**
-
----
-### Checking Power
-
-+ Recall that power usually involves some combination of the following values:
-  
-  + `\(\alpha\)`
-  + Effect Size
-  + Power
-  + Sample Size
-  
-+ In almost all cases, we will set `\(\alpha = .05\)` and `\(Power = .8\)`
-
-+ For `\(t\)`-tests, we'll use **Cohen's `\(d\)` ** as our effect size
 
 
 ---
@@ -532,50 +674,42 @@ class: middle, inverse, center
 ### Questions?
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+### Running a One-way ANOVA
 
 **Step 1: State Your Hypotheses**
 
+**Research Question:** Does the type of auditory stimulus an infant is exposed to have an effect on their affect?
+
+**Independent Variable:** Auditory Stimulus (3 levels: Infant-directed Speech; Adult-directed Speech; Infant-directed Singing)
+
+**Dependent Variable:** Time until distressed
+
 .pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;]
-`$$H_0:  \bar{x_1} = \bar{x_2}$$`
+`$$H_0:  \mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$`
 ]
 
 .pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;]
-&lt;b&gt; Nondirectional &lt;/b&gt;
 
-`$$H_1: \bar{x_1} \neq \bar{x_2}$$`
+`$$H_1:$$` At least one `\(\mu \neq\)` the other `\(\mu\)`s
 
-
-&lt;b&gt; Directional &lt;/b&gt;
-
-
-`$$H_1: \bar{x_1} &gt; \bar{x_2}$$`
-`$$H_1: \bar{x_1} &lt; \bar{x_2}$$`
 ]
-
---
-
-&gt; **Test Your Understanding:** If your research question is 'Are there differences in systolic blood pressure between the treatment group and the group that received a placebo?', what is your null hypothesis? What is your alternative hypothesis?
-
---
-
-&gt; Is this a directional or nondirectional hypothesis? Do we need a one-tailed or two-tailed test?
-
 
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+### Running a One-way ANOVA
 
 **Step 2: Conduct a Power Analysis**
 
 + [WebPower](https://webpower.psychstat.org/wiki/models/index)
 
-+ Let's check the sample required to achieve 80% power to detect a moderate effect ( `\(d\)` = .5) with `\(\alpha\)` = .05.
++ Let's check the sample required to achieve 80% power to detect a moderate effect ( `\(eta^2\)` = .06) with `\(\alpha\)` = .05.
 
-+ Remember, our research question is 'Are there differences in systolic blood pressure between the treatment group and the group that received a placebo?'
++ Although we use `\(\eta^2\)`, Webpower requires the effect size to be entered as `\(f\)`, so you'll need to convert it using the following formula:
+
+`$$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$`
 
 ---
-## Running an Independent-Samples `\(t\)`-Test
+## Running a One-way ANOVA
 
 **Step 3: Check your data**
 
@@ -585,27 +719,21 @@ class: middle, inverse, center
   
 --
 
-+ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/Data/BPdat.csv).
++ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/Data/babyDat.sav).
 
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+## Running a One-way ANOVA
 
 **Step 4: Check Assumptions**
 
 + Normality
   
   + Have a look at the histograms &amp; QQ-plots
-  + Check skewness and kurtosis values
-  + May also run statistical tests of normality...but this is not recommended
-
---
 
 + Independence of Observations
  
   + Consider study design
-
---
 
 + Homogeneity of Variance
  
@@ -613,58 +741,23 @@ class: middle, inverse, center
   
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+## Running a One-way ANOVA
 
 **Step 5: Run the test**
 
-**Step 6: Calculate the effect size/confidence intervals**
+**Step 6: Calculate the effect size**
+
+**Step 7: Interpret results**
 
 Let's continue in SPSS...
 
----
-### Running an Independent-Samples `\(t\)`-Test
-
-**Step 7: Interpret results**
-
-&lt;img src="images/BPDesc.png" width="1357" /&gt;
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
-
-**Step 7: Interpret results**
-
-&lt;img src="images/BPttest.png" width="3115" /&gt;
-
---
-
-.center[
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
-]
-
----
-### Running an Independent-Samples `\(t\)`-Test
-
-**Step 7: Interpret results**
-
-.pull-left[
-&lt;img src="images/BPeffect.png" width="1483" /&gt;
-]
-
-.pull-right[
-
-| Strength | Absolute Magnitude of `\(d\)` |
-|:--------:|:-------------------------:|
-| Weak     | `\(\leq\)` .20                |
-| Moderate | `\(\approx\)` .50             |
-| Strong   | `\(\geq\)` .8                 |
-
-]
-
-
----
-### Running an Independent-Samples `\(t\)`-Test
+### Running a One-way ANOVA
 
 **Step 8: Report**
+
++ alpha threshold 
 
 + Type of test conducted
 
@@ -676,25 +769,18 @@ Let's continue in SPSS...
   + Test statistic ( `\(t\)`)
   + Degrees of freedom
   + `\(p\)`-value
-  + Effect size
-  + Confidence intervals
+  + Effect sizes and/or confidence intervals
 
 + Brief interpretation (NO DISCUSSION)
 
 
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+### Running a One-way ANOVA
 
 **Step 8: Report**
 
-We conducted a **two-tailed independent-samples `\(t\)`-test** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; treatment &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt;systolic blood pressure (SBP) &lt;/span&gt;&lt;/b&gt;. There was a significant effect of treatment, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(t\)`(128) = -3.16, `\(p\)` = .002, 95% CI = [-4.68, -1.08], `\(d\)` = -.55 &lt;/span&gt;&lt;/b&gt;. Specifically, SBP in the treatment group was lower &lt;span style = "color:#19424C"&gt;&lt;b&gt; ( `\(M\)` = 136.97, `\(SD\)` = 4.86)&lt;/span&gt;&lt;/b&gt; than SBP in the placebo group &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 139.85, `\(SD\)` = 5.50)&lt;/span&gt;&lt;/b&gt;.
-
---
-
-Note number of decimal places and use of italics and brackets
-
-Although it's not here in the results, you'll also need to specify `\(\alpha\)`
+We conducted a **One-Way ANOVA** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; auditory stimulus &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt; an infant's affect&lt;/span&gt;&lt;/b&gt;. The `\(\alpha\)` threshold was set at .05 for all analyses. There was a significant effect of stimulus, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(F\)`(2, 57) = 5.99, `\(p\)` = .004, `\(eta^2\)` = .174, 95% CI = [.02, .33] &lt;/span&gt;&lt;/b&gt;. Posthoc Tukey's tests indicated that infants listening to infant-directed singing displayed a positive or neutral affect significantly longer &lt;span style = "color:#19424C"&gt;&lt;b&gt; ($M$ = 6.32, `\(SD\)` = 2.27)&lt;/span&gt;&lt;/b&gt; than infants listening to adult-directed speech &lt;span style = "color:#19424C"&gt;&lt;b&gt; ($M$ = 4.36, `\(SD\)` = 1.55)&lt;/span&gt;&lt;/b&gt;, `\(p\)` = .005, or infants listening to infant-directed speech &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 4.78, `\(SD\)` = 1.77)&lt;/span&gt;&lt;/b&gt;, `\(p\)` = .033. There was no significant difference in time of distress in infants listening to adult-directed speech and those listening to infant-directed speech, `\(p\)` = .762. 
 
 ---
 ### Running an Independent-Samples `\(t\)`-Test
@@ -710,12 +796,11 @@ Although it's not here in the results, you'll also need to specify `\(\alpha\)`
 ]
 
 .pull-right[
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
 
 ]
 
 ---
-count: false
 class: center, inverse, middle
 
 ### Questions?
@@ -811,7 +896,7 @@ Again, let's continue in SPSS...
 --
 
 .center[
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
+![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -844,7 +929,6 @@ We conducted a **two-tailed paired-samples `\(t\)`-test** to determine the effec
 
 
 ---
-count: false
 class: center, inverse, middle
 
 ## Questions?
