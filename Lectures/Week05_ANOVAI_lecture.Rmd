@@ -1043,44 +1043,39 @@ class: center, inverse, middle
 
 **Step 1: State Your Hypotheses**
 
+Does the presence of a family member have an effect on infant's affect?
+
 .pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>]
-$$H_0:  \bar{d} = \mu_d$$
+$$H_0:  \mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$
 ]
 
 .pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>]
-<b> Nondirectional </b>
 
-$$H_1: \bar{d} \neq \mu_d$$
+$$H_1:$$ At least one $\mu \neq$ the other $\mu$s
 
-
-<b> Directional </b>
-
-
-$$H_1: \bar{d} > \mu_d$$
-$$H_1: \bar{d} < \mu_d$$
 ]
-
 
 ---
 ### Running a Repeated-measures ANOVA
 
 **Step 2: Conduct a Power Analysis**
 
-+ Research Question: Does Medication X decrease blood pressure in participants over time?
 
 + [WebPower](https://webpower.psychstat.org/wiki/models/index)
 
-+ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( $d$ = .5) with $\alpha$ = .05.
++ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( $eta^2$ = .06) with $\alpha$ = .05.
 
 ---
-## Running a paired-samples $t$-test
+### Running a Repeated-measures ANOVA
 
 **Step 3: Check your data**
 
-+ Let's use [this sample data](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPpairedDat.csv)
++ We can continue using the data from the previous example.
+
+
 
 ---
-## Running a paired-samples $t$-test
+### Running a Repeated-measures ANOVA
 
 **Step 4: Check Assumptions**
 
@@ -1103,10 +1098,8 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_s
 ```
 
 
-
-
 ---
-## Running a paired-samples $t$-test
+### Running a Repeated-measures ANOVA
 
 **Step 5: Run the test**
 
@@ -1118,11 +1111,11 @@ Again, let's continue in SPSS...
 
 
 ---
-## Running a paired-samples $t$-test
+### Running a Repeated-measures ANOVA
 
 **Step 8: Report**
 
-We conducted a **two-tailed paired-samples $t$-test** to determine the effect of <span style = "color:#9AD079"> <b> treatment  </span></b> on <span style = "color:#9AD079"> <b>systolic blood pressure (SBP) </span></b>. There was a significant effect of treatment, <span style = "color:#18778C"><b> $t$(128) = -6.32, $p$ < .001, 95% CI = [-12.05, -6.18], $d$ = -1.07 </span></b>. Specifically, SBP was lower before the medication was administered <span style = "color:#19424C"><b> ( $M$ = 138.60, $SD$ = 6.67)</span></b> than after taking the medication <span style = "color:#19424C"><b>( $M$ = 147.71, $SD$ = 8.48)</span></b>.
+We conducted a **Repeated-measures ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> familial presence  </span></b> on <span style = "color:#9AD079"> <b>infant affect </span></b>. There was a significant effect of familial presence, <span style = "color:#18778C"><b> $F$(1.83, 107.99) = 42.40, $p$ < .001, $\eta^2_p$ = 0.42 </span></b>. Mean comparisons with Bonferroni corrections indicated that infants became distressed more quickly when no family members were present <span style = "color:#19424C"><b> ( $M$ = 3.85, $SD$ = 2.05)</span></b> than when a sibling was present <span style = "color:#19424C"><b>( $M$ = 5.04, $SD$ = 1.79)</span></b>, $p$ < .001, and when a parent was present <span style = "color:#19424C"><b>( $M$ = 7.03, $SD$ = 2.05)</span></b>, $p$ < .001. Infants retained a positive or neutral affect for longer when a parent was present than when a sibling was present, $p$ < .001. 
 
 
 ---
