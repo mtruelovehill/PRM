@@ -46,8 +46,6 @@ class: center, middle, inverse, title-slide
 ---
 ### Moving on from `\(t\)`-tests
 
-MONICA - CHECK THIS...not sure if I currently feel okay about it, because we also need to set up the idea of post-hocs. Maybe compare it to using a shoe to hammer a nail?
-
 + `\(t\)`-tests allow for the comparison of two means...what if we need to compare more than two?
 
 + 'We can just run more `\(t\)`-tests'...
@@ -94,15 +92,15 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 
 + Each level of the independent variable reflects an independent sample
 
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
++ Results indicate whether there is a difference between at least one pair of levels
 
 --
 
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
++ **Example research questions:** 
 
-  + Are speeds along Road A significantly higher than the speed limit?
+  + Is there a difference in the weekly hours of exercise of participants who exercise in a gym, outside, or in their home?
   
-  + Do a beauty product's results last longer than 3 months?
+  + When revising content, is it most effective to read the notes, rewrite the notes, or test yourself on the material?
 
 ---
 ### Repeated-Measures ANOVA
@@ -111,17 +109,15 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 
 + Each member of the sample provided data for all levels of the independent variable
 
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
++ Results indicate whether there is a difference between at least one pair of levels (but these levels are measured within the same sample)
 
 --
 
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
++ **Example research questions:**
 
-  + Are there differences in symptoms between the treatment group and the group that received a placebo?
+  + Are there differences in the number of cigarettes one smokes per day at baseline, midway through, and after completion of a smoking cessation programme?
   
-  + Do inmates who are put in solitary confinement exhibit more aggressive behaviour than those who are not?
-  
-  + Are there differences in TBI rate between boxers and Muay Thai fighters?
+  + Does one's depression severity (as measured by BDI scores) change across the seasons?
   
 
 ---
@@ -684,15 +680,15 @@ class: middle, inverse, center
 
 **Dependent Variable:** Time until distressed
 
-.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;]
-`$$H_0:  \mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$`
-]
+.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;
+`$$\mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$`
+]]
 
-.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;]
+.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;
 
-`$$H_1:$$` At least one `\(\mu \neq\)` the other `\(\mu\)`s
+At least one `\(\mu \neq\)` the other `\(\mu\)`s
 
-]
+]]
 
 
 ---
@@ -783,7 +779,7 @@ Let's continue in SPSS...
 We conducted a **One-Way ANOVA** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; auditory stimulus &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt; an infant's affect&lt;/span&gt;&lt;/b&gt;. The `\(\alpha\)` threshold was set at .05 for all analyses. There was a significant effect of stimulus, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(F\)`(2, 57) = 5.99, `\(p\)` = .004, `\(eta^2\)` = .174, 95% CI = [.02, .33] &lt;/span&gt;&lt;/b&gt;. Posthoc Tukey's tests indicated that infants listening to infant-directed singing displayed a positive or neutral affect significantly longer &lt;span style = "color:#19424C"&gt;&lt;b&gt; ($M$ = 6.32, `\(SD\)` = 2.27)&lt;/span&gt;&lt;/b&gt; than infants listening to adult-directed speech &lt;span style = "color:#19424C"&gt;&lt;b&gt; ($M$ = 4.36, `\(SD\)` = 1.55)&lt;/span&gt;&lt;/b&gt;, `\(p\)` = .005, or infants listening to infant-directed speech &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 4.78, `\(SD\)` = 1.77)&lt;/span&gt;&lt;/b&gt;, `\(p\)` = .033. There was no significant difference in time of distress in infants listening to adult-directed speech and those listening to infant-directed speech, `\(p\)` = .762. 
 
 ---
-### Running an Independent-Samples `\(t\)`-Test
+### Running a One-way ANOVA
 
 **Step 8: Report**
 
@@ -806,55 +802,48 @@ class: center, inverse, middle
 ### Questions?
 
 ---
-### Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 1: State Your Hypotheses**
 
-.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;]
-`$$H_0:  \bar{d} = \mu_d$$`
-]
+Does the presence of a family member have an effect on infant's affect?
 
-.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;]
-&lt;b&gt; Nondirectional &lt;/b&gt;
+.pull-left[.center[&lt;span style = "color: #18778C"&gt; Null Hypothesis &lt;/span&gt;
+`$$\mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$`
+]]
 
-`$$H_1: \bar{d} \neq \mu_d$$`
+.pull-right[.center[&lt;span style = "color: #18778C"&gt; Alternative Hypothesis &lt;/span&gt;
 
+At least one `\(\mu \neq\)` the other `\(\mu\)`s
 
-&lt;b&gt; Directional &lt;/b&gt;
-
-
-`$$H_1: \bar{d} &gt; \mu_d$$`
-`$$H_1: \bar{d} &lt; \mu_d$$`
-]
-
---
-
-&gt; **Test Your Understanding:** If your research question is 'Does Medication X change blood pressure in participants over time?', is this a directional or nondirectional hypothesis? Do we need a one-tailed or two-tailed test?
-
-
+]]
 
 ---
-### Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 2: Conduct a Power Analysis**
 
-+ Research Question: Does Medication X decrease blood pressure in participants over time?
 
 + [WebPower](https://webpower.psychstat.org/wiki/models/index)
 
-+ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( `\(d\)` = .5) with `\(\alpha\)` = .05.
++ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( `\(eta^2\)` = .06) with `\(\alpha\)` = .05.
 
 ---
-## Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 3: Check your data**
 
-+ Let's use [this sample data](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPpairedDat.csv)
++ We can continue using the data from the previous example.
+
+
 
 ---
-## Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 4: Check Assumptions**
+
+.pull-left[
+
 
 + Normality of difference scores
   
@@ -862,76 +851,54 @@ class: center, inverse, middle
   + Check skewness and kurtosis values
   + May also run statistical tests of normality...but this is not recommended
 
---
-
 + Independence (of participants rather than observations)
- 
+
   + Consider study design
+  
++ Sphericity
+  
+  + Check Mauchly's test
+]
+
+.pull-right[
+&lt;img src="https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png" width="75%" /&gt;
+]
+  
 
 
 
 ---
-## Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 5: Run the test**
 
 **Step 6: Calculate the effect size/confidence intervals**
 
+**Step 7: Interpret results**
+
 Again, let's continue in SPSS...
 
----
-## Running a paired-samples `\(t\)`-test
-
-**Step 7: Interpret results**
-
-&lt;img src="images/pBPcorr.png" width="1315" /&gt;
 
 ---
-## Running a paired-samples `\(t\)`-test
-
-**Step 7: Interpret results**
-
-&lt;img src="images/pBPtest.png" width="2523" /&gt;
-
---
-
-.center[
-![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
-]
-
----
-## Running a paired-samples `\(t\)`-test
-
-**Step 7: Interpret results**
-
-.pull-left[
-&lt;img src="images/pBPeffect.png" width="1704" /&gt;
-]
-
-
-.pull-right[
-
-| Strength | Absolute Magnitude of `\(d\)` |
-|:--------:|:-------------------------:|
-| Weak     | `\(\leq\)` .20                |
-| Moderate | `\(\approx\)` .50             |
-| Strong   | `\(\geq\)` .8                 |
-
-]
-
-
----
-## Running a paired-samples `\(t\)`-test
+### Running a Repeated-measures ANOVA
 
 **Step 8: Report**
 
-We conducted a **two-tailed paired-samples `\(t\)`-test** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; treatment  &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt;systolic blood pressure (SBP) &lt;/span&gt;&lt;/b&gt;. There was a significant effect of treatment, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(t\)`(128) = -6.32, `\(p\)` &lt; .001, 95% CI = [-12.05, -6.18], `\(d\)` = -1.07 &lt;/span&gt;&lt;/b&gt;. Specifically, SBP was lower before the medication was administered &lt;span style = "color:#19424C"&gt;&lt;b&gt; ( `\(M\)` = 138.60, `\(SD\)` = 6.67)&lt;/span&gt;&lt;/b&gt; than after taking the medication &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 147.71, `\(SD\)` = 8.48)&lt;/span&gt;&lt;/b&gt;.
+We conducted a **Repeated-measures ANOVA** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; familial presence  &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt;infant affect &lt;/span&gt;&lt;/b&gt;. There was a significant effect of familial presence, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(F\)`(1.83, 107.99) = 42.40, `\(p\)` &lt; .001, `\(\eta^2_p\)` = 0.42 &lt;/span&gt;&lt;/b&gt;. Mean comparisons with Bonferroni corrections indicated that infants became distressed more quickly when no family members were present &lt;span style = "color:#19424C"&gt;&lt;b&gt; ( `\(M\)` = 3.85, `\(SD\)` = 2.05)&lt;/span&gt;&lt;/b&gt; than when a sibling was present &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 5.04, `\(SD\)` = 1.79)&lt;/span&gt;&lt;/b&gt;, `\(p\)` &lt; .001, and when a parent was present &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 7.03, `\(SD\)` = 2.05)&lt;/span&gt;&lt;/b&gt;, `\(p\)` &lt; .001. Infants retained a positive or neutral affect for longer when a parent was present than when a sibling was present, `\(p\)` &lt; .001. 
 
 
 ---
 class: center, inverse, middle
 
 ## Questions?
+
+---
+
+.center[
+&lt;img src="https://mtruelovehill.github.io/PRM/Lectures/images/midsemesterfeedback.png" width="50%" /&gt;
+]
+
+
 
 
 

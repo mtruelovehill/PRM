@@ -57,8 +57,6 @@ accent3 <- '#19424C'
 ---
 ### Moving on from $t$-tests
 
-MONICA - CHECK THIS...not sure if I currently feel okay about it, because we also need to set up the idea of post-hocs. Maybe compare it to using a shoe to hammer a nail?
-
 + $t$-tests allow for the comparison of two means...what if we need to compare more than two?
 
 + 'We can just run more $t$-tests'...
@@ -105,15 +103,15 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 
 + Each level of the independent variable reflects an independent sample
 
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
++ Results indicate whether there is a difference between at least one pair of levels
 
 --
 
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
++ **Example research questions:** 
 
-  + Are speeds along Road A significantly higher than the speed limit?
+  + Is there a difference in the weekly hours of exercise of participants who exercise in a gym, outside, or in their home?
   
-  + Do a beauty product's results last longer than 3 months?
+  + When revising content, is it most effective to read the notes, rewrite the notes, or test yourself on the material?
 
 ---
 ### Repeated-Measures ANOVA
@@ -122,17 +120,15 @@ MONICA - CHECK THIS...not sure if I currently feel okay about it, because we als
 
 + Each member of the sample provided data for all levels of the independent variable
 
-+ CHECK WHETHER THIS COULD BE PHRASED BETTER Tests whether there is a difference between at least one pair of levels
++ Results indicate whether there is a difference between at least one pair of levels (but these levels are measured within the same sample)
 
 --
 
-+ **Example research questions:** [CHANGE THESE TO MATCH ANOVA]
++ **Example research questions:**
 
-  + Are there differences in symptoms between the treatment group and the group that received a placebo?
+  + Are there differences in the number of cigarettes one smokes per day at baseline, midway through, and after completion of a smoking cessation programme?
   
-  + Do inmates who are put in solitary confinement exhibit more aggressive behaviour than those who are not?
-  
-  + Are there differences in TBI rate between boxers and Muay Thai fighters?
+  + Does one's depression severity (as measured by BDI scores) change across the seasons?
   
 
 ---
@@ -904,15 +900,15 @@ class: middle, inverse, center
 
 **Dependent Variable:** Time until distressed
 
-.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>]
-$$H_0:  \mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$
-]
+.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
+$$\mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$
+]]
 
-.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>]
+.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
 
-$$H_1:$$ At least one $\mu \neq$ the other $\mu$s
+At least one $\mu \neq$ the other $\mu$s
 
-]
+]]
 
 
 ---
@@ -1045,15 +1041,15 @@ class: center, inverse, middle
 
 Does the presence of a family member have an effect on infant's affect?
 
-.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>]
-$$H_0:  \mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$
-]
+.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
+$$\mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$
+]]
 
-.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>]
+.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
 
-$$H_1:$$ At least one $\mu \neq$ the other $\mu$s
+At least one $\mu \neq$ the other $\mu$s
 
-]
+]]
 
 ---
 ### Running a Repeated-measures ANOVA
@@ -1079,6 +1075,9 @@ $$H_1:$$ At least one $\mu \neq$ the other $\mu$s
 
 **Step 4: Check Assumptions**
 
+.pull-left[
+
+
 + Normality of difference scores
   
   + Have a look at the histograms & QQ-plots
@@ -1092,10 +1091,15 @@ $$H_1:$$ At least one $\mu \neq$ the other $\mu$s
 + Sphericity
   
   + Check Mauchly's test
-  
-```{r, echo = F}
+]
+
+.pull-right[
+```{r, echo = F, out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png')
 ```
+]
+  
+
 
 
 ---
@@ -1125,9 +1129,12 @@ class: center, inverse, middle
 
 ---
 
-```{r, echo = F}
+.center[
+```{r, echo = F, out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Lectures/images/midsemesterfeedback.png')
 ```
+]
+
 
 
 
