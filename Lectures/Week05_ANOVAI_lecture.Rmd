@@ -722,9 +722,8 @@ Basically:
 
 3) Using this distribution, compute the probability of getting an $F$-statistic at least as extreme as yours
 
-]
 
---
+]
 
 .pull-right[
 ```{r, echo = F, fig.height=4}
@@ -743,6 +742,23 @@ ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
   geom_area(stat = 'function', fun = df, args= list(df1 = 2, df2 = 9), fill = accent1, xlim=c(qf(pf(2.6, 2, 9, lower.tail = F), df1 = 2, df2 = 9, lower.tail = F), 5), alpha = .8)
 ```
 ]
+
+---
+### Posthoc Tests
+
++ After determining the presence of an overall effect, you can conduct posthoc tests to look for specific effects between groups.
+
++ Involves running separate tests on each possible comparison
+
+--
+
++ But what about inflated Type I error risk??
+
+--
+
++ First, these are only conducted if the presence of an overall effect is detected.
+
++ Second, $p$-values are corrected so that the overall Type I error rate across all tests is still equal to the $\alpha$ threshold
 
 ---
 class: center, inverse, middle
@@ -925,7 +941,7 @@ At least one $\mu \neq$ the other $\mu$s
 $$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 3: Check your data**
 
@@ -939,7 +955,7 @@ $$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
 
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 4: Check Assumptions**
 
@@ -957,7 +973,7 @@ $$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
   
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 5: Run the test**
 

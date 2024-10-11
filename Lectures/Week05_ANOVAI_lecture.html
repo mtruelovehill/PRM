@@ -552,13 +552,29 @@ Basically:
 
 3) Using this distribution, compute the probability of getting an `\(F\)`-statistic at least as extreme as yours
 
-]
 
---
+]
 
 .pull-right[
 ![](Week05_ANOVAI_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
 ]
+
+---
+### Posthoc Tests
+
++ After determining the presence of an overall effect, you can conduct posthoc tests to look for specific effects between groups.
+
++ Involves running separate tests on each possible comparison
+
+--
+
++ But what about inflated Type I error risk??
+
+--
+
++ First, these are only conducted if the presence of an overall effect is detected.
+
++ Second, `\(p\)`-values are corrected so that the overall Type I error rate across all tests is still equal to the `\(\alpha\)` threshold
 
 ---
 class: center, inverse, middle
@@ -705,7 +721,7 @@ At least one `\(\mu \neq\)` the other `\(\mu\)`s
 `$$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$`
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 3: Check your data**
 
@@ -719,7 +735,7 @@ At least one `\(\mu \neq\)` the other `\(\mu\)`s
 
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 4: Check Assumptions**
 
@@ -737,7 +753,7 @@ At least one `\(\mu \neq\)` the other `\(\mu\)`s
   
 
 ---
-## Running a One-way ANOVA
+### Running a One-way ANOVA
 
 **Step 5: Run the test**
 
