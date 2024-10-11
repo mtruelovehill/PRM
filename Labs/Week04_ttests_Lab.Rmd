@@ -276,7 +276,7 @@ This can be tested using Levene's test. This test runs automatically when you pe
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week4_4e.png')
 ```
 
-You can check the line that says 'Based on Mean' and evaluate the 'Sig.' column. A significant Levene's test indicates that the data violate the assumption. If we set $\alpha$ = .05, `Infant Vocalisation` does not violate the assumption of equal variances, as $p$ = .146, which is less than the $\alpha$ threshold. 
+You can check the line that says 'Based on Mean' and evaluate the 'Sig.' column. A significant Levene's test indicates that the data violate the assumption. If we set $\alpha$ = .05, `Infant Vocalisation` does not violate the assumption of equal variances, as $p$ = .146, which is more than the $\alpha$ threshold. 
 
 </details>
 </div>
