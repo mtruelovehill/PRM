@@ -254,7 +254,7 @@ The requirements/assumptions of a One-Way ANOVA are:
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Have a look at the [lecture slides]() if you're lost. Because normality must be tested within levels, you should use *Analyze>Descriptive Statistics>Explore* to get the plots you need.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week05_ANOVAI_lecture.html#1) if you're lost. Because normality must be tested within levels, you should use *Analyze>Descriptive Statistics>Explore* to get the plots you need.
 
 </details>
 </div>
@@ -509,7 +509,7 @@ The proper style of reporting the results from an ANOVA looks like this:
 
 $F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], $\eta^2$ = [$\eta^2$ value].
 
-Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides]() for a specific example.
+Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week05_ANOVAI_lecture.html#1) for a specific example.
 
 </details>
 </div>
@@ -593,7 +593,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Have a look at the [lecture slides]() if you need guidance here.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week05_ANOVAI_lecture.html#1) if you need guidance here.
 
 </details>
 </div>
