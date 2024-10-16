@@ -17,6 +17,8 @@ library(knitr)
 library(shiny)
 library(shinyjs)
 library(bslib)
+library(reshape2)
+library(rstatix)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -647,15 +649,19 @@ There was a significant effect of Therapy Group on CAPS score, $F$(1, 129) = 6.9
 
 There was a significant interaction between Time and Therapy Group on CAPS score, $F$(1, 129) = 17.01, $p$ < .001, $\eta^2$ = .12. Simple effects analyses indicated that while there was no significant effect of therapy group at baseline, $F$(1, 129) = 0.04, $p$ = .834, those in the waitlist group had significantly higher CAPS scores than those in the VR therapy group at follow-up, $F$(1, 129) = 16.50, $p$ < .001, $\eta^2$ = .11. See Table 1 for descriptive data for each group.
 
-
-```{r, echo = F}
-
-
-gt()
-
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_descTable.png')
 ```
 
-EXAMPLE ANOVA TABLE
+
+<br>
+<br>
+
+Note that you can also put results from ANOVA tests into a table. If you do this, you don't need to also put them into text. Here is an example of an APA-style ANOVA table:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANOVAtable.png')
+```
 
 </details>
 </div>
