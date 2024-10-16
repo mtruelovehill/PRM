@@ -4,7 +4,7 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
 
@@ -62,7 +62,7 @@ This dataset contains the following variables:
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat), 
-                      Description=c('Age in years', 'Sex', 'Levels: 0 = Waitlist; 1 = VR Therapy', 'pre-intervention CAPS score (possible values = 0-80)', 'post-intervention CAPS score (possible values = 0-80)'))
+                      Description=c('Levels: 0 = Waitlist; 1 = VR Therapy', 'Age in years', 'Sex', 'pre-intervention CAPS score (possible values = 0-80)', 'post-intervention CAPS score (possible values = 0-80)'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%

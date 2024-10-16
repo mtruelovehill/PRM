@@ -96,7 +96,7 @@ if (window.hljs) {
 </style>
 <!-- end tabsets -->
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="https://mtruelovehill.github.io/PRM/Labs/css/style.css" type="text/css" />
 
 </head>
 
@@ -937,6 +937,7 @@ gender distribution of sample)</li>
 <li>the type of test used</li>
 <li>power analysis results</li>
 <li>independent and dependent variables tested</li>
+<li>type of independent variables (between- or within-subjects)</li>
 <li><span class="math inline">\(F\)</span>-statistic</li>
 <li>degrees of freedom</li>
 <li>p-values</li>
@@ -977,7 +978,8 @@ Clinician-Administered PTSD Scale (CAPS) scores at baseline, and again
 after treatment. We hypothesised that there would be a difference in
 CAPS scores across therapy groups, and that this difference would be
 dependent upon time. To test this, we performed a 2x2 Factorial ANOVA
-with both time (levels: baseline; follow-up) and therapy group (levels:
+with both one within-subjects variable, Time (levels: baseline;
+follow-up), and one between-subjects variable, therapy group (levels:
 Waitlist, VR Therapy) as independent variables and CAPS score as the
 dependent variable. <span class="math inline">\(\alpha\)</span> was set
 at .05 for all analyses. An a priori power analysis indicated that 128
@@ -994,23 +996,28 @@ class="math inline">\(SD\)</span> = 16.48; 63 females, 68 males). The
 normality assumption was checked through visual assessment of the
 QQ-plots and histograms. The homogeneity of variance assumption was
 checked using Levene’s test. The data met all assumptions.</p>
-<p>Type of facial obstruction had a significant effect on emotion
-identification, <span class="math inline">\(F\)</span>(2, 177) = 15.14,
+<p>There was a significant effect of Therapy Group on CAPS score, <span
+class="math inline">\(F\)</span>(1, 129) = 6.90, <span
+class="math inline">\(p\)</span> = .010, <span
+class="math inline">\(\eta^2\)</span> = .05. Specifically, participants
+in the waitlist group had higher CAPS scores than those in the VR
+therapy group. The effect of Time on CAPS scores was not significant,
+<span class="math inline">\(F\)</span>(1, 129) = 3.21, <span
+class="math inline">\(p\)</span> = .076, <span
+class="math inline">\(\eta^2\)</span> = .024.</p>
+<p>There was a significant interaction between Time and Therapy Group on
+CAPS score, <span class="math inline">\(F\)</span>(1, 129) = 17.01,
 <span class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .15. Specifically, those who
-viewed images with eyes obstructed (<span
-class="math inline">\(M\)</span> = 15.73, <span
-class="math inline">\(SD\)</span> = 7.84) recognised significantly fewer
-emotions in images than the control group (<span
-class="math inline">\(M\)</span> = 23.37, <span
-class="math inline">\(SD\)</span> = 9.16), <span
-class="math inline">\(p\)</span> &lt; .001. Those who viewed images with
-the mouth obstructed (<span class="math inline">\(M\)</span> = 17.15,
-<span class="math inline">\(SD\)</span> = 7.12) also recognised
-significantly fewer emotions in images than the control group, <span
-class="math inline">\(p\)</span> &lt; .001. There was no significant
-difference between the two obstruction groups, <span
-class="math inline">\(p\)</span> = .603.</p>
+class="math inline">\(\eta^2\)</span> = .12. Simple effects analyses
+indicated that while there was no significant effect of therapy group at
+baseline, <span class="math inline">\(F\)</span>(1, 129) = 0.04, <span
+class="math inline">\(p\)</span> = .834, those in the waitlist group had
+significantly higher CAPS scores than those in the VR therapy group at
+follow-up, <span class="math inline">\(F\)</span>(1, 129) = 16.50, <span
+class="math inline">\(p\)</span> &lt; .001, <span
+class="math inline">\(\eta^2\)</span> = .11. See Table 1 for descriptive
+data for each group.</p>
+<p>MONICA - ADD TABLE HERE</p>
 </details>
 </div>
 <p></br></p>
@@ -1060,17 +1067,17 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_1cee3a4", 
+"character")), answers = list(structure(list(id = "lnr_ans_aa5c55f", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_eee33f4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a93118e", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8ab994", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_23dadf8", 
     option = "Multiway ANOVA", value = "Multiway ANOVA", label = structure("Multiway ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b8702db", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_56fb80d", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1083,18 +1090,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 445314878.792634, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 289904225.865003, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_104413d", 
+"character")), answers = list(structure(list(id = "lnr_ans_182bc94", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3067cc4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_82ff44", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1105,17 +1112,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1359517341.36693, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1791529011.66575, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_cd281e3", 
+"character")), answers = list(structure(list(id = "lnr_ans_ad1f2cc", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_461d0f3", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d929620", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1126,7 +1133,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1037872986.0167, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 9755425.49545728, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1134,7 +1141,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-1", 
     question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_cf14030", 
+    "character")), answers = list(structure(list(id = "lnr_ans_a3f1221", 
         option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1145,17 +1152,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-1-answer", 
         question = "cyrIndT-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 520572924.257589, options = list(
+    allow_retry = FALSE, seed = 679673557.183502, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrIndT-2", question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_44429b1", 
+"character")), answers = list(structure(list(id = "lnr_ans_7eb4020", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1f6b5dd", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_24af348", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1166,7 +1173,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrIndT-2-answer", 
     question = "cyrIndT-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 801872367.626599, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 443803960.793338, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1174,7 +1181,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-3", 
     question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5af794", 
+    "character")), answers = list(structure(list(id = "lnr_ans_44dc8c3", 
         option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1185,7 +1192,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-3-answer", 
         question = "cyrIndT-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1037671972.5168, options = list(
+    allow_retry = FALSE, seed = 733154952.658598, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
