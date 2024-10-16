@@ -22,7 +22,6 @@ baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ## Intro to Today's Lab
@@ -55,14 +54,14 @@ In this experiment, you'll be testing the effectiveness of a virtual reality-bas
 **Interaction Effect:** Does the effect of time on CAPS scores of PTSD patients change depending upon treatment group?
 
 
-You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv)
+You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/Week6LabData.sav)
 
 This dataset contains the following variables:
 
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat), 
-                      Description=c('Levels: 0 = Waitlist; 1 = VR Therapy', 'Age in years', 'Sex', 'pre-intervention CAPS score (possible values = 0-80)', 'post-intervention CAPS score (possible values = 0-80)'))
+                      Description=c('Age in years', 'Sex', 'Levels: 0 = Waitlist; 1 = VR Therapy', 'pre-intervention CAPS score (possible values = 0-80)', 'post-intervention CAPS score (possible values = 0-80)'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -77,7 +76,7 @@ quiz(caption = '',
      question("Which test is most appropriate to address your research question, given the study design?",
               answer("One-Way ANOVA"),
               answer("Repeated-Measures ANOVA"),
-              answer("Multiway ANOVA", correct = T),
+              answer("Factorial ANOVA", correct = T),
               answer("You will need to run multiple tests to address the research question."),
               message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist)."),
      question("What kind of variable is Treatment Group?",
@@ -121,21 +120,21 @@ To state hypotheses statistically, you should structure them in the framework of
 
 **Main Effect 1**
 
-$H_0:$ There will be no effect of Treatment Group on CAPs Score
+$H_0:$ There will be no effect of Treatment Group on CAPS Score
 
-$H_1:$ There will be an effect of Treatment Group on CAPs Score
+$H_1:$ There will be an effect of Treatment Group on CAPS Score
 
 **Main Effect 2**
 
-$H_0:$ There will be no effect of Time on CAPs Score
+$H_0:$ There will be no effect of Time on CAPS Score
 
-$H_1:$ There will be an effect of Time on CAPs Score
+$H_1:$ There will be an effect of Time on CAPS Score
 
 **Interaction**
 
 $H_0:$ The effect of Time on CAPs score will not dependent upon Treatment Group.
 
-$H_1:$ The effect of Time on CAPs score is dependent upon Treatment Group.
+$H_1:$ The effect of Time on CAPS score is dependent upon Treatment Group.
 
 
 <i> Statistical: </i>
@@ -178,7 +177,7 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 + [ ] $\ $ Add labels to `TherapyGroup`: 0 = 'Waitlist'; 1 = 'VR Therapy'
 
-+ [ ] $\ $ Check the descriptive statistics of your data. Are there any issues to address?
++ [ ] $\ $ Check the descriptive statistics of your data.
 
 + [ ] $\ $ Produce the proper plot to visualise the distribution of your continuous variables, `Age`, `CAPSBaseline`, and `CAPSFollowUp`.
 
@@ -187,8 +186,6 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 For continuous variables, the descriptive statistics you'll want to check are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of your expected range. For categorical variables, you'll check the frequency of participants in each group.
-
-You have some missing data. It will be automatically excluded from your primary analysis, but you'll want to exclude these participants' values from your sample statistics as well.
 
 </details>
 </div>
@@ -226,7 +223,7 @@ Select the TherapyGroup x Values cell and click the dots to bring up the _Value 
 **Categorical Variables:** Your categorical variables are `TherapyGroup` and `Gender`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_freqTables.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateFreqTables.png')
 ```
 
 Note that if you set up the labels for the `TherapyGroup` properly, these will appear in the frequency tables, rather than the numeric values you see in 'Data View'. 
@@ -234,10 +231,10 @@ Note that if you set up the labels for the `TherapyGroup` properly, these will a
 **Continuous Variables:** Your categorical variables are `Age`, `CAPSBaseline`, and `CAPSFollowUp`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then click 'Charts'. As these are continuous variables, you will visualise them using histograms. Click 'Histogram', then tick 'Show normal curve on histogram'. Click 'Continue' and then 'OK'. 
 
 ```{r, echo = F, fig.align= 'center', out.width = '40%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_descStats.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateDescStat.png')
 ```
 
-Here, you can see that you all values fall within the range of possible values for the CAPS (0-80), and all ages seem reasonable. However, you are missing 2 values from the `CAPSFollowUp` column.
+Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values. Your age variable isn't normally distributed, but as its not one of the variables being tested, this doesn't matter. In fact, a uniform age distribution indicates you're getting a good range of people from each age group in your sample.
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ageHist.png')
@@ -249,24 +246,6 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_b
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_followUpHist.png')
-```
-
-Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values. Your age variable isn't normally distributed, but as its not one of the variables being tested, this doesn't matter. In fact, a uniform age distribution indicates you're getting a good range of people from each age group in your sample.
-
-<span style = "font-weight: bold; font-size: 14pt"> Missing Data and Regenerating Descriptives </span>
-
-There are many potential ways to deal with missing data, but within the scope of this course (and because there are only a few values), we'll just remove these participants entirely. One way you can easily do this is by applying a filter that removes rows with missing values on a specific variable. To do this, click *Data>Select Cases*. In the box, click 'If condition is satisfied', then click the 'If' button to set the criteria. In the 'Function Group' box, scroll down to 'Missing Values' and select it. Some functions will appear in the 'Functions and Special Variables' box. Double-click 'Missing' so that it appears in the box at the top. Then, add `CAPSFollowUp` where the ? is. Place your cursor before the MISSING text and type 'not('. Close the curly bracket at the end of the full text, so that you have the following text in the top box: "not(MISSING(CAPSFollowUp))". Click 'Continue' and 'OK'. 
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_missingFilter.png')
-```
-
-If you've added the filter properly, you will see a new column that filters the data so that the rows with missing data are filtered out. Now, you'll need to rerun your descriptive statistics so that they accurately reflect the final sample you'll be using in the analysis. You'll notices the values have shifted slightly, as you've excluded the two participants with missing data:
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateFreqTables.png')
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateDescStat.png')
 ```
 
 
@@ -669,7 +648,14 @@ There was a significant effect of Therapy Group on CAPS score, $F$(1, 129) = 6.9
 There was a significant interaction between Time and Therapy Group on CAPS score, $F$(1, 129) = 17.01, $p$ < .001, $\eta^2$ = .12. Simple effects analyses indicated that while there was no significant effect of therapy group at baseline, $F$(1, 129) = 0.04, $p$ = .834, those in the waitlist group had significantly higher CAPS scores than those in the VR therapy group at follow-up, $F$(1, 129) = 16.50, $p$ < .001, $\eta^2$ = .11. See Table 1 for descriptive data for each group.
 
 
-MONICA - ADD TABLE HERE
+```{r, echo = F}
+
+
+gt()
+
+```
+
+EXAMPLE ANOVA TABLE
 
 </details>
 </div>
