@@ -669,4 +669,137 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_A
 
 
 ## Bonus Material: Using ggplot for visualisation
+
+While you can produce plots in SPSS, they often don't meet APA standards and are difficult to customise. One method that you can use to produce more effective figures is the `ggplot2` package in R. While this would typically require some coding, the website, [ggplot GUI](https://shiny.gmw.rug.nl/ggplotgui/) provides an application that allows you to produce plots with point-and-click options. 
+
+In order for the application to work properly, however, categorical variables need to be presented as character data, rather than numbers. Fortunately, there's an easy method for swapping the levels of your categorical variable, `TherapyGroup`, from numbers to words. If you assigned labels properly when completing [Experiment 1 Data Review], you can highlight the `TherapyGroup` column in your data, and click the 'Value Labels' button at the top:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_variableFlip.png')
+```
+
+If you've added labels properly, you'll notice that the highlighted column will now have the labels rather than numeric values.
+
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_labelSwap.png')
+```
+
+Now, save your file. This updated file (with the labels in the `TherapyGroup` column) is what you will import into the ggplot GUI application.
+
+### Your Task
+
++ [ ] $\ $ Using the ggplot GUI application, produce a boxplot with `TherapyGroup` on the x-axis and `CAPSFollowUp` on the y-axis. 
+
++ [ ] $\ $ Upload [these data](https://mtruelovehill.github.io/PRM/Labs/Week6LabData_Long.sav) into the ggplot GUI, and produce a boxplot with `Time` on the x-axis, `CAPS` on the y-axis, and `TherapyGroup` as Group/Color. 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+If you can't quite figure out the label swap, you can upload [this dataset](https://mtruelovehill.github.io/PRM/Labs/Week6LabData_TGnames.sav) to the ggplot GUI to produce your plot.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotUpload.png')
+```
+
+You'll see a sample of the data appear to the right. To generate a plot with these data, click the 'ggplot' option, here:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png')
+```
+
+You'll define your plot in the column to the left. Under 'Type of graph', click 'Boxplot'. Set your Y-Variable to `CAPSFollowUp`, then set your X-Variable to `TherapyGroup`. To make the plot APA style, you'll need to look at the box to the right, 'Change aesthetics'. Click 'Theme', then select, 'classic'. You should also change the labels using the 'Text' tab. Tick 'change label axes', and label them appropriately (with proper spacing). I also recommend increasing the font size to at least 14 for axis titles and 12 for axis text. When you're finished, your plot should look something like this:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_basicBoxplot.png')
+```
+
+You can click other tabs and set different options to see what other changes you can make to your plot. If you ever need to produce plots to use in a write-up (your dissertation, for example), you can click 'Download pdf of figure'. This will allow you to save your figure for use elsewhere.
+
+<br>
+
+To produce the more complex plot, upload the dataset in the same way as before. Don't forget to click 'Submit Datafile' once you've uploaded it. Once again, you'll be making a boxplot. This time, set `CAPS` as your Y-variable and `Time` as your X-variable. Set `TherapyGroup` as your Group (or color) variable. You can change the aesthetics as suggested above to make sure the plot is APA style. You can also change colors if you'd like. You should end up with something that looks similar to this:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_advancedBoxplot.png')
+```
+
+Now you have an APA-style dissertation-ready figure!
+
+</details>
+</div>
+</br>
+
 ## Bonus Material: ANCOVA
+
+Sometimes, there may be variables that are not directly relevant to your main analysis, but may still have an effect on the dependent variable. For example, a study that is looking at how phone usage affects attention span in children and adolescents may control for age. This is because it is well-established that one's attention span changes as they age, so the researcher would want to be sure that their results reflect the true relationship between phone use and attention span, rather than age and attention span.
+
+Variables that may have an influence on the dependent variable, but are not part of your primary analysis are called **covariates**. You can control for covariate effects by including them in your model. One model that can be used in this way is called **ANCOVA**, or Analysis of Covariance. 
+
+### Your Task
+
++ [ ] $\ $ Run an ANCOVA by adding `Age` as a covariate to the 2x2 ANOVA model you've been working with in this lab (with `Time` and `TherapyGroup` as IVs and CAPS score as the DV). 
+
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To run an ANCOVA with your current model (2x2 Factorial ANOVA with one between- and one within-subjects independent variable), you can navigate to *Analyze>General Linear Model>Repeated Measures*.
+
+If your original model only contained between-subjects variables, you would use *Analyze>General Linear Model>Multivariate* instead.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To run an ANCOVA with a model with a within-subjects variable, navigate to *Analyze>General Linear Model>Repeated Measures*. Set up your IV and DVs as before (see the solution in [Experiment 1 Analysis] if you're unsure about this step). After you've added your variables, add `Age` to the 'Covariates' box:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAsetup.png')
+```
+
+
+You can set your model using the same options as in [Experiment 1 Analysis]. When you're ready, click 'OK' to run the model.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAwsEffects.png')
+```
+
+You'll see that `Age` has been added to the results tables. 
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/Week6_ANCOVAbsEffects.png')
+```
+
+If you compare the results of your key variables (`Time` and `TherapyGroup` on CAPS score), you'll notice that the values have changed slightly, but the effects have remained the same. There is still a significant effect of `TherapyGroup`, and there is still a significant interaction. However, the numeric results are slightly different. This is because these results reflect the effect of your IVs on your DV, when `Age` is held constant. In other words, you're controlling for the effect of `Age`. 
+
+While in this case, the results did not change much, sometimes the effect of a covariate can drastically alter the model results. You should always carefully consider which covariates are important to include when planning your study and analysis, as this could have a major impact on your final outcome.
+
+When interpreting results from ANCOVA, you should focus on the variables about which you've hypothesised (i.e., your IVs and DV). It's okay to briefly report whether or not your covariates are significant, but they should not be a strong focus of your results/discussion, and you only need to report the $p$-values. If there is a strong covariate effect and you think this has affected your hypothesised results, you might consider discussing it further in the discussion section, but it should be done in the context of your research aim and hypothesis. For example, in this this case, the methods/results write-ups might look something like this: 
+
+
+<b> Example Report </b>
+
+We performed a 2x2 ANCOVA with both one within-subjects variable, Time (levels: baseline; follow-up), and one between-subjects variable, therapy group (levels: Waitlist, VR Therapy) as independent variables and CAPS score as the dependent variable. We included participant age as a covariate. $\alpha$ was set at .05 for all analyses.
+
+There was a significant effect of Therapy Group on CAPS score, $F$(1, 128) = 7.06, $p$ = .009, $\eta^2$ = .05. Specifically, participants in the waitlist group had higher CAPS scores than those in the VR therapy group. The effect of Time on CAPS scores was not significant, $F$(1, 128) = .738, $p$ = .392, $\eta^2$ = .006. Age, as a covariate, was not significant, $p$ = .428
+
+There was a significant interaction between Time and Therapy Group on CAPS score, $F$(1, 128) = 17.77, $p$ < .001, $\eta^2$ = .12. Simple effects analyses indicated that while there was no significant effect of therapy group at baseline, $F$(1, 128) = 0.04, $p$ = .839, those in the waitlist group had significantly higher CAPS scores than those in the VR therapy group at follow-up, $F$(1, 128) = 17.10, $p$ < .001, $\eta^2$ = .11.
+
+
+</details>
+</div>
+</br>

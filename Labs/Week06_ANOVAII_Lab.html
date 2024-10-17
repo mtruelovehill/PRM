@@ -985,7 +985,12 @@ follow-up, <span class="math inline">\(F\)</span>(1, 129) = 16.50, <span
 class="math inline">\(p\)</span> &lt; .001, <span
 class="math inline">\(\eta^2\)</span> = .11. See Table 1 for descriptive
 data for each group.</p>
-<p>EXAMPLE ANOVA TABLE</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_descTable.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><br> <br></p>
+<p>Note that you can also put results from ANOVA tests into a table. If
+you do this, you don’t need to also put them into text. Here is an
+example of an APA-style ANOVA table:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANOVAtable.png" width="50%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
 <p></br></p>
@@ -996,7 +1001,119 @@ class="section level2">
 </div>
 <div id="section-bonus-material-ancova" class="section level2">
 <h2>Bonus Material: ANCOVA</h2>
-<p>
+<p>Sometimes, there may be variables that are not directly relevant to
+your main analysis, but may still have an effect on the dependent
+variable. For example, a study that is looking at how phone usage
+affects attention span in children and adolescents may control for age.
+This is because it is well-established that one’s attention span changes
+as they age, so the researcher would want to be sure that their results
+reflect the true relationship between phone use and attention span,
+rather than age and attention span.</p>
+<p>Variables that may have an influence on the dependent variable, but
+are not part of your primary analysis are called
+<strong>covariates</strong>. You can control for covariate effects by
+including them in your model. One model that can be used in this way is
+called <strong>ANCOVA</strong>, or Analysis of Covariance.</p>
+<div id="section-your-task-1" class="section level3">
+<h3>Your Task</h3>
+<ul class="task-list">
+<li><input type="checkbox" /><span class="math inline">\(\ \)</span> Run
+an ANCOVA by adding <code>Age</code> as a covariate to the 2x2 ANOVA
+model you’ve been working with in this lab (with <code>Time</code> and
+<code>TherapyGroup</code> as IVs and CAPS score as the DV).</li>
+</ul>
+<p><br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>To run an ANCOVA with your current model (2x2 Factorial ANOVA with
+one between- and one within-subjects independent variable), you can
+navigate to <em>Analyze&gt;General Linear Model&gt;Repeated
+Measures</em>.</p>
+<p>If your original model only contained between-subjects variables, you
+would use <em>Analyze&gt;General Linear Model&gt;Multivariate</em>
+instead.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>To run an ANCOVA with a model with a within-subjects variable,
+navigate to <em>Analyze&gt;General Linear Model&gt;Repeated
+Measures</em>. Set up your IV and DVs as before (see the solution in <a
+href="#section-experiment-1-analysis">Experiment 1 Analysis</a> if
+you’re unsure about this step). After you’ve added your variables, add
+<code>Age</code> to the ‘Covariates’ box:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAsetup.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You can set your model using the same options as in <a
+href="#section-experiment-1-analysis">Experiment 1 Analysis</a>. When
+you’re ready, click ‘OK’ to run the model.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAwsEffects.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You’ll see that <code>Age</code> has been added to the results
+tables.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/Week6_ANCOVAbsEffects.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>If you compare the results of your key variables (<code>Time</code>
+and <code>TherapyGroup</code> on CAPS score), you’ll notice that the
+values have changed slightly, but the effects have remained the same.
+There is still a significant effect of <code>TherapyGroup</code>, and
+there is still a significant interaction. However, the numeric results
+are slightly different. This is because these results reflect the effect
+of your IVs on your DV, when <code>Age</code> is held constant. In other
+words, you’re controlling for the effect of <code>Age</code>.</p>
+<p>While in this case, the results did not change much, sometimes the
+effect of a covariate can drastically alter the model results. You
+should always carefully consider which covariates are important to
+include when planning your study and analysis, as this could have a
+major impact on your final outcome.</p>
+<p>When interpreting results from ANCOVA, you should focus on the
+variables about which you’ve hypothesised (i.e., your IVs and DV). It’s
+okay to briefly report whether or not your covariates are significant,
+but they should not be a strong focus of your results/discussion, and
+you only need to report the <span
+class="math inline">\(p\)</span>-values. If there is a strong covariate
+effect and you think this has affected your hypothesised results, you
+might consider discussing it further in the discussion section, but it
+should be done in the context of your research aim and hypothesis. For
+example, in this this case, the methods/results write-ups might look
+something like this:</p>
+<p><b> Example Report </b></p>
+<p>We performed a 2x2 ANCOVA with both one within-subjects variable,
+Time (levels: baseline; follow-up), and one between-subjects variable,
+therapy group (levels: Waitlist, VR Therapy) as independent variables
+and CAPS score as the dependent variable. We included participant age as
+a covariate. <span class="math inline">\(\alpha\)</span> was set at .05
+for all analyses.</p>
+<p>There was a significant effect of Therapy Group on CAPS score, <span
+class="math inline">\(F\)</span>(1, 128) = 7.06, <span
+class="math inline">\(p\)</span> = .009, <span
+class="math inline">\(\eta^2\)</span> = .05. Specifically, participants
+in the waitlist group had higher CAPS scores than those in the VR
+therapy group. The effect of Time on CAPS scores was not significant,
+<span class="math inline">\(F\)</span>(1, 128) = .738, <span
+class="math inline">\(p\)</span> = .392, <span
+class="math inline">\(\eta^2\)</span> = .006. Age, as a covariate, was
+not significant, <span class="math inline">\(p\)</span> = .428</p>
+<p>There was a significant interaction between Time and Therapy Group on
+CAPS score, <span class="math inline">\(F\)</span>(1, 128) = 17.77,
+<span class="math inline">\(p\)</span> &lt; .001, <span
+class="math inline">\(\eta^2\)</span> = .12. Simple effects analyses
+indicated that while there was no significant effect of therapy group at
+baseline, <span class="math inline">\(F\)</span>(1, 128) = 0.04, <span
+class="math inline">\(p\)</span> = .839, those in the waitlist group had
+significantly higher CAPS scores than those in the VR therapy group at
+follow-up, <span class="math inline">\(F\)</span>(1, 128) = 17.10, <span
+class="math inline">\(p\)</span> &lt; .001, <span
+class="math inline">\(\eta^2\)</span> = .11.</p>
+</details>
+</div>
+<p></br> 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(tidyverse)
@@ -1005,6 +1122,8 @@ library(knitr)
 library(shiny)
 library(shinyjs)
 library(bslib)
+library(reshape2)
+library(rstatix)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -1034,17 +1153,17 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_36b0337", 
+"character")), answers = list(structure(list(id = "lnr_ans_a79526e", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_20af14b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4fcea16", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c3691f1", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fcb3f22", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d890de2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c22485c", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1057,18 +1176,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1366202371.86381, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 913130934.07479, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b09831c", 
+"character")), answers = list(structure(list(id = "lnr_ans_8d80d39", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2b17c01", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6d4a997", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1079,17 +1198,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 916653743.07315, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 521355190.757225, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_10adf91", 
+"character")), answers = list(structure(list(id = "lnr_ans_fdcf0f2", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f8a1124", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c5accd0", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1100,7 +1219,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 858894367.600046, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1455541400.82221, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1108,7 +1227,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-1", 
     question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_98391d3", 
+    "character")), answers = list(structure(list(id = "lnr_ans_f82be6f", 
         option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1119,17 +1238,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-1-answer", 
         question = "cyrIndT-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 290989953.364497, options = list(
+    allow_retry = FALSE, seed = 2132295589.50707, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrIndT-2", question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_5887aef", 
+"character")), answers = list(structure(list(id = "lnr_ans_818f7c1", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_503aca6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_aaa64bf", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1140,7 +1259,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrIndT-2-answer", 
     question = "cyrIndT-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 491596444.771083, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 955801272.05492, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1148,7 +1267,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrIndT-3", 
     question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_190b3c", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2a23062", 
         option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1159,7 +1278,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrIndT-3-answer", 
         question = "cyrIndT-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1509741356.79697, options = list(
+    allow_retry = FALSE, seed = 1964221356.58534, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1171,9 +1290,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <!--/html_preserve-->
 <!--html_preserve-->
 <script type="application/shiny-prerendered" data-context="execution_dependencies">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cachem","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","shinyjs","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.1.1","2.14","2.0.3","0.13","1.0.2","0.4.9","1.3.0","1.7.4","2.1.0","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100]}},"value":[{"type":"character","attributes":{},"value":["abind","assertthat","backports","base","broom","bslib","cachem","car","carData","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","plyr","promises","purrr","R6","Rcpp","readr","readxl","reprex","reshape2","rlang","rmarkdown","rprojroot","rstatix","rstudioapi","rvest","sass","scales","shiny","shinyjs","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.4-5","0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","3.1-0","3.0-5","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","1.8.7","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.4.4","1.1.1","2.14","2.0.3","0.7.2","0.13","1.0.2","0.4.9","1.3.0","1.7.4","2.1.0","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
 </script>
 <!--/html_preserve-->
+</div>
 </div>
 
 </article> <!-- topics -->
