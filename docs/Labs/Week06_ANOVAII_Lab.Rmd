@@ -4,7 +4,7 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
-    css: css/style.css
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
 runtime: shiny_prerendered
 ---
 
@@ -17,12 +17,13 @@ library(knitr)
 library(shiny)
 library(shinyjs)
 library(bslib)
+library(reshape2)
+library(rstatix)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ## Intro to Today's Lab
@@ -55,7 +56,7 @@ In this experiment, you'll be testing the effectiveness of a virtual reality-bas
 **Interaction Effect:** Does the effect of time on CAPS scores of PTSD patients change depending upon treatment group?
 
 
-You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv)
+You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/Week6LabData.sav)
 
 This dataset contains the following variables:
 
@@ -77,7 +78,7 @@ quiz(caption = '',
      question("Which test is most appropriate to address your research question, given the study design?",
               answer("One-Way ANOVA"),
               answer("Repeated-Measures ANOVA"),
-              answer("Multiway ANOVA", correct = T),
+              answer("Factorial ANOVA", correct = T),
               answer("You will need to run multiple tests to address the research question."),
               message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist)."),
      question("What kind of variable is Treatment Group?",
@@ -121,21 +122,21 @@ To state hypotheses statistically, you should structure them in the framework of
 
 **Main Effect 1**
 
-$H_0:$ There will be no effect of Treatment Group on CAPs Score
+$H_0:$ There will be no effect of Treatment Group on CAPS Score
 
-$H_1:$ There will be an effect of Treatment Group on CAPs Score
+$H_1:$ There will be an effect of Treatment Group on CAPS Score
 
 **Main Effect 2**
 
-$H_0:$ There will be no effect of Time on CAPs Score
+$H_0:$ There will be no effect of Time on CAPS Score
 
-$H_1:$ There will be an effect of Time on CAPs Score
+$H_1:$ There will be an effect of Time on CAPS Score
 
 **Interaction**
 
 $H_0:$ The effect of Time on CAPs score will not dependent upon Treatment Group.
 
-$H_1:$ The effect of Time on CAPs score is dependent upon Treatment Group.
+$H_1:$ The effect of Time on CAPS score is dependent upon Treatment Group.
 
 
 <i> Statistical: </i>
@@ -178,7 +179,7 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 + [ ] $\ $ Add labels to `TherapyGroup`: 0 = 'Waitlist'; 1 = 'VR Therapy'
 
-+ [ ] $\ $ Check the descriptive statistics of your data. Are there any issues to address?
++ [ ] $\ $ Check the descriptive statistics of your data.
 
 + [ ] $\ $ Produce the proper plot to visualise the distribution of your continuous variables, `Age`, `CAPSBaseline`, and `CAPSFollowUp`.
 
@@ -187,8 +188,6 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 For continuous variables, the descriptive statistics you'll want to check are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of your expected range. For categorical variables, you'll check the frequency of participants in each group.
-
-You have some missing data. It will be automatically excluded from your primary analysis, but you'll want to exclude these participants' values from your sample statistics as well.
 
 </details>
 </div>
@@ -226,7 +225,7 @@ Select the TherapyGroup x Values cell and click the dots to bring up the _Value 
 **Categorical Variables:** Your categorical variables are `TherapyGroup` and `Gender`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_freqTables.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateFreqTables.png')
 ```
 
 Note that if you set up the labels for the `TherapyGroup` properly, these will appear in the frequency tables, rather than the numeric values you see in 'Data View'. 
@@ -234,10 +233,10 @@ Note that if you set up the labels for the `TherapyGroup` properly, these will a
 **Continuous Variables:** Your categorical variables are `Age`, `CAPSBaseline`, and `CAPSFollowUp`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then click 'Charts'. As these are continuous variables, you will visualise them using histograms. Click 'Histogram', then tick 'Show normal curve on histogram'. Click 'Continue' and then 'OK'. 
 
 ```{r, echo = F, fig.align= 'center', out.width = '40%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_descStats.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateDescStat.png')
 ```
 
-Here, you can see that you all values fall within the range of possible values for the CAPS (0-80), and all ages seem reasonable. However, you are missing 2 values from the `CAPSFollowUp` column.
+Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values. Your age variable isn't normally distributed, but as its not one of the variables being tested, this doesn't matter. In fact, a uniform age distribution indicates you're getting a good range of people from each age group in your sample.
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ageHist.png')
@@ -249,24 +248,6 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_b
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_followUpHist.png')
-```
-
-Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values. Your age variable isn't normally distributed, but as its not one of the variables being tested, this doesn't matter. In fact, a uniform age distribution indicates you're getting a good range of people from each age group in your sample.
-
-<span style = "font-weight: bold; font-size: 14pt"> Missing Data and Regenerating Descriptives </span>
-
-There are many potential ways to deal with missing data, but within the scope of this course (and because there are only a few values), we'll just remove these participants entirely. One way you can easily do this is by applying a filter that removes rows with missing values on a specific variable. To do this, click *Data>Select Cases*. In the box, click 'If condition is satisfied', then click the 'If' button to set the criteria. In the 'Function Group' box, scroll down to 'Missing Values' and select it. Some functions will appear in the 'Functions and Special Variables' box. Double-click 'Missing' so that it appears in the box at the top. Then, add `CAPSFollowUp` where the ? is. Place your cursor before the MISSING text and type 'not('. Close the curly bracket at the end of the full text, so that you have the following text in the top box: "not(MISSING(CAPSFollowUp))". Click 'Continue' and 'OK'. 
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_missingFilter.png')
-```
-
-If you've added the filter properly, you will see a new column that filters the data so that the rows with missing data are filtered out. Now, you'll need to rerun your descriptive statistics so that they accurately reflect the final sample you'll be using in the analysis. You'll notices the values have shifted slightly, as you've excluded the two participants with missing data:
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateFreqTables.png')
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_updateDescStat.png')
 ```
 
 
@@ -298,7 +279,7 @@ The requirements/assumptions of a Factorial ANOVA are:
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Have a look at the [lecture slides](Week05_ANOVAII_lecture.html) if you're lost.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) if you're lost.
 
 You'll need to run the ANOVA in order to test the assumptions of normality and homogeneity. As you need to test normality using the residuals, you'll need to click the 'Save' button to produce Standardised Residuals when the test is run. To test homogeneity, you'll be checking Levene's test.
 
@@ -351,7 +332,7 @@ You'll check the rows that say 'Based on Mean'. All $p$-values are greater than 
 
 <span style = "font-weight: bold; font-size: 14pt"> Independence </span>
 
-Assessing independence requires you to have an understanding of the conditions under which your data were collected. The study design (between-participants) increases the likelihood that the observations are independent of each other, so you can consider this assumption to be met.
+Assessing independence requires you to have an understanding of the conditions under which your data were collected. Between-subjects study designs increase the likelihood that the observations are independent of each other. Additionally, using an appropriate analysis for within-subjects variables (such as a repeated-measures ANOVA) ensures you're accounting for within-subjects variance, so you can consider this assumption to be met.
 
 </details>
 </div>
@@ -380,7 +361,7 @@ $H_1: C \neq 0$
 
 + [ ] $\ $ Compute the effect sizes associated with your analysis
 
-```{r cyrIndT, echo = FALSE}
+```{r cyrFacAOV, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question_numeric("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.",
               answer(6.90, correct = T),
@@ -504,10 +485,10 @@ eta2Tab %>%
 
 + [ ] $\ $ Run an a priori power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate ( $\eta^2$ = .06) main effect of `Time`. 
 
-+ [ ] $\ $ Run a sensitivity power analysis using $\alpha$ = .05 and power = .8 to determine the effect size you're able to detect with a sample size of 100 for the main effect of `TherapyGroup`. 
++ [ ] $\ $ Run a **sensitivity** power analysis using $\alpha$ = .05 and power = .8 to determine the effect size you're able to detect with a sample size of 100 for the main effect of `TherapyGroup`. 
 
 
-There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. In SPSS, it uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
+There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. SPSS uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
 
 $$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
 
@@ -517,16 +498,36 @@ $$\eta^2 = \frac{f^2}{1+f^2}$$
 
 Be sure to use $f$ when entering the effect size into WebPower and $\eta^2$ when interpreting your results. 
 
+**VERY IMPORTANT NOTE:** $f$ is NOT the same as the $F$-statistic we compute when running an ANOVA. These are different values entirely. Bonkers, I know. Statisticians aren't the most creative namers.
 
 Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+```{r cyrPower, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the numerator df associated with the interaction effect? ",
+              answer(1, correct = T),
+              message = "The numerator df for the interaction is 1. See the solution tab for how this is calculated."),
+     question_numeric("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?",
+              answer(128, correct = T),
+              message = "You would need 128 total participants to detect the interaction effect, given the above constraints."),
+     question_numeric("What is the minimum effect of TherapyGroup (eta-squared) you can detect with 100 participants, 80% power and alpha = .05?",
+              answer(.07, correct = T),
+              message = "You can detect a moderate effect (eta-squared = .07) with 100 participants under these constraints. An eta-squared of .07 is equivalent to f = .28."))
+```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 <br>
-This power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
+
+The numerator df for the interaction effect is calculated by $(J-1)\times(K-1)$, where:
+
+J = number of levels in Independent Variable 1 (`Time`)
+
+K = number of levels in Independent Variable 1 (`TherapyGroup`)
+
+The numerator df for the main effects is then calculated by $J-1$ for the main effect of `Time` and $K-1$ for the main effect of `TherapyGroup`. 
 
 If you're completely lost, you might find the help section on [WebPower ](https://webpower.psychstat.org/wiki/manual/power_of_nanova) useful.
-
 
 </details>
 </div>
@@ -551,8 +552,9 @@ $$2\times2 = 4$$
 
 The numerator df for the interaction effect is calculated by $(J-1)\times(K-1)$, where:
 
-$J = $ number of levels in Independent Variable 1 (`Time`)
-$K = $ number of levels in Independent Variable 1 (`TherapyGroup`)
+J = number of levels in Independent Variable 1 (`Time`)
+
+K = number of levels in Independent Variable 1 (`TherapyGroup`)
 
 In this example, the numerator df would be:
 
@@ -650,7 +652,7 @@ Remember that the proper style of reporting the results from an ANOVA looks like
 
 $F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], $\eta^2$ = [$\eta^2$ value].
 
-Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides]() for a specific example.
+Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) for a specific example.
 
 </details>
 </div>
@@ -668,8 +670,19 @@ There was a significant effect of Therapy Group on CAPS score, $F$(1, 129) = 6.9
 
 There was a significant interaction between Time and Therapy Group on CAPS score, $F$(1, 129) = 17.01, $p$ < .001, $\eta^2$ = .12. Simple effects analyses indicated that while there was no significant effect of therapy group at baseline, $F$(1, 129) = 0.04, $p$ = .834, those in the waitlist group had significantly higher CAPS scores than those in the VR therapy group at follow-up, $F$(1, 129) = 16.50, $p$ < .001, $\eta^2$ = .11. See Table 1 for descriptive data for each group.
 
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_descTable.png')
+```
 
-MONICA - ADD TABLE HERE
+
+<br>
+<br>
+
+Note that you can also put results from ANOVA tests into a table. If you do this, you don't need to also put them into text. Here is an example of an APA-style ANOVA table:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANOVAtable.png')
+```
 
 </details>
 </div>
@@ -677,4 +690,137 @@ MONICA - ADD TABLE HERE
 
 
 ## Bonus Material: Using ggplot for visualisation
+
+You can produce plots in SPSS, but they often don't meet APA standards and can be complicated to customise. One method that you can use to produce more effective figures is the `ggplot2` package in R. While this would typically require some coding, the [ggplot GUI website](https://shiny.gmw.rug.nl/ggplotgui/) provides an application that allows you to produce ggplot figures with point-and-click options. 
+
+In order for the application to work properly, however, categorical variables need to be presented as character data, rather than numbers. Fortunately, there's an easy method for swapping the levels of your categorical variable, `TherapyGroup`, from numbers to words. If you assigned labels properly when completing [Experiment 1 Data Review], you can highlight the `TherapyGroup` column in your data, and click the 'Value Labels' button at the top:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_variableFlip.png')
+```
+
+If you've added labels properly, you'll notice that the highlighted column will now have the labels rather than numeric values.
+
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_labelSwap.png')
+```
+
+Now, save your file. This updated file (with the labels in the `TherapyGroup` column) is what you will import into the ggplot GUI application.
+
+### Your Task
+
++ [ ] $\ $ Using the ggplot GUI application, produce a boxplot with `TherapyGroup` on the x-axis and `CAPSFollowUp` on the y-axis. 
+
++ [ ] $\ $ Upload [these data](https://mtruelovehill.github.io/PRM/Labs/Week6LabData_Long.sav) into the ggplot GUI, and produce a boxplot with `Time` on the x-axis, `CAPS` on the y-axis, and `TherapyGroup` as Group/Color. 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+If you can't quite figure out the label swap, you can upload [this dataset](https://mtruelovehill.github.io/PRM/Labs/Week6LabData_TGnames.sav) to the ggplot GUI to produce your plot.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotUpload.png')
+```
+
+You'll see a sample of the data appear to the right. To generate a plot with these data, click the 'ggplot' option, here:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png')
+```
+
+You'll define your plot in the column to the left. Under 'Type of graph', click 'Boxplot'. Set your Y-Variable to `CAPSFollowUp`, then set your X-Variable to `TherapyGroup`. To make the plot APA style, you'll need to look at the box to the right, 'Change aesthetics'. Click 'Theme', then select, 'classic'. You should also change the labels using the 'Text' tab. Tick 'change label axes', and label them appropriately (with proper spacing). I also recommend increasing the font size to at least 14 for axis titles and 12 for axis text. When you're finished, your plot should look something like this:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_basicBoxplot.png')
+```
+
+You can click other tabs and set different options to see what other changes you can make to your plot. If you ever need to produce plots to use in a write-up (your dissertation, for example), you can click 'Download pdf of figure'. This will allow you to save your figure for use elsewhere.
+
+<br>
+
+To produce the more complex plot, upload the dataset in the same way as before. Don't forget to click 'Submit Datafile' once you've uploaded it. Once again, you'll be making a boxplot. This time, set `CAPS` as your Y-variable and `Time` as your X-variable. Set `TherapyGroup` as your Group (or color) variable. You can change the aesthetics as suggested above to make sure the plot is APA style. You can also change colors if you'd like. You should end up with something that looks similar to this:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_advancedBoxplot.png')
+```
+
+Now you have an APA-style dissertation-ready figure!
+
+</details>
+</div>
+</br>
+
 ## Bonus Material: ANCOVA
+
+Sometimes, there may be variables that are not directly relevant to your main analysis, but may still have an effect on the dependent variable. For example, a study that is looking at how phone usage affects attention span in children and adolescents may control for age. This is because it is well-established that one's attention span changes as they age, so the researcher would want to be sure that their results reflect the true relationship between phone use and attention span, rather than age and attention span.
+
+Variables that may have an influence on the dependent variable, but are not part of your primary analysis are called **covariates**. You can control for covariate effects by including them in your model. One model that can be used in this way is called **ANCOVA**, or Analysis of Covariance. 
+
+### Your Task
+
++ [ ] $\ $ Run an ANCOVA by adding `Age` as a covariate to the 2x2 ANOVA model you've been working with in this lab (with `Time` and `TherapyGroup` as IVs and CAPS score as the DV). 
+
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To run an ANCOVA with your current model (2x2 Factorial ANOVA with one between- and one within-subjects independent variable), you can navigate to *Analyze>General Linear Model>Repeated Measures*.
+
+If your original model only contained between-subjects variables, you would use *Analyze>General Linear Model>Multivariate* instead.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To run an ANCOVA with a model with a within-subjects variable, navigate to *Analyze>General Linear Model>Repeated Measures*. Set up your IV and DVs as before (see the solution in [Experiment 1 Analysis] if you're unsure about this step). After you've added your variables, add `Age` to the 'Covariates' box:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAsetup.png')
+```
+
+
+You can set your model using the same options as in [Experiment 1 Analysis]. When you're ready, click 'OK' to run the model.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAwsEffects.png')
+```
+
+You'll see that `Age` has been added to the results tables. 
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/Week6_ANCOVAbsEffects.png')
+```
+
+If you compare the results of your key variables (`Time` and `TherapyGroup` on CAPS score), you'll notice that the values have changed slightly, but the effects have remained the same. There is still a significant effect of `TherapyGroup`, and there is still a significant interaction. However, the numeric results are slightly different. This is because these results reflect the effect of your IVs on your DV, when `Age` is held constant. In other words, you're controlling for the effect of `Age`. 
+
+While in this case, the results did not change much, sometimes the effect of a covariate can drastically alter the model results. You should always carefully consider which covariates are important to include when planning your study and analysis, as this could have a major impact on your final outcome.
+
+When interpreting results from ANCOVA, you should focus on the variables about which you've hypothesised (i.e., your IVs and DV). It's okay to briefly report whether or not your covariates are significant, but they should not be a strong focus of your results/discussion, and you only need to report the $p$-values. If there is a strong covariate effect and you think this has affected your hypothesised results, you might consider discussing it further in the discussion section, but it should be done in the context of your research aim and hypothesis. For example, in this this case, the methods/results write-ups might look something like this: 
+
+
+<b> Example Report </b>
+
+We performed a 2x2 ANCOVA with both one within-subjects variable, Time (levels: baseline; follow-up), and one between-subjects variable, therapy group (levels: Waitlist, VR Therapy) as independent variables and CAPS score as the dependent variable. We included participant age as a covariate. $\alpha$ was set at .05 for all analyses.
+
+There was a significant effect of Therapy Group on CAPS score, $F$(1, 128) = 7.06, $p$ = .009, $\eta^2$ = .05. Specifically, participants in the waitlist group had higher CAPS scores than those in the VR therapy group. The effect of Time on CAPS scores was not significant, $F$(1, 128) = .738, $p$ = .392, $\eta^2$ = .006. Age, as a covariate, was not significant, $p$ = .428
+
+There was a significant interaction between Time and Therapy Group on CAPS score, $F$(1, 128) = 17.77, $p$ < .001, $\eta^2$ = .12. Simple effects analyses indicated that while there was no significant effect of therapy group at baseline, $F$(1, 128) = 0.04, $p$ = .839, those in the waitlist group had significantly higher CAPS scores than those in the VR therapy group at follow-up, $F$(1, 128) = 17.10, $p$ < .001, $\eta^2$ = .11.
+
+
+</details>
+</div>
+</br>

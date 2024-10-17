@@ -279,7 +279,7 @@ The requirements/assumptions of a Factorial ANOVA are:
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Have a look at the [lecture slides](Week05_ANOVAII_lecture.html) if you're lost.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) if you're lost.
 
 You'll need to run the ANOVA in order to test the assumptions of normality and homogeneity. As you need to test normality using the residuals, you'll need to click the 'Save' button to produce Standardised Residuals when the test is run. To test homogeneity, you'll be checking Levene's test.
 
@@ -332,7 +332,7 @@ You'll check the rows that say 'Based on Mean'. All $p$-values are greater than 
 
 <span style = "font-weight: bold; font-size: 14pt"> Independence </span>
 
-Assessing independence requires you to have an understanding of the conditions under which your data were collected. The study design (between-participants) increases the likelihood that the observations are independent of each other, so you can consider this assumption to be met.
+Assessing independence requires you to have an understanding of the conditions under which your data were collected. Between-subjects study designs increase the likelihood that the observations are independent of each other. Additionally, using an appropriate analysis for within-subjects variables (such as a repeated-measures ANOVA) ensures you're accounting for within-subjects variance, so you can consider this assumption to be met.
 
 </details>
 </div>
@@ -361,7 +361,7 @@ $H_1: C \neq 0$
 
 + [ ] $\ $ Compute the effect sizes associated with your analysis
 
-```{r cyrIndT, echo = FALSE}
+```{r cyrFacAOV, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question_numeric("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.",
               answer(6.90, correct = T),
@@ -485,10 +485,10 @@ eta2Tab %>%
 
 + [ ] $\ $ Run an a priori power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate ( $\eta^2$ = .06) main effect of `Time`. 
 
-+ [ ] $\ $ Run a sensitivity power analysis using $\alpha$ = .05 and power = .8 to determine the effect size you're able to detect with a sample size of 100 for the main effect of `TherapyGroup`. 
++ [ ] $\ $ Run a **sensitivity** power analysis using $\alpha$ = .05 and power = .8 to determine the effect size you're able to detect with a sample size of 100 for the main effect of `TherapyGroup`. 
 
 
-There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. In SPSS, it uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
+There are many possible measures of effect size that are used across statistical tests. The software that we use to run power analyses, WebPower, uses $f$ as its measure of effect size for ANOVA. SPSS uses $\eta^2$, so we need to convert $\eta^2$ to $f$ before running the power analysis. You can do this with the following equation:
 
 $$f = \sqrt{\frac{\eta^2}{1-\eta^2}}$$
 
@@ -498,16 +498,36 @@ $$\eta^2 = \frac{f^2}{1+f^2}$$
 
 Be sure to use $f$ when entering the effect size into WebPower and $\eta^2$ when interpreting your results. 
 
+**VERY IMPORTANT NOTE:** $f$ is NOT the same as the $F$-statistic we compute when running an ANOVA. These are different values entirely. Bonkers, I know. Statisticians aren't the most creative namers.
 
 Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+```{r cyrPower, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the numerator df associated with the interaction effect? ",
+              answer(1, correct = T),
+              message = "The numerator df for the interaction is 1. See the solution tab for how this is calculated."),
+     question_numeric("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?",
+              answer(128, correct = T),
+              message = "You would need 128 total participants to detect the interaction effect, given the above constraints."),
+     question_numeric("What is the minimum effect of TherapyGroup (eta-squared) you can detect with 100 participants, 80% power and alpha = .05?",
+              answer(.07, correct = T),
+              message = "You can detect a moderate effect (eta-squared = .07) with 100 participants under these constraints. An eta-squared of .07 is equivalent to f = .28."))
+```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 <br>
-This power analysis requires/outputs the total number of participants, rather than the number of participants per group. 
+
+The numerator df for the interaction effect is calculated by $(J-1)\times(K-1)$, where:
+
+J = number of levels in Independent Variable 1 (`Time`)
+
+K = number of levels in Independent Variable 1 (`TherapyGroup`)
+
+The numerator df for the main effects is then calculated by $J-1$ for the main effect of `Time` and $K-1$ for the main effect of `TherapyGroup`. 
 
 If you're completely lost, you might find the help section on [WebPower ](https://webpower.psychstat.org/wiki/manual/power_of_nanova) useful.
-
 
 </details>
 </div>
@@ -532,8 +552,9 @@ $$2\times2 = 4$$
 
 The numerator df for the interaction effect is calculated by $(J-1)\times(K-1)$, where:
 
-$J = $ number of levels in Independent Variable 1 (`Time`)
-$K = $ number of levels in Independent Variable 1 (`TherapyGroup`)
+J = number of levels in Independent Variable 1 (`Time`)
+
+K = number of levels in Independent Variable 1 (`TherapyGroup`)
 
 In this example, the numerator df would be:
 
@@ -631,7 +652,7 @@ Remember that the proper style of reporting the results from an ANOVA looks like
 
 $F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], $\eta^2$ = [$\eta^2$ value].
 
-Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides]() for a specific example.
+Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) for a specific example.
 
 </details>
 </div>
@@ -670,7 +691,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_A
 
 ## Bonus Material: Using ggplot for visualisation
 
-While you can produce plots in SPSS, they often don't meet APA standards and are difficult to customise. One method that you can use to produce more effective figures is the `ggplot2` package in R. While this would typically require some coding, the website, [ggplot GUI](https://shiny.gmw.rug.nl/ggplotgui/) provides an application that allows you to produce plots with point-and-click options. 
+You can produce plots in SPSS, but they often don't meet APA standards and can be complicated to customise. One method that you can use to produce more effective figures is the `ggplot2` package in R. While this would typically require some coding, the [ggplot GUI website](https://shiny.gmw.rug.nl/ggplotgui/) provides an application that allows you to produce ggplot figures with point-and-click options. 
 
 In order for the application to work properly, however, categorical variables need to be presented as character data, rather than numbers. Fortunately, there's an easy method for swapping the levels of your categorical variable, `TherapyGroup`, from numbers to words. If you assigned labels properly when completing [Experiment 1 Data Review], you can highlight the `TherapyGroup` column in your data, and click the 'Value Labels' button at the top:
 
