@@ -470,12 +470,14 @@ When there are multiple IVs, $SS_{model}$ is calculated as the distance between 
 With 2 IVs (one with 2 levels and one with 3), we have $2\times3 = 6$ possible groups, so $SS_{model}$ is computed from these:
 
 ```{r, echo = F, fig.height=4, warning = F}
-set.seed(526)
-facDat <- data.frame(IV = c(rep('Cats/Extrovert', 4), rep('Cats/Introvert', 4), rep('Dogs/Extrovert', 4), 
-                            rep('Dogs/Introvert', 4), rep('None/Extrovert', 4), rep('None/Introvert', 4)),
-                  DV = c(rnorm(4, mean = 15, sd = 3), rnorm(4, mean = 18, sd = 3), rnorm(4, mean = 12, sd = 3)),
-                  ID = 1:12)
+sampDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/petSampleDat.csv')
+sampDat$Group <- paste(sampDat$Pet, sampDat$Personality, sep = '/')
+sampDat$ID <- 1:nrow(sampDat)
+sampDat$Group <- factor(sampDat$Group, levels = c('Cat/Introvert', 'Cat/Extrovert', 'Dog/Introvert', 'Dog/Extrovert', 'None/Introvert', 'None/Extrovert'))
 
+ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
+  scale_color_manual(values = c('#40B6AD', baseColor, accent1, accent2, accent3, 'gray40')) +
+  scale_x_continuous(breaks = seq(1, 18, 1))
 
 basePlot <- ggplot(dat, aes(ID, DV)) + geom_point() +
     labs(x = 'Participant', y = 'Dependent Variable') +
@@ -499,6 +501,7 @@ basePlot + geom_point(data = dat, aes(color = IV)) +
         legend.position.inside = c(.85, .78),
         legend.text = element_text(size = 8),
         legend.title = element_blank())
+
 ```
 
 ]
