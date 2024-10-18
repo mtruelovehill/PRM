@@ -354,7 +354,16 @@ class: inverse, middle, center
 
 .pull-right[
 
-```{r, echo = F}
+```{r, echo = F, fig.height=3}
+facDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/petDat.csv')
+
+ggplot(facDat, aes(Pet, SWB, fill = Personality)) + geom_boxplot() +
+  scale_y_continuous(limits = c(0, 40), breaks = seq(0, 40, 10)) +
+  scale_fill_manual(values = c(baseColor, accent1)) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'),
+        legend.position = 'inside',
+        legend.position.inside = c(.1, .15))
 
 ```
 
