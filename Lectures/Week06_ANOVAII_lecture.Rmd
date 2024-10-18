@@ -477,9 +477,10 @@ plotDat <- as.data.frame(sampDat %>%
   group_by(Group) %>%
   summarise(meanSWB = mean(SWB)))
 
-ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
+(ssMod <- ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
   scale_color_manual(values = c('#40B6AD', baseColor, accent1, accent2, accent3, 'gray40')) +
   scale_x_continuous(breaks = seq(1, 18, 1)) +
+   scale_y_continuous(limits = c(10, 35), breaks = seq(10, 35, 5)) + 
   geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) +
   geom_segment(aes(x = 1, y = plotDat$meanSWB[1], xend = 3, yend = plotDat$meanSWB[1]),
                col = '#40B6AD', linewidth = 1) + 
@@ -495,7 +496,7 @@ ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
                col = 'gray40', linewidth = 1) +
   geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$GroupMean, lty = 2, linewidth = 1) + 
   theme(legend.position = 'top',
-        axis.title = element_text(face = 'bold'))
+        axis.title = element_text(face = 'bold')))
 
 ```
 
@@ -506,13 +507,14 @@ ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
 
 .pull-left.center[
 
-+ $SS_{IV1}$: Main Effect of Pet
+$SS_{IV1}$: Main Effect of Pet
 
 ```{r, echo = F, fig.height=4.5, warning = F}
 
-ggplot(sampDat, aes(ID, SWB, color = Pet)) + geom_point() +
+(petSS <- ggplot(sampDat, aes(ID, SWB, color = Pet)) + geom_point() +
   scale_color_manual(values = c(baseColor, accent1, accent2)) +
   scale_x_continuous(breaks = seq(1, 18, 1)) +
+   scale_y_continuous(limits = c(10, 35), breaks = seq(10, 35, 5)) +
   geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) +
   geom_segment(x = 1, y = sampDat$PetMean[1], xend = 6, yend = sampDat$PetMean[1],
                col = baseColor, linewidth = 1) +
@@ -523,21 +525,23 @@ ggplot(sampDat, aes(ID, SWB, color = Pet)) + geom_point() +
   geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$PetMean, lty = 2, linewidth = 1) + 
   theme(legend.position = 'inside',
         legend.position.inside = c(.9, .2),
-        axis.title = element_text(face = 'bold'))
+        axis.title = element_text(face = 'bold')))
 
 ```
 ]
 
+--
 
-.pull-left.center[
+.pull-right.center[
 
-+ $SS_{IV2}$: Main Effect of Personality
+$SS_{IV2}$: Main Effect of Personality
 
 ```{r, echo = F, fig.height=4.5, warning = F}
 
-ggplot(sampDat, aes(PersID, SWB, color = Personality)) + geom_point() +
+(persSS <- ggplot(sampDat, aes(PersID, SWB, color = Personality)) + geom_point() +
   scale_color_manual(values = c(accent1, baseColor)) +
   scale_x_continuous(breaks = seq(1, 18, 1)) +
+   scale_y_continuous(limits = c(10, 35), breaks = seq(10, 35, 5)) + 
   labs(x = 'ID') +
   geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) +
   geom_segment(x = 1, y = sampDat$PersMean[1], xend = 9, yend = sampDat$PersMean[1],
@@ -547,98 +551,63 @@ ggplot(sampDat, aes(PersID, SWB, color = Personality)) + geom_point() +
   geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$PersMean, lty = 2, linewidth = 1) + 
   theme(legend.position = 'inside',
         legend.position.inside = c(.9, .2),
-        axis.title = element_text(face = 'bold'))
+        axis.title = element_text(face = 'bold')))
 
 ```
 ]
 
 ---
-### The $F$ distribution
+
 
 .pull-left[
-+ The $F$-distribution is the null distribution against which our calculated $F$-statistic is compared. 
 
-+ Like the $t$ distribution, the shape of the $F$-distribution depends on the degrees of freedom in our data.
+```{r, echo = F, warning = F, fig.height=4, fig.width = 5}
+ssMod + theme(legend.position = 'none') +
+  annotate(geom = 'text', label = 'SS Model (Variance in DV explained by IVs)', x = 9, y = 32)
+```
+$$SS_{model} = SS_{IV1} + SS_{IV2} + SS_{IV1\times IV2}$$
 
-+ Values of 0 or 1 are most common in the null distribution, with values farther from than 1 increasingly less likely.
+]
 
-+ Note that $F$ will never be less than 0. 
+--
 
+.pull-right[
+
+```{r, echo = F, fig.height=3, fig.width = 5}
+petSS + theme(legend.position = 'none') +
+  annotate(geom = 'text', label = 'SS IV1 (Variance in DV explained by Pet)', x = 9, y = 32)
+```
+
+```{r, echo = F, fig.height=3, fig.width = 5}
+persSS + theme(legend.position = 'none') +
+  annotate(geom = 'text', label = 'SS IV2 (Variance in DV explained by Personality)', x = 9, y = 32)
+```
+
+]
+
+---
+### Simple Effects Analysis
+
+.pull-left[
++ While interaction plots help with interpretation, they don't show which differences across levels are significant.
+
++ Simple effects analysis tests the effect of one independent variable at individual levels of the other(s)
 ]
 
 .pull-right[
 
-```{r, echo = F, fig.height=4}
-ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
-  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 10), color = baseColor, linewidth=1.5) +
-  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 100), color = accent1, linewidth=1.5) +
-  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 10), color = accent2, linewidth=1.5) +
-  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 100), color = accent3, linewidth=1.5) +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank(),
-        axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.x = element_text(size = 16, face = 'bold')) +
-  annotate('text', label = 'df = 2, 10', x = 4, y = .25, color = baseColor, size = 7) + 
-  annotate('text', label = 'df = 2, 100', x = 4, y = .35, color = accent1, size = 7) +
-  annotate('text', label = 'df = 5, 10', x = 4, y = .45, color = accent2, size = 7) +
-  annotate('text', label = 'df = 5, 100', x = 4, y = .55, color = accent3, size = 7)
+```{r, echo = F}
+ggplot(facDat, aes(Pet, SWB, fill = Personality)) + geom_boxplot() +
+  scale_y_continuous(limits = c(0, 40), breaks = seq(0, 40, 10)) +
+  scale_fill_manual(values = c(baseColor, accent1)) +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold'),
+        legend.position = 'inside',
+        legend.position.inside = c(.35, .2))
 ```
 
-]
-
----
-### Putting it all together
-
-.pull-left[
-Basically:
-
-1) Calculate your $F$-statistic
-
-2) Identify the proper null distribution using $df_{model}$ and $df_{residual}$
-
-3) Using this distribution, compute the probability of getting an $F$-statistic at least as extreme as yours
-
 
 ]
-
-.pull-right[
-```{r, echo = F, fig.height=4}
-Fstat <- 2.36
-
-ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
-  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 9), color = baseColor, linewidth=1.5) +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank(),
-        axis.line.y = element_blank(),
-        axis.ticks.y = element_blank(),
-        axis.text.x = element_text(size = 14),
-        axis.title.x = element_text(size = 16, face = 'bold')) +
-  annotate('text', label = 'df = 2, 9', x = 1, y = .75, color = baseColor, size = 7) +
-  geom_vline(xintercept = Fstat, color = accent2, linewidth = 1, linetype = 2) + 
-  annotate('text', label = paste('F =', Fstat), x = Fstat+.5, y = .3, color = accent2, size = 7) +
-  annotate('text', label = paste('p =', round(pf(2.6, 2, 9, lower.tail = F),3)), x = Fstat+.6, y = .2, color = accent1, size = 7) +
-  geom_area(stat = 'function', fun = df, args= list(df1 = 2, df2 = 9), fill = accent1, xlim=c(qf(pf(2.6, 2, 9, lower.tail = F), df1 = 2, df2 = 9, lower.tail = F), 5), alpha = .8)
-```
-]
-
----
-### Posthoc Tests
-
-+ After determining the presence of an overall effect, you can conduct posthoc tests to look for specific effects between groups.
-
-+ Involves running separate tests on each possible comparison
-
---
-
-+ But what about inflated Type I error risk??
-
---
-
-+ First, these are only conducted if the presence of an overall effect is detected.
-
-+ Second, $p$-values are corrected so that the overall Type I error rate across all tests is still equal to the $\alpha$ threshold
 
 ---
 class: center, inverse, middle
@@ -647,7 +616,7 @@ class: center, inverse, middle
 
 ---
 
-### Conducting an ANOVA
+### Conducting a Factorial ANOVA
 
 1. State your hypothesis
 
@@ -666,149 +635,62 @@ class: center, inverse, middle
 8. Report
 
 ---
-### State Your Hypotheses
-
-+ $H_0: \mu_1 = \mu_2 =...\mu_n$
-
-+ $H_1:$ at least one $\mu$ is different from the other $\mu$s
-
-+ Note that the ANOVA distribution only has one tail, due to the nature of the $F$-statistic calculation (a ratio cannot be less than 0)
-
-+ However, $H_1$ is still nondirectional
-  + ANOVA doesn't tell you the direction of group differences, just that (at least) one exists.
-
-
----
-### State Your Hypotheses
-
-.pull-left[
-.center[**ANOVA results not significant**]
-
-```{r, echo = F, fig.height=4}
-set.seed(608)
-aovDat <- data.frame(Group = c(rep('A', 50), rep('B', 50), rep('C', 50)),
-                     NS = rnorm(150, mean = 25, sd = 5),
-                     s1 = c(rnorm(100, mean = 25, sd = 5), rnorm(50, mean = 32, sd = 5)),
-                     s2 = c(rnorm(50, mean = 25, sd = 5), rnorm(50, mean = 32, sd = 5), rnorm(50, mean = 38, sd = 5)))
-
-ggplot(aovDat, aes(Group, NS, fill = Group)) + geom_boxplot() +
-  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
-  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
-  theme(legend.position = 'none',
-        axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14, face = 'bold')) +
-  annotate(geom = 'text', label = 'F = .08, p = .925', x = 1.5, y = 43, size = 6)
-
-```
-]
-
-.pull-right[
-.center[**ANOVA results significant**]
-
-```{r, echo = F, fig.height=3}
-ggplot(aovDat, aes(Group, s1, fill = Group)) + geom_boxplot() +
-  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
-  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
-  theme(legend.position = 'none',
-        axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14, face = 'bold')) +
-  annotate(geom = 'text', label = 'F = 39.23, p < .001', x = 1.5, y = 43, size = 6)
-
-
-ggplot(aovDat, aes(Group, s2, fill = Group)) + geom_boxplot() +
-  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
-  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
-  theme(legend.position = 'none',
-        axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14, face = 'bold')) +
-  annotate(geom = 'text', label = 'F = 94.51, p < .001', x = 1.5, y = 47, size = 6)
-```
-]
-
----
-### Assumptions of ANOVA
-
-+ **Normality:** Dependent data should be normally distributed *within groups*
-
---
-  
-+ **Independence:** Observations/individuals should be sampled independently
-
---
-
-+ **Homogeneity of Variance:** Equal variance between each group/category
-
-  + This is called sphericity in the case of repeated-measures ANOVA, but it's the same general idea. 
-
----
-
-### Effect size - $\eta^2$
-
-$$\eta^2 = \frac{SS_{model}}{SS_{total}}$$
-
-+ $\eta^2$ is the proportion of variance in the dependent variable that is explained by the independent variable
-
-+ Values range from 0 to 1
-
-+ When you have multiple variables, you instead use $\eta^2_p$, which is the proportion of variance in the dependent variable that is explained by the independent variable *while controlling for the other variables in the model*. 
-
-
-
----
-
-### Interpretation of $\eta^2$
-
-
-| Strength | Magnitude of $\eta^2$ |
-|:--------:|:-------------------------:|
-| Weak     | $\leq$ .01                |
-| Moderate | $\approx$ .06             |
-| Strong   | $\geq$ .14                |
-
-
-
----
-class: middle, inverse, center
-
-### Questions?
-
----
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 1: State Your Hypotheses**
 
-**Research Question:** Does the type of auditory stimulus an infant is exposed to have an effect on their affect?
++ 3 hypotheses (2 main effects and 1 interaction):
 
-**Independent Variable:** Auditory Stimulus (3 levels: Infant-directed Speech; Adult-directed Speech; Infant-directed Singing)
-
-**Dependent Variable:** Time until distressed
-
-.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
-$$\mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$
-]]
-
-.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
-
-At least one $\mu \neq$ the other $\mu$s
-
-]]
+  + RQ1 - Does pet ownership affect subjective well-being?
+      + $H_1$ Pet ownership has an effect on subjective well-being
+  
+  + RQ2 - Is there an effect of personality type on subjective well being?
+      + $H_1$ Personality type has an effect on subjective well-being
+    
+  + RQ3 - Does the effect of pet ownership on subjective well-being change across personality types?
+      + $H_1$ The effect of pet ownership on subjective well-being is different across personality types.
 
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
+
++ Main Effects Hypotheses:
+  
+  + Main Effect of Pet:
+      + $H_0: \mu_{cat} = \mu_{dog} = \mu_{none}$
+      + $H_1:$ at least one $\mu$ is different from the other $\mu$s
+    
+  + Main Effect of Personality:
+      + $H_0: \mu_{introvert} = \mu_{extrovert}$
+      + $H_1: \mu_{introvert} \neq \mu_{extrovert}$
+    
++ Interaction Effect:
+  $C = (\mu_{introvert}\times\mu_{cat}-\mu_{introvert}\times\mu_{dog}-\mu_{introvert}\times\mu_{none}) - (\mu_{extrovert}\times\mu_{cat}-\mu_{extrovert}\times\mu_{dog}-\mu_{extrovert}\times\mu_{none})$
+      + $H_0: C = 0$
+      + $H_1: C \neq 0$
+
+
+---
+### Running a Factorial ANOVA
 
 **Step 2: Conduct a Power Analysis**
 
 + [WebPower](https://webpower.psychstat.org/wiki/models/index)
 
-+ Let's check the sample required to achieve 80% power to detect a moderate effect ( $eta^2$ = .06) with $\alpha$ = .05.
++ Let's run a **sensitivity power analysis**
 
-+ Although we use $\eta^2$, Webpower requires the effect size to be entered as $f$, so you'll need to convert it using the following formula:
+  + These are useful when working with secondary data, where you already have a pre-existing dataset
+  
+  + Here, you calculate the effect size you can detect with a given sample.
+  
+  + Our dataset has 150 participants. Check the effect size we have 80% power to detect, given $\alpha$ = .05.
 
-$$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
++ Remember, Webpower computes the effect size $f$. We'll need to convert it back to $\eta^2$ using the following formula:
+
+$$\eta^2 = \frac{f^2}{1+f^2}$$
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 3: Check your data**
 
@@ -818,29 +700,67 @@ $$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
   
 --
 
-+ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/Data/babyDat.sav).
++ Open SPSS and import these data [these data](https://mtruelovehill.github.io/PRM/Data/petDat.sav).
+
 
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 4: Check Assumptions**
 
-+ Normality
-  
-  + Have a look at the histograms & QQ-plots
++ **Normality:** Residuals should be normally distributed
 
-+ Independence of Observations
- 
-  + Consider study design
+--
 
-+ Homogeneity of Variance
- 
-  + Check the results of Levene's Test
+  + What are residuals, and why should they be normally distributed?
   
+--
+
+.center[
+```{r, echo = F, warning = F, fig.height=4}
+ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
+  scale_color_manual(values = c('#40B6AD', baseColor, accent1, accent2, accent3, 'gray40')) +
+  scale_x_continuous(breaks = seq(1, 18, 1)) +
+   scale_y_continuous(limits = c(10, 35), breaks = seq(10, 35, 5)) + 
+  geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) + 
+  geom_segment(aes(x = 1, y = plotDat$meanSWB[1], xend = 3, yend = plotDat$meanSWB[1]),
+               col = '#40B6AD', linewidth = 1) + 
+  geom_segment(aes(x = 4, y = plotDat$meanSWB[2], xend = 6, yend = plotDat$meanSWB[2]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 7, y = plotDat$meanSWB[3], xend = 9, yend = plotDat$meanSWB[3]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 10, y = plotDat$meanSWB[4], xend = 12, yend = plotDat$meanSWB[4]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = 13, y = plotDat$meanSWB[5], xend = 15, yend = plotDat$meanSWB[5]),
+               col = accent3, linewidth = 1) +
+  geom_segment(aes(x = 16, y = plotDat$meanSWB[6], xend = 18, yend = plotDat$meanSWB[6]),
+               col = 'gray40', linewidth = 1) +
+  geom_segment(x = sampDat$ID, y = sampDat$SWB, xend = sampDat$ID, yend = sampDat$GroupMean, lty = 2, linewidth = 1) + 
+  theme(legend.position = 'top',
+        axis.title = element_text(face = 'bold'))
+```
+]
+
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
+
+**Step 4: Check Assumptions**
+
++ **Normality:** Residuals should be normally distributed
+    + Have a look at the histograms & QQ-plots
+  
++ **Independence:** Observations/individuals should be sampled independently
+    + Consider study design
+  
++ **Homogeneity of Variance:** Equal variance between each group/category
+    + Check the results of Levene's Test for between-subjects variables
+    + Check for sphericity using Mauchly's test for within-subjects variables with > 2 levels
+
+
+---
+### Running a Factorial ANOVA
 
 **Step 5: Run the test**
 
@@ -852,157 +772,34 @@ Let's continue in SPSS...
 
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 8: Report**
 
-+ alpha threshold 
+We conducted a **2x3 Factorial ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> personality (levels: introversion; extroversion) </span></b> and <span style = "color:#9AD079"> <b> pet ownership (levels: cat; dog; none) </span></b> on <span style = "color:#9AD079"> <b> subjective well-being </span></b>. The $\alpha$ threshold was set at .05 for all analyses. A sensitivity power analysis indicated that 150 participants were sufficient to detect an effect of $\eta^2$ = .06 with a power of 80% and an $\alpha$ threshold of .05.
 
-+ Type of test conducted
-
-+ Variables tested
-
-+ Descriptive data
-
-+ Test results:
-  + Test statistic ( $t$)
-  + Degrees of freedom
-  + $p$-value
-  + Effect sizes and/or confidence intervals
-
-+ Brief interpretation (NO DISCUSSION)
-
-
+Pet ownership did not significantly affect subjective well-being, <span style = "color:#18778C"><b> $F$(2, 144) = 0.10, $p$ = .908, $\eta^2$ = .001 </span></b>. Additionally, personality was not associated with subjective well-being, <span style = "color:#18778C"><b> $F$(1, 144) = 0.02, $p$ = .901, $\eta^2$ < .001 </span></b>. 
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 8: Report**
 
-We conducted a **One-Way ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> auditory stimulus </span></b> on <span style = "color:#9AD079"> <b> an infant's affect</span></b>. The $\alpha$ threshold was set at .05 for all analyses. There was a significant effect of stimulus, <span style = "color:#18778C"><b> $F$(2, 57) = 5.99, $p$ = .004, $eta^2$ = .174, 95% CI = [.02, .33] </span></b>. Posthoc Tukey's tests indicated that infants listening to infant-directed singing displayed a positive or neutral affect significantly longer <span style = "color:#19424C"><b> ($M$ = 6.32, $SD$ = 2.27)</span></b> than infants listening to adult-directed speech <span style = "color:#19424C"><b> ($M$ = 4.36, $SD$ = 1.55)</span></b>, $p$ = .005, or infants listening to infant-directed speech <span style = "color:#19424C"><b>( $M$ = 4.78, $SD$ = 1.77)</span></b>, $p$ = .033. There was no significant difference in time of distress in infants listening to adult-directed speech and those listening to infant-directed speech, $p$ = .762. 
+There was a significant interaction of pet ownership and personality on subjective well-being, <span style = "color:#18778C"><b> $F$(2, 144) = 9.57, $p$ < .001, $\eta^2$ = .12 </span></b>. Simple effects analysis there was a significant difference in the effect of pet ownership on subjective well-being, depending on personality type. These effects were only observed in those who owned dogs, $F$(1, 144) = 7.77, $p$ = .006, $\eta^2$ = .05, and those who owned cats, $F$(1, 144) = 11.26, $p$ = .001, $\eta^2$ = .07. There was no significant effect of personality type in those who did not own a pet,  $F$(1, 144) = 0.12, $p$ = .726, $\eta^2$ = .001. Specifically, introverts who owned cats reported significantly higher levels of subjective well-being than extroverts who owned cats, $p$ = .001. Conversely, extroverts who owned dogs reported significantly higher levels of subjective well-being than introverts who owned dogs, $p$ = .006. Additionally, extroverted dog owners reported higher levels of subjective well-being than extroverted cat owners, $p$ = .003, while introverted cat owners reported higher levels of subjective well-being than introverted dog owners, $p$ = .020.
+
+See Table 1 for descriptive data by group.
 
 ---
-### Running a One-way ANOVA
+### Running a Factorial ANOVA
 
 **Step 8: Report**
 
-.pull-left[
-
-+ Figures are useful in helping readers visualise your results.
-
-+ A **boxplot** is especially good for demonstrating results when you have a continuous DV and a categorical IV
-
-]
-
-.pull-right[
-```{r, echo = F, fig.height=4.5}
-
-babyDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/babyDat.csv')
-babyDat$Group <- ifelse(babyDat$Group==0, 'AD Speech', ifelse(babyDat$Group==1, 'ID Speech', 'ID Singing'))
-babyDat$Group <- factor(babyDat$Group, levels = c('AD Speech', 'ID Speech', 'ID Singing'))
-
-ggplot(babyDat, aes(x=Group, y = TTD, fill = Group)) + geom_boxplot() +
-  scale_fill_manual(values=c(baseColor, accent1, accent2)) + 
-  ylab('Time to Distress (minutes)') +
-  theme(legend.position = 'none',
-        axis.text = element_text(size = 14),
-        axis.title = element_text(size = 16, face = 'bold'))
-
-```
-
-]
-
----
-class: center, inverse, middle
-
-### Questions?
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 1: State Your Hypotheses**
-
-Does the presence of a family member have an effect on infant's affect?
-
-.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
-$$\mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$
-]]
-
-.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
-
-At least one $\mu \neq$ the other $\mu$s
-
-]]
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 2: Conduct a Power Analysis**
-
-
-+ [WebPower](https://webpower.psychstat.org/wiki/models/index)
-
-+ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( $eta^2$ = .06) with $\alpha$ = .05.
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 3: Check your data**
-
-+ We can continue using the data from the previous example.
-
-
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 4: Check Assumptions**
-
-.pull-left[
-
-
-+ Normality of difference scores
-  
-  + Have a look at the histograms & QQ-plots
-  + Check skewness and kurtosis values
-  + May also run statistical tests of normality...but this is not recommended
-
-+ Independence (of participants rather than observations)
-
-  + Consider study design
-  
-+ Sphericity
-  
-  + Check Mauchly's test
-]
-
-.pull-right[
-```{r, echo = F, out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png')
+.center[
+```{r, echo = F, out.width='50%'}
+knitr::include_graphics('images/tableExample.png')
 ```
 ]
-  
 
-
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 5: Run the test**
-
-**Step 6: Calculate the effect size/confidence intervals**
-
-**Step 7: Interpret results**
-
-Again, let's continue in SPSS...
-
-
----
-### Running a Repeated-measures ANOVA
-
-**Step 8: Report**
-
-We conducted a **Repeated-measures ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> familial presence  </span></b> on <span style = "color:#9AD079"> <b>infant affect </span></b>. There was a significant effect of familial presence, <span style = "color:#18778C"><b> $F$(1.83, 107.99) = 42.40, $p$ < .001, $\eta^2_p$ = 0.42 </span></b>. Mean comparisons with Bonferroni corrections indicated that infants became distressed more quickly when no family members were present <span style = "color:#19424C"><b> ( $M$ = 3.85, $SD$ = 2.05)</span></b> than when a sibling was present <span style = "color:#19424C"><b>( $M$ = 5.04, $SD$ = 1.79)</span></b>, $p$ < .001, and when a parent was present <span style = "color:#19424C"><b>( $M$ = 7.03, $SD$ = 2.05)</span></b>, $p$ < .001. Infants retained a positive or neutral affect for longer when a parent was present than when a sibling was present, $p$ < .001. 
 
 
 ---
