@@ -174,12 +174,21 @@ class: inverse, middle, center
 ---
 ### Example Scenario
 
+.pull-left[
 + A researcher is interested in how pet ownership and personality affect subjective well-being.
 
 + They collect the following data from participants:
   + Type of pet (dog/cat/other/none)
   + Personality type (introvert/extrovert)
   + Subjective well-being
+]
+
+.pull-right[
+
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+
+
+]
 
 --
 
@@ -229,18 +238,25 @@ class: inverse, middle, center
 ---
 ### The Logic Behind Factorial ANOVA
 
-.center[
-&lt;img src="images/factorialSS.png" width="25%" /&gt;
-]
-
 .pull-left[
-+ Recall from last week that `\(SS_{model}\)` is calculated as the distance between the means of each group and the grand mean. 
+Recall from last week that `\(SS_{model}\)` is calculated as the distance between the means of each group and the grand mean. 
+
+When there is one IV with 3 groups, this distance is computed between the grand mean and each individual within each of the groups:
 
 ![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
 
 ]
 
+--
 
+.pull-right[
+When there are multiple IVs, `\(SS_{model}\)` is still calculated as the distance between the means of each group and the grand mean. 
+
+With 2 IVs (one with 2 levels and one with 3), there are 6 possible groups, so `\(SS_{model}\)` is computed from these:
+
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+
+]
 
 ---
 ### The `\(F\)` distribution
@@ -258,7 +274,7 @@ class: inverse, middle, center
 
 .pull-right[
 
-![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
 
 ]
 
@@ -278,7 +294,7 @@ Basically:
 ]
 
 .pull-right[
-![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -342,13 +358,13 @@ class: center, inverse, middle
 .pull-left[
 .center[**ANOVA results not significant**]
 
-![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
 ]
 
 .pull-right[
 .center[**ANOVA results significant**]
 
-![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-20-2.svg)&lt;!-- --&gt;
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-21-2.svg)&lt;!-- --&gt;
 ]
 
 ---
@@ -521,7 +537,7 @@ We conducted a **One-Way ANOVA** to determine the effect of &lt;span style = "co
 ]
 
 .pull-right[
-![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+![](Week06_ANOVAII_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
 
 ]
 
