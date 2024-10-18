@@ -497,11 +497,6 @@ ggplot(sampDat, aes(ID, SWB, color = Group)) + geom_point() +
   theme(legend.position = 'top',
         axis.title = element_text(face = 'bold'))
 
-
-sampDat %>%
-  group_by(Personality) %>%
-  summarise(meanSWB = mean(SWB))
-
 ```
 
 ]
@@ -509,26 +504,53 @@ sampDat %>%
 ---
 ### The Logic Behind Factorial ANOVA
 
+.pull-left.center[
+
 + $SS_{IV1}$: Main Effect of Pet
 
 ```{r, echo = F, fig.height=4.5, warning = F}
 
 ggplot(sampDat, aes(ID, SWB, color = Pet)) + geom_point() +
-  scale_color_manual(values = c('#40B6AD', baseColor, accent1, accent2, accent3, 'gray40')) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
   scale_x_continuous(breaks = seq(1, 18, 1)) +
   geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) +
-  geom_segment(aes(x = 1, y = plotDat$meanSWB[1], xend = 3, yend = plotDat$meanSWB[1]),
-               col = '#40B6AD', linewidth = 1)
-  geom_segment(aes(x = 4, y = plotDat$meanSWB[2], xend = 6, yend = plotDat$meanSWB[2]),
+  geom_segment(x = 1, y = sampDat$PetMean[1], xend = 6, yend = sampDat$PetMean[1],
                col = baseColor, linewidth = 1) +
-  geom_segment(aes(x = 7, y = plotDat$meanSWB[3], xend = 9, yend = plotDat$meanSWB[3]),
-               col = accent1, linewidth = 1) 
-  geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$GroupMean, lty = 2, linewidth = 1) + 
-  theme(legend.position = 'top',
+  geom_segment(x = 7, y = sampDat$PetMean[7], xend = 12, yend = sampDat$PetMean[7],
+               col = accent1, linewidth = 1) +
+  geom_segment(x = 13, y = sampDat$PetMean[13], xend = 18, yend = sampDat$PetMean[13],
+               col = accent2, linewidth = 1) +
+  geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$PetMean, lty = 2, linewidth = 1) + 
+  theme(legend.position = 'inside',
+        legend.position.inside = c(.9, .2),
         axis.title = element_text(face = 'bold'))
 
 ```
+]
 
+
+.pull-left.center[
+
++ $SS_{IV2}$: Main Effect of Personality
+
+```{r, echo = F, fig.height=4.5, warning = F}
+
+ggplot(sampDat, aes(PersID, SWB, color = Personality)) + geom_point() +
+  scale_color_manual(values = c(accent1, baseColor)) +
+  scale_x_continuous(breaks = seq(1, 18, 1)) +
+  labs(x = 'ID') +
+  geom_hline(yintercept = mean(sampDat$SWB), linewidth = 1) +
+  geom_segment(x = 1, y = sampDat$PersMean[1], xend = 9, yend = sampDat$PersMean[1],
+               col = baseColor, linewidth = 1) +
+  geom_segment(x = 10, y = sampDat$PersMean[4], xend = 18, yend = sampDat$PersMean[4],
+               col = accent1, linewidth = 1) + 
+  geom_segment(x = sampDat$ID, y = mean(sampDat$SWB), xend = sampDat$ID, yend = sampDat$PersMean, lty = 2, linewidth = 1) + 
+  theme(legend.position = 'inside',
+        legend.position.inside = c(.9, .2),
+        axis.title = element_text(face = 'bold'))
+
+```
+]
 
 ---
 ### The $F$ distribution
