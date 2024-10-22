@@ -9,74 +9,56 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
-library(tidyverse)
-library(kableExtra)
-library(knitr)
-library(shiny)
-library(shinyjs)
-library(bslib)
+# library(learnr)
+# library(tidyverse)
+# library(kableExtra)
+# library(knitr)
+# library(shiny)
+# library(shinyjs)
+# library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ```{r, context = 'server'}
-output$distPlot <- renderPlot({
-  set.seed(806)
-      dat <- data.frame(X=rnorm(300, mean = input$mean, sd = input$sd))
-      ggplot(data.frame(X = c(-30, 30)), aes(x = X)) +
-        geom_histogram(data=dat, aes(x=X, y = after_stat(density)), fill = '#4CA384', color = '#19424C',
-                       binwidth = 2) +
-        stat_function(fun=dnorm, geom = "line", args = list(mean = input$mean, sd = input$sd),
-                      linewidth = 1, color = '#19424C') +
-        scale_x_continuous(breaks = seq(-30, 30, 10), limits=c(-30, 30)) +
-        scale_y_continuous(limits=c(0, .4)) +
-        theme(axis.title.x = element_text(size = 16, face = 'bold'),
-              axis.text.x = element_text(size = 16),
-              axis.line.y = element_blank(),
-              axis.text.y = element_blank(),
-              axis.ticks = element_blank(),
-              axis.title.y = element_blank())
-    })
-```
-
-## Intro to Today's Lab
-
-MONICA - MAKE STUDENTS CREATE A SUMMARY METRIC FROM AN ASSESSMENT USING THE CALCULATE FUNCTION; THIS NEW VALUE WILL THEN BE USED AS PART OF THE CORRELATION.
-
-Intro Goes Here   
-
-```{r, echo = F}
-# dat <- read.csv('Week1LabData.csv')
-# datInfo <- data.frame(VariableName=colnames(dat), 
-#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
-#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
-#                                     Version C Scores', 'Assessment Version D Scores'))
-# 
-# datInfo %>%
-#   kbl(col.names=c('Variable Name', 'Description')) %>%
-#   kable_styling(full_width = F) %>%
-#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
-#   column_spec(1, bold = T, width = '4.5cm')
 ```
 
 ## Intro to Today's Lab
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-LAB INTRO HERE
+### Learning Objectives
+At the end of this lab, you will be able to:
 
-This dataset contains the following variables:
+1. Identify hypotheses which may be tested using correlations
+2. Use SPSS to compute a composite score
+3. Use SPSS to run a correlation
+3. Properly interpret and report a correlation
+4. Use the ggplot GUI to produce scatterplots, boxplots, and dot and error-bar plots
 
-UPDATE THIS TABLE:
+
+### This Week's Study
+
+You'll be working with data adapted from a study that investigated adolescent athletes who played team sports. One area the study investigated was whether self-enhancement values (e.g., valuing power and achievement) were associated with antisocial behaviour towards members of the opposing team (see [here](https://www.tandfonline.com/doi/full/10.1080/1612197X.2017.1367951#d1e287)). You'll be investigating this association directly; you'll also produce plots using other related variables in the dataset. 
+
+## Experiment Overview
+
+<br>
+In this experiment, you'll investigate the association between student athletes' endorsement of qualities associated with self-enhancement and reports of their antisocial behaviour towards members of the opposing team. You recruited a sample of adolescents who participated in team sports. In this dataset, participants have an average score for each of 4 measures associated with desire for power and achievement. These scores, when totaled together, will provide a measure that reflects a participant's self-enhancement values. Higher scores on this composite metric reflect stronger self-enhancement values. Participants also have an Antisocial Behaviour score, which reflects their average score on the antisocial items from the Prosocial and Antisocial Behavior in Sport Scale. Higher scores on this scale reflect a larger number of endorsed antisocial behaviours.  
+
+You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week7LabData.sav). It contains the following variables:
+
 ```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week6LabData.csv')
-datInfo <- data.frame(VariableName=colnames(dat), 
-                      Description=c('Study Group', 'Age in years', 'Sex', 'pre-intervention CAPS score', 'post-intervention CAPS score'))
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week7LabData.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Levels: 1 = Female; 2 = Male',
+                                    'Age in years',
+                                    'Levels: 0 = Control; 1 = Mouth Obstructed; 2 = Eyes Obstructed',
+                                    'Total number of correctly identified emotions; possible scores = 0 - 50'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -85,55 +67,70 @@ datInfo %>%
   column_spec(1, bold = T, width = '4.5cm')
 ```
 
-
-
-
-### Learning Objectives
-At the end of this lab, you will be able to:
-
-1.  
-
-
-## State your Hypotheses
-
-Task 1 Info Here
-
-* Identify IV(s) and DV(s)
-* State Hypotheses (Mixed Methods ANOVA)
-
 ```{r q1, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question('Which of the following hypotheses can be tested using a mixed methods ANOVA? Please select all that apply.',
-#               answer('Hypothesis1', correct = T),
-#               answer('Hypothesis2'),
-#               answer('Hypothesis3'),
-#               answer('Hypothesis4'),
-#               answer('Hypothesis5'),
-#               random_answer_order = T,
-#               message = 'Feedback Here'),
-#      question('You have developed an intervention and want to test its effectiveness. You recruit a sample of participants and measure their symptom severity both before and after the intervention. You measure patient symptom severity on a continuous scale. You would like to compare the two symptom severity scores. Which of the following tests is most appropriate?',
-#               answer('One-sample t-test'),
-#               answer('Independent samples t-test'),
-#               answer('Paired-samples t-test', correct = T),
-#               message = "Because you have a pre- and post-intervention measurement from each participant, the two scores are considered to be paired. An individual's score on the post-test will not be independent of their scores on the pre-test. A paired-samples t-test will account for this lack of independence between the two groups of scores."))
-
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("t-test"),
+              answer("One-Way ANOVA", correct = T),
+              answer("Repeated-Measures ANOVA"),
+              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used."))
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+### Your Tasks
++ [ ] $\ $ Which variables will be correlated? 
++ [ ] $\ $ State your research question for this experiment.
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
 
-Hint Goes Here
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+
+In your research question, you should mention the independent variable, the dependent variable, and the population being studied.
+
+To state hypotheses statistically, you should structure them in the framework of the statistical values being tested.
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+<b>Possible Research Questions:</b>
 
-Solution Goes Here
+Does the region of the face being obstructed affect the ability of school-aged children to make emotional inferences?
+
+Do different types of facial coverage impact a child's ability to correctly identify emotions?
+
+<br>
+
+<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
+
+<b>Dependent Variable:</b> Correct Identifications of Emotion
+
+<br>
+
+<b>Hypotheses:</b>
+
+<i> General: </i>
+
+$H_0:$ Facial obstruction will not affect the ability of school-aged children to make emotion inferences.
+
+$H_1:$ Facial obstruction will affect the ability of school-aged children to make emotion inferences.
+
+
+<i> Statistical: </i>
+
+$H_0: \mu_{control} = \mu_{eyes} = \mu_{mouth}$
+
+$H_1:$ at least one $\mu \neq$ the other $\mu$s
 
 </details>
-
+</div>
 </br>
+
 
 ## Run the Appropriate Power Analyses 
 
