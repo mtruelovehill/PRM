@@ -9,9 +9,9 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-# library(learnr)
-# library(tidyverse)
-# library(kableExtra)
+library(learnr)
+library(tidyverse)
+library(kableExtra)
 # library(knitr)
 # library(shiny)
 # library(shinyjs)
@@ -21,9 +21,6 @@ baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-```
-
-```{r, context = 'server'}
 ```
 
 ## Intro to Today's Lab
@@ -42,12 +39,16 @@ At the end of this lab, you will be able to:
 
 ### This Week's Study
 
-You'll be working with data adapted from a study that investigated adolescent athletes who played team sports. One area the study investigated was whether self-enhancement values (e.g., valuing power and achievement) were associated with antisocial behaviour towards members of the opposing team (see [here](https://www.tandfonline.com/doi/full/10.1080/1612197X.2017.1367951#d1e287)). You'll be investigating this association directly; you'll also produce plots using other related variables in the dataset. 
+You'll be working with data adapted from [this study](https://www.tandfonline.com/doi/full/10.1080/1612197X.2017.1367951#d1e287). The researchers investigated adolescent athletes who played team sports. One area the study investigated was whether self-enhancement values (e.g., valuing power and achievement) were associated with antisocial behaviour towards members of the opposing team. You'll be investigating this association directly; you'll also produce plots using other related variables in the dataset.
+
+## Interpreting Correlations
+
+MONICA - create an interactive plot that allows them to visualise different types of correlations.
 
 ## Experiment Overview
 
 <br>
-In this experiment, you'll investigate the association between student athletes' endorsement of qualities associated with self-enhancement and reports of their antisocial behaviour towards members of the opposing team. You recruited a sample of adolescents who participated in team sports. In this dataset, participants have an average score for each of 4 measures associated with desire for power and achievement. These scores, when totaled together, will provide a measure that reflects a participant's self-enhancement values. Higher scores on this composite metric reflect stronger self-enhancement values. Participants also have an Antisocial Behaviour score, which reflects their average score on the antisocial items from the Prosocial and Antisocial Behavior in Sport Scale. Higher scores on this scale reflect a larger number of endorsed antisocial behaviours.  
+In this experiment, you recruited a sample of adolescents who participated in team sports. Participants have an average score for each of 4 measures associated with desire for power and achievement. These scores, when totaled together, will provide a measure that reflects a participant's self-enhancement values. Higher scores on this composite metric reflect stronger self-enhancement values. Participants also have an Antisocial Behaviour score, which reflects their average score on the antisocial items from the Prosocial and Antisocial Behavior in Sport Scale. Higher scores on this scale reflect a larger number of endorsed antisocial behaviours.  
 
 You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week7LabData.sav). It contains the following variables:
 
@@ -55,10 +56,15 @@ You can download the dataset from the first experiment [here](https://mtrueloveh
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week7LabData.csv')
 datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Participant ID',
-                                    'Levels: 1 = Female; 2 = Male',
                                     'Age in years',
-                                    'Levels: 0 = Control; 1 = Mouth Obstructed; 2 = Eyes Obstructed',
-                                    'Total number of correctly identified emotions; possible scores = 0 - 50'))
+                                    'Levels: F = Female; M = Male',
+                                    'Self-Enhancment Score 1; values may range between 0 - 6',
+                                    'Self-Enhancment Score 2; values may range between 0 - 6',
+                                    'Self-Enhancment Score 3; values may range between 0 - 6',
+                                    'Self-Enhancment Score 4; values may range between 0 - 6',
+                                    'Average Antisocial Behaviour Score; values may range from 1-5',
+                                    'Self-Enhancement values as categories; Levels: High; Low',
+                                    'Self-reported feelings of parental pressure; Levels: High; Low'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
@@ -67,17 +73,19 @@ datInfo %>%
   column_spec(1, bold = T, width = '4.5cm')
 ```
 
+You'll be investigating the association between student athletes' endorsement of self-enhancement values and reports of their antisocial behaviour towards members of the opposing team.
+
 ```{r q1, echo = FALSE}
 quiz(caption = '',
      question("Which test is most appropriate to address your research question, given the study design?",
               answer("t-test"),
-              answer("One-Way ANOVA", correct = T),
-              answer("Repeated-Measures ANOVA"),
-              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used."))
+              answer("Factorial ANOVA"),
+              answer("Correlation", correct = T),
+              message = "Here, you're looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three."))
 ```
 
 ### Your Tasks
-+ [ ] $\ $ Which variables will be correlated? 
++ [ ] $\ $ Specify the variables to be correlated.
 + [ ] $\ $ State your research question for this experiment.
 + [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
 
@@ -87,7 +95,7 @@ quiz(caption = '',
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 
-In your research question, you should mention the independent variable, the dependent variable, and the population being studied.
+In your research question, you should mention each of the variables you're investigating and the population being studied.
 
 To state hypotheses statistically, you should structure them in the framework of the statistical values being tested.
 
@@ -100,15 +108,13 @@ To state hypotheses statistically, you should structure them in the framework of
 <br>
 <b>Possible Research Questions:</b>
 
-Does the region of the face being obstructed affect the ability of school-aged children to make emotional inferences?
-
-Do different types of facial coverage impact a child's ability to correctly identify emotions?
+Is there a significant association between values of self-enhancement and antisocial behaviour against opposing team members in student athletes?
 
 <br>
 
-<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
+<b>Variable 1:</b> Self-Enhancement 
 
-<b>Dependent Variable:</b> Correct Identifications of Emotion
+<b>Variable 2:</b> Antisocial Behaviour
 
 <br>
 
@@ -116,245 +122,209 @@ Do different types of facial coverage impact a child's ability to correctly iden
 
 <i> General: </i>
 
-$H_0:$ Facial obstruction will not affect the ability of school-aged children to make emotion inferences.
+$H_0:$ There is no association between endorsement of self-enhancement values and antisocial behaviour
 
-$H_1:$ Facial obstruction will affect the ability of school-aged children to make emotion inferences.
+$H_1:$ There is an association between endorsement of self-enhancement values and antisocial behaviour
 
 
 <i> Statistical: </i>
 
-$H_0: \mu_{control} = \mu_{eyes} = \mu_{mouth}$
+$H_0: r = 0$
 
-$H_1:$ at least one $\mu \neq$ the other $\mu$s
+$H_1: r \neq 0$
 
 </details>
 </div>
 </br>
 
 
-## Run the Appropriate Power Analyses 
+## Data Review
 
-Task Goes Here
-* Maybe an a priori & a sensitivity
+Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task)? These things should be dealt with before conducting the analyses.
 
-```{r q2, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which type of data is C?",
-#               answer("Categorical"),
-#               answer("Continuous", correct = T),
-#               random_answer_order = T),
-#      question("Which type of data is Gender?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T)),
-#      question("Which type of data is ClassTime?",
-#               answer("Continuous"),
-#               answer('Categorical', correct = T),
-#               message='Categorical data are nominal or ordinal data with no numeric relationship (although they may be represented
-#               numerically), while continuous data have a traditional numeric relationship; continuous data can technically take on an  
-#               infinite range of values if measurement was precise enough'),
-#      question('Which of the following "Measure" values used by SPSS reflects categorical data?',
-#               answer('Nominal', correct = T),
-#               answer('Ordinal', correct = T),
-#               answer('Scale'),
-#               message = 'Scale can be used for both types of continuous data (ratio and interval scales of measurement), but categorical
-#               variables are split into nominal and ordinal measures. Remember that nominal data reflects purely independent categories,
-#               but ordinal data has some sort of implied order (e.g. Likert Scale data, level of education).'))
+Additionally, you'll need to compute descriptive data. You'll do this for both your main variables of interest and your sample's demographic data, as this must be included in the Sample portion of your Methods section. 
+
+### Your Tasks
+
++ [ ] $\ $ Open 'Week7LabData.sav'
+
++ [ ] $\ $ Check that all variables are set as the correct measurement type. 
+
++ [ ] $\ $ Check the descriptive statistics of your data
+
++ [ ] $\ $ Compute a composite score, `SelfEnhancement`, by summing the following columns: `SE1`, `SE2`, `SE3`, and `SE4`
+
+```{r cyr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the mean score on SE1? Please round your answer to two decimal places.",
+                      answer(3.17, correct = T),
+                      message = "The mean SE1 score in your sample is 3.17."),
+     question_numeric('What is the maximum value for AntisocialBehaviour? Please round your answer to two decimal places.',
+                      answer(488.00, correct = T),
+                      message = "The maximum Antisocial Behaviour score is 488, which is well outside the expected limits of 1-5. As a score of 488 is not possible, it is an error. It will need to be deleted so that it is excluded from further analysis."))
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+For continuous variables, the descriptive statistics you'll want to check are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of your expected range. For categorical variables, you'll check the frequency of participants in each group. It may also be useful to check the mode.
+
+To compute the self-enhancement composite score, you'll need to navigate to *Transform > Compute Variable*
+
 
 </details>
-
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+<span style = "font-weight: bold; font-size: 14pt"> Adjust Variable Measure Format </span>
 
-</details>
+To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab.
 
-</br>
+* `ID` - Ordinal
 
+* `Age` - Scale
 
-## Calculate Descriptive Data 
+* `Gender` - Nominal
 
-Task Description Here
+* `SE1` - Scale
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+* `SE2` - Scale
 
-Hint Here
+* `SE3` - Scale
 
-</details>
+* `AntisocialBehaviour` - Scale
 
-</br>
+* `SEcategory` - Nominal
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+* `ParentalPressure` - Nominal
 
-Solution Here.
+In this instance, SPSS assigned the proper measures by default (with the exception of ID, which won't be used as part of any analysis, so you can ignore it if you'd like). No changes are required.
 
-</details>
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
 
-</br>
+**Categorical Variables:** Your categorical variables are `Gender`, `SEcategory`, and `ParentalPressure`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
 
-
-
-
-## Visualise Your Data 
-
-Task Here.
-
-```{r q4, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("At least one of the groups is limited in size compared to the others",
-#               answer("True", correct = T),
-#               answer("False"),
-#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
-#      question_numeric("How many total datapoints do you have for the gender variable?",
-#               answer(48, correct=T)),
-#      question_numeric("What percentage of participants are female?",
-#               answer(41.7, correct=T)),
-#      question_numeric('How many nonbinary participants are in your sample?',
-#               answer(2, correct=T)))
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_freqTables.png')
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
 
-Hint Here
+**Continuous Variables:** Your continuous variables are `SE1`, `SE2`, `SE3`, `SE4` and `AntisocialBehaviour`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
 
-</details>
-</br>
-
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
-
-Solution Here
-
-</details>
-</br>
-
-## Check Assumptions
-
-Task Here
-
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
-
-Hint Here.
-
-</details>
-</br>
-
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
-
-Solution Here.
-
-</details>
-</br>
-
-## Run ANOVA
-
-Task Description.
-* Maybe also discuss degrees of freedom here
-
-```{r q6, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
+```{r, echo = F, fig.align= 'center', out.width = '40%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_descStats.png')
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
-Hint here.
-</details>
-</br>
+Note that the maximum value for `AntisocialBehaviour` is 488, which is not a valid score. This is an error, so you'll need to remove it from your data so that it is not included in further analysis. To do this, find the value in your dataset under 'Data View' and delete it.
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Compute Composite Score </span>
 
-Solution here.
+To compute the composite score by summing together the SE columns, navigate to *Transform > Compute Variable*. Label your new variable `SelfEnhancement` in the 'Target Variable' box. In the 'Numeric Expression', add each SE column (`SE1`, `SE2`, `SE3`, and `SE4`) with a $+$ sign between them:
 
-</details>
-</br>
-
-## Run Post-Hoc Analyses
-
-Task here.
-
-```{r q7, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question_numeric("What is the IQR for Assessment B?",
-#               answer(4, correct=T),
-#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
-#      question_numeric("What is the maximum score on Assessment C?",
-#               answer(78, correct=T)),
-#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-#               answer(2.15, correct=T))
-# )
+```{r, echo = F, fig.align= 'center', out.width = '60%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_composite.png')
 ```
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
-
-Hint here.
+Click 'OK'. A new column labeled `SelfEnhancement` should appear that contains the sum of the 4 SE columns.
 
 </details>
+</div>
 </br>
 
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+## Run Correlations
 
-Solution here.
+As you are testing for an association between two continuous variables, you'll use a correlation to provide statistical support for your hypotheses. 
 
-</details>
-</br>
+Recall that $r$ has the following interpretation standards:
 
-## Calculate Effect Sizes
+| Strength     | Magnitude of $r$ |
+|:------------:|:----------------:|
+| Negligible   | $<$ .1           |
+| Weak         | .1 - .3          |
+| Moderate     | .3 - .6          |
+| Strong       | $>$ .6           |
 
-Task here.
 
-```{r distPlot, echo = F}
-# 
-# fluidRow(column(4, 
-#   sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
-#   sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
-#   column(8, plotOutput('distPlot')))
-# 
-# tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
-# tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
+### Your Tasks
 
++ [ ] $\ $ Run a correlation to test your hypotheses and interpret the results with $\alpha$ = .05.
+
++ [ ] $\ $ Produce a correlation matrix showing the correlations between each of the SE variables: `SE1`, `SE2`, `SE3`, and `SE4`
+
+
+```{r cyrCorr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the Pearson correlation value for the association between AntisocialBehaviour and SelfEnhancement? Please round your answer to two decimal places.",
+              answer(.31, correct = T),
+              message = "Pearson's r for the association between AntisocialBehaviour and SelfEnhancement is .31."),
+     question("Which of the following pairs have the weakest association?",
+              answer("SE1 & SE2"),
+              answer("SE1 & SE3"),
+              answer('SE1 & SE4', correct = T),
+              message = "Pearson's r for the association between SE1 & SE4 is only .30. For the association between SE1 & SE3, it is .49, and for the association between SE1 & SE2, it is .54."))
 ```
 
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
 
-Hint here.
+To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariate*
 
 </details>
+</div>
 </br>
 
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution here.
+To correlate `SelfEnhancement` with `AntisocialBehaviour`, navigate to *Analyze > Correlate > Bivariate* and add both of these to the 'Variables' box. You can specify that you'd like to also compute the relevant confidence intervals by selecting 'Confidence interval' box and ticking the 'Estimate confidence intervals of the bivariate correlation parameter' box. Click 'Continue' and then 'OK'. You'll get the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_correlationResults.png')
+```
+
+The top box provides a correlation matrix with the value of $r$ and the p-value, while the bottom box gives the confidence interval associated with the correlation. Here, you can see that $r$ = .3, which equates to a weak to moderate association between `SelfEnhancement` and `AntisocialBehaviour`. The $p$-value (< .001) is less than the $\alpha$ threshold of .05, so this association is significant. The 95% confidence interval indicates that we can be 95% confident that the true association ($r$) between these two variables falls between .17 and .44. 
+
+You can correlate the SE variables in the same way as above. This time, click 'Show only the lower diagonal'. This removes redundant information from the correlation matrix, which is how correlation matrices are typically presented:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_correlationMatrix.png')
+```
+
+Here, you can see that all variables are significantly associated with each other, which you would expect given that they are supposed to measure the same construct. 
+
 
 </details>
+</div>
 </br>
 
+## Using ggPlot GUI for visualisation
 
-## Visualise the Analysis Results
+Often, visualisations of your results allows outside reader's to more easily interpret your findings. Effective visualisations allow you to present your results more clearly and efficiently than describing them in text alone. As a psychology student, you will almost always need to follow APA-style when producing figures. SPSS does not always produce customisable, APA-style figures. Here, you'll learn how to use the [ggplot GUI website](https://shiny.gmw.rug.nl/ggplotgui/) to produce 3 common types of plots.
 
-Task here.
+### Your Tasks
+
++ [ ] $\ $ Create an APA-style scatterplot with `SelfEnhancement` on the x-axis and `AntisocialBehaviour` on the y-axis. Please include a regression line.
+
++ [ ] $\ $ Create an APA-style boxplot with `SEcategory` on the x-axis and `AntisocialBehaviour` on the y-axis.
+
++ [ ] $\ $ Create an APA-style dot-and-error plot with `SEcategory` on the x-axis, `AntisocialBehaviour` on the y-axis, and `ParentalPressure` as the Group variable. Please include a regression line.
+
+```{r cyrPlots, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question("Does your boxplot suggest the presence of any outliers in your data?",
+              answer('Yes', correct = T),
+              answer('No'),
+              message = "The dot just past the upper whisker of the box reflecting Low Self-Enhancement reflects an outlier."),
+     question("Does your dot-and-error plot suggest the presence of an interaction between SEcategory and ParentalPressure on AntisocialBehaviour?",
+              answer('Yes', correct = T),
+              answer('No'),
+              message = "The effect of Self-Enhancement on AntisocialBehaviour is different across levels of Parental Pressure, so it is likely that there is an interaction effect."))
+```
 
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
 
@@ -388,4 +358,7 @@ Solution here.
 
 </details>
 </br>
+
+## Bonus Task: Simpson's Paradox
+
 
