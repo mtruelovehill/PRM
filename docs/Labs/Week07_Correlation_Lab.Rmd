@@ -12,6 +12,10 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
+# library(knitr)
+# library(shiny)
+# library(shinyjs)
+# library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -452,7 +456,7 @@ Additionally, scores on each of the 4 questions on the self-enhancement scale we
 
 
 ```{r, echo = F, fig.align='center', out.width='75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_week7_scatterFig.pdf')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_corrMatrix.png')
 ```
 
 
