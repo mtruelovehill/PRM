@@ -268,6 +268,14 @@ behaviour towards members of the opposing team.</p>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="q1-2" class="tutorial-question panel-body">
+<div id="q1-2-answer_container" class="shiny-html-output"></div>
+<div id="q1-2-message_container" class="shiny-html-output"></div>
+<div id="q1-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
 <div id="section-your-tasks" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
@@ -584,8 +592,7 @@ and <code>AntisocialBehaviour</code> on the y-axis.</p></li>
 <li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
 Create an APA-style dot-and-error plot with <code>SEcategory</code> on
 the x-axis, <code>AntisocialBehaviour</code> on the y-axis, and
-<code>ParentalPressure</code> as the Group variable. Please include a
-regression line.</p></li>
+<code>ParentalPressure</code> as the Group variable.</p></li>
 </ul>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
@@ -604,6 +611,7 @@ regression line.</p></li>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
+<div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> + Click here for a
@@ -611,20 +619,77 @@ hint </span>
 </summary>
 <p>Hint here.</p>
 </details>
+</div>
 <p></br></p>
+<div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> + Click here for the
 solution </span>
 </summary>
-<p>Solution here.</p>
+<p>Navigate <a href="https://shiny.gmw.rug.nl/ggplotgui/">to the ggplot
+GUI webpage</a> by clicking the link. Upload the SPSS datafile into the
+ggplot GUI application by using Data Upload column on the left of the
+page. First, click the ‘Browse’ button to find the file on your device,
+selecting ‘SPSS’ under ‘Type of File’, then clicking ‘Submit
+Datafile’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You’ll see a sample of the data appear to the right. To generate a
+plot with these data, click the ‘ggplot’ option, here:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Here, you can create your plot using the options available in the
+columns on the left and right of the page.</p>
+<p><span style="font-weight: bold; font-size: 14pt"> Boxplot </span> In
+the left column, set the type of plot to ‘Boxplot’, the y-axis to
+<code>AntisocialBehaviour</code> and the x-axis to
+<code>SEcategory</code>. You can leave everything else as the default
+setting. To make sure the plot is APA style, navigate to the options on
+the right of the page, click Theme, and select ‘classic’ from the
+drop-down box. You should now have an APA-style boxplot that shows the
+difference in antisocial behaviour between self-enhancement value
+groups:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Scatterplot </span>
+In the left column, set the type of plot to ‘Scatter’, the y-axis to
+<code>AntisocialBehaviour</code> and the x-axis to
+<code>SEcategory</code>. Tick the ‘Show regression line’ box, and make
+sure the smoothing function is ‘lm’. To make sure the plot is APA style,
+navigate to the options on the right of the page, click Theme, and
+select ‘classic’ from the drop-down box. You should now have an
+APA-style scatterplot that shows the association between
+self-enhancement values and antisocial behaviour:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotScatter.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You can change the axis labels to be more manuscript appropriate
+(e.g., add spaces between words) by using the ‘Text’ tab in the right
+column and ticking ‘Change labels axes’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotTextOptions.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Boxplot </span> In
+the left column, set the type of plot to ‘Boxplot’. The y-axis can stay
+set at <code>AntisocialBehaviour</code>, but change the x-axis to
+<code>SEcategory</code>. You can leave everything else as the default
+setting. You should now have an APA-style boxplot that shows the
+difference in antisocial behaviour between self-enhancement value
+groups:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Dot &amp; Error
+Plot </span> In the left column, set the type of plot to ‘Dot + Error’.
+The y-axis can stay set at <code>AntisocialBehaviour</code> and the the
+x-axis at <code>SEcategory</code>, but add <code>ParentalPressure</code>
+as the Group variable. You can leave everything else as the default
+setting.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotDotError.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You can change the legend label by using the ‘Legend’ tab in the
+right column and ticking ‘Change legend’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotLegendOptions.png" width="50%" style="display: block; margin: auto;" /></p>
 </details>
+</div>
 <p></br></p>
 </div>
 </div>
 <div id="section-report-interpret" class="section level2">
 <h2>Report &amp; Interpret</h2>
 <p>Task here.</p>
+<div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> + Click here for a
@@ -632,7 +697,9 @@ hint </span>
 </summary>
 <p>Hint here.</p>
 </details>
+</div>
 <p></br></p>
+<div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> + Click here for the
@@ -640,10 +707,32 @@ solution </span>
 </summary>
 <p>Solution here.</p>
 </details>
+</div>
 <p></br></p>
 </div>
 <div id="section-bonus-task-simpsons-paradox" class="section level2">
 <h2>Bonus Task: Simpson’s Paradox</h2>
+<p>Task here.</p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> + Click here for a
+hint </span>
+</summary>
+<p>Hint here.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> + Click here for the
+solution </span>
+</summary>
+<p>Solution here.</p>
+</details>
+</div>
+<p></br></p>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
@@ -682,13 +771,13 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7b3fffb", 
+"character")), answers = list(structure(list(id = "lnr_ans_8ce35e3", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9973a51", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c21ac2f", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c662529", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e1c7eb5", 
     option = "Correlation", value = "Correlation", label = structure("Correlation", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -699,14 +788,48 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Here, you’re looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 709696996.669522, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1027328756.02161, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-2", question = structure("Which of the following questions are best addressed using Pearson’s correlation? Please select all that apply.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_5866256", 
+    option = "What is the association between age in years and weight in kg?", 
+    value = "What is the association between age in years and weight in kg?", 
+    label = structure("What is the association between age in years and weight in kg?", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_58e6f91", 
+    option = "Is there a difference in ticket sales between movie theatres with recliners and those without?", 
+    value = "Is there a difference in ticket sales between movie theatres with recliners and those without?", 
+    label = structure("Is there a difference in ticket sales between movie theatres with recliners and those without?", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8845ef7", 
+    option = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
+    value = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
+    label = structure("Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_54c2243", 
+    option = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)", 
+    value = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)", 
+    label = structure("Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "q1-2-answer", question = "q1-2"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 9354223.9956441, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-1", question = structure("What is the mean score on SE1? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_6cc7df8", 
+"character")), answers = list(structure(list(id = "lnr_ans_7b675d8", 
     option = "3.17", value = 3.17, label = structure("3.17", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -717,14 +840,15 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("The mean SE1 score in your sample is 3.17.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyr-1-answer", 
     question = "cyr-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1112191726.4821, options = list(
+    allow_retry = FALSE, seed = 1381636626.35663, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-2", question = structure("What is the maximum value for AntisocialBehaviour? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_71cb16b", 
+"character")), answers = list(structure(list(id = "lnr_ans_9fc12de", 
     option = "488", value = 488, label = structure("488", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -735,16 +859,15 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 "character")), message = structure("The maximum Antisocial Behaviour score is 488, which is well outside the expected limits of 1-5. As a score of 488 is not possible, it is an error. It will need to be deleted so that it is excluded from further analysis.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyr-2-answer", 
     question = "cyr-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1878376690.62531, options = list(
+    allow_retry = FALSE, seed = 881122986.589695, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrCorr-1", 
     question = structure("What is the Pearson correlation value for the association between AntisocialBehaviour and SelfEnhancement? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c832e55", 
+    "character")), answers = list(structure(list(id = "lnr_ans_d0bfcda", 
         option = "0.31", value = 0.31, label = structure("0.31", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -755,20 +878,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("Pearson’s r for the association between AntisocialBehaviour and SelfEnhancement is .31.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrCorr-1-answer", 
         question = "cyrCorr-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 874789208.592645, options = list(
+    allow_retry = FALSE, seed = 342460958.840529, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrCorr-2", question = structure("Which of the following pairs have the weakest association?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_35c458d", 
+"character")), answers = list(structure(list(id = "lnr_ans_412212f", 
     option = "SE1 & SE2", value = "SE1 & SE2", label = structure("SE1 &amp; SE2", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_81afcc5", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8756ca9", 
     option = "SE1 & SE3", value = "SE1 & SE3", label = structure("SE1 &amp; SE3", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_203f176", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e63e3c", 
     option = "SE1 & SE4", value = "SE1 & SE4", label = structure("SE1 &amp; SE4", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -779,17 +903,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Pearson’s r for the association between SE1 &amp; SE4 is only .30. For the association between SE1 &amp; SE3, it is .49, and for the association between SE1 &amp; SE2, it is .54.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrCorr-2-answer", 
     question = "cyrCorr-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1577272447.26553, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1883149191.62309, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrPlots-1", question = structure("Does your boxplot suggest the presence of any outliers in your data?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b86b5f4", 
+"character")), answers = list(structure(list(id = "lnr_ans_72916c4", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7b1ea20", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_22def7b", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -800,16 +923,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The dot just past the upper whisker of the box reflecting Low Self-Enhancement reflects an outlier.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrPlots-1-answer", 
     question = "cyrPlots-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 266130083.376074, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1365738236.86403, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrPlots-2", question = structure("Does your dot-and-error plot suggest the presence of an interaction between SEcategory and ParentalPressure on AntisocialBehaviour?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_da74372", 
+"character")), answers = list(structure(list(id = "lnr_ans_9c7594f", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_75d4ace", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_511ca90", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -820,7 +944,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The effect of Self-Enhancement on AntisocialBehaviour is different across levels of Parental Pressure, so it is likely that there is an interaction effect.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrPlots-2-answer", 
     question = "cyrPlots-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 580317270.229769, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 61926563.9711632, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

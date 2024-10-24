@@ -81,7 +81,15 @@ quiz(caption = '',
               answer("t-test"),
               answer("Factorial ANOVA"),
               answer("Correlation", correct = T),
-              message = "Here, you're looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three."))
+              message = "Here, you're looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three."),
+     question("Which of the following questions are best addressed using Pearson's correlation? Please select all that apply.",
+              answer('What is the association between age in years and weight in kg?', correct = T),
+              answer('Is there a difference in ticket sales between movie theatres with recliners and those without?'),
+              answer('Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?'),
+              answer('Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)', correct = T),
+              answer('Can average sleep (hours per week) predict response time (in milliseconds)?'),
+              random_answer_order = T,
+              message = "Pearson's correlation is used to test for an association between two continuous variables. It doesn't test prediction or for group differences, and it should not be used with categorical data."))
 ```
 
 ### Your Tasks
@@ -312,7 +320,7 @@ Often, visualisations of your results allows outside reader's to more easily int
 
 + [ ] $\ $ Create an APA-style boxplot with `SEcategory` on the x-axis and `AntisocialBehaviour` on the y-axis.
 
-+ [ ] $\ $ Create an APA-style dot-and-error plot with `SEcategory` on the x-axis, `AntisocialBehaviour` on the y-axis, and `ParentalPressure` as the Group variable. Please include a regression line.
++ [ ] $\ $ Create an APA-style dot-and-error plot with `SEcategory` on the x-axis, `AntisocialBehaviour` on the y-axis, and `ParentalPressure` as the Group variable.
 
 ```{r cyrPlots, echo = FALSE}
 quiz(caption = 'Check Your Results',
@@ -326,39 +334,121 @@ quiz(caption = 'Check Your Results',
               message = "The effect of Self-Enhancement on AntisocialBehaviour is different across levels of Parental Pressure, so it is likely that there is an interaction effect."))
 ```
 
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
 
 Hint here.
 
 </details>
+</div>
 </br>
 
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
-Solution here.
+Navigate [to the ggplot GUI webpage](https://shiny.gmw.rug.nl/ggplotgui/) by clicking the link. Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'.
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png')
+```
+
+You'll see a sample of the data appear to the right. To generate a plot with these data, click the 'ggplot' option, here:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png')
+```
+
+Here, you can create your plot using the options available in the columns on the left and right of the page. 
+
+<span style = "font-weight: bold; font-size: 14pt"> Boxplot </span>
+In the left column, set the type of plot to 'Boxplot', the y-axis to `AntisocialBehaviour` and the x-axis to `SEcategory`. You can leave everything else as the default setting. To make sure the plot is APA style, navigate to the options on the right of the page, click Theme, and select 'classic' from the drop-down box. You should now have an APA-style boxplot that shows the difference in antisocial behaviour between self-enhancement value groups:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png')
+```
+
+<span style = "font-weight: bold; font-size: 14pt"> Scatterplot </span>
+In the left column, set the type of plot to 'Scatter', the y-axis to `AntisocialBehaviour` and the x-axis to `SEcategory`. Tick the 'Show regression line' box, and make sure the smoothing function is 'lm'.  To make sure the plot is APA style, navigate to the options on the right of the page, click Theme, and select 'classic' from the drop-down box. You should now have an APA-style scatterplot that shows the association between self-enhancement values and antisocial behaviour:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotScatter.png')
+```
+
+You can change the axis labels to be more manuscript appropriate (e.g., add spaces between words) by using the 'Text' tab in the right column and ticking 'Change labels axes'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotTextOptions.png')
+```
+
+<span style = "font-weight: bold; font-size: 14pt"> Boxplot </span>
+In the left column, set the type of plot to 'Boxplot'. The y-axis can stay set at `AntisocialBehaviour`, but change the x-axis to `SEcategory`. You can leave everything else as the default setting. You should now have an APA-style boxplot that shows the difference in antisocial behaviour between self-enhancement value groups:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png')
+```
+
+
+<span style = "font-weight: bold; font-size: 14pt"> Dot & Error Plot </span>
+In the left column, set the type of plot to 'Dot + Error'. The y-axis can stay set at `AntisocialBehaviour` and the the x-axis at `SEcategory`, but add `ParentalPressure` as the Group variable. You can leave everything else as the default setting. 
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotDotError.png')
+```
+
+You can change the legend label by using the 'Legend' tab in the right column and ticking 'Change legend'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotLegendOptions.png')
+```
 
 </details>
+</div>
 </br>
 
 ## Report & Interpret
 
 Task here.
 
-
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
 
 Hint here.
 
 </details>
+</div>
 </br>
 
+
+<div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
 
 Solution here.
 
 </details>
+</div>
 </br>
 
 ## Bonus Task: Simpson's Paradox
+
+Task here.
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
 
 
