@@ -1,0 +1,263 @@
+Age,Gender,TherapyGroup,Time,CAPS
+21,M,Waitlist,Baseline,77
+21,F,Waitlist,Baseline,55
+38,F,Waitlist,Baseline,79
+54,M,Waitlist,Baseline,40
+69,F,Waitlist,Baseline,67
+60,F,Waitlist,Baseline,78
+19,F,Waitlist,Baseline,64
+67,F,Waitlist,Baseline,50
+54,F,Waitlist,Baseline,35
+50,M,Waitlist,Baseline,42
+36,M,Waitlist,Baseline,47
+72,M,Waitlist,Baseline,47
+65,F,Waitlist,Baseline,42
+63,F,Waitlist,Baseline,53
+28,F,Waitlist,Baseline,41
+35,F,Waitlist,Baseline,79
+41,M,Waitlist,Baseline,46
+54,M,Waitlist,Baseline,65
+24,F,Waitlist,Baseline,49
+47,M,Waitlist,Baseline,60
+46,M,Waitlist,Baseline,40
+43,F,Waitlist,Baseline,29
+56,M,Waitlist,Baseline,58
+51,M,Waitlist,Baseline,44
+33,F,Waitlist,Baseline,49
+57,F,Waitlist,Baseline,36
+54,M,Waitlist,Baseline,79
+63,F,Waitlist,Baseline,48
+39,M,Waitlist,Baseline,55
+38,M,Waitlist,Baseline,55
+46,F,Waitlist,Baseline,51
+68,M,Waitlist,Baseline,34
+22,M,Waitlist,Baseline,38
+21,M,Waitlist,Baseline,44
+25,M,Waitlist,Baseline,29
+69,M,Waitlist,Baseline,59
+65,F,Waitlist,Baseline,80
+55,M,Waitlist,Baseline,39
+56,M,Waitlist,Baseline,54
+69,M,Waitlist,Baseline,66
+25,F,Waitlist,Baseline,49
+34,M,Waitlist,Baseline,69
+26,F,Waitlist,Baseline,68
+21,M,Waitlist,Baseline,67
+63,F,Waitlist,Baseline,80
+52,M,Waitlist,Baseline,56
+46,M,Waitlist,Baseline,56
+65,F,Waitlist,Baseline,48
+46,M,Waitlist,Baseline,38
+58,F,Waitlist,Baseline,60
+44,M,Waitlist,Baseline,68
+63,F,Waitlist,Baseline,58
+65,M,Waitlist,Baseline,63
+53,F,Waitlist,Baseline,69
+53,F,Waitlist,Baseline,77
+21,M,Waitlist,Baseline,50
+28,M,Waitlist,Baseline,51
+27,M,Waitlist,Baseline,44
+33,M,Waitlist,Baseline,34
+37,M,Waitlist,Baseline,50
+32,F,Waitlist,Baseline,45
+67,F,Waitlist,Baseline,38
+55,M,Waitlist,Baseline,63
+59,F,Waitlist,Baseline,63
+63,M,Waitlist,Baseline,50
+35,F,Waitlist,Baseline,40
+26,F,VR Therapy,Baseline,61
+53,F,VR Therapy,Baseline,47
+52,M,VR Therapy,Baseline,55
+25,M,VR Therapy,Baseline,58
+60,M,VR Therapy,Baseline,66
+19,M,VR Therapy,Baseline,39
+29,F,VR Therapy,Baseline,66
+51,F,VR Therapy,Baseline,60
+55,F,VR Therapy,Baseline,79
+49,M,VR Therapy,Baseline,53
+23,F,VR Therapy,Baseline,60
+52,M,VR Therapy,Baseline,73
+26,M,VR Therapy,Baseline,49
+41,M,VR Therapy,Baseline,62
+43,M,VR Therapy,Baseline,32
+40,M,VR Therapy,Baseline,66
+69,M,VR Therapy,Baseline,36
+61,F,VR Therapy,Baseline,55
+26,F,VR Therapy,Baseline,41
+24,F,VR Therapy,Baseline,50
+49,M,VR Therapy,Baseline,50
+57,F,VR Therapy,Baseline,29
+51,M,VR Therapy,Baseline,49
+69,F,VR Therapy,Baseline,45
+62,M,VR Therapy,Baseline,43
+41,F,VR Therapy,Baseline,57
+37,M,VR Therapy,Baseline,54
+18,F,VR Therapy,Baseline,56
+36,M,VR Therapy,Baseline,41
+50,M,VR Therapy,Baseline,51
+19,M,VR Therapy,Baseline,53
+71,F,VR Therapy,Baseline,50
+55,M,VR Therapy,Baseline,40
+71,M,VR Therapy,Baseline,57
+37,M,VR Therapy,Baseline,37
+66,F,VR Therapy,Baseline,46
+71,M,VR Therapy,Baseline,59
+24,F,VR Therapy,Baseline,80
+72,F,VR Therapy,Baseline,49
+20,M,VR Therapy,Baseline,48
+46,M,VR Therapy,Baseline,77
+38,M,VR Therapy,Baseline,46
+43,F,VR Therapy,Baseline,77
+73,F,VR Therapy,Baseline,36
+64,F,VR Therapy,Baseline,59
+24,F,VR Therapy,Baseline,43
+51,F,VR Therapy,Baseline,39
+53,F,VR Therapy,Baseline,49
+42,F,VR Therapy,Baseline,46
+30,F,VR Therapy,Baseline,41
+19,M,VR Therapy,Baseline,55
+52,F,VR Therapy,Baseline,73
+64,F,VR Therapy,Baseline,45
+20,F,VR Therapy,Baseline,52
+55,M,VR Therapy,Baseline,60
+67,F,VR Therapy,Baseline,29
+19,F,VR Therapy,Baseline,54
+25,M,VR Therapy,Baseline,51
+62,M,VR Therapy,Baseline,60
+64,M,VR Therapy,Baseline,66
+57,F,VR Therapy,Baseline,67
+23,F,VR Therapy,Baseline,57
+46,M,VR Therapy,Baseline,80
+54,M,VR Therapy,Baseline,46
+29,F,VR Therapy,Baseline,62
+21,M,Waitlist,FollowUp,75
+21,F,Waitlist,FollowUp,74
+38,F,Waitlist,FollowUp,80
+54,M,Waitlist,FollowUp,41
+69,F,Waitlist,FollowUp,56
+60,F,Waitlist,FollowUp,59
+19,F,Waitlist,FollowUp,66
+67,F,Waitlist,FollowUp,34
+54,F,Waitlist,FollowUp,34
+50,M,Waitlist,FollowUp,45
+36,M,Waitlist,FollowUp,65
+72,M,Waitlist,FollowUp,49
+65,F,Waitlist,FollowUp,38
+63,F,Waitlist,FollowUp,63
+28,F,Waitlist,FollowUp,59
+35,F,Waitlist,FollowUp,51
+41,M,Waitlist,FollowUp,80
+54,M,Waitlist,FollowUp,47
+24,F,Waitlist,FollowUp,59
+47,M,Waitlist,FollowUp,59
+46,M,Waitlist,FollowUp,26
+43,F,Waitlist,FollowUp,76
+56,M,Waitlist,FollowUp,58
+51,M,Waitlist,FollowUp,57
+33,F,Waitlist,FollowUp,32
+57,F,Waitlist,FollowUp,34
+54,M,Waitlist,FollowUp,80
+63,F,Waitlist,FollowUp,51
+39,M,Waitlist,FollowUp,65
+38,M,Waitlist,FollowUp,53
+46,F,Waitlist,FollowUp,44
+68,M,Waitlist,FollowUp,50
+22,M,Waitlist,FollowUp,77
+21,M,Waitlist,FollowUp,21
+25,M,Waitlist,FollowUp,41
+69,M,Waitlist,FollowUp,50
+65,F,Waitlist,FollowUp,79
+55,M,Waitlist,FollowUp,75
+56,M,Waitlist,FollowUp,63
+69,M,Waitlist,FollowUp,65
+25,F,Waitlist,FollowUp,53
+34,M,Waitlist,FollowUp,75
+26,F,Waitlist,FollowUp,54
+21,M,Waitlist,FollowUp,79
+63,F,Waitlist,FollowUp,75
+52,M,Waitlist,FollowUp,59
+46,M,Waitlist,FollowUp,61
+65,F,Waitlist,FollowUp,45
+46,M,Waitlist,FollowUp,36
+58,F,Waitlist,FollowUp,68
+44,M,Waitlist,FollowUp,48
+63,F,Waitlist,FollowUp,57
+65,M,Waitlist,FollowUp,63
+53,F,Waitlist,FollowUp,62
+53,F,Waitlist,FollowUp,72
+21,M,Waitlist,FollowUp,49
+28,M,Waitlist,FollowUp,56
+27,M,Waitlist,FollowUp,47
+33,M,Waitlist,FollowUp,55
+37,M,Waitlist,FollowUp,69
+32,F,Waitlist,FollowUp,45
+67,F,Waitlist,FollowUp,25
+55,M,Waitlist,FollowUp,63
+59,F,Waitlist,FollowUp,75
+63,M,Waitlist,FollowUp,70
+35,F,Waitlist,FollowUp,56
+26,F,VR Therapy,FollowUp,41
+53,F,VR Therapy,FollowUp,41
+52,M,VR Therapy,FollowUp,26
+25,M,VR Therapy,FollowUp,60
+60,M,VR Therapy,FollowUp,37
+19,M,VR Therapy,FollowUp,14
+29,F,VR Therapy,FollowUp,56
+51,F,VR Therapy,FollowUp,52
+55,F,VR Therapy,FollowUp,65
+49,M,VR Therapy,FollowUp,35
+23,F,VR Therapy,FollowUp,59
+52,M,VR Therapy,FollowUp,59
+26,M,VR Therapy,FollowUp,45
+41,M,VR Therapy,FollowUp,76
+43,M,VR Therapy,FollowUp,24
+40,M,VR Therapy,FollowUp,46
+69,M,VR Therapy,FollowUp,40
+61,F,VR Therapy,FollowUp,45
+26,F,VR Therapy,FollowUp,44
+24,F,VR Therapy,FollowUp,34
+49,M,VR Therapy,FollowUp,52
+57,F,VR Therapy,FollowUp,40
+51,M,VR Therapy,FollowUp,44
+69,F,VR Therapy,FollowUp,36
+62,M,VR Therapy,FollowUp,51
+41,F,VR Therapy,FollowUp,79
+37,M,VR Therapy,FollowUp,28
+18,F,VR Therapy,FollowUp,42
+36,M,VR Therapy,FollowUp,29
+50,M,VR Therapy,FollowUp,43
+19,M,VR Therapy,FollowUp,49
+71,F,VR Therapy,FollowUp,35
+55,M,VR Therapy,FollowUp,46
+71,M,VR Therapy,FollowUp,55
+37,M,VR Therapy,FollowUp,25
+66,F,VR Therapy,FollowUp,41
+71,M,VR Therapy,FollowUp,10
+24,F,VR Therapy,FollowUp,64
+72,F,VR Therapy,FollowUp,77
+20,M,VR Therapy,FollowUp,49
+46,M,VR Therapy,FollowUp,70
+38,M,VR Therapy,FollowUp,43
+43,F,VR Therapy,FollowUp,45
+73,F,VR Therapy,FollowUp,31
+64,F,VR Therapy,FollowUp,59
+24,F,VR Therapy,FollowUp,72
+51,F,VR Therapy,FollowUp,17
+53,F,VR Therapy,FollowUp,53
+42,F,VR Therapy,FollowUp,47
+30,F,VR Therapy,FollowUp,60
+19,M,VR Therapy,FollowUp,52
+52,F,VR Therapy,FollowUp,60
+64,F,VR Therapy,FollowUp,31
+20,F,VR Therapy,FollowUp,57
+55,M,VR Therapy,FollowUp,41
+67,F,VR Therapy,FollowUp,13
+19,F,VR Therapy,FollowUp,52
+25,M,VR Therapy,FollowUp,43
+62,M,VR Therapy,FollowUp,60
+64,M,VR Therapy,FollowUp,49
+57,F,VR Therapy,FollowUp,37
+23,F,VR Therapy,FollowUp,46
+46,M,VR Therapy,FollowUp,73
+54,M,VR Therapy,FollowUp,47
+29,F,VR Therapy,FollowUp,43
