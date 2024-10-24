@@ -275,7 +275,7 @@ quiz(caption = 'Check Your Results',
 ```
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariate*
 
@@ -284,7 +284,7 @@ To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariat
 </br>
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 To correlate `SelfEnhancement` with `AntisocialBehaviour`, navigate to *Analyze > Correlate > Bivariate* and add both of these to the 'Variables' box. You can specify that you'd like to also compute the relevant confidence intervals by selecting 'Confidence interval' box and ticking the 'Estimate confidence intervals of the bivariate correlation parameter' box. Click 'Continue' and then 'OK'. You'll get the following output:
 
@@ -332,7 +332,7 @@ quiz(caption = 'Check Your Results',
 ```
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 Hint here.
 
@@ -341,7 +341,7 @@ Hint here.
 </br>
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 Navigate [to the ggplot GUI webpage](https://shiny.gmw.rug.nl/ggplotgui/) by clicking the link. Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'.
 
@@ -411,7 +411,7 @@ Now that you've completed the analyses, write a mini results section describing 
 + Report your results and a provide interpretation in APA style. 
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for a hint </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
 There are many ways you could write this up, but you'll need to at least include the following information:
 
@@ -435,7 +435,7 @@ $r$($df$) = [$r$ value], $p$ = [$p$-value], 95% CI = [lower band, upper band].
 
 
 <div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> + Click here for the solution </span></summary>
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 In this study, we investigated whether adolescent athletes' self-enhancement values were associated with their antisocial behaviours towards members of the opposing team To do this, we collected data from a sample of 173 adolescents who participate in team sports. One participant was excluded due to an error in the data. Our final sample consisted of 172 adolescent athletes between the ages of 13-18 ($M$ = 15.92, $SD$ = 1.60; 88 Females, 84 Males). 
 
@@ -448,7 +448,7 @@ Participants scored an average of 12.38 on the self-enhancement scale ( $SD$ = 2
 <i> Self-Enhancement Values & Antisocial Behaviours Towards Opposing Team </i>
 
 ```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotTextOptions.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_scatterFig.png')
 ```
 
 
