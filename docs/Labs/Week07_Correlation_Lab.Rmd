@@ -251,7 +251,7 @@ Note that the maximum value for `AntisocialBehaviour` is 190, which is not a val
 </div>
 </br>
 
-## Run Correlations
+## Run a Pearson Correlation
 
 As you are testing for an association between two continuous variables, you'll use a correlation to provide statistical support for your hypotheses. 
 
@@ -265,11 +265,9 @@ Recall that $r$ has the following interpretation standards:
 | Strong       | $>$ .5                    |
 
 
-### Your Tasks
+### Your Task
 
-+ [ ] $\ $ Run a correlation to test your hypotheses and interpret the results with $\alpha$ = .05.
-
-+ [ ] $\ $ Produce a correlation matrix showing the correlations between each of the SE variables: `SE1`, `SE2`, `SE3`, and `SE4`
++ [ ] $\ $ Run a correlation to test your hypotheses and interpret the results with $\alpha$ = .05. Note that you should run the correlation between the total self-enhancement score, `SelfEnhancment` and `AntisocialBehaviour`.
 
 
 ```{r cyrCorr, echo = FALSE}
@@ -344,7 +342,7 @@ If you are still having trouble, please [download this file](https://mtruelovehi
 
 Navigate [to the ggplot GUI webpage](https://shiny.gmw.rug.nl/ggplotgui/) by clicking the link. Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'. You'll see a sample of your data pop up on the screen. Once that appears, click the 'ggplot' option (circled).
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png')
 ```
 
@@ -486,13 +484,13 @@ I personally find SPSS tables difficult to customise and produce in APA style. I
 Navigate to *Analyze > Correlate > Bivariate*. Change the tick mark under 'Correlation Coefficients' from 'Pearson' to 'Spearman'. Click 'Flag significant correlations' and 'Show only the lower triangle', then click 'OK'.
 
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanOptions.png')
 ```
 
 You'll get the following output, which you can interpret in the same way as Pearson's $r$:
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanResults.png')
 ```
 
