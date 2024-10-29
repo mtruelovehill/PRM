@@ -633,8 +633,8 @@ class: inverse, middle, center
 |:-------:|:--------------:|
 | < .1    | Neglible       |
 | .1-.3   | Weak           |
-| .3-.6   | Moderate       |
-|  > .6   | Strong         |
+| .3-.5   | Moderate       |
+|  > .5   | Strong         |
 
 ]
 
