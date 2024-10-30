@@ -4,7 +4,7 @@
 
 ## 1) Install and loading the package
 pacman::p_load(ggplotgui)
-
+pacman::p_load(ggpubr)
 ### Note - if above step does not work, try running this line of code below first (delete the hashtag infront before running the code)
 
 #install.packages("pacman")

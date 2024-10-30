@@ -9,9 +9,9 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-# library(learnr)
-# library(tidyverse)
-# library(kableExtra)
+library(learnr)
+library(tidyverse)
+library(kableExtra)
 # library(knitr)
 # library(shiny)
 # library(shinyjs)
@@ -60,43 +60,10 @@ At the end of this lab, you will be able to:
 6. Run a power analysis for linear regression
 
 
-
-```{r, echo = F}
-# dat <- read.csv('Week1LabData.csv')
-# datInfo <- data.frame(VariableName=colnames(dat), 
-#                       Description=c('Participant ID', 'Age in years', 'Time of class in which assessment was given', 'Levels: 1=Male,
-#                                     2=Females, 3=Nonbinary', 'Assessment Version A Scores', 'Assessment Version B Scores', 'Assessment 
-#                                     Version C Scores', 'Assessment Version D Scores'))
-# 
-# datInfo %>%
-#   kbl(col.names=c('Variable Name', 'Description')) %>%
-#   kable_styling(full_width = F) %>%
-#   row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
-#   column_spec(1, bold = T, width = '4.5cm')
-```
-
-
 ## Task 1: Introduction to Regression
 
 MONICA: Include a plot that can be adapted to show the effect of changing the slope and the intercept.
 
-```{r q1, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("What kind of file is 'Week1LabData'?",
-#               answer("SPSS datafile"),
-#               answer("comma separated values file", correct = T),
-#               answer("Excel file"),
-#               answer("Word file"),
-#               message = "The .csv file extension indicates the file is a comma separated values file. This filetype is meant for
-#               spreadsheet-style data. It can be easily used with a wide variety of data analysis software, making it more flexible than
-#               SPSS (.sav) or Excel (.xlsx) files. Word files (.docx) are not meant to be used with spreadsheet-style data."),
-#      question('If you were to restart SPSS, you would open "Week1LabData_SPSS" using "File>Import".',
-#               answer('True'),
-#               answer('False', correct = T),
-#               message = 'Because "Week1LabData_SPSS" is a .sav file, it can be opened using "File>Open". Using the Import option is only
-#               necessary when opening a file that is not an SPSS datafile, such as a .csv or .xlsx file.')
-#      )
-```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -118,17 +85,16 @@ Solution Goes Here
 
 ## Experiment Overview
 
-### This Week's Study
-
-You'll be working with data adapted from [this study](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk). The researchers investigated the factors associated with well-being in University students. 
-
 <br>
+You'll be working with data adapted from [this study](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk) in which the researchers investigated the factors associated with well-being in University students. 
+
 In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
 
 You can download the dataset from this experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). It contains the following variables:
 
 ```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+#dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+dat <- read.csv('Week8LabData.csv')
 datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Age in years',
                                     'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
@@ -146,7 +112,7 @@ datInfo %>%
 
 You'll be investigating whether physical activity, sleep, and social support predict students' wellbeing. 
 
-```{r q1, echo = FALSE}
+```{r cyu1, echo = FALSE}
 quiz(caption = '',
      question("Which test is most appropriate to address your research question, given the study design?",
               answer("Simple Linear Regression"),
@@ -167,7 +133,7 @@ quiz(caption = '',
 
 ### Your Tasks
 + [ ] $\ $ Specify the predictor and outcome variables.
-+ [ ] $\ $ State your research question for this experiment.
++ [ ] $\ $ State your research question(s) for this experiment.
 + [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
 
 
@@ -184,7 +150,40 @@ With regression, it's common to refer to variables as predictors and outcomes ra
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+<b>Possible Research Questions:</b>
+
+Do physical activity, sleep, and social support significantly predict well-being in university students? 
+
+<br>
+
+<b>Predictors:</b> Physical Activity; Sleep; Social Support 
+
+<b>Variable 2:</b> Well-being
+
+<br>
+
+<b>Hypotheses:</b>
+
+<i> General: </i>
+
+Here is an example of the overall hypothesis: 
+
+$H_0:$ Sleep, physical activity, and social support do not predict well-being in university students.
+
+$H_1:$ Sleep, physical activity, and social support significantly predict well-being in university students.
+
+
+Here is an example of a specific hypothesis:
+
+$H_0:$ Sleep does not predict well-being in university students when controlling for the effects of physical activity and social support.
+
+$H_1:$ Sleep predicts well-being in university students when controlling for the effects of physical activity and social support.
+
+<i> Statistical: </i>
+
+$H_0: \beta_{x_i} = 0$
+
+$H_1: \beta_{x_i} \neq 0$
 
 </details>
 </div>
