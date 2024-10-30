@@ -9,19 +9,18 @@ runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
-library(tidyverse)
-library(kableExtra)
-library(knitr)
-library(shiny)
-library(shinyjs)
-library(bslib)
+# library(learnr)
+# library(tidyverse)
+# library(kableExtra)
+# library(knitr)
+# library(shiny)
+# library(shinyjs)
+# library(bslib)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
-#tutorial_options(exercise.timelimit = 60)
 ```
 
 ```{r, context = 'server'}
@@ -48,11 +47,19 @@ accent3 <- '#19424C'
 
 ## Intro to Today's Lab
 
-During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of 10 tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
 
-Intro Goes Here   
+### Learning Objectives
+At the end of this lab, you will be able to:
 
-MONICA: Include a plot that can be adapted to show the effect of changing the slope and the intercept.
+1. Understand what is meant by 'intercept' and 'slope'
+2. Identify hypotheses which may be tested using regression
+3. Test the assumptions of a regression
+4. Use SPSS to run multiple linear regression
+5. Properly interpret and report multiple linear regression analysis
+6. Run a power analysis for linear regression
+
+
 
 ```{r, echo = F}
 # dat <- read.csv('Week1LabData.csv')
@@ -69,18 +76,9 @@ MONICA: Include a plot that can be adapted to show the effect of changing the sl
 ```
 
 
-### Learning Objectives
-At the end of this lab, you will be able to:
+## Task 1: Introduction to Regression
 
-1. Objective 1
-2. Objective 2
-3. Objective 3
-4. Objective 4
-
-
-## Task 1:
-
-Task 1 Here
+MONICA: Include a plot that can be adapted to show the effect of changing the slope and the intercept.
 
 ```{r q1, echo = FALSE}
 # quiz(caption = 'Test Your Understanding',
@@ -118,35 +116,65 @@ Solution Goes Here
 </div>
 </br>
 
-## Task 2
+## Experiment Overview
 
-Task here.
+### This Week's Study
 
+You'll be working with data adapted from [this study](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk). The researchers investigated the factors associated with well-being in University students. 
 
-```{r q2, echo = FALSE}
+<br>
+In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
 
-# You have a participant, J, who scored 138. Fill in the blank: "Participant J scored higher than __% of the total sample"
-quiz(caption = 'Test Your Understanding',
-     question_numeric('What is the percentage of the sample who score between 95 and 110 on the WAIS? Please enter your answer as a whole number.',
-                      answer(38, correct = T),
-                      message = '38% of the sample scored between 95 and 110.'),
-     question_numeric('What percentage of the sample scored below 87? Please enter your answer as a whole number.',
-                      answer(19, correct = T),
-                      message = '19% of the sample received a score lower than 87.'),
-     question_numeric('You have a participant, J, who scored 138. Fill in the blank: "_% of the sample received a score at least as high as Participant J." Please enter your answer as a whole number.',
-                      answer(1, correct = T),
-                      message = 'Only 1% of the sample scored at least 138.'),
-     question_numeric('If you wanted to isolate the 10% of your sample with the lowest scores, what cut-off score would you use?',
-                      answer(81, correct = T),
-                      message = 'The lowest 10% of the sample scored below 81.')
-)
+You can download the dataset from this experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). It contains the following variables:
 
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Age in years',
+                                    'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
+                                    'Amount of physical activity per week in hours',
+                                    'Amount of sleep per week in hours',
+                                    'Scores on a social support scale; values may range between 0-45',
+                                    'Scores on a well-being scale; values may range between 0-40'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
 ```
+
+You'll be investigating whether physical activity, sleep, and social support predict students' wellbeing. 
+
+```{r q1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("Simple Linear Regression"),
+              answer("Factorial ANOVA"),
+              answer("Pearson Correlation"),
+              answer("Multiple Linear Regression", correct = T),
+              message = "Here, you're looking at whether several continuous variables predict values on another continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, and a Pearson correlation only looks at the association between two continuous variables. A simple linear regression is one in which a single variable predicts an outcome, and here there are 3 predictors. In this case, multiple linear regression is the best option."),
+     question("Which of the following questions can be addressed using linear regression? Please select all that apply.",
+              answer('What is the association between age in years and weight in kg?', correct = T),
+              answer('Is there a difference in vaping rates by age group?', correct = T),
+              answer('Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?', correct = T),
+              answer('Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?', correct = T),
+              answer('Can scores on a standardised test predict University marks?', correct = T),
+              answer('Can the number of sweets one consumes per month predict the presence or absence of tooth decay?'),
+              random_answer_order = T,
+              message = "Linear regression can actually address almost all of these questions. It's super flexible! In SPSS, however, it's a bit more complex to do regression analyses with categorical predictors, so in this course, we've been using ANOVA. The only research question that cannot be tested with linear regression is 'Can the number of sweets one consumes per month predict the presence or absence of tooth decay?', as this has a binary outcome variable (Tooth Decay: Yes/No). In the case of binary outcomes, a linear model is not appropriate; instead, you should use logistic regression."))
+```
+
+### Your Tasks
++ [ ] $\ $ Specify the predictor and outcome variables.
++ [ ] $\ $ State your research question for this experiment.
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+With regression, it's common to refer to variables as predictors and outcomes rather than independent and dependent variables. However, the predictor variables equate to the independent variables, and the outcome equates to the dependent variable.
 
 </details>
 </div>
