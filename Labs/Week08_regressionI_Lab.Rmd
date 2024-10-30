@@ -12,10 +12,8 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-# library(knitr)
-# library(shiny)
-# library(shinyjs)
-# library(bslib)
+library(plotly)
+library(shiny)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -23,26 +21,16 @@ accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
 ```
 
-```{r, context = 'server'}
-# output$regPlot <- renderPlot({
-#   set.seed(1022)
-#   
-#   dat <- data.frame(X=rnorm(300, mean = input$mean, sd = input$sd))
-#       
-#   ggplot(data.frame(X = c(-30, 30)), aes(x = X)) +
-#     geom_histogram(data=dat, aes(x=X, y = after_stat(density)), fill = '#4CA384', color = '#19424C',
-#                        binwidth = 2) +
-#         stat_function(fun=dnorm, geom = "line", args = list(mean = input$mean, sd = input$sd),
-#                       linewidth = 1, color = '#19424C') +
-#         scale_x_continuous(breaks = seq(-30, 30, 10), limits=c(-30, 30)) +
-#         scale_y_continuous(limits=c(0, .4)) +
-#         theme(axis.title.x = element_text(size = 16, face = 'bold'),
-#               axis.text.x = element_text(size = 16),
-#               axis.line.y = element_blank(),
-#               axis.text.y = element_blank(),
-#               axis.ticks = element_blank(),
-#               axis.title.y = element_blank())
-#     }, height = 300)
+
+
+
+```{r, echo = F}
+tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-to, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-to, .js-irs-3 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-to, .js-irs-4 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {background: #4CA384}"))
 ```
 
 ## Intro to Today's Lab
@@ -60,28 +48,47 @@ At the end of this lab, you will be able to:
 6. Run a power analysis for linear regression
 
 
-## Task 1: Introduction to Regression
+## Introduction to Regression
 
-MONICA: Include a plot that can be adapted to show the effect of changing the slope and the intercept.
+INTRO TO ACTIVITY HERE.
 
+```{r regPlot, echo = F}
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+fluidRow(column(4, sliderInput('int1', 'Line 1 Intercept', min = -4, max = 4, step = 1,
+                               value = 0, ticks = F),
+                sliderInput('slope1', 'Line 1 Slope', min = -3, max = 3, step = 0.5,
+                               value = 0, ticks = F)),
+         column(4, sliderInput('int2', 'Line 2 Intercept', min = -4, max = 4, step = 1,
+                               value = 0, ticks = F),
+                sliderInput('slope2', 'Line 2 Slope', min = -3, max = 3, step = 0.5,
+                               value = 0, ticks = F)),
+         column(4, sliderInput('int3', 'Line 3 Intercept', min = -4, max = 4, step = 1,
+                               value = 0, ticks = F),
+                sliderInput('slope3', 'Line 3 Slope', min = -3, max = 3, step = 0.5,
+                               value = 0, ticks = F)))
 
-Hint Goes Here
+plotlyOutput('regPlot')
+```
 
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution Goes Here
-
-</details>
-</div>
-</br>
+```{r, context = 'server'}
+output$regPlot <- renderPlotly({
+  ggplot() + 
+  scale_y_continuous(limits = c(-20, 20)) +
+  scale_x_continuous(limits = c(0, 5)) + 
+  labs(x = 'X', y = 'Y') +
+  geom_abline(slope = input$slope1, intercept = input$int1, color = baseColor, linewidth = 1) +
+  geom_abline(slope = input$slope2, intercept = input$int2, color = accent1, linewidth = 1) +
+  geom_abline(slope = input$slope3, intercept = input$int3, color = accent3, linewidth = 1) +
+  geom_vline(xintercept = 0, lty = 2) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_text(size = 14, face = 'bold'),
+        axis.text.x = element_text(size = 12)) +
+    annotate(geom = 'Text', label = 'Line 1', color = baseColor, x = .5, y = 15, size = 6) +
+    annotate(geom = 'Text', label = 'Line 2', color = accent1, x = .5, y = 12, size = 6) +
+    annotate(geom = 'Text', label = 'Line 3', color = accent3, x = .5, y = 9, size = 6)
+    })
+```
 
 ## Experiment Overview
 
@@ -93,8 +100,8 @@ In this experiment, you recruited a sample of university students and administer
 You can download the dataset from this experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). It contains the following variables:
 
 ```{r, echo = F}
-#dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
-dat <- read.csv('Week8LabData.csv')
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+
 datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Age in years',
                                     'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
@@ -132,8 +139,8 @@ quiz(caption = '',
 ```
 
 ### Your Tasks
-+ [ ] $\ $ Specify the predictor and outcome variables.
 + [ ] $\ $ State your research question(s) for this experiment.
++ [ ] $\ $ Specify the predictor and outcome variables.
 + [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
 
 
@@ -190,188 +197,31 @@ $H_1: \beta_{x_i} \neq 0$
 </br>
 
 
-## Task 3: 
+## Data Review
 
+Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task)? These things should be dealt with before conducting the analyses.
 
-Task Description Here
+Additionally, you'll need to compute descriptive data. You'll do this for both your main variables of interest and your sample's demographic data, as this must be included in the Sample portion of your Methods section. 
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+### Your Tasks
 
-Hint Here
++ [ ] $\ $ Open 'Week8LabData.sav'
 
-</details>
-</div>
-</br>
++ [ ] $\ $ Check that all variables are set as the correct measurement type. 
 
++ [ ] $\ $ Check the descriptive statistics of your data
 
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-
-
-
-## Task 4: 
-
-Task Here.
-
-```{r q4, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("At least one of the groups is limited in size compared to the others",
-#               answer("True", correct = T),
-#               answer("False"),
-#               message = 'The nonbinary group is much smaller than the other two measured groups.'),
-#      question_numeric("How many total datapoints do you have for the gender variable?",
-#               answer(48, correct=T)),
-#      question_numeric("What percentage of participants are female?",
-#               answer(41.7, correct=T)),
-#      question_numeric('How many nonbinary participants are in your sample?',
-#               answer(2, correct=T)))
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 5: 
-
-Task Here
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 6: 
-
-Task Description.
-
-```{r q6, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question("Which of the following central tendency measures could be used to describe age? Please select all that apply.",
-#               answer("Mean", correct = T),
-#               answer("Median", correct = T),
-#               answer('Mode', correct = T),
-#               message = 'All of the above could technically be used to describe the Age variable. However, it is most common to use the
-#               mean, as it includes information from each observation.'),
-#      question("Which of the following central tendency measures could be used to describe gender? Please select all that apply.",
-#               answer("Mean"),
-#               answer("Median"),
-#               answer('Mode', correct = T),
-#               message = 'As a categorical variable, there is no numeric relationship between values in the gender variable. Therefore, 
-#               the mode is the only measure of central tendency that is appropriate to describe this variable'),
-#      question_numeric("What is the average score on Assessment A?",
-#               answer(39.10, correct=T)),
-#      question_numeric("What is the most common age in this sample?",
-#               answer(19, correct=T)),
-#      question_numeric("What is the median score on Assessment D?",
-#               answer(81.87, correct=T))
-# )
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 7: 
-
-Task here.
-
-```{r q7, echo = FALSE}
-# quiz(caption = 'Test Your Understanding',
-#      question_numeric("What is the IQR for Assessment B?",
-#               answer(4, correct=T),
-#               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile from the 75th percentile."),
-#      question_numeric("What is the maximum score on Assessment C?",
-#               answer(78, correct=T)),
-#      question_numeric("What is the standard deviation of scores on Assessment D? Please report your answer to two decimal places.",
-#               answer(2.15, correct=T))
-# )
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Hint Here
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-Solution here.
-
-</details>
-</div>
-</br>
-
-## Task 8: 
-
-Task here.
-
-```{r distPlot, echo = F}
-# 
-# fluidRow(column(4, 
-#   sliderInput("mean","Value of Mean:", min = -6, max = 6, value = 0, step = 2),
-#   sliderInput('sd', 'Value of SD:', min = 1, max = 5, value = 1, step = .25)),
-#   column(8, plotOutput('distPlot')))
-# 
-# tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar {background: #4CA384}"))
-# tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar {background: #4CA384}"))
-
+```{r cyrDesc, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("How many total participants are there in this dataset?",
+              answer(600, correct=T),
+              message = 'There are 600 total participants.'),
+     question_numeric("How many participants preferred not to disclose their gender?",
+              answer(10, correct=T),
+              message = '10 participants chose not to disclose their gender.'),
+     question_numeric("What is the mean well-being score? Please round your answer to two decimal places.",
+              answer(18.20, correct=T),
+              message = 'The mean score on the well-being scale is 18.20.'))
 ```
 
 <div class="container">
@@ -394,9 +244,129 @@ Solution here.
 </br>
 
 
-## Task 9
+## Check Assumptions
 
-Task here.
+You can remember the requirements/assumptions of linear regression by remembering **LINE**.
+
+(1) **L**inearity: All predictors variables have a linear relationship with the outcome variable.
+
+(2) **I**ndependence of Observations: Individual observations should not be dependent upon any others
+
+(3) **N**ormality: Model residuals are normally distributed
+
+(4) **E**qual Variance (AKA Homoskedasticity or Homogeneity of Variance): the variance is consistent across both predictor values & fitted values
+
+(5) No Multicol**line**arity: Predictors should not be highly correlated with each other (e.g., $r$ > .8)
+
+### Your Tasks
+
++ [ ] $\ $ Decide whether your data meet the assumption of linearity
+
++ [ ] $\ $ Decide whether your data meet the assumption of normality
+
++ [ ] $\ $ Decide whether your data meet the assumption of equal variance
+
++ [ ] $\ $ Check whether your data exhibit multicollinearity
+
+You can assume independence is met, as it's something that's accounted for through good study design rather than statistically.
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint here.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Primary Analysis
+
+As you are testing whether multiple predictor variables can predict a single, continuous outcome, you'll use results from Multiple Linear regression to provide statistical support for your hypotheses.
+
+
+### Your Tasks
+
++ [ ] $\ $ Run multiple regression to test your hypotheses and interpret the overall model results with $\alpha$ = .05.
+
++ [ ] $\ $ Interpret the individual predictor results with $\alpha$ = .05.
+
++ [ ] $\ $ Compute the confidence intervals associated with each predictor
+
+```{r cyrAnalysis, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("How much variance in well-being is explained by your predictors? Please provide your answer as a percentage (without the % sign), and round it to the nearest whole number.",
+              answer(36, correct=T),
+              message = 'The three predictor variables explain ~36% of the variance in well-being scores (see the adjusted R square value).'),
+     question("Which of the following are significant predictors of well-being? Please select all that apply.",
+              answer('Sleep', correct=T),
+              answer('Physical Activity'),
+              answer('Social Support', correct = T),
+              message = 'Both sleep and social support are significant predictors of well-being. The p-value associated with Physical Activity was .239, which is larger than our alpha threshold of .05, so this variable is not considered significant.',
+              random_answer_order = T),
+     question('The overall model is significant.',
+              answer('True', correct = T),
+              answer('False'),
+              message = 'The overall model test produced an F-statistic of 112.21 and a corresponding p-value of < .001. This suggests that our combination of predictor variables significantly predict the scores on our well-being assessment.'))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Hint Here
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Solution here.
+
+</details>
+</div>
+</br>
+
+## Power Analysis
+
+Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+### Your Task
+
++ [ ] $\ $ Run a **sensitivity** power analysis using $\alpha$ = .05 and power = .8 to determine the effect size ($R^2$) you're capable of detecting with 600 participants using a linear regression model with 3 predictors.
+
++ [ ] $\ $ Convert the $f^2$ value to $R^2$ using the following formula:
+
+$$R^2 = \frac{f^2}{f^2+1}$$
+
+#### Bonus Task
+
++ [ ] $\ $ Run an a priori power analysis using $\alpha$ = .05 and power = .8 to determine the number of participants you need to detect a moderate effect ($R^2$ = .13) with a linear regression using 3 predictors. You can use the following formula to convert $R^2$ to $f^2$:
+
+$$f^2 = \frac{R^2}{1-R^2}$$
+
+
+
+```{r cyrPower, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the R2 value associated with your sensitivity power analysis (i.e., what R2 value are you capable of detecting with 600 participants)? Please round your answer to 2 decimal places.",
+              answer(.02, correct=T),
+              message = "You are capable of detecting an R2 value of .02. The power analysis produced an f2 value of .02. You can get this result by converting this value to R2 with the following equation: .02/(.02+1) = .02. In this case, it's basically identical, but this may not always be the case."),
+     question_numeric("How many participants do you need to detect an R2 of .13 with 3 predictors?",
+                      answer(77, correct = T),
+                      message = 'First, you need to convert R2 to f2 using the following equation: .13/(1-.13) = .15. Using this effect size, the power calculation indicates that 77 participants are needed to detect this effect with 80% power and alpha = .05.'))
+```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -420,13 +390,26 @@ Solution here.
 
 ## Interpret & Report 
 
-Task here.
+Now that you've completed the analyses, write a mini results section describing your findings. In this section, please:
+
++ Give a brief description of your sample as you would in a methods section. 
+
++ Report your results and a provide interpretation in APA style. 
 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+There are many ways you could write this up, but you should at least include the following information:
+
++ alpha level
++ number of participants (n)
++ participant demographics (mean age, age $SD$, and age range of sample; gender distribution of sample)
++ descriptive data for each variable ($M$ & $SD$)
++ the type of test used
++ $R^2$ and its interpretation
++ the overall model test results ($F$, $df$, $p$)
++ individual predictor results (either $B$ or $\beta$, appropriate interpretation, confidence intervals, $p$ values)
 
 </details>
 </div>
