@@ -160,7 +160,7 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 + [ ] $\ $ Check that all variables are set as the correct measurement type. 
 
-+ [ ] $\ $ Compute a composite score, `SelfEnhancement`, by summing the following columns: `SE1`, `SE2`, `SE3`, and `SE4`
++ [ ] $\ $ Compute a total score, `SelfEnhancement`, by summing the following columns: `SE1`, `SE2`, `SE3`, and `SE4`
 
 + [ ] $\ $ Check the descriptive statistics of your data
 

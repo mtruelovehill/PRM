@@ -378,7 +378,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-To run a Factorial ANOVA with a within-subjects variable, you should navigate to *Analyze>General Linear Model>Repeated Measures*. If you only had between-subjects variables, you would navigate to *Analyze>General Linear Model>Multivariate*.
+To run a Factorial ANOVA with a within-subjects variable, you should navigate to *Analyze>General Linear Model>Repeated Measures*. If you only had between-subjects variables, you would navigate to *Analyze>General Linear Model>Univariate*.
 
 </details>
 </div>

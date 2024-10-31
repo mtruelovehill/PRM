@@ -33,6 +33,16 @@ tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-to, .js-irs-4 .irs-bar {b
 tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {background: #4CA384}"))
 ```
 
+
+```{r, echo = F}
+tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-to, .js-irs-2 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-to, .js-irs-3 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-to, .js-irs-4 .irs-bar {background: #4CA384}"))
+tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {background: #4CA384}"))
+```
+
 ## Intro to Today's Lab
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
@@ -50,7 +60,34 @@ At the end of this lab, you will be able to:
 
 ## Introduction to Regression
 
-INTRO TO ACTIVITY HERE.
+Linear models assume the relationship between variables can be best captured with a straight line. In many cases, this assumption holds true:
+
+```{r, echo = F, warning = F, message = F, fig.align='center', fig.height=3}
+dat <- carData::Davis
+
+ggplot(dat[dat$repwt<80 & dat$repht < 190,], aes(repwt, repht)) + geom_point() +
+  geom_smooth(method = 'lm', se = F, color = baseColor) +
+  labs(x = 'Hours Worked', y = 'Money Earned') +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank())
+  
+```
+
+The straight line in this plot represents a 'fit line', which is the line that best represents the data. Specifically, it's the line that minimises the total distance between all observations and the line itself. 
+<br>
+The fit line of a regression model has two key characteristics:
+
+**Intercept:** the point on the line where it crosses the $y$-axis (where $x$ = 0)
+
+**Slope:** the rate of change in the line
+
+<br>
+
+### Your Task
+
++ [ ] $\ $ Use the plot below to explore these two characteristics further.
+
+<br>
 
 ```{r regPlot, echo = F}
 
@@ -165,7 +202,7 @@ Do physical activity, sleep, and social support significantly predict well-being
 
 <b>Predictors:</b> Physical Activity; Sleep; Social Support 
 
-<b>Variable 2:</b> Well-being
+<b>Outcome:</b> Well-being
 
 <br>
 
@@ -180,7 +217,7 @@ $H_0:$ Sleep, physical activity, and social support do not predict well-being in
 $H_1:$ Sleep, physical activity, and social support significantly predict well-being in university students.
 
 
-Here is an example of a specific hypothesis:
+Here is an example of a hypothesis that references a specific predictor:
 
 $H_0:$ Sleep does not predict well-being in university students when controlling for the effects of physical activity and social support.
 
@@ -227,7 +264,8 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+For continuous variables, the descriptive statistics you'll want to check are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of your expected range. For categorical variables, you'll check the frequency of participants in each group. It may also be useful to check the mode.
+
 
 </details>
 </div>
@@ -237,7 +275,38 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab.
+
+* `Age` - Scale
+
+* `Gender` - Nominal
+
+* `PhysicalActivity` - Scale
+
+* `Sleep` - Scale
+
+* `SocialSupport` - Scale
+
+* `Wellbeing` - Scale
+
+In this instance, SPSS assigned the proper measures by default. No changes are required.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
+
+**Categorical Variables:** The only categorical variables in this week's dataset is `Gender`. Click *Analyze>Descriptive Statistics>Frequencies*, then add `Gender` to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_freqTable.png')
+```
+
+
+**Continuous Variables:** All remaining variables are continuous. Click *Analyze>Descriptive Statistics>Frequencies*, then add these two variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_descStats.png')
+```
+
 
 </details>
 </div>
@@ -270,28 +339,78 @@ You can remember the requirements/assumptions of linear regression by rememberin
 
 You can assume independence is met, as it's something that's accounted for through good study design rather than statistically.
 
+
+
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint here.
+You can actually check all assumptions when setting up your model, so you'll get output for assumptions checks and overall model results at the same time.
+
+To check for normality, you can view a P-P plot of the residuals. To check for linearity and heteroskedasticity/equal variance, you will look at a plot of residuals by predicted values. To check for multicollinearity, you'll check the Variance Inflation Factor (VIF). VIF values greater than 5 suggest issues with multicollinearity.
 
 </details>
 </div>
-</br>
-
+<br>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+To check assumptions (and run the regression analysis), navigate to *Analyze > Regression > Linear*. Add your outcome variable, `Wellbeing`, to the 'Dependent' box and your predictors, `SocialSupport`, `Sleep`, and `PhysicalActivity` to the 'Independent(s)' box.
+
+To produce the P-P plot and the plot of residuals by predicted values, click 'Plots', move the ZRESID variable (which reflects the standardized residual) into the Y box and the ZPRED variable (which reflects the standardized model-predicted value of well-being for each individual) into the X box. Make sure 'Normal probability plot' is ticked:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_assumptionsPlots.png')
+```
+
+Click 'Continue'. To check for multicollinearity, click 'Statistics' and tick 'Collinearity diagnostics': 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_lrStats.png')
+```
+
+Click 'Continue' and then 'OK'. Your model will run, and you will also get the information you need to check assumptions.
+
+First, have a look at the P-P plot:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_ppPlot.png')
+```
+
+If the data are generally normal, the points will follow the diagonal line. Here, that's exactly what is happening, so the data meet the assumption of normality.
+
+
+Next, have a look at the residuals by predicted values plot:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_predResidPlot.png')
+```
+
+The datapoints should look like a random cloud centering around the middle. If there are any strange patterns (a fan shape or a bow-tie), then the assumption of equal variance is violated. If the pattern is curved in some way, the association between `Wellbeing` and the predictors may not be linear. Here, the data look nice and cloud-like, so the data seem to meet the assumptions of linearity and equal variance.
+
+To check for multicollinearity, look for correlation values greater than .8 in the correlation table:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_corrTable.png') 
+```
+
+You can also check that the VIF values at the end of the coefficients table are less than 5:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_coefs.png') 
+```
+
+All of these criteria are met, so the data do not appear to exhibit multicollinearity. 
+
+All checks look good, so you can move on to interpreting the primary results.
+
 
 </details>
 </div>
-</br>
 
 ## Primary Analysis
 
-As you are testing whether multiple predictor variables can predict a single, continuous outcome, you'll use results from Multiple Linear regression to provide statistical support for your hypotheses.
+As you are testing whether multiple predictor variables can predict a single, continuous outcome, you'll use results from multiple linear regression to provide statistical support for your hypotheses. In this analysis, you'll test whether your overall model significantly predicts well-being. You'll then check the effects of each predictor individually. 
 
 
 ### Your Tasks
@@ -302,16 +421,27 @@ As you are testing whether multiple predictor variables can predict a single, co
 
 + [ ] $\ $ Compute the confidence intervals associated with each predictor
 
+
 ```{r cyrAnalysis, echo = FALSE}
 quiz(caption = 'Check Your Results',
-     question_numeric("How much variance in well-being is explained by your predictors? Please provide your answer as a percentage (without the % sign), and round it to the nearest whole number.",
-              answer(36, correct=T),
-              message = 'The three predictor variables explain ~36% of the variance in well-being scores (see the adjusted R square value).'),
+     question(' Which of the following statements reflects the accurate interpretation of adjusted R squared?',
+              answer('Together, sleep, physical activity, and social support explain ~36% of the variance in test anxiety ratings.', correct = T),
+              answer('As the values of the significant predictors increase by 1 point, well-being scores increase by .36'),
+              answer('There is a 36% likelihood that this model accurately predicts wellbeing.'),
+              answer('Wellbeing scores will be about 3.58 when each of the predictors are equal to 0.'),
+              message = 'The adjusted R squared is the proportion of variance in the outcome accounted for by the predictor variables.',
+              random_answer_order = T),
      question("Which of the following are significant predictors of well-being? Please select all that apply.",
               answer('Sleep', correct=T),
               answer('Physical Activity'),
               answer('Social Support', correct = T),
               message = 'Both sleep and social support are significant predictors of well-being. The p-value associated with Physical Activity was .239, which is larger than our alpha threshold of .05, so this variable is not considered significant.',
+              random_answer_order = T),
+     question("Which of the following interpretations are correct? Please select all that apply.",
+              answer('For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are held constant', correct=T),
+              answer("As one's social support score increases by 1 SD, their well-being score will increase by 0.90 SD, when sleep and physical activity are held constant.", correct = T),
+              answer('Physical Activity has a positive relationship with well-being'),
+              message = 'Both sleep and social support are significant predictors of well-being, but as phsyical activity is not, we cannot claim that it has a relationship with well-being at all. The other two options with sleep and social support show the proper way to report unstandardized and standardized coefficients, respectively',
               random_answer_order = T),
      question('The overall model is significant.',
               answer('True', correct = T),
@@ -322,7 +452,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+To perform a linear regression, navigate to *Analyze > Regression > Linear*.
 
 </details>
 </div>
@@ -332,7 +462,46 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+To run the regression analysis, navigate to *Analyze > Regression > Linear*. Add your outcome variable, `Wellbeing`, to the 'Dependent' box and your predictors, `SocialSupport`, `Sleep`, and `PhysicalActivity` to the 'Independent(s)' box. Click statistics and check the following boxes:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_lrStats.png')
+```
+
+Click 'Continue', then 'OK'. 
+
+The first piece of output is a recap of the descriptive statistics for each variable in your model:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_regDescs.png')
+```
+
+The next two boxes you will focus on are the Model Summary and ANOVA boxes:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_modelResults.png')
+```
+
+First, check the Model Summary box, which provides $R^2$ and $R^2_{adj}$. I recommend defaulting to Adjusted $R^2$, as it is just a version of $R^2$ that's been adjusted by the number of predictors in the model, so it's less biased by models with a large number of predictors. Here, where we only have a few predictors, these numbers aren't that different, but when you have larger models, there can be quite a change between the two.
+
+The $R^2_{adj}$ value is .36, which indicates that 36% of the variance in our sample's well-being scores is accounted for by sleep, physical activity, and social support.
+
+The ANOVA tells us the results of our overall model test (is this model significant?). You interpret this in the same way you would a typical ANOVA - the $p$-value is < .001, so we can say the overall model significantly predicts well-being scores. In other words, when we have data on someone's sleep, physical activity levels, and social support network, we have a better idea about what their well-being may be than if we didn't have this information.
+
+
+Next, have a look at the 'Coefficients' box, which has information about individual predictors:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_coefs.png')
+```
+
+By looking at the $p$-values in the 'Sig.' column, we can see the values associated with `Sleep` and `SocialSupport` are lower than the $\alpha$ threshold of .05, indicating that these two variables significantly predict well-being. The $p$-value associated with `PhysicalActivity` is greater than .05, so it is not significant. The $\beta$ estimates give us a better sense of the relationship between the individual predictors and the outcome. 
+
+For example, the unstandardized $\beta$ coefficient associated with `Sleep` is 0.37. The unstandardized $\beta$ coefficient tells us how much the outcome variable changes with every 1-unit change in the predictor. Sleep was measured in hours per week. This means that for every additional hour of sleep someone gets per week, we would expect their well-being scores to increase by 0.37 points. 
+
+The standardized $\beta$ coefficient can be interpreted the same way, but in standard deviation units rather than raw values.
+
+Note that even though we have a $\beta$ coefficient associated with `PhysicalActivity`, we would not interpret it in this way, as `PhysicalActivity` was not a significant predictor of `Wellbeing`, meaning that we can't say with any certainty that this $\beta$ value is meaningfully different than 0. 
 
 </details>
 </div>
@@ -352,7 +521,7 @@ $$R^2 = \frac{f^2}{f^2+1}$$
 
 #### Bonus Task
 
-+ [ ] $\ $ Run an a priori power analysis using $\alpha$ = .05 and power = .8 to determine the number of participants you need to detect a moderate effect ($R^2$ = .13) with a linear regression using 3 predictors. You can use the following formula to convert $R^2$ to $f^2$:
++ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the number of participants you need to detect a moderate effect ($R^2$ = .13) with a linear regression using 3 predictors. You can use the following formula to convert $R^2$ to $f^2$:
 
 $$f^2 = \frac{R^2}{1-R^2}$$
 
@@ -371,7 +540,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Hint Here
+Webpower has an option through which you can enter the $R^2$ value and it will calculate $f^2$ for you.
 
 </details>
 </div>
@@ -381,7 +550,34 @@ Hint Here
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+For the sensitivity analysis, navigate to the webpower site and choose 'Linear Regression' from the menu:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerMenu.png')
+```
+
+Enter in the relevant information and click 'Calculate' to get the results:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis1.png')
+```
+
+To figure out how this relates to the $R^2$ of your model, convert from $f^2$:
+
+$$R^2 = \frac{f^2}{f^2+1} = \frac{.02}{.02+1} = .02$$
+In this case, it's the same, but that won't always be true, so it's important to always convert between effect sizes.
+
+
+For the bonus power analysis, enter in the relevant information and click 'Calculate' to get the results:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis2.png')
+```
+
+Note that you can click 'Show' next to effect size and use the calculator there to get $f^2$ from $R^2$, or you can use the following equation:
+
+$$f^2 = \frac{R^2}{1-R^2} = \frac{.13}{1-.13} = .15$$
+Whatever you choose, you'll need 77 participants, given the other criteria.
 
 </details>
 </div>
@@ -394,7 +590,9 @@ Now that you've completed the analyses, write a mini results section describing 
 
 + Give a brief description of your sample as you would in a methods section. 
 
-+ Report your results and a provide interpretation in APA style. 
++ Report your results and a provide an interpretation in APA style. 
+
++ It is common to also include a table with the correlations between each variable included in the model. Please create an APA-style correlation table.
 
 
 <div class="container">
@@ -409,7 +607,9 @@ There are many ways you could write this up, but you should at least include the
 + the type of test used
 + $R^2$ and its interpretation
 + the overall model test results ($F$, $df$, $p$)
-+ individual predictor results (either $B$ or $\beta$, appropriate interpretation, confidence intervals, $p$ values)
++ individual predictor results (either $B$ or $\beta$, appropriate interpretation, either the standard error or confidence intervals, $p$ values)
+
+See [here](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/sample-tables#correlation) for an example of an APA-style correlation table.
 
 </details>
 </div>
@@ -419,7 +619,15 @@ There are many ways you could write this up, but you should at least include the
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Solution here.
+In this study, we investigated the association between well-being in university students and the lifestyle factors of sleep, physical activity, and social support. We hypothesised that these factors would significantly predict scores on a well-being assessment. To test this, we performed multiple linear regression with wellbeing scores as an outcome variable and hours of sleep per week, hours of physical activity per week, and scores on a social support questionnaire as predictors. $\alpha$ was set at .05 for all analyses. A power analysis indicated that 600 participants would provide 80% power to detect an $R^2 = .02$ with $\alpha$ = .05 using a linear regression with 3 predictors.
+
+Our final sample consisted of 600 university students between the ages of 17 and 26 ($M$ = 21.49, $SD$ = 2.61; 297 females, 281 males, 7 nonbinary participants, 5 participants who indicated a gender other than these categories, and 10 who preferred not to disclose). The normality assumption was checked through visual assessment of a P-P plot of the residuals. Linearity and homoskedasticity were checked using a residuals by predicted values plot. VIF scores and correlations were used to evaluate the presence of multicollinearity. The data met all assumptions.
+
+Our results indicate that, altogether, sleep, physical activity, and social support significantly predicted well-being, $F$(3,596) = 112.21, $p$ < .001, explaining 36% of the variance in student well-being scores. Both hours of sleep, $\beta$ = .37, $p$ < .001, 95% CI = [0.34, 0.41], and social support, $\beta$ = .07, $p$ = .006, 95% CI = [0.02, 0.11], were significant predictors of well-being. Specifically, for every additional hour per week of sleep, student well-being scores increased by .37 points. For every additional point on the social support scale, student well-being scores increased by .07 points. Hours of physical activity per week was not a significant predictor of well-being, $\beta$ = .14, $p$ = .239, 95% CI = [-0.09, 0.36]. See Table 1 for descriptive data and correlations between all variables in the analysis.
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_table.png')
+```
 
 </details>
 </div>
