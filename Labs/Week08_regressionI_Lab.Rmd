@@ -396,7 +396,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_c
 
 You can also check that the VIF values at the end of the coefficients table are less than 5:
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_coefs.png') 
 ```
 
@@ -491,7 +491,7 @@ The ANOVA tells us the results of our overall model test (is this model signific
 
 Next, have a look at the 'Coefficients' box, which has information about individual predictors:
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_coefs.png')
 ```
 
@@ -625,7 +625,7 @@ Our final sample consisted of 600 university students between the ages of 17 and
 
 Our results indicate that, altogether, sleep, physical activity, and social support significantly predicted well-being, $F$(3,596) = 112.21, $p$ < .001, explaining 36% of the variance in student well-being scores. Both hours of sleep, $\beta$ = .37, $p$ < .001, 95% CI = [0.34, 0.41], and social support, $\beta$ = .07, $p$ = .006, 95% CI = [0.02, 0.11], were significant predictors of well-being. Specifically, for every additional hour per week of sleep, student well-being scores increased by .37 points. For every additional point on the social support scale, student well-being scores increased by .07 points. Hours of physical activity per week was not a significant predictor of well-being, $\beta$ = .14, $p$ = .239, 95% CI = [-0.09, 0.36]. See Table 1 for descriptive data and correlations between all variables in the analysis.
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_table.png')
 ```
 
