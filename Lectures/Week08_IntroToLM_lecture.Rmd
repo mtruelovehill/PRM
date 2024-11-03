@@ -90,7 +90,6 @@ accent3 <- '#19424C'
 
 .pull-right[
 ```{r, echo = F, message=F, fig.height=5}
-
 dat <- data.frame(StudyHours = c(1.44, 2.98, 5.78, 3.70, 5.30, 2.10, 4.10, 3.28, 6.11, 5),
                  CourseAverage = c(45.07, 53.93, 73.25, 64.25, 69.15, 51.16, 68.08, 61.85, 70.40, 78.50))
 
@@ -125,16 +124,37 @@ lrPlot
 
 ]
 
----
-## Principle of Least Squares
-
-MONICA - show a few figures here to show the best-fitting line. Plot some lines that don't fit so well, and then one that does.
-
 
 ---
-### Logic of Regression
+## Logic of Regression
 
-MONICA - Slides that show the SS-Model, SS-Residual, SS-Total for regression models
++ ANOVA is actually a special case of the linear model, so the logic of ANOVA and regression is the same
+
++ The key difference, in this case, is continuous rather than categorical predictors
+
++ The overall model test is still comparing a model with some predictors to a baseline mean model
+
+--
+
+```{r, echo = F}
+knitr::include_graphics('images/regressionSS.png')
+```
+
+---
+## Coefficient of Determination
+
++ One of the key methods through which we evaluate a regression model is through the coefficient of determination, $R^2$
+
+$$R^2 = \frac{SS_{Model}}{SS_{Total}}$$
+
++ $R^2$ is a measure of the variance in the outcome variable accounted for by the predictor(s)
+
++ It is equivalent to $\eta^2$ in ANOVA
+
+```{r, echo = F}
+knitr::include_graphics('images/regressionSS.png')
+```
+
 
 ---
 class: center, inverse, middle
@@ -688,28 +708,173 @@ class: inverse, middle, center
 ---
 ## Multiple Predictors
 
-+ So far, we've only been considering cases with a single predictor
++ Regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
 
-+ However, regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
++ However, when we include multiple predictors, those predictors are likely to correlate.
+
++ Thus, a linear model with multiple predictors finds the optimal prediction of the outcome from several predictors, **taking into account their redundancy with one another**
+
+
+---
+## Why Use Multiple Predictors?
+
++ **Prediction:** multiple predictors may lead to improved prediction.
+
++ **Theory testing:** often our theories suggest that multiple variables together contribute to variation in an outcome
+
++ **Covariate control:** we might want to assess the effect of a specific predictor, controlling for the influence of others.
+  
+  + E.g., effect of revision time on course average score after removing effect of mathematical background
 
 
 ---
 ## Multiple Predictors - Regression Equation
 
++ It's very straightforward to expand the regression equation to account for multiple predictors:
+
++ **One Predictor**: $y_i = \beta_0 + \beta_1x_i + \epsilon_i$
+
++ **Multiple Predictors**: $y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$
+
++ Still a single intercept ( $\beta_0$), but now there are individual $\beta$ coefficients for each predictor
 
 ---
 ## Multiple Predictors - Interpretation
 
+$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$$
+
++ $\beta_0$: The predicted value of the outcome variable when all predictors are equal to 0
+
++ $\beta_j$: partial regression coefficients
+  
+  + They now reflect the change in the outcome variable for a one-unit change in the corresponding predictor **while holding all other predictors constant**
+
 ---
-## Assessing your Model
+class: inverse, middle, center
 
-+ $R^2$
-
-+ $F$
-
-+ individual predictors
+## Questions?
 
 ---
-## Slide title 
+## Conducting a Linear Regression
 
-Regression in SPSS slides
+1. State your hypothesis
+
+2. Conduct a power analysis
+
+3. Check your data (visualisations/descriptives)
+
+4. Check assumptions
+
+5. Run the test
+
+6. Calculate the effect size/confidence intervals
+
+7. Interpret results
+
+8. Report
+
+---
+## Running a Linear Regression
+
+**Step 1: State Your Hypotheses**
+
++ Regression is flexible and can be used to test many types of hypotheses, using many types of data
+
+  + Can test for associations, predictions, group differences
+  
+  + Works with both categorical and continuous predictors
+
++ Hypotheses can reflect the overall model:
+
+  + This combination of variables significantly predict the outcome variable. 
+
++ They can also be related to individual predictors:
+
+  + Predictor A has a significant effect on the outcome variable
+  
+---
+## Running a Linear Regression
+
+**Step 1: State Your Hypotheses**
+
++ Statistically, you're checking whether your $\beta$ values are significantly different from 0
+
+  + $H_0$: $\beta_x = 0$
+
+  + $H_1$: $\beta_x \neq 0$
+
+
+---
+## Running a Linear Regression
+
+**Step 2: Conduct a Power Analysis**
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's run an a priori **power analysis** to calculate the sample size necessary to detect an $R^2$ = .1, with power = .8 and $\alpha$ = .05. Our model only has a single predictor.
+
++ As with ANOVA, Webpower computes the effect size $f$. If you need to make a conversion, you can use the following formula: 
+
+$$R^2 = \frac{f^2}{1+f^2}$$
+---
+## Running a Linear Regression
+
+**Step 3: Check your data**
+
++ Compute descriptive statistics
+
++ Look at relevant plots
+  
+--
+
++ Open [these data](https://mtruelovehill.github.io/PRM/Data/courseDat.sav) in SPSS.
+
+---
+## Running a Linear Regression
+
+**Step 4: Check Assumptions - Remember LINE**
+
+  + **L**inearity: Relationship between predictors & outcome should be linear
+    + Simple linear regression - check the scatterplot
+    + Multiple linear regression - plot the residuals against the predicted values
+  
++ **I**ndependence: Observations/individuals should be sampled independently
+    + Consider study design
+  
++ **N**ormality: residuals should be normally distributed
+    + Check histogram and Q-Q plot of residuals
+
++ **E**quality (Homogeneity) of Variance: equal variance across range of predictors and fitted values
+    + Check the plot of residuals against predicted values
+  
+---
+## Running a Linear Regression
+
+**Step 4: Check Assumptions - Remember LINE**
+    
++ When you have multiple predictors, you should also check for multico**line**arity
+  
+  + Check correlations between predictors and the *Variance Inflation Factor* 
+  + Correlations should be less than .8
+  + VIF values for each predictor should be less than 5
+  
+---
+## Running a Linear Regression
+
+**Step 5: Run the test**
+
+**Step 6: Calculate the effect size**
+
+**Step 7: Interpret results**
+
+Let's continue in SPSS...
+
+
+---
+## Running a Linear Regression
+
+**Step 8: Report**
+
+We conducted a **simple linear regression** to determine the effect of <span style = "color:#9AD079"> <b> revision time (in hours per week) </span></b> on <span style = "color:#9AD079"> <b> course performance (measured as the course average) </span></b>. The $\alpha$ threshold was set at .05 for all analyses. An a priori power analysis indicated that 90 participants were sufficient to detect an effect of $R^2$ = .1 with a power of 80% and an $\alpha$ threshold of .05.
+
+Simple linear regression indicated that revision time explained 56% of the variance in course performance <span style = "color:#18778C"><b> $F$(1, 119) = 150.42, $p$ < .001 </span></b>. For every additional hour of study time per week, the average course mark increased by 2.89, <span style = "color:#18778C"><b> $SE$ = .24, $p$ < .001, 95% CI = [2.43, 3.36] </span></b>. 
