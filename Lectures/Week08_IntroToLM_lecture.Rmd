@@ -37,6 +37,9 @@ style_mono_accent(
 
 ```{r, echo = F, message = F, warning = F}
 library(tidyverse)
+library(faux)
+library(kableExtra)
+
 knitr::opts_chunk$set(dev = 'svg')
 
 # baseColor <- "#18778C"
@@ -60,24 +63,83 @@ accent3 <- '#19424C'
 
 + Understand key principles of least squares
 
++ Run and interpret a linear regression model using SPSS
+
 ---
-## Models & Functions
+## Models in Research
 
 + **Model:** a formal representation of the world, or an idea about the way the world is
-
---
-
-+ Suppose I have a model for the MODEL EXAMPLE HERE
-
-+ I'm using this model to formally represent the relationship between the variables V1 HERE and V2 HERE
-
----
-
-## Models in Research
 
 + When you formulate a research aim or make a hypothesis, you're pre-supposing a model. 
 
 + When you perform statistical testing, you are evaluating that model.
+
+---
+## Models in Research
+
+.pull-left[
++ Suppose I have the following model for course performance 
+
++ I'm using this model to formally represent the relationship between course performance and time spent revising. 
+  
++ I can test whether this model represents the relationship between these two variables well using statistical testing
+
+]
+
+
+
+.pull-right[
+```{r, echo = F, message=F, fig.height=5}
+
+dat <- data.frame(StudyHours = c(1.44, 2.98, 5.78, 3.70, 5.30, 2.10, 4.10, 3.28, 6.11, 5),
+                 CourseAverage = c(45.07, 53.93, 73.25, 64.25, 69.15, 51.16, 68.08, 61.85, 70.40, 78.50))
+
+(lrPlot <- ggplot(dat, aes(StudyHours, CourseAverage)) + geom_point(size = 2) + 
+  geom_smooth(method = 'lm', se = F, color = 'black') +
+  labs(x = 'Weekly Study Hours', y = 'Course Average') + 
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 16, face = 'bold')))
+```
+]
+
+---
+## Finding the Right Model
+
+.pull-left[
++ The goal is to find the model that best represents the data
+
++ The line reflects the model, so the ideal line will be one that is as close as possible to all observations in the dataset.
+
++ Therefore, the optimal linear model is determined through the **Principle of Least Squares**
+  
+  + The best fitting model is the one in which the sum of the squared residuals ( $\epsilon_i$) are minimised across the entire dataset
+]
+
+
+.pull-right[
+
+```{r, echo = F, message=F, fig.height=5}
+lrPlot
+```
+
+
+]
+
+---
+## Principle of Least Squares
+
+MONICA - show a few figures here to show the best-fitting line. Plot some lines that don't fit so well, and then one that does.
+
+
+---
+### Logic of Regression
+
+MONICA - Slides that show the SS-Model, SS-Residual, SS-Total for regression models
+
+---
+class: center, inverse, middle
+
+## Questions?
 
 ---
 ## Features of a Line
@@ -86,17 +148,29 @@ accent3 <- '#19424C'
 
 Two key features of a line:
 
-+ **Intercept:** The point at which the line crosses the $y$-axis ($x$ = 0)
++ **Intercept:** The value of $y$ when the line crosses the $y$-axis ( $x$ = 0)
 
 + **Slope:** The line's rate of change (steepness)
+  + How much $y$ changes with every one unit change in $x$
 
 ]
 
 .pull-right[
 
-MONICA - BASIC LINE PLOT HERE
-```{r, echo = F}
-
+```{r, echo = F, fig.height=5}
+ggplot() + 
+  scale_y_continuous(limits = c(-2, 6), breaks = seq(-2, 6, 1)) +
+  scale_x_continuous(limits = c(0, 5)) + 
+  labs(x = 'X', y = 'Y') +
+  geom_abline(slope = 1, intercept = 0, color = baseColor, linewidth = 1) +
+  geom_vline(xintercept = 0, lty = 2, color = accent2, linewidth = 1) +
+  annotate(geom = 'segment', x = 2, xend = 2, y = 2, yend = 3, color = accent3, linewidth = 1) +
+  annotate(geom = 'segment', x = 2, xend = 3, y = 3, yend = 3, color = accent3, linewidth = 1) +
+  annotate(geom = 'point', x = 0, y = 0, color = accent3, size = 6, shape = 18) +
+  annotate(geom = 'text', label = 'Intercept', x = .5, y = 0, color = accent3, size = 5) +
+  annotate(geom = 'text', label = 'Slope', x = 2.5, y = 3.25, color = accent3, size = 5) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
 ```
 
 ]
@@ -107,8 +181,21 @@ MONICA - BASIC LINE PLOT HERE
 .pull-left[
 
 .center[**Different Intercepts**]
-```{r, echo = F}
-
+```{r, echo = F, fig.height=5}
+ggplot() + 
+  scale_y_continuous(limits = c(-2, 6), breaks = seq(-2, 6, 1)) +
+  scale_x_continuous(limits = c(0, 5)) + 
+  labs(x = 'X', y = 'Y') +
+  geom_abline(slope = 1, intercept = 0, color = baseColor, linewidth = 1) +
+  geom_abline(slope = 1, intercept = -1, color = accent1, linewidth = 1) +
+  geom_abline(slope = 1, intercept = 1, color = accent3, linewidth = 1) +
+  geom_vline(xintercept = 0, lty = 2, color = accent2, linewidth = 1) +
+  annotate(geom = 'rect', xmin = 3.25, xmax = 4.75, ymin = -1, ymax = 1, fill = 'white') +
+  annotate(geom = 'text', label = 'Intercept = 1', x = 4, y = .5, color = accent3, size = 5) +
+  annotate(geom = 'text', label = 'Intercept = 0', x = 4, y = 0, color = baseColor, size = 5) +
+  annotate(geom = 'text', label = 'Intercept = -1', x = 4, y = -.5, color = accent1, size = 5) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
 ```
 
 
@@ -117,8 +204,512 @@ MONICA - BASIC LINE PLOT HERE
 .pull-right[
 
 .center[**Different Slopes**]
-```{r, echo = F}
+```{r, echo = F, fig.height=5}
+ggplot() + 
+  scale_y_continuous(limits = c(-6, 6), breaks = seq(-6, 6, 1)) +
+  scale_x_continuous(limits = c(0, 5)) + 
+  labs(x = 'X', y = 'Y') +
+  geom_abline(slope = 1, intercept = 0, color = baseColor, linewidth = 1) +
+  geom_abline(slope = 0, intercept = 0, color = accent1, linewidth = 1) +
+  geom_abline(slope = -1, intercept = 0, color = accent3, linewidth = 1) +
+  geom_vline(xintercept = 0, lty = 2, color = accent2, linewidth = 1) +
+  annotate(geom = 'rect', xmin = .5, xmax = 1.5, ymin = -5.75, ymax = -3.25, fill = 'white') +
+  annotate(geom = 'text', label = 'Slope = 1', x = 1, y = -3.75, color = accent1, size = 5) +
+  annotate(geom = 'text', label = 'Slope = 0', x = 1, y = -4.5, color = baseColor, size = 5) +
+  annotate(geom = 'text', label = 'Slope = -1', x = 1, y = -5.25, color = accent3, size = 5) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+```
+]
 
+---
+## Linear Model Equation
+
+$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
++ $y_i$ = outcome variable
+
++ $x_i$ = predictor variable
+
++ $\beta_0$ = intercept
+
++ $\beta_1$ = slope
+
++ $\epsilon_i$ = residual
+
+---
+## Linear Model Equation
+
+$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
+
++ **Why do we have $i$ in some places and not others?**
+
++ $i$ indicates that each individual has their own value
+
++ Each participant has their own:
+
+  + Outcome variable value ( $y_i$)
+  + Predictor variable value ( $x_i$)
+  + Residual term ( $\epsilon$)
+
++ **The intercept ( $\beta_0$) and slope ( $\beta_1$) do not have the subscript $i$**
+
+  + This is because there is only one intercept and slope value for all individuals in the dataset
+  
+  + The model is meant to fit **all the data**
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+lrMod <- lm(CourseAverage~StudyHours, dat)
+
+lrPlot
+```
+]]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1\color{#4CA384}{x_i} + \epsilon_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+dat$labDat <- paste0('x', 1:nrow(dat))
+dat$ID <- 1:nrow(dat)
+
+lrPlot + 
+  geom_point(color = baseColor, size = 1) +
+  annotate(geom = 'text', label = dat$labDat, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
+           size = 5, fontface = 'bold')
+```
+]]
+
+--
+
+.pull-right[
+
++ The predictor value for each individual
+
++ In this example, the number of hours that each person studied
+
+]
+
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1\color{#4CA384}{x_i} + \epsilon_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+dat$labDat <- paste0('x', 1:nrow(dat))
+dat$ID <- 1:nrow(dat)
+
+lrPlot + 
+  geom_point(color = baseColor, size = 1) +
+  annotate(geom = 'text', label = dat$labDat, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
+           size = 5, fontface = 'bold')
+```
+]]
+
+.pull-right[
+
+```{r, echo = F}
+dat[,c('ID', 'StudyHours')] %>%
+  kable(align = 'c', col.names = c('Participant', 'Hours of Study (x)')) %>%
+  kable_styling(full_width = F)
 ```
 
 ]
+
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$\color{#4CA384}{y_i} = \beta_0 + \beta_1x_i + \epsilon_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+dat$yLabs <- paste0('y', 1:nrow(dat))
+dat$yHat <- round(lrMod$fitted.values,2)
+
+lrPlot + 
+  geom_point(color = baseColor, size = 1) +
+  annotate(geom = 'text', label = dat$yLabs, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
+           size = 5, fontface = 'bold')
+```
+]]
+
+.pull-right[
++ An individual's value on the outcome variable
+
++ In this example, an individual's course average
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$\color{#4CA384}{y_i} = \beta_0 + \beta_1x_i + \epsilon_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+lrPlot + 
+  geom_point(color = baseColor, size = 1) +
+  annotate(geom = 'text', label = dat$yLabs, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
+           size = 5, fontface = 'bold')
+```
+]]
+
+.pull-right[
+
+```{r, echo = F}
+dat[,c('ID', 'CourseAverage')] %>%
+  kable(align = 'c', col.names = c('Participant', 'Course Average (y)')) %>%
+  kable_styling(full_width = F)
+```
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$
+
+$$\epsilon_i = \color{#4CA384}{\hat{y_i}}-y_i$$
+
+.center[
+```{r, echo = F, message = F, fig.height=5}
+dat$yhatLabs <- paste0('yhat', 1:nrow(dat))
+dat$yHat <- round(lrMod$fitted.values,2)
+
+lrPlot +  
+  annotate(geom = 'point', x = dat$StudyHours, y = dat$yHat, color = 'black', 
+           size = 3) +
+  annotate(geom = 'point', x = dat$StudyHours, y = dat$yHat, color = baseColor, 
+           size = 2) +
+  annotate(geom = 'text', label = dat$yhatLabs, x = dat$StudyHours, y = dat$yHat+1.5, color = baseColor, 
+           size = 4, fontface = 'bold')
+```
+]]
+
+.pull-right[
+
++ Predicted values for the outcome variable 
+
++ The outcome that the model predicts for someone, given their values on the predictors
+
++ E.g., the predicted course average, given the amount of time one spends revising the material
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$
+
+$$\epsilon_i = \color{#4CA384}{\hat{y_i}}-y_i$$
+
+.center[
+```{r, echo = F, message = F, fig.height=5}
+dat$yhatLabs <- paste0('yhat', 1:nrow(dat))
+dat$yHat <- round(lrMod$fitted.values,2)
+
+lrPlot +  
+  annotate(geom = 'point', x = dat$StudyHours, y = dat$yHat, color = 'black', 
+           size = 3) +
+  annotate(geom = 'point', x = dat$StudyHours, y = dat$yHat, color = baseColor, 
+           size = 2) +
+  annotate(geom = 'text', label = dat$yhatLabs, x = dat$StudyHours, y = dat$yHat+1.5, color = baseColor, 
+           size = 4, fontface = 'bold')
+```
+]]
+
+.pull-right[
+
+```{r, echo = F}
+dat[,c('ID', 'yHat')] %>%
+  kable(align = 'c', col.names = c('Participant', 'yHat')) %>%
+  kable_styling(full_width = F)
+```
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$
+$$\epsilon_i = \hat{y_i}-y_i$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+lrPlot +  
+  annotate(geom='segment', x = dat$StudyHours, xend = dat$StudyHours, y = lrMod$fitted.values, 
+           yend = dat$CourseAverage, lty = 2, color = baseColor, linewidth = 1) +
+  geom_point(size = 3) + 
+  annotate(geom = 'point', x = dat$StudyHours, y = lrMod$fitted.values, color = 'black', 
+           size = 3) +
+  annotate(geom = 'text', label = expression(epsilon[1]), x = dat$StudyHours[1]+.1, y = dat$yHat[1]+(.5*dat$epsilon[1]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[2]), x = dat$StudyHours[2]+.1, y = dat$yHat[2]+(.5*dat$epsilon[2]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[3]), x = dat$StudyHours[3]+.1, y = dat$yHat[3]+(.5*dat$epsilon[3]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[4]), x = dat$StudyHours[4]+.1, y = dat$yHat[4]+(.5*dat$epsilon[4]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[5]), x = dat$StudyHours[5]+.1, y = dat$yHat[5]+(.5*dat$epsilon[5]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[6]), x = dat$StudyHours[6]+.1, y = dat$yHat[6]+(.5*dat$epsilon[6]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[7]), x = dat$StudyHours[7]+.1, y = dat$yHat[7]+(.5*dat$epsilon[7]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[8]), x = dat$StudyHours[8]+.1, y = dat$yHat[8]+(.5*dat$epsilon[8]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[9]), x = dat$StudyHours[9]+.1, y = dat$yHat[9]+(.5*dat$epsilon[9]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[10]), x = dat$StudyHours[10]+.1, y = dat$yHat[10]+(.5*dat$epsilon[10]), color = baseColor, 
+           size = 6, fontface = 'bold')
+
+```
+]]
+
+.pull-right[
+
++ The residuals 
+  
++ The distance between an individual's actual value on the outcome variable and their model-predicted value ( $y-\hat{y}$)
+  
++ In this instance, the distance between an individual's average course mark and the course mark expected given their revision time.
+  
++ Reflects how well the model fits each data point
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$
+.center[
+```{r, echo = F, message = F, fig.height=5}
+lrPlot +  
+  annotate(geom='segment', x = dat$StudyHours, xend = dat$StudyHours, y = lrMod$fitted.values, 
+           yend = dat$CourseAverage, lty = 2, color = baseColor, linewidth = 1) +
+  geom_point(size = 3) + 
+  annotate(geom = 'point', x = dat$StudyHours, y = lrMod$fitted.values, color = 'black', 
+           size = 3) +
+  annotate(geom = 'text', label = expression(epsilon[1]), x = dat$StudyHours[1]+.1, y = dat$yHat[1]+(.5*dat$epsilon[1]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[2]), x = dat$StudyHours[2]+.1, y = dat$yHat[2]+(.5*dat$epsilon[2]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[3]), x = dat$StudyHours[3]+.1, y = dat$yHat[3]+(.5*dat$epsilon[3]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[4]), x = dat$StudyHours[4]+.1, y = dat$yHat[4]+(.5*dat$epsilon[4]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[5]), x = dat$StudyHours[5]+.1, y = dat$yHat[5]+(.5*dat$epsilon[5]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[6]), x = dat$StudyHours[6]+.1, y = dat$yHat[6]+(.5*dat$epsilon[6]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[7]), x = dat$StudyHours[7]+.1, y = dat$yHat[7]+(.5*dat$epsilon[7]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[8]), x = dat$StudyHours[8]+.1, y = dat$yHat[8]+(.5*dat$epsilon[8]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[9]), x = dat$StudyHours[9]+.1, y = dat$yHat[9]+(.5*dat$epsilon[9]), color = baseColor, 
+           size = 6, fontface = 'bold') +
+  annotate(geom = 'text', label = expression(epsilon[10]), x = dat$StudyHours[10]+.1, y = dat$yHat[10]+(.5*dat$epsilon[10]), color = baseColor, 
+           size = 6, fontface = 'bold')
+```
+]]
+
+.pull-right[
+
+```{r, echo = F}
+dat$epsilon <- round(lrMod$residuals, 2)
+dat[,c('ID', 'CourseAverage', 'yHat', 'epsilon')] %>%
+  kable(align = 'c', col.names = c('Participant', 'Course Average (y)', 'yHat','epsilon (y - yHat)')) %>%
+  kable_styling(full_width = F)
+```
+
+]
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \color{#4CA384}{\beta_0} + \beta_1x_i + \epsilon_i$$
+.center[
+
+```{r, echo = F, message = F, fig.height=5, warning = F}
+lrPlot + 
+  geom_vline(xintercept = 0, linetype = 2, color = accent2, size = 1) +
+  annotate('segment', x = 0, xend = min(dat$StudyHours), y = lrMod$coefficients[1], yend = min(lrMod$fitted.values), color = baseColor, lty = 2, linewidth = 1) +
+  annotate('point', x = 0, y = lrMod$coefficients[1], size = 6, shape = 18, color = baseColor) +
+  annotate('text', label = expression(beta[0]==39.09), x = .75, y = 39, size = 5, color = baseColor, fontface = 'bold')
+```
+]]
+
+--
+
+.pull-right[
+
+**Interpretation of Intercept**
+
+If a student does not study (Weekly Study Hours = 0), we would expect their course average to be `r round(lrMod$coefficients[1], 2)`.
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+$$y_i = \beta_0 + \color{#4CA384}{\beta_1}x_i + \epsilon_i$$
+.center[
+
+```{r, echo = F, message = F, fig.height=5, warning = F}
+yPoint <- predict(lrMod, newdata = data.frame(StudyHours=4))
+yendPoint <- round(yPoint+lrMod$coefficients[2],2)
+
+lrPlot + 
+  annotate('text', label = expression(beta[1]==4.67), x = 4.5, y = yendPoint+1, size = 5, color = baseColor, fontface = 'bold') +
+  annotate(geom = 'segment', x = 4, xend = 4, y = yPoint, yend = yendPoint, color = baseColor, size = 1) +
+  annotate(geom = 'segment', x = 4, xend = 5, y = yendPoint, yend = yendPoint, color = baseColor, size = 1)
+```
+]]
+
+--
+
+.pull-right[
+
+**Interpretation of Slope**
+
+For every additional hour a student studies per week, we would expect their course average to improve by `r round(lrMod$coefficients[2], 2)`.
+
+]
+
+---
+## Our Example
+
+.pull-left[
+
++ $\beta_0$: 39.09
+
++ $\beta_1$: 4.67
+
++ $x$: study time (hours per week)
+
++ $y$: average mark for the course
+
+]
+
+
+.pull-right[
+
+** $\beta_0$: The predicted value of $y$ when $x$ is equal to 0**
+
+** $\beta_1$: The amount that $y$ changes for every 1-unit increase in $x$**
+
+]
+
+--
+
+** $\beta_0$ interpretatation:** Someone who has 0 hours of study time per week would be expected to have a course average of 39.09.
+
+** $\beta_1$ interpretatation:** For every additional hour per week someone revises the material, their course average is expected to increase by 4.67 points.
+
+
+---
+## Check Your Understanding
+
+.pull-left[
++ $\beta_0$: 32.95
+
++ $\beta_1$: 2.47
+
++ $x$: years of experience
+
++ $y$: salary (unit = £1000)
+
+]
+
+
+.pull-right[
+
+** $\beta_0$: The predicted value of $y$ when $x$ is equal to 0**
+
+** $\beta_1$: The amount that $y$ changes for every 1-unit increase in $x$**
+
+]
+
+
+---
+## Check Your Understanding
+
+.pull-left[
+
++ $\beta_0$: 68.16
+
++ $\beta_1$: -5.38
+
++ $x$: hours of sleep per night
+
++ $y$: symptom frequency (symptoms per week)
+
+]
+
+
+.pull-right[
+
+** $\beta_0$: The predicted value of $y$ when $x$ is equal to 0**
+
+** $\beta_1$: The amount that $y$ changes for every 1-unit increase in $x$**
+
+]
+
+
+---
+class: inverse, middle, center
+
+## Questions?
+
+---
+## Multiple Predictors
+
++ So far, we've only been considering cases with a single predictor
+
++ However, regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
+
+
+---
+## Multiple Predictors - Regression Equation
+
+
+---
+## Multiple Predictors - Interpretation
+
+---
+## Assessing your Model
+
++ $R^2$
+
++ $F$
+
++ individual predictors
+
+---
+## Slide title 
+
+Regression in SPSS slides
