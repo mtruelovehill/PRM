@@ -34,15 +34,6 @@ tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {b
 ```
 
 
-```{r, echo = F}
-tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-to, .js-irs-2 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-to, .js-irs-3 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-to, .js-irs-4 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {background: #4CA384}"))
-```
-
 ## Intro to Today's Lab
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
