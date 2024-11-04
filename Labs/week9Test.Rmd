@@ -1,0 +1,103 @@
+---
+title: "Week 9: Regression II"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(plotly)
+library(shiny)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Create a variable to represent the interaction of two continuous variables.
+2. Use SPSS to run multiple linear regression with a moderating variable
+3. Properly interpret and report results from a multiple linear regression analysis with an interaction term
+4. Produce a figure to represent an interaction between two continuous variables.
+
+
+## Experiment Overview
+
+<br>
+This week, you'll be reusing the data from last week, so all variables remain the same. Recall that the data were adapted from [this study](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk) in which the researchers investigated the factors associated with well-being in University students. 
+
+In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
+
+You can reopen the data from wherever you saved it on your device last week. If you need to re-download the dataset, you can click [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). 
+
+Recall that the dataset contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Age in years',
+                                    'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
+                                    'Amount of physical activity per week in hours',
+                                    'Amount of sleep per week in hours',
+                                    'Scores on a social support scale; values may range between 0-45',
+                                    'Scores on a well-being scale; values may range between 0-40'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+This week, you'll be investigating whether the effect of physical activity on well-being is moderated by sleep. You also would like to control for the effect of Social Support, which you identified during last week's lab. 
+
+
+```{r cyu1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("Multiple Linear Regression with only main effects"),
+              answer("Factorial ANOVA"),
+              answer("Simple Linear Regression"),
+              answer("Multiple Linear Regression with an interaction", correct = T),
+              message = "Here, you're looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.",
+              random_answer_order = T))
+```
+
+### Your Tasks
++ [ ] $\ $ State your research question(s) for this experiment.
++ [ ] $\ $ Produce the appropriate regression equation for this analysis
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+With regression, it's common to refer to variables as predictors and outcomes rather than independent and dependent variables. However, the predictor variables equate to the independent variables, and the outcome equates to the dependent variable.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+
+</details>
+</div>
+</br>
