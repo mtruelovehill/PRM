@@ -93,11 +93,17 @@ accent3 <- '#19424C'
 dat <- data.frame(StudyHours = c(1.44, 2.98, 5.78, 3.70, 5.30, 2.10, 4.10, 3.28, 6.11, 5),
                  CourseAverage = c(45.07, 53.93, 73.25, 64.25, 69.15, 51.16, 68.08, 61.85, 70.40, 78.50))
 
-(lrPlot <- ggplot(dat, aes(StudyHours, CourseAverage)) + geom_point(size = 2) + 
+ggplot(dat, aes(StudyHours, CourseAverage)) + 
   geom_smooth(method = 'lm', se = F, color = 'black') +
   labs(x = 'Weekly Study Hours', y = 'Course Average') + 
   theme(axis.text = element_text(size = 12),
-        axis.title = element_text(size = 16, face = 'bold')))
+        axis.title = element_text(size = 16, face = 'bold'))
+
+lrPlot <- ggplot(dat, aes(StudyHours, CourseAverage)) + geom_point(size = 2) + 
+  geom_smooth(method = 'lm', se = F, color = 'black') +
+  labs(x = 'Weekly Study Hours', y = 'Course Average') + 
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 16, face = 'bold'))
 ```
 ]
 
