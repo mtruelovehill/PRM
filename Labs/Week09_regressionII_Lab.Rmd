@@ -345,7 +345,13 @@ quiz(caption = 'Check Your Results',
               answer('The interaction between sleep and physical activity explains 36% of the variance in student well-being.'),
               answer('For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.', correct = T),
               message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one's social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate",
-              random_answer_order = T))
+              random_answer_order = T),
+     question('Which of the following is the correct interpretation of the intercept?',
+              answer('Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04'),
+              answer('Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04', correct = T),
+              answer('Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04'),
+              random_answer_order = T,
+              message = 'Because sleep and physical activity are mean-centred, the intercept will be interpreted around the mean for these variables. Social support was not mean-centred, so the intercept still reflects the value of wellbeing when social support is 0.'))
 ```
 
 <div class="container">
@@ -390,16 +396,16 @@ The $R^2_{adj}$ value is .36, which indicates that 36% of the variance in our sa
 
 The ANOVA tells us the results of the overall model test (is this model significant?). This should be interpreted in the same way as a typical ANOVA - the $p$-value is < .001, so we can say the overall model significantly predicts well-being scores. In other words, when we have data on someone's sleep, physical activity levels, and social support network, we have a better idea about what their well-being may be than if we didn't have this information.
 
-While this information is necessary to address the research question, it's not sufficient. The research aim specifically asked about the presence of an interaction between `Sleep` and `PhysicalActivity`, so you'll need to look at the 'Coefficients' box to find the answer. First,check the VIF values. You'll note that the issues with multicollinearity have disappeared:
+While this information is necessary to address the research question, it's not sufficient. The research aim specifically asked about the presence of an interaction between `MCsleep` and `MCphysicalActivity`, so you'll need to look at the 'Coefficients' box to find the answer. First,check the VIF values. You'll note that the issues with multicollinearity have disappeared:
 
 
 ```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults_VIF')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults_VIF.png')
 ```
 
-To address your hypothesis, you'll specifically want to check the row labeled `Interaction`. The $p$-values in the 'Sig.' column indicate that there is a significant interaction. The $p$-value of .04 is lower than the $\alpha$ threshold of .05. As in last week's model, the $p$-values associated with `Sleep` and `SocialSupport` are also below the $\alpha$ threshold, indicating they are significant predictors of `Wellbeing`. The $p$-value associated with `PhysicalActivity` is greater than .05, so it is not significant. As before, you can use the $\beta$ estimates to give you a better sense of the interaction between `PhysicalActivity` and `Sleep` on `Wellbeing`. 
+To address your hypothesis, you'll specifically want to check the row labeled `Interaction`. The $p$-values in the 'Sig.' column indicate that there is a significant interaction. The $p$-value of .04 is lower than the $\alpha$ threshold of .05. As in last week's model, the $p$-values associated with `Sleep` and `SocialSupport` are also below the $\alpha$ threshold, indicating they are significant predictors of `Wellbeing`. The $p$-value associated with `MCphysicalActivity` is greater than .05, so it is not significant. As before, you can use the $\beta$ estimates to give you a better sense of the interaction between `MCphysicalActivity` and `MCsleep` on `Wellbeing`. 
 
-The unstandardized $\beta$ coefficient associated with `Interaction` is 0.03. The unstandardized $\beta$ coefficient tells us how much more the relationship between `PhysicalActivity` and `Wellbeing` changes for every additional hour of sleep. So, in this case, for every additional hour of sleep, the relationship between `PhysicalActivity` and `Wellbeing` increases by .03 points on the Wellbeing assessment. Simple slopes analysis will help break this interaction down further so that it is easier to interpret.
+The unstandardized $\beta$ coefficient associated with `Interaction` is 0.03. The unstandardized $\beta$ coefficient tells us how much more the relationship between `MCphysicalActivity` and `Wellbeing` changes for every additional hour of sleep. So, in this case, for every additional hour of sleep, the relationship between `MCphysicalActivity` and `Wellbeing` increases by .03 points on the Wellbeing assessment. Simple slopes analysis will help break this interaction down further so that it is easier to interpret.
 
 </details>
 </div>
@@ -416,11 +422,11 @@ Here's the thing. Simple slopes analysis in SPSS is not fun. It's a complex, con
 
 ### Your Tasks
 
-+ [ ] $\ $ Create two new variables that you'll be using to test the effects of `PhysicalActivity` on `Wellbeing` at lower and higher levels of sleep 
++ [ ] $\ $ Create two new variables that you'll be using to test the effects of `MCphysicalActivity` on `Wellbeing` at lower and higher levels of sleep 
 
-+ [ ] $\ $ Create two new interaction terms between each of your new variables and `PhysicalActivity`.
++ [ ] $\ $ Create two new interaction terms between each of your new variables and `MCphysicalActivity`.
 
-+ [ ] $\ $ Run three separate regression models with your new variables: one to test the interaction between `PhysicalActivity` on `Wellbeing` in participants with high levels of sleep, one to test the interaction between `PhysicalActivity` on `Wellbeing` in participants with low levels of sleep, and one to test the interaction in participants with moderate levels of sleep.
++ [ ] $\ $ Run two separate regression models with your new variables: one to test the interaction between `MCphysicalActivity` on `Wellbeing` in participants with high levels of sleep, one to test the interaction between `MCphysicalActivity` on `Wellbeing` in participants with low levels of sleep.
 
 
 This is a lot, I know. But I believe in you.
