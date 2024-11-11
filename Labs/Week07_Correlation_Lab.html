@@ -96,7 +96,7 @@ if (window.hljs) {
 </style>
 <!-- end tabsets -->
 
-<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="https://mtruelovehill.github.io/PRM/Labs/css/style.css" type="text/css" />
 
 </head>
 
@@ -124,10 +124,16 @@ understanding.</p>
 <ol style="list-style-type: decimal">
 <li>Identify hypotheses which may be tested using correlations</li>
 <li>Use SPSS to compute a composite score</li>
-<li>Use SPSS to run a correlation</li>
-<li>Properly interpret and report a correlation</li>
+<li>Use SPSS to run a Pearson correlation</li>
+<li>Properly interpret and report a Pearson correlation</li>
 <li>Use the ggplot GUI to produce scatterplots, boxplots, and dot and
 error-bar plots</li>
+</ol>
+<p>If you complete the bonus material, you’ll also be able to:</p>
+<ol style="list-style-type: decimal">
+<li>Use SPSS to run a Spearman correlation</li>
+<li>Properly interpret and report a Spearman correlation</li>
+<li>Produce an APA-style correlation matrix table</li>
 </ol>
 </div>
 <div id="section-this-weeks-study" class="section level3">
@@ -230,7 +236,7 @@ Self-Enhancment Score 4; values may range between 0 - 6
 AntisocialBehaviour
 </td>
 <td style="text-align:left;">
-Average Antisocial Behaviour Score; values may range from 1-5
+Total Antisocial Behaviour Score; values may range from 5-25
 </td>
 </tr>
 <tr>
@@ -274,13 +280,13 @@ behaviour towards members of the opposing team.</p>
 <div id="section-your-tasks" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
-<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Specify the variables to be correlated.</li>
-<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
-State your research question for this experiment.</li>
-<li><input type="checkbox" /><span class="math inline">\(\ \)</span>
-State your hypotheses for this experiment, both using words and
-statistically.</li>
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Specify the variables to be correlated.</label></li>
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> State your research question for this experiment.</label></li>
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> State your hypotheses for this experiment, both using words
+and statistically.</label></li>
 </ul>
 <p><br></p>
 <div class="container">
@@ -341,17 +347,17 @@ section.</p>
 <div id="section-your-tasks-1" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Open ‘Week7LabData.sav’</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Check that all variables are set as the correct measurement
-type.</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Check the descriptive statistics of your data</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Compute a composite score, <code>SelfEnhancement</code>, by summing the
-following columns: <code>SE1</code>, <code>SE2</code>, <code>SE3</code>,
-and <code>SE4</code></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Open ‘Week7LabData.sav’</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Check that all variables are set as the correct measurement
+type.</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Compute a total score, <code>SelfEnhancement</code>, by
+summing the following columns: <code>SE1</code>, <code>SE2</code>,
+<code>SE3</code>, and <code>SE4</code></label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Check the descriptive statistics of your data</label></p></li>
 </ul>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
@@ -376,11 +382,12 @@ and <code>SE4</code></p></li>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>For continuous variables, the descriptive statistics you’ll want to
-check are mean and standard deviation. It’s also useful to check the
-minimum and maximum so you can easily identify values outside of your
-expected range. For categorical variables, you’ll check the frequency of
-participants in each group. It may also be useful to check the mode.</p>
+<p>As <code>SelfEnhancement</code> is a continuous variable, the
+descriptive statistics you’ll want to check are mean and standard
+deviation. It’s also useful to check the minimum and maximum so you can
+easily identify values outside of your expected range. For categorical
+variables, you’ll check the frequency of participants in each group. It
+may also be useful to check the mode.</p>
 <p>To compute the self-enhancement composite score, you’ll need to
 navigate to <em>Transform &gt; Compute Variable</em></p>
 </details>
@@ -401,39 +408,15 @@ measurement, look at the <strong>Measure</strong> column under the
 <li><p><code>ID</code> - Ordinal</p></li>
 <li><p><code>Age</code> - Scale</p></li>
 <li><p><code>Gender</code> - Nominal</p></li>
-<li><p><code>SE1</code> - Scale</p></li>
-<li><p><code>SE2</code> - Scale</p></li>
-<li><p><code>SE3</code> - Scale</p></li>
+<li><p><code>SE1</code> - Ordinal</p></li>
+<li><p><code>SE2</code> - Ordinal</p></li>
+<li><p><code>SE3</code> - Ordinal</p></li>
 <li><p><code>AntisocialBehaviour</code> - Scale</p></li>
 <li><p><code>SEcategory</code> - Nominal</p></li>
 <li><p><code>ParentalPressure</code> - Nominal</p></li>
 </ul>
-<p>In this instance, SPSS assigned the proper measures by default (with
-the exception of ID, which won’t be used as part of any analysis, so you
-can ignore it if you’d like). No changes are required.</p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Check
-Descriptive Statistics </span></p>
-<p><strong>Categorical Variables:</strong> Your categorical variables
-are <code>Gender</code>, <code>SEcategory</code>, and
-<code>ParentalPressure</code>. Click <em>Analyze&gt;Descriptive
-Statistics&gt;Frequencies</em>, then add these variables to the
-‘Variable(s)’ box. Make sure ‘Display frequency tables’ is checked, then
-click ‘OK’. You should see the following output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_freqTables.png" width="50%" style="display: block; margin: auto;" /></p>
-<p><strong>Continuous Variables:</strong> Your continuous variables are
-<code>SE1</code>, <code>SE2</code>, <code>SE3</code>, <code>SE4</code>
-and <code>AntisocialBehaviour</code>. Click <em>Analyze&gt;Descriptive
-Statistics&gt;Frequencies</em>, then add these variables to the
-‘Variable(s)’ box. Make sure ‘Display frequency tables’ is not ticked,
-then click ‘Statistics’. Tick ‘Mean’, ‘Std. Deviation’, ‘Minimum’, and
-‘Maximum’. Click ‘Continue’, then ‘OK’. You should see the following
-output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_descStats.png" width="40%" style="display: block; margin: auto;" /></p>
-<p>Note that the maximum value for <code>AntisocialBehaviour</code> is
-488, which is not a valid score. This is an error, so you’ll need to
-remove it from your data so that it is not included in further analysis.
-To do this, find the value in your dataset under ‘Data View’ and delete
-it.</p>
+<p>The newly computed variable, <code>SelfEnhancement</code>, should be
+set as a Scale variable.</p>
 <p><br> <span style="font-weight: bold; font-size: 14pt"> Compute
 Composite Score </span></p>
 <p>To compute the composite score by summing together the SE columns,
@@ -445,13 +428,38 @@ class="math inline">\(+\)</span> sign between them:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_composite.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Click ‘OK’. A new column labeled <code>SelfEnhancement</code> should
 appear that contains the sum of the 4 SE columns.</p>
+<p><br> <span style="font-weight: bold; font-size: 14pt"> Check
+Descriptive Statistics </span></p>
+<p><strong>Categorical Variables:</strong> Your categorical variables
+are <code>Gender</code>, <code>SEcategory</code>,
+<code>ParentalPressure</code>, <code>SE1</code>, <code>SE2</code>,
+<code>SE3</code> and <code>SE4</code>. Click <em>Analyze&gt;Descriptive
+Statistics&gt;Frequencies</em>, then add these variables to the
+‘Variable(s)’ box. Make sure ‘Display frequency tables’ is checked, then
+click ‘OK’. You should see the following output:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_freqTables.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You might also find it helpful to check the mode of the
+<code>SE</code> variables.</p>
+<p><strong>Continuous Variables:</strong> Your continuous variables are
+<code>SelfEnhancment</code> and <code>AntisocialBehaviour</code>. Click
+<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then add
+these variables to the ‘Variable(s)’ box. Make sure ‘Display frequency
+tables’ is not ticked, then click ‘Statistics’. Tick ‘Mean’, ‘Std.
+Deviation’, ‘Minimum’, and ‘Maximum’. Click ‘Continue’, then ‘OK’. You
+should see the following output:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_descStats.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Note that the maximum value for <code>AntisocialBehaviour</code> is
+190, which is not a valid score. This is an error, so you’ll need to
+remove it from your data so that it is not included in further analysis.
+To do this, find the value in your dataset under ‘Data View’ and delete
+it.</p>
 </details>
 </div>
 <p></br></p>
 </div>
 </div>
-<div id="section-run-correlations" class="section level2">
-<h2>Run Correlations</h2>
+<div id="section-run-a-pearson-correlation" class="section level2">
+<h2>Run a Pearson Correlation</h2>
 <p>As you are testing for an association between two continuous
 variables, you’ll use a correlation to provide statistical support for
 your hypotheses.</p>
@@ -461,7 +469,7 @@ interpretation standards:</p>
 <thead>
 <tr class="header">
 <th align="center">Strength</th>
-<th align="center">Magnitude of <span
+<th align="center">Absolute Magnitude of <span
 class="math inline">\(r\)</span></th>
 </tr>
 </thead>
@@ -476,24 +484,23 @@ class="math inline">\(r\)</span></th>
 </tr>
 <tr class="odd">
 <td align="center">Moderate</td>
-<td align="center">.3 - .6</td>
+<td align="center">.3 - .5</td>
 </tr>
 <tr class="even">
 <td align="center">Strong</td>
-<td align="center"><span class="math inline">\(&gt;\)</span> .6</td>
+<td align="center"><span class="math inline">\(&gt;\)</span> .5</td>
 </tr>
 </tbody>
 </table>
-<div id="section-your-tasks-2" class="section level3">
-<h3>Your Tasks</h3>
+<div id="section-your-task" class="section level3">
+<h3>Your Task</h3>
 <ul class="task-list">
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Run a correlation to test your hypotheses and interpret the results with
-<span class="math inline">\(\alpha\)</span> = .05.</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Produce a correlation matrix showing the correlations between each of
-the SE variables: <code>SE1</code>, <code>SE2</code>, <code>SE3</code>,
-and <code>SE4</code></p></li>
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run a correlation to test your hypotheses and interpret the
+results with <span class="math inline">\(\alpha\)</span> = .05. Note
+that you should run the correlation between the total self-enhancement
+score, <code>SelfEnhancment</code> and
+<code>AntisocialBehaviour</code>.</label></li>
 </ul>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
@@ -504,19 +511,11 @@ and <code>SE4</code></p></li>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="cyrCorr-2" class="tutorial-question panel-body">
-<div id="cyrCorr-2-answer_container" class="shiny-html-output"></div>
-<div id="cyrCorr-2-message_container" class="shiny-html-output"></div>
-<div id="cyrCorr-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for a
-hint </span>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
 </summary>
 <p>To run a correlation, you’ll need to navigate to <em>Analyze &gt;
 Correlate &gt; Bivariate</em></p>
@@ -526,7 +525,7 @@ Correlate &gt; Bivariate</em></p>
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for the
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
 <p>To correlate <code>SelfEnhancement</code> with
@@ -535,13 +534,14 @@ solution </span>
 can specify that you’d like to also compute the relevant confidence
 intervals by selecting ‘Confidence interval’ box and ticking the
 ‘Estimate confidence intervals of the bivariate correlation parameter’
-box. Click ‘Continue’ and then ‘OK’. You’ll get the following
-output:</p>
+box. Click ‘Show only the lower diagonal’; this removes redundant
+information from the correlation matrix. Click ‘Continue’ and then ‘OK’.
+You’ll get the following output:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_correlationResults.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>The top box provides a correlation matrix with the value of <span
 class="math inline">\(r\)</span> and the p-value, while the bottom box
 gives the confidence interval associated with the correlation. Here, you
-can see that <span class="math inline">\(r\)</span> = .3, which equates
+can see that <span class="math inline">\(r\)</span> = .30, which equates
 to a weak to moderate association between <code>SelfEnhancement</code>
 and <code>AntisocialBehaviour</code>. The <span
 class="math inline">\(p\)</span>-value (&lt; .001) is less than the
@@ -549,15 +549,7 @@ class="math inline">\(p\)</span>-value (&lt; .001) is less than the
 association is significant. The 95% confidence interval indicates that
 we can be 95% confident that the true association (<span
 class="math inline">\(r\)</span>) between these two variables falls
-between .17 and .44.</p>
-<p>You can correlate the SE variables in the same way as above. This
-time, click ‘Show only the lower diagonal’. This removes redundant
-information from the correlation matrix, which is how correlation
-matrices are typically presented:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_correlationMatrix.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Here, you can see that all variables are significantly associated
-with each other, which you would expect given that they are supposed to
-measure the same construct.</p>
+between .16 and .43.</p>
 </details>
 </div>
 <p></br></p>
@@ -574,20 +566,23 @@ follow APA-style when producing figures. SPSS does not always produce
 customisable, APA-style figures. Here, you’ll learn how to use the <a
 href="https://shiny.gmw.rug.nl/ggplotgui/">ggplot GUI website</a> to
 produce 3 common types of plots.</p>
-<div id="section-your-tasks-3" class="section level3">
+<div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Create an APA-style scatterplot with <code>SelfEnhancement</code> on the
-x-axis and <code>AntisocialBehaviour</code> on the y-axis. Please
-include a regression line.</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Create an APA-style boxplot with <code>SEcategory</code> on the x-axis
-and <code>AntisocialBehaviour</code> on the y-axis.</p></li>
-<li><p><input type="checkbox" /><span class="math inline">\(\ \)</span>
-Create an APA-style dot-and-error plot with <code>SEcategory</code> on
-the x-axis, <code>AntisocialBehaviour</code> on the y-axis, and
-<code>ParentalPressure</code> as the Group variable.</p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Create an APA-style scatterplot with
+<code>SelfEnhancement</code> on the x-axis and
+<code>AntisocialBehaviour</code> on the y-axis. Please include a
+regression line.</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Create an APA-style boxplot with <code>SEcategory</code> on
+the x-axis and <code>AntisocialBehaviour</code> on the
+y-axis.</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Create an APA-style dot-and-error plot with
+<code>SEcategory</code> on the x-axis, <code>AntisocialBehaviour</code>
+on the y-axis, and <code>ParentalPressure</code> as the Group
+variable.</label></p></li>
 </ul>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
@@ -609,73 +604,70 @@ the x-axis, <code>AntisocialBehaviour</code> on the y-axis, and
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for a
-hint </span>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
 </summary>
-<p>Hint here.</p>
+<p>If you are having trouble opening the ggPlot GUI website, first try
+opening the page in a different window (right click on the link and
+click ‘Open in a new window’). If that doesn’t work, try using a
+different browser.</p>
+<p>If you are still having trouble, please <a
+href="https://mtruelovehill.github.io/PRM/Labs/ggplotgui_for_positcloud.R">download
+this file</a>, import it into Posit, and run it. If you’re hung up on
+how to do that, please call one of your tutors over for assistance.</p>
 </details>
 </div>
 <p></br></p>
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for the
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
 <p>Navigate <a href="https://shiny.gmw.rug.nl/ggplotgui/">to the ggplot
 GUI webpage</a> by clicking the link. Upload the SPSS datafile into the
 ggplot GUI application by using Data Upload column on the left of the
 page. First, click the ‘Browse’ button to find the file on your device,
-selecting ‘SPSS’ under ‘Type of File’, then clicking ‘Submit
-Datafile’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You’ll see a sample of the data appear to the right. To generate a
-plot with these data, click the ‘ggplot’ option, here:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png" width="50%" style="display: block; margin: auto;" /></p>
+selecting ‘SPSS’ under ‘Type of File’, then clicking ‘Submit Datafile’.
+You’ll see a sample of your data pop up on the screen. Once that
+appears, click the ‘ggplot’ option (circled).</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Here, you can create your plot using the options available in the
 columns on the left and right of the page.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Boxplot </span> In
-the left column, set the type of plot to ‘Boxplot’, the y-axis to
-<code>AntisocialBehaviour</code> and the x-axis to
-<code>SEcategory</code>. You can leave everything else as the default
-setting. To make sure the plot is APA style, navigate to the options on
-the right of the page, click Theme, and select ‘classic’ from the
-drop-down box. You should now have an APA-style boxplot that shows the
-difference in antisocial behaviour between self-enhancement value
-groups:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Scatterplot </span>
 In the left column, set the type of plot to ‘Scatter’, the y-axis to
 <code>AntisocialBehaviour</code> and the x-axis to
-<code>SEcategory</code>. Tick the ‘Show regression line’ box, and make
-sure the smoothing function is ‘lm’. To make sure the plot is APA style,
-navigate to the options on the right of the page, click Theme, and
-select ‘classic’ from the drop-down box. You should now have an
-APA-style scatterplot that shows the association between
-self-enhancement values and antisocial behaviour:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotScatter.png" width="50%" style="display: block; margin: auto;" /></p>
+<code>SelfEnhancment</code>. Tick the ‘Show regression line’ box, and
+make sure the smoothing function is ‘lm’. To make sure the plot is APA
+style, navigate to the options on the right of the page, click Theme,
+and select ‘classic’ from the drop-down box.</p>
 <p>You can change the axis labels to be more manuscript appropriate
 (e.g., add spaces between words) by using the ‘Text’ tab in the right
 column and ticking ‘Change labels axes’.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotTextOptions.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>I also like to increase the font size slightly by ticking ‘Change
+font size’. You should now have an APA-style scatterplot that shows the
+association between self-enhancement values and antisocial
+behaviour:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotScatter.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Boxplot </span> In
 the left column, set the type of plot to ‘Boxplot’. The y-axis can stay
 set at <code>AntisocialBehaviour</code>, but change the x-axis to
-<code>SEcategory</code>. You can leave everything else as the default
-setting. You should now have an APA-style boxplot that shows the
-difference in antisocial behaviour between self-enhancement value
-groups:</p>
+<code>SEcategory</code>. The previous settings should still be in place,
+so you can leave them as is. You should now have an APA-style boxplot
+that shows the difference in antisocial behaviour between
+self-enhancement value groups:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Dot &amp; Error
 Plot </span> In the left column, set the type of plot to ‘Dot + Error’.
 The y-axis can stay set at <code>AntisocialBehaviour</code> and the the
 x-axis at <code>SEcategory</code>, but add <code>ParentalPressure</code>
-as the Group variable. You can leave everything else as the default
-setting.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotDotError.png" width="50%" style="display: block; margin: auto;" /></p>
+as the Group variable.</p>
 <p>You can change the legend label by using the ‘Legend’ tab in the
 right column and ticking ‘Change legend’.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotLegendOptions.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>You can leave everything else as the default setting.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotDotError.png" width="50%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
 <p></br></p>
@@ -694,8 +686,8 @@ style.</p></li>
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for a
-hint </span>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
 </summary>
 <p>There are many ways you could write this up, but you’ll need to at
 least include the following information:</p>
@@ -727,7 +719,7 @@ band].</p>
 <div class="container">
 <details>
 <summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for the
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
 <p>In this study, we investigated whether adolescent athletes’
@@ -735,14 +727,12 @@ self-enhancement values were associated with their antisocial behaviours
 towards members of the opposing team To do this, we collected data from
 a sample of 173 adolescents who participate in team sports. One
 participant was excluded due to an error in the data. Our final sample
-consisted of 172 adolescent athletes (88 Females, 84 Males; <span
-class="math inline">\(M\)</span> age = 15.92, <span
-class="math inline">\(SD\)</span> = 1.60).</p>
+consisted of 172 adolescent athletes between the ages of 13-19 (<span
+class="math inline">\(M\)</span> = 15.92, <span
+class="math inline">\(SD\)</span> = 1.60; 88 Females, 84 Males).</p>
 <p>We ran a Pearson’s correlation to test the association between scores
 on a self-enhancement values scale and the average score on a scale that
-measured antisocial behaviour. We also used a Pearson correlation to
-test whether scores on each of the four questions on the
-self-enhancement scale were associated. <span
+measured antisocial behaviour. <span
 class="math inline">\(\alpha\)</span> was set at .05 for all
 analyses.</p>
 <p>Participants scored an average of 12.38 on the self-enhancement scale
@@ -750,41 +740,102 @@ analyses.</p>
 maximum = 20.79) and had an average antisocial behaviour rating of 2.99
 ( <span class="math inline">\(SD\)</span> = 0.87, minimum = 1, maximum =
 5). Results from a Pearson’s correlation indicated that there was a
-moderate, positive relationship between the two variables, r(170) = .31,
-p &lt; .001, 95% CI = [.17, .44], indicating that participants who
-endorsed stronger self-enhancment values also demonstrated more
-antisocial behaviours towards members of the opposing team.
-Additionally, scores on each of the 4 questions on the self-enhancement
-scale were moderately positively correlated (see Table 1).</p>
+moderate, positive relationship between the two variables, <span
+class="math inline">\(r\)</span>(170) = .30, <span
+class="math inline">\(p\)</span> &lt; .001, 95% CI = [.16, .43],
+indicating that participants who endorsed stronger self-enhancement
+values also demonstrated more antisocial behaviours towards members of
+the opposing team (see Figure 1).</p>
+<p><b> Figure 1 </b></p>
+<p><i> Self-Enhancement Values &amp; Antisocial Behaviours Towards
+Opposing Team </i></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_scatterFig.png" width="50%" style="display: block; margin: auto;" /></p>
+</details>
+</div>
+<p></br></p>
+</div>
+<div id="section-bonus-material-spearman-correlation"
+class="section level2">
+<h2>Bonus Material: Spearman Correlation</h2>
+<p>There may be times when you want to check the association between
+ordinal values, such as those from a Likert Scale. Pearson’s correlation
+is not appropriate for this, as it assumes you’re testing for a linear
+association between two continuous variables. When you have ordinal
+data, you should instead use Spearman’s rank correlation, which tests
+for a monotonic association (as one variable increases or decreases, so
+does the other, but it doesn’t have to be in a linear fashion).
+Spearman’s correlation is denoted by <span
+class="math inline">\(\rho\)</span> (rho).</p>
+<div id="section-your-task-1" class="section level3">
+<h3>Your Task</h3>
+<ul class="task-list">
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run a Spearman’s rank correlation test between each of the
+items on the Self-enhancment scale (<code>SE1</code>, <code>SE1</code>,
+<code>SE3</code>, &amp; <code>SE4</code>).</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Produce an APA-style correlation matrix of your
+results.</label></p></li>
+</ul>
+<div class="panel-heading tutorial-quiz-title"></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrSpearman-1" class="tutorial-question panel-body">
+<div id="cyrSpearman-1-answer_container" class="shiny-html-output"></div>
+<div id="cyrSpearman-1-message_container" class="shiny-html-output"></div>
+<div id="cyrSpearman-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrSpearman-2" class="tutorial-question panel-body">
+<div id="cyrSpearman-2-answer_container" class="shiny-html-output"></div>
+<div id="cyrSpearman-2-message_container" class="shiny-html-output"></div>
+<div id="cyrSpearman-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>You’ll find the steps of this to be very similar to the Pearson
+correlation. Check the ‘Correlation Coefficient’ options under
+<em>Analyze &gt; Correlate &gt; Bivariate</em></p>
+<p>I personally find SPSS tables difficult to customise and produce in
+APA style. It’s okay to use Microsoft Word, Microsoft Excel, or another
+data processing programme of your choice to create your correlation
+matrix.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Navigate to <em>Analyze &gt; Correlate &gt; Bivariate</em>. Change
+the tick mark under ‘Correlation Coefficients’ from ‘Pearson’ to
+‘Spearman’. Click ‘Flag significant correlations’ and ‘Show only the
+lower triangle’, then click ‘OK’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanOptions.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>You’ll get the following output, which you can interpret in the same
+way as Pearson’s <span class="math inline">\(r\)</span>:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanResults.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Here, you can see that all variables are significantly associated
+with each other, which you would expect given that they are supposed to
+measure the same construct.</p>
+<p>You can report the results like this:</p>
+<p>We used Spearman correlations to test whether scores on each of the
+four questions on the self-enhancement scale were associated. Scores on
+each of the 4 questions on the self-enhancement scale were moderately
+positively correlated (see Table 1).</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week7_corrMatrix.png" width="75%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
-<p></br></p>
-</div>
-<div id="section-bonus-task-simpsons-paradox" class="section level2">
-<h2>Bonus Task: Simpson’s Paradox</h2>
-<p>Task here.</p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for a
-hint </span>
-</summary>
-<p>Hint here.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> + Click here for the
-solution </span>
-</summary>
-<p>Solution here.</p>
-</details>
-</div>
-<p></br></p>
-<p>
+<p></br> 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(tidyverse)
@@ -822,13 +873,13 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f86a4ad", 
+"character")), answers = list(structure(list(id = "lnr_ans_577fa7f", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_cabb8d7", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_11889a7", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_34e3fbe", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f589da7", 
     option = "Correlation", value = "Correlation", label = structure("Correlation", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -839,83 +890,81 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Here, you’re looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1514742389.79464, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1892617318.11868, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "q1-2", question = structure("Which of the following questions are best addressed using Pearson’s correlation? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b00bf0", 
+"character")), answers = list(structure(list(id = "lnr_ans_b82e420", 
     option = "What is the association between age in years and weight in kg?", 
     value = "What is the association between age in years and weight in kg?", 
     label = structure("What is the association between age in years and weight in kg?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_841045f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_603a3a0", 
     option = "Is there a difference in ticket sales between movie theatres with recliners and those without?", 
     value = "Is there a difference in ticket sales between movie theatres with recliners and those without?", 
     label = structure("Is there a difference in ticket sales between movie theatres with recliners and those without?", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7094c6f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ab59d62", 
     option = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
     value = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
     label = structure("Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_249e523", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_cc741c4", 
     option = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", 
     value = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", 
     label = structure("Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e6aea23", 
-    option = "Can average sleep (hours per week) predict response time (in milliseconds)?", 
-    value = "Can average sleep (hours per week) predict response time (in milliseconds)?", 
-    label = structure("Can average sleep (hours per week) predict response time (in milliseconds)?", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Pearson’s correlation is used to test for an association between two continuous variables. It doesn’t test prediction or for group differences, and it should not be used with categorical data.", html = TRUE, class = c("html", 
+"character")), message = structure("Pearson’s correlation is used to test for an association between two continuous variables. It doesn’t for group differences, and it should not be used with categorical data.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-2-answer", 
     question = "q1-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1259568126.41347, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 2067567020.53721, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-1", question = structure("What is the mean score on SE1? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8bb39b8", 
-    option = "3.17", value = 3.17, label = structure("3.17", html = TRUE, class = c("html", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-1", question = structure("What is the maximum value for AntisocialBehaviour?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_315dae7", 
+    option = "190", value = 190, label = structure("190", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The mean SE1 score in your sample is 3.17.", html = TRUE, class = c("html", 
+"character")), message = structure("The maximum Antisocial Behaviour score is 190, which is well outside the expected limits of 5-25. As a score of 190 is not possible, it is an error. It will need to be deleted so that it is excluded from further analysis.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyr-1-answer", 
     question = "cyr-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 646763418.198827, options = list(
+    allow_retry = FALSE, seed = 1936675047.59817, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-2", question = structure("What is the maximum value for AntisocialBehaviour? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_cbd50af", 
-    option = "488", value = 488, label = structure("488", html = TRUE, class = c("html", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyr-2", question = structure("What is the mean score on SelfEnhancement? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_4c235dc", 
+    option = "12.41", value = 12.41, label = structure("12.41", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b055b45", 
+    option = "12.42", value = 12.42, label = structure("12.42", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
 "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("The maximum Antisocial Behaviour score is 488, which is well outside the expected limits of 1-5. As a score of 488 is not possible, it is an error. It will need to be deleted so that it is excluded from further analysis.", html = TRUE, class = c("html", 
+"character")), message = structure("The mean SelfEnhancement score in your sample is currently 12.42. If you remove the participant with the invalid score for Antisocial Behaviour, the mean SelfEnhancement score will drop slightly to 12.41.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyr-2-answer", 
     question = "cyr-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1606996066.75168, options = list(
+    allow_retry = FALSE, seed = 596808152.72209, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -923,52 +972,29 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrCorr-1", 
     question = structure("What is the Pearson correlation value for the association between AntisocialBehaviour and SelfEnhancement? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_54ec611", 
-        option = "0.31", value = 0.31, label = structure("0.31", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_dba385b", 
+        option = "0.3", value = 0.3, label = structure("0.3", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("Pearson’s r for the association between AntisocialBehaviour and SelfEnhancement is .31.", html = TRUE, class = c("html", 
+    "character")), message = structure("Pearson’s r for the association between AntisocialBehaviour and SelfEnhancement is .30.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrCorr-1-answer", 
         question = "cyrCorr-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1573024177.2675, options = list(
+    allow_retry = FALSE, seed = 392123246.317403, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrCorr-2", question = structure("Which of the following pairs have the weakest association?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_314293d", 
-    option = "SE1 & SE2", value = "SE1 & SE2", label = structure("SE1 &amp; SE2", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6df20fb", 
-    option = "SE1 & SE3", value = "SE1 & SE3", label = structure("SE1 &amp; SE3", html = TRUE, class = c("html", 
-    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9bbc442", 
-    option = "SE1 & SE4", value = "SE1 & SE4", label = structure("SE1 &amp; SE4", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Pearson’s r for the association between SE1 &amp; SE4 is only .30. For the association between SE1 &amp; SE3, it is .49, and for the association between SE1 &amp; SE2, it is .54.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "cyrCorr-2-answer", 
-    question = "cyrCorr-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2078095058.03231, options = list()), class = c("learnr_radio", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrPlots-1", question = structure("Does your boxplot suggest the presence of any outliers in your data?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_eff5fbd", 
+"character")), answers = list(structure(list(id = "lnr_ans_55114c0", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fd9bb53", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5565bf4", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -979,17 +1005,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The dot just past the upper whisker of the box reflecting Low Self-Enhancement reflects an outlier.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrPlots-1-answer", 
     question = "cyrPlots-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 254478755.381499, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 592154956.724256, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrPlots-2", question = structure("Does your dot-and-error plot suggest the presence of an interaction between SEcategory and ParentalPressure on AntisocialBehaviour?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7edec57", 
+"character")), answers = list(structure(list(id = "lnr_ans_99a17e1", 
     option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a09bd81", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_19e1d75", 
     option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1000,7 +1025,51 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The effect of Self-Enhancement on AntisocialBehaviour is different across levels of Parental Pressure, so it is likely that there is an interaction effect.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrPlots-2-answer", 
     question = "cyrPlots-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1162995913.45844, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1073230770.50024, options = list()), class = c("learnr_radio", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrSpearman-1", 
+    question = structure("What is the value of rho associated with the relationship between SE3 &amp; SE4? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_40b0934", 
+        option = "0.47", value = 0.47, label = structure("0.47", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Spearman’s rho for the association between SE3 &amp; SE4 is .47", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrSpearman-1-answer", 
+        question = "cyrSpearman-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1033165004.0189, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrSpearman-2", 
+    question = structure("Which of the following pairs have the weakest association?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ef4919f", 
+        option = "SE1 & SE2", value = "SE1 & SE2", label = structure("SE1 &amp; SE2", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_17e2213", 
+        option = "SE1 & SE3", value = "SE1 & SE3", label = structure("SE1 &amp; SE3", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ccbe8e0", 
+        option = "SE1 & SE4", value = "SE1 & SE4", label = structure("SE1 &amp; SE4", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Spearman’s rho for the association between SE1 &amp; SE4 is only .28. For the association between SE1 &amp; SE3, it is .39, and for the association between SE1 &amp; SE2, it is .51.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrSpearman-2-answer", 
+        question = "cyrSpearman-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 602342107.719513, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>
@@ -1014,6 +1083,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cachem","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.1.1","2.14","2.0.3","0.13","1.0.2","0.4.9","1.3.0","1.7.4","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
 </script>
 <!--/html_preserve-->
+</div>
 </div>
 
 </article> <!-- topics -->

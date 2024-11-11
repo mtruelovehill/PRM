@@ -47,6 +47,7 @@ At the end of this lab, you will be able to:
 4. Use SPSS to run multiple linear regression
 5. Properly interpret and report multiple linear regression analysis
 6. Run a power analysis for linear regression
+7. Produce an APA-style correlation matrix
 
 
 ## Introduction to Regression
