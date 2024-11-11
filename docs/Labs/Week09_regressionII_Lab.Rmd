@@ -30,11 +30,9 @@ During today's lab, you'll apply the concepts discussed during this week's lectu
 At the end of this lab, you will be able to:
 
 1. Create a variable to represent the interaction of two continuous variables.
-2. Use SPSS to run multiple linear regression with a moderating variable
+2. Use PROCESS macro in SPSS to run multiple linear regression with a moderating variable
 3. Properly interpret and report results from a multiple linear regression analysis with an interaction term
-4. Produce a figure to represent an interaction between two continuous variables.
-5. Compute a simple-slopes analysis to further investigate the interaction.
-
+4. Probe the interaction using the results from a Johnson-Neyman Analysis
 
 
 ## Experiment Overview
@@ -45,6 +43,8 @@ This week, you'll be reusing the data from last week, so all variables remain th
 In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
 
 You can reopen the data from wherever you saved it on your device last week. If you need to re-download the dataset, you can click [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). 
+
+**NOTE:** If you use the dataset from last week, you'll need to update the variable names, as PROCESS doesn't like names longer than 8 characters. I've just changed them to the variable names you see in the table below:
 
 Recall that the dataset contains the following variables:
 
@@ -78,13 +78,13 @@ quiz(caption = '',
               answer("Multiple Linear Regression with an interaction", correct = T),
               message = "Here, you're looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.",
               random_answer_order = T),
-     question('How many beta values (not including the intercept, beta0) are included in this model?',
+     question('How many predictors are included in this model?',
               answer('1'),
               answer('2'),
               answer('3'),
               answer('4', correct = T),
               answer('5'),
-              message = 'There are 4 beta values, not including beta0. The model will produce separate beta values for each of the 3 predictors and a beta value for the interaction term.'))
+              message = 'There are 4 predictors. The model will have 3 single predictors as well as an interaction, for a total of 4 predictors of well-being.'))
 ```
 
 ### Your Tasks
@@ -123,7 +123,7 @@ $$\beta_4SocialSupport_i + \epsilon_i$$
 
 $H_0:$ The effect of physical activity upon student well-being does not change depending on sleep. 
 
-$H_1:$ The effect of physical activity upon student well-being changes based on sleep. 
+$H_1:$ The effect of physical activity upon student well-being changes based on the amount of sleep one gets. Specifically, at low levels of sleep, we expect physical activity to have a negative effect on wellbeing; at moderate levels of sleep we expect physical activity to have no significant effect on wellbeing; and at high levels of sleep, physical activity is expected to have a positive effect on wellbeing. 
 
 <i> Statistical: </i>
 
@@ -132,34 +132,24 @@ $H_0: \beta_{3} = 0$
 $H_1: \beta_{3} \neq 0$
 
 
-
 </details>
 </div>
 </br>
 
-## Create an Interaction Variable
+## Install PROCESS Macro
 
-When you test for an interaction between two continuous variables in SPSS, you have to create a new variable that captures this relationship. This variable will be included in your model. Recall from the regression equation that the interaction is reflected by the product of the two variables:
+To perform moderation with regression in SPSS, you can use the PROCESS macro. This is a tool that is not part of default SPSS; it needs to be installed separately. Once it has been installed, you'll never have to complete this step again.
 
-Wellbeing = $\beta_0$ + $\beta_1$Sleep + $\beta_2$PhysicalActivity + $\beta_3$Sleep*PhysicalActivity + $\beta_4$SocialSupport + $\epsilon$
+### Your Tasks
 
++ [ ] $\ $ Download the PROCESS macro from [this link](https://processmacro.org/download.html)
 
-### Your task
-
-+ [ ] $\ $ Compute a new variable to represent the interaction between `Sleep` and `PhysicalActivity` by multiplying these variables together.
-
-
-```{r cyu2, echo = FALSE}
-quiz(caption = 'Check Your Results',
-     question_numeric("What is the value of the newly computed interaction variable for participant 1? Please round your answer to two decimal places.",
-              answer('175.24', correct = T),
-              message = "Participant 1 has an interaction value of 175.24. Please note that this value doesn't have any real meaning; rather, this question is just for you to check that you computed the interaction term properly."))
-```
++ [ ] $\ $ Install PROCESS in SPSS
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-To compute a new variable, navigate to *Transform > Compute Variable*.
+After downloading PROCESS, you can install it by navigating to *Extensions > Utilities > Install Custom Dialogue*.
 
 </details>
 </div>
@@ -168,21 +158,12 @@ To compute a new variable, navigate to *Transform > Compute Variable*.
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Navigate to *Transform > Compute Variable*. Give the new interaction variable a name in the 'Target Variable:' box. In this example, I just use the name `Interaction`. Use the 'Numeric Expression' box to multiply `PhysicalActivity` and `Sleep`. Click 'OK'.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_computeInt.png')
-```
-
-A new variable will appear in 'Data View' with the product of `PhysicalActivity` and `Sleep` for each individual.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_intVar.png')
-```
+Navigate to *Extensions > Utilities > Install Custom Dialogue*. Find the 'processv43' folder in your Downloads folder. Navigate to *PROCESS v4.3 for SPSS > Custom dialogue builder file (v4.2)* and click 'process.spd', then 'Open'. Now, you'll be able to use PROCESS in SPSS. 
 
 </details>
 </div>
 <br>
+
 
 ## Check Assumptions
 
@@ -201,6 +182,8 @@ Although you checked assumptions last week, you only checked them for the model 
 
 ### Your Tasks
 
++ [ ] $\ $ Compute an interaction term that you'll use to build a model to check assumptions
+
 + [ ] $\ $ Decide whether your data meet the assumption of linearity
 
 + [ ] $\ $ Decide whether your data meet the assumption of normality
@@ -213,11 +196,17 @@ Although you checked assumptions last week, you only checked them for the model 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-You can actually check all assumptions when setting up your model, so you'll get output for assumptions checks and overall model results at the same time.
+You can actually check all assumptions when setting up your model, so you'll get output for assumptions checks and overall model results at the same time. 
+
+To compute an interaction term, think about how the interaction between sleep and physical activity is represented in our model equation:
+
+WB = $\beta_0$ + $\beta_1$Sleep + $\beta_2$PhysicalActivity + $\beta_3$Sleep*PhysicalActivity + $\beta_4$SocialSupport + $\epsilon$
 
 To check for normality, you can view a P-P plot of the residuals. To check for linearity and heteroskedasticity/equal variance, you will look at a plot of residuals by predicted values. 
 
 You'll check multicollinearity by looking at correlations (Pearson's $r$) and VIF values.
+
+
 </details>
 </div>
 <br>
@@ -225,7 +214,20 @@ You'll check multicollinearity by looking at correlations (Pearson's $r$) and VI
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-To check assumptions (and run the regression analysis), navigate to *Analyze > Regression > Linear*. Add your outcome variable, `Wellbeing`, to the 'Dependent' box and your predictors, `SocialSupport`, `Sleep`, and `PhysicalActivity`, as well as your interaction variable, `Interaction`, to the 'Independent(s)' box.
+To compute the interaction term, navigate to *Transform > Compute Variable*. Give the new interaction variable a name in the 'Target Variable:' box. In this example, I just use the name `Interaction`. Use the 'Numeric Expression' box to multiply `PhysAct` and `Sleep`. Click 'OK'.
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_computeInt.png')
+```
+
+A new variable will appear in 'Data View' with the product of `PhysAct` and `Sleep` for each individual.
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_intVar.png')
+```
+
+
+To check assumptions, navigate to *Analyze > Regression > Linear*. Add your outcome variable, `WB`, to the 'Dependent' box and your predictors, `SocSupp`, `Sleep`, and `PhysAct`, as well as your interaction variable, `Interaction`, to the 'Independent(s)' box.
 
 To produce the P-P plot and the plot of residuals by predicted values, click 'Plots', move the ZRESID variable (which reflects the standardized residual) into the Y box and the ZPRED variable (which reflects the standardized model-predicted value of well-being for each individual) into the X box. Make sure 'Normal probability plot' is ticked:
 
@@ -256,7 +258,7 @@ Next, have a look at the residuals by predicted values plot:
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_predResidPlot.png')
 ```
 
-The datapoints should look like a random cloud centering around the middle (residual = 0). If there are any strange patterns (a fan shape or a bow-tie), then the assumption of equal variance is violated. If the pattern is curved in some way, the association between `Wellbeing` and the predictors may not be linear. Here, the data look nice and cloud-like, so the data seem to meet the assumptions of linearity and equal variance.
+The datapoints should look like a random cloud centering around the middle (residual = 0). If there are any strange patterns (a fan shape or a bow-tie), then the assumption of equal variance is violated. If the pattern is curved in some way, the association between `WB` and the predictors may not be linear. Here, the data look nice and cloud-like, so the data seem to meet the assumptions of linearity and equal variance.
 
 All checks look good so far, but what's going on with collinearity?
 
@@ -264,61 +266,11 @@ All checks look good so far, but what's going on with collinearity?
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_collinearity.png')
 ```
 
-Those VIF values are much higher than 5. The next section will cover how this should be addressed.
+Those VIF values are much higher than 5. Luckily, this is just a result of the interaction, so it can be easily addressed through mean-centering, which can be addressed using PROCESS, in the next step.
 
 </details>
 </div>
 
-
-## Addressing Multicollinearity
-
-Anytime you include an interaction term in the model, it is possible that this will introduce multicollinearity. Recall that an interaction between two predictors, $X$ and $Z$, is reflected by multiplying them together and including their product in the model:
- 
-$y = \beta_0 + \beta_1x + \beta_2z + \beta_3\color{#4CA384}{XZ}$
-
-As the interaction term is simply the product of two of the model predictors, it is not unexpected that this variable may be strongly correlated with the predictors used to generate it.
-
-In order to address this, your predictors can be mean-centred. When you mean-centre variables, you subtract the mean value from each individual observation. A mean-centred predictor is positive when participants have higher than average values of that predictor and negative when participants have lower than average values of that predictor. Including negative values in the predictors redistributes the high and low values in the interaction, so that while the underlying relationship remains, the correlation between the predictors and the interaction term disappears.
-
-### Your Task
-
-+ Mean-centre your predictors 
-
-+ Compute a new interaction term, `InteractionMC` using these mean-centred predictors.
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-To mean-centre your variables, navigate to *Transform > Compute Variable*.
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the Solution </span></summary>
-
-To mean-centre a variable, you need to subtract the mean from each observation. To do this here, navigate to *Transform > Compute Variable*. Add the new variable name, `MCsleep`, into the 'Target Variable' box. In the 'Numeric Expression' box, subtract the mean sleep score from `Sleep`. 
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_MCsleep.png')
-```
-
-This will produce a mean-centered variable, such that anyone close to the mean sleep value will have a value near 0, anyone with less than average sleep will have a negative value, and anyone with more than average sleep will have a positive value.
-
-Repeat this process for `PhysicalActivity`.
-
-Once you have your two mean-centred variables, produce a new, mean-centred interaction term. Navigate to *Transform > Compute Variable*. Type `MCinteraction` into the target variable box, and then use the 'Numeric Expression' box to multiply `MCsleep` by `MCphysicalActivity`:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_MCint.png')
-```
-Click OK. You'll now have a new variable in 'Data View' that represents the new, mean-centred interaction term.
-
-</details>
-</div>
-</br>
 
 ## Primary Analysis
 
@@ -327,11 +279,9 @@ Recall that your primary research question is *Does the effect of physical activ
 
 ### Your Tasks
 
-+ [ ] $\ $ Run multiple regression to test your hypotheses and interpret the overall model results with $\alpha$ = .05. Be sure to use your mean-centred variables, rather than your raw variables.
++ [ ] $\ $ Use PROCESS to run multiple regression to test your hypotheses and interpret the overall model results with $\alpha$ = .05.
 
 + [ ] $\ $ Interpret the results from the interaction and individual predictors with $\alpha$ = .05.
-
-+ [ ] $\ $ Compute the confidence intervals associated with each predictor
 
 
 ```{r cyrAnalysis, echo = FALSE}
@@ -340,11 +290,11 @@ quiz(caption = 'Check Your Results',
               answer('85.68', correct = T),
               message = 'The overall model F-statistic is 85.68.'),
      question("Which of the following interpretations are correct? Please select all that apply.",
-              answer('For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support and physical activity are held constant', correct=T),
+              answer('For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are equal to 0', correct=T),
               answer("As one's social support score increases by .06 points, their well-being score will increase by 1 point, when sleep and physical activity are held constant."),
               answer('The interaction between sleep and physical activity explains 36% of the variance in student well-being.'),
               answer('For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.', correct = T),
-              message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one's social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate",
+              message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one's social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate. Additionally, the interpretation of sleep's effect on well-being is accurate.",
               random_answer_order = T),
      question('Which of the following is the correct interpretation of the intercept?',
               answer('Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04'),
@@ -357,7 +307,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-To perform a linear regression, navigate to *Analyze > Regression > Linear*.
+To perform a linear regression, navigate to *Analyze > Regression > PROCESS v4.2...*.
 
 </details>
 </div>
@@ -367,156 +317,58 @@ To perform a linear regression, navigate to *Analyze > Regression > Linear*.
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-To run the regression analysis, navigate to *Analyze > Regression > Linear*. Add your outcome variable, `Wellbeing`, to the 'Dependent' box and your predictors, `SocialSupport`, `MCsleep`, `MCphysicalActivity`, and `MCinteraction` to the 'Independent(s)' box. Click statistics and check the following boxes:
+To run the regression analysis, navigate to *Analyze > Regression >  PROCESS v4.2...*. 
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_lrStats.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESS.png')
+```
+
+Add your outcome variable, `WB`, to the 'Y variable' box and your predictor, `PhysAct` in the 'X variable' box. Add `Sleep` to the 'Moderator Variable W' box and `SocSupp` to the 'Covariate(s)' box. 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSmodel.png')
+```
+
+Click 'Options'. Under 'Mean center for construction of products', tick 'Only continuous variables that define products.' This means that our variables that were multiplied for our interaction will be mean centered, while `SocSupp` will remain the same. This also helps to address the multicollinearity issue. Select to probe interactions in cases where $p$ < .05, and set the conditioning values as '-1SD, Mean, +1SD'. Finally, make sure 'Johnson-Neyman output' is ticked:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSoptions.png')
 ```
 
 Click 'Continue', then 'OK'. 
 
-The first piece of output is a recap of the descriptive statistics for each variable in your model:
+The first piece of output is the test of the overeall model. 
 
 ```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_regDescs.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PrimaryModelResults.png')
 ```
 
-Because you've mean-centred the sleep and physical activity variables, the means for these should be 0 (or very close to 0, depending upon how many decimal places you in your mean when you mean-centred). Note that the interaction term descriptives are not really meaningful; you won't need to describe or interpret them in your final write-up. You would also want to use the original mean (rather than 0) when describing your predictors.
 
+The $R^2$ value is .37, which indicates that 37% of the variance in our sample's well-being scores is accounted for by sleep, physical activity, social support, and the interaction between sleep and physical activity.
 
-The next two boxes you will focus on are the Model Summary and ANOVA boxes:
+The ANOVA tells us the results of the overall model test (is this model significant?). This should be interpreted in the same way as a typical ANOVA - the $p$-value is < .001, so we can say the overall model significantly predicts well-being scores.In other words, when we have data on someone's sleep, physical activity levels, and social support network, we have a better idea about what their well-being may be than if we didn't have this information.
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_modelResults.png')
-```
+Note that the $p$-value here is listed as 0. ** $p$ IS NEVER 0**. This is a rounding issue. You should instead report $p$ as < .001. 
 
-First, check the Model Summary box, which provides $R^2$ and $R^2_{adj}$. As I mentioned in last week's lab, I recommend defaulting to Adjusted $R^2$. 
-
-The $R^2_{adj}$ value is .36, which indicates that 36% of the variance in our sample's well-being scores is accounted for by sleep, physical activity, social support, and the interaction between sleep and physical activity.
-
-The ANOVA tells us the results of the overall model test (is this model significant?). This should be interpreted in the same way as a typical ANOVA - the $p$-value is < .001, so we can say the overall model significantly predicts well-being scores. In other words, when we have data on someone's sleep, physical activity levels, and social support network, we have a better idea about what their well-being may be than if we didn't have this information.
-
-While this information is necessary to address the research question, it's not sufficient. The research aim specifically asked about the presence of an interaction between `MCsleep` and `MCphysicalActivity`, so you'll need to look at the 'Coefficients' box to find the answer. First,check the VIF values. You'll note that the issues with multicollinearity have disappeared:
+While this information is necessary to address the research question, it's not sufficient. The research aim specifically asked about the presence of an interaction between `Sleep` and `PhysAct`, so you'll need to look at the 'Coefficients' box to find the answer.
 
 
 ```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults_VIF.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESScoefs.png')
 ```
 
-To address your hypothesis, you'll specifically want to check the row labeled `Interaction`. The $p$-values in the 'Sig.' column indicate that there is a significant interaction. The $p$-value of .04 is lower than the $\alpha$ threshold of .05. As in last week's model, the $p$-values associated with `Sleep` and `SocialSupport` are also below the $\alpha$ threshold, indicating they are significant predictors of `Wellbeing`. The $p$-value associated with `MCphysicalActivity` is greater than .05, so it is not significant. As before, you can use the $\beta$ estimates to give you a better sense of the interaction between `MCphysicalActivity` and `MCsleep` on `Wellbeing`. 
+To address your hypothesis, you'll specifically want to check the row labeled `Int_1`, which reflects the interaction between `PhysAct` and `Sleep`. The $p$-values in the 'Sig.' column indicate that there is a significant interaction. The $p$-value of .040 is lower than the $\alpha$ threshold of .05. As in last week's model, the $p$-values associated with `Sleep` and `SocSupp` are also below the $\alpha$ threshold, indicating they are significant predictors of `Wellbeing`. The $p$-value associated with `PhysAct` is greater than .05, so it is not significant. As before, you can use the $\beta$ estimates to give you a better sense of the interaction between `PhysAct` and `Sleep` on `Wellbeing`. 
 
-The unstandardized $\beta$ coefficient associated with `Interaction` is 0.03. The unstandardized $\beta$ coefficient tells us how much more the relationship between `MCphysicalActivity` and `Wellbeing` changes for every additional hour of sleep. So, in this case, for every additional hour of sleep, the relationship between `MCphysicalActivity` and `Wellbeing` increases by .03 points on the Wellbeing assessment. Simple slopes analysis will help break this interaction down further so that it is easier to interpret.
-
-</details>
-</div>
-</br>
-
-
-
-## Simple Slopes Analysis
-
-Your interaction was significant. However, in order to understand where the differences are, you need to perform a simple slopes analysis. Simple slopes analysis tells you where the associations between IV1 and the DV are along the range of IV2.
-
-Here's the thing. Simple slopes analysis in SPSS is not fun. It's a complex, convoluted process that is more difficult than it should be. Please don't feel like bad about using the 'Solution' tab below. If you follow these steps, you can gain a better understanding of what is actually happening with your continuous interaction. 
-
-
-### Your Tasks
-
-+ [ ] $\ $ Create two new variables that you'll be using to test the effects of `MCphysicalActivity` on `Wellbeing` at lower and higher levels of sleep 
-
-+ [ ] $\ $ Create two new interaction terms between each of your new variables and `MCphysicalActivity`.
-
-+ [ ] $\ $ Run two separate regression models with your new variables: one to test the interaction between `MCphysicalActivity` on `Wellbeing` in participants with high levels of sleep, one to test the interaction between `MCphysicalActivity` on `Wellbeing` in participants with low levels of sleep.
-
-
-This is a lot, I know. But I believe in you.
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-To practice running the models and interpreting the output without all the faff, download [this dataset](https://mtruelovehill.github.io/PRM/Labs/Week9LabData_SimpleSlopes.sav), with all the key variables already made. You're welcome.
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Solution - Create `Sleep` Grouping Variables </span></summary>
-
-To create the variable to test the interaction in those with high levels of sleep, you need to subtract 1 $SD$ from the mean-centered sleep variable. Yes, subtract. I don't know why it's not add when you're looking at those with high levels. I know it's counterintuitive. It comes from [this text book](https://us.sagepub.com/en-us/nam/multiple-regression/book3045), so if you want to dig into the mathematical reasons behind why this is done, please be my guest. 
-
-To do this in SPSS, navigate once again to *Transform > Compute Variable*. Add your a name for your new high sleep variable. I used `HiSleep`. Subtract the $SD$ of `Sleep` from your mean-centered sleep variable, `MCSleep`:
-
+The  $\beta$ coefficient associated with `Int_1` is 0.03. The $\beta$ coefficient tells us how much more the relationship between `PhysAct` and `Wellbeing` changes for every additional hour of sleep. So, in this case, for every additional hour of sleep, the relationship between `PhysAct` and `Wellbeing` increases by .03 points on the Wellbeing assessment. The Johnson-Neyman analysis will help break this interaction down further so that it is easier to interpret.
+ 
 ```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_hiSleep.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSjn.png')
 ```
 
-Repeat this process, but this time, name your variable `LoSleep` and add the $SD$ instead of subtract.
+The first part, 'conditional effects of focal predictor at values of the moderator:' tells you the effect of Physical Activity on Wellbeing in those who sleep less than average (-1 SD), those who get about average amounts of sleep, and those who sleep more than average (+1 SD). $p$ is less than .05 in those who sleep more than average, but not significant in those who get average amounts of sleep or less. The $\beta$ coefficient associated with the high sleep group is .36, which suggests that in this group, for every additional hour of physical activity per week, well-being scores increase by .36. 
 
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_loSleep.png')
-```
+The second part gives an even more detailed look at which values of sleep are associated with a significant association between physical activity and well-being. Specifically, those who get about 3.5 hours of sleep or more than average per week have a significant, positive association between physical activity and well-being. For everyone else, there is no significant association between sleep and well-being.
 
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Compute 3 New Interaction Terms </span></summary>
-
-You'll do this in the same way you created a basic interaction term, just with slightly different variables. First, create an interaction term that tests the interaction in participants who sleep more than average. Once more, navigate to *Transform > Compute Variable*. Name your new variable `HiInt` and set it as equal to the product of `HiSleep` and `MCphysicalActivity`.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_hiIntVar.png')
-```
-
-Repeat the process, but with the low sleep variable:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_loIntVar.png')
-```
-
-If you've created all of these new variables properly, you'll now have 4 new variables to run 2 new interactions:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_newVars.png')
-```
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Run 3 New Interactions </span></summary>
-
-Now, you'll run 3 separate interaction models to capture the association between `MCphysicalActivity` and `Wellbeing` at each level of `Sleep`. First, let's look at the association in participants with low levels of sleep.
-
-<span style = "font-weight: bold; font-size: 14pt"> Participants with Lower than Average Sleep </span>
-
-Navigate to *Analyze > Regression > Linear*. Click the 'Reset' button at the bottom to clear out any previous information. Move `Wellbeing` to the 'Dependent' box. In the lower box, add `MCphysicalActivity`, `SocialSupport`, `LoSleep` and `loInt`, then click 'OK'. You can ignore the ANOVA box, as the overall model effects will remain the same. The only thing that will change is the the effect on `MCphysicalActivity`. Here, you can see the $p$-value = .526. This indicates that there is no association between physical activity and well-being in students who get lower than average amounts of sleep.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_loIntResults.png')
-```
-
-<span style = "font-weight: bold; font-size: 14pt"> Participants with Moderate Levels of Sleep </span>
-
-You already know the relationship between `MCphysicalActivity` and `Sleep` at moderate levels of sleep - this is represented by your original model:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults.png')
-```
-
-<span style = "font-weight: bold; font-size: 14pt"> Participants with Higher than Average of Sleep </span>
-
-Navigate to *Analyze > Regression > Linear*. Click the 'Reset' button at the bottom to clear out any previous information. Move `Wellbeing` to the 'Dependent' box. In the lower box, add `MCphysicalActivity`, `SocialSupport`, `HiSleep` and `hiInt`, then click 'OK'. Here, we can see where the interaction is coming from. In the coefficients box, the $p$-value for `MCphysicalActivity` is .023, which is lower than our $\alpha$ threshold of .05. This indicates that there is an association between physical activity and well-being in students who get high amounts of sleep. Specifically, in these participants, higher levels of physical activity are associated with an increase in wellbeing (as indicated by the positive $\beta$ value).
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_hiIntResults.png')
-```
 
 </details>
 </div>
@@ -545,7 +397,7 @@ There are many ways you could write this up, but you should at least include the
 + $R^2$ and its interpretation
 + the overall model test results ($F$, $df$, $p$)
 + individual predictor results (either $B$ or $\beta$, appropriate interpretation, either the standard error or confidence intervals, $p$ values)
-+ results from the simple slopes analysis
++ results from the Johnson-Neyman/simple slopes analysis
 
 </details>
 </div>
@@ -559,118 +411,9 @@ In this study, we investigated the association between well-being in university 
 
 Our final sample consisted of 600 university students between the ages of 17 and 26 ($M$ = 21.49, $SD$ = 2.61; 297 females, 281 males, 7 nonbinary participants, 5 participants who indicated a gender other than these categories, and 10 who preferred not to disclose). The normality assumption was checked through visual assessment of a P-P plot of the residuals. Linearity and homoskedasticity were checked using a residuals by predicted values plot. The data met all assumptions. VIF scores and correlations were used to evaluate the presence of multicollinearity. The presence of an interaction term introduced multicollinearity, so mean-centered versions of the sleep and physical activity variables were used in the analysis. 
 
-Our results indicate that the overall model significantly predicted well-being, $F$(4,595) = 85.68, $p$ < .001, explaining 36% of the variance in student well-being scores. There was a significant interaction between physical activity and sleep on wellbeing, when controlling for the effect of social support, $\beta$ = .03, $p$ = .04, 95% CI = [0.02, 0.07]. A simple slopes analysis revealed that while physical activity was not associated with wellbeing in those with lower (> -1 $SD$; $p$ = .526) or average levels of sleep ($p$ = .253), this was not the case in those with higher (> +1 SD) levels of sleep. In this group, as physical activity increased by one hour per week, student well-being scores increased by .36 points, $SE$ = .16, $p$ = .023.
+Our results indicate that the overall model significantly predicted well-being, $F$(4,595) = 85.68, $p$ < .001, explaining 37% of the variance in student well-being scores. There was a significant interaction between physical activity and sleep on wellbeing, when controlling for the effect of social support, $\beta$ = .03, $p$ = .040, 95% CI = [0.02, 0.07]. A Johnson-Neyman analysis revealed that while physical activity was not associated with wellbeing in those with lower (> -1 $SD$; $p$ = .527) or average levels of sleep ($p$ = .253), this was not the case in those with higher (> +1 SD) levels of sleep. In this group, as physical activity increased by one hour per week, student well-being scores increased by .36 points, $SE$ = .16, $p$ = .023.
 
 
 </details>
 </div>
 </br>
-
-## Bonus Material: Continuous Interaction Plot
-
-Unlike interactions with categorical independent variables, SPSS doesn't give you many options for breaking down a continuous interaction. However, one way to make a continuous interaction easier to interpret is through the use of a figure. Here, we'll plot the association between `PhysicalActivity` and `Wellbeing` at different levels of sleep. As there is a significant interaction, we expect that there will be varying associations between `PhysicalActivity` and `Wellbeing` depending on how much sleep one gets per week. 
-
-### Your Tasks
-
-+ [ ] $\ $ Create a new variable to categorise sleep based on $SD$, `SleepCat`
-  + Group 1 - Participants who get more sleep than average (those whose sleep values are 1 $SD$ or more above the mean)
-  + Group 2 - Participants who get approximately average amounts of sleep (those whose sleep values fall within 1 $SD$ of the mean)
-  + Group 3 - Participants who get less sleep than average (those whose sleep values are 1 $SD$ or more below the mean)
-
-+ [ ] $\ $ Produce a scatterplot with `PhysicalActivity` on the x-axis, `Wellbeing` on the y-axis, and `SleepCat` as a grouping variable. Make sure to include fit lines.
-
-+ [ ] $\ $ Use this plot to interpret the interaction between `PhysicalActivity` and `Sleep` on `Wellbeing`
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-You'll need to use *Transform > Recode Into Different Variable* to compute your categorical sleep variable, `SleepCat`.
-
-The thresholds for `SleepCat` are as follows:
-
-Group 1: $\bar{x}_{Sleep} + sd_{Sleep} = 56.31+6.79 = `r round(56.31+6.79, 2)`$
-
-Group 3: $\bar{x}_{Sleep} + sd_{Sleep} = 56.31-6.79 = `r round(56.31-6.79, 2)`$
-
-Group 2: everyone else
-
-
-In other words, Group 1 should include all participants with sleep values > `r round(56.31+6.79, 2)`, Group 3 should include all participants with sleep values < `r round(56.31-6.79, 2)`, and Group 2 should include everyone in between.
-
-</details>
-</div>
-</br>
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-<span style = "font-weight: bold; font-size: 14pt"> Compute the Sleep Grouping Variable </span>
-To compute your grouping variable, `SleepCat`, navigate to *Transform > Recode Into Different Variable*. Add `Sleep` into the 'Input Variable -> Output Variable' box. Add your new variable name, `SleepCat`, to the 'Name' box in the Output Variable column and click 'Change'. Next, click 'Old and New Values'.
-
-First, click 'Range, value through HIGHEST' and add the threshold for Group 1, `r round(56.31+6.79, 2)`. Add '1' to the New Value box, then click 'Add'. This condition should appear in the 'Old --> New' box:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_G1.png')
-```
-
-Next, click 'Range, LOWEST through value' and add the threshold for Group 3, `r round(56.31-6.79, 2)`. Add '3' to the New Value box, then click 'Add'. This condition should appear in the 'Old --> New' box:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_G3.png')
-```
-
-Finally, click 'All other values' and assign these a value of 2. Click 'Add'. You should now have all 3 groups accounted for in the 'Old --> New' box:
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_G2.png')
-```
-
-Click 'Continue' and then 'OK'.
-
-You'll now have a new variable in Data View called `SleepCat` that has grouped participants according to their sleep scores. 
-
-You should update the labels so it is clear what each group reflects. Click 'Variable View' and set up Labels using the 'Values' column.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_labels.png')
-```
-
-<br>
-<span style = "font-weight: bold; font-size: 14pt"> Produce the Interaction Plot </span>
-
-There are a few ways that you can do this. You can either use *Graphs > Chart Builder*, choose 'Scatter/Dot' as your plot option, and drag the desired variables onto the appropriate axes, or you can navigate to *Graphs > Scatter/Dot*. 
-
-To use Chart Builder, select 'Scatter/Plot' and then drag `Wellbeing` to the y-axis, `Physical Activity` to the x-axis, and `SleepCat` to the 'set color' box. You can explore other aesthetic changes as you'd like using the 'Element Properties', 'Chart Appearance', and 'Options' tabs to the right. When you're finished, click 'OK'.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_chartBuilder.png')
-```
-
-
-If you instead use *Graphs > Scatter/Dot*, select 'Simple Scatter' and click 'Define'. Add `Wellbeing` to the y-axis, `Physical Activity` to the x-axis, and `SleepCat` to the 'Set Markers By' box. 
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_scatterOptions.png')
-```
-
-Whichever method you choose, the chart should pop up in your output. To add the fit lines individual by group, first click on the chart so that it appears in a new window. Once you've done this, an 'Elements' option will appear in the toolbar.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_elements.png')
-```
-
-Select this option, then select 'Fit line at subgroups'. 
-
-Fit lines for each individual group will appear, along with $R^2$ values for each group.
-
-```{r, echo = F, fig.align= 'center', out.width = '75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_fitLines.png')
-```
-
-Here, you can see that the $R^2$ value is largest for the group that gets the most sleep and smallest for the group that gets the least sleep. The lines are all somewhat straight, but there is a slight positive relationship between `PhysicalActivity` and `Wellbeing` in the group with the most sleep. This suggests that the significant interaction indicates that `PhysicalActivity` only has a positive association with `Wellbeing` in cases where participants get enough sleep. Otherwise, there is no meaningful association between the two. However, as it would be good to have statistical values to back this up, you still need to perform Simple Slopes analysis.
-
-
-</details>
-</div>
-</br>
-

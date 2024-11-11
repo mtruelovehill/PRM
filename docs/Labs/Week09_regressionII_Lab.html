@@ -124,14 +124,12 @@ understanding.</p>
 <ol style="list-style-type: decimal">
 <li>Create a variable to represent the interaction of two continuous
 variables.</li>
-<li>Use SPSS to run multiple linear regression with a moderating
-variable</li>
+<li>Use PROCESS macro in SPSS to run multiple linear regression with a
+moderating variable</li>
 <li>Properly interpret and report results from a multiple linear
 regression analysis with an interaction term</li>
-<li>Produce a figure to represent an interaction between two continuous
-variables.</li>
-<li>Compute a simple-slopes analysis to further investigate the
-interaction.</li>
+<li>Probe the interaction using the results from a Johnson-Neyman
+Analysis</li>
 </ol>
 </div>
 </div>
@@ -150,6 +148,10 @@ week. On each variable, higher scores correspond to higher levels.</p>
 <p>You can reopen the data from wherever you saved it on your device
 last week. If you need to re-download the dataset, you can click <a
 href="https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav">here</a>.</p>
+<p><strong>NOTE:</strong> If you use the dataset from last week, you’ll
+need to update the variable names, as PROCESS doesn’t like names longer
+than 8 characters. I’ve just changed them to the variable names you see
+in the table below:</p>
 <p>Recall that the dataset contains the following variables:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -280,7 +282,12 @@ depending upon sleep?</p>
 <p><span class="math inline">\(H_0:\)</span> The effect of physical
 activity upon student well-being does not change depending on sleep.</p>
 <p><span class="math inline">\(H_1:\)</span> The effect of physical
-activity upon student well-being changes based on sleep.</p>
+activity upon student well-being changes based on the amount of sleep
+one gets. Specifically, at low levels of sleep, we expect physical
+activity to have a negative effect on wellbeing; at moderate levels of
+sleep we expect physical activity to have no significant effect on
+wellbeing; and at high levels of sleep, physical activity is expected to
+have a positive effect on wellbeing.</p>
 <p><i> Statistical: </i></p>
 <p><span class="math inline">\(H_0: \beta_{3} = 0\)</span></p>
 <p><span class="math inline">\(H_1: \beta_{3} \neq 0\)</span></p>
@@ -289,44 +296,30 @@ activity upon student well-being changes based on sleep.</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-create-an-interaction-variable" class="section level2">
-<h2>Create an Interaction Variable</h2>
-<p>When you test for an interaction between two continuous variables in
-SPSS, you have to create a new variable that captures this relationship.
-This variable will be included in your model. Recall from the regression
-equation that the interaction is reflected by the product of the two
-variables:</p>
-<p>Wellbeing = <span class="math inline">\(\beta_0\)</span> + <span
-class="math inline">\(\beta_1\)</span>Sleep + <span
-class="math inline">\(\beta_2\)</span>PhysicalActivity + <span
-class="math inline">\(\beta_3\)</span>Sleep*PhysicalActivity + <span
-class="math inline">\(\beta_4\)</span>SocialSupport + <span
-class="math inline">\(\epsilon\)</span></p>
-<div id="section-your-task" class="section level3">
-<h3>Your task</h3>
+<div id="section-install-process-macro" class="section level2">
+<h2>Install PROCESS Macro</h2>
+<p>To perform moderation with regression in SPSS, you can use the
+PROCESS macro. This is a tool that is not part of default SPSS; it needs
+to be installed separately. Once it has been installed, you’ll never
+have to complete this step again.</p>
+<div id="section-your-tasks-1" class="section level3">
+<h3>Your Tasks</h3>
 <ul class="task-list">
-<li><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Compute a new variable to represent the interaction between
-<code>Sleep</code> and <code>PhysicalActivity</code> by multiplying
-these variables together.</label></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Download the PROCESS macro from <a
+href="https://processmacro.org/download.html">this
+link</a></label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Install PROCESS in SPSS</label></p></li>
 </ul>
-<div class="panel-heading tutorial-quiz-title">Check Your Results</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="cyu2-1" class="tutorial-question panel-body">
-<div id="cyu2-1-answer_container" class="shiny-html-output"></div>
-<div id="cyu2-1-message_container" class="shiny-html-output"></div>
-<div id="cyu2-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>To compute a new variable, navigate to <em>Transform &gt; Compute
-Variable</em>.</p>
+<p>After downloading PROCESS, you can install it by navigating to
+<em>Extensions &gt; Utilities &gt; Install Custom Dialogue</em>.</p>
 </details>
 </div>
 <p><br></p>
@@ -336,16 +329,11 @@ Variable</em>.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>Navigate to <em>Transform &gt; Compute Variable</em>. Give the new
-interaction variable a name in the ‘Target Variable:’ box. In this
-example, I just use the name <code>Interaction</code>. Use the ‘Numeric
-Expression’ box to multiply <code>PhysicalActivity</code> and
-<code>Sleep</code>. Click ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_computeInt.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>A new variable will appear in ‘Data View’ with the product of
-<code>PhysicalActivity</code> and <code>Sleep</code> for each
-individual.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_intVar.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Navigate to <em>Extensions &gt; Utilities &gt; Install Custom
+Dialogue</em>. Find the ‘processv43’ folder in your Downloads folder.
+Navigate to <em>PROCESS v4.3 for SPSS &gt; Custom dialogue builder file
+(v4.2)</em> and click ‘process.spd’, then ‘Open’. Now, you’ll be able to
+use PROCESS in SPSS.</p>
 </details>
 </div>
 <p><br></p>
@@ -372,9 +360,12 @@ predictor values &amp; fitted values</p></li>
 highly correlated with each other (e.g., <span
 class="math inline">\(r\)</span> &gt; .8, VIF &lt; 5)</p></li>
 </ol>
-<div id="section-your-tasks-1" class="section level3">
+<div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Compute an interaction term that you’ll use to build a model
+to check assumptions</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Decide whether your data meet the assumption of
 linearity</label></p></li>
@@ -397,11 +388,20 @@ multicollinearity</label></p></li>
 <p>You can actually check all assumptions when setting up your model, so
 you’ll get output for assumptions checks and overall model results at
 the same time.</p>
+<p>To compute an interaction term, think about how the interaction
+between sleep and physical activity is represented in our model
+equation:</p>
+<p>WB = <span class="math inline">\(\beta_0\)</span> + <span
+class="math inline">\(\beta_1\)</span>Sleep + <span
+class="math inline">\(\beta_2\)</span>PhysicalActivity + <span
+class="math inline">\(\beta_3\)</span>Sleep*PhysicalActivity + <span
+class="math inline">\(\beta_4\)</span>SocialSupport + <span
+class="math inline">\(\epsilon\)</span></p>
 <p>To check for normality, you can view a P-P plot of the residuals. To
 check for linearity and heteroskedasticity/equal variance, you will look
 at a plot of residuals by predicted values.</p>
-You’ll check multicollinearity by looking at correlations (Pearson’s
-<span class="math inline">\(r\)</span>) and VIF values.
+<p>You’ll check multicollinearity by looking at correlations (Pearson’s
+<span class="math inline">\(r\)</span>) and VIF values.</p>
 </details>
 </div>
 <p><br></p>
@@ -411,12 +411,21 @@ You’ll check multicollinearity by looking at correlations (Pearson’s
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>To check assumptions (and run the regression analysis), navigate to
-<em>Analyze &gt; Regression &gt; Linear</em>. Add your outcome variable,
-<code>Wellbeing</code>, to the ‘Dependent’ box and your predictors,
-<code>SocialSupport</code>, <code>Sleep</code>, and
-<code>PhysicalActivity</code>, as well as your interaction variable,
-<code>Interaction</code>, to the ‘Independent(s)’ box.</p>
+<p>To compute the interaction term, navigate to <em>Transform &gt;
+Compute Variable</em>. Give the new interaction variable a name in the
+‘Target Variable:’ box. In this example, I just use the name
+<code>Interaction</code>. Use the ‘Numeric Expression’ box to multiply
+<code>PhysAct</code> and <code>Sleep</code>. Click ‘OK’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_computeInt.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>A new variable will appear in ‘Data View’ with the product of
+<code>PhysAct</code> and <code>Sleep</code> for each individual.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_intVar.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>To check assumptions, navigate to <em>Analyze &gt; Regression &gt;
+Linear</em>. Add your outcome variable, <code>WB</code>, to the
+‘Dependent’ box and your predictors, <code>SocSupp</code>,
+<code>Sleep</code>, and <code>PhysAct</code>, as well as your
+interaction variable, <code>Interaction</code>, to the ‘Independent(s)’
+box.</p>
 <p>To produce the P-P plot and the plot of residuals by predicted
 values, click ‘Plots’, move the ZRESID variable (which reflects the
 standardized residual) into the Y box and the ZPRED variable (which
@@ -439,86 +448,19 @@ assumption of normality.</p>
 <p>The datapoints should look like a random cloud centering around the
 middle (residual = 0). If there are any strange patterns (a fan shape or
 a bow-tie), then the assumption of equal variance is violated. If the
-pattern is curved in some way, the association between
-<code>Wellbeing</code> and the predictors may not be linear. Here, the
-data look nice and cloud-like, so the data seem to meet the assumptions
-of linearity and equal variance.</p>
+pattern is curved in some way, the association between <code>WB</code>
+and the predictors may not be linear. Here, the data look nice and
+cloud-like, so the data seem to meet the assumptions of linearity and
+equal variance.</p>
 <p>All checks look good so far, but what’s going on with
 collinearity?</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_collinearity.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Those VIF values are much higher than 5. The next section will cover
-how this should be addressed.</p>
+<p>Those VIF values are much higher than 5. Luckily, this is just a
+result of the interaction, so it can be easily addressed through
+mean-centering, which can be addressed using PROCESS, in the next
+step.</p>
 </details>
 </div>
-</div>
-</div>
-<div id="section-addressing-multicollinearity" class="section level2">
-<h2>Addressing Multicollinearity</h2>
-<p>Anytime you include an interaction term in the model, it is possible
-that this will introduce multicollinearity. Recall that an interaction
-between two predictors, <span class="math inline">\(X\)</span> and <span
-class="math inline">\(Z\)</span>, is reflected by multiplying them
-together and including their product in the model:</p>
-<p><span class="math inline">\(y = \beta_0 + \beta_1x + \beta_2z +
-\beta_3\color{#4CA384}{XZ}\)</span></p>
-<p>As the interaction term is simply the product of two of the model
-predictors, it is not unexpected that this variable may be strongly
-correlated with the predictors used to generate it.</p>
-<p>In order to address this, your predictors can be mean-centred. When
-you mean-centre variables, you subtract the mean value from each
-individual observation. A mean-centred predictor is positive when
-participants have higher than average values of that predictor and
-negative when participants have lower than average values of that
-predictor. Including negative values in the predictors redistributes the
-high and low values in the interaction, so that while the underlying
-relationship remains, the correlation between the predictors and the
-interaction term disappears.</p>
-<div id="section-your-task-1" class="section level3">
-<h3>Your Task</h3>
-<ul>
-<li><p>Mean-centre your predictors</p></li>
-<li><p>Compute a new interaction term, <code>InteractionMC</code> using
-these mean-centred predictors.</p></li>
-</ul>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>To mean-centre your variables, navigate to <em>Transform &gt; Compute
-Variable</em>.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-Solution </span>
-</summary>
-<p>To mean-centre a variable, you need to subtract the mean from each
-observation. To do this here, navigate to <em>Transform &gt; Compute
-Variable</em>. Add the new variable name, <code>MCsleep</code>, into the
-‘Target Variable’ box. In the ‘Numeric Expression’ box, subtract the
-mean sleep score from <code>Sleep</code>.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_MCsleep.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>This will produce a mean-centered variable, such that anyone close to
-the mean sleep value will have a value near 0, anyone with less than
-average sleep will have a negative value, and anyone with more than
-average sleep will have a positive value.</p>
-<p>Repeat this process for <code>PhysicalActivity</code>.</p>
-<p>Once you have your two mean-centred variables, produce a new,
-mean-centred interaction term. Navigate to <em>Transform &gt; Compute
-Variable</em>. Type <code>MCinteraction</code> into the target variable
-box, and then use the ‘Numeric Expression’ box to multiply
-<code>MCsleep</code> by <code>MCphysicalActivity</code>:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_MCint.png" width="75%" style="display: block; margin: auto;" />
-Click OK. You’ll now have a new variable in ‘Data View’ that represents
-the new, mean-centred interaction term.</p>
-</details>
-</div>
-<p></br></p>
 </div>
 </div>
 <div id="section-primary-analysis" class="section level2">
@@ -529,21 +471,17 @@ In this analysis, you’ll use multiple linear regression to first test
 whether your overall model significantly predicts well-being. You’ll
 then check the effects of each predictor and the interaction
 individually.</p>
-<div id="section-your-tasks-2" class="section level3">
+<div id="section-your-tasks-3" class="section level3">
 <h3>Your Tasks</h3>
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run multiple regression to test your hypotheses and interpret
-the overall model results with <span
-class="math inline">\(\alpha\)</span> = .05. Be sure to use your
-mean-centred variables, rather than your raw variables.</label></p></li>
+\)</span> Use PROCESS to run multiple regression to test your hypotheses
+and interpret the overall model results with <span
+class="math inline">\(\alpha\)</span> = .05.</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Interpret the results from the interaction and individual
 predictors with <span class="math inline">\(\alpha\)</span> =
 .05.</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Compute the confidence intervals associated with each
-predictor</label></p></li>
 </ul>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
@@ -577,7 +515,7 @@ predictor</label></p></li>
 </span>
 </summary>
 <p>To perform a linear regression, navigate to <em>Analyze &gt;
-Regression &gt; Linear</em>.</p>
+Regression &gt; PROCESS v4.2…</em>.</p>
 </details>
 </div>
 <p></br></p>
@@ -588,222 +526,90 @@ Regression &gt; Linear</em>.</p>
 solution </span>
 </summary>
 <p>To run the regression analysis, navigate to <em>Analyze &gt;
-Regression &gt; Linear</em>. Add your outcome variable,
-<code>Wellbeing</code>, to the ‘Dependent’ box and your predictors,
-<code>SocialSupport</code>, <code>MCsleep</code>,
-<code>MCphysicalActivity</code>, and <code>MCinteraction</code> to the
-‘Independent(s)’ box. Click statistics and check the following
-boxes:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week8_lrStats.png" width="50%" style="display: block; margin: auto;" /></p>
+Regression &gt; PROCESS v4.2…</em>.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESS.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Add your outcome variable, <code>WB</code>, to the ‘Y variable’ box
+and your predictor, <code>PhysAct</code> in the ‘X variable’ box. Add
+<code>Sleep</code> to the ‘Moderator Variable W’ box and
+<code>SocSupp</code> to the ‘Covariate(s)’ box.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSmodel.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Click ‘Options’. Under ‘Mean center for construction of products’,
+tick ‘Only continuous variables that define products.’ This means that
+our variables that were multiplied for our interaction will be mean
+centered, while <code>SocSupp</code> will remain the same. This also
+helps to address the multicollinearity issue. Select to probe
+interactions in cases where <span class="math inline">\(p\)</span> &lt;
+.05, and set the conditioning values as ‘-1SD, Mean, +1SD’. Finally,
+make sure ‘Johnson-Neyman output’ is ticked:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSoptions.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Click ‘Continue’, then ‘OK’.</p>
-<p>The first piece of output is a recap of the descriptive statistics
-for each variable in your model:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_regDescs.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Because you’ve mean-centred the sleep and physical activity
-variables, the means for these should be 0 (or very close to 0,
-depending upon how many decimal places you in your mean when you
-mean-centred). Note that the interaction term descriptives are not
-really meaningful; you won’t need to describe or interpret them in your
-final write-up. You would also want to use the original mean (rather
-than 0) when describing your predictors.</p>
-<p>The next two boxes you will focus on are the Model Summary and ANOVA
-boxes:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_modelResults.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>First, check the Model Summary box, which provides <span
-class="math inline">\(R^2\)</span> and <span
-class="math inline">\(R^2_{adj}\)</span>. As I mentioned in last week’s
-lab, I recommend defaulting to Adjusted <span
-class="math inline">\(R^2\)</span>.</p>
-<p>The <span class="math inline">\(R^2_{adj}\)</span> value is .36,
-which indicates that 36% of the variance in our sample’s well-being
-scores is accounted for by sleep, physical activity, social support, and
-the interaction between sleep and physical activity.</p>
+<p>The first piece of output is the test of the overeall model.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PrimaryModelResults.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>The <span class="math inline">\(R^2\)</span> value is .37, which
+indicates that 37% of the variance in our sample’s well-being scores is
+accounted for by sleep, physical activity, social support, and the
+interaction between sleep and physical activity.</p>
 <p>The ANOVA tells us the results of the overall model test (is this
 model significant?). This should be interpreted in the same way as a
 typical ANOVA - the <span class="math inline">\(p\)</span>-value is &lt;
 .001, so we can say the overall model significantly predicts well-being
-scores. In other words, when we have data on someone’s sleep, physical
+scores.In other words, when we have data on someone’s sleep, physical
 activity levels, and social support network, we have a better idea about
 what their well-being may be than if we didn’t have this
 information.</p>
+<p>Note that the <span class="math inline">\(p\)</span>-value here is
+listed as 0. ** <span class="math inline">\(p\)</span> IS NEVER 0**.
+This is a rounding issue. You should instead report <span
+class="math inline">\(p\)</span> as &lt; .001.</p>
 <p>While this information is necessary to address the research question,
 it’s not sufficient. The research aim specifically asked about the
-presence of an interaction between <code>MCsleep</code> and
-<code>MCphysicalActivity</code>, so you’ll need to look at the
-‘Coefficients’ box to find the answer. First,check the VIF values.
-You’ll note that the issues with multicollinearity have disappeared:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults_VIF.png" width="75%" style="display: block; margin: auto;" /></p>
+presence of an interaction between <code>Sleep</code> and
+<code>PhysAct</code>, so you’ll need to look at the ‘Coefficients’ box
+to find the answer.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESScoefs.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>To address your hypothesis, you’ll specifically want to check the row
-labeled <code>Interaction</code>. The <span
+labeled <code>Int_1</code>, which reflects the interaction between
+<code>PhysAct</code> and <code>Sleep</code>. The <span
 class="math inline">\(p\)</span>-values in the ‘Sig.’ column indicate
 that there is a significant interaction. The <span
-class="math inline">\(p\)</span>-value of .04 is lower than the <span
+class="math inline">\(p\)</span>-value of .040 is lower than the <span
 class="math inline">\(\alpha\)</span> threshold of .05. As in last
 week’s model, the <span class="math inline">\(p\)</span>-values
-associated with <code>Sleep</code> and <code>SocialSupport</code> are
-also below the <span class="math inline">\(\alpha\)</span> threshold,
+associated with <code>Sleep</code> and <code>SocSupp</code> are also
+below the <span class="math inline">\(\alpha\)</span> threshold,
 indicating they are significant predictors of <code>Wellbeing</code>.
 The <span class="math inline">\(p\)</span>-value associated with
-<code>MCphysicalActivity</code> is greater than .05, so it is not
-significant. As before, you can use the <span
-class="math inline">\(\beta\)</span> estimates to give you a better
-sense of the interaction between <code>MCphysicalActivity</code> and
-<code>MCsleep</code> on <code>Wellbeing</code>.</p>
-<p>The unstandardized <span class="math inline">\(\beta\)</span>
-coefficient associated with <code>Interaction</code> is 0.03. The
-unstandardized <span class="math inline">\(\beta\)</span> coefficient
-tells us how much more the relationship between
-<code>MCphysicalActivity</code> and <code>Wellbeing</code> changes for
-every additional hour of sleep. So, in this case, for every additional
-hour of sleep, the relationship between <code>MCphysicalActivity</code>
+<code>PhysAct</code> is greater than .05, so it is not significant. As
+before, you can use the <span class="math inline">\(\beta\)</span>
+estimates to give you a better sense of the interaction between
+<code>PhysAct</code> and <code>Sleep</code> on
+<code>Wellbeing</code>.</p>
+<p>The <span class="math inline">\(\beta\)</span> coefficient associated
+with <code>Int_1</code> is 0.03. The <span
+class="math inline">\(\beta\)</span> coefficient tells us how much more
+the relationship between <code>PhysAct</code> and <code>Wellbeing</code>
+changes for every additional hour of sleep. So, in this case, for every
+additional hour of sleep, the relationship between <code>PhysAct</code>
 and <code>Wellbeing</code> increases by .03 points on the Wellbeing
-assessment. Simple slopes analysis will help break this interaction down
-further so that it is easier to interpret.</p>
-</details>
-</div>
-<p></br></p>
-</div>
-</div>
-<div id="section-simple-slopes-analysis" class="section level2">
-<h2>Simple Slopes Analysis</h2>
-<p>Your interaction was significant. However, in order to understand
-where the differences are, you need to perform a simple slopes analysis.
-Simple slopes analysis tells you where the associations between IV1 and
-the DV are along the range of IV2.</p>
-<p>Here’s the thing. Simple slopes analysis in SPSS is not fun. It’s a
-complex, convoluted process that is more difficult than it should be.
-Please don’t feel like bad about using the ‘Solution’ tab below. If you
-follow these steps, you can gain a better understanding of what is
-actually happening with your continuous interaction.</p>
-<div id="section-your-tasks-3" class="section level3">
-<h3>Your Tasks</h3>
-<ul class="task-list">
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Create two new variables that you’ll be using to test the
-effects of <code>MCphysicalActivity</code> on <code>Wellbeing</code> at
-lower and higher levels of sleep</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Create two new interaction terms between each of your new
-variables and <code>MCphysicalActivity</code>.</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run two separate regression models with your new variables:
-one to test the interaction between <code>MCphysicalActivity</code> on
-<code>Wellbeing</code> in participants with high levels of sleep, one to
-test the interaction between <code>MCphysicalActivity</code> on
-<code>Wellbeing</code> in participants with low levels of
-sleep.</label></p></li>
-</ul>
-<p>This is a lot, I know. But I believe in you.</p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>To practice running the models and interpreting the output without
-all the faff, download <a
-href="https://mtruelovehill.github.io/PRM/Labs/Week9LabData_SimpleSlopes.sav">this
-dataset</a>, with all the key variables already made. You’re
-welcome.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Solution - Create
-<code>Sleep</code> Grouping Variables </span>
-</summary>
-<p>To create the variable to test the interaction in those with high
-levels of sleep, you need to subtract 1 <span
-class="math inline">\(SD\)</span> from the mean-centered sleep variable.
-Yes, subtract. I don’t know why it’s not add when you’re looking at
-those with high levels. I know it’s counterintuitive. It comes from <a
-href="https://us.sagepub.com/en-us/nam/multiple-regression/book3045">this
-text book</a>, so if you want to dig into the mathematical reasons
-behind why this is done, please be my guest.</p>
-<p>To do this in SPSS, navigate once again to <em>Transform &gt; Compute
-Variable</em>. Add your a name for your new high sleep variable. I used
-<code>HiSleep</code>. Subtract the <span
-class="math inline">\(SD\)</span> of <code>Sleep</code> from your
-mean-centered sleep variable, <code>MCSleep</code>:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_hiSleep.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Repeat this process, but this time, name your variable
-<code>LoSleep</code> and add the <span class="math inline">\(SD\)</span>
-instead of subtract.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_loSleep.png" width="75%" style="display: block; margin: auto;" /></p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Compute 3 New
-Interaction Terms </span>
-</summary>
-<p>You’ll do this in the same way you created a basic interaction term,
-just with slightly different variables. First, create an interaction
-term that tests the interaction in participants who sleep more than
-average. Once more, navigate to <em>Transform &gt; Compute
-Variable</em>. Name your new variable <code>HiInt</code> and set it as
-equal to the product of <code>HiSleep</code> and
-<code>MCphysicalActivity</code>.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_hiIntVar.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Repeat the process, but with the low sleep variable:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_loIntVar.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>If you’ve created all of these new variables properly, you’ll now
-have 4 new variables to run 2 new interactions:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_newVars.png" width="75%" style="display: block; margin: auto;" /></p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Run 3 New Interactions
-</span>
-</summary>
-<p>Now, you’ll run 3 separate interaction models to capture the
-association between <code>MCphysicalActivity</code> and
-<code>Wellbeing</code> at each level of <code>Sleep</code>. First, let’s
-look at the association in participants with low levels of sleep.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Participants with
-Lower than Average Sleep </span></p>
-<p>Navigate to <em>Analyze &gt; Regression &gt; Linear</em>. Click the
-‘Reset’ button at the bottom to clear out any previous information. Move
-<code>Wellbeing</code> to the ‘Dependent’ box. In the lower box, add
-<code>MCphysicalActivity</code>, <code>SocialSupport</code>,
-<code>LoSleep</code> and <code>loInt</code>, then click ‘OK’. You can
-ignore the ANOVA box, as the overall model effects will remain the same.
-The only thing that will change is the the effect on
-<code>MCphysicalActivity</code>. Here, you can see the <span
-class="math inline">\(p\)</span>-value = .526. This indicates that there
-is no association between physical activity and well-being in students
-who get lower than average amounts of sleep.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_loIntResults.png" width="75%" style="display: block; margin: auto;" /></p>
-<p><span style="font-weight: bold; font-size: 14pt"> Participants with
-Moderate Levels of Sleep </span></p>
-<p>You already know the relationship between
-<code>MCphysicalActivity</code> and <code>Sleep</code> at moderate
-levels of sleep - this is represented by your original model:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_modIntResults.png" width="75%" style="display: block; margin: auto;" /></p>
-<p><span style="font-weight: bold; font-size: 14pt"> Participants with
-Higher than Average of Sleep </span></p>
-<p>Navigate to <em>Analyze &gt; Regression &gt; Linear</em>. Click the
-‘Reset’ button at the bottom to clear out any previous information. Move
-<code>Wellbeing</code> to the ‘Dependent’ box. In the lower box, add
-<code>MCphysicalActivity</code>, <code>SocialSupport</code>,
-<code>HiSleep</code> and <code>hiInt</code>, then click ‘OK’. Here, we
-can see where the interaction is coming from. In the coefficients box,
-the <span class="math inline">\(p\)</span>-value for
-<code>MCphysicalActivity</code> is .023, which is lower than our <span
-class="math inline">\(\alpha\)</span> threshold of .05. This indicates
-that there is an association between physical activity and well-being in
-students who get high amounts of sleep. Specifically, in these
-participants, higher levels of physical activity are associated with an
-increase in wellbeing (as indicated by the positive <span
-class="math inline">\(\beta\)</span> value).</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_hiIntResults.png" width="75%" style="display: block; margin: auto;" /></p>
+assessment. The Johnson-Neyman analysis will help break this interaction
+down further so that it is easier to interpret.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSjn.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The first part, ‘conditional effects of focal predictor at values of
+the moderator:’ tells you the effect of Physical Activity on Wellbeing
+in those who sleep less than average (-1 SD), those who get about
+average amounts of sleep, and those who sleep more than average (+1 SD).
+<span class="math inline">\(p\)</span> is less than .05 in those who
+sleep more than average, but not significant in those who get average
+amounts of sleep or less. The <span class="math inline">\(\beta\)</span>
+coefficient associated with the high sleep group is .36, which suggests
+that in this group, for every additional hour of physical activity per
+week, well-being scores increase by .36.</p>
+<p>The second part gives an even more detailed look at which values of
+sleep are associated with a significant association between physical
+activity and well-being. Specifically, those who get about 3.5 hours of
+sleep or more than average per week have a significant, positive
+association between physical activity and well-being. For everyone else,
+there is no significant association between sleep and well-being.</p>
 </details>
 </div>
 <p></br></p>
@@ -847,7 +653,7 @@ class="math inline">\(B\)</span> or <span
 class="math inline">\(\beta\)</span>, appropriate interpretation, either
 the standard error or confidence intervals, <span
 class="math inline">\(p\)</span> values)</li>
-<li>results from the simple slopes analysis</li>
+<li>results from the Johnson-Neyman/simple slopes analysis</li>
 </ul>
 </details>
 </div>
@@ -883,16 +689,16 @@ mean-centered versions of the sleep and physical activity variables were
 used in the analysis.</p>
 <p>Our results indicate that the overall model significantly predicted
 well-being, <span class="math inline">\(F\)</span>(4,595) = 85.68, <span
-class="math inline">\(p\)</span> &lt; .001, explaining 36% of the
+class="math inline">\(p\)</span> &lt; .001, explaining 37% of the
 variance in student well-being scores. There was a significant
 interaction between physical activity and sleep on wellbeing, when
 controlling for the effect of social support, <span
 class="math inline">\(\beta\)</span> = .03, <span
-class="math inline">\(p\)</span> = .04, 95% CI = [0.02, 0.07]. A simple
-slopes analysis revealed that while physical activity was not associated
-with wellbeing in those with lower (&gt; -1 <span
+class="math inline">\(p\)</span> = .040, 95% CI = [0.02, 0.07]. A
+Johnson-Neyman analysis revealed that while physical activity was not
+associated with wellbeing in those with lower (&gt; -1 <span
 class="math inline">\(SD\)</span>; <span
-class="math inline">\(p\)</span> = .526) or average levels of sleep
+class="math inline">\(p\)</span> = .527) or average levels of sleep
 (<span class="math inline">\(p\)</span> = .253), this was not the case
 in those with higher (&gt; +1 SD) levels of sleep. In this group, as
 physical activity increased by one hour per week, student well-being
@@ -900,143 +706,7 @@ scores increased by .36 points, <span class="math inline">\(SE\)</span>
 = .16, <span class="math inline">\(p\)</span> = .023.</p>
 </details>
 </div>
-<p></br></p>
-</div>
-<div id="section-bonus-material-continuous-interaction-plot"
-class="section level2">
-<h2>Bonus Material: Continuous Interaction Plot</h2>
-<p>Unlike interactions with categorical independent variables, SPSS
-doesn’t give you many options for breaking down a continuous
-interaction. However, one way to make a continuous interaction easier to
-interpret is through the use of a figure. Here, we’ll plot the
-association between <code>PhysicalActivity</code> and
-<code>Wellbeing</code> at different levels of sleep. As there is a
-significant interaction, we expect that there will be varying
-associations between <code>PhysicalActivity</code> and
-<code>Wellbeing</code> depending on how much sleep one gets per
-week.</p>
-<div id="section-your-tasks-4" class="section level3">
-<h3>Your Tasks</h3>
-<ul class="task-list">
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Create a new variable to categorise sleep based on <span
-class="math inline">\(SD\)</span>, <code>SleepCat</code></label></p>
-<ul>
-<li>Group 1 - Participants who get more sleep than average (those whose
-sleep values are 1 <span class="math inline">\(SD\)</span> or more above
-the mean)</li>
-<li>Group 2 - Participants who get approximately average amounts of
-sleep (those whose sleep values fall within 1 <span
-class="math inline">\(SD\)</span> of the mean)</li>
-<li>Group 3 - Participants who get less sleep than average (those whose
-sleep values are 1 <span class="math inline">\(SD\)</span> or more below
-the mean)</li>
-</ul></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Produce a scatterplot with <code>PhysicalActivity</code> on
-the x-axis, <code>Wellbeing</code> on the y-axis, and
-<code>SleepCat</code> as a grouping variable. Make sure to include fit
-lines.</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Use this plot to interpret the interaction between
-<code>PhysicalActivity</code> and <code>Sleep</code> on
-<code>Wellbeing</code></label></p></li>
-</ul>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>You’ll need to use <em>Transform &gt; Recode Into Different
-Variable</em> to compute your categorical sleep variable,
-<code>SleepCat</code>.</p>
-<p>The thresholds for <code>SleepCat</code> are as follows:</p>
-<p>Group 1: <span class="math inline">\(\bar{x}_{Sleep} + sd_{Sleep} =
-56.31+6.79 = 63.1\)</span></p>
-<p>Group 3: <span class="math inline">\(\bar{x}_{Sleep} + sd_{Sleep} =
-56.31-6.79 = 49.52\)</span></p>
-<p>Group 2: everyone else</p>
-<p>In other words, Group 1 should include all participants with sleep
-values &gt; 63.1, Group 3 should include all participants with sleep
-values &lt; 49.52, and Group 2 should include everyone in between.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p><span style="font-weight: bold; font-size: 14pt"> Compute the Sleep
-Grouping Variable </span> To compute your grouping variable,
-<code>SleepCat</code>, navigate to <em>Transform &gt; Recode Into
-Different Variable</em>. Add <code>Sleep</code> into the ‘Input Variable
--&gt; Output Variable’ box. Add your new variable name,
-<code>SleepCat</code>, to the ‘Name’ box in the Output Variable column
-and click ‘Change’. Next, click ‘Old and New Values’.</p>
-<p>First, click ‘Range, value through HIGHEST’ and add the threshold for
-Group 1, 63.1. Add ‘1’ to the New Value box, then click ‘Add’. This
-condition should appear in the ‘Old –&gt; New’ box:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_G1.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Next, click ‘Range, LOWEST through value’ and add the threshold for
-Group 3, 49.52. Add ‘3’ to the New Value box, then click ‘Add’. This
-condition should appear in the ‘Old –&gt; New’ box:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_G3.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Finally, click ‘All other values’ and assign these a value of 2.
-Click ‘Add’. You should now have all 3 groups accounted for in the ‘Old
-–&gt; New’ box:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_G2.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Continue’ and then ‘OK’.</p>
-<p>You’ll now have a new variable in Data View called
-<code>SleepCat</code> that has grouped participants according to their
-sleep scores.</p>
-<p>You should update the labels so it is clear what each group reflects.
-Click ‘Variable View’ and set up Labels using the ‘Values’ column.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_labels.png" width="75%" style="display: block; margin: auto;" /></p>
-<p><br> <span style="font-weight: bold; font-size: 14pt"> Produce the
-Interaction Plot </span></p>
-<p>There are a few ways that you can do this. You can either use
-<em>Graphs &gt; Chart Builder</em>, choose ‘Scatter/Dot’ as your plot
-option, and drag the desired variables onto the appropriate axes, or you
-can navigate to <em>Graphs &gt; Scatter/Dot</em>.</p>
-<p>To use Chart Builder, select ‘Scatter/Plot’ and then drag
-<code>Wellbeing</code> to the y-axis, <code>Physical Activity</code> to
-the x-axis, and <code>SleepCat</code> to the ‘set color’ box. You can
-explore other aesthetic changes as you’d like using the ‘Element
-Properties’, ‘Chart Appearance’, and ‘Options’ tabs to the right. When
-you’re finished, click ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_chartBuilder.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>If you instead use <em>Graphs &gt; Scatter/Dot</em>, select ‘Simple
-Scatter’ and click ‘Define’. Add <code>Wellbeing</code> to the y-axis,
-<code>Physical Activity</code> to the x-axis, and <code>SleepCat</code>
-to the ‘Set Markers By’ box.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_scatterOptions.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Whichever method you choose, the chart should pop up in your output.
-To add the fit lines individual by group, first click on the chart so
-that it appears in a new window. Once you’ve done this, an ‘Elements’
-option will appear in the toolbar.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_elements.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Select this option, then select ‘Fit line at subgroups’.</p>
-<p>Fit lines for each individual group will appear, along with <span
-class="math inline">\(R^2\)</span> values for each group.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week9_fitLines.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>Here, you can see that the <span class="math inline">\(R^2\)</span>
-value is largest for the group that gets the most sleep and smallest for
-the group that gets the least sleep. The lines are all somewhat
-straight, but there is a slight positive relationship between
-<code>PhysicalActivity</code> and <code>Wellbeing</code> in the group
-with the most sleep. This suggests that the significant interaction
-indicates that <code>PhysicalActivity</code> only has a positive
-association with <code>Wellbeing</code> in cases where participants get
-enough sleep. Otherwise, there is no meaningful association between the
-two. However, as it would be good to have statistical values to back
-this up, you still need to perform Simple Slopes analysis.</p>
-</details>
-</div>
-<p></br></p>
-<p>
+<p></br> 
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
 library(tidyverse)
@@ -1072,19 +742,19 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_991c664", 
+"character")), answers = list(structure(list(id = "lnr_ans_122f59", 
     option = "Multiple Linear Regression with only main effects", 
     value = "Multiple Linear Regression with only main effects", 
     label = structure("Multiple Linear Regression with only main effects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4f5550a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f3cb3bc", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_da9d869", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6bec0b", 
     option = "Simple Linear Regression", value = "Simple Linear Regression", 
     label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1f19a7f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bdbc786", 
     option = "Multiple Linear Regression with an interaction", 
     value = "Multiple Linear Regression with an interaction", 
     label = structure("Multiple Linear Regression with an interaction", html = TRUE, class = c("html", 
@@ -1097,26 +767,26 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Here, you’re looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-1-answer", 
     question = "cyu1-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 925435821.56906, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 724675226.162547, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-2", question = structure("How many beta values (not including the intercept, beta0) are included in this model?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3fc8c0b", 
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-2", question = structure("How many predictors are included in this model?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_ed28fe2", 
     option = "1", value = "1", label = structure("1", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b4e38c4", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5b71e89", 
     option = "2", value = "2", label = structure("2", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3b0a904", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_242fca5", 
     option = "3", value = "3", label = structure("3", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_38e6579", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4d26720", 
     option = "4", value = "4", label = structure("4", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_96c86de", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ce5b9c8", 
     option = "5", value = "5", label = structure("5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1124,36 +794,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("There are 4 beta values, not including beta0. The model will produce separate beta values for each of the 3 predictors and a beta value for the interaction term.", html = TRUE, class = c("html", 
+"character")), message = structure("There are 4 predictors. The model will have 3 single predictors as well as an interaction, for a total of 4 predictors of well-being.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-2-answer", 
     question = "cyu1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 505337339.264684, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1757246099.18172, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyu2-1", question = structure("What is the value of the newly computed interaction variable for participant 1? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_514d579", 
-    option = "175.24", value = "175.24", label = structure("175.24", html = TRUE, class = c("html", 
-    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("Participant 1 has an interaction value of 175.24. Please note that this value doesn’t have any real meaning; rather, this question is just for you to check that you computed the interaction term properly.", html = TRUE, class = c("html", 
-"character")), post_message = NULL), ids = list(answer = "cyu2-1-answer", 
-    question = "cyu2-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2060511869.5405, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrAnalysis-1", 
     question = structure("What is the value of the model F-statistic? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_9b851d5", 
+    "character")), answers = list(structure(list(id = "lnr_ans_383ced0", 
         option = "85.68", value = "85.68", label = structure("85.68", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1164,30 +815,31 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The overall model F-statistic is 85.68.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-1-answer", 
         question = "cyrAnalysis-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2118625805.01344, options = list(
+    allow_retry = FALSE, seed = 973050346.046888, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrAnalysis-2", 
     question = structure("Which of the following interpretations are correct? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_46455e5", 
-        option = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support and physical activity are held constant", 
-        value = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support and physical activity are held constant", 
-        label = structure("For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support and physical activity are held constant", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_42fc42", 
+        option = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are equal to 0", 
+        value = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are equal to 0", 
+        label = structure("For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are equal to 0", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7f4d239", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_708ad0b", 
         option = "As one's social support score increases by .06 points, their well-being score will increase by 1 point, when sleep and physical activity are held constant.", 
         value = "As one's social support score increases by .06 points, their well-being score will increase by 1 point, when sleep and physical activity are held constant.", 
         label = structure("As one’s social support score increases by .06 points, their well-being score will increase by 1 point, when sleep and physical activity are held constant.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1acf013", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5a2013", 
         option = "The interaction between sleep and physical activity explains 36% of the variance in student well-being.", 
         value = "The interaction between sleep and physical activity explains 36% of the variance in student well-being.", 
         label = structure("The interaction between sleep and physical activity explains 36% of the variance in student well-being.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7941767", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bb5508f", 
         option = "For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.", 
         value = "For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.", 
         label = structure("For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.", html = TRUE, class = c("html", 
@@ -1197,28 +849,27 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one’s social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate", html = TRUE, class = c("html", 
+    "character")), message = structure("The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one’s social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate. Additionally, the interpretation of sleep’s effect on well-being is accurate.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-2-answer", 
         question = "cyrAnalysis-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 110271905.948651, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1666762330.22385, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAnalysis-3", 
     question = structure("Which of the following is the correct interpretation of the intercept?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_322bd18", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2779549", 
         option = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
         value = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
         label = structure("Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_57f0e62", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bfa3c5b", 
         option = "Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
         value = "Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
         label = structure("Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8b98254", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_668f187", 
         option = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", 
         value = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", 
         label = structure("Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
@@ -1231,7 +882,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Because sleep and physical activity are mean-centred, the intercept will be interpreted around the mean for these variables. Social support was not mean-centred, so the intercept still reflects the value of wellbeing when social support is 0.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-3-answer", 
         question = "cyrAnalysis-3"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 843919316.107019, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 427540889.800911, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>
@@ -1245,7 +896,6 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96]}},"value":[{"type":"character","attributes":{},"value":["assertthat","backports","base","broom","bslib","cachem","cellranger","checkmate","cli","colorspace","commonmark","compiler","crayon","data.table","datasets","DBI","dbplyr","digest","dplyr","ellipsis","evaluate","fansi","fastmap","forcats","fs","gargle","generics","ggplot2","glue","googledrive","googlesheets4","graphics","grDevices","grid","gtable","haven","highr","hms","htmltools","htmlwidgets","httpuv","httr","jquerylib","jsonlite","kableExtra","knitr","later","lazyeval","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","modelr","munsell","pillar","pkgconfig","plotly","promises","purrr","R6","Rcpp","readr","readxl","reprex","rlang","rmarkdown","rprojroot","rstudioapi","rvest","sass","scales","shiny","stats","stringi","stringr","svglite","systemfonts","tibble","tidyr","tidyselect","tidyverse","tools","tzdb","utf8","utils","vctrs","viridisLite","webshot","withr","xfun","xml2","xtable","yaml"]},{"type":"character","attributes":{},"value":["0.2.1","1.4.1","4.1.3","1.0.5","0.7.0","1.0.6","1.1.0","2.1.0","3.6.1","2.1-0","1.9.0","4.1.3","1.5.2","1.14.2","4.1.3","1.1.3","2.2.1","0.6.29","1.1.4","0.3.2","0.21","1.0.4","1.2.0","0.5.1","1.6.2","1.2.0","0.1.3","3.5.0","1.6.2","2.0.0","1.0.0","4.1.3","4.1.3","4.1.3","0.3.3","2.5.0","0.10","1.1.1","0.5.8.1","1.6.1","1.6.15","1.4.3","0.1.4","1.8.0","1.3.4","1.43","1.3.0","0.2.2","0.11.5","1.0.3","1.8.0","2.0.3","1.9","4.1.3","0.12","0.1.11","0.5.0","1.9.0","2.0.3","4.10.3","1.2.0.1","1.0.2","2.5.1","1.0.8.3","2.1.2","1.4.0","2.0.1","1.1.1","2.14","2.0.3","0.13","1.0.2","0.4.9","1.3.0","1.7.4","4.1.3","1.7.12","1.5.0","2.1.0","1.0.4","3.2.1","1.3.1","1.2.0","1.3.2","4.1.3","0.3.0","1.2.3","4.1.3","0.6.5","0.4.2","0.5.3","3.0.0","0.39","1.3.3","1.8-4","2.3.7"]}]}]}
 </script>
 <!--/html_preserve-->
-</div>
 </div>
 
 </article> <!-- topics -->

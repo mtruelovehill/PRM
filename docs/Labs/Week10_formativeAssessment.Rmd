@@ -1,0 +1,91 @@
+---
+title: "Week 9: Regression II"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+# library(learnr)
+# library(tidyverse)
+# library(kableExtra)
+# library(plotly)
+# library(shiny)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+
+## Intro to Today's Lab
+
+During today's lab, you'll be working through the formative assessment. This assessment does not contribute to your course mark. It serves only as a check-in so that you are more aware of what areas you're confident in, and which areas you may need to revise further. The tutors will be available to clarify any feedback or provide further feedback as necessary. Good luck!
+
+
+## Making a hypothesis
+
+
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Age in years',
+                                    'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
+                                    'Amount of physical activity per week in hours',
+                                    'Amount of sleep per week in hours',
+                                    'Scores on a social support scale; values may range between 0-45',
+                                    'Scores on a well-being scale; values may range between 0-40'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+## Selecting an Appropriate Test
+
+
+```{r cyu1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("Multiple Linear Regression with only main effects"),
+              answer("Factorial ANOVA"),
+              answer("Simple Linear Regression"),
+              answer("Multiple Linear Regression with an interaction", correct = T),
+              message = "Here, you're looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.",
+              random_answer_order = T),
+     question('How many beta values (not including the intercept, beta0) are included in this model?',
+              answer('1'),
+              answer('2'),
+              answer('3'),
+              answer('4', correct = T),
+              answer('5'),
+              message = 'There are 4 beta values, not including beta0. The model will produce separate beta values for each of the 3 predictors and a beta value for the interaction term.'))
+```
+
+
+## Checking your Data
+
+
+## Running Statistical Tests
+
+
+## Interpreting Results
+
+Monica - lots of questions with images of SPSS output - which of the following interpretations is correct? that sort of thing.
+
+## Power Analysis
+
+## Interpreting Effect Sizes?
+
+
+## Reporting?
+
