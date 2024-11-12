@@ -29,8 +29,6 @@ During today's lab, you'll be working through the formative assessment. This ass
 
 ## Making a hypothesis
 
-
-
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
 
@@ -55,25 +53,28 @@ datInfo %>%
 
 ```{r cyu1, echo = FALSE}
 quiz(caption = '',
-     question("Which test is most appropriate to address your research question, given the study design?",
-              answer("Multiple Linear Regression with only main effects"),
-              answer("Factorial ANOVA"),
-              answer("Simple Linear Regression"),
-              answer("Multiple Linear Regression with an interaction", correct = T),
-              message = "Here, you're looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.",
-              random_answer_order = T),
-     question('How many beta values (not including the intercept, beta0) are included in this model?',
-              answer('1'),
-              answer('2'),
-              answer('3'),
-              answer('4', correct = T),
-              answer('5'),
-              message = 'There are 4 beta values, not including beta0. The model will produce separate beta values for each of the 3 predictors and a beta value for the interaction term.'))
+     question("A researcher wants to know whether her sample’s scores on a personality test are significantly different than 50. Which of the following statistical tests should she use?",
+              answer('One-Sample t-test', correct = T),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test'),
+              answer('One-Way ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('Simple Linear Regression'),
+              answer('Multiple Linear Regression'),
+              message = "The researcher is comparing her sample's mean to a single, pre-established value. A one-sample t-test would be the best method for testing this."),
+     question('At what level of measurement does the dependent variable need to be for a t-test?',
+              answer('Continuous', correct = T),
+              answer('Nominal'),
+              answer('Ordered Categories'),
+              answer('Binary'),
+              message = 'A t-test requires the dependent variable to be continuous.',
+              random_answer_order = T))
 ```
 
 
 ## Checking your Data
 
+## Checking Assumptions
 
 ## Running Statistical Tests
 

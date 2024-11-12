@@ -178,7 +178,7 @@ $\beta_3:$ the slope associated with the interaction
 
 + Consider the following equation:
 
-$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_4a_i + \beta_4c_i + \beta_5xz_i + \epsilon_i$$
+$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_4a_i + \beta_5c_i + \beta_6xz_i + \epsilon_i$$
 > **Test Your Understanding:**
 
 > + Which $\beta$ values reflect a **main effect**?
@@ -195,7 +195,7 @@ $$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_4a_i + \beta_4c_i + \beta_5xz_
 ---
 ### Interpreting Continuous $\times$ Continuous Interactions
 
-$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_5xz_i + \epsilon_i$$
+$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_3xz_i + \epsilon_i$$
 + $\beta_0$/Intercept: value of $y$ when both $x$ and $z$ are equal to 0
 
 + $\beta_1$: Effect of $x$ on $y$ when $z$ is equal to 0.
@@ -216,7 +216,7 @@ class: center, inverse, middle
 
 + Can you see any variables that may be correlated in the interaction equation?
 
-$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_5xz_i + \epsilon_i$$
+$$y_i = \beta_0 + \beta_1x_i + \beta_2z_i + \beta_3xz_i + \epsilon_i$$
 
 --
 
@@ -452,7 +452,7 @@ class: inverse, middle, center
 
 + Model:
 
-$$Salary_i = \beta_0 + \beta_1Salary_i\ + \beta_2Performance_i\ + \beta_3Salary_i\times Performance_i + \epsilon_i$$
+$$Salary_i = \beta_0 + \beta_1Service_i\ + \beta_2Performance_i\ + \beta_3Service_i\times Performance_i + \epsilon_i$$
 
 ---
 ## Using PROCESS macro
@@ -489,7 +489,7 @@ knitr::include_graphics('images/basicResults.png')
 ---
 ## Using PROCESS macro
 
-$$Salary_i = \beta_0 + \beta_1Salary_i\ + \beta_2Performance_i\ + \beta_3Salary_i\times Performance_i + \epsilon_i$$
+$$Salary_i = \beta_0 + \beta_1Service_i\ + \beta_2Performance_i\ + \beta_3Service_i\times Performance_i + \epsilon_i$$
 
 .center[
 ```{r, echo = F, out.width='60%'}
