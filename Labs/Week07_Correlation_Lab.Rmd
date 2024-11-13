@@ -429,7 +429,7 @@ In this study, we investigated whether adolescent athletes' self-enhancement val
 
 We ran a Pearson's correlation to test the association between scores on a self-enhancement values scale and the average score on a scale that measured antisocial behaviour.  $\alpha$ was set at .05 for all analyses.
 
-Participants scored an average of 12.38 on the self-enhancement scale ( $SD$ = 2.75; minimum = 6.28; maximum = 20.79) and had an average antisocial behaviour rating of 2.99 ( $SD$ = 0.87, minimum = 1, maximum = 5). Results from a Pearson's correlation indicated that there was a moderate, positive relationship between the two variables, $r$(170) = .30, $p$ < .001, 95% CI = [.16, .43], indicating that participants who endorsed stronger self-enhancement values also demonstrated more antisocial behaviours towards members of the opposing team (see Figure 1). 
+Participants scored an average of 12.41 on the self-enhancement scale ( $SD$ = 2.79; minimum = 6.00; maximum = 20.00) and had an average antisocial behaviour rating of 14.99 ( $SD$ = 4.41, minimum = 5, maximum = 25). Results from a Pearson's correlation indicated that there was a moderate, positive relationship between the two variables, $r$(170) = .30, $p$ < .001, 95% CI = [.16, .43], indicating that participants who endorsed stronger self-enhancement values also demonstrated more antisocial behaviours towards members of the opposing team (see Figure 1). 
 
 <b> Figure 1 </b>
 

@@ -248,7 +248,7 @@ feedback as necessary. Good luck!</p>
 </div>
 <p><br></p>
 <p>You have the following residuals by predicted values plot:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_resPredPlot" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_resPredPlot.png" width="50%" style="display: block; margin: auto;" /></p>
 <div class="panel-heading tutorial-quiz-title"></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="checkingAssumptions2-1" class="tutorial-question panel-body">
@@ -297,7 +297,7 @@ feedback as necessary. Good luck!</p>
 <p>Imagine that you are investigating the effect of class time (9AM,
 10AM, and 1PM) on test scores. You run a One-Way ANOVA and get these
 results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_classANOVA.png" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_classANOVA.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Use these to answer the following questions. Assume that you have set
 alpha = .05.:</p>
 <div class="panel-heading tutorial-quiz-title"></div>
@@ -336,7 +336,7 @@ alpha = .05.:</p>
 <p><br></p>
 <p>Imagine that you run a Pearson correlation between age and test score
 and get these results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_correlation.png" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_correlation.png" width="75%" style="display: block; margin: auto;" /></p>
 <div class="panel-heading tutorial-quiz-title"></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="interp3-1" class="tutorial-question panel-body">
@@ -353,7 +353,7 @@ and watching themselves) affects their recognition of words found within
 the speech at a later timepoint. You test their recognition a few days
 after practicing begins and again after they have given the speech. You
 run a 2x2 mixed-effects ANOVA and get the following output.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_ANOVAdesc.png" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA1.png" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA2.png" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_ANOVAdesc.png" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_ANOVAdesc.png" width="75%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA1.png" width="75%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA2.png" width="75%" style="display: block; margin: auto;" /></p>
 <div class="panel-heading tutorial-quiz-title"></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="interp4-1" class="tutorial-question panel-body">
@@ -368,7 +368,7 @@ run a 2x2 mixed-effects ANOVA and get the following output.</p>
 measures of Self-Esteem, Media Exposure, and Perfectionism. All
 variables are raw measures (no mean centering has been applied). You get
 the following results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_regression.png" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week10_regression.png" width="75%" style="display: block; margin: auto;" /></p>
 <div class="panel-heading tutorial-quiz-title"></div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="interp5-1" class="tutorial-question panel-body">
@@ -405,6 +405,41 @@ the following results:</p>
 </div>
 <div id="section-power-analysis" class="section level2">
 <h2>Power Analysis</h2>
+<p>Use <a
+href="https://webpower.psychstat.org/wiki/models/index">Webpower</a> to
+answer the following questions. Please note that you may need to use the
+following formulas to convert between <span
+class="math inline">\(\eta^2\)</span> / <span
+class="math inline">\(R^2\)</span> and <span
+class="math inline">\(f\)</span>:</p>
+<p><span class="math display">\[\eta^2/R^2 =
+\frac{f^2}{1+f^2}\]</span></p>
+<p><span class="math display">\[f^2 = \frac{R^2}{1-R^2}\]</span></p>
+<div class="panel-heading tutorial-quiz-title"></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="power-1" class="tutorial-question panel-body">
+<div id="power-1-answer_container" class="shiny-html-output"></div>
+<div id="power-1-message_container" class="shiny-html-output"></div>
+<div id="power-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="power-2" class="tutorial-question panel-body">
+<div id="power-2-answer_container" class="shiny-html-output"></div>
+<div id="power-2-message_container" class="shiny-html-output"></div>
+<div id="power-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="power-3" class="tutorial-question panel-body">
+<div id="power-3-answer_container" class="shiny-html-output"></div>
+<div id="power-3-message_container" class="shiny-html-output"></div>
+<div id="power-3-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
 <p>
 <script type="application/shiny-prerendered" data-context="server-start">
 library(learnr)
@@ -442,16 +477,16 @@ session$onSessionEnded(function() {
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "selectingTest-1", 
     question = structure("At what level of measurement should the independent variables be when using a One-Way ANOVA? Please select any that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_bac179d", 
+    "character")), answers = list(structure(list(id = "lnr_ans_8426900", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ba93355", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c18d25", 
         option = "Nominal", value = "Nominal", label = structure("Nominal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c08648c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c3080a7", 
         option = "Ordinal", value = "Ordinal", label = structure("Ordinal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3c5516c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7c3e317", 
         option = "Binary", value = "Binary", label = structure("Binary", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -462,7 +497,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("A One-Way ANOVA requires categorical independent variables; these can be either nominal or ordinal. While it could work with binary variables, a t-test is a better option.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-1-answer", 
         question = "selectingTest-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 149533157.430368, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 178295865.916975, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
@@ -470,39 +505,39 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-2", 
     question = structure("You have designed an intervention for people who report high levels of loneliness, by which they engage in a certain number of volunteering activities per week. You take a sample and measure their loneliness levels on a continuous scale before the intervention. You then perform the intervention and measure their loneliness levels again afterwards. You also record their living situation (levels: alone/with roommates/with family or partner). You would like to determine whether the intervention had an effect on loneliness, and whether this effect was moderated by living situation. Which of the following best describes the test you would use?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5b07b92", 
+    "character")), answers = list(structure(list(id = "lnr_ans_92c7cf8", 
         option = "1x3 Between-Subjects Factorial ANOVA", value = "1x3 Between-Subjects Factorial ANOVA", 
         label = structure("1x3 Between-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_903081f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c66162e", 
         option = "1x3 Within-Subjects Factorial ANOVA", value = "1x3 Within-Subjects Factorial ANOVA", 
         label = structure("1x3 Within-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_162d1ad", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_723f073", 
         option = "1x3 Mixed Factorial ANOVA", value = "1x3 Mixed Factorial ANOVA", 
         label = structure("1x3 Mixed Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f2378cc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c42c3df", 
         option = "2x1 Between-Subjects Factorial ANOVA", value = "2x1 Between-Subjects Factorial ANOVA", 
         label = structure("2x1 Between-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_77ceb38", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_321e622", 
         option = "2x1 Within-Subjects Factorial ANOVA", value = "2x1 Within-Subjects Factorial ANOVA", 
         label = structure("2x1 Within-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_95cfb25", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5edb2e", 
         option = "2x1 Mixed Factorial ANOVA", value = "2x1 Mixed Factorial ANOVA", 
         label = structure("2x1 Mixed Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4e449b5", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b0bea23", 
         option = "2x3 Between-Subjects Factorial ANOVA", value = "2x3 Between-Subjects Factorial ANOVA", 
         label = structure("2x3 Between-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_70f51e8", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d5307ba", 
         option = "2x3 Within-Subjects Factorial ANOVA", value = "2x3 Within-Subjects Factorial ANOVA", 
         label = structure("2x3 Within-Subjects Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_547248d", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e4ac08b", 
         option = "2x3 Mixed Factorial ANOVA", value = "2x3 Mixed Factorial ANOVA", 
         label = structure("2x3 Mixed Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -514,42 +549,42 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("As you have one between-subjects variable (living situation) and one within-subjects variable (time), you would use a Mixed ANOVA. Your first variable, time, has 2 levels (pre- or post-intervention), and your second variable, living situation, has 3 levels (alone; with roommates; with family or partner), so your analysis would be a 2x3 Mixed Factorial ANOVA.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-2-answer", 
         question = "selectingTest-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2007112155.06537, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 812136909.621819, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-3", 
     question = structure("A researcher wants to know whether her sample’s scores on a personality test are significantly different than 50. Which of the following statistical tests should she use?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5aa29eb", 
+    "character")), answers = list(structure(list(id = "lnr_ans_8325aad", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_98cbb54", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_924f5af", 
         option = "independent-samples t-test", value = "independent-samples t-test", 
         label = structure("independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_50a8757", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c317992", 
         option = "paired-samples t-test", value = "paired-samples t-test", 
         label = structure("paired-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_31e813f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_301dea", 
         option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
         label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5b2a607", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_276ddc7", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b83bbee", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_96a967c", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c00ea1f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e3480dc", 
         option = "Simple Linear Regression", value = "Simple Linear Regression", 
         label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2c6db5b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_751f3ab", 
         option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
         label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -561,7 +596,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The researcher is comparing her sample’s mean to a single, pre-established value. A one-sample t-test would be the best method for testing this.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-3-answer", 
         question = "selectingTest-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1193380064.94429, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1387915944.8537, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -569,16 +604,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "selectingTest-4", 
     question = structure("At what level of measurement does the independent variable need to be for a t-test? Please select any that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_dde73ea", 
+    "character")), answers = list(structure(list(id = "lnr_ans_99777c9", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4e23e68", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_52177a6", 
         option = "Nominal", value = "Nominal", label = structure("Nominal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b7953fe", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_27df7ba", 
         option = "Ordinal", value = "Ordinal", label = structure("Ordinal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e287b80", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c1d49b9", 
         option = "Binary", value = "Binary", label = structure("Binary", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -589,42 +624,42 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("A t-test requires the independent variable to be categorical. It could be nominal or ordinal, but there must only be two levels (binary).", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-4-answer", 
         question = "selectingTest-4"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1166245571.95692, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1281549411.40323, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-5", 
     question = structure("Researchers conduct a study into the effect of sleep deprivation on speed of processing in a driving simulator. They ask participants to complete a 15 minute driving simulation task. At the end of the task, they ask the participants a series of questions about the events in the simulation. Participants receive a score out of 25 representing the number of questions they get correct. The participants then spend the night in a room controlled by the research team where they are limited to three hours sleep. The next day, they complete the same task and get a second score. The team want to consider the difference in these scores. Which test is most appropriate?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_d5afc05", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9050f9", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cbf54e3", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f660642", 
         option = "independent-samples t-test", value = "independent-samples t-test", 
         label = structure("independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_812a5", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9f3e02b", 
         option = "paired-samples t-test", value = "paired-samples t-test", 
         label = structure("paired-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8b1208c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_df263d3", 
         option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
         label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f001fd9", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c803db8", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1256bcf", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d02101", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7a80a92", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2bf8212", 
         option = "Simple Linear Regression", value = "Simple Linear Regression", 
         label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7b6193b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b124c83", 
         option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
         label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -636,7 +671,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Here, you have a continuous dependent variable (score). As the same sample provides responses at both timepoints, this is a repeated-measures design with two groups (pre and post sleep-deprivation). A paired-samples t-test would be the best", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-5-answer", 
         question = "selectingTest-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1882763588.62327, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 512949648.261139, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -644,35 +679,35 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-6", 
     question = structure("You are testing the effects of parental involvement and bullying on emotional regulation in children. Parental involvement is measured by the number of parental interactions per week, and bullying as the number of times the child is bullied per week. Which of the following analyses would best test for these effects?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_35076a0", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9a2d75b", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_278a53c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c335b7a", 
         option = "independent-samples t-test", value = "independent-samples t-test", 
         label = structure("independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1e1b444", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1d667a8", 
         option = "paired-samples t-test", value = "paired-samples t-test", 
         label = structure("paired-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_239eae0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_eb293ed", 
         option = "2 One-Way Between-Subjects ANOVAs", value = "2 One-Way Between-Subjects ANOVAs", 
         label = structure("2 One-Way Between-Subjects ANOVAs", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_903da1a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_300e0b1", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_788a36b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4de6b72", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_599750a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bf1430c", 
         option = "2 Simple Linear Regressions", value = "2 Simple Linear Regressions", 
         label = structure("2 Simple Linear Regressions", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3899935", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5f91ad3", 
         option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
         label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -684,23 +719,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Here, you want to investigate the relationship between 2 continuous predictors and a continuous outcome. For this type of analysis, you would use multiple linear regression. If you were to use separate analyses, you would (1) increase the chances of making a Type I error and (2) be unable to capture the effect of bullying on emotional regulation while controlling for parental interactions and vice versa.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-6-answer", 
         question = "selectingTest-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 516547544.759464, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1819814460.65258, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "selectingTest-7", 
     question = structure("At what level of measurement do the independent variables (predictors) need to be for a linear regression? Please select any that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_fdaa7f9", 
+    "character")), answers = list(structure(list(id = "lnr_ans_a95e705", 
         option = "Continuous", value = "Continuous", label = structure("Continuous", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e38e5fd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_edc2db4", 
         option = "Nominal", value = "Nominal", label = structure("Nominal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2a4ed9e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_73218d5", 
         option = "Ordinal", value = "Ordinal", label = structure("Ordinal", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_248a381", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_62e0187", 
         option = "Binary", value = "Binary", label = structure("Binary", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -711,7 +746,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("A linear regression can take predictors of any type. However, the outcome variable must be continuous (or have a large enough range that it simulates normality).", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-7-answer", 
         question = "selectingTest-7"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1610989996.24982, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1307709385.89105, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
@@ -719,31 +754,31 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-8", 
     question = structure("You are testing the association between hospital size and stress in nurses. You compare nurse stress from nurses across 3 different hospital sizes (small, medium, and large). Assume that stress is a continuous variable. Which of the following analyses is could be used to to test this association?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_1744369", 
+    "character")), answers = list(structure(list(id = "lnr_ans_658c19d", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a31a216", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9959777", 
         option = "independent-samples t-test", value = "independent-samples t-test", 
         label = structure("independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_519d6f2", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e397ae3", 
         option = "paired-samples t-test", value = "paired-samples t-test", 
         label = structure("paired-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7de0794", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1198f30", 
         option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
         label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f1f0651", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a1354f", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_893a826", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1cd4d2c", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6c05310", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fddf182", 
         option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
         label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -755,42 +790,42 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Here, you have a continuous dependent variable, stress, that you want to compare across three categories of a single independent variable, hospital size. The best option of the given tests would be a One-Way ANOVA. Because you’re comparing three separate samples (nurses who work in small hospitals, nurses who work in medium-sized hospitals, and nurses who work in large hospitals), you would use a Between-Subjects ANOVA", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-8-answer", 
         question = "selectingTest-8"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1504344948.79948, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 929007704.567397, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-9", 
     question = structure("You have 2 continuous independent variables, sleep quality and stress level, and you want to test whether they significant predict depression severity (measured on a continuous scale). You also want to know whether the effect of sleep quality on depression severity changes at different levels of stress. Which of the following tests is the most appropriate for testing this?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_e01916d", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2690a8d", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b4a125e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4aeb11d", 
         option = "independent-samples t-test", value = "independent-samples t-test", 
         label = structure("independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e97ffa4", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4f2d588", 
         option = "paired-samples t-test", value = "paired-samples t-test", 
         label = structure("paired-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5982acd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b690d46", 
         option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
         label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8f58a17", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_50b401c", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3148c9f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_719f837", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2f37059", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bd14473", 
         option = "Simple Linear Regression", value = "Simple Linear Regression", 
         label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_68af592", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ec24ebb", 
         option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
         label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -802,7 +837,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Here, you want to investigate the relationship between 2 continuous predictors and a continuous outcome. You also want to determine whether there is an interaction between the 2 continuous predictors in their relationship with the outcome. For this type of analysis, you would use a multiple linear regression model with an interaction term.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-9-answer", 
         question = "selectingTest-9"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2028263036.05552, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 328313904.347117, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -810,31 +845,31 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-10", 
     question = structure("A researcher wants to investigate whether communication style (Levels: Passive; Aggressive; Passive-Agressive; Assertive) and attachment style (Levels: Secure; Anxious; Avoidant; Disorganised) affect relationship satisfaction, measured on a continuous scale. Which of the following statistical tests should he use?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_1b9d36a", 
+    "character")), answers = list(structure(list(id = "lnr_ans_8e5d2b7", 
         option = "2 One-Sample t-tests", value = "2 One-Sample t-tests", 
         label = structure("2 One-Sample t-tests", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5e42a09", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_18ec8ef", 
         option = "2 independent-samples t-tests", value = "2 independent-samples t-tests", 
         label = structure("2 independent-samples t-tests", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_63148d1", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1af68ff", 
         option = "2 paired-samples t-tests", value = "2 paired-samples t-tests", 
         label = structure("2 paired-samples t-tests", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_24f243c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a6336a2", 
         option = "2 One-Way Between-Subjects ANOVAs", value = "2 One-Way Between-Subjects ANOVAs", 
         label = structure("2 One-Way Between-Subjects ANOVAs", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_48a31cd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_507ddac", 
         option = "2 One-Way Repeated-Measures ANOVA", value = "2 One-Way Repeated-Measures ANOVA", 
         label = structure("2 One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_16625cc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_34a1dda", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_98d2924", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4af672e", 
         option = "2 Simple Linear Regressions", value = "2 Simple Linear Regressions", 
         label = structure("2 Simple Linear Regressions", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -846,38 +881,38 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("There are two categorical independent variables and a single continuous dependent variable. If you were to use two separate analyses, you would (1) increase the chances of making a Type I error and (2) be unable to capture the effect of bullying on emotional regulation while controlling for parental interactions and vice versa. The best option here is a Factorial ANOVA. Specifically, this would be a 4x4 Between-Subjects ANOVA", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-10-answer", 
         question = "selectingTest-10"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1685928458.71493, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 181523264.415472, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "selectingTest-11", 
     question = structure("A researcher investigates whether family history of substance abuse (Yes or No) is related to frequency of use in substance abusers. Which test should they use?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_17d13d2", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b1b5c8a", 
         option = "One-Sample t-test", value = "One-Sample t-test", 
         label = structure("One-Sample t-test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f171677", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bc6ef3a", 
         option = "Independent-samples t-test", value = "Independent-samples t-test", 
         label = structure("Independent-samples t-test", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e00de26", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2399887", 
         option = "Paired-samples t-tests", value = "Paired-samples t-tests", 
         label = structure("Paired-samples t-tests", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_29a4ae9", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1134fc2", 
         option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
         label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cf0b2f0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ea6b121", 
         option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
         label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5039c2a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b2b648a", 
         option = "Factorial ANOVA", value = "Factorial ANOVA", 
         label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fbe0837", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d1e3b0e", 
         option = "Simple Linear Regressions", value = "Simple Linear Regressions", 
         label = structure("Simple Linear Regressions", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -889,7 +924,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Here, the researcher will be comparing the frequency of substance use between two independent groups - those who have a family history of substance abuse, and those who do not. This can be checked with an independent-samples t-test.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "selectingTest-11-answer", 
         question = "selectingTest-11"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1757718878.6815, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 266659262.875827, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -897,10 +932,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "checkingAssumptions-1", 
     question = structure("True or False: We can test for the independence of observation using a qqplot.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_801a265", 
+    "character")), answers = list(structure(list(id = "lnr_ans_3a264b0", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b17569", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b48e013", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -911,7 +946,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("False. A qqplot tests normality. There is no general test for independence, this is a design feature.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "checkingAssumptions-1-answer", 
         question = "checkingAssumptions-1"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 923826944.06981, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 312222000.35461, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -919,19 +954,19 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "checkingAssumptions-2", 
     question = structure("If residuals show the same amount of variance across the range of measurement, they are referred to as…", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_1d4c999", 
+    "character")), answers = list(structure(list(id = "lnr_ans_5a71fb4", 
         option = "Homogeneous/Homoskedastic", value = "Homogeneous/Homoskedastic", 
         label = structure("Homogeneous/Homoskedastic", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9126564", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b0de9bf", 
         option = "Multicollinear", value = "Multicollinear", 
         label = structure("Multicollinear", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_575ce7e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_aebf99e", 
         option = "Normally Distributed", value = "Normally Distributed", 
         label = structure("Normally Distributed", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_75e83dd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_18554b1", 
         option = "Independent", value = "Independent", label = structure("Independent", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -942,7 +977,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Homogeneity/Homoscedasticity indicates that the residuals have the same amount of variation across the range of measurement.  Heteroscedasticity indicates that the residuals have different amounts of variation across the range of measurement. Normal distribution of residuals refers to the distribution of the raw value of the residuals rather than their variance. Residuals may be normally distributed but heteroscedastic.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "checkingAssumptions-2-answer", 
         question = "checkingAssumptions-2"), loading = NULL, 
-    random_answer_order = TRUE, allow_retry = FALSE, seed = 1041372932.01507, 
+    random_answer_order = TRUE, allow_retry = FALSE, seed = 255843579.380864, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -951,21 +986,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "checkingAssumptions-3", 
     question = structure("You have the following model: y = beta0 + beta1x1 + beta2x2 + epsilon. Which of the following would be most appropriate to check whether this model meets the assumption of linearity?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_1047e0e", 
+    "character")), answers = list(structure(list(id = "lnr_ans_41aa0da", 
         option = "individual scatterplots plotting y against each predictor", 
         value = "individual scatterplots plotting y against each predictor", 
         label = structure("individual scatterplots plotting y against each predictor", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d2ce1dd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4795f26", 
         option = "a residuals by predicted values plot", value = "a residuals by predicted values plot", 
         label = structure("a residuals by predicted values plot", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8fa1596", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c4eb330", 
         option = "You could use either scatterplots or a residuals by predicted values plot", 
         value = "You could use either scatterplots or a residuals by predicted values plot", 
         label = structure("You could use either scatterplots or a residuals by predicted values plot", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c6108b0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7647588", 
         option = "You should use neither scatterplots nor a residuals by predicted values plot", 
         value = "You should use neither scatterplots nor a residuals by predicted values plot", 
         label = structure("You should use neither scatterplots nor a residuals by predicted values plot", html = TRUE, class = c("html", 
@@ -978,7 +1013,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("While a scatterplot is useful for checking linearity in a regression model with a single predictor, when we have a model with multiple predictors, we need to know whether the relations are linear between each predictor and outcome, controlling for the other predictors. Individual scatterplots do not account for this, so a residuals by predicted values plot would be the best option for checking linearity in this example.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "checkingAssumptions-3-answer", 
         question = "checkingAssumptions-3"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1877178987.12587, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 151911553.929261, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -986,23 +1021,23 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "checkingAssumptions-4", 
     question = structure("You plan to run a 2x3 Factorial ANOVA. Which of the following methods should you use to test normality? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_691e3d3", 
+    "character")), answers = list(structure(list(id = "lnr_ans_db7332a", 
         option = "Q-Q plot of the residuals", value = "Q-Q plot of the residuals", 
         label = structure("Q-Q plot of the residuals", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_14ccdf3", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e08841b", 
         option = "histogram of the residuals", value = "histogram of the residuals", 
         label = structure("histogram of the residuals", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_232c60a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1b76ad4", 
         option = "histogram of the raw variable values", value = "histogram of the raw variable values", 
         label = structure("histogram of the raw variable values", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b937396", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_77cfd22", 
         option = "residuals by predicted values plot", value = "residuals by predicted values plot", 
         label = structure("residuals by predicted values plot", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f40893a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c66a208", 
         option = "Results from Levene's test", value = "Results from Levene's test", 
         label = structure("Results from Levene’s test", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1014,7 +1049,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("The assumption of factorial ANOVAs is that the residuals are normally distributed. You can check for normality by using Q-Q plots and histograms of the residuals.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "checkingAssumptions-4-answer", 
         question = "checkingAssumptions-4"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 682412179.682227, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 112756875.947493, 
     options = list()), class = c("learnr_checkbox", "tutorial_question"
 )), session = session)
 </script>
@@ -1023,17 +1058,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "checkingAssumptions2-1", 
     question = structure("Which of the following assumptions appear to be violated?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_e69e1d9", 
+    "character")), answers = list(structure(list(id = "lnr_ans_bd9aa2e", 
         option = "Normality", value = "Normality", label = structure("Normality", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1a074ce", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_44cf2d4", 
         option = "Independence", value = "Independence", label = structure("Independence", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_617ed8e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_503bdcd", 
         option = "Multicollinearity", value = "Multicollinearity", 
         label = structure("Multicollinearity", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2bce83b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_36a9b79", 
         option = "Homogeneity of Variance", value = "Homogeneity of Variance", 
         label = structure("Homogeneity of Variance", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1045,7 +1080,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("You can use the residuals by predicted values plot to check for homogeneity of variance and linearity. If assumptions are met, the plot should look like a random cloud of points. Here, however, there is a distinct fan shape. This indicates that the homogeneity of variance assumption has been violated.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "checkingAssumptions2-1-answer", 
         question = "checkingAssumptions2-1"), loading = NULL, 
-    random_answer_order = FALSE, allow_retry = FALSE, seed = 1469745187.8156, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 436426984.296773, 
     options = list()), class = c("learnr_radio", "tutorial_question"
 )), session = session)
 </script>
@@ -1053,22 +1088,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interpretation-1", 
     question = structure("Given the following information, which model is most likely to best predict the value of an outcome variable?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_2d7f922", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2b79d18", 
         option = "A model with high model variance and low residual variance.", 
         value = "A model with high model variance and low residual variance.", 
         label = structure("A model with high model variance and low residual variance.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6159eab", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e7f2817", 
         option = "A model with high model variance and high residual variance.", 
         value = "A model with high model variance and high residual variance.", 
         label = structure("A model with high model variance and high residual variance.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9309df7", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_df0f42", 
         option = "A model with low model variance and high residual variance.", 
         value = "A model with low model variance and high residual variance.", 
         label = structure("A model with low model variance and high residual variance.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6bd991c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_98b0ad6", 
         option = "A model with low model variance and low residual variance.", 
         value = "A model with low model variance and low residual variance.", 
         label = structure("A model with low model variance and low residual variance.", html = TRUE, class = c("html", 
@@ -1081,7 +1116,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Model variance refers to the amount of variance in the outcome variable explained by the predictors in the model. Residual variance refers to the amount of variance that is cannot be explained by the predictors included in the model.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interpretation-1-answer", 
         question = "interpretation-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1880014468.62455, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 674586933.185871, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1089,20 +1124,20 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interpretation-2", 
     question = structure("I check the effect size associated with my t-test and note that Cohen’s D is equal to .18. Which of the following best describes the relationship between my variables?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_bb5addf", 
+    "character")), answers = list(structure(list(id = "lnr_ans_f109d48", 
         option = "The two variables are not related.", value = "The two variables are not related.", 
         label = structure("The two variables are not related.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c83dc49", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ce5d7d4", 
         option = "The two variables are weakly related.", value = "The two variables are weakly related.", 
         label = structure("The two variables are weakly related.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_bc33aa5", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fb6dc85", 
         option = "The two variables are moderately related.", 
         value = "The two variables are moderately related.", 
         label = structure("The two variables are moderately related.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_37a90a0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5d75f5a", 
         option = "The two variables are strongly related.", value = "The two variables are strongly related.", 
         label = structure("The two variables are strongly related.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1114,29 +1149,29 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("Recall the interpretation conventions for Cohen’s D. A weak relationship is reflected by values less than or equal to 0.20, moderate relationships are reflected by values between 0.21 and 0.79, and strong relationships are reflected by relationships greater than or equal to 0.80.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interpretation-2-answer", 
         question = "interpretation-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1635343233.73848, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1411489536.84272, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interpretation-3", 
     question = structure("Which of the following statements is a proper interpretation of what a p-value measures?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_8e5452", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9146d0c", 
         option = "The probability that the null hypothesis, H0, is true.", 
         value = "The probability that the null hypothesis, H0, is true.", 
         label = structure("The probability that the null hypothesis, H0, is true.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8d0e31f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5fc03de", 
         option = "The probability that the alternative hypothesis, H1, is true.", 
         value = "The probability that the alternative hypothesis, H1, is true.", 
         label = structure("The probability that the alternative hypothesis, H1, is true.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f0c17af", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a2c0ba9", 
         option = "The probability of seeing a test statistic as extreme, or more extreme, than the observed one, when H0 is true.", 
         value = "The probability of seeing a test statistic as extreme, or more extreme, than the observed one, when H0 is true.", 
         label = structure("The probability of seeing a test statistic as extreme, or more extreme, than the observed one, when H0 is true.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_88df7ae", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e47d6da", 
         option = "The probability of seeing a test statistic equal to or greater than the observed one.", 
         value = "The probability of seeing a test statistic equal to or greater than the observed one.", 
         label = structure("The probability of seeing a test statistic equal to or greater than the observed one.", html = TRUE, class = c("html", 
@@ -1149,7 +1184,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The p-value is the probability, computed assuming H0 to be true, of observing a test statistic at least as extreme as the observed one. We always compute “extreme” in the direction specified by the alternative hypothesis H1. If H1 includes the &gt; symbol, the p-value is the probability of test statistics equal to or greater than than the observed one. If H1 includes the &lt; symbol, the p-value is the probability of test statistics equal to or less than the observed one. If H1 includes the notequal symbol, the p-value is the probability in both directions (the probability of values equal to or more extreme than the observed statistic).", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interpretation-3-answer", 
         question = "interpretation-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 981840297.042795, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 325943760.848221, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1157,11 +1192,11 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interpretation-4", 
     question = structure("I run a hypothesis test. I set an alpha level of 0.01. My calculated test statistic has a associated p-value of 0.03. Which of the following is the correct decision?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_df4ab03", 
+    "character")), answers = list(structure(list(id = "lnr_ans_3c0c40d", 
         option = "Fail to reject the null hypothesis.", value = "Fail to reject the null hypothesis.", 
         label = structure("Fail to reject the null hypothesis.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7fe251e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_10e6c36", 
         option = "Reject the null hypothesis", value = "Reject the null hypothesis", 
         label = structure("Reject the null hypothesis", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1173,16 +1208,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("If p &gt; alpha we fail to reject the null hypothesis. As 0.03 &gt; 0.01, we do not reject H0.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interpretation-4-answer", 
         question = "interpretation-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1873160737.62774, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1789258673.16681, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interp2-1", question = structure("There is a significant effect of class time on test score.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_b2cdd07", 
+"character")), answers = list(structure(list(id = "lnr_ans_737b1a8", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9b3174", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f019fc6", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1193,7 +1228,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The F-statistic is less than 1 and the p-value is .879, which is greater than our alpha threshold of .05. This means that there is an 88% chance we would see results as extreme as this if the null hypothesis were true. Therefore, there is not enough evidence to claim that there is a significant effect of class time on test score.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "interp2-1-answer", 
     question = "interp2-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1757569189.18157, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1289008793.89976, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1201,7 +1236,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "interp2-2", 
     question = structure("What is value of the F-statistic associated with this test? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_e449480", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9867f33", 
         option = "0.22", value = 0.22, label = structure("0.22", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1212,7 +1247,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 0.22.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp2-2-answer", 
         question = "interp2-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 212393291.901097, options = list(
+    allow_retry = FALSE, seed = 821752742.117342, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1220,7 +1255,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "interp2-3", 
     question = structure("You would report this result in the following format: F(___, ___) = 0.22, p = .879. Note the two blank spaces. What number goes in the first blank?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_b6437e8", 
+    "character")), answers = list(structure(list(id = "lnr_ans_bd46c23", 
         option = "3", value = 3, label = structure("3", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1231,7 +1266,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The first blank reflects the model degrees of freedom. SPSS calls this the “Between-Groups df”. In this example, it is 3.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp2-3-answer", 
         question = "interp2-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 191336830.910902, options = list(
+    allow_retry = FALSE, seed = 524044264.255973, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1240,7 +1275,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "interp2-4", 
     question = structure("You would report this result in the following format: F(___, ___) = 0.22, p = .879. Note the two blank spaces. What number goes in the second blank?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_19d7dc2", 
+    "character")), answers = list(structure(list(id = "lnr_ans_d25a3bc", 
         option = "48", value = 48, label = structure("48", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1251,24 +1286,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The second blank reflects the residual degrees of freedom. SPSS calls this the “Within-Groups df”. In this example, it is 48.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp2-4-answer", 
         question = "interp2-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 449273706.290791, options = list(
+    allow_retry = FALSE, seed = 379982144.823057, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interp3-1", question = structure("Which of the following interpretations is correct?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_c2ae82f", 
+"character")), answers = list(structure(list(id = "lnr_ans_efbe1ee", 
     option = "There is a weak association between age and test score.", 
     value = "There is a weak association between age and test score.", 
     label = structure("There is a weak association between age and test score.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b67a61a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c848ce8", 
     option = "There is a moderate assocation between age and test score.", 
     value = "There is a moderate assocation between age and test score.", 
     label = structure("There is a moderate assocation between age and test score.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c9f7e3f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4792059", 
     option = "There is a strong association between age and test score.", 
     value = "There is a strong association between age and test score.", 
     label = structure("There is a strong association between age and test score.", html = TRUE, class = c("html", 
@@ -1281,7 +1316,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Recall the interpretation conventions for a Pearson correlation: r values less than .01 are considered to reflect a negligible relationship, values between .1 and .3 are considered to reflect a weak relationship, values between .3 and .5 are considered to reflect a moderate relationship, and values greater than .5 are considered to reflect a strong relationship.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "interp3-1-answer", 
     question = "interp3-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2034251942.05273, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1541962988.28197, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1289,27 +1324,27 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "interp4-1", 
     question = structure("Which of the following is correct? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_b69a96b", 
+    "character")), answers = list(structure(list(id = "lnr_ans_e85cea6", 
         option = "There is a significant effect of time on word recognition.", 
         value = "There is a significant effect of time on word recognition.", 
         label = structure("There is a significant effect of time on word recognition.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_73373e3", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5cee828", 
         option = "The method one used to practice significantly affected the total words recognised", 
         value = "The method one used to practice significantly affected the total words recognised", 
         label = structure("The method one used to practice significantly affected the total words recognised", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_21f7f0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_34f3c73", 
         option = "The effect of practice method on recognition is significantly different across timepoints.", 
         value = "The effect of practice method on recognition is significantly different across timepoints.", 
         label = structure("The effect of practice method on recognition is significantly different across timepoints.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1686e5c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2e5a43e", 
         option = "Watching themselves giving a speech led to participants remembering significantly more words than repeating the speech", 
         value = "Watching themselves giving a speech led to participants remembering significantly more words than repeating the speech", 
         label = structure("Watching themselves giving a speech led to participants remembering significantly more words than repeating the speech", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d1a0bc0", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5aa0ef8", 
         option = "Participants remembered significantly more words during the practicing period than after they had given the speech.", 
         value = "Participants remembered significantly more words during the practicing period than after they had given the speech.", 
         label = structure("Participants remembered significantly more words during the practicing period than after they had given the speech.", html = TRUE, class = c("html", 
@@ -1322,28 +1357,28 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("The main effects of both time and practice method are significant (p value is less than .05), but the interaction between these two variables on recognition is not significant. The descriptive statistics indicate that participants remembered more words during practice (M = 79.81) than after the speech (M = 51.47). The descriptive statistics also suggests that participants repeating the speech remembered more words than participants watching themselves give the speech.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp4-1-answer", 
         question = "interp4-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 869524950.095096, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 858402603.600275, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interp5-1", question = structure("Which of the following is the proper interpretation of the intercept?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_2307b5", 
+"character")), answers = list(structure(list(id = "lnr_ans_5f910e1", 
     option = "When someone scores 0 on the self-esteem, media exposure, and perfectionism scales, their body satisfaction rating is expected to be 58.92", 
     value = "When someone scores 0 on the self-esteem, media exposure, and perfectionism scales, their body satisfaction rating is expected to be 58.92", 
     label = structure("When someone scores 0 on the self-esteem, media exposure, and perfectionism scales, their body satisfaction rating is expected to be 58.92", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2c6e64", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8a7f207", 
     option = "Someone with average levels of self-esteem, media exposure, and perfectionism will have a body satisfaction rating of 58.92", 
     value = "Someone with average levels of self-esteem, media exposure, and perfectionism will have a body satisfaction rating of 58.92", 
     label = structure("Someone with average levels of self-esteem, media exposure, and perfectionism will have a body satisfaction rating of 58.92", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_11c290", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9dafe33", 
     option = "The model explains 58.92% of the variance when all predictors equal 0.", 
     value = "The model explains 58.92% of the variance when all predictors equal 0.", 
     label = structure("The model explains 58.92% of the variance when all predictors equal 0.", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_87f6e3c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9bb0af9", 
     option = "For every one-unit increase in the predictors, we expect body satisfaction to increase by 58.92 points.", 
     value = "For every one-unit increase in the predictors, we expect body satisfaction to increase by 58.92 points.", 
     label = structure("For every one-unit increase in the predictors, we expect body satisfaction to increase by 58.92 points.", html = TRUE, class = c("html", 
@@ -1356,7 +1391,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The intercept reflects the value of the outcome variable when all predictors are equal to 0.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "interp5-1-answer", 
     question = "interp5-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1159951879.95986, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 3427271.49840405, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1364,10 +1399,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "interp5-2", 
     question = structure("How much variance in Body Satisfication is explained by self-esteem, perfectionism, and media exposure? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c08cdcb", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4a76701", 
         option = "0.21", value = 0.21, label = structure("0.21", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4da6106", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9a70445", 
         option = "21.4", value = 21.4, label = structure("21.4", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1378,17 +1413,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("We use the adjusted R-squared value to tell us how much variance our predictors explain in the dependent variable. In this instance, 21.40% (or .21) of the variance in body satisfaction scores is explained by the predictors.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp5-2-answer", 
         question = "interp5-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 697153994.675362, options = list(
+    allow_retry = FALSE, seed = 148474106.930861, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "interp5-3", question = structure("True or False: The overall model is significant.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f471c36", 
+"character")), answers = list(structure(list(id = "lnr_ans_dd848c3", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_887cca2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4aa3255", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1399,7 +1434,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The model p-value of .003 is less than the alpha threshold of .05, so this model significantly predicts body satisfaction scores.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "interp5-3-answer", 
     question = "interp5-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1333355304.87911, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1308162120.39084, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1407,17 +1442,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "interp5-4", 
     question = structure("Which of the following interpretations are correct? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_148b64d", 
+    "character")), answers = list(structure(list(id = "lnr_ans_1730e92", 
         option = "For every 1-unit increase in perfectionism, body satisfaction scores decrease by 1.24 points.", 
         value = "For every 1-unit increase in perfectionism, body satisfaction scores decrease by 1.24 points.", 
         label = structure("For every 1-unit increase in perfectionism, body satisfaction scores decrease by 1.24 points.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ac6fdbd", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f088a4b", 
         option = "Media exposure has a positive relationship with body satisfaction", 
         value = "Media exposure has a positive relationship with body satisfaction", 
         label = structure("Media exposure has a positive relationship with body satisfaction", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_74a73c8", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_515223e", 
         option = "For every 1-unit increase in self-esteem, body satisfaction scores increase by 2.18 points.", 
         value = "For every 1-unit increase in self-esteem, body satisfaction scores increase by 2.18 points.", 
         label = structure("For every 1-unit increase in self-esteem, body satisfaction scores increase by 2.18 points.", html = TRUE, class = c("html", 
@@ -1430,7 +1465,65 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("The interpretations for perfectionism and self-esteem are correct, but the interpretation for media exposure is not. Because the association between media exposure and body satisfaction is not significant, we cannot assume there is any relationship between the two variables.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "interp5-4-answer", 
         question = "interp5-4"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1455026973.32245, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1275304526.90614, options = list()), class = c("learnr_checkbox", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "power-1", question = structure("What TOTAL sample size do you need to have 80% power to detect an effect of d = .3 at alpha = .05 for a two-tailed independent samples t-test with equal group sizes? Please round your answer to a whole number.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_fdb5d3c", 
+    option = "352", value = 352, label = structure("352", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("You need 176 participants in each group to detect this effect.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "power-1-answer", 
+    question = "power-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1807657317.15824, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "power-2", question = structure("You are running a 2x4 between-subjects ANOVA. You are primarily interested in the interaction effect. What effect size (in eta-squared) do you have 80% power to detect with alpha = .05 and a sample size of 210? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_7ef6be", 
+    option = "0.05", value = 0.05, label = structure("0.05", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("The total number of groups is equal to 2x4 = 8. The numerator degrees of freedom for the interaction is (j-1)x(k-1), where j is the number of levels in variable 1 and k is the number of levels in variable 2. Here, the numerator degrees of freedom are (2-1)x(4-1) = 3. The value of f is equal to .23. This can be converted to eta-squared: .23^2/(1+.23^2) = .05.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "power-2-answer", 
+    question = "power-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 1380451544.85718, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "power-3", question = structure("What is the total sample size necessary to detect an R2 of .15 with 80% power and alpha = .05 using a linear regression model with 5 predictors?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_f5ccf8b", 
+    option = "79", value = 79, label = structure("79", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2394ce9", 
+    option = "77", value = 77, label = structure("77", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = structure("Webpower’s linear regression calculator converts R2 into f2 for you. Otherwise, you can find f2 using the following equation: .15/(1-.15) = .18. Depending on how you round this value, you will need between 77-79 participants to detect the desired effect.", html = TRUE, class = c("html", 
+"character")), post_message = NULL), ids = list(answer = "power-3-answer", 
+    question = "power-3"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 831738712.112692, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
 </p>
