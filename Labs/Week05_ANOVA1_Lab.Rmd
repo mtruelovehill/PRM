@@ -356,7 +356,7 @@ To run a One-Way ANOVA, you should navigate to *Analyze>Compare Means & Proporti
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*. Add your new number column, `GroupNum`, to the 'Factor' box, and add `Correct` to the 'Dependent List'. Make sure 'Estimate effect size for overall tests' is ticked. To get the post-hoc comparisons, click 'Post-Hoc', then 'Tukey'. Under 'Options', click 'Descriptive'. You can also tick 'Means plot' to generate a boxplot of the means of each group. Click 'Continue' and then 'Ok'. 
+Navigate to *Analyze>Compare Means & Proportions>One-Way ANOVA*. Add the independent variable column, `Group`, to the 'Factor' box, and add `Correct` to the 'Dependent List'. Make sure 'Estimate effect size for overall tests' is ticked. To get the post-hoc comparisons, click 'Post-Hoc', then 'Tukey'. Under 'Options', click 'Descriptive'. You can also tick 'Means plot' to generate a boxplot of the means of each group. Click 'Continue' and then 'Ok'. 
 
 You'll see the following output for your One-Way ANOVA:
 
@@ -389,7 +389,7 @@ These tables provided the results and effect size from the overall group compari
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_posthocs.png')
 ```
 
-If you don't see the labels and instead see numbers in the first two columns, it just means you didn't actually add labels to your `GroupNum` variable in *Variable View*. The results should still look the same.
+If you don't see the labels and instead see numbers in the first two columns, it just means you didn't actually add labels to your `Group` variable in *Variable View*. The results should still look the same.
 
 Here, we can see that two of our three comparisons are significant, while the third is not. Specifically, both obstruction groups are significantly different from 'Control' (both $p$ < .001). The mean difference column gives us the direction and magnitude of the difference between groups. In this instance, those in the control group correctly identified, on average, 7.63 and 6.22 more emotions in the images than those in the Eyes Obstructed and Mouth Obstructed groups, respectively. However, those in the Mouth Obstructed group only correctly identified, on average, 1.42 more emotions than those in the Eyes Obstructed group. This difference was not significant, $p$ = .603, and should not be interpreted further. 
 
