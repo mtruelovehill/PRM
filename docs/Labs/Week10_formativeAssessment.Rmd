@@ -167,8 +167,8 @@ quiz(caption = '',
 
 You have the following residuals by predicted values plot:
 
-```{r, echo=FALSE, fig.align='center'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_resPredPlot')
+```{r, echo=FALSE, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_resPredPlot.png')
 ```
 
 ```{r checkingAssumptions2, echo = FALSE}
@@ -212,7 +212,7 @@ quiz(caption = '',
 
 Imagine that you are investigating the effect of class time (9AM, 10AM, and 1PM) on test scores. You run a One-Way ANOVA and get these results:
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_classANOVA.png')
 ```
 
@@ -239,7 +239,7 @@ quiz(caption = '',
 
 Imagine that you run a Pearson correlation between age and test score and get these results:
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_correlation.png')
 ```
 
@@ -256,11 +256,10 @@ quiz(caption = '',
 
 You have conducted a study in public speakers to determine how their method of practicing a speech (repeating the speech aloud vs recording and watching themselves) affects their recognition of words found within the speech at a later timepoint. You test their recognition a few days after practicing begins and again after they have given the speech. You run a 2x2 mixed-effects ANOVA and get the following output. 
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_ANOVAdesc.png')
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA1.png')
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_mixedANOVA2.png')
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_ANOVAdesc.png')
 ```
 
 ```{r interp4, echo = FALSE}
@@ -278,7 +277,7 @@ quiz(caption = '',
 
 You regress scores from a Body Satisfaction Scale on continuous measures of Self-Esteem, Media Exposure, and Perfectionism. All variables are raw measures (no mean centering has been applied). You get the following results:
 
-```{r, echo=FALSE, fig.align='center'}
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_regression.png')
 ```
 
@@ -301,10 +300,9 @@ quiz(caption = '',
               answer('False'),
               message = 'The model p-value of .003 is less than the alpha threshold of .05, so this model significantly predicts body satisfaction scores.'),
      question('Which of the following interpretations are correct? Please select all that apply.',
-              answer('For every 1-unit increase in perfectionism, body satisfaction scores decrease by 1.24 points.', correct = T),
+              answer('For every 1-unit increase in perfectionism, body satisfaction scores decrease by 1.24 points.', correct = T),  
               answer('Media exposure has a positive relationship with body satisfaction'),
               answer('For every 1-unit increase in self-esteem, body satisfaction scores increase by 2.18 points.', correct = T),
               message = 'The interpretations for perfectionism and self-esteem are correct, but the interpretation for media exposure is not. Because the association between media exposure and body satisfaction is not significant, we cannot assume there is any relationship between the two variables.',
               random_answer_order = T))
 ```
-
