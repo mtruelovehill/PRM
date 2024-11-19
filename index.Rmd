@@ -27,6 +27,11 @@ This course is ongoing; more lectures will be added as the semester progresses.
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#1" target="_blank"><i>t</i>-tests </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week05_ANOVAI_lecture.html#1" target="_blank">ANOVA I</a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html#1" target="_blank">ANOVA II</a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week07_correlation_lecture.html#1" target="_blank"> Correlation </a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week08_IntroToLM_lecture.html#1" target="_blank">Regression I</a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week09_RegressionII_lecture.html#1" target="_blank">Regression II</a>
+
+
 
 <br>
 <br>
