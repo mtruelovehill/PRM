@@ -115,7 +115,7 @@ knitr::include_graphics('images/abnormalResids.png')
 .pull-left.center[
 <span style = "color: #18778C"> Normal Q-Q Plot </span>
 ```{r, echo = F, out.width='75%'}
-knitr::include_graphics('images/normalResidsQQ.png')
+knitr::include_graphics('images/normalresidsQQ.png')
 ```
 ]
 
