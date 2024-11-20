@@ -880,7 +880,7 @@ SSmodelPlot
 ]
 
 .pull-right.center[
-$SS_{residual}$
+$SS_{total}$
 ```{r, echo = F, fig.height=3, warning = F}
 basePlot + geom_segment(aes(x = ID, y = mean(DV), xend = ID, yend = DV), lty = 2, linewidth = 1)
 ```
@@ -1142,16 +1142,6 @@ We conducted a **Repeated-measures ANOVA** to determine the effect of <span styl
 class: center, inverse, middle
 
 ## Questions?
-
----
-
-.center[
-```{r, echo = F, out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Lectures/images/midsemesterfeedback.png')
-```
-]
-
-
 
 
 

@@ -115,7 +115,7 @@ knitr::include_graphics('images/abnormalResids.png')
 .pull-left.center[
 <span style = "color: #18778C"> Normal Q-Q Plot </span>
 ```{r, echo = F, out.width='75%'}
-knitr::include_graphics('images/normalresidsQQ.png')
+knitr::include_graphics('images/normalResidsQQ.png')
 ```
 ]
 
@@ -595,21 +595,3 @@ knitr::include_graphics('images/TOIresults.png')
 class: middle, center, inverse
 
 ## Questions?
-
----
-
-<br>
-
-.pull-left[
-```{r, echo = F}
-knitr::include_graphics('images/bernie.png')
-```
-]
-
-.pull-right[
-
-```{r, echo = F}
-knitr::include_graphics('images/QRCode for PRM End-of-Semester Feedback.png')
-```
-
-]

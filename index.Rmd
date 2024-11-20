@@ -20,8 +20,6 @@ This course aims to provide students with both a theoretical and practical under
 
 ### Lectures
 
-This course is ongoing; more lectures will be added as the semester progresses.
-
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">Exploring Your Data </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#1" target="_blank">Introduction to Null-Hypothesis Statistical Testing </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#1" target="_blank"><i>t</i>-tests </a>
@@ -30,8 +28,7 @@ This course is ongoing; more lectures will be added as the semester progresses.
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week07_correlation_lecture.html#1" target="_blank"> Correlation </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week08_IntroToLM_lecture.html#1" target="_blank">Regression I</a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week09_RegressionII_lecture.html#1" target="_blank">Regression II</a>
-
-
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week10_nonparametric_lecture_web.html#1" target="_blank">Nonparametric Tests</a>
 
 <br>
 <br>

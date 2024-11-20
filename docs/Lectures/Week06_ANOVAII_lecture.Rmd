@@ -700,7 +700,7 @@ $$\eta^2 = \frac{f^2}{1+f^2}$$
   
 --
 
-+ Open SPSS and import these data [these data](https://mtruelovehill.github.io/PRM/Data/petDat.sav).
++ Open [these data](https://mtruelovehill.github.io/PRM/Data/petDat.sav) in SPSS.
 
 
 

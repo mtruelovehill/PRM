@@ -13,12 +13,12 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-library(knitr)
-library(shiny)
-library(shinyjs)
-library(bslib)
-library(reshape2)
-library(rstatix)
+# library(knitr)
+# library(shiny)
+# library(shinyjs)
+# library(bslib)
+# library(reshape2)
+# library(rstatix)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'

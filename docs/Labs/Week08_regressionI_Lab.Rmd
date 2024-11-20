@@ -34,15 +34,6 @@ tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {b
 ```
 
 
-```{r, echo = F}
-tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-to, .js-irs-0 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-1 .irs-single, .js-irs-1 .irs-to, .js-irs-1 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-2 .irs-single, .js-irs-2 .irs-to, .js-irs-2 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-3 .irs-single, .js-irs-3 .irs-to, .js-irs-3 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-4 .irs-single, .js-irs-4 .irs-to, .js-irs-4 .irs-bar {background: #4CA384}"))
-tags$style(HTML(".js-irs-5 .irs-single, .js-irs-5 .irs-to, .js-irs-5 .irs-bar {background: #4CA384}"))
-```
-
 ## Intro to Today's Lab
 
 During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
@@ -57,6 +48,7 @@ At the end of this lab, you will be able to:
 5. Properly interpret and report multiple linear regression analysis
 6. Run a power analysis for linear regression
 7. Produce an APA-style correlation matrix
+
 
 ## Introduction to Regression
 
@@ -439,7 +431,7 @@ quiz(caption = 'Check Your Results',
               random_answer_order = T),
      question("Which of the following interpretations are correct? Please select all that apply.",
               answer('For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are held constant', correct=T),
-              answer("As one's social support score increases by 1 SD, their well-being score will increase by 0.09 SD, when sleep and physical activity are held constant.", correct = T),
+              answer("As one's social support score increases by 1 SD, their well-being score will increase by 0.90 SD, when sleep and physical activity are held constant.", correct = T),
               answer('Physical Activity has a positive relationship with well-being'),
               message = 'Both sleep and social support are significant predictors of well-being, but as phsyical activity is not, we cannot claim that it has a relationship with well-being at all. The other two options with sleep and social support show the proper way to report unstandardized and standardized coefficients, respectively',
               random_answer_order = T),
