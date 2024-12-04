@@ -610,7 +610,7 @@ yPoint <- predict(lrMod, newdata = data.frame(StudyHours=4))
 yendPoint <- round(yPoint+lrMod$coefficients[2],2)
 
 lrPlot + 
-  annotate('text', label = expression(beta[1]==4.67), x = 4.5, y = yendPoint+1, size = 5, color = baseColor, fontface = 'bold') +
+  annotate('text', label = expression(beta[1]==6.15), x = 4.5, y = yendPoint+1, size = 5, color = baseColor, fontface = 'bold') +
   annotate(geom = 'segment', x = 4, xend = 4, y = yPoint, yend = yendPoint, color = baseColor, size = 1) +
   annotate(geom = 'segment', x = 4, xend = 5, y = yendPoint, yend = yendPoint, color = baseColor, size = 1)
 ```
@@ -633,7 +633,7 @@ For every additional hour a student studies per week, we would expect their cour
 
 + $\beta_0$: 39.09
 
-+ $\beta_1$: 4.67
++ $\beta_1$: `r round(lrMod$coefficients[2], 2)`
 
 + $x$: study time (hours per week)
 
@@ -654,7 +654,7 @@ For every additional hour a student studies per week, we would expect their cour
 
 ** $\beta_0$ interpretatation:** Someone who has 0 hours of study time per week would be expected to have a course average of 39.09.
 
-** $\beta_1$ interpretatation:** For every additional hour per week someone revises the material, their course average is expected to increase by 4.67 points.
+** $\beta_1$ interpretatation:** For every additional hour per week someone revises the material, their course average is expected to increase by `r round(lrMod$coefficients[2], 2)` points.
 
 
 ---
