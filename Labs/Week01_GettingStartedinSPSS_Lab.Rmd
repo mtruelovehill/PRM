@@ -696,3 +696,67 @@ quiz(caption = '',
               message = "To get the IQR for a variable, you'll need to subtract the 25th percentile (94) from the 75th percentile (98). This gives an IQR of 4.")
      )
 ```
+
+## Usefulness of Central Tendancy
+
+How useful are the measures of central tendency in each of the following situations?
+
+```{r, echo = F, message = F, fig.height=2.5, fig.width=4}
+set.seed(113)
+x <- round(rnorm(250, 25, 20))
+ggplot(mapping = aes(x)) + geom_histogram(fill = baseColor, color = accent3, binwidth = 2) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank()) +
+  geom_vline(xintercept = mean(x), color = accent1, linewidth = 1.5) +
+  geom_vline(xintercept = median(x), color = accent2, linewidth = 1.5) +
+  geom_vline(xintercept = round(Mode(x)), color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('Mean =', round(mean(x), 2)), color = accent1, x = 60, y = 18, size = 4.5) +
+  annotate('text', label = paste('Median =', round(median(x), 2)), color = accent2, x = 60, y = 16, size = 4.5) +
+  annotate('text', label = paste('Mode =', round(Mode(x))), color = accent3, x = 60, y = 14, size = 4.5)
+```
+
+```{r, echo = F, message = F, fig.height=2.5, fig.width=4}
+set.seed(926)
+y <- round(rnorm(250, 25, 3))
+ggplot(mapping = aes(y)) + geom_histogram(fill = baseColor, color = accent3, binwidth = 2) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank()) +
+  geom_vline(xintercept = mean(y), color = accent1, linewidth = 1.5) +
+  geom_vline(xintercept = median(y), color = accent2, linewidth = 1.5) +
+  geom_vline(xintercept = round(Mode(y)), color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('Mean =', round(mean(y), 2)), color = accent1, x = 30, y = 55, size = 4.5) +
+  annotate('text', label = paste('Median =', round(median(y), 2)), color = accent2, x = 30, y = 50, size = 4.5) +
+  annotate('text', label = paste('Mode =', round(Mode(y))), color = accent3, x = 30, y = 45, size = 4.5)
+```
+
+```{r, echo = F, message = F, fig.height=2.5, fig.width=4}
+set.seed(1022)
+z <- round(runif(100, 0, 10))
+ggplot(mapping = aes(z)) + geom_histogram(fill = baseColor, color = accent3, binwidth = 1) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank()) +
+  geom_vline(xintercept = mean(z), color = accent1, linewidth = 1.5) +
+  geom_vline(xintercept = median(z), color = accent2, linewidth = 1.5) +
+  geom_vline(xintercept = round(Mode(z)), color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('Mean =', round(mean(z), 2)), color = accent1, x = 9 , y = 17, size = 4.5) +
+  annotate('text', label = paste('Median =', round(median(z), 2)), color = accent2, x = 9 , y = 15.5, size = 4.5) +
+  annotate('text', label = paste('Mode =', round(Mode(z))), color = accent3, x = 9 , y = 14, size = 4.5)
+```
+
+```{r, echo = F, message = F, fig.height=2.5, fig.width=4}
+set.seed(526)
+a <- rbeta(100, 10, .5)
+ggplot(mapping = aes(a)) + geom_histogram(fill = baseColor, color = accent3, binwidth = .01) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank()) +
+  geom_vline(xintercept = mean(a), color = accent1, linewidth = 1.5) +
+  geom_vline(xintercept = median(a), color = accent2, linewidth = 1.5) +
+  geom_vline(xintercept = round(Mode(a),2), color = accent3, linewidth = 1.5) +
+  annotate('text', label = paste('Mean =', round(mean(a), 2)*315), color = accent1, x = .75, y = 17, size = 4.5) +
+  annotate('text', label = paste('Median =', round(median(a), 2)*315), color = accent2, x = .75 , y = 15, size = 4.5) +
+  annotate('text', label = paste('Mode =', round(Mode(a),2)*315), color = accent3, x = .75, y = 13, size = 4.5)
+```

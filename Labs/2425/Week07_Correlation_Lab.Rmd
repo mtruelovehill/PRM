@@ -1,0 +1,509 @@
+---
+title: "Week 7 Lab: Correlation"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(e1701)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Identify hypotheses which may be tested using correlations
+2. Use SPSS to compute a composite score
+3. Use SPSS to run a Pearson correlation
+4. Properly interpret and report a Pearson correlation
+5. Use the ggplot GUI to produce scatterplots, boxplots, and dot and error-bar plots
+
+If you complete the bonus material, you'll also be able to:
+
+1. Use SPSS to run a Spearman correlation
+2. Properly interpret and report a Spearman correlation
+3. Produce an APA-style correlation matrix table
+
+
+### This Week's Study
+
+You'll be working with data adapted from [this study](https://www.tandfonline.com/doi/full/10.1080/1612197X.2017.1367951#d1e287). The researchers investigated adolescent athletes who played team sports. One area the study investigated was whether self-enhancement values (e.g., valuing power and achievement) were associated with antisocial behaviour towards members of the opposing team. You'll be investigating this association directly; you'll also produce plots using other related variables in the dataset.
+
+
+## Experiment Overview
+
+<br>
+In this experiment, you recruited a sample of adolescents who participated in team sports. Participants have an average score for each of 4 measures associated with desire for power and achievement from the. These scores, when totaled together, will provide a measure that reflects a participant's self-enhancement values. Higher scores on this composite metric reflect stronger self-enhancement values. Participants also have an Antisocial Behaviour score, which reflects their average score on the antisocial items from the Prosocial and Antisocial Behavior in Sport Scale. Higher scores on this scale reflect a larger number of endorsed antisocial behaviours.  
+
+You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week7LabData.sav). It contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week7LabData.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Age in years',
+                                    'Levels: F = Female; M = Male',
+                                    'Self-Enhancment Score 1; values may range between 0 - 6',
+                                    'Self-Enhancment Score 2; values may range between 0 - 6',
+                                    'Self-Enhancment Score 3; values may range between 0 - 6',
+                                    'Self-Enhancment Score 4; values may range between 0 - 6',
+                                    'Total Antisocial Behaviour Score; values may range from 5-25',
+                                    'Self-Enhancement values as categories; Levels: High; Low',
+                                    'Self-reported feelings of parental pressure; Levels: High; Low'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+You'll be investigating the association between student athletes' endorsement of self-enhancement values and reports of their antisocial behaviour towards members of the opposing team.
+
+```{r q1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("t-test"),
+              answer("Factorial ANOVA"),
+              answer("Correlation", correct = T),
+              message = "Here, you're looking at the association between two continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, so a correlation is the most appropriate of these three."),
+     question("Which of the following questions are best addressed using Pearson's correlation? Please select all that apply.",
+              answer('What is the association between age in years and weight in kg?', correct = T),
+              answer('Is there a difference in ticket sales between movie theatres with recliners and those without?'),
+              answer('Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?'),
+              answer('Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?', correct = T),
+              random_answer_order = T,
+              message = "Pearson's correlation is used to test for an association between two continuous variables. It doesn't for group differences, and it should not be used with categorical data."))
+```
+
+### Your Tasks
++ [ ] $\ $ Specify the variables to be correlated.
++ [ ] $\ $ State your research question for this experiment.
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
+
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+
+In your research question, you should mention each of the variables you're investigating and the population being studied.
+
+To state hypotheses statistically, you should structure them in the framework of the statistical values being tested.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+<b>Possible Research Questions:</b>
+
+Is there a significant association between values of self-enhancement and antisocial behaviour against opposing team members in student athletes?
+
+<br>
+
+<b>Variable 1:</b> Self-Enhancement 
+
+<b>Variable 2:</b> Antisocial Behaviour
+
+<br>
+
+<b>Hypotheses:</b>
+
+<i> General: </i>
+
+$H_0:$ There is no association between endorsement of self-enhancement values and antisocial behaviour
+
+$H_1:$ There is an association between endorsement of self-enhancement values and antisocial behaviour
+
+
+<i> Statistical: </i>
+
+$H_0: r = 0$
+
+$H_1: r \neq 0$
+
+</details>
+</div>
+</br>
+
+
+## Data Review
+
+Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task)? These things should be dealt with before conducting the analyses.
+
+Additionally, you'll need to compute descriptive data. You'll do this for both your main variables of interest and your sample's demographic data, as this must be included in the Sample portion of your Methods section. 
+
+### Your Tasks
+
++ [ ] $\ $ Open 'Week7LabData.sav'
+
++ [ ] $\ $ Check that all variables are set as the correct measurement type. 
+
++ [ ] $\ $ Compute a total score, `SelfEnhancement`, by summing the following columns: `SE1`, `SE2`, `SE3`, and `SE4`
+
++ [ ] $\ $ Check the descriptive statistics of your data
+
+
+
+
+```{r cyr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric('What is the maximum value for AntisocialBehaviour?',
+                      answer(190, correct = T),
+                      message = "The maximum Antisocial Behaviour score is 190, which is well outside the expected limits of 5-25. As a score of 190 is not possible, it is an error. It will need to be deleted so that it is excluded from further analysis."),
+     question_numeric("What is the mean score on SelfEnhancement? Please round your answer to two decimal places.",
+                      answer(12.41, correct = T),
+                      answer(12.42, correct = T),
+                      message = "The mean SelfEnhancement score in your sample is currently 12.42. If you remove the participant with the invalid score for Antisocial Behaviour, the mean SelfEnhancement score will drop slightly to 12.41."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+As `SelfEnhancement` is a continuous variable, the descriptive statistics you'll want to check are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of your expected range. For categorical variables, you'll check the frequency of participants in each group. It may also be useful to check the mode.
+
+To compute the self-enhancement composite score, you'll need to navigate to *Transform > Compute Variable*
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+<span style = "font-weight: bold; font-size: 14pt"> Adjust Variable Measure Format </span>
+
+To check that your variables are labeled as the correct scale of measurement, look at the **Measure** column under the *Variable View* tab.
+
+* `ID` - Ordinal
+
+* `Age` - Scale
+
+* `Gender` - Nominal
+
+* `SE1` - Ordinal
+
+* `SE2` - Ordinal
+
+* `SE3` - Ordinal
+
+* `AntisocialBehaviour` - Scale
+
+* `SEcategory` - Nominal
+
+* `ParentalPressure` - Nominal
+
+The newly computed variable, `SelfEnhancement`, should be set as a Scale variable.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Compute Composite Score </span>
+
+To compute the composite score by summing together the SE columns, navigate to *Transform > Compute Variable*. Label your new variable `SelfEnhancement` in the 'Target Variable' box. In the 'Numeric Expression', add each SE column (`SE1`, `SE2`, `SE3`, and `SE4`) with a $+$ sign between them:
+
+```{r, echo = F, fig.align= 'center', out.width = '60%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_composite.png')
+```
+
+Click 'OK'. A new column labeled `SelfEnhancement` should appear that contains the sum of the 4 SE columns.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
+
+**Categorical Variables:** Your categorical variables are `Gender`, `SEcategory`, `ParentalPressure`, `SE1`, `SE2`, `SE3` and `SE4`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is checked, then click 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_freqTables.png')
+```
+
+You might also find it helpful to check the mode of the `SE` variables.
+
+**Continuous Variables:** Your continuous variables are `SelfEnhancment` and `AntisocialBehaviour`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then 'OK'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '40%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_descStats.png')
+```
+
+Note that the maximum value for `AntisocialBehaviour` is 190, which is not a valid score. This is an error, so you'll need to remove it from your data so that it is not included in further analysis. To do this, find the value in your dataset under 'Data View' and delete it.
+
+</details>
+</div>
+</br>
+
+## Run a Pearson Correlation
+
+As you are testing for an association between two continuous variables, you'll use a correlation to provide statistical support for your hypotheses. 
+
+Recall that $r$ has the following interpretation standards:
+
+| Strength     | Absolute Magnitude of $r$ |
+|:------------:|:-------------------------:|
+| Negligible   | $<$ .1                    |
+| Weak         | .1 - .3                   |
+| Moderate     | .3 - .5                   |
+| Strong       | $>$ .5                    |
+
+
+### Your Task
+
++ [ ] $\ $ Run a correlation to test your hypotheses and interpret the results with $\alpha$ = .05. Note that you should run the correlation between the total self-enhancement score, `SelfEnhancment` and `AntisocialBehaviour`.
+
+
+```{r cyrCorr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the Pearson correlation value for the association between AntisocialBehaviour and SelfEnhancement? Please round your answer to two decimal places.",
+              answer(.30, correct = T),
+              message = "Pearson's r for the association between AntisocialBehaviour and SelfEnhancement is .30."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariate*
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To correlate `SelfEnhancement` with `AntisocialBehaviour`, navigate to *Analyze > Correlate > Bivariate* and add both of these to the 'Variables' box. You can specify that you'd like to also compute the relevant confidence intervals by selecting 'Confidence interval' box and ticking the 'Estimate confidence intervals of the bivariate correlation parameter' box. Click 'Show only the lower diagonal'; this removes redundant information from the correlation matrix. Click 'Continue' and then 'OK'. You'll get the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_correlationResults.png')
+```
+
+The top box provides a correlation matrix with the value of $r$ and the p-value, while the bottom box gives the confidence interval associated with the correlation. Here, you can see that $r$ = .30, which equates to a weak to moderate association between `SelfEnhancement` and `AntisocialBehaviour`. The $p$-value (< .001) is less than the $\alpha$ threshold of .05, so this association is significant. The 95% confidence interval indicates that we can be 95% confident that the true association ($r$) between these two variables falls between .16 and .43. 
+
+
+</details>
+</div>
+</br>
+
+## Using ggPlot GUI for visualisation
+
+Often, visualisations of your results allows outside reader's to more easily interpret your findings. Effective visualisations allow you to present your results more clearly and efficiently than describing them in text alone. As a psychology student, you will almost always need to follow APA-style when producing figures. SPSS does not always produce customisable, APA-style figures. Here, you'll learn how to use the [ggplot GUI website](https://shiny.gmw.rug.nl/ggplotgui/) to produce 3 common types of plots.
+
+### Your Tasks
+
++ [ ] $\ $ Create an APA-style scatterplot with `SelfEnhancement` on the x-axis and `AntisocialBehaviour` on the y-axis. Please include a regression line.
+
++ [ ] $\ $ Create an APA-style boxplot with `SEcategory` on the x-axis and `AntisocialBehaviour` on the y-axis.
+
++ [ ] $\ $ Create an APA-style dot-and-error plot with `SEcategory` on the x-axis, `AntisocialBehaviour` on the y-axis, and `ParentalPressure` as the Group variable.
+
+```{r cyrPlots, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question("Does your boxplot suggest the presence of any outliers in your data?",
+              answer('Yes', correct = T),
+              answer('No'),
+              message = "The dot just past the upper whisker of the box reflecting Low Self-Enhancement reflects an outlier."),
+     question("Does your dot-and-error plot suggest the presence of an interaction between SEcategory and ParentalPressure on AntisocialBehaviour?",
+              answer('Yes', correct = T),
+              answer('No'),
+              message = "The effect of Self-Enhancement on AntisocialBehaviour is different across levels of Parental Pressure, so it is likely that there is an interaction effect."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+If you are having trouble opening the ggPlot GUI website, first try opening the page in a different window (right click on the link and click 'Open in a new window'). If that doesn't work, try using a different browser. 
+
+If you are still having trouble, please [download this file](https://mtruelovehill.github.io/PRM/Labs/ggplotgui_for_positcloud.R), import it into Posit, and run it. If you're hung up on how to do that, please call one of your tutors over for assistance.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate [to the ggplot GUI webpage](https://shiny.gmw.rug.nl/ggplotgui/) by clicking the link. Upload the SPSS datafile into the ggplot GUI application by using Data Upload column on the left of the page. First, click the 'Browse' button to find the file on your device, selecting 'SPSS' under 'Type of File', then clicking 'Submit Datafile'. You'll see a sample of your data pop up on the screen. Once that appears, click the 'ggplot' option (circled).
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotData.png')
+```
+
+Here, you can create your plot using the options available in the columns on the left and right of the page. 
+
+<span style = "font-weight: bold; font-size: 14pt"> Scatterplot </span>
+In the left column, set the type of plot to 'Scatter', the y-axis to `AntisocialBehaviour` and the x-axis to `SelfEnhancment`. Tick the 'Show regression line' box, and make sure the smoothing function is 'lm'. To make sure the plot is APA style, navigate to the options on the right of the page, click Theme, and select 'classic' from the drop-down box. 
+
+You can change the axis labels to be more manuscript appropriate (e.g., add spaces between words) by using the 'Text' tab in the right column and ticking 'Change labels axes'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotTextOptions.png')
+```
+
+I also like to increase the font size slightly by ticking 'Change font size'. You should now have an APA-style scatterplot that shows the association between self-enhancement values and antisocial behaviour:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotScatter.png')
+```
+
+<span style = "font-weight: bold; font-size: 14pt"> Boxplot </span>
+In the left column, set the type of plot to 'Boxplot'. The y-axis can stay set at `AntisocialBehaviour`, but change the x-axis to `SEcategory`. The previous settings should still be in place, so you can leave them as is. You should now have an APA-style boxplot that shows the difference in antisocial behaviour between self-enhancement value groups:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotBoxplot.png')
+```
+
+
+<span style = "font-weight: bold; font-size: 14pt"> Dot & Error Plot </span>
+In the left column, set the type of plot to 'Dot + Error'. The y-axis can stay set at `AntisocialBehaviour` and the the x-axis at `SEcategory`, but add `ParentalPressure` as the Group variable. 
+
+You can change the legend label by using the 'Legend' tab in the right column and ticking 'Change legend'.
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotLegendOptions.png')
+```
+
+You can leave everything else as the default setting. 
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_ggplotDotError.png')
+```
+
+</details>
+</div>
+</br>
+
+## Report & Interpret
+
+Now that you've completed the analyses, write a mini results section describing your findings. In this section, please:
+
++ Give a brief description of your sample as you would in a methods section. 
+
++ Report your results and a provide interpretation in APA style. 
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+There are many ways you could write this up, but you'll need to at least include the following information:
+
++ alpha level
++ number of participants (n)
++ participant demographics (mean age, age $SD$, and age range of sample; gender distribution of sample)
++ correlated variables
++ descriptive data for each IV group (M and SD)
++ the type of test used (one-way or repeated measures?)
++ $r$
++ degrees of freedom (for a correlation, $df = n - 2$)
++ p-value
+
+The proper style of reporting the results from a correlation looks like this:
+
+$r$($df$) = [$r$ value], $p$ = [$p$-value], 95% CI = [lower band, upper band]. 
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+In this study, we investigated whether adolescent athletes' self-enhancement values were associated with their antisocial behaviours towards members of the opposing team To do this, we collected data from a sample of 173 adolescents who participate in team sports. One participant was excluded due to an error in the data. Our final sample consisted of 172 adolescent athletes between the ages of 13-19 ($M$ = 15.92, $SD$ = 1.60; 88 Females, 84 Males). 
+
+We ran a Pearson's correlation to test the association between scores on a self-enhancement values scale and the average score on a scale that measured antisocial behaviour.  $\alpha$ was set at .05 for all analyses.
+
+Participants scored an average of 12.41 on the self-enhancement scale ( $SD$ = 2.79; minimum = 6.00; maximum = 20.00) and had an average antisocial behaviour rating of 14.99 ( $SD$ = 4.41, minimum = 5, maximum = 25). Results from a Pearson's correlation indicated that there was a moderate, positive relationship between the two variables, $r$(170) = .30, $p$ < .001, 95% CI = [.16, .43], indicating that participants who endorsed stronger self-enhancement values also demonstrated more antisocial behaviours towards members of the opposing team (see Figure 1). 
+
+<b> Figure 1 </b>
+
+<i> Self-Enhancement Values & Antisocial Behaviours Towards Opposing Team </i>
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_scatterFig.png')
+```
+
+</details>
+</div>
+</br>
+
+
+## Bonus Material: Spearman Correlation
+
+There may be times when you want to check the association between ordinal values, such as those from a Likert Scale. Pearson's correlation is not appropriate for this, as it assumes you're testing for a linear association between two continuous variables. When you have ordinal data, you should instead use Spearman's rank correlation, which tests for a monotonic association (as one variable increases or decreases, so does the other, but it doesn't have to be in a linear fashion). Spearman's correlation is denoted by $\rho$ (rho). 
+
+### Your Task
+
++ [ ] $\ $ Run a Spearman's rank correlation test between each of the items on the Self-enhancment scale (`SE1`, `SE1`, `SE3`, & `SE4`).
+
++ [ ] $\ $ Produce an APA-style correlation matrix of your results.
+
+
+```{r cyrSpearman, echo = FALSE}
+quiz(caption = '',
+     question_numeric("What is the value of rho associated with the relationship between SE3 & SE4? Please round your answer to two decimal places.",
+                      answer(.47, correct = T),
+                      message = "Spearman's rho for the association between SE3 & SE4 is .47"),
+     question("Which of the following pairs have the weakest association?",
+              answer("SE1 & SE2"),
+              answer("SE1 & SE3"),
+              answer('SE1 & SE4', correct = T),
+              message = "Spearman's rho for the association between SE1 & SE4 is only .28. For the association between SE1 & SE3, it is .39, and for the association between SE1 & SE2, it is .51."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+You'll find the steps of this to be very similar to the Pearson correlation. Check the 'Correlation Coefficient' options under *Analyze > Correlate > Bivariate*
+
+
+I personally find SPSS tables difficult to customise and produce in APA style. It's okay to use Microsoft Word, Microsoft Excel, or another data processing programme of your choice to create your correlation matrix.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+Navigate to *Analyze > Correlate > Bivariate*. Change the tick mark under 'Correlation Coefficients' from 'Pearson' to 'Spearman'. Click 'Flag significant correlations' and 'Show only the lower triangle', then click 'OK'.
+
+
+```{r, echo = F, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanOptions.png')
+```
+
+You'll get the following output, which you can interpret in the same way as Pearson's $r$:
+
+```{r, echo = F, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_SpearmanResults.png')
+```
+
+Here, you can see that all variables are significantly associated with each other, which you would expect given that they are supposed to measure the same construct. 
+
+
+You can report the results like this:
+
+We used Spearman correlations to test whether scores on each of the four questions on the self-enhancement scale were associated. Scores on each of the 4 questions on the self-enhancement scale were moderately positively correlated (see Table 1).
+
+
+```{r, echo = F, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week7_corrMatrix.png')
+```
+
+
+</details>
+</div>
+</br>
