@@ -17,6 +17,11 @@ baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#C4C6C7'
 accent3 <- '#19424C'
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
 ```
 
 ```{r, context = 'server'}

@@ -64,11 +64,6 @@ baseColor <- '#4CA384'
 accent1 <- '#9AD079'
 accent2 <- '#18778C'
 accent3 <- '#19424C'
-
-Mode <- function(x) {
-  ux <- unique(x)
-  ux[which.max(tabulate(match(x, ux)))]
-}
  
 # ```{css, echo = F}
 # @media print {

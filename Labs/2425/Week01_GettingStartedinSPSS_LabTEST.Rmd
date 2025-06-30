@@ -1,0 +1,122 @@
+---
+title: "Week 3: Intro to NHST"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+
+pacman::p_load('tidyverse', 'kableExtra', 'knitr')
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+
+Mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply some of the concepts discussed during this week's lecture and familiarise yourself with SPSS. Each lab consists of several tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+#### **Learning Objectives**
+At the end of this lab, you will be able to:
+
+1.  Import data into SPSS
+2.  Check and reset variable types and codes
+3.  Check the descriptive statistics of your data
+4.  Produce histograms to visually assess your data's distribution
+5.  Assess the normality of your variables
+
+
+#### **Lab Overview**
+Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 3 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
+
+They collected pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
+datInfo <- data.frame(VariableName=colnames(dat), 
+                      Description=c('Participant ID', 'Levels: RA; Student', 'Age in years', 
+                      'Time of class in which assessment was given', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
+                      'Assessment Version A Raw Scores; min = 0, max = 50', 'Assessment Version B Raw Scores; min = 0, max = 50', 
+                      'Assessment Version C Raw Scores; min = 0, max = 50'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+## Import Data
+
+In this course, SPSS will be used to perform the majority of your tasks. You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.sav)</B> or checking this week's folder on <b>[the course Learn page (requires university login)](https://www.learn.ed.ac.uk/)</b>. 
+
+### Your Tasks
+
+<div class="nobullet">
++ [ ] $\ $ Import 'Week1LabData.sav' into SPSS.
++ [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type. 
+</div>
+
+```{r checkingData, echo = F}
+quiz(caption = 'Check Your Understanding',
+     question('Which label is used in SPSS to describe continuous data?',
+              answer('Nominal'),
+              answer('Ordinal'),
+              answer('Scale', correct = T),
+              message = 'Data that are continuous should be set as scale Data in SPSS'),
+     question('What should the Ethnicity variable be designated as in SPSS?',
+              answer('Nominal', correct = T),
+              answer('Ordinal'),
+              answer('Scale'),
+              message = 'Ethnicity is a categorical variable with no order. It should be designated as Nominal.')
+    )
+```
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? 
+
+After the data are imported, navigate to the Variable View tab and check the value in the Measure column for each variable. Do the labels used by SPSS match the standard levels of measurement? If you aren't sure, check the weekly reading (Field text p.11-12) Think about what kind of data each of your variables represents.
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+Click *File>Open*. Navigate to the folder where you've stored  'Week1LabData.sav' and select the file.
+
+```{r, echo = F, out.width='50%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1a.png')
+```
+
+A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'.
+
+To save your data, make sure the data window is the primary window (not the output window), and click *File > Save As*. Name your file 
+'Week1LabData_SPSS' and save it to the folder of your choice on your device.
+
+</details>
+
+
+</div>
+
+</br>

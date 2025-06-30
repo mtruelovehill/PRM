@@ -2,3 +2,7 @@ a:link {
   color:  #4CA384
 }
 
+.nobullet li {
+  list-style-type: none;
+}
+
