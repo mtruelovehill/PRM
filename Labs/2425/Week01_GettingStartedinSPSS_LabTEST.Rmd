@@ -11,7 +11,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 
-pacman::p_load('tidyverse', 'kableExtra', 'knitr')
+pacman::p_load('tidyverse', 'kableExtra', 'knitr', 'sn')
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -23,6 +23,42 @@ Mode <- function(x) {
   ux[which.max(tabulate(match(x, ux)))]
 }
 
+
+```
+
+```{r, context = 'server'}
+output$skewPlot <- renderPlot({
+  set.seed(1022)
+  normDat <- data.frame(X=rnorm(300, mean = 10, sd = 1))
+  if(input$skew == 'Somewhat Negatively Skewed'){
+    normDat$Y <- (normDat$X^5)*-1
+  } else if(input$skew == 'Negatively Skewed') {
+    normDat$Y <- (normDat$X^10)*-1
+  } else if(input$skew == 'Positively Skewed') {
+    normDat$Y <- (normDat$X^10)
+  } else if(input$skew == 'Somewhat Positively Skewed') {
+    normDat$Y <- (normDat$X^3)
+  } else {
+    normDat$Y <- normDat$X
+  }
+  
+  normDat$Y <- as.vector(scale(normDat$Y))
+  
+  ggplot(normDat, aes(x = Y)) + 
+    geom_histogram(data=normDat, aes(x=Y, y = after_stat(density)), fill = '#9AD079', color = '#19424C', binwidth = .4) +
+    stat_function(fun=dnorm, geom = "line", args = list(mean = 0, sd = 1), linewidth = 1, color = '#19424C') +
+    scale_x_continuous(limits = c(-8, 8)) +
+    scale_y_continuous(limits = c(0, .8)) +
+    geom_vline(xintercept = mean(normDat$Y), color = '#4CA384', linewidth = 2) +
+    geom_vline(xintercept = median(normDat$Y), color = '#18778C', linewidth = 2) +
+    annotate(geom='rect', xmin = 2, xmax = 3, ymin = .5, ymax = .52, fill = '#4CA384') +
+    annotate(geom = 'text', x = 3.3, y = .51, label = 'Mean', size = 7, hjust = 0) +
+    annotate(geom='rect', xmin = 2, xmax = 3, ymin = .4, ymax = .42, fill = '#18778C') +
+    annotate(geom = 'text', x = 3.3, y = .41, label = 'Median', size = 7, hjust = 0) +
+    theme(axis.text = element_blank(),
+          axis.ticks = element_blank(),
+          axis.title = element_blank())
+    }, height = 400)
 
 ```
 
@@ -62,15 +98,20 @@ datInfo %>%
 
 
 
-## Import Data
+## Import Data & Check Variables
 
 In this course, SPSS will be used to perform the majority of your tasks. You can download today's data onto your device by <B>[clicking here](https://mtruelovehill.github.io/PRM/Labs/Week1LabData.sav)</B> or checking this week's folder on <b>[the course Learn page (requires university login)](https://www.learn.ed.ac.uk/)</b>. 
 
-### Your Tasks
+Once you've opened your data, the **Variable View** tab allows you to make adjustments to your variable characteristics. Recall that data can be measured in multiple formats, and these scales of measurement will affect how data may be described and analysed. In **Variable View**, you can adjust this measurement format. This is useful, as SPSS does not always properly identify your variable format. 
 
+You can also label your variable levels in **Variable View**. This is useful when nominal data are coded numerically (e.g., 'No' = 0; 'Yes' = 1). When you add labels, you can easily see what the values of nominal variables represent. It is important to always include a coding key, so that anyone who works with the data will know how to interpret the numeric labels used and can make appropriate interpretations. 
+
+### Your Tasks
 <div class="nobullet">
 + [ ] $\ $ Import 'Week1LabData.sav' into SPSS.
 + [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type. 
++ [ ] $\ $ Add a key to the `MSPSS1` variable so that 1 = 'Strongly Disagree', 2 = 'Disagree', 3 = 'Mildly Disagree', 4 = 'Neutral', 5 = 'Mildly Agree', 6 = 'Agree', and 7 = 'Strongly Agree'. 
+
 </div>
 
 ```{r checkingData, echo = F}
@@ -84,7 +125,12 @@ quiz(caption = 'Check Your Understanding',
               answer('Nominal', correct = T),
               answer('Ordinal'),
               answer('Scale'),
-              message = 'Ethnicity is a categorical variable with no order. It should be designated as Nominal.')
+              message = 'Ethnicity is a categorical variable with no order. It should be designated as Nominal.'),
+     question('What should the MSPSS variables be designated as in SPSS?',
+              answer('Nominal'),
+              answer('Ordinal', correct = T),
+              answer('Scale'),
+              message = 'Each MSPSS variable represents a single Likert-style response. They should be designated as Ordinal, as they have an inherent order, but there is otherwise no meaningful numeric relationship.')
     )
 ```
 
@@ -94,7 +140,7 @@ quiz(caption = 'Check Your Understanding',
 
 Check under the **File** tab in SPSS. What is the difference between the 'Open' and 'Import Data' options? 
 
-After the data are imported, navigate to the Variable View tab and check the value in the Measure column for each variable. Do the labels used by SPSS match the standard levels of measurement? If you aren't sure, check the weekly reading (Field text p.11-12) Think about what kind of data each of your variables represents.
+After the data are imported, navigate to the Variable View tab and check the value in the Measure column for each variable. Do the labels used by SPSS match the standard levels of measurement? If you aren't sure, check the Levels of Measurement section from this week's required reading. Think about what kind of data each of your variables represents.
 
 </details>
 </div>
@@ -103,20 +149,291 @@ After the data are imported, navigate to the Variable View tab and check the val
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-Click *File>Open*. Navigate to the folder where you've stored  'Week1LabData.sav' and select the file.
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Opening Your Data </span>
 
-```{r, echo = F, out.width='50%', fig.align='center'}
-include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_1a.png')
+Click *File>Open>Data*. Navigate to the folder where you've stored  'Week1LabData.sav' and select the file.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Checking Variable Measures </span>
+
+To check that your variables are labeled as the correct scale of measurement, look at the 'Measure' column under the *Variable View* tab.
+
+SPSS labels the data as:
+
+* **Nominal:** data that fall into discrete categories that have no information regarding order (e.g. eye colour)
+* **Ordinal:** data that fall into discrete categories that have some kind of ordering information (e.g. Likert Scale responses)
+* **Scale:** continuous/numeric data; individual values have some kind of numeric relationship beyond order (e.g. reaction time in seconds).
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Adding Labels to Variables </span>
+
+To associate a label with each value of a variable, you'll use the **Values** column under the **Variable View** tab.
+
+Select the MSPSS1 x Values cell and click the dots to bring up the _Value Labels_ box. Use the $+$ to add a new label. In the Value column, type the value **exactly as it is recorded in your data.** (e.g., 1) In the Label column, add the label you would like to associate with that specific value (e.g. 'Strongly Disagree'). Continue adding labels using  $+$ until you've labeled all values in the `MSPSS` column.
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_valueLabels.png')
 ```
 
-A box will pop up that allows you to review the data before import. In this example, the first row of our data is the name for each column, so the 'First line contains variable names' should remain checked. Note that if you import data without column names, you'll need to uncheck this box. Click 'OK'.
-
-To save your data, make sure the data window is the primary window (not the output window), and click *File > Save As*. Name your file 
-'Week1LabData_SPSS' and save it to the folder of your choice on your device.
+Click 'OK'. If you've done this properly, you'll see that each numeric value is now associated with a character label.
 
 </details>
+</div>
+</br>
 
+## Computing Variables
 
+Sometimes, you'll need to use your variables to compute a new value or variable (e.g., a composite score from subscores). SPSS allows you to perform a wide range of calculations on your variables. In today's lab, the data includes the individual responses to the 12 questions that make up the Perceived Social Support scale (MSPSS), and you need to compute the total MSPSS score. 
+
+### Your Task
+
+<div class='nobullet'>
++ [ ] $\ $ Use each of the 12 MSPSS items (`MSPSS1` through `MSPSS12`) to compute a composite score that reflects their total sum.
++ [ ] $\ $ Name the new variable `MSPSStotal`
 </div>
 
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+Look under the *Transform* tab to find the function you need.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+To compute a new value from a current column, navigate to *Transform > Compute Variable*. Type the name for the new variable (`MSPSStotal`) into the 'Target Variable' box. Place each MSPSS item in the 'Numeric Expression' box with with a plus sign in between them: 
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_computeVariable.png')
+```
+
+Click 'OK', and you should have a new column that reflects the total Perceived Social Support score.
+
+</details>
+</div>
+
+## Check Frequency Data
+
+Before doing any sort of analysis, it's important to first check the data to make sure everything is as expected. With categorical data, one way we can do this is to inspect the frequency of observations in each group. This allows you to evaluate the following:
+
++ Are observations distributed relatively equally or are there major differences across groups?
++ Are there any groups with a limited number of observations?
++ Are there any missing datapoints?
++ Are there any values outside the expected range?
+
+### Your Task
+<div class="nobullet">
++ [ ] $\ $ Check the frequency of your nominal variables. Make sure to display frequency tables.
+</div>
+
+Are any of these groups limited in size? If so, consider how this might affect your ability to make generalisable claims about this group.
+
+Use the frequency tables to answer the following questions:
+```{r freqData, echo = F}
+quiz(caption = '',
+     question_numeric('How many missing datapoints are there on the Gender variable?',
+              answer(93, correct = T),
+              message = '93 participants are missing data on the HighestEducation variable.'),
+     question_numeric('How many participants responded that their general health was fair?',
+              answer(36, correct = T),
+              message = '36 participants indicated that their general health was Fair.'),
+     question_numeric('How many levels were included in the HighestEducation variable?',
+              answer(3, correct = T),
+              message = 'The HighestEducation variable had 3 levels: (1) Undergraduate Degree; (2) Postgraduate Qualification, Masters; (3) PhD or other professional qualification')
+    )
+```
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+You'll find what you need under the *Analyze* tab.
+
+</details>
+</div>
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for the solution </span></summary>
+
+Select *Analyze>Descriptives>Frequencies*. Select `AgeBracket`, `Gender`, `Ethnicity`, `HighestEducation`, `HRQOL1`, and `HRQOL2`, and use the arrow to move them into the Variable box. Make sure 'Display frequency tables' is checked.
+
+<br>
+
+The first table is a summary of all the requested variables. The missing data information can be found here:
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_summaryTable.png')
+```
+
+Next, if 'Display frequency tables' was checked, individual frequency tables are shown for each variable. Here, the number of observations in each group/level are shown:
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_freqTable.png')
+```
+
+</details>
+</div>
+<br>
+
+
+## Visualise Distribution of Data 
+
+Another useful way to check variable distribution is to visualise the data. Depending on the data type, a bar chart or a histogram could be used.
+
+```{r, echo = F, fig.width= 3.5, fig.height=2.5, message=F}
+freqDat <- data.frame(Bar=sample(c('Yes', 'No', 'Maybe'), size = 30, replace = T, prob = c(.25, .25, .5)), 
+                      Histogram=rnorm(30, mean = 10, sd = 4))
+
+ggplot(freqDat, aes(Bar)) + geom_bar(fill = baseColor, color=accent3) +
+  labs(x ='Bar Chart') +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size = 14, face = 'bold'))
+
+ggplot(freqDat, aes(Histogram)) + geom_histogram(fill = baseColor, color=accent3) +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title.y = element_blank(),
+        axis.title.x = element_text(size = 14, face = 'bold'))
+  
+```
+
+
+### Your Tasks 
+<div class="nobullet">
++ [ ] $\ $ Produce plots to visualise the distribution of the variables `HRQOL2`, `WEMWBS`, and `MSPSS`
++ [ ] $\ $ Make sure to use the proper plot type given the variable type.
+</div>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+A histogram will allow you to visualise the distribution of continuous variables. Bar plots allow you to check the distribution of categorical data. You'll need to produce a separate plot for each variable.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<B> For Categorical Variables: </B>
+
+Select *Analyze>Descriptive Statistics>Frequencies*. Add `HRQOL2` to the 'Variable(s)' box, uncheck 'Display frequency tables', and then click 'Charts...'. Select 'Bar charts'. Note at the bottom that you can either plot the raw frequencies or percentages. Here, you can leave 'Frequencies' checked. Click 'Continue', then 'OK'.  
+
+When checking the distribution of categorical variables, check whether all groups are well represented. Consider the questions from the <B>[Frequency Data](#check-frequency-data)</B> portion of this lab.
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_barChart.png')
+```
+
+
+<B> For Continuous Variables: </B>
+
+Select *Analyze>Descriptive Statistics>Frequencies*. Add `WEMWBS` and `MSPSS` to the 'Variable(s)' box, uncheck 'Display frequency tables', and then click 'Charts...'. Select 'Histograms', then tick 'Show normal curve on histogram.' Click 'Continue', then 'OK'. 
+
+Have a look at the output. If a variable is normally distributed, most observations will fall near the mean, while more extreme values are less common. The bars should generally fall along the black normal curve line. `WEMWBS` generally follows the black line:  
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_histogram.png')
+```
+
+On the other hand, `MSPSS` is noticeably negatively skewed (scores are clustered in the upper range and there is a long tail of scores in the lower range):
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_histogram2.png')
+```
+
+**Note:** You can also produce bar plots using *Graphs>Bar*, selecting 'Simple', and adding the variable you wish to visualise to the 'Category Axis' box. You can produce histograms using *Graphs>Histogram* and adding the variable you wish to visualise to the 'Variable' box. 
+
+</details>
+</div>
+<br>
+
+## Distribution & Central Tendency
+
+When data are skewed, it can impact how well the measure of central tendency represents the sample. Use the plot below to see how different levels of skewness can impact the mean and median.
+
+```{r, echo = F}
+fluidRow(column(width = 4, 
+                selectInput('skew', 'Choose a skewness level:', choices = list('Negatively Skewed', 'Somewhat Negatively Skewed', 'Normal', 'Somewhat Positively Skewed', 'Positively Skewed'))))
+
+plotOutput('skewPlot')
+```
+
+```{r skewness, echo = F}
+quiz(caption = '',
+     question('Which value is higher when data are positively skewed?',
+              answer('mean', correct = T),
+              answer('median'),
+              answer('They are about the same.'),
+              message = 'When data are positively skewed, the mean is higher because it is impacted by the extremely high scores in the tail.'),
+      question('Which value is higher when data are normally distributed?',
+              answer('mean'),
+              answer('median'),
+              answer('They are about the same.', correct = T),
+              message = 'When data are normally distributed, the mean and median will be similar to each other.')
+    )
+```
+
+
+## Check Central Tendency & Measures of Variability
+
+When preparing to perform analysis, one of the most important steps is to check the descriptive statistics of your variables. These values are useful summary metrics and may provide insight into patterns in your data.
+
+### Your Tasks
+For all continuous variables in your data:
+
+<div class="nobullet">
++ [ ] $\ $ Check the appropriate measures of central tendency
++ [ ] $\ $ Check the standard deviation and maximum/minimum values.
+</div>
+
+```{r descriptives, echo = F}
+quiz(caption = '',
+     question('Which measure of central tendency should be used to describe WEMWBS?',
+              answer('mean', correct = T),
+              answer('median'),
+              answer('mode'),
+              message = 'WEMWBS is a continuous variable with a nonskewed distribution (as you noted in the "Visualise Distribution of Data" task). It should be described using the mean.'),
+      question('Which measure of central tendency should be used to describe MSPSS?',
+              answer('mean'),
+              answer('median', correct = T),
+              answer('mode'),
+              message = 'MSPSS was negatively skewed, so the mean may be biased by the extreme scores on the low end of the distribution. It could be more accurately described using the median'),
+     question_numeric('What is the standard deviation of the PWB score? Please round your answer to two decimal places.',
+              answer(13.54, correct = T),
+              message = 'The standard deviation of the PWB score is 13.54.'),
+     question_numeric('What is the minimum MSPSS score?',
+              answer(22, correct = T),
+              message = 'The minimum WEMWBS score is 22.')
+    )
+```
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt">Click here for a hint </span></summary>
+
+To get each of these descriptive statistics, navigate to *Analyze>Descriptive Statistics>Frequencies*. Consider how the data's distribution should impact the measure of central tendency you will use to describe the variable.
+
+</details>
+</div>
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+To get all 3 measures of central tendency, you'll need to select *Analyze>Descriptive Statistics>Frequencies*, then put the variables of interest into the 'Variable(s)' box. Click 'Statistics' and select the options for 'Mean', 'Median', 'Std. Deviation', 'Maximum' and 'Minimum'.
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week1_descriptives.png')
+```
+
+Although continuous variables could be described using both mean and median, the mean is often the most appropriate when the data are not skewed. The median may be more appropriate when the data are skewed, as the median is less impacted by extreme scores. Data will be reported in table format in the output.
+
+</details>
+</div>
 </br>
