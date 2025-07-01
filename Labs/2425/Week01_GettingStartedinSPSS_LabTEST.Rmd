@@ -1,5 +1,5 @@
 ---
-title: "Week 3: Intro to NHST"
+title: "Week 1: Getting Started in SPSS"
 output:
   learnr::tutorial:
     progressive: true
@@ -11,7 +11,7 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 
-pacman::p_load('tidyverse', 'kableExtra', 'knitr', 'sn')
+pacman::p_load('tidyverse', 'kableExtra', 'knitr')
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -71,23 +71,39 @@ At the end of this lab, you will be able to:
 
 1.  Import data into SPSS
 2.  Check and reset variable types and codes
-3.  Check the descriptive statistics of your data
-4.  Produce histograms to visually assess your data's distribution
-5.  Assess the normality of your variables
+3.  Produce plots that allow you to visually assess your data's distribution
+4.  Check the descriptive statistics of your data
+
 
 
 #### **Lab Overview**
-Imagine that you're a statistician in a Psychology department, and an instructor has asked for your help in selecting a proper assessment for their course. They have tested 3 different assessments, and they want to select the option that best captures students' abilities, without being too difficult or too easy. 
+In this lab, you'll be working with data collected from the RMAP course studies. This specific dataset contains variables that measure interpersonal relationships and general well-being. You'll use these data to generate descriptive statistics and visualisations.
 
-They collected pilot data from their RAs to help check for typos/question clarity, and then gathered a sample of data from several students across 4 sections of their course.   
+
 
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week1LabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat), 
-                      Description=c('Participant ID', 'Levels: RA; Student', 'Age in years', 
-                      'Time of class in which assessment was given', 'Levels: 1=Male, 2=Females, 3=Nonbinary', 
-                      'Assessment Version A Raw Scores; min = 0, max = 50', 'Assessment Version B Raw Scores; min = 0, max = 50', 
-                      'Assessment Version C Raw Scores; min = 0, max = 50'))
+                      Description=c('Participant ID', 'Levels: 18-33; 34-48; 49-64', 
+                      'Levels: Male; Female; Non-binary/Third Gender; Prefer not to say', 
+                      'Participant ethnicity', 'Highest level of education completed', 
+                      "Participant's self-reported general health",
+                      "Participant's estimate of the number of the past 30 days that their health was not good",
+                      "Perceived social support item 1; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 2; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 3; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 4; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 5; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 6; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 7; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 8; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 9; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 10; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 11; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      "Perceived social support item 12; Levels: 1 = Strongly Disagree; 2 = Disagree; 3 = Somewhat Disagree; 4 = Neutral; 5 = Somewhat Agree; 6 = Agree; 7 = Strongly Agree",
+                      'Total Health-Related Quality of Life score',
+                      'Total Psychological well-being score',
+                      'Total mental well-being score'))
 
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
