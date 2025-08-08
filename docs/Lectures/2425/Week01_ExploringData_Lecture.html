@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Exploring Your Data </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Exploring Your Data </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+&lt;style type="text/css"&gt;
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+
+&lt;/style&gt;
+
+
+
+
+## Research process
+
+![](images/ResearchProcess.png)&lt;!-- --&gt;
+
+---
+
+## Why????
+
++ Psychology is a science....
+
+--
+
++ with a lot of uncertainty
+
+--
+
++ To answer our research questions, we rely on empirical evidence 
+
++ We take measurements that allow us to make systematic observations of our construct of interest, then use these observations to draw conclusions
+
++ In other words, we gather data and look for consistent patterns within the data that support (or refute) our ideas
+
++ But how do we decide what is *consistent enough*?
+
+---
+## From sample to population
+
++ In statistics, we often refer to samples and populations
+  
+  + **Population:** The entire group about whom you're making inferences
+  
+  + **Sample:** The subset of the population from whom you will collect data to make these inferences
+  
++ We typically use **sample statistics**, or **point-estimates** to make inferences about **population parameters**
+
+---
+## Visualising your data: Frequency Distributions
+
++ Frequency distributions allow you to visualise how often each observation occurs
+
++ The type of frequency distribution you use depends on the type of data you have:
+
+--
+
+.pull-left[
+.center[**Categorical Data: Bar Plots**]
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+.center[**Continuous Data: Histograms**]
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Describing your data: Central Tendancy
+
++ What is the middle-ish point of your data?
+
++ Can estimate in 3 ways:
+  + **Mean**
+  + **Median**
+  + **Mode**
+  
+---
+## Central Tendancy: Mean
+
+.pull-left[
+
+
+**The mathematical notation:**
+
+`$$\bar{x} = \frac{\displaystyle\sum_{i=1}^{n}x_i}{n}$$`
++ Where:
+    + `\(n\)` = total number of values in the data
+    + `\(x_i\)` = an individual value in the data
+    + `\(\displaystyle\sum_{i=1}^{n}\)` = sum all values between 1 ( `\(i=1\)` ) and `\(n\)`
+
+]
+
+---
+count: false
+
+## Central Tendancy: Mean
+
+.pull-left[
+
+**The mathematical notation:**
+
+`$$\bar{x} = \frac{\displaystyle\sum_{i=1}^{n}x_i}{n}$$`
++ Where:
+    + `\(n\)` = total number of values in the data
+    + `\(x_i\)` = an individual value in the data
+    + `\(\displaystyle\sum_{i=1}^{n}\)` = sum all values between 1 ( `\(i=1\)` ) and `\(n\)`
+
+    
+**In basic language:** 
+ 
+ + The mathematical average; sum all values and divide by the total number of values
+]
+
+--
+
+.pull-right.center[
+
+`\(x = \{10, 2, 5, 3, 2, 0, 12\}\)`
+
+`\(\bar{x} = \frac{\sum(10, 2, 5, 3, 2, 0, 12)}{7}\)` 
+
+
+`\(\bar{x} = 4.86\)` 
+
+
+&lt;img src="images/SPSSmean.PNG" width="45%" /&gt;
+
+]
+
+---
+## Central Tendancy: Mean
+
++ Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
+
+--
+
+
++ Say you have the following scale:
+
+.pull-left[
+
+
+| Scale  | Rate your understanding of the lecture     |
+|--------|--------------------------------------------|
+|    1   | I'm completely lost.                       |
+|    2   | I'm a bit confused.                        |
+|    3   | I understand about half of it.             |
+|    4   | It's starting to come together.            |
+|    5   | Everything is perfectly clear.             |
+
+]
+
+.pull-right[
+
+&gt; **Test your understanding:** What does a mean of 3.2 actually mean, in the context of this scale?
+
+]
+
+---
+count: false
+
+## Central Tendancy: Mean
+
++ Can be used with _continuous/numeric_ data (i.e. interval and ratio data)
+
++ Say you have the following scale:
+
+.pull-left[
+
+
+| Scale  | Rate your understanding of the lecture     |
+|--------|--------------------------------------------|
+|    1   | I'm completely lost.                       |
+|    2   | I'm a bit confused.                        |
+|    3   | I understand about half of it.             |
+|    4   | It's starting to come together.            |
+|    5   | Everything is perfectly clear.             |
+
+]
+
+.pull-right[
+
+&gt; **Test your understanding:** What does a mean of 3.2 actually mean, in the context of this scale?
+
+&gt; Is someone who is a bit confused twice as confused as someone for whom it's starting to come together?
+
+]
+
+--
+
++ Best not used with ordinal data, even though they may be coded as numeric values
+
+---
+## Central Tendancy: Median
+
++ The value in the exact center of a range
+
++ Can be used with ordinal, ratio, or interval data
+
+.pull-left[
+.center[
+**If there are an odd number of values:**
+
+`\(x = \{10, 2, 5, 3, 2, 0, 12\}\)`
+
+`\(0, 2, 2, \color{#4CA384}{3}, 5, 10, 12\)`
+
+**Median `\(x\)` = 3**
+
+]
+]
+
+
+.pull-right[
+.center[
+**If there are an even number of values:**
+
+`\(y = \{3, 7, 1, 20, 14, 25\}\)`
+
+
+`\(1, 3, \color{#4CA384}{7, 14,} 20, 25\)`
+
+
+`\(\frac{7+14}{2} = 10.5\)`
+
+
+**Median `\(y\)` = 10.5**
+]
+
+
+
+]
+
+
+---
+## Central Tendancy: Mode
+
+.pull-left[
++ The value that appears most frequently in a range
+
++ Can be used with all types of data, although may be less descriptive of continuous data depending on the precision of the measurement
+
++ Data may be bimodal or multimodal
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+
+]
+
+--
+
+.pull-right.center[
+
+`\(x = \{10, \color{#4CA384}{2}, 5, 3, \color{#4CA384}{2}, 0, 12\}\)`
+
+&lt;img src="images/SPSSmode.PNG" width="85%" /&gt;
+
+]
+
+
+---
+exclude: true
+
+####  How useful are the measures of central tendency in each of the following situations?
+
+.pull-left.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+## Limitations of Central Tendency
+
++ In isolation, central tendency doesn't sufficiently describe the data
+
+.pull-left[
+
+| Participant |  Test Score |
+|:-----------:|:-----------:|
+| 1           |    6        |
+| 2           |    5        |
+| 3           |    6        |
+| 4           |    5        |
+| 5           |    5        |
+| Total       |    27       |
+
+.center[
+**Mean = 5.4**
+]
+
+]
+
+.pull-right[
+
+| Participant |  Test Score |
+|:-----------:|:-----------:|
+| 1           |    2        |
+| 2           |    2        |
+| 3           |    10       |
+| 4           |    10       |
+| 5           |    3        |
+| Total       |    27       |
+
+.center[
+**Mean = 5.4**
+]
+
+]
+
+---
+
+class: center, inverse, middle
+count: false
+
+## Questions?
+
+---
+## Variation in Scores
+
+.pull-left[
++ Helps us to understand how well the mean describes our data
+
++ Can estimate this using:
+
+  + Maxima &amp; Minima
+  
+  + Range
+  
+  + Interquartile Range
+  
+  + Standard Deviation
+]
+
+
+--
+
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+## Variation in Scores
+
+.pull-left[
++ Helps us to understand how well the mean describes our data
+
++ Can estimate this using:
+
+  + **Maxima &amp; Minima**
+  
+  + Range
+  
+  + Interquartile Range
+  
+  + Standard Deviation
+]
+
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Variation in Scores
+
+.pull-left[
++ Helps us to understand how well the mean describes our data
+
++ Can estimate this using:
+
+  + Maxima &amp; Minima
+  
+  + **Range**
+  
+  + Interquartile Range
+  
+  + Standard Deviation
+]
+
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Variation in Scores - Interquartile Range
+
+.pull-left[
++ Interquartile Range (IQR) tells you about the spread in the middle range of your data
+
++ It allows you to get a sense of variation in your data, excluding the most extreme values
+
++ This metric depends on the order of the values in the data, so note that the plot has been reordered based on Age. 
+
++ **NOTE:** The IQR is a key component of a boxplot, which we will return to later in the course
+]
+
+
+.pull-right[
+
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Variation in Scores - Interquartile Range
+
+.pull-left[
++ First, calculate the median of your data
+
+  + In our case, the median is the average of 31 and 33
+  
+  + This becomes our 2nd Quartile (Q2)
+
+]
+
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Variation in Scores - Interquartile Range
+
+.pull-left[
++ First, calculate the median of your data
+
+  + In our case, the median is the average of 31 and 33
+  
+  + This becomes our 2nd Quartile (Q2)
+
++ Q4 = the maximum value in your data
+
+]
+
+
+.pull-right[
+
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Variation in Scores - Interquartile Range
+
+
+.pull-left[
++ Next, calculate the remaining quartiles of your data
+
+  + There are several ways to do this, and all will give you slightly different outcomes
+  
+  + This method uses *Tukey's Hinges*:
+     
+     + With an **even** number of observations:
+        
+        + Split the data in half at Q2.
+        
+        + Identify the median of all values below Q2. This is Q1.
+        
+        + The median of all values above Q2 is Q3.
+]
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+
+
+]   
+
+---
+## Variation in Scores - Interquartile Range
+
+
+.pull-left[
++ Next, calculate the remaining quartiles of your data
+
+  + There are several ways to do this, and all will give you slightly different outcomes
+  
+  + This method uses *Tukey's Hinges*:
+     
+     + With an **odd** number of observations:
+        
+        + Split the data in half at Q2.
+        
+        + Q1 is the median of all values below Q2, including Q2.
+        
+        + Q3 is the median of all values above Q2, including Q2.
+]
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+
+
+]   
+---
+## Variation in Scores - Interquartile Range
+
+
+.pull-left[
++ Finally, calculate the IQR
+      
+     + `\(IQR=Q3-Q1\)`
+     
+     + `\(34.5 - 26.5 = 8\)`
+     
+
+![](images/TukeysHinges.png)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+
+
+]   
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+
+`$$SD = \sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$`
++ On average, how far away are individual observations from the mean? 
+
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+
+`$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i}-\bar{x})^2}{n-1}}$$`
+
++ `\(x_i\)` = individual observations of x
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-24-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+`$$SD = \sqrt{\frac{\sum(x_i-\color{#4CA384}{\bar{x}})^2}{n-1}}$$`
+
+
++ `\(x_i\)` = individual observations of x
+
++ `\(\bar{x}\)` = mean of variable x
+
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+`$$SD = \sqrt{\frac{\sum(\color{#4CA384}{x_i-\bar{x}})^2}{n-1}}$$`
+
+
++ `\(x_i\)` = individual observations of x
+
++ `\(\bar{x}\)` = mean of variable x
+
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-26-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+`$$SD = \sqrt{\frac{\sum(x_i-\bar{x})\color{#4CA384}{^2}}{n-1}}$$`
+
+
++ `\(x_i\)` = individual observations of x
+
++ `\(\bar{x}\)` = mean of variable x
+
+&gt; **Test Your Understanding:** Why do we need to square these values before summing them?
+
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
+`$$SD =\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$`
+
+
++ `\(x_i\)` = individual observations of x
+
++ `\(\bar{x}\)` = mean of variable x
+
++ `\(\sum(x_i-\bar{x})^2\)` = sum of squared deviations (AKA the sum of squares)
+
++ `\(SD = \sqrt{\frac{526.22}{12-1}} = 6.92\)`
+
+
+]
+
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-28-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Why n-1?
+
++ Recall that we are using a sample to make estimates about the overall population
+
++ In doing so, we are assuming that our sample mean reflects the population mean
+
++ Adding -1 allows us to make an estimate of the population that's less biased by our specific sample.
+
+--
+
+&gt; **Test your understanding:** Is a smaller sample MORE or LESS likely to reflect the overall population?
+
+--
+
+
+| Sample Size | SD (n)          | SD (n - 1)     |
+|:-----------:|:---------------------:|:--------------------:|
+|    5        |  10.26  | 11.47  |
+|    10       |  7.25  | 7.65  |
+|    50       |  3.24  | 3.28  |
+|    100      |  2.29 | 2.31  |
+|    1000     |  0.73| 0.73 |
+
+
+???
+
+Probably a wider spread in the population than what we are accounting for in our small sample
+
+As the sample grows larger, the variance estimated using n or n-1 grows more similar
+
+
+---
+## Variation in Scores - Standard Deviation
+
+.pull-left[
++ `\(SD = \sqrt{47.84} = 6.92\)`
+
++ Expressed in the units of the variable of interest
+
+
++ On average, participants in our sample are 6.92 years older or younger than the mean of 31.25.
+
+]
+
+--
+
+.pull-right.center[
+**Mean = 10, SD = 1**
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
+
+**Mean = 10, SD = 10**
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-30-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## A Note on Notation
+
++ We use slightly different notations when referring to point-estimates versus population parameters:
+
+.center[
+
+| Value              | Population | Sample          |
+|:------------------:|:----------:|:---------------:|
+| Mean               |  `\(\mu\)`     | `\(M\)` or `\(\bar{x}\)`|
+| Standard Deviation | `\(\sigma\)`   | `\(SD\)` or `\(s\)`     |
+| Sample Size        | `\(N\)`        | `\(n\)`             |
+
+]
+
+
+
+---
+
+class: center, inverse, middle
+count: false
+
+## Questions?
+
+---
+## Describing your data: Probability distributions
+
+.pull-left[
+
++ A probability distribution is a way to visualise the probability of specific observations
+
++ These distributions give us an idea of how unusual or rare a specific observation is
+
++ Specifically, we can compute the probability of a specific range of values within a distribution
+]
+
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-31-1.svg)&lt;!-- --&gt;
+
+
+]
+
+--
+
+&gt; **Test Your Understanding:** Which value of x is most common, according to the probability distribution seen here? Which values are less common?
+
+---
+## The Normal Distribution
+
++ A probability distribution where values around the mean are most common, and values further from the mean are increasingly less common.
+
++ AKA the bell curve, a Gaussian distribution
+
+--
+
+&gt; **Test Your Understanding:** What kinds of variables can you think of that might follow a normal distribution? 
+
+---
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+
+]
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-32-1.svg)&lt;!-- --&gt;
+]
+
+---
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+  
+
+]
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-33-1.svg)&lt;!-- --&gt;
+
+Adjusting the mean changes where the curve is centered on the `\(x\)`-axis
+
+]
+
+---
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+  
+
+]
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-34-1.svg)&lt;!-- --&gt;
+
+Adjusting the `\(SD\)` changes the shape of the curve
+
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+
+  + **68%** of scores fall within **1 SD** of the mean
+
+]
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-35-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+
+  + 68% of scores fall within 1 SD of the mean
+  + **95%** of scores fall within **~2 SD** of the mean (exactly 1.96 SD of the mean)
+
+]
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-36-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+.pull-left[
+**Characteristics of a normal distribution**
+
++ Unimodal
+
++ Its key parameters are mean and standard deviation
+
+  + 68% of scores fall within 1 SD of the mean
+  + 95% of scores fall within ~2 SD of the mean (exactly 1.96 SD of the mean)
+  + **99.75%** of scores fall within **3 SD** of the mean
+
+]
+.pull-right[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-37-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-38-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-39-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-40-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-41-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Normal Distribution
+
+&gt; **Test your understanding:** You have given participants the WAIS-IV, which is an IQ test that has been normalised so that the mean is 100 and the SD is 15. Scores are normally distributed. What value do we expect at each point on this normal distribution?
+
+.center[
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-42-1.svg)&lt;!-- --&gt;
+]
+
+---
+exclude: true
+
+## The Standard Normal Distribution
+
+.pull-left[
++ A normal distribution in which `\(\mu\)` = 0 and `\(\sigma\)` = 1
+
++ AKA the `\(z\)` distribution
+
++ Comprised of `\(z\)`-scores, which represent the number of standard deviations a value is from the mean
+
++ All values from a normal distribution can be converted to `\(z\)`-scores (standardised) using the following formula:
+
+`$$z = \frac{X-\mu}{\sigma}$$`
+
+]
+
+
+.pull-right[
+
+![](Week01_ExploringData_Lecture_files/figure-html/unnamed-chunk-43-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+
+class: center, inverse, middle
+count: false
+
+## Questions?
+
+---
+exclude: true
+
+## Wooclap questions slide!
+
+&lt;style type="text/css"&gt;
+@media print {
+  .has-continuation {
+    display: block;
+  }
+}
+&lt;/style&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

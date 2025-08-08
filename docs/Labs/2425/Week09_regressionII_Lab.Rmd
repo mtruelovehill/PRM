@@ -1,0 +1,418 @@
+---
+title: "Week 9: Regression II"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+library(plotly)
+library(shiny)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Create a variable to represent the interaction of two continuous variables.
+2. Use PROCESS macro in SPSS to run multiple linear regression with a moderating variable
+3. Properly interpret and report results from a multiple linear regression analysis with an interaction term
+4. Probe the interaction using the results from a Johnson-Neyman Analysis
+
+
+## Experiment Overview
+
+<br>
+This week, you'll be reusing the data from last week, so all variables remain the same. Recall that the data were adapted from [this study](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk) in which the researchers investigated the factors associated with well-being in University students. 
+
+In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
+
+You can reopen the data from wherever you saved it on your device last week. If you need to re-download the dataset, you can click [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). 
+
+**NOTE:** If you use the dataset from last week, you'll need to update the variable names, as PROCESS doesn't like names longer than 8 characters. I've just changed them to the variable names you see in the table below:
+
+Recall that the dataset contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Age in years',
+                                    'Levels: Female; Male; Nonbinary; Other; Prefer not to Disclose',
+                                    'Amount of physical activity per week in hours',
+                                    'Amount of sleep per week in hours',
+                                    'Scores on a social support scale; values may range between 0-45',
+                                    'Scores on a well-being scale; values may range between 0-40'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+This week, you'll be investigating whether the effect of physical activity on well-being is moderated by sleep. You also would like to control for the effect of Social Support, which you identified during last week's lab. 
+
+
+```{r cyu1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address your research question, given the study design?",
+              answer("Multiple Linear Regression with only main effects"),
+              answer("Factorial ANOVA"),
+              answer("Simple Linear Regression"),
+              answer("Multiple Linear Regression with an interaction", correct = T),
+              message = "Here, you're looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA require a categorical dependent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether there one variable moderates another. In this case, multiple linear regression with an interaction is the best option.",
+              random_answer_order = T),
+     question('How many predictors are included in this model?',
+              answer('1'),
+              answer('2'),
+              answer('3'),
+              answer('4', correct = T),
+              answer('5'),
+              message = 'There are 4 predictors. The model will have 3 single predictors as well as an interaction, for a total of 4 predictors of well-being.'))
+```
+
+### Your Tasks
++ [ ] $\ $ State your research question(s) for this experiment.
++ [ ] $\ $ Produce the appropriate regression equation for this analysis
++ [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+With regression, it's common to refer to variables as predictors and outcomes rather than independent and dependent variables. However, the predictor variables equate to the independent variables, and the outcome equates to the dependent variable.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+<b>Possible Research Question:</b>
+
+Does the effect of physical activity on student well-being vary depending upon sleep?
+
+<br>
+
+<b> Equation </b>
+
+$$Wellbeing_i = \beta_0 + \beta_1Sleep_i + \beta_2PhysicalActivity_i + \beta_3Sleep_i\times PhysicalActivity_i +$$
+$$\beta_4SocialSupport_i + \epsilon_i$$
+
+<br>
+
+<b> Hypotheses:</b>
+
+$H_0:$ The effect of physical activity upon student well-being does not change depending on sleep. 
+
+$H_1:$ The effect of physical activity upon student well-being changes based on the amount of sleep one gets. Specifically, at low levels of sleep, we expect physical activity to have a negative effect on wellbeing; at moderate levels of sleep we expect physical activity to have no significant effect on wellbeing; and at high levels of sleep, physical activity is expected to have a positive effect on wellbeing. 
+
+<i> Statistical: </i>
+
+$H_0: \beta_{3} = 0$
+
+$H_1: \beta_{3} \neq 0$
+
+
+</details>
+</div>
+</br>
+
+## Install PROCESS Macro
+
+To perform moderation with regression in SPSS, you can use the PROCESS macro. This is a tool that is not part of default SPSS; it needs to be installed separately. Once it has been installed, you'll never have to complete this step again.
+
+### Your Tasks
+
++ [ ] $\ $ Download the PROCESS macro from [this link](https://processmacro.org/download.html)
+
++ [ ] $\ $ Install PROCESS in SPSS
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+After downloading PROCESS, you can install it by navigating to *Extensions > Utilities > Install Custom Dialogue*.
+
+</details>
+</div>
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate to *Extensions > Utilities > Install Custom Dialogue*. Find the 'processv43' folder in your Downloads folder. Navigate to *PROCESS v4.3 for SPSS > Custom dialogue builder file (v4.2)* and click 'process.spd', then 'Open'. Now, you'll be able to use PROCESS in SPSS. 
+
+</details>
+</div>
+<br>
+
+
+## Check Assumptions
+
+Although you checked assumptions last week, you only checked them for the model that did not include an interaction term. Today, you'll need to recheck a few of them for your current model. You can remember the requirements/assumptions of linear regression by remembering **LINE**.
+
+(1) **L**inearity: All predictors variables have a linear relationship with the outcome variable.
+
+(2) **I**ndependence of Observations: Individual observations should not be dependent upon any others
+
+(3) **N**ormality: Model residuals are normally distributed
+
+(4) **E**qual Variance (AKA Homoskedasticity or Homogeneity of Variance): the variance is consistent across both predictor values & fitted values
+
+(5) No Multicol**line**arity: Predictors should not be highly correlated with each other (e.g., $r$ > .8, VIF < 5)
+
+
+### Your Tasks
+
++ [ ] $\ $ Compute an interaction term that you'll use to build a model to check assumptions
+
++ [ ] $\ $ Decide whether your data meet the assumption of linearity
+
++ [ ] $\ $ Decide whether your data meet the assumption of normality
+
++ [ ] $\ $ Decide whether your data meet the assumption of equal variance
+
++ [ ] $\ $ Decide whether your data meet the assumption of multicollinearity
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+You can actually check all assumptions when setting up your model, so you'll get output for assumptions checks and overall model results at the same time. 
+
+To compute an interaction term, think about how the interaction between sleep and physical activity is represented in our model equation:
+
+WB = $\beta_0$ + $\beta_1$Sleep + $\beta_2$PhysicalActivity + $\beta_3$Sleep*PhysicalActivity + $\beta_4$SocialSupport + $\epsilon$
+
+To check for normality, you can view a P-P plot of the residuals. To check for linearity and heteroskedasticity/equal variance, you will look at a plot of residuals by predicted values. 
+
+You'll check multicollinearity by looking at correlations (Pearson's $r$) and VIF values.
+
+
+</details>
+</div>
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To compute the interaction term, navigate to *Transform > Compute Variable*. Give the new interaction variable a name in the 'Target Variable:' box. In this example, I just use the name `Interaction`. Use the 'Numeric Expression' box to multiply `PhysAct` and `Sleep`. Click 'OK'.
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_computeInt.png')
+```
+
+A new variable will appear in 'Data View' with the product of `PhysAct` and `Sleep` for each individual.
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_intVar.png')
+```
+
+
+To check assumptions, navigate to *Analyze > Regression > Linear*. Add your outcome variable, `WB`, to the 'Dependent' box and your predictors, `SocSupp`, `Sleep`, and `PhysAct`, as well as your interaction variable, `Interaction`, to the 'Independent(s)' box.
+
+To produce the P-P plot and the plot of residuals by predicted values, click 'Plots', move the ZRESID variable (which reflects the standardized residual) into the Y box and the ZPRED variable (which reflects the standardized model-predicted value of well-being for each individual) into the X box. Make sure 'Normal probability plot' is ticked:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_assumptionsPlots.png')
+```
+
+Under 'Statistics', make sure 'Collinearity Diagnostics' is ticked. 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_lrStats.png')
+```
+
+Click 'Continue' and then 'OK'. Your model will run, and you will also get the information you need to check assumptions.
+
+First, have a look at the P-P plot:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_ppPlot.png')
+```
+
+If the data are generally normal, the points will follow the diagonal line. Here, that's exactly what is happening, so the data meet the assumption of normality.
+
+
+Next, have a look at the residuals by predicted values plot:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_predResidPlot.png')
+```
+
+The datapoints should look like a random cloud centering around the middle (residual = 0). If there are any strange patterns (a fan shape or a bow-tie), then the assumption of equal variance is violated. If the pattern is curved in some way, the association between `WB` and the predictors may not be linear. Here, the data look nice and cloud-like, so the data seem to meet the assumptions of linearity and equal variance.
+
+All checks look good so far, but what's going on with collinearity?
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_collinearity.png')
+```
+
+Those VIF values are much higher than 5. Luckily, this is just a result of the interaction, so it can be easily addressed through mean-centering, which can be addressed using PROCESS, in the next step.
+
+</details>
+</div>
+
+
+## Primary Analysis
+
+Recall that your primary research question is *Does the effect of physical activity on student well-being vary depending upon sleep?* In this analysis, you'll use multiple linear regression to first test whether your overall model significantly predicts well-being. You'll then check the effects of each predictor and the interaction individually. 
+
+
+### Your Tasks
+
++ [ ] $\ $ Use PROCESS to run multiple regression to test your hypotheses and interpret the overall model results with $\alpha$ = .05.
+
++ [ ] $\ $ Interpret the results from the interaction and individual predictors with $\alpha$ = .05.
+
+
+```{r cyrAnalysis, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric('What is the value of the model F-statistic? Please round your answer to two decimal places.',
+              answer('85.68', correct = T),
+              message = 'The overall model F-statistic is 85.68.'),
+     question("Which of the following interpretations are correct? Please select all that apply.",
+              answer('For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are equal to 0', correct=T),
+              answer("As one's social support score increases by .06 points, their well-being score will increase by 1 point, when sleep and physical activity are held constant."),
+              answer('The interaction between sleep and physical activity explains 36% of the variance in student well-being.'),
+              answer('For every additional hour of sleep, the relationship between PhysicalActivity and Wellbeing increases by .03 points on the Wellbeing assessment, while controlling for social support.', correct = T),
+              message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. As one's social support score increases by 1 point, their well-being score will increase by .06 point, when sleep and physical activity are held constant. The interpretation of the interaction, while a bit convoluted, is accurate. Additionally, the interpretation of sleep's effect on well-being is accurate.",
+              random_answer_order = T),
+     question('Which of the following is the correct interpretation of the intercept?',
+              answer('Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04'),
+              answer('Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04', correct = T),
+              answer('Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04'),
+              random_answer_order = T,
+              message = 'Because sleep and physical activity are mean-centred, the intercept will be interpreted around the mean for these variables. Social support was not mean-centred, so the intercept still reflects the value of wellbeing when social support is 0.'))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To perform a linear regression, navigate to *Analyze > Regression > PROCESS v4.2...*.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+To run the regression analysis, navigate to *Analyze > Regression >  PROCESS v4.2...*. 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESS.png')
+```
+
+Add your outcome variable, `WB`, to the 'Y variable' box and your predictor, `PhysAct` in the 'X variable' box. Add `Sleep` to the 'Moderator Variable W' box and `SocSupp` to the 'Covariate(s)' box. 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSmodel.png')
+```
+
+Click 'Options'. Under 'Mean center for construction of products', tick 'Only continuous variables that define products.' This means that our variables that were multiplied for our interaction will be mean centered, while `SocSupp` will remain the same. This also helps to address the multicollinearity issue. Select to probe interactions in cases where $p$ < .05, and set the conditioning values as '-1SD, Mean, +1SD'. Finally, make sure 'Johnson-Neyman output' is ticked:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSoptions.png')
+```
+
+Click 'Continue', then 'OK'. 
+
+The first piece of output is the test of the overeall model. 
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PrimaryModelResults.png')
+```
+
+
+The $R^2$ value is .37, which indicates that 37% of the variance in our sample's well-being scores is accounted for by sleep, physical activity, social support, and the interaction between sleep and physical activity.
+
+The ANOVA tells us the results of the overall model test (is this model significant?). This should be interpreted in the same way as a typical ANOVA - the $p$-value is < .001, so we can say the overall model significantly predicts well-being scores.In other words, when we have data on someone's sleep, physical activity levels, and social support network, we have a better idea about what their well-being may be than if we didn't have this information.
+
+Note that the $p$-value here is listed as 0. ** $p$ IS NEVER 0**. This is a rounding issue. You should instead report $p$ as < .001. 
+
+While this information is necessary to address the research question, it's not sufficient. The research aim specifically asked about the presence of an interaction between `Sleep` and `PhysAct`, so you'll need to look at the 'Coefficients' box to find the answer.
+
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESScoefs.png')
+```
+
+To address your hypothesis, you'll specifically want to check the row labeled `Int_1`, which reflects the interaction between `PhysAct` and `Sleep`. The $p$-values in the 'Sig.' column indicate that there is a significant interaction. The $p$-value of .040 is lower than the $\alpha$ threshold of .05. As in last week's model, the $p$-values associated with `Sleep` and `SocSupp` are also below the $\alpha$ threshold, indicating they are significant predictors of `Wellbeing`. The $p$-value associated with `PhysAct` is greater than .05, so it is not significant. As before, you can use the $\beta$ estimates to give you a better sense of the interaction between `PhysAct` and `Sleep` on `Wellbeing`. 
+
+The  $\beta$ coefficient associated with `Int_1` is 0.03. The $\beta$ coefficient tells us how much more the relationship between `PhysAct` and `Wellbeing` changes for every additional hour of sleep. So, in this case, for every additional hour of sleep, the relationship between `PhysAct` and `Wellbeing` increases by .03 points on the Wellbeing assessment. The Simple Slopes and Johnson-Neyman analysis will help break this interaction down further so that it is easier to interpret.
+ 
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week9_PROCESSjn.png')
+```
+
+The first part, 'conditional effects of focal predictor at values of the moderator:' reflects the Simple Slopes Analysis. It tells you the effect of Physical Activity on Wellbeing in those who sleep less than average (-1 SD), those who get about average amounts of sleep, and those who sleep more than average (+1 SD). $p$ is less than .05 in those who sleep more than average, but not significant in those who get average amounts of sleep or less. The $\beta$ coefficient associated with the high sleep group is .36, which suggests that in this group, for every additional hour of physical activity per week, well-being scores increase by .36. 
+
+The second part (the Johnson-Neyman analysis) gives an even more detailed look at which values of sleep are associated with a significant association between physical activity and well-being. Specifically, those who get about 3.5 hours of sleep or more than average per week have a significant, positive association between physical activity and well-being. For everyone else, there is no significant association between sleep and well-being.
+
+
+</details>
+</div>
+</br>
+
+
+## Interpret & Report 
+
+Now that you've completed the analyses, write a mini results section describing your findings. In this section, please:
+
++ Give a brief description of your sample as you would in a methods section. 
+
++ Report your results and a provide an interpretation in APA style. 
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+There are many ways you could write this up, but you should at least include the following information:
+
++ alpha level
++ number of participants (n)
++ participant demographics (mean age, age $SD$, and age range of sample; gender distribution of sample)
++ descriptive data for each variable ($M$ & $SD$)
++ the type of test used
++ $R^2$ and its interpretation
++ the overall model test results ($F$, $df$, $p$)
++ individual predictor results (either $B$ or $\beta$, appropriate interpretation, either the standard error or confidence intervals, $p$ values)
++ results from the Johnson-Neyman/simple slopes analysis
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+In this study, we investigated the association between well-being in university students and the lifestyle factors of sleep, physical activity, and social support. We specifically intended to investigate whether there was a moderating effect of sleep on the association between physical activity and well-being. To test this, we performed multiple linear regression with wellbeing scores as an outcome variable and hours of sleep per week, hours of physical activity per week, and scores on a social support questionnaire as predictors. We also included an interaction between sleep and physical activity. $\alpha$ was set at .05 for all analyses.
+
+Our final sample consisted of 600 university students between the ages of 17 and 26 ($M$ = 21.49, $SD$ = 2.61; 297 females, 281 males, 7 nonbinary participants, 5 participants who indicated a gender other than these categories, and 10 who preferred not to disclose). The normality assumption was checked through visual assessment of a P-P plot of the residuals. Linearity and homoskedasticity were checked using a residuals by predicted values plot. The data met all assumptions. VIF scores and correlations were used to evaluate the presence of multicollinearity. The presence of an interaction term introduced multicollinearity, so mean-centered versions of the sleep and physical activity variables were used in the analysis. 
+
+Our results indicate that the overall model significantly predicted well-being, $F$(4,595) = 85.68, $p$ < .001, explaining 37% of the variance in student well-being scores. There was a significant interaction between physical activity and sleep on wellbeing, when controlling for the effect of social support, $\beta$ = .03, $p$ = .040, 95% CI = [0.02, 0.07]. A simple-slopes analysis revealed that while physical activity was not associated with wellbeing in those with lower (< -1 $SD$; $p$ = .527) or average levels of sleep ($p$ = .253), this was not the case in those with higher (> +1 SD) levels of sleep. In this group, as physical activity increased by one hour per week, student well-being scores increased by .36 points, $SE$ = .16, $p$ = .023.
+
+</details>
+</div>
+</br>

@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Intro to the Linear Model </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Intro to the Linear Model </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+
+## This Week's Key Topics
+
++ Understand what is meant by model
+
++ Understand key features of linear model
+
++ Understand what is meant by residuals
+
++ Understand key principles of least squares
+
++ Run and interpret a linear regression model using SPSS
+
+---
+## Models in Research
+
++ **Model:** a formal representation of the world, or an idea about the way the world is
+
++ When you formulate a research aim or make a hypothesis, you're pre-supposing a model. 
+
++ When you perform statistical testing, you are evaluating that model.
+
+---
+## Models in Research
+
+.pull-left[
++ Suppose I have the following model for course performance 
+
++ I'm using this model to formally represent the relationship between course performance and time spent revising. 
+  
++ I can test whether this model represents the relationship between these two variables well using statistical testing
+
+]
+
+
+
+.pull-right[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Finding the Right Model
+
+.pull-left[
++ The goal is to find the model that best represents the data
+
++ The line reflects the model, so the ideal line will be one that is as close as possible to all observations in the dataset.
+
++ Therefore, the optimal linear model is determined through the **Principle of Least Squares**
+  
+  + The best fitting model is the one in which the sum of the squared residuals ( `\(\epsilon_i\)`) are minimised across the entire dataset
+]
+
+
+.pull-right[
+
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+
+
+]
+
+
+---
+## Logic of Regression
+
++ ANOVA is actually a special case of the linear model, so the logic of ANOVA and regression is the same
+
++ The key difference, in this case, is continuous rather than categorical predictors
+
++ The overall model test is still comparing a model with some predictors to a baseline mean model
+
+--
+
+&lt;img src="images/regressionSS.png" width="2600" /&gt;
+
+---
+## Coefficient of Determination
+
++ One of the key methods through which we evaluate a regression model is through the coefficient of determination, `\(R^2\)`
+
+`$$R^2 = \frac{SS_{Model}}{SS_{Total}}$$`
+
++ `\(R^2\)` is a measure of the variance in the outcome variable accounted for by the predictor(s)
+
++ It is equivalent to `\(\eta^2\)` in ANOVA
+
+&lt;img src="images/regressionSS.png" width="2600" /&gt;
+
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Features of a Line
+
+.pull-left[
+
+Two key features of a line:
+
++ **Intercept:** The value of `\(y\)` when the line crosses the `\(y\)`-axis ( `\(x\)` = 0)
+
++ **Slope:** The line's rate of change (steepness)
+  + How much `\(y\)` changes with every one unit change in `\(x\)`
+
+]
+
+.pull-right[
+
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+## Features of a Line
+
+.pull-left[
+
+.center[**Different Intercepts**]
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+
+
+]
+
+.pull-right[
+
+.center[**Different Slopes**]
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Linear Model Equation
+
+`$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$`
++ `\(y_i\)` = outcome variable
+
++ `\(x_i\)` = predictor variable
+
++ `\(\beta_0\)` = intercept
+
++ `\(\beta_1\)` = slope
+
++ `\(\epsilon_i\)` = residual
+
+---
+## Linear Model Equation
+
+`$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$`
+
++ **Why do we have `\(i\)` in some places and not others?**
+
++ `\(i\)` indicates that each individual has their own value
+
++ Each participant has their own:
+
+  + Outcome variable value ( `\(y_i\)`)
+  + Predictor variable value ( `\(x_i\)`)
+  + Residual term ( `\(\epsilon\)`)
+
++ **The intercept ( `\(\beta_0\)`) and slope ( `\(\beta_1\)`) do not have the subscript `\(i\)`**
+
+  + This is because there is only one intercept and slope value for all individuals in the dataset
+  
+  + The model is meant to fit **all the data**
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1x_i + \epsilon_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+]]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1\color{#4CA384}{x_i} + \epsilon_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]]
+
+--
+
+.pull-right[
+
++ The predictor value for each individual
+
++ In this example, the number of hours that each person studied
+
+]
+
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1\color{#4CA384}{x_i} + \epsilon_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Hours of Study (x) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.98 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.78 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.70 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.28 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6.11 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.00 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$\color{#4CA384}{y_i} = \beta_0 + \beta_1x_i + \epsilon_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
++ An individual's value on the outcome variable
+
++ In this example, an individual's course average
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$\color{#4CA384}{y_i} = \beta_0 + \beta_1x_i + \epsilon_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Course Average (y) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 45.07 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.15 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 51.16 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 68.08 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 70.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 78.50 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$`
+
+`$$\epsilon_i = \color{#4CA384}{\hat{y_i}}-y_i$$`
+
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
++ Predicted values for the outcome variable 
+
++ The outcome that the model predicts for someone, given their values on the predictors
+
++ E.g., the predicted course average, given the amount of time one spends revising the material
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$`
+
+`$$\epsilon_i = \color{#4CA384}{\hat{y_i}}-y_i$$`
+
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; yHat &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 47.95 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57.42 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 74.64 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 71.69 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 52.01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.31 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 59.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 76.67 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.84 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$`
+`$$\epsilon_i = \hat{y_i}-y_i$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
++ The residuals 
+  
++ The distance between an individual's actual value on the outcome variable and their model-predicted value ( `\(y-\hat{y}\)`)
+  
++ In this instance, the distance between an individual's average course mark and the course mark expected given their revision time.
+  
++ Reflects how well the model fits each data point
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \beta_1x_i + \color{#4CA384}{\epsilon_i}$$`
+.center[
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Participant &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Course Average (y) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; yHat &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; epsilon (y - yHat) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 45.07 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 47.95 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53.93 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57.42 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -3.49 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 73.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 74.64 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -1.39 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.85 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.40 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.15 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 71.69 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -2.54 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 51.16 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 52.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -0.85 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 68.08 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 64.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.77 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 61.85 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 59.27 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 70.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 76.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; -6.27 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 78.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 69.84 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8.66 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \color{#4CA384}{\beta_0} + \beta_1x_i + \epsilon_i$$`
+.center[
+
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+]]
+
+--
+
+.pull-right[
+
+**Interpretation of Intercept**
+
+If a student does not study (Weekly Study Hours = 0), we would expect their course average to be 39.09.
+
+]
+
+---
+## Linear Model Equation
+
+.pull-left[
+
+`$$y_i = \beta_0 + \color{#4CA384}{\beta_1}x_i + \epsilon_i$$`
+.center[
+
+![](Week08_IntroToLM_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+]]
+
+--
+
+.pull-right[
+
+**Interpretation of Slope**
+
+For every additional hour a student studies per week, we would expect their course average to improve by 6.15.
+
+]
+
+---
+## Our Example
+
+.pull-left[
+
++ `\(\beta_0\)`: 39.09
+
++ `\(\beta_1\)`: 4.67
+
++ `\(x\)`: study time (hours per week)
+
++ `\(y\)`: average mark for the course
+
+]
+
+
+.pull-right[
+
+** `\(\beta_0\)`: The predicted value of `\(y\)` when `\(x\)` is equal to 0**
+
+** `\(\beta_1\)`: The amount that `\(y\)` changes for every 1-unit increase in `\(x\)`**
+
+]
+
+--
+
+** `\(\beta_0\)` interpretatation:** Someone who has 0 hours of study time per week would be expected to have a course average of 39.09.
+
+** `\(\beta_1\)` interpretatation:** For every additional hour per week someone revises the material, their course average is expected to increase by 4.67 points.
+
+
+---
+## Check Your Understanding
+
+.pull-left[
++ `\(\beta_0\)`: 32.95
+
++ `\(\beta_1\)`: 2.47
+
++ `\(x\)`: years of experience
+
++ `\(y\)`: salary (unit = £1000)
+
+]
+
+
+.pull-right[
+
+** `\(\beta_0\)`: The predicted value of `\(y\)` when `\(x\)` is equal to 0**
+
+** `\(\beta_1\)`: The amount that `\(y\)` changes for every 1-unit increase in `\(x\)`**
+
+]
+
+
+---
+## Check Your Understanding
+
+.pull-left[
+
++ `\(\beta_0\)`: 68.16
+
++ `\(\beta_1\)`: -5.38
+
++ `\(x\)`: hours of sleep per night
+
++ `\(y\)`: symptom frequency (symptoms per week)
+
+]
+
+
+.pull-right[
+
+** `\(\beta_0\)`: The predicted value of `\(y\)` when `\(x\)` is equal to 0**
+
+** `\(\beta_1\)`: The amount that `\(y\)` changes for every 1-unit increase in `\(x\)`**
+
+]
+
+
+---
+class: inverse, middle, center
+
+## Questions?
+
+---
+## Multiple Predictors
+
++ Regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
+
++ However, when we include multiple predictors, those predictors are likely to correlate.
+
++ Thus, a linear model with multiple predictors finds the optimal prediction of the outcome from several predictors, **taking into account their redundancy with one another**
+
+
+---
+## Why Use Multiple Predictors?
+
++ **Prediction:** multiple predictors may lead to improved prediction.
+
++ **Theory testing:** often our theories suggest that multiple variables together contribute to variation in an outcome
+
++ **Covariate control:** we might want to assess the effect of a specific predictor, controlling for the influence of others.
+  
+  + E.g., effect of revision time on course average score after removing effect of mathematical background
+
+
+---
+## Multiple Predictors - Regression Equation
+
++ It's very straightforward to expand the regression equation to account for multiple predictors:
+
++ **One Predictor**: `\(y_i = \beta_0 + \beta_1x_i + \epsilon_i\)`
+
++ **Multiple Predictors**: `\(y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i\)`
+
++ Still a single intercept ( `\(\beta_0\)`), but now there are individual `\(\beta\)` coefficients for each predictor
+
+---
+## Multiple Predictors - Interpretation
+
+`$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$$`
+
++ `\(\beta_0\)`: The predicted value of the outcome variable when all predictors are equal to 0
+
++ `\(\beta_j\)`: partial regression coefficients
+  
+  + They now reflect the change in the outcome variable for a one-unit change in the corresponding predictor **while holding all other predictors constant**
+
+---
+class: inverse, middle, center
+
+## Questions?
+
+---
+## Conducting a Linear Regression
+
+1. State your hypothesis
+
+2. Conduct a power analysis
+
+3. Check your data (visualisations/descriptives)
+
+4. Check assumptions
+
+5. Run the test
+
+6. Calculate the effect size/confidence intervals
+
+7. Interpret results
+
+8. Report
+
+---
+## Running a Linear Regression
+
+**Step 1: State Your Hypotheses**
+
++ Regression is flexible and can be used to test many types of hypotheses, using many types of data
+
+  + Can test for associations, predictions, group differences
+  
+  + Works with both categorical and continuous predictors
+
++ Hypotheses can reflect the overall model:
+
+  + This combination of variables significantly predict the outcome variable. 
+
++ They can also be related to individual predictors:
+
+  + Predictor A has a significant effect on the outcome variable
+  
+---
+## Running a Linear Regression
+
+**Step 1: State Your Hypotheses**
+
++ Statistically, you're checking whether your `\(\beta\)` values are significantly different from 0
+
+  + `\(H_0\)`: `\(\beta_x = 0\)`
+
+  + `\(H_1\)`: `\(\beta_x \neq 0\)`
+
+
+---
+## Running a Linear Regression
+
+**Step 2: Conduct a Power Analysis**
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's run an a priori **power analysis** to calculate the sample size necessary to detect an `\(R^2\)` = .1, with power = .8 and `\(\alpha\)` = .05. Our model only has a single predictor.
+
++ As with ANOVA, Webpower computes the effect size `\(f\)`. If you need to make a conversion, you can use the following formula: 
+
+`$$R^2 = \frac{f^2}{1+f^2}$$`
+---
+## Running a Linear Regression
+
+**Step 3: Check your data**
+
++ Compute descriptive statistics
+
++ Look at relevant plots
+  
+--
+
++ Open [these data](https://mtruelovehill.github.io/PRM/Data/courseDat.sav) in SPSS.
+
+---
+## Running a Linear Regression
+
+**Step 4: Check Assumptions - Remember LINE**
+
+  + **L**inearity: Relationship between predictors &amp; outcome should be linear
+    + Simple linear regression - check the scatterplot
+    + Multiple linear regression - plot the residuals against the predicted values
+  
++ **I**ndependence: Observations/individuals should be sampled independently
+    + Consider study design
+  
++ **N**ormality: residuals should be normally distributed
+    + Check histogram and Q-Q plot of residuals
+
++ **E**quality (Homogeneity) of Variance: equal variance across range of predictors and fitted values
+    + Check the plot of residuals against predicted values
+  
+---
+## Running a Linear Regression
+
+**Step 4: Check Assumptions - Remember LINE**
+    
++ When you have multiple predictors, you should also check for multico**line**arity
+  
+  + Check correlations between predictors and the *Variance Inflation Factor* 
+  + Correlations should be less than .8
+  + VIF values for each predictor should be less than 5
+  
+---
+## Running a Linear Regression
+
+**Step 5: Run the test**
+
+**Step 6: Calculate the effect size**
+
+**Step 7: Interpret results**
+
+Let's continue in SPSS...
+
+
+---
+## Running a Linear Regression
+
+**Step 8: Report**
+
+We conducted a **simple linear regression** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; revision time (in hours per week) &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt; course performance (measured as the course average) &lt;/span&gt;&lt;/b&gt;. The `\(\alpha\)` threshold was set at .05 for all analyses. An a priori power analysis indicated that 90 participants were sufficient to detect an effect of `\(R^2\)` = .1 with a power of 80% and an `\(\alpha\)` threshold of .05.
+
+Simple linear regression indicated that revision time explained 56% of the variance in course performance &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(F\)`(1, 119) = 150.42, `\(p\)` &lt; .001 &lt;/span&gt;&lt;/b&gt;. For every additional hour of study time per week, the average course mark increased by 2.89, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(SE\)` = .24, `\(p\)` &lt; .001, 95% CI = [2.43, 3.36] &lt;/span&gt;&lt;/b&gt;. 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

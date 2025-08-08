@@ -21,7 +21,7 @@ This course aims to provide students with both a theoretical and practical under
 ### Lectures
 
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#1" target="_blank">Exploring Your Data </a>
-+ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week03_NHST_lecture.html#1" target="_blank">Introduction to Null-Hypothesis Statistical Testing </a>
++ <a href="https://mtruelovehill.github.io/PRM/Lectures/Week02_IntroToNHST_lecture.html#1" target="_blank">Introduction to Null-Hypothesis Statistical Testing </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html#1" target="_blank"><i>t</i>-tests </a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week05_ANOVAI_lecture.html#1" target="_blank">ANOVA I</a>
 + <a href="https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html#1" target="_blank">ANOVA II</a>

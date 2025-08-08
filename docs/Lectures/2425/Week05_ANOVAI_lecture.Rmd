@@ -1,0 +1,1147 @@
+---
+title: "<b> ANOVA I </b>"
+subtitle: "Psychological Research Methods:<br>Data Management & Analysis<br><br> "
+author: "Monica Truelove-Hill"
+institute: "Department of Clinical Psychology<br>The University of Edinburgh"
+date: ""
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    nature:
+      ratio: '16:9'
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  base_color = "#18778C",
+  header_color = "#000000",
+  header_font_google = google_font("Jost"),
+  header_font_weight = 500,
+  text_font_google = google_font("Jost", "300", "300i", "500", "500i"),
+  code_font_google = google_font("Source Code Pro"),
+  text_bold_color = '#4CA384',
+  text_slide_number_color = '#18778C',
+  text_font_size = '16pt'
+)
+```
+
+```{r, echo = F, message = F, warning = F}
+library(tidyverse)
+knitr::opts_chunk$set(dev = 'svg')
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#18778C'
+accent3 <- '#19424C'
+```
+
+### This Week's Key Topics
+
++ Types of ANOVAs and their assumptions
+
++ Interpreting and reporting the results of ANOVA
+
++ Computing and interpreting effect sizes for ANOVA
+
++ Conducting a power analysis for ANOVA
+
+---
+### Moving on from $t$-tests
+
++ $t$-tests allow for the comparison of two means...what if we need to compare more than two?
+
++ 'We can just run more $t$-tests'...
+
+--
+
++ **NO.**
+
+--
+
++ *Type I Errors:* rejecting the null when it is actually true.
+
++ $\alpha$ reflects our Type I error rate, or the probability of rejecting the null given that it is true.
+
+--
+
++ When we run a statistical test, we have a Type I error probability equal to $\alpha$ (usually .05, or 5%). This probability is not across ALL tests, but within each test. 
+
++ When you run multiple tests when a single test would do, you're inflating the risk of making a Type I error.
+
+---
+### Types of ANOVA
+
++ ANOVAs can be used to compare more than two means. 
+
+  + **One-Way ANOVA** test for differences between 3 or more independent means
+  
+  + **Repeated-Measures ANOVA** test for differences in a single sample at 3 or more timepoints or conditions
+  
+  + **Multiway ANOVA** tests for differences between multiple means across multiple independent variables
+
+--
+
++ Because of this, all ANOVAs require:
+
+  + A continuous dependent variable
+  
+  + At least one categorical independent variable with three or more levels
+
+---
+### One-Way ANOVA
+
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
+
++ Each level of the independent variable reflects an independent sample
+
++ Results indicate whether there is a difference between at least one pair of levels
+
+--
+
++ **Example research questions:** 
+
+  + Is there a difference in the weekly hours of exercise of participants who exercise in a gym, outside, or in their home?
+  
+  + When revising content, is it most effective to read the notes, rewrite the notes, or test yourself on the material?
+
+---
+### Repeated-Measures ANOVA
+
++ Compare the mean of the dependent variable across multiple levels of a single independent variable
+
++ Each member of the sample provided data for all levels of the independent variable
+
++ Results indicate whether there is a difference between at least one pair of levels (but these levels are measured within the same sample)
+
+--
+
++ **Example research questions:**
+
+  + Are there differences in the number of cigarettes one smokes per day at baseline, midway through, and after completion of a smoking cessation programme?
+  
+  + Does one's depression severity (as measured by BDI scores) change across the seasons?
+  
+
+---
+### ANOVA
+
++ Running an ANOVA involves:
+
+  + Computing $F$
+  
+  + Calculating the probability of obtaining our value of $F$ if the null were true
+
+  + Using this probability to make a decision whether to reject the null hypothesis
+
+
+---
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
+<br>
+<br>
+<br>
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+set.seed(526)
+dat <- data.frame(IV = c(rep('Group A', 4), rep('Group B', 4), rep('Group C', 4)),
+                  DV = c(rnorm(4, mean = 15, sd = 3), rnorm(4, mean = 18, sd = 3), rnorm(4, mean = 12, sd = 3)),
+                  ID = 1:12)
+
+
+(basePlot <- ggplot(dat, aes(ID, DV)) + geom_point() +
+    labs(x = 'Participant', y = 'Dependent Variable') +
+  scale_x_continuous(breaks = seq(1, 12, 1)) + 
+    geom_hline(yintercept = mean(dat$DV), linewidth = 1) +
+    theme(axis.text = element_text(size = 8),
+          axis.title = element_text(size = 8, face = 'bold')))
+```
+
+]
+
+
+---
+count: false
+
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+---
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+.pull-right[
+
++ Often, researchers are testing whether they can more accurately capture variation in the dependent variable using the independent variable(s).
+
+<br>
+<br>
+<br>
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75, warning = F}
+plotDat <- data.frame(y = c(mean(dat$DV[dat$IV=='Group A']), mean(dat$DV[dat$IV=='Group B']), mean(dat$DV[dat$IV=='Group C'])))
+
+(groupPlot <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank()))
+```
+
+]
+
+
+---
+### The Logic Behind ANOVA
+
+.pull-left[
+
++ When you have no further information, the best reflection of the dependent variable as a whole is the mean. 
+
++ The mean represents some individuals well, but not others. 
+
+<br>
+```{r, echo = F, fig.width=5, fig.height=2.75}
+
+basePlot +  
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = mean(DV)), lty = 2)
+```
+]
+
+.pull-right[
+
++ Often, researchers are testing whether they can more accurately capture variation in the dependent variable using the independent variable(s).
+
++ ANOVAs test whether the IV does a significantly better job than the mean of modeling variance in the DV
+
+
+```{r, echo = F, fig.width=5, fig.height=2.75, warning = F}
+basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank())
+```
+
+]
+
+---
+### The Logic Behind ANOVA
+
+
+$$F = \frac{MS_{model}}{MS_{residual}}$$
+
++ ANOVAs produce an $F$-statistic that is the ratio of the variation in the DV explained by our IV(s) and the variation explained by other unmeasured factors.
+
+
++ $MS_{model} = \frac{SS_{model}}{df_{model}}$ - reflects the variation in DV explained by the IV
+
+  + AKA $MS_{between}$ or $MS_{treatment}$
+
++ $MS_{residual} = \frac{SS_{residual}}{df_{residual}}$ - reflects the variation in DV unexplained by IV
+
+  + AKA $MS_{within}$ or $MS_{error}$
+
+--
+
++ Recall the sum of squared deviations from the [standard deviation calculation in Week 1](https://mtruelovehill.github.io/PRM/Lectures/Week01_ExploringData_Lecture.html#37). 
+
++ Here, the sums of squares (SS) is once again referring to a sum of squared distances between values.
+
+---
+### The Logic Behind ANOVA
+
+
+.pull-left[
+.center[** $SS_{model}$ **
+
+```{r, echo = F, fig.height=2.75, fig.width = 4.5, warning = F}
+(SSmodelPlot <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = mean(DV), xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank()))
+```
+]
+
++ Difference between grand mean and IV group means of the DV
+
++ Reflects the variance in the DV explained by IV over and above the mean
+
+
+]
+
+--
+
+.pull-right[
+.center[ ** $SS_{residual}$ **
+
+```{r, echo = F, fig.height=2.75, fig.width = 4.5, warning = F}
+(SSresidPlot <- basePlot + geom_point(data = dat, aes(color = IV)) +
+  scale_color_manual(values = c(baseColor, accent1, accent2)) +
+  geom_segment(aes(x = 1, y = plotDat$y[1], xend = 4, yend = plotDat$y[1]),
+               col = baseColor, linewidth = 1) +
+  geom_segment(aes(x = 5, y = plotDat$y[2], xend = 8, yend = plotDat$y[2]),
+               col = accent1, linewidth = 1) +
+  geom_segment(aes(x = 9, y = plotDat$y[3], xend = 12, yend = plotDat$y[3]),
+               col = accent2, linewidth = 1) +
+  geom_segment(aes(x = ID, y = DV, xend = ID, yend = c(rep(plotDat$y[1], 4), rep(plotDat$y[2], 4), rep(plotDat$y[3], 4)), color = dat$IV), lty = 2, linewidth = 1) +
+  theme(legend.position = c(.85, .78),
+        legend.text = element_text(size = 8),
+        legend.title = element_blank()))
+```
+]
+
++ Difference between IV group means of the DV and the observed data
+
++ Reflects the amount of variation left unexplained by the IV
+]
+
+---
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$
+
+$MS_{model} = \frac{\color{#4CA384}{SS_{model}}}{df_{model}}$
+
++ Compute distance between each observation 
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+dat$compMean <- NA
+
+for(x in 1:nrow(dat)) {
+  if(dat$IV[x] =='Group A') {
+    dat$compMean[x] <- mean(dat$DV[dat$IV=='Group A'])
+  } else if(dat$IV[x] =='Group B') {
+    dat$compMean[x] <- mean(dat$DV[dat$IV=='Group B'])
+  } else if (dat$IV[x] =='Group C') {
+    dat$compMean[x] <- mean(dat$DV[dat$IV=='Group C'])
+  }
+}
+
+dat$gmDevs <- round(dat$compMean-mean(dat$DV),2)
+dat$sqGMDevs <- round(dat$gmDevs^2, 2)
+
+SSmodelPlot + 
+  annotate(geom='text', label=dat$gmDevs, x=1:12+.5, y = dat$compMean-dat$gmDevs*.5, size=3)
+
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$
+
+$MS_{model} = \frac{\color{#4CA384}{SS_{model}}}{df_{model}}$
+
++ Compute distance between each observation 
+
++ Square them
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSmodelPlot + 
+  annotate(geom='text', label=dat$sqGMDevs, x=1:12+.5, y = dat$compMean-dat$gmDevs*.5, size=3)
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$
+
+$MS_{model} = \frac{\color{#4CA384}{`r sum(dat$sqGMDevs)`}}{df_{model}}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSmodelPlot + 
+  annotate(geom='text', label=dat$sqGMDevs, x=1:12+.5, y = dat$compMean-dat$gmDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqGMDevs)), x = 6, y = 8)
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{MS_{model}}}{MS_{residual}}$$
+
+
+$MS_{model} = \frac{`r sum(dat$sqGMDevs)`}{\color{#4CA384}{2}}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ $df_{model}$ = number of levels - 1
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSmodelPlot + 
+  annotate(geom='text', label=dat$sqGMDevs, x=1:12+.5, y = dat$compMean-dat$gmDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqGMDevs)), x = 6, y = 8)
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{\color{#4CA384}{`r sum(dat$sqGMDevs)/2`}}{MS_{residual}}$$
+
+
+$MS_{model} = \frac{`r sum(dat$sqGMDevs)`}{2}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ $df_{model}$ = number of levels - 1
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSmodelPlot + 
+  annotate(geom='text', label=dat$sqGMDevs, x=1:12+.5, y = dat$compMean-dat$gmDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqGMDevs)), x = 6, y = 8)
+```
+]
+
+---
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{\color{#4CA384}{MS_{residual}}}$$
+
+
+$MS_{residual} = \frac{\color{#4CA384}{SS_{residual}}}{df_{residual}}$
+
++ Compute distance between each observation 
+
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+
+dat$meanDevs <- round(dat$DV-dat$compMean,2)
+dat$sqDevs <- round(dat$meanDevs^2, 2)
+
+SSresidPlot + 
+  annotate(geom='text', label=dat$meanDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3)
+
+```
+
+]
+
+---
+count: false
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{\color{#4CA384}{MS_{residual}}}$$
+
+
+$MS_{residual} = \frac{\color{#4CA384}{SS_{residual}}}{df_{residual}}$
+
++ Compute distance between each observation 
+
++ Square them
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+
+SSresidPlot + 
+  annotate(geom='text', label=dat$sqDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3)
+
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{\color{#4CA384}{MS_{residual}}}$$
+
+
+$MS_{residual} = \frac{\color{#4CA384}{`r sum(dat$sqDevs)`}}{df_{residual}}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSresidPlot + 
+  annotate(geom='text', label=dat$sqDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqDevs)), x = 6, y = 8)
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{\color{#4CA384}{MS_{residual}}}$$
+
+
+$MS_{residual} = \frac{`r sum(dat$sqDevs)`}{\color{#4CA384}{9}}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ $df_{residual}$ = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSresidPlot + 
+  annotate(geom='text', label=dat$sqDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqDevs)), x = 6, y = 8)
+```
+]
+
+---
+count: false 
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{\color{#4CA384}{`r round(sum(dat$sqDevs)/9, 2)`}}$$
+
+
+$MS_{residual} = \frac{`r sum(dat$sqDevs)`}{9}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ $df_{residual}$ = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSresidPlot + 
+  annotate(geom='text', label=dat$sqDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqDevs)), x = 6, y = 8)
+
+Fstat <- round((sum(dat$sqGMDevs)/2)/(sum(dat$sqDevs)/9), 2)
+```
+]
+
+---
+
+### Calculating $F$
+
+.pull-left[
+$$F = \frac{`r sum(dat$sqGMDevs)/2`}{`r round(sum(dat$sqDevs)/9, 2)`} = `r Fstat`$$
+
+
+$MS_{residual} = \frac{`r sum(dat$sqDevs)`}{9}$
+
++ Compute distance between each observation 
+
++ Square them
+
++ Sum them up
+
++ $df_{residual}$ = number of observations - number of levels of independent variable
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4, fig.width = 4.5, warning = F}
+SSresidPlot + 
+  annotate(geom='text', label=dat$sqDevs, x=1:12+.5, y = dat$DV-dat$meanDevs*.5, size=3) +
+  annotate(geom = 'text', label = paste('SS =', sum(dat$sqDevs)), x = 6, y = 8)
+```
+]
+
+---
+### The $F$ distribution
+
+.pull-left[
++ The $F$-distribution is the null distribution against which our calculated $F$-statistic is compared. 
+
++ Like the $t$ distribution, the shape of the $F$-distribution depends on the degrees of freedom in our data.
+
++ Values of 0 or 1 are most common in the null distribution, with values farther from than 1 increasingly less likely.
+
++ Note that $F$ will never be less than 0. 
+
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=4}
+ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 10), color = baseColor, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 100), color = accent1, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 10), color = accent2, linewidth=1.5) +
+  stat_function(fun=df, geom='line', args=c(df1 = 5, df2 = 100), color = accent3, linewidth=1.5) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.x = element_text(size = 16, face = 'bold')) +
+  annotate('text', label = 'df = 2, 10', x = 4, y = .25, color = baseColor, size = 7) + 
+  annotate('text', label = 'df = 2, 100', x = 4, y = .35, color = accent1, size = 7) +
+  annotate('text', label = 'df = 5, 10', x = 4, y = .45, color = accent2, size = 7) +
+  annotate('text', label = 'df = 5, 100', x = 4, y = .55, color = accent3, size = 7)
+```
+
+]
+
+---
+### Putting it all together
+
+.pull-left[
+Basically:
+
+1) Calculate your $F$-statistic
+
+2) Identify the proper null distribution using $df_{model}$ and $df_{residual}$
+
+3) Using this distribution, compute the probability of getting an $F$-statistic at least as extreme as yours
+
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=4}
+ggplot(data = data.frame(F = c(0, 5)), aes(x=F)) +
+  stat_function(fun=df, geom='line', args=c(df1 = 2, df2 = 9), color = baseColor, linewidth=1.5) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.text.x = element_text(size = 14),
+        axis.title.x = element_text(size = 16, face = 'bold')) +
+  annotate('text', label = 'df = 2, 9', x = 1, y = .75, color = baseColor, size = 7) +
+  geom_vline(xintercept = Fstat, color = accent2, linewidth = 1, linetype = 2) + 
+  annotate('text', label = paste('F =', Fstat), x = Fstat+.5, y = .3, color = accent2, size = 7) +
+  annotate('text', label = paste('p =', round(pf(2.6, 2, 9, lower.tail = F),3)), x = Fstat+.6, y = .2, color = accent1, size = 7) +
+  geom_area(stat = 'function', fun = df, args= list(df1 = 2, df2 = 9), fill = accent1, xlim=c(qf(pf(2.6, 2, 9, lower.tail = F), df1 = 2, df2 = 9, lower.tail = F), 5), alpha = .8)
+```
+]
+
+---
+### Posthoc Tests
+
++ After determining the presence of an overall effect, you can conduct posthoc tests to look for specific effects between groups.
+
++ Involves running separate tests on each possible comparison
+
+--
+
++ But what about inflated Type I error risk??
+
+--
+
++ First, these are only conducted if the presence of an overall effect is detected.
+
++ Second, $p$-values are corrected so that the overall Type I error rate across all tests is still equal to the $\alpha$ threshold
+
+---
+class: center, inverse, middle
+
+### Questions?
+
+---
+
+### Conducting an ANOVA
+
+1. State your hypothesis
+
+2. Conduct a power analysis
+
+3. Check your data (visualisations/descriptives)
+
+4. Check assumptions
+
+5. Run the test
+
+6. Calculate the effect size/confidence intervals
+
+7. Interpret results
+
+8. Report
+
+---
+### State Your Hypotheses
+
++ $H_0: \mu_1 = \mu_2 =...\mu_n$
+
++ $H_1:$ at least one $\mu$ is different from the other $\mu$s
+
++ Note that the ANOVA distribution only has one tail, due to the nature of the $F$-statistic calculation (a ratio cannot be less than 0)
+
++ However, $H_1$ is still nondirectional
+  + ANOVA doesn't tell you the direction of group differences, just that (at least) one exists.
+
+
+---
+### State Your Hypotheses
+
+.pull-left[
+.center[**ANOVA results not significant**]
+
+```{r, echo = F, fig.height=4}
+set.seed(608)
+aovDat <- data.frame(Group = c(rep('A', 50), rep('B', 50), rep('C', 50)),
+                     NS = rnorm(150, mean = 25, sd = 5),
+                     s1 = c(rnorm(100, mean = 25, sd = 5), rnorm(50, mean = 32, sd = 5)),
+                     s2 = c(rnorm(50, mean = 25, sd = 5), rnorm(50, mean = 32, sd = 5), rnorm(50, mean = 38, sd = 5)))
+
+ggplot(aovDat, aes(Group, NS, fill = Group)) + geom_boxplot() +
+  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
+  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
+  theme(legend.position = 'none',
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold')) +
+  annotate(geom = 'text', label = 'F = .08, p = .925', x = 1.5, y = 43, size = 6)
+
+```
+]
+
+.pull-right[
+.center[**ANOVA results significant**]
+
+```{r, echo = F, fig.height=3}
+ggplot(aovDat, aes(Group, s1, fill = Group)) + geom_boxplot() +
+  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
+  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
+  theme(legend.position = 'none',
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold')) +
+  annotate(geom = 'text', label = 'F = 39.23, p < .001', x = 1.5, y = 43, size = 6)
+
+
+ggplot(aovDat, aes(Group, s2, fill = Group)) + geom_boxplot() +
+  scale_fill_manual(values = c(baseColor, accent1, accent2)) +
+  labs(x = 'Indepedent Variable', y = 'Dependent Variable') +
+  theme(legend.position = 'none',
+        axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold')) +
+  annotate(geom = 'text', label = 'F = 94.51, p < .001', x = 1.5, y = 47, size = 6)
+```
+]
+
+---
+### Assumptions of ANOVA
+
++ **Normality:** Dependent data should be normally distributed *within groups*
+
+--
+  
++ **Independence:** Observations/individuals should be sampled independently
+
+--
+
++ **Homogeneity of Variance:** Equal variance between each group/category
+
+  + This is called sphericity in the case of repeated-measures ANOVA, but it's the same general idea. 
+
+---
+
+### Effect size - $\eta^2$
+
+$$\eta^2 = \frac{SS_{model}}{SS_{total}}$$
+
++ $\eta^2$ is the proportion of variance in the dependent variable that is explained by the independent variable
+
++ Values range from 0 to 1
+
++ When you have multiple variables, you instead use $\eta^2_p$, which is the proportion of variance in the dependent variable that is explained by the independent variable *while controlling for the other variables in the model*. 
+
+.pull-left.center[
+$SS_{model}$
+```{r, echo = F, fig.height=3, warning = F}
+SSmodelPlot
+```
+]
+
+.pull-right.center[
+$SS_{total}$
+```{r, echo = F, fig.height=3, warning = F}
+basePlot + geom_segment(aes(x = ID, y = mean(DV), xend = ID, yend = DV), lty = 2, linewidth = 1)
+```
+]
+
+
+---
+
+### Interpretation of $\eta^2$
+
+
+| Strength | Magnitude of $\eta^2$ |
+|:--------:|:-------------------------:|
+| Weak     | $\leq$ .01                |
+| Moderate | $\approx$ .06             |
+| Strong   | $\geq$ .14                |
+
+
+
+---
+class: middle, inverse, center
+
+### Questions?
+
+---
+### Running a One-way ANOVA
+
+**Step 1: State Your Hypotheses**
+
+**Research Question:** Does the type of auditory stimulus an infant is exposed to have an effect on their affect?
+
+**Independent Variable:** Auditory Stimulus (3 levels: Infant-directed Speech; Adult-directed Speech; Infant-directed Singing)
+
+**Dependent Variable:** Time until distressed
+
+.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
+$$\mu_{IDspeech} = \mu_{ADspeech} = \mu_{IDsinging}$$
+]]
+
+.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
+
+At least one $\mu \neq$ the other $\mu$s
+
+]]
+
+
+---
+### Running a One-way ANOVA
+
+**Step 2: Conduct a Power Analysis**
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ Let's check the sample required to achieve 80% power to detect a moderate effect ( $eta^2$ = .06) with $\alpha$ = .05.
+
++ Although we use $\eta^2$, Webpower requires the effect size to be entered as $f$, so you'll need to convert it using the following formula:
+
+$$f = \sqrt{\frac{\eta^2}{1-\eta^2}} = \sqrt{\frac{.06}{1-.06}} = .25$$
+
+---
+### Running a One-way ANOVA
+
+**Step 3: Check your data**
+
++ Compute descriptive statistics
+
++ Look at relevant plots
+  
+--
+
++ Let's do this in SPSS using [these data](https://mtruelovehill.github.io/PRM/Data/babyDat.sav).
+
+
+---
+### Running a One-way ANOVA
+
+**Step 4: Check Assumptions**
+
++ Normality
+  
+  + Have a look at the histograms & QQ-plots
+
++ Independence of Observations
+ 
+  + Consider study design
+
++ Homogeneity of Variance
+ 
+  + Check the results of Levene's Test
+  
+
+---
+### Running a One-way ANOVA
+
+**Step 5: Run the test**
+
+**Step 6: Calculate the effect size**
+
+**Step 7: Interpret results**
+
+Let's continue in SPSS...
+
+
+---
+### Running a One-way ANOVA
+
+**Step 8: Report**
+
++ alpha threshold 
+
++ Type of test conducted
+
++ Variables tested
+
++ Descriptive data
+
++ Test results:
+  + Test statistic ( $t$)
+  + Degrees of freedom
+  + $p$-value
+  + Effect sizes and/or confidence intervals
+
++ Brief interpretation (NO DISCUSSION)
+
+
+
+---
+### Running a One-way ANOVA
+
+**Step 8: Report**
+
+We conducted a **One-Way ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> auditory stimulus </span></b> on <span style = "color:#9AD079"> <b> an infant's affect</span></b>. The $\alpha$ threshold was set at .05 for all analyses. There was a significant effect of stimulus, <span style = "color:#18778C"><b> $F$(2, 57) = 5.99, $p$ = .004, $eta^2$ = .174, 95% CI = [.02, .33] </span></b>. Posthoc Tukey's tests indicated that infants listening to infant-directed singing displayed a positive or neutral affect significantly longer <span style = "color:#19424C"><b> ($M$ = 6.32, $SD$ = 2.27)</span></b> than infants listening to adult-directed speech <span style = "color:#19424C"><b> ($M$ = 4.36, $SD$ = 1.55)</span></b>, $p$ = .005, or infants listening to infant-directed speech <span style = "color:#19424C"><b>( $M$ = 4.78, $SD$ = 1.77)</span></b>, $p$ = .033. There was no significant difference in time of distress in infants listening to adult-directed speech and those listening to infant-directed speech, $p$ = .762. 
+
+---
+### Running a One-way ANOVA
+
+**Step 8: Report**
+
+.pull-left[
+
++ Figures are useful in helping readers visualise your results.
+
++ A **boxplot** is especially good for demonstrating results when you have a continuous DV and a categorical IV
+
+]
+
+.pull-right[
+```{r, echo = F, fig.height=4.5}
+
+babyDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/babyDat.csv')
+babyDat$Group <- ifelse(babyDat$Group==0, 'AD Speech', ifelse(babyDat$Group==1, 'ID Speech', 'ID Singing'))
+babyDat$Group <- factor(babyDat$Group, levels = c('AD Speech', 'ID Speech', 'ID Singing'))
+
+ggplot(babyDat, aes(x=Group, y = TTD, fill = Group)) + geom_boxplot() +
+  scale_fill_manual(values=c(baseColor, accent1, accent2)) + 
+  ylab('Time to Distress (minutes)') +
+  theme(legend.position = 'none',
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+
+```
+
+]
+
+---
+class: center, inverse, middle
+
+### Questions?
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 1: State Your Hypotheses**
+
+Does the presence of a family member have an effect on infant's affect?
+
+.pull-left[.center[<span style = "color: #18778C"> Null Hypothesis </span>
+$$\mu_{parentAbsent} = \mu_{siblingPresent} = \mu_{parentPresent}$$
+]]
+
+.pull-right[.center[<span style = "color: #18778C"> Alternative Hypothesis </span>
+
+At least one $\mu \neq$ the other $\mu$s
+
+]]
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 2: Conduct a Power Analysis**
+
+
++ [WebPower](https://webpower.psychstat.org/wiki/models/index)
+
++ As before, let's check the sample required to achieve 80% power to detect a moderate effect ( $eta^2$ = .06) with $\alpha$ = .05.
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 3: Check your data**
+
++ We can continue using the data from the previous example.
+
+
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 4: Check Assumptions**
+
+.pull-left[
+
+
++ Normality of difference scores
+  
+  + Have a look at the histograms & QQ-plots
+  + Check skewness and kurtosis values
+  + May also run statistical tests of normality...but this is not recommended
+
++ Independence (of participants rather than observations)
+
+  + Consider study design
+  
++ Sphericity
+  
+  + Check Mauchly's test
+]
+
+.pull-right[
+```{r, echo = F, out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week5_sphericity.png')
+```
+]
+  
+
+
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 5: Run the test**
+
+**Step 6: Calculate the effect size/confidence intervals**
+
+**Step 7: Interpret results**
+
+Again, let's continue in SPSS...
+
+
+---
+### Running a Repeated-measures ANOVA
+
+**Step 8: Report**
+
+We conducted a **Repeated-measures ANOVA** to determine the effect of <span style = "color:#9AD079"> <b> familial presence  </span></b> on <span style = "color:#9AD079"> <b>infant affect </span></b>. There was a significant effect of familial presence, <span style = "color:#18778C"><b> $F$(1.83, 107.99) = 42.40, $p$ < .001, $\eta^2_p$ = 0.42 </span></b>. Mean comparisons with Bonferroni corrections indicated that infants became distressed more quickly when no family members were present <span style = "color:#19424C"><b> ( $M$ = 3.85, $SD$ = 2.05)</span></b> than when a sibling was present <span style = "color:#19424C"><b>( $M$ = 5.04, $SD$ = 1.79)</span></b>, $p$ < .001, and when a parent was present <span style = "color:#19424C"><b>( $M$ = 7.03, $SD$ = 2.05)</span></b>, $p$ < .001. Infants retained a positive or neutral affect for longer when a parent was present than when a sibling was present, $p$ < .001. 
+
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+
+
