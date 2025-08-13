@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Describing Effects </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Describing Effects </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+## This Week's Key Topics
+
++ Effect Sizes
+
++ Standard Error
+
++ Confidence Intervals
+
++ Power
+
+---
+## Recap from Last Week
++ When we run a statistical test, we compare our results against the null distribution, which provides the probability of the statistical value given the null hypothesis is true.
+
++ If the probability (the `\(p\)`-value) associated with our outcome is less than the predefined `\(\alpha\)`, it means the outcome falls into the range that we've designated as extreme.
+
++ Because it's really unlikely that this outcome would occur if `\(H_0\)` were true, we consider this sufficient evidence against `\(H_0\)`, and we reject it.
+
+
+
+---
+## Effect Size
+
++ On it's own, a `\(p\)`-value is not sufficiently descriptive of the results. 
+
+.pull-left[.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+]]
+
+.pull-right[.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+]]
+
+---
+count: false
+
+## Effect Size
+
++ On it's own, a `\(p\)`-value is not sufficiently descriptive of the results. 
+
+.pull-left[.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+
+** `\(p\)` = .015**
+]]
+
+
+.pull-right[.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+
+** `\(p\)` = .015**
+]]
+
+---
+## Effect Size
+
++ The `\(p\)`-value is only capable of providing evidence against `\(H_0\)`
+
+--
+
++ The **effect size** describes the magnitude of the effect or association (i.e. how strong it is)
+
+
+.pull-left.center[
+
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+
+]
+
+.pull-right.center[
+
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+
+]
+
+
+???
+
+Think about practical significance - a pharmaceutical company tests the effect of their new vitamin and finds that it significantly decreases the amount of time someone is sick over the course of a year. SIGNIFICANCE! But wait...it only decreases the amount of sick days by a single day. EFFECT SIZE. Do they really want to spend an immense amount of money for a single day's improvement?
+
+---
+## Effect Size
+
++ `\(p\)`-value: Is the effect significant?
+
++ Effect Size: Is the effect meaningful?
+
++ **Both** should be reported
+
+--
+
++ Many measures of effect size exist (e.g. `\(d\)`, `\(\eta^2\)`, `\(r\)`)
+
++ Usually, effect sizes are standardised rather than representing the raw difference between values
+  
+  + This means that comparisons can be made across different variables
+
+---
+## Drawing Conclusions
+
+Given `\(\alpha\)` = .05, consider the following results:
+
+.pull-left[
+
+1. `\(p\)` &lt; .001, effect size = large
+
+2. `\(p\)` = .341, effect size = large
+
+3. `\(p\)` = .002, effect size = small
+
+4. `\(p\)` = .512, effect size = small
+
+]
+
+--
+
+.pull-right[
+
++ Is the result **significant?**
+
++ Is it **meaningful?**
+
+]
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+## Confidence Intervals
+
++ A **confidence interval** defines a plausible range of values for the population parameter of interest. 
+
+  + (Remember, we don't actually know the population parameter; we're trying to estimate this using our sample's data)
+
++ The wider the interval, the more confident we can be that the interval captures the true population value.
+
+--
+
+&gt; How many of you are confident that I'm exactly 35 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 33 &amp; 38 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 29 &amp; 42 years old?
+
+--
+
+&gt; How many of you are confident that I'm between 25 &amp; 46 years old?
+
+
+---
+count: false
+
+## Confidence Intervals
+
++ A **confidence interval** defines a plausible range of values for the population parameter of interest. 
+
+  + (Remember, we don't actually know the population parameter; we're trying to estimate this using our sample's data)
+
++ The wider the interval, the more confident we can be that the interval captures the true population value.
+
++ To estimate the confidence interval, we need:
+
+  + To define a confidence level
+  + The standard error
+  
+---
+## Confidence Level
+
++ The **confidence level** refers to the percentage of times confidence intervals would be expected to contain the true population parameter across repeated samples.
+
++ The typical confidence level used is **95%**
+
+  + If we were to take 100 samples and calculate a 95% CI on each of them, ~95 of those intervals would contain the true population parameter.
+
+
+???
+
++ What are we 95% confident in?
+
+  + We are 95% confident that our interval contains the true population mean.
+  
+  + The 95% probability comes from the long-run frequencies of our intervals.
+
+---
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+--
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-12-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+
+## Standard Error
+
++ The average deviation from the mean *within* a sample is the **standard deviation**
+
++ Now imagine multiple samples are taken and the sample means are plotted each time:
+
+.center[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]
+
+--
+
++ The average deviation from the mean of the means *between* samples is the **standard error**
+
+---
+## Standard Error
+
++ The **standard error** gives a sense of how different `\(\bar{x}\)` is likely to be from `\(\mu\)`
+
++ It helps you to evaluate how well your sample reflects the population
+
++ A smaller standard error suggests the estimate is likely to be closer to the true population parameter
+
+--
+&gt; **Test Your Critical Thinking:** Why is that?
+
+--
+
+.pull-left[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]
+
+
+.pull-right[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+]
+
+---
+## Standard Error
+
+.pull-left[
+
++ It is unusual for any researcher to ACTUALLY take a substantial number of samples in order to calculate a true standard error 
+
++ Instead, this formula can be used to estimate the standard error using a single sample
+
+]
+
+.pull-right[
+
+`$$SE = \frac{s}{\sqrt{n}}$$`
+`\(s\)` = sample standard deviation
+
+`\(n\)` = number of observations within the sample
+
+]
+
+???
+
+Why would we calculate this? Who has the time and resources to collect lots of different samples???
+
+Don't worry, brilliant statisticians have figured out how you can estimate this value from a single sample.
+
+
+---
+class: center, middle, inverse
+
+## Questions?
+
+---
+## Calculation of Confidence Intervals
+
+
+`$$95\%\ CI = \bar{x}\pm 1.96\times SE$$`
+
+`\(\bar{x}\)`: sample mean
+
+`\(SE\)`: the standard error
+
+`\(\pm\)`: As this is an interval, both an upper and lower band must be calculated
+
+---
+## Calculation of Confidence Intervals
+
+.pull-left[
++ Where does 1.96 come from when calculating the 95% CI?
+
++ When enough samples are taken, the sampling distribution approximates a **normal distribution**
+
+  + Recall that in the standard normal distribution, scores are symmetrically distributed around a mean of 0
+]
+
+.pull-right[
+
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+
+
+]
+
+---
+count: false
+
+## Calculation of Confidence Intervals
+
+.pull-left[
++ Where does 1.96 come from when calculating the 95% CI?
+
++ When enough samples are taken, the sampling distribution approximates a **normal distribution**
+
+  + Recall that in the standard normal distribution, scores are symmetrically distributed around a mean of 0
+  + **95%** of observations in the standard normal distribution fall between **1.96** and **-1.96**.
+]
+
+.pull-right[
+
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+## Calculation of Confidence Intervals
+
+.pull-left[
+
+`$$95\% \ CI = \bar{x}\pm 1.96\times SE$$`
+]
+
+.pull-right[
+`$$SE = \frac{s}{\sqrt{n}}$$`
+]
+
+&gt; **Test your Understanding:** Imagine you have an attention assessment that you have tested in a sample of 525 university students. The mean score is 42.35 and the sd is 5.62.
+
+--
+
+&gt; What is n?
+
+&gt; What is the SE?
+
+&gt; What is the lower band of the 95% CI?
+
+&gt; What is the upper band of the 95% CI?
+
+
+---
+## Calculation of Confidence Intervals
+
+`$$SE = \frac{s}{\sqrt{n}}$$`
+
+**Step 1:** Calculate the Standard Error
+
+`\(SE = \frac{5.62}{\sqrt{525}}\)`
+
+--
+
+`\(SE = 0.25\)`
+
+
+---
+## Calculation of Confidence Intervals
+
+`$$95\% \ CI = \bar{x}\pm 1.96\times SE$$`
+
+.pull-left[
+
+**Step 2:** Calculate the Lower Band of 95% CI
+
+`\(95\% \ CI = 42.35 - 1.96\times 0.25\)`
+
+
+`\(95\% \ CI = 42.35 - 0.49\)`
+
+
+`\(95\% \ CI = 41.86\)`
+
+]
+
+--
+
+.pull-right[
+**Step 3:** Calculate the Higher Band of 95% CI
+
+
+`\(95\% \ CI = 42.35 + 0.49\)`
+
+
+`\(95\% \ CI = 42.84\)`
+
+]
+
+--
+
+`$$95\%\ CI = [41.86, 42.84]$$`
+
+---
+## Visualisation of Confidence Intervals
+
+.pull-left[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+
+]
+
+--
+
+.pull-right[
+
+&gt; **Test Your Understanding:** If you were to instead plot the 99% CI, would the error bars be longer or shorter?
+
+]
+
+
+---
+count: false
+
+## Visualisation of Confidence Intervals
+
+.pull-left[
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+![](Week03_DescribingEffects_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+class: center, inverse, middle
+
+## Questions?
+
+---
+
+## Power
+
++ Recall last week's discussion about Type I &amp; Type II error
+
++ The `\(\alpha\)` threshold reflects a study's risk of a Type I error
+
+--
+
++ Similarly, we have to make a decision about how much we want to risk making a **Type II error** 
+
+  + The probability of making a Type II error is known as `\(\beta\)`
+  
++ An analysis's power reflects how likely it is that an effect will be detected *if it exists*
+  
+  + AKA, 1 - `\(\beta\)`
+
+---
+
+## Power
+  
++ A conventional value for power is .8 (80% power)
+
++ This means there is a 20% chance of making a Type II error
+
++ When designing a study, a power analysis should be conducted to ensure that this power threshold will be reached given the sample constraints of the study
+
+  + The type of power analysis you use will depend upon the statistical test you plan to perform
+
+---
+## Power
+
++ There are typically four numbers that go into a power analysis. If you have 3 of these numbers, you can solve for the fourth:
+
+  + `\(\alpha\)`
+  + Effect Size
+  + `\(n\)`
+  + Power
+
+--
+
+&gt; **Test Your Understanding:** How do you think each of these values affects your ability to detect an effect?
+
+---
+## Types of Power Analyses
+
++ In most a priori power analyses, you'll want to calculate the **sample** required to get 80% power for a specific effect size and `\(\alpha\)` value.
+
++ However, if you already have a set sample (e.g. a secondary data analysis), you might want to compute the **effect size** that it can detect, given certain `\(\alpha\)` and power thresholds.
+
++ In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct power analysis.
+
+
+---
+
+## To summarise...
+
+.center[
+&lt;img src="images/ErrorTableAlphaBeta.png" width="75%" /&gt;
+]
+
+---
+class: inverse, center, middle
+
+## Questions?
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"ratio": "16:9",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

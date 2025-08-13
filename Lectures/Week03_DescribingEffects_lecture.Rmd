@@ -48,18 +48,28 @@ accent3 <- '#19424C'
 
 ## This Week's Key Topics
 
-+ Standard Error
-
 + Effect Sizes
+
++ Standard Error
 
 + Confidence Intervals
 
 + Power
 
 ---
+## Recap from Last Week
++ When we run a statistical test, we compare our results against the null distribution, which provides the probability of the statistical value given the null hypothesis is true.
+
++ If the probability (the $p$-value) associated with our outcome is less than the predefined $\alpha$, it means the outcome falls into the range that we've designated as extreme.
+
++ Because it's really unlikely that this outcome would occur if $H_0$ were true, we consider this sufficient evidence against $H_0$, and we reject it.
+
+
+
+---
 ## Effect Size
 
-+ On it's own, a $p$-value is not sufficient. 
++ On it's own, a $p$-value is not sufficiently descriptive of the results. 
 
 .pull-left[.center[
 ```{r, echo = F, fig.width=5, fig.height=3.5}
@@ -103,7 +113,7 @@ count: false
 
 ## Effect Size
 
-+ On it's own, a $p$-value is not sufficient. 
++ On it's own, a $p$-value is not sufficiently descriptive of the results. 
 
 .pull-left[.center[
 ```{r, echo = F, fig.width=5, fig.height=3.5}
@@ -125,19 +135,16 @@ p2
 ---
 ## Effect Size
 
-+ The **effect size** describes the magnitude of the effect or relationship
-
-+ Unlike a $p$-value, which only tells you the likelihood that an effect or relationship exists, the effect size tells you how strong it is.
-
-+ Different measures of effect size depending on your data/the statistical test you use
-
-+ Usually standardised so that you can make comparisons across different variables
++ The $p$-value is only capable of providing evidence against $H_0$
 
 --
 
++ The **effect size** describes the magnitude of the effect or association (i.e. how strong it is)
+
+
 .pull-left.center[
 
-```{r, echo = F, fig.width=4.5, fig.height=2.5}
+```{r, echo = F, fig.width=5, fig.height=3.5}
 dP1 <- cohens_d(dat, formula = x~group)
 p1 + 
   annotate('segment', x=mean(dat$x[dat$group=='A']), xend = mean(dat$x[dat$group=='B']), y = .1, color = accent3, linewidth = 1.5) +
@@ -148,7 +155,7 @@ p1 +
 
 .pull-right.center[
 
-```{r, echo = F, fig.width=4.5, fig.height=2.5}
+```{r, echo = F, fig.width=5, fig.height=3.5}
 dP2 <- cohens_d(dat2, formula = x~group)
 
 p2 + 
@@ -164,13 +171,62 @@ p2 +
 Think about practical significance - a pharmaceutical company tests the effect of their new vitamin and finds that it significantly decreases the amount of time someone is sick over the course of a year. SIGNIFICANCE! But wait...it only decreases the amount of sick days by a single day. EFFECT SIZE. Do they really want to spend an immense amount of money for a single day's improvement?
 
 ---
+## Effect Size
+
++ $p$-value: Is the effect significant?
+
++ Effect Size: Is the effect meaningful?
+
++ **Both** should be reported
+
+--
+
++ Many measures of effect size exist (e.g. $d$, $\eta^2$, $r$)
+
++ Usually, effect sizes are standardised rather than representing the raw difference between values
+  
+  + This means that comparisons can be made across different variables
+
+---
+## Drawing Conclusions
+
+Given $\alpha$ = .05, consider the following results:
+
+.pull-left[
+
+1. $p$ < .001, effect size = large
+
+2. $p$ = .341, effect size = large
+
+3. $p$ = .002, effect size = small
+
+4. $p$ = .512, effect size = small
+
+]
+
+--
+
+.pull-right[
+
++ Is the result **significant?**
+
++ Is it **meaningful?**
+
+]
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
 ## Confidence Intervals
 
-+ Remember, we don't actually know the population parameter; we're trying to estimate this with our data.
++ A **confidence interval** defines a plausible range of values for the population parameter of interest. 
 
-+ A **confidence interval** defines a plausible range of values for our population parameter. 
+  + (Remember, we don't actually know the population parameter; we're trying to estimate this using our sample's data)
 
-+ The wider the interval, the more confident that we can be that the interval captures our true value.
++ The wider the interval, the more confident we can be that the interval captures the true population value.
 
 --
 
@@ -187,20 +243,32 @@ Think about practical significance - a pharmaceutical company tests the effect o
 --
 
 > How many of you are confident that I'm between 25 & 46 years old?
-  
+
+
 ---
-## Confidence Level
+count: false
+
+## Confidence Intervals
+
++ A **confidence interval** defines a plausible range of values for the population parameter of interest. 
+
+  + (Remember, we don't actually know the population parameter; we're trying to estimate this using our sample's data)
+
++ The wider the interval, the more confident we can be that the interval captures the true population value.
 
 + To estimate the confidence interval, we need:
 
   + To define a confidence level
   + The standard error
+  
+---
+## Confidence Level
 
 + The **confidence level** refers to the percentage of times confidence intervals would be expected to contain the true population parameter across repeated samples.
 
-+ The typical confidence level used is **95%**, although you might also see 90% or 99%
++ The typical confidence level used is **95%**
 
-+ So, if we were to take 100 samples and calculate a 95% CI on each of them, ~95 of those intervals would contain the true population parameter.
+  + If we were to take 100 samples and calculate a 95% CI on each of them, ~95 of those intervals would contain the true population parameter.
 
 
 ???
@@ -214,14 +282,14 @@ Think about practical significance - a pharmaceutical company tests the effect o
 ---
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 --
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(1, mean = 62, sd = 5))
 
@@ -239,12 +307,12 @@ count: false
 
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(2, mean = 62, sd = 5))
 
@@ -262,12 +330,12 @@ count: false
 
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(3, mean = 62, sd = 5))
 
@@ -285,12 +353,12 @@ count: false
 
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(4, mean = 62, sd = 5))
 
@@ -308,12 +376,12 @@ count: false
 
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(5, mean = 62, sd = 5))
 
@@ -331,21 +399,26 @@ count: false
 
 ## Standard Error
 
-+ The average deviation from the mean *within* our sample is the **standard deviation**
++ The average deviation from the mean *within* a sample is the **standard deviation**
 
-+ Now imagine you took multiple samples and plotted their means:
++ Now imagine multiple samples are taken and the sample means are plotted each time:
 
 .center[
-```{r, echo = F, fig.height=3.5, warning = F}
+```{r, echo = F, fig.height=4.5, warning = F}
 set.seed(44)
 seDat <- data.frame(MeanScore = rnorm(100, mean = 62, sd = 5))
+
+sdVal <- round(sd(seDat$MeanScore),2)
 
 ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, color = accent3) +
   scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
   scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
-  xlab('Mean Score') +
+  labs(x = 'Mean Score', y = 'Count') +
   theme(axis.text = element_text(size = 12),
-        axis.title = element_text(size = 14, face = 'bold'))
+        axis.title = element_text(size = 14, face = 'bold')) +
+  geom_vline(xintercept = mean(seDat$MeanScore), linetype = 'dashed', color = accent2, linewidth = 1) +
+  annotate('text', label = paste('SE =', sdVal), x = 70, y = 15, size = 6)
+  
 ```
 ]
 
@@ -356,16 +429,71 @@ ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, c
 ---
 ## Standard Error
 
-+ The **standard error** gives you a sense of how different $\bar{x}$ is likely to be from $\mu$
++ The **standard error** gives a sense of how different $\bar{x}$ is likely to be from $\mu$
 
 + It helps you to evaluate how well your sample reflects the population
 
-+ A smaller standard error suggests our estimate is likely to be closer to the true population parameter
++ A smaller standard error suggests the estimate is likely to be closer to the true population parameter
+
+--
+> **Test Your Critical Thinking:** Why is that?
 
 --
 
-$$SE = \frac{\sigma}{\sqrt{N}}$$
+.pull-left[
+```{r, echo = F, fig.height=4, warning = F}
 
+ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  labs('Mean Score', y = 'Count') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold')) +
+  geom_vline(xintercept = mean(seDat$MeanScore), linetype = 'dashed', color = accent2, linewidth = 1) +
+  annotate('text', label = paste('SE =', sdVal), x = 70, y = 15, size = 6)
+  
+```
+]
+
+
+.pull-right[
+```{r, echo = F, fig.height=4, warning = F}
+set.seed(68)
+smallSE <- data.frame(MeanScore = rnorm(100, mean = 62, sd = 3))
+
+smallseVal <- round(sd(smallSE$MeanScore),2)
+
+ggplot(smallSE, aes(MeanScore)) + geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
+  scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
+  scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
+  labs(x = 'Mean Score', y = 'Count') +
+  theme(axis.text = element_text(size = 12),
+        axis.title = element_text(size = 14, face = 'bold')) +
+  geom_vline(xintercept = mean(smallSE$MeanScore), linetype = 'dashed', color = accent2, linewidth = 1) +
+  annotate('text', label = paste('SE =', smallseVal), x = 70, y = 15, size = 6)
+  
+```
+]
+
+---
+## Standard Error
+
+.pull-left[
+
++ It is unusual for any researcher to ACTUALLY take a substantial number of samples in order to calculate a true standard error 
+
++ Instead, this formula can be used to estimate the standard error using a single sample
+
+]
+
+.pull-right[
+
+$$SE = \frac{s}{\sqrt{n}}$$
+$s$ = sample standard deviation
+
+$n$ = number of observations within the sample
+
+]
 
 ???
 
@@ -373,23 +501,91 @@ Why would we calculate this? Who has the time and resources to collect lots of d
 
 Don't worry, brilliant statisticians have figured out how you can estimate this value from a single sample.
 
+
+---
+class: center, middle, inverse
+
+## Questions?
+
 ---
 ## Calculation of Confidence Intervals
 
-+ As this is an interval, you'll need to calculate both a lower and upper band.
 
---
-
-$$CI = \bar{x}\pm z\times SE$$
+$$95\%\ CI = \bar{x}\pm 1.96\times SE$$
 
 $\bar{x}$: sample mean
 
-$z$: $z$-score associated with the confidence level
-  + 90% = 1.64
-  + 95% = 1.96
-  + 99% = 2.58
-
 $SE$: the standard error
+
+$\pm$: As this is an interval, both an upper and lower band must be calculated
+
+---
+## Calculation of Confidence Intervals
+
+.pull-left[
++ Where does 1.96 come from when calculating the 95% CI?
+
++ When enough samples are taken, the sampling distribution approximates a **normal distribution**
+
+  + Recall that in the standard normal distribution, scores are symmetrically distributed around a mean of 0
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=5}
+seDat$MeanScoreStd <- scale(seDat$MeanScore)
+loBand <- mean(seDat$MeanScoreStd)-1.96*sd(seDat$MeanScoreStd)
+hiBand <- mean(seDat$MeanScoreStd)+1.96*sd(seDat$MeanScoreStd)
+
+ggplot(seDat, aes(MeanScoreStd)) +
+  stat_function(fun=dnorm, args= list(mean(seDat$MeanScoreStd), sd(seDat$MeanScoreStd)), geom = "line", linewidth = 1.5, color = accent3) +
+  xlim(-4, 4) +
+  theme(axis.title = element_text(size = 14, face = 'bold'),
+        axis.text = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5) +
+  geom_vline(xintercept = mean(seDat$MeanScoreStd), color = accent3, linewidth = 1, linetype = 'dashed')
+```
+
+
+]
+
+---
+count: false
+
+## Calculation of Confidence Intervals
+
+.pull-left[
++ Where does 1.96 come from when calculating the 95% CI?
+
++ When enough samples are taken, the sampling distribution approximates a **normal distribution**
+
+  + Recall that in the standard normal distribution, scores are symmetrically distributed around a mean of 0
+  + **95%** of observations in the standard normal distribution fall between **1.96** and **-1.96**.
+]
+
+.pull-right[
+
+```{r, echo = F, fig.height=5, warning = F, message = F}
+ggplot(seDat, aes(MeanScoreStd)) +
+  stat_function(fun=dnorm, args= list(mean(seDat$MeanScoreStd), sd(seDat$MeanScoreStd)), geom = "line", linewidth = 1.5, color = accent3) +
+  xlim(-4,4) +
+  theme(axis.title = element_text(size = 14, face = 'bold'),
+        axis.text = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank()) +
+  geom_hline(yintercept = 0, linewidth = 1.5) +
+  geom_area(stat = 'function', fun = dnorm, args= list(mean(seDat$MeanScoreStd), sd(seDat$MeanScoreStd)), fill = accent2, xlim=c(loBand, hiBand), alpha = .8) + 
+  geom_vline(xintercept = -1.96, color = accent1, linewidth = 1) +
+  geom_vline(xintercept = 1.96, color = accent1, linewidth = 1) + 
+  geom_vline(xintercept = mean(seDat$MeanScore), color = accent3, linewidth = 1, linetype = 'dashed') +
+  annotate('text', label = '95%', x = 0, y = .2, size = 7, color = 'white') +
+  annotate('text', label = '1.96', x = 2.5, y = .2, size = 7) +
+  annotate('text', label = '-1.96', x = -2.5, y = .2, size = 7)
+```
+]
+
 
 ---
 ## Calculation of Confidence Intervals
@@ -403,7 +599,7 @@ $$95\% \ CI = \bar{x}\pm 1.96\times SE$$
 $$SE = \frac{s}{\sqrt{n}}$$
 ]
 
-> Test your Understanding: Imagine you have an attention assessment that you have tested in a sample of 525 university students. The mean score is 42.35 and the sd is 5.62.
+> **Test your Understanding:** Imagine you have an attention assessment that you have tested in a sample of 525 university students. The mean score is 42.35 and the sd is 5.62.
 
 --
 
@@ -461,6 +657,10 @@ $95\% \ CI = 42.35 + `r 1.96*round(5.62/sqrt(525), 2)`$
 $95\% \ CI = `r round(42.35 + 1.96*round(5.62/sqrt(525), 2), 2)`$
 
 ]
+
+--
+
+$$95\%\ CI = [`r round(42.35 - 1.96*round(5.62/sqrt(525), 2), 2)`, `r round(42.35 + 1.96*round(5.62/sqrt(525), 2), 2)`]$$
 
 ---
 ## Visualisation of Confidence Intervals
@@ -542,54 +742,39 @@ class: center, inverse, middle
 ## Questions?
 
 ---
-## Errors
-
-+ Whether your decision is either to reject or not reject the null hypothesis, you may be making an error.
-
---
-
-+ Two types of errors:
-
-  + **Type I Error:** You reject a true null hypothesis (i.e., you believe a result is significant when it is not)
-  
-  + **Type II Error:** You don't reject a false null hypothesis (i.e., you don't think a result is significant when it is)
-
-
---
-
-.center[
-```{r, echo = F, out.width='75%'}
-# knitr::include_graphics('images/ErrorTable.png')
-```
-]
-
----
----
 
 ## Power
+
++ Recall last week's discussion about Type I & Type II error
+
++ The $\alpha$ threshold reflects a study's risk of a Type I error
+
+--
 
 + Similarly, we have to make a decision about how much we want to risk making a **Type II error** 
 
   + The probability of making a Type II error is known as $\beta$
   
-+ An analysis's power is associated with the likelihood of making a Type II error.
-  
-  + It tells us how likely we are to detect an effect *if it exists*
++ An analysis's power reflects how likely it is that an effect will be detected *if it exists*
   
   + AKA, 1 - $\beta$
 
---
+---
+
+## Power
   
 + A conventional value for power is .8 (80% power)
 
 + This means there is a 20% chance of making a Type II error
 
++ When designing a study, a power analysis should be conducted to ensure that this power threshold will be reached given the sample constraints of the study
+
+  + The type of power analysis you use will depend upon the statistical test you plan to perform
 
 ---
-
 ## Power
 
-+ There are typically four numbers that go into a power calculation. If you have 3 of these numbers, you can solve for the fourth:
++ There are typically four numbers that go into a power analysis. If you have 3 of these numbers, you can solve for the fourth:
 
   + $\alpha$
   + Effect Size
@@ -601,20 +786,14 @@ class: center, inverse, middle
 > **Test Your Understanding:** How do you think each of these values affects your ability to detect an effect?
 
 ---
-count: false
+## Types of Power Analyses
 
-## Power
++ In most a priori power analyses, you'll want to calculate the **sample** required to get 80% power for a specific effect size and $\alpha$ value.
 
-+ There are typically four numbers that go into a power calculation. If you have 3 of these numbers, you can solve for the fourth:
++ However, if you already have a set sample (e.g. a secondary data analysis), you might want to compute the **effect size** that it can detect, given certain $\alpha$ and power thresholds.
 
-  + $\alpha$
-  + Effect Size
-  + $n$
-  + Power
++ In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct power analysis.
 
-+ In most a priori power analyses, you'll want to check the sample required to get 80% power for a specific effect size.
-
-+ However, if you already have a set sample, you might want to check the effect size that it has the power to detect.
 
 ---
 
@@ -622,6 +801,12 @@ count: false
 
 .center[
 ```{r, echo = F, out.width='75%'}
-# knitr::include_graphics('images/ErrorTableAlphaBeta.png')
+knitr::include_graphics('images/ErrorTableAlphaBeta.png')
 ```
 ]
+
+---
+class: inverse, center, middle
+
+## Questions?
+
