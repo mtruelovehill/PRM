@@ -1,0 +1,444 @@
+---
+title: "Week 2: Describing Effects"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+
+pacman::p_load('tidyverse', 'rstatix', 'shiny', 'viridis')
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#18778C'
+accent3 <- '#19424C'
+```
+
+```{r, context = 'server'}
+output$sePlot <- renderPlot({
+
+  set.seed(622)
+  popDat <- rnorm(200, mean = 10, sd = 3)
+  
+  dat <- data.frame(Score = NA, 
+                    Sample = as.factor(rep(1:10, each = 10)))
+  
+  set.seed(108)
+  dat$Score[1:(10*input$sampleNum)] <- sample(popDat, size = 10*input$sampleNum, replace = F)
+  
+  datDesc <- as.data.frame(dat %>%
+                           group_by(Sample) %>%
+                           summarise(SampleMean = round(mean(Score, na.rm = T), 2),
+                                     SampleSD = round(sd(Score, na.rm = T), 2)))
+  
+  pColors <- viridis(20)
+  
+  ggplot(dat, aes(Score, Sample, color = Sample)) + geom_point(size = 3) + 
+    scale_color_manual(values = pColors[6:18]) + 
+    scale_x_continuous(limits = c(0, 22), breaks = seq(0, 22, by = 2)) +
+    ylab('Sample') +
+    annotate(geom = 'point', x = datDesc$SampleMean, y = datDesc$Sample, shape = 18, size = 4, color = 'brown3') +
+    annotate(geom = 'segment', x = datDesc$SampleMean-datDesc$SampleSD, xend = datDesc$SampleMean+datDesc$SampleSD,
+             y = datDesc$Sample, color = 'brown3') +
+    annotate(geom = 'text', label = paste('M =', datDesc$SampleMean[!is.na(datDesc$SampleMean)], 
+                                          'SD =', datDesc$SampleSD[!is.na(datDesc$SampleSD)]),
+             x = datDesc$SampleMean[!is.na(datDesc$SampleMean)], y = c(1:input$sampleNum)+.25, size = 5) +
+    theme(legend.position = 'none',
+          axis.text = element_text(size = 14),
+          axis.title = element_text(size = 16, face = 'bold'))
+
+
+  
+})
+
+output$sePlot2 <- renderPlot({
+  
+set.seed(622)
+  popDat <- rnorm(200, mean = 10, sd = 3)
+  
+  dat <- data.frame(Score = NA, 
+                    Sample = as.factor(rep(1:10, each = 10)))
+  
+  set.seed(108)
+  dat$Score[1:(10*input$sampleNum)] <- sample(popDat, size = 10*input$sampleNum, replace = F)
+  
+  datDesc <- as.data.frame(dat %>%
+                           group_by(Sample) %>%
+                           summarise(SampleMean = round(mean(Score, na.rm = T), 2),
+                                     SampleSD = round(sd(Score, na.rm = T), 2)))
+
+ggplot(datDesc, aes(SampleMean)) + geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
+  labs(x = 'Sample Mean', y = 'Frequency') + 
+  scale_x_continuous(limits = c(5, 15), breaks = seq(5, 15, 1)) + 
+  scale_y_continuous(limits = c(0, 6)) +
+  annotate(geom = 'point', x = mean(datDesc$SampleMean, na.rm = T), y = 5.75, shape = 18, size = 4, 
+           color = 'brown3') +
+  annotate(geom = 'segment', x = mean(datDesc$SampleMean, na.rm = T)-sd(datDesc$SampleMean, na.rm = T), xend = 
+             mean(datDesc$SampleMean, na.rm = T)+sd(datDesc$SampleMean, na.rm = T),y = 5.75, color = 'brown3') +
+  annotate(geom = 'text', label = paste('mu = ', round(mean(datDesc$SampleMean, na.rm = T),2), ', SE = ', 
+                                        round(sd(datDesc$SampleMean, na.rm = T),2)), 
+           x = mean(datDesc$SampleMean, na.rm = T), y = 6,
+           size = 5) +
+    theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'))
+  
+})
+
+output$effectSizePlot <- renderPlot({
+  
+  set.seed(820)
+  G1 <- rnorm(as.numeric(input$n), mean = 50, sd = input$sdG1)
+  
+  testDat <- data.frame(Group = c(rep('G1', as.numeric(input$n)), rep('G2', as.numeric(input$n))),
+                        x = c(G1, G1+as.numeric(input$meanDiff)))
+  
+  pVal <- round(t.test(x~Group, data = testDat)$p.value,3)
+  effSize <- as.numeric(round(cohens_d(testDat, x~Group)$effsize,2))
+  
+  ggplot(data.frame(x=c(15, 85)), aes(x)) +
+    geom_histogram(data = testDat[testDat$Group=='G1',], aes(x, y = after_stat(density)), binwidth = 2, fill = accent2, alpha = .8) +
+    geom_histogram(data = testDat[testDat$Group=='G2',], aes(x, y = after_stat(density)), binwidth = 2, fill = baseColor, alpha = .8) +
+    geom_density(data = testDat[testDat$Group=='G1',], aes(x), color = baseColor, linewidth = 1) +
+    geom_density(data = testDat[testDat$Group=='G2',], aes(x), color = accent3, linewidth = 1) +
+    scale_x_continuous(limits = c(15, 85), breaks = seq(15, 85, by = 10)) +
+    scale_y_continuous(limits = c(0, .15)) +
+    theme(axis.text.x = element_text(size = 12),
+          axis.title.x = element_text(size = 14, face = 'bold'),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.ticks.y = element_blank()) +
+    annotate(geom = 'text', label = paste('Effect Size =', abs(effSize)), x = 25, y = .09, size = 6) +
+    annotate(geom = 'text', label = paste('p', ifelse(pVal==0, ' < .001', paste0(' = ', pVal))), 
+             x = 25, y = .07, size = 6)
+  
+})
+
+
+  observeEvent(input$do, {
+    CIs <- data.frame(Sample = 1:20, mean = rep(NA,20), lowBound = rep(NA, 20), hiBound = rep(NA, 20))
+    ciDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/ciDat.csv')
+    
+    for(x in 1:nrow(CIs)) {
+      sampDat <- sample(ciDat$Cscore, size = 50)
+      margin <- 1.96*sd(sampDat)/sqrt(50)
+      CIs$mean[x] <- round(mean(sampDat), 2)
+      CIs$lowBound[x] <- mean(sampDat)-margin
+      CIs$hiBound[x] <- mean(sampDat)+margin
+    }
+    
+    CIs$plotColors <- ifelse(mean(ciDat$Cscore)>=CIs$lowBound&mean(ciDat$Cscore)<=CIs$hiBound, baseColor, '#D83535')
+    
+    output$ciPlot <- renderPlot({
+      ggplot(CIs, aes(mean, y = Sample)) +
+        geom_errorbar(data=CIs, aes(xmin = lowBound, xmax = hiBound, y = Sample), width=0.2, linewidth=1, 
+                    color=CIs$plotColors) + 
+        geom_point(color = CIs$plotColors) +
+        labs(x = 'Score', y = 'Sample Number') +
+        scale_x_continuous(limits = c(45, 75), breaks = seq(45, 75, by = 5)) +
+        scale_y_continuous(limits = c(1, 20), breaks = seq(0, 20, by = 1)) +
+        geom_vline(xintercept = mean(ciDat$Cscore), color = accent2, linewidth = 1) +
+        theme(axis.text = element_text(size = 12),
+              axis.title = element_text(size = 14, face = 'bold'))
+    })
+  })
+  
+```
+
+
+```{r, echo = F}
+tags$style(HTML(".js-irs-0 .irs-single, .js-irs-0 .irs-bar {background: #008290; border-color: transparent}"))
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+Today, you'll be using interactive visualisations to demonstrate the concepts covered in the lecture. You will also learn some SPSS basics.
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Describe the difference between standard deviation and standard error
+2. Describe the difference between effect sizes and $p$-values
+3. Compute confidence intervals
+4. Describe general requirements of a power analysis
+
+## Standard Error vs Standard Deviation
+
+Recall from the lecture that the **standard deviation** reflects the average deviation from the mean within a single sample, while the **standard error** is the average deviation from the mean of the means between samples.
+
+Use the plot below to visually demonstrate the differences between standard deviation and standard error. The red diamond indicates the mean of each sample in the left plot, and the mean of all sample means in the right plot. The red bar reflects the standard deviation in the left plot and the standard error in the right plot.
+
+```{r sePlot, echo = F}
+
+fluidRow(sliderInput('sampleNum', 'Select the number of samples to collect', min=1, max = 10, step = 1, 
+                     value = 1, ticks = F),
+         style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px')
+
+
+
+fluidRow(column(6, plotOutput('sePlot', height = 450)),
+         column(6, plotOutput('sePlot2', height = 300)))
+       
+```
+
+<br>
+
+Think about the following questions:
+
++ Why does the standard error increase when sample 3 is collected?
+
++ Is the standard error generally higher or generally lower than the standard deviation? Why might this be the case?
+
+
+```{r tyuSE, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question('What is the relationship between sample size and standard error?',
+              answer('As sample size increases, standard error decreases', correct = T),
+              answer('As sample size increases, standard error increases'),
+              answer('There is no association between sample size and standard error'),
+              message = 'A larger sample is more likely to provide a more precise measure of the population mean, so standard error would be expected to decrease.'),
+     question("Morgan collects data on Hours of Sleep and Heart Rate from the same sample and computes the standard error of each. Hours of Sleep has a standard error of .25, while Heart Rate has a standard error of 1.21. What can she conclude from this?",
+              answer("Her sample's mean sleep is likely to be closer to the population mean sleep as compared to her sample's heart rate."),
+              answer('Her heart rate data is more likely to be inaccurate than her sleep data'),
+              answer("Morgan can't make direct comparisons between the standard errors of these variables.", correct = T), random_answer_order = T,
+              message = 'Morgan cannot directly compare these two variables. Variables with higher standard deviation values will inherently have higher standard errors. The range of typical heart rates is much wider than the range of typical sleep hours, so heart rate will naturally have a higher standard error than hours of sleep.'))
+```
+
+
+## Interpreting Effect Sizes
+
+Although a $p$-value provides you with evidence of whether the null hypothesis can be rejected, it doesn't provide information about the strength of the effect being tested. Even weak relationships may be significant under certain circumstances. Significance does not guarantee an effect is meaningful. To get a better sense of this, we use effect size. 
+
+The plot below shows the distribution of scores for each of two groups, differentiated by color. Use this plot to explore the relationships between means, standard deviations, effect size, sample size, and the $p$-value. While you interact with the plot, consider the following:
+
++ How does changing the difference between means affect the effect size? The $p$-value?
+
++ How does changing the standard deviation affect the effect size? The $p$-value?
+
++ How does changing the sample size affect the effect size? The $p$-value?
+
+**Please note** that due to the way the data are simulated, there will not be a perfect negative or positive relationship between these values. It's more important that you grasp the general trend in their relationship than note the specific values being produced. The answers to the quiz questions will reflect this.
+
+```{r effSizePlot, echo = F}
+fluidRow(column(6,
+                selectInput('meanDiff', 'Select the Difference between Group Means:', 
+                            choices = list('.5' = .5, '1' = 1, '3' = 3, '5' = 5, '10' = 10)),
+                selectInput('n', 'Sample Size per Group:', 
+                            choices = list('10' = 10, '30' = 50, '100' = 100, '500' = 500, '1000' = 1000, '5000' = 5000)),
+                style='padding-left:50px; padding-right:10px; padding-bottom: 0px; padding-top: 0px'),
+  column(6, sliderInput('sdG1', 'SD of each group', min=5, max = 10, step = 1, value = 5, ticks = F),
+         style='padding-left:50px; padding-right:30px; padding-bottom: 0px; padding-top: 0px'))
+
+plotOutput('effectSizePlot')
+```
+
+```{r q5, echo = FALSE}
+quiz(caption = 'Test Your Understanding',
+     question("If the difference between means and the sample size is held constant, what generally happens to the effect size when the SD is increased?",
+              answer('The effect size increases'),
+              answer('The effect size decreases', correct = T),
+              answer('The effect size stays about the same'),
+              message = 'Increasing the standard deviation of will decrease the effect size. This is because the variability in the data is increased.'),
+     question("If the group SD and the sample size is held constant, what generally happens to the effect size when the difference between means is increased?",
+              answer('The effect size increases', correct = T),
+              answer('The effect size decreases'),
+              answer('The effect size stays about the same'),
+              message = 'Increasing the difference between means indicates a stronger effect of the independent/grouping variable, so the effect size increases.'),
+     question("If the difference between means and the group SD is held constant, what generally happens to the effect size when the sample size is increased?",
+              answer('The effect size increases'),
+              answer('The effect size decreases'),
+              answer('The effect size stays about the same', correct = T),
+              message = 'Increasing the sample size does not have much of an effect on the effect size.'),
+     question("If the difference between means and the group SD is held constant, what generally happens to the p-value when the sample size is increased?",
+              answer('The p-value increases'),
+              answer('The p-value decreases', correct = T),
+              answer('The p-value stays about the same'),
+              message = 'Increasing the sample size can also decrease the p-value, causing results to appear more significant even if the effect is quite small.'))
+```
+
+## Compute a 95% Confidence Interval 
+
+Recall from the [lecture](https://mtruelovehill.github.io/PRM/Lectures/Week03_DescribingEffects_lecture.html#1) that a 95% confidence level indicates that, were we to collect 100 samples and compute 95% confidence intervals each time, ~95 of those confidence intervals would be expected to contain the true population value. 
+
+Here, we'll perform a simulation to illustrate this idea. 
+
+Imagine that you are testing a new measure of social perception in children. You have gathered data from a large sample of children, but for normative purposes, you'd like identify the expected average for the entire population. While it's not possible to know this average without testing every child in the world, it can be estimated using confidence intervals.
+
+```{r q6, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question("In the above example, which of the following is the sample?",
+              answer("Every child in the world"),
+              answer("The children who provided data", correct = T),
+              message = 'The population refers to anyone to whom the results can be generalised. In this case, it would be every child in the world. The sample refers to the children who provided data.'),
+      question("In the above example, which of the following would be considered the population parameter?",
+              answer("The mean social perception score of all children in the world", correct = T),
+              answer("The mean social perception score for the children who provided data"),
+              message = 'The population parameter is the value we are attempting to estimate by using sample data. In this case, it is the mean score of all children in the world.')
+     )
+```
+
+
+We often cannot know the true population parameter, but for the purposes of illustration, let's imagine that we have access to the social perception performance of all children in the world, and it looks something like this:
+
+```{r, echo = F, message = F, warning = F}
+ciDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/ciDat.csv')
+
+ggplot(ciDat, aes(Cscore)) + geom_histogram(fill = accent1, color = accent3) + 
+  xlab('Score') +
+  theme(axis.text.x = element_text(size = 12),
+          axis.title.x = element_text(size = 14, face = 'bold'),
+          axis.text.y = element_blank(),
+          axis.title.y = element_blank(),
+          axis.ticks.y = element_blank()) +
+  annotate('text', label = paste0('Mean = ', round(mean(ciDat$Cscore), 2)), x = 40, y = 700, size = 6)
+  
+```
+
+```{r q7, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question_numeric("What is the value of the population parameter in this example? Please round your answer to 2 decimal places.",
+              answer(57.97, correct = T),
+              message = 'The population parameter is the mean score on the assessment, 57.97.')
+     )
+```
+
+
+To demonstrate what the confidence interval tells us, we need to take multiple samples from the population and calculate a confidence interval from each. Given what a 95% confidence interval is telling us, if we were to take 20 separate samples of 50 children and compute a confidence interval with each, we would expect around 19 (95%) of those confidence intervals to include a value of 57.97. 
+
+Use the button to generate 20 new samples. In the plot, the points represent the mean of each sample, and the error bars show the 95% confidence intervals. The true population mean is represented by the blue line. Red error bars indicate confidence intervals that do not include the true population mean. If you were to press the button many times, eventually you would find that, on average, 95% of the confidence intervals contain the true population mean of 57.97.
+
+```{r, echo = F}
+actionButton("do", "Collect 20 Samples")
+plotOutput('ciPlot')
+```
+
+You'll also note that while each sample's mean falls near the true population value, it is rare for a sample mean to perfectly capture the population mean. Confidence intervals are useful because they are more likely than the sample mean to capture the population mean.
+
+```{r q8, echo = F}
+quiz(caption = 'Test Your Understanding',
+     question("Margot conducted a memory test on a sample of students, and found that the mean score was 75 points, with a 95% confidence interval of 65 - 85. Which of the following can she conclude?",
+              answer('If Margot were to conduct this test over and over, 95% of the sample would always achieve a score between 65 and 85 points.'),
+              answer('There is a .95 probability that the population mean is between 65 and 85 points.'),
+              answer('If she calculated the 95% CI using the same method on a large number of samples, 95% of those CIs would contain the population mean. Therefore, she can be 95% confident that her CI of 65-85 contains the population mean.', correct = T),
+              answer('She can be 95% confident that her results are accurate.'),
+              message = 'The population mean is fixed, so any individual confidence interval that has already been calculated either contains the population mean or does not contain it. However, if you calculate an X% confidence interval on multiple samples, then X% of those intervals will contain the population mean.'))
+```
+
+## Power Analyses
+
+In this course, we'll be using [WebPower](https://webpower.psychstat.org/wiki/models/index) to conduct power analyses. We'll begin to conduct power analyses when we run specific statistical tests. Today, focus on improving your understanding of the concept of statistical power. Have a look at the following power curves and spend some time trying to interpret them.
+
+```{r, echo = F, fig.width = 8, fig.height=4}
+
+powerDat <- read.csv('https://mtruelovehill.github.io/PRM/Data/powerDat.csv')
+powerDat$EffectSize <- factor(powerDat$EffectSize, levels = c('strong', 'moderate', 'weak'))
+
+(powPlot <- ggplot(powerDat, aes(SampleSize, Power, color = EffectSize)) + geom_point() +
+  labs(x = 'Sample Size', y = 'Power', color = 'Effect Size') +
+  scale_x_continuous(breaks = seq(0, 200, by = 20)) +
+  scale_y_continuous(breaks = seq(0, 1, by = .1)) +
+  scale_color_manual(values = c(accent2, accent1, baseColor), labels = c('Strong', 'Moderate', 'Weak')) +
+  theme(axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = 'bold'),
+        legend.title = element_text(size = 14, face = 'bold'),
+        legend.text = element_text(size = 12)))
+```
+
+As you interpret this plot, try to answer the following questions:
+
++ What is the effect of sample size on power?
+
++ What is the effect of effect size on power?
+
++ About how many participants are necessary to detect a moderate effect with 80% power? 
+
++ If you expect a weak effect but have only 50 participants, what is your likelihood of making a Type II error?
+
+```{r q9, echo = FALSE}
+ quiz(caption = 'Test Your Understanding',
+      question('What is the traditional threshold for power that is considered acceptable?',
+               answer('70%'),
+               answer('80%', correct = T),
+               answer('90%'),
+               answer('100%'),
+               message = 'Traditionally, a threshold of 80% is considered an acceptable level of power for a study.'),
+      question('Which of the following is not directly considered when calculating power?',
+               answer('Sample variance', correct = T),
+               answer('Sample size'),
+               answer('Significance level'),
+               answer('Effect size'),
+               random_answer_order = T,
+               message = 'Power is affected by the significance level, sample size, and effect size. Each of these four values is a function of the remaining three.'),
+      question('Which of the following would lead to an increase in statistical power? Please select all that apply.',
+               answer('Decreasing alpha'),
+               answer('Increasing effect size', correct = T),
+               answer('Using a two-tailed test instead of a one-tailed test'),
+               answer('Increasing the number of participants in the sample', correct = T),
+               random_answer_order = T,
+               message = 'Power has a positive relationship with all of the given values, so that as effect size, sample size, and alpha increase, so too does power. Decreasing any of these lowers power. Going from a one-tailed to a two-tailed test decreases alpha by splitting it between each tail, so this would also lower power.'),
+      question('Flora runs a power analysis and find that, for her analysis, she will need 136 participants to have 80% power to detect a moderate effect (d = .5). Which of the following statements are true? Please select all that apply.',
+               answer('If Flora recruits fewer than 136 participants, her chances of detecting an existing effect will decrease.', correct = T),
+               answer('If Flora recruits at least 136 participants, she will have an 80% chance of getting statistically significant results.'),
+               answer('If Flora recruits 136 participants, she will have a 20% chance of making a Type II error.', correct = T),
+               answer('If the actual effect in the population is weaker than d = .5, 136 participants will still provide sufficient power to detect it.'),
+               answer('If the actual effect in the population is stronger than d = .5, 136 participants will still provide sufficient power to detect it.', correct = T),
+               random_answer_order = T,
+               message = 'With a power of 80%, there is only an 80% chance of getting statistically significant results IF the effect actually exists. Additionally, reducing the effect size decreases power, so Flora would need to increase her sample size in order to detect a smaller effect. Increasing the effect size increases power, so Flora will still be sufficiently powered to detect a larger effect without changing the sample.')
+      )
+```
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+&beta;: the likelihood of making a Type II error
+
+Power = 1 - &beta;
+
+</details>
+</div>
+
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+<i><b> What is the effect of sample size on power? What is the effect of effect size on power? </i></b>
+
+The sample size values can be found on the x-axis of the plot. As these values increase, you can see that power increases as well. Each line represents a different effect size strength. A strong effect size provides more power than a moderate effect size, which provides more power than a weak effect size. 
+
+</br>
+<i><b> About how many participants are necessary to detect a moderate effect with 80% power? </i></b>
+
+```{r, echo = F, fig.width=6, fig.height=3}
+powPlot + 
+  geom_segment(x = 0, xend = 63, y = .8, yend = .8, linetype = 'dashed') +
+  geom_segment(x = 63, xend = 63, y = 0, yend = .8, linetype = 'dashed') +
+  geom_point(x = 63, y = .8, shape = 8, size = 2)
+```
+
+If we check the line associated with moderate strength, we can see that we need about 63 participants to achieve a power of 80%.
+
+</br>
+
+<i><b> If you expect a weak effect but have only 50 participants, what is your likelihood of making a Type II error? </i></b>
+
+```{r, echo = F, fig.width=6, fig.height=3}
+powPlot + 
+  geom_segment(x = 0, xend = 50, y = .16, yend = .16, linetype = 'dashed') +
+  geom_segment(x = 50, xend = 50, y = 0, yend = .16, linetype = 'dashed') +
+  geom_point(x = 50, y = .16, shape = 8, size = 2)
+```
+
+By checking the line associated with a weak effect size, we can see that 50 participants is associated with a power of about .16. To calculate the chances of making a Type II error using our power value, we need to subtract .16 from 1. This leaves us with .84, meaning we have about an 84% chance of making a Type II error. In other words, we have a high likelihood of failing to identify an existing effect.
+
+</details>
+</div>
+</br>
+
