@@ -53,7 +53,7 @@ Researchers wanted to test whether the amount of time an infant spent vocalising
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ttestLabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat),
                       Description=c('Levels: M = Male, F = Female', 'Infant age in weeks',
-                                    'Transport Modality; Levels: Buggy; Backpack',
+                                    'Transport Modality; Levels: 0 = Buggy; 1 = Backpack',
                                     'Time infant spent vocalising (in seconds)'))
  
 datInfo %>%
@@ -125,7 +125,7 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 ### Your Tasks
 
 <div class="nobullet">
-+ [ ] $\ $ Import 'Week4LabData1.csv' into SPSS
++ [ ] $\ $ Open 'ttestLabData.sav' in SPSS
 
 + [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type
 
