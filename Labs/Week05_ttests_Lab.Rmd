@@ -30,26 +30,27 @@ In this week's lab, you'll be working with data simulated based on [this paper](
 At the end of this lab, you will be able to:
 
 1. Identify hypotheses which may be tested using $t$-tests
+2. Perform a power analysis for an independent-samples $t$-test
 2. Check assumptions for an independent-samples $t$-test
 3. Use SPSS to perform an independent-samples $t$-test
-4. Interpret and report results from an independent-samples $t$-test
+4. Interpret results from an independent-samples $t$-test
 
 If you complete the bonus material, you'll also be able to:
 
 1. Check assumptions for paired-samples $t$-tests
 2. Use SPSS to perform a paired-samples $t$-test
 3. Interpret and report results from a paired-samples $t$-test
-4. Conduct an appropriate power analysis for both independent and paired-samples $t$-tests.
+4. Conduct an appropriate power analysis for a paired-samples $t$-test.
 
 
-## Experiment 1 Overview 
+## Study Overview 
 
-In the first experiment, researchers wanted to test whether the amount of infant vocalisation differed depending on whether parents used a buggy or a backpack to transport their infant. They recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the amount of time infants spent vocalising over the course of the walk.
+Researchers wanted to test whether the amount of time an infant spent vocalising differed depending on whether parents used a buggy or a backpack to transport their infant. They recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the amount of time infants spent vocalising over the course of the walk.
 
-**You can download the dataset from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv)** This dataset contains the following variables:
+**You can download the dataset from the first experiment [here.](https://mtruelovehill.github.io/PRM/Labs/ttestLabData.sav)** This dataset contains the following variables:
 
 ```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week4LabData1.csv')
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ttestLabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat),
                       Description=c('Levels: M = Male, F = Female', 'Infant age in weeks',
                                     'Transport Modality; Levels: Buggy; Backpack',
@@ -123,16 +124,15 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 ### Your Tasks
 
+<div class="nobullet">
 + [ ] $\ $ Import 'Week4LabData1.csv' into SPSS
 
 + [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type
 
 + [ ] $\ $ Check the descriptive statistics of your data
-  + Mean, standard deviation, minimum, and maximum for continuous data
-  + Frequency tables for categorical data
-
 
 + [ ] $\ $ Check for any missing values or outliers.
+</div>
 
 
 ```{r cyrDD, echo = FALSE}
@@ -150,7 +150,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-To calculate descriptive statistics, navigate to *Analyze > Descriptive Statistics > Frequencies*
+To calculate descriptive statistics, navigate to *Analyze > Descriptive Statistics > Frequencies*. You'll need to check the mean, standard deviation, minimum, and maximum for continuous data and create frequency tables for categorical data.
 
 </details>
 </div>
