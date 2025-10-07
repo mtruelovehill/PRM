@@ -1,5 +1,5 @@
 ---
-title: "Week 2: Describing Effects"
+title: "Week 3: Describing Effects"
 output:
   learnr::tutorial:
     progressive: true

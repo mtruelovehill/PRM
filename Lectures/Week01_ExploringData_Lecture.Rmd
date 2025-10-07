@@ -873,7 +873,7 @@ $$SD =\sqrt{\frac{\sum(x_i-\bar{x})^2}{n-1}}$$
 
 + $\sum(x_i-\bar{x})^2$ = sum of squared deviations (AKA the sum of squares)
 
-+ $SD = \sqrt{\frac{`r round(sum(sampDat$sqDist),2)`}{12-1}} = `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)), 2)`$
++ $SD = \sqrt{\frac{`r round(sum(sampDat$sqDist),2)`}{8-1}} = `r round(sqrt(sum(sampDat$sqDist)/(nrow(sampDat)-1)), 2)`$
 
 
 ]
