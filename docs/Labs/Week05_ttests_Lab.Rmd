@@ -366,9 +366,9 @@ $$H_1: Vocalisation_{buggy} \neq Vocalisation_{backpack}$$
 ```{r cyrIndT, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question_numeric("What is the t-statistic associated with vocalisation time? Please round your answer to two decimal places.",
-              answer(-4.38, correct = T),
-              answer(4.38, correct = T),
-              message = 'The t-statistic associated with this test is -4.38 (or 4.38, depending on which order you entered the levels of the independent variable.'),
+              answer(-3.79, correct = T),
+              answer(3.79, correct = T),
+              message = 'The t-statistic associated with this test is -3.79 (or 3.79, depending on which order you entered the levels of the independent variable.'),
 question("Given an alpha = .05, the difference in vocalisation time between buggy users and backpack users is significant .",
               answer('True', correct = T),
               answer('False'),
