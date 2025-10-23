@@ -390,7 +390,8 @@ The requirements/assumptions of a Factorial ANOVA are:
 
 Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) if you're lost.
 
-You'll need to run the ANOVA in order to test the assumptions of normality and homogeneity. As you need to test normality using the residuals, you'll need to click the 'Save' button to produce Standardised Residuals when the test is run. To test homogeneity, you'll be checking Levene's test.
+You'll need to run the ANOVA in order to test the assumptions of normality and homogeneity. As you need to test normality and homogeneity using the residuals, you'll need to click the 'Save' button to produce both *Standardised Residuals* and *Predicted Values* when the test is run. 
+
 
 </details>
 </div>
@@ -399,7 +400,8 @@ You'll need to run the ANOVA in order to test the assumptions of normality and h
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-To check the assumptions of normality and homogeneity, you'll need to run your ANOVA. See the Solution tab in [Primary Analysis] if you need a step-by-step guide on setting up your test. Once you have your test set up, click the 'Save' option, and tick the Residuals box beside 'Standardized'.
+To check the assumptions of normality and homogeneity, residuals and predicted values will need to be produced by running the ANOVA. See the Solution tab in [Primary Analysis] if you need a step-by-step guide on setting up the test. Once the test is set up, click the 'Save' option, and tick 'Unstandardized' in the Predicted Values box and 'Standardized' in the Residuals box.
+
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_testSetupSave.png')
@@ -407,7 +409,9 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_residuals.png')
 ```
 
-This will produce new two new columns that reflect the residuals from your model. Click 'Continue', then 'Options'. Tick the box next to 'Homogeneity tests' to run Levene's test. Click 'Continue' then 'OK'. 
+Click 'Continue', then 'Options'. Tick the box next to 'Homogeneity tests' to run Levene's test. Click 'Continue' then 'OK'. 
+
+This process will produce four new columns that reflect the residuals from the model (2 predicted value columns, `PRE_1` and `PRE_2` and 2 standardised residual columns, `ZRE_1` and `ZRE_2`), as well as output the results from Levene's test (and Mauchly's test when relevant). 
 
 <span style = "font-weight: bold; font-size: 14pt"> Normality </span>
 
@@ -419,7 +423,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_histRes2.png')
 ```
 
-These look generally normal. There's a slight point in the right tail of the Baseline residuals that isn't quite normal, but it's not problematic. The Q-Q plots can also be checked. Navigate to *Analyze>Descriptive Statistics>Q-Q Plots* and add the two residual columns to the 'Variable(s)' box. Click 'OK'. 
+These look normal. There's a slight point in the right tail of the Baseline residuals that isn't quite normal, but it's not problematic. The Q-Q plots can also be checked. Navigate to *Analyze>Descriptive Statistics>Q-Q Plots* and add the two residual columns to the 'Variable(s)' box. Click 'OK'. 
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_qqRes1.png')
@@ -431,13 +435,30 @@ The Q-Q plots show no major violations of normality, so the assumption of normal
 
 <span style = "font-weight: bold; font-size: 14pt"> Homogeneity of Variance </span>
 
-To check the homogeneity assumption, you can interpret the results of Levene's test in your output:
+To check the homogeneity assumption, plot the corresponding residual and predicted value columns. Navigate to *Graphs>Scatter/Dot*, select 'Simple Scatter', and then 'Define'. Place the first Residuals column (`ZRE_1`) on the y-axis and the first Predicted Values (`PRE_1`) column on the x-axis, then click OK. 
+
+In order for homogeneity to be assumed, the points should be distributed generally consistently above and below the residual value of 0. One line of points shouldn't be substantially longer or shorter than the others. The distribution of points on this plot looks generally homogeneous:
+
+
+```{r, echo = F, fig.align= 'center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred1.png')
+```
+
+Repeat the process with `ZRE_2` and `PRE_2`:
+
+```{r, echo = F, fig.align= 'center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred2.png')
+```
+
+Again, the points look generally homogeneous between levels, so the assumption of homogeneity of variance can be considered to be met.
+
+You can support this decision by interpreting the results of Levene's test in your output:
 
 ```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_levenesTest.png')
 ```
 
-You'll check the rows that say 'Based on Mean'. All $p$-values are greater than the $\alpha$ threshold of .05, so the tests are not significant. This means that the assumption of homogeneity is met. 
+Check the two rows that say 'Based on Mean'. All $p$-values are greater than the $\alpha$ threshold of .05, so the tests are not significant. This further supports your decision that the assumption of homogeneity of variance is met.
 
 <span style = "font-weight: bold; font-size: 14pt"> Independence </span>
 
