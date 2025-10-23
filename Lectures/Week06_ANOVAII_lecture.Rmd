@@ -393,7 +393,7 @@ ggplot(facDat, aes(Pet, SWB, fill = Personality)) + geom_boxplot() +
   
   + Is there an effect of stimulus ethnicity (in-group/out-group) on expression recognition in children?
   
-  +Does the effect of facial coverage on expression recognition differ based on stimulus ethnicity?
+  + Does the effect of facial coverage on expression recognition differ based on stimulus ethnicity?
 
 + All 3 effects can be tested with a single test.
 
@@ -424,7 +424,7 @@ knitr::include_graphics('images/factorialSS.png')
 ### The Logic Behind Factorial ANOVA
 
 .pull-left[
-+ Recall from last week that $SS_{model}$  is calculated as the distance between the means of each group and the grand mean. 
++ As with One-Way ANOVAs, $SS_{model}$  is calculated as the distance between the means of each group and the grand mean. 
 
 + If there is one IV with 3 groups, this distance is computed between the grand mean and each individual within each of the groups.
 
