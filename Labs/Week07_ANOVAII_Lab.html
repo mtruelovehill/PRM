@@ -14,7 +14,7 @@
 <meta name="allow-skip" content="true" />
 <meta name="learnr-version-prerender" content="0.11.5" />
 
-<title>Week 6 Lab: ANOVA II</title>
+<title>Week 7 Lab: ANOVA II</title>
 
 <!-- header-includes START -->
 <!-- HEAD_CONTENT -->
@@ -141,8 +141,8 @@ waitlist or treatment group. After the treatment group completed
 therapy, all participants were once again administered the CAPS.</p>
 </div>
 </div>
-<div id="section-experiment-1-overview" class="section level2">
-<h2>Experiment 1 Overview</h2>
+<div id="section-study-overview" class="section level2">
+<h2>Study Overview</h2>
 <p>In this experiment, you’ll be testing the effectiveness of a virtual
 reality-based exposure therapy to treat PTSD using a sample of victims
 of the September 11th attacks. Participants were given the
@@ -160,7 +160,7 @@ sessions?</p>
 <p><strong>Interaction Effect:</strong> Does the effect of time on CAPS
 scores of PTSD patients change depending upon treatment group?</p>
 <p>You can download the data for this week’s lab <a
-href="https://mtruelovehill.github.io/PRM/Labs/Week6LabData.sav">here.</a></p>
+href="https://mtruelovehill.github.io/PRM/Labs/ANOVAIILabData.sav">here.</a></p>
 <p>This dataset contains the following variables:</p>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -243,6 +243,7 @@ post-intervention CAPS score (possible values = 0-80)
 </div>
 <div id="section-your-tasks" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Identify your independent and dependent variables for this
@@ -251,6 +252,7 @@ experiment.</label></li>
 \)</span> State your hypotheses for this experiment, both using words
 and statistically.</label></li>
 </ul>
+</div>
 <p>Note that the research questions have already been specified, above.
 <br></p>
 <div class="container">
@@ -312,8 +314,149 @@ score is dependent upon Treatment Group.</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-experiment-1-data-review" class="section level2">
-<h2>Experiment 1 Data Review</h2>
+<div id="section-power-analysis" class="section level2">
+<h2>Power Analysis</h2>
+<p><br></p>
+<p>Recall the effect size measure for ANOVA, <span
+class="math inline">\(\eta^2\)</span>:</p>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;color: rgba(76, 163, 132, 255) !important;text-align: left;font-size: 16px;">
+Variable Name
+</th>
+<th style="text-align:right;font-weight: bold;color: rgba(76, 163, 132, 255) !important;text-align: left;font-size: 16px;">
+Magnitude of <span class="math inline">\(\eta^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Weak
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Moderate
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+Strong
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+</tr>
+</tbody>
+</table>
+<div id="section-your-task" class="section level3">
+<h3>Your Task</h3>
+<div class="nobullet">
+<ul class="task-list">
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run an a priori power analysis using <span
+class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
+the sample size necessary to detect a moderate ( <span
+class="math inline">\(\eta^2\)</span> = .06) interaction effect between
+<code>TherapyGroup</code> and <code>Time</code> on CAPS
+score.</label></li>
+</ul>
+</div>
+<p>There are many possible measures of effect size that are used across
+statistical tests. The software that we use to run power analyses,
+WebPower, uses <span class="math inline">\(f\)</span> as its measure of
+effect size for ANOVA. SPSS uses <span
+class="math inline">\(\eta^2\)</span>, so we need to convert <span
+class="math inline">\(\eta^2\)</span> to <span
+class="math inline">\(f\)</span> before running the power analysis. You
+can do this with the following equation:</p>
+<p><span class="math display">\[f =
+\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span></p>
+<p>You can convert <span class="math inline">\(f\)</span> to <span
+class="math inline">\(\eta^2\)</span> with this equation:</p>
+<p><span class="math display">\[\eta^2 = \frac{f^2}{1+f^2}\]</span></p>
+<p>Be sure to use <span class="math inline">\(f\)</span> when entering
+the effect size into WebPower and <span
+class="math inline">\(\eta^2\)</span> when interpreting your
+results.</p>
+<p><strong>VERY IMPORTANT NOTE:</strong> <span
+class="math inline">\(f\)</span> is NOT the same as the <span
+class="math inline">\(F\)</span>-statistic we compute when running an
+ANOVA. These are different values entirely. Bonkers, I know.
+Statisticians aren’t the most creative namers.</p>
+<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
+to use WebPower to run your analysis</a>.</p>
+<div class="panel-heading tutorial-quiz-title">Check Your Results</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrPower-1" class="tutorial-question panel-body">
+<div id="cyrPower-1-answer_container" class="shiny-html-output"></div>
+<div id="cyrPower-1-message_container" class="shiny-html-output"></div>
+<div id="cyrPower-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p><br></p>
+<p>Consider whether your independent variables are between-subjects,
+within-subjects, or a mix. This will impact which power analysis option
+you choose. The ‘Two-Way and Three-Way ANOVA with interaction’ option is
+meant for use with between-subjects variables, while the ‘Repeated
+Measures ANOVA’ should be used if you have any within-subjects
+variables.</p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p><br></p>
+<p><span style="font-weight: bold; font-size: 14pt"> Interaction Effect
+</span></p>
+<p>Navigate to the WebPower site and click ‘Repeated-Measures
+ANOVA’.</p>
+<p><i> Number of groups </i> refers to the number of independent
+(between-subjects) groups you’re comparing. In this case, the
+independent groups are the 2 groups captured by the
+<code>Treatment</code> variable: Waitlist &amp; VR Therapy.</p>
+<p><i> Number of measurements </i> refers to the number of measurements
+you’re taking within each group (within-subjects). Here, two measures
+are taken from each group: one at baseline, and one at follow-up
+(captured by the <code>Time</code> variable).</p>
+<p>You’ll leave the Sample Size option blank, as that’s the value you
+want to calculate.</p>
+<p>To compute the effect size, <span class="math inline">\(f\)</span>,
+you’ll do the following:</p>
+<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
+.25\]</span> You can enter in the appropriate values for <span
+class="math inline">\(\alpha\)</span> and power. Make sure that ‘Type of
+Effect’ is set as ‘interaction effect’. When you’re finished, click
+‘Calculate’ and you should see the following results if you’ve entered
+everything properly:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_powerOptions.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>To detect an interaction effect with the given constraints, you need
+128 participants.</p>
+</details>
+</div>
+</div>
+</div>
+<div id="section-data-review" class="section level2">
+<h2>Data Review</h2>
 <p>Before running any analyses, you should first check your data. In
 many cases, some kind of cleaning or data wrangling will be necessary.
 For instance, are there any missing values? Do you have any unexpected
@@ -326,6 +469,7 @@ data, as this must be included in the Sample portion of your Methods
 section.</p>
 <div id="section-your-tasks-1" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Open ‘Week6LabData1.sav’</label></p></li>
@@ -343,6 +487,7 @@ data.</label></p></li>
 continuous variables, <code>Age</code>, <code>CAPSBaseline</code>, and
 <code>CAPSFollowUp</code>.</label></p></li>
 </ul>
+</div>
 <div class="container">
 <details>
 <summary>
@@ -425,8 +570,8 @@ age group in your sample.</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-experiment-1-assumptions" class="section level2">
-<h2>Experiment 1 Assumptions</h2>
+<div id="section-check-assumptions" class="section level2">
+<h2>Check Assumptions</h2>
 <p>The requirements/assumptions of a Factorial ANOVA are:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Normality:</strong> Residuals are normally
@@ -440,6 +585,7 @@ independent/predictor variables must be categorical</p></li>
 </ol>
 <div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Decide whether your data meet the assumption of
@@ -451,6 +597,7 @@ independence</label></p></li>
 \)</span> Decide whether your data meet the assumption of
 homogeneity</label></p></li>
 </ul>
+</div>
 <div class="container">
 <details>
 <summary>
@@ -476,9 +623,9 @@ solution </span>
 </summary>
 <p>To check the assumptions of normality and homogeneity, you’ll need to
 run your ANOVA. See the Solution tab in <a
-href="#section-experiment-1-analysis">Experiment 1 Analysis</a> if you
-need a step-by-step guide on setting up your test. Once you have your
-test set up, click the ‘Save’ option, and tick the Residuals box beside
+href="#section-primary-analysis">Primary Analysis</a> if you need a
+step-by-step guide on setting up your test. Once you have your test set
+up, click the ‘Save’ option, and tick the Residuals box beside
 ‘Standardized’.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_testSetupSave.png" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_residuals.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>This will produce new two new columns that reflect the residuals from
@@ -525,8 +672,8 @@ assumption to be met.</p>
 </div>
 </div>
 </div>
-<div id="section-experiment-1-analysis" class="section level2">
-<h2>Experiment 1 Analysis</h2>
+<div id="section-primary-analysis" class="section level2">
+<h2>Primary Analysis</h2>
 <p>As you are testing the effect of two independent variables on a
 dependent variable, you’ll use results from a Factorial ANOVA with one
 between-subjects variable (<code>TherapyGroup</code>) and one
@@ -545,6 +692,7 @@ following effects:</p>
 <p><span class="math inline">\(H_1: C \neq 0\)</span></p>
 <div id="section-your-tasks-3" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Run a Factorial ANOVA to test your hypotheses and interpret
@@ -554,6 +702,7 @@ the results with <span class="math inline">\(\alpha\)</span> =
 \)</span> Compute the effect sizes associated with your
 analysis</label></p></li>
 </ul>
+</div>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="cyrFacAOV-1" class="tutorial-question panel-body">
@@ -628,8 +777,8 @@ assumptions of Sidak, so it can be used more generally.</p>
 <p>Click ‘Continue’. If you haven’t already, you’ll need to produce the
 residuals from your model so that you can check normality. Click ‘Save’,
 then tick the Residuals box beside ‘Standardized’. See <a
-href="#section-experiment-1-assumptions">Experiment 1 Assumptions</a>
-for more information.</p>
+href="#section-check-assumptions">Check Assumptions</a> for more
+information.</p>
 <p>Finally, click ‘Options’, and select ‘Descriptive Statistics’ and
 ‘Estimates of Effect Size’. Click ‘Continue’ and then ‘OK’ to run your
 model.</p>
@@ -690,242 +839,8 @@ output:</p>
 <p></br></p>
 </div>
 </div>
-<div id="section-experiment-1-power-analysis" class="section level2">
-<h2>Experiment 1 Power Analysis</h2>
-<p><br></p>
-<p>Recall the effect size measure for ANOVA, <span
-class="math inline">\(\eta^2\)</span>:</p>
-<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;font-weight: bold;color: rgba(76, 163, 132, 255) !important;text-align: left;font-size: 16px;">
-Variable Name
-</th>
-<th style="text-align:right;font-weight: bold;color: rgba(76, 163, 132, 255) !important;text-align: left;font-size: 16px;">
-Magnitude of <span class="math inline">\(\eta^2\)</span>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Weak
-</td>
-<td style="text-align:right;">
-0.01
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Moderate
-</td>
-<td style="text-align:right;">
-0.06
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Strong
-</td>
-<td style="text-align:right;">
-0.14
-</td>
-</tr>
-</tbody>
-</table>
-<div id="section-your-task" class="section level3">
-<h3>Your Task</h3>
-<ul class="task-list">
-<li><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run an a priori power analysis using <span
-class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
-the sample size necessary to detect a moderate ( <span
-class="math inline">\(\eta^2\)</span> = .06) interaction effect between
-<code>TherapyGroup</code> and <code>Time</code> on CAPS
-score.</label></li>
-</ul>
-</div>
-<div id="section-bonus-tasks" class="section level3">
-<h3>Bonus Tasks</h3>
-<ul class="task-list">
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run an a priori power analysis using <span
-class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
-the sample size necessary to detect a moderate ( <span
-class="math inline">\(\eta^2\)</span> = .06) main effect of
-<code>Time</code>.</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run a <strong>sensitivity</strong> power analysis using <span
-class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
-the effect size you’re able to detect with a sample size of 100 for the
-main effect of <code>TherapyGroup</code>.</label></p></li>
-</ul>
-<p>There are many possible measures of effect size that are used across
-statistical tests. The software that we use to run power analyses,
-WebPower, uses <span class="math inline">\(f\)</span> as its measure of
-effect size for ANOVA. SPSS uses <span
-class="math inline">\(\eta^2\)</span>, so we need to convert <span
-class="math inline">\(\eta^2\)</span> to <span
-class="math inline">\(f\)</span> before running the power analysis. You
-can do this with the following equation:</p>
-<p><span class="math display">\[f =
-\sqrt{\frac{\eta^2}{1-\eta^2}}\]</span></p>
-<p>You can convert <span class="math inline">\(f\)</span> to <span
-class="math inline">\(\eta^2\)</span> with this equation:</p>
-<p><span class="math display">\[\eta^2 = \frac{f^2}{1+f^2}\]</span></p>
-<p>Be sure to use <span class="math inline">\(f\)</span> when entering
-the effect size into WebPower and <span
-class="math inline">\(\eta^2\)</span> when interpreting your
-results.</p>
-<p><strong>VERY IMPORTANT NOTE:</strong> <span
-class="math inline">\(f\)</span> is NOT the same as the <span
-class="math inline">\(F\)</span>-statistic we compute when running an
-ANOVA. These are different values entirely. Bonkers, I know.
-Statisticians aren’t the most creative namers.</p>
-<p>Click <a href="https://webpower.psychstat.org/wiki/models/index">here
-to use WebPower to run your analysis</a>.</p>
-<div class="panel-heading tutorial-quiz-title">Check Your Results</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="cyrPower-1" class="tutorial-question panel-body">
-<div id="cyrPower-1-answer_container" class="shiny-html-output"></div>
-<div id="cyrPower-1-message_container" class="shiny-html-output"></div>
-<div id="cyrPower-1-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="cyrPower-2" class="tutorial-question panel-body">
-<div id="cyrPower-2-answer_container" class="shiny-html-output"></div>
-<div id="cyrPower-2-message_container" class="shiny-html-output"></div>
-<div id="cyrPower-2-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="panel panel-default tutorial-question-container">
-<div data-label="cyrPower-3" class="tutorial-question panel-body">
-<div id="cyrPower-3-answer_container" class="shiny-html-output"></div>
-<div id="cyrPower-3-message_container" class="shiny-html-output"></div>
-<div id="cyrPower-3-action_button_container" class="shiny-html-output"></div>
-<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
-</div>
-</div>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p><br></p>
-<p>The numerator df for the interaction effect is calculated by <span
-class="math inline">\((J-1)\times(K-1)\)</span>, where:</p>
-<p>J = number of levels in Independent Variable 1
-(<code>Time</code>)</p>
-<p>K = number of levels in Independent Variable 1
-(<code>TherapyGroup</code>)</p>
-<p>The numerator df for the main effects is then calculated by <span
-class="math inline">\(J-1\)</span> for the main effect of
-<code>Time</code> and <span class="math inline">\(K-1\)</span> for the
-main effect of <code>TherapyGroup</code>.</p>
-<p>If you’re completely lost, you might find the help section on <a
-href="https://webpower.psychstat.org/wiki/manual/power_of_nanova">WebPower</a>
-useful.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p><br></p>
-<p><span style="font-weight: bold; font-size: 14pt"> Interaction Effect
-</span></p>
-<p>Navigate to the WebPower site and click Two-Way and Three-Way ANOVA
-with interaction:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_powerOptions.png" width="50%" style="display: block; margin: auto;" />
-<br> <i> Number of groups </i> refers to the number of independent
-groups you’re comparing. You can compute this by multiplying the total
-number of levels within each independent variable. In this case, you
-have 2 levels in <code>Time</code> (Baseline; Follow-up) and 2 levels in
-<code>TherapyGroup</code> (Waitlist; VR Therapy), so your total number
-of groups is:</p>
-<p><span class="math display">\[2\times2 = 4\]</span></p>
-<p>The numerator df for the interaction effect is calculated by <span
-class="math inline">\((J-1)\times(K-1)\)</span>, where:</p>
-<p>J = number of levels in Independent Variable 1
-(<code>Time</code>)</p>
-<p>K = number of levels in Independent Variable 1
-(<code>TherapyGroup</code>)</p>
-<p>In this example, the numerator df would be:</p>
-<p><span class="math display">\[(2-1)\times(2-1) = 1\]</span></p>
-<p>You’ll leave the Sample Size option blank, as that’s the value you
-want to calculate. To compute the effect size, <span
-class="math inline">\(f\)</span>, you’ll do the following:</p>
-<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
-.25\]</span> You can enter in the appropriate values for <span
-class="math inline">\(\alpha\)</span> and power. When you’re finished,
-click ‘Calculate’ and you should see the following results if you’ve
-entered everything properly:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_interactionPower.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>To detect an interaction effect with the given constraints, you need
-128 participants.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Main Effect of Time
-</span></p>
-<p>Navigate to the WebPower site and click Two-Way and Three-Way ANOVA
-with interaction.</p>
-<p><i> Number of groups </i> refers to the number of groups you’re
-comparing. In this case, you have 2 levels in <code>Time</code>
-(Baseline; Follow-up).</p>
-<p>The numerator df for the main effect is then calculated by <span
-class="math inline">\(J-1\)</span>, where $J = $ number of levels in
-<code>Time</code>. In this case, that would be 1.</p>
-<p>You’ll leave the Sample Size option blank, as that’s the value you
-want to calculate. To compute the effect size, <span
-class="math inline">\(f\)</span>, you’ll do the following:</p>
-<p><span class="math display">\[f = \sqrt{\frac{.06}{1-.06}} =
-.25\]</span> You can enter in the appropriate values for <span
-class="math inline">\(\alpha\)</span> and power. When you’re finished,
-click ‘Calculate’ and you should see the following results if you’ve
-entered everything properly:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_me1Power.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>To detect the main effect of <code>Time</code> with the given
-constraints, you need 128 participants.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Main Effect of
-Therapy Group </span></p>
-<p>Navigate to the WebPower site and click Two-Way and Three-Way ANOVA
-with interaction.</p>
-<p><i> Number of groups </i> refers to the number of groups you’re
-comparing. In this case, you have 2 levels in <code>TherapyGroup</code>
-(Baseline; Follow-up).</p>
-<p>The numerator df for the main effect is then calculated by <span
-class="math inline">\(J-1\)</span>, where $J = $ number of levels in
-<code>TherapyGroup</code>. In this case, that would be 1.</p>
-<p>Your sample size is 100. You’ll leave the effect size option blank,
-as that’s the value you want to calculate.</p>
-<p>You can enter in the appropriate values for <span
-class="math inline">\(\alpha\)</span> and power. When you’re finished,
-click ‘Calculate’ and you should see the following results if you’ve
-entered everything properly:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_me2Power.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You have an effect size, <span class="math inline">\(f\)</span>,
-which is equal to .28, but this needs to be converted to <span
-class="math inline">\(\eta^2\)</span>. To do this, you can use the
-formula:</p>
-<p><span class="math display">\[\eta^2 = \frac{f^2}{1+f^2} =
-\frac{.28^2}{1+.28^2} = \frac{.08}{1+.08} = .07\]</span></p>
-<p>For the main effect of <code>Time</code>, if you had 100
-participants, the minimum effect you would be able to detect with 80%
-power and <span class="math inline">\(\alpha\)</span> = .05 is <span
-class="math inline">\(\eta^2\)</span> = .07, which equates to a moderate
-effect. If the effect of <code>Time</code> on CAPS score is smaller than
-.07, your power level would be less than 80%.</p>
-</details>
-</div>
-</div>
-</div>
-<div id="section-experiment-1-interpret-report" class="section level2">
-<h2>Experiment 1 Interpret &amp; Report</h2>
+<div id="section-interpret-report" class="section level2">
+<h2>Interpret &amp; Report</h2>
 <p>Now that you’ve completed the analyses, write a mini results section
 describing your findings. In this section, please:</p>
 <ul>
@@ -983,165 +898,6 @@ slides</a> for a specific example.</p>
 </details>
 </div>
 <p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p>In this study, we tested a novel virtual-reality (VR) therapy method
-for the treatment of post-traumatic stress disorder. We split
-participants into two groups; one group was placed on a waitlist, while
-the other group received VR therapy. We measured PTSD symptoms using
-Clinician-Administered PTSD Scale (CAPS) scores at baseline, and again
-after treatment. We hypothesised that there would be a difference in
-CAPS scores across therapy groups, and that this difference would be
-dependent upon time. To test this, we performed a 2x2 Factorial ANOVA
-with both one within-subjects variable, Time (levels: baseline;
-follow-up), and one between-subjects variable, therapy group (levels:
-Waitlist, VR Therapy) as independent variables and CAPS score as the
-dependent variable. <span class="math inline">\(\alpha\)</span> was set
-at .05 for all analyses. An a priori power analysis indicated that 128
-participants were sufficient to detect a moderate interaction effect
-(<span class="math inline">\(\eta^2\)</span> = .06) with 80% power and
-<span class="math inline">\(\alpha\)</span> = .05 using this
-analysis.</p>
-<p>Our original sample consisted of 133 participants. However, 2
-participants withdrew from the study before follow-up; they were
-excluded from further analysis. Our final sample consisted of 131
-participants between the ages of 18 and 73 (<span
-class="math inline">\(M\)</span> = 45.70, <span
-class="math inline">\(SD\)</span> = 16.48; 63 females, 68 males). The
-normality assumption was checked through visual assessment of the
-QQ-plots and histograms. The homogeneity of variance assumption was
-checked using Levene’s test. The data met all assumptions.</p>
-<p>There was a significant effect of Therapy Group on CAPS score, <span
-class="math inline">\(F\)</span>(1, 129) = 6.90, <span
-class="math inline">\(p\)</span> = .010, <span
-class="math inline">\(\eta^2\)</span> = .05. Specifically, participants
-in the waitlist group had higher CAPS scores than those in the VR
-therapy group. The effect of Time on CAPS scores was not significant,
-<span class="math inline">\(F\)</span>(1, 129) = 3.21, <span
-class="math inline">\(p\)</span> = .076, <span
-class="math inline">\(\eta^2\)</span> = .024.</p>
-<p>There was a significant interaction between Time and Therapy Group on
-CAPS score, <span class="math inline">\(F\)</span>(1, 129) = 17.01,
-<span class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .12. Simple effects analyses
-indicated that while there was no significant effect of therapy group at
-baseline, <span class="math inline">\(F\)</span>(1, 129) = 0.04, <span
-class="math inline">\(p\)</span> = .834, those in the waitlist group had
-significantly higher CAPS scores than those in the VR therapy group at
-follow-up, <span class="math inline">\(F\)</span>(1, 129) = 16.50, <span
-class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .11. See Table 1 for descriptive
-data for each group.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_descTable.png" width="50%" style="display: block; margin: auto;" /></p>
-<p><br> <br></p>
-<p>Note that you can also put results from ANOVA tests into a table. If
-you do this, you don’t need to also put them into text. Here is an
-example of an APA-style ANOVA table:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANOVAtable.png" width="50%" style="display: block; margin: auto;" /></p>
-</details>
-</div>
-<p></br></p>
-</div>
-<div id="section-bonus-material-using-ggplot-for-visualisation"
-class="section level2">
-<h2>Bonus Material: Using ggplot for visualisation</h2>
-<p>You can produce plots in SPSS, but they often don’t meet APA
-standards and can be complicated to customise. One method that you can
-use to produce more effective figures is the <code>ggplot2</code>
-package in R. While this would typically require some coding, the <a
-href="https://shiny.gmw.rug.nl/ggplotgui/">ggplot GUI website</a>
-provides an application that allows you to produce ggplot figures with
-point-and-click options.</p>
-<p>In order for the application to work properly, however, categorical
-variables need to be presented as character data, rather than numbers.
-Fortunately, there’s an easy method for swapping the levels of your
-categorical variable, <code>TherapyGroup</code>, from numbers to words.
-If you assigned labels properly when completing <a
-href="#section-experiment-1-data-review">Experiment 1 Data Review</a>,
-you can highlight the <code>TherapyGroup</code> column in your data, and
-click the ‘Value Labels’ button at the top:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_variableFlip.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>If you’ve added labels properly, you’ll notice that the highlighted
-column will now have the labels rather than numeric values.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_labelSwap.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Now, save your file. This updated file (with the labels in the
-<code>TherapyGroup</code> column) is what you will import into the
-ggplot GUI application.</p>
-<div id="section-your-task-1" class="section level3">
-<h3>Your Task</h3>
-<ul class="task-list">
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Using the ggplot GUI application, produce a boxplot with
-<code>TherapyGroup</code> on the x-axis and <code>CAPSFollowUp</code> on
-the y-axis.</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Upload <a
-href="https://mtruelovehill.github.io/PRM/Labs/Week6LabData_Long.sav">these
-data</a> into the ggplot GUI, and produce a boxplot with
-<code>Time</code> on the x-axis, <code>CAPS</code> on the y-axis, and
-<code>TherapyGroup</code> as Group/Color.</label></p></li>
-</ul>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>If you can’t quite figure out the label swap, you can upload <a
-href="https://mtruelovehill.github.io/PRM/Labs/Week6LabData_TGnames.sav">this
-dataset</a> to the ggplot GUI to produce your plot.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p>Upload the SPSS datafile into the ggplot GUI application by using
-Data Upload column on the left of the page. First, click the ‘Browse’
-button to find the file on your device, selecting ‘SPSS’ under ‘Type of
-File’, then clicking ‘Submit Datafile’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotUpload.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You’ll see a sample of the data appear to the right. To generate a
-plot with these data, click the ‘ggplot’ option, here:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ggplotTab.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You’ll define your plot in the column to the left. Under ‘Type of
-graph’, click ‘Boxplot’. Set your Y-Variable to
-<code>CAPSFollowUp</code>, then set your X-Variable to
-<code>TherapyGroup</code>. To make the plot APA style, you’ll need to
-look at the box to the right, ‘Change aesthetics’. Click ‘Theme’, then
-select, ‘classic’. You should also change the labels using the ‘Text’
-tab. Tick ‘change label axes’, and label them appropriately (with proper
-spacing). I also recommend increasing the font size to at least 14 for
-axis titles and 12 for axis text. When you’re finished, your plot should
-look something like this:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_basicBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You can click other tabs and set different options to see what other
-changes you can make to your plot. If you ever need to produce plots to
-use in a write-up (your dissertation, for example), you can click
-‘Download pdf of figure’. This will allow you to save your figure for
-use elsewhere.</p>
-<p><br></p>
-<p>To produce the more complex plot, upload the dataset in the same way
-as before. Don’t forget to click ‘Submit Datafile’ once you’ve uploaded
-it. Once again, you’ll be making a boxplot. This time, set
-<code>CAPS</code> as your Y-variable and <code>Time</code> as your
-X-variable. Set <code>TherapyGroup</code> as your Group (or color)
-variable. You can change the aesthetics as suggested above to make sure
-the plot is APA style. You can also change colors if you’d like. You
-should end up with something that looks similar to this:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_advancedBoxplot.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Now you have an APA-style dissertation-ready figure!</p>
-</details>
-</div>
-<p></br></p>
-</div>
 </div>
 <div id="section-bonus-material-ancova" class="section level2">
 <h2>Bonus Material: ANCOVA</h2>
@@ -1158,8 +914,9 @@ are not part of your primary analysis are called
 <strong>covariates</strong>. You can control for covariate effects by
 including them in your model. One model that can be used in this way is
 called <strong>ANCOVA</strong>, or Analysis of Covariance.</p>
-<div id="section-your-task-2" class="section level3">
+<div id="section-your-task-1" class="section level3">
 <h3>Your Task</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Run an ANCOVA by adding <code>Age</code> as a covariate to the
@@ -1167,6 +924,7 @@ called <strong>ANCOVA</strong>, or Analysis of Covariance.</p>
 <code>Time</code> and <code>TherapyGroup</code> as IVs and CAPS score as
 the DV).</label></li>
 </ul>
+</div>
 <p><br></p>
 <div class="container">
 <details>
@@ -1193,13 +951,13 @@ solution </span>
 <p>To run an ANCOVA with a model with a within-subjects variable,
 navigate to <em>Analyze&gt;General Linear Model&gt;Repeated
 Measures</em>. Set up your IV and DVs as before (see the solution in <a
-href="#section-experiment-1-analysis">Experiment 1 Analysis</a> if
-you’re unsure about this step). After you’ve added your variables, add
+href="#section-primary-analysis">Primary Analysis</a> if you’re unsure
+about this step). After you’ve added your variables, add
 <code>Age</code> to the ‘Covariates’ box:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAsetup.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>You can set your model using the same options as in <a
-href="#section-experiment-1-analysis">Experiment 1 Analysis</a>. When
-you’re ready, click ‘OK’ to run the model.</p>
+href="#section-primary-analysis">Primary Analysis</a>. When you’re
+ready, click ‘OK’ to run the model.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_ANCOVAwsEffects.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>You’ll see that <code>Age</code> has been added to the results
 tables.</p>
@@ -1225,37 +983,7 @@ you only need to report the <span
 class="math inline">\(p\)</span>-values. If there is a strong covariate
 effect and you think this has affected your hypothesised results, you
 might consider discussing it further in the discussion section, but it
-should be done in the context of your research aim and hypothesis. For
-example, in this this case, the methods/results write-ups might look
-something like this:</p>
-<p><b> Example Report </b></p>
-<p>We performed a 2x2 ANCOVA with both one within-subjects variable,
-Time (levels: baseline; follow-up), and one between-subjects variable,
-therapy group (levels: Waitlist, VR Therapy) as independent variables
-and CAPS score as the dependent variable. We included participant age as
-a covariate. <span class="math inline">\(\alpha\)</span> was set at .05
-for all analyses.</p>
-<p>There was a significant effect of Therapy Group on CAPS score, <span
-class="math inline">\(F\)</span>(1, 128) = 7.06, <span
-class="math inline">\(p\)</span> = .009, <span
-class="math inline">\(\eta^2\)</span> = .05. Specifically, participants
-in the waitlist group had higher CAPS scores than those in the VR
-therapy group. The effect of Time on CAPS scores was not significant,
-<span class="math inline">\(F\)</span>(1, 128) = .738, <span
-class="math inline">\(p\)</span> = .392, <span
-class="math inline">\(\eta^2\)</span> = .006. Age, as a covariate, was
-not significant, <span class="math inline">\(p\)</span> = .428</p>
-<p>There was a significant interaction between Time and Therapy Group on
-CAPS score, <span class="math inline">\(F\)</span>(1, 128) = 17.77,
-<span class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .12. Simple effects analyses
-indicated that while there was no significant effect of therapy group at
-baseline, <span class="math inline">\(F\)</span>(1, 128) = 0.04, <span
-class="math inline">\(p\)</span> = .839, those in the waitlist group had
-significantly higher CAPS scores than those in the VR therapy group at
-follow-up, <span class="math inline">\(F\)</span>(1, 128) = 17.10, <span
-class="math inline">\(p\)</span> &lt; .001, <span
-class="math inline">\(\eta^2\)</span> = .11.</p>
+should be done in the context of your research aim and hypothesis.</p>
 </details>
 </div>
 <p></br> 
@@ -1263,12 +991,6 @@ class="math inline">\(\eta^2\)</span> = .11.</p>
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-# library(knitr)
-# library(shiny)
-# library(shinyjs)
-# library(bslib)
-# library(reshape2)
-# library(rstatix)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'
@@ -1298,17 +1020,17 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_8c7107f", 
+"character")), answers = list(structure(list(id = "lnr_ans_5ba5a15", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_51d2e3a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_46d8f2d", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_49f6898", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a4964de", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a98ed28", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_29bd9eb", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1321,18 +1043,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 442437365.793974, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 873452651.093267, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ca92bc2", 
+"character")), answers = list(structure(list(id = "lnr_ans_501e143", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1788710", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f05f949", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1343,17 +1065,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 710905367.668959, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1423309215.83722, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_58ab2f2", 
+"character")), answers = list(structure(list(id = "lnr_ans_67caec4", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6f3127a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6320256", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1364,15 +1086,34 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 388130158.819263, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 951961942.556708, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
+    question = structure("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_db8478f", 
+        option = "128", value = 128, label = structure("128", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("You would need 128 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
+        question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 25469400.4881399, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-1", 
     question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_adc8bbb", 
+    "character")), answers = list(structure(list(id = "lnr_ans_95837de", 
         option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1383,18 +1124,19 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-1-answer", 
         question = "cyrFacAOV-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1090341619.49227, options = list(
+    allow_retry = FALSE, seed = 182540716.414998, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
- 
+
+
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrFacAOV-2", 
     question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_4190ae", 
+    "character")), answers = list(structure(list(id = "lnr_ans_49eac05", 
         option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5b3a065", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7c642d5", 
         option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1405,15 +1147,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-2-answer", 
         question = "cyrFacAOV-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1499166158.8019, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 973533104.046663, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
-
-
+ 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-3", 
     question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_8349fd2", 
+    "character")), answers = list(structure(list(id = "lnr_ans_5fd7241", 
         option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1424,65 +1165,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-3-answer", 
         question = "cyrFacAOV-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 67307293.9686576, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
-    question = structure("What is the numerator df associated with the interaction effect?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_d9ec94d", 
-        option = "1", value = 1, label = structure("1", html = TRUE, class = c("html", 
-        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The numerator df for the interaction is 1. See the solution tab for how this is calculated.", html = TRUE, class = c("html", 
-    "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
-        question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 132116254.938479, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
-
-
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-2", 
-    question = structure("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_350ce43", 
-        option = "128", value = 128, label = structure("128", html = TRUE, class = c("html", 
-        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("You would need 128 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
-    "character")), post_message = NULL), ids = list(answer = "cyrPower-2-answer", 
-        question = "cyrPower-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 687608497.179807, options = list(
-        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
-"tutorial_question")), session = session)
-</script>
- 
-<script type="application/shiny-prerendered" data-context="server">
-learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-3", 
-    question = structure("What is the minimum effect of TherapyGroup (eta-squared) you can detect with 100 participants, 80% power and alpha = .05?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_9c16a95", 
-        option = "0.07", value = 0.07, label = structure("0.07", html = TRUE, class = c("html", 
-        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
-    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
-    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
-    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("You can detect a moderate effect (eta-squared = .07) with 100 participants under these constraints. An eta-squared of .07 is equivalent to f = .28.", html = TRUE, class = c("html", 
-    "character")), post_message = NULL), ids = list(answer = "cyrPower-3-answer", 
-        question = "cyrPower-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2088990176.02724, options = list(
+    allow_retry = FALSE, seed = 545385987.746035, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1509,7 +1192,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <!-- begin doc-metadata -->
 <div id="doc-metadata">
-<h1 class="title toc-ignore" style="display:none;">Week 6 Lab: ANOVA
+<h1 class="title toc-ignore" style="display:none;">Week 7 Lab: ANOVA
 II</h1>
 </div>
 <!-- end doc-metadata -->
