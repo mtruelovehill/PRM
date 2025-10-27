@@ -608,10 +608,10 @@ homogeneity</label></p></li>
 href="https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html">lecture
 slides</a> if you’re lost.</p>
 <p>You’ll need to run the ANOVA in order to test the assumptions of
-normality and homogeneity. As you need to test normality using the
-residuals, you’ll need to click the ‘Save’ button to produce
-Standardised Residuals when the test is run. To test homogeneity, you’ll
-be checking Levene’s test.</p>
+normality and homogeneity. As you need to test normality and homogeneity
+using the residuals, you’ll need to click the ‘Save’ button to produce
+both <em>Standardised Residuals</em> and <em>Predicted Values</em> when
+the test is run.</p>
 </details>
 </div>
 <p></br></p>
@@ -621,17 +621,20 @@ be checking Levene’s test.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>To check the assumptions of normality and homogeneity, you’ll need to
-run your ANOVA. See the Solution tab in <a
-href="#section-primary-analysis">Primary Analysis</a> if you need a
-step-by-step guide on setting up your test. Once you have your test set
-up, click the ‘Save’ option, and tick the Residuals box beside
-‘Standardized’.</p>
+<p>To check the assumptions of normality and homogeneity, residuals and
+predicted values will need to be produced by running the ANOVA. See the
+Solution tab in <a href="#section-primary-analysis">Primary Analysis</a>
+if you need a step-by-step guide on setting up the test. Once the test
+is set up, click the ‘Save’ option, and tick ‘Unstandardized’ in the
+Predicted Values box and ‘Standardized’ in the Residuals box.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_testSetupSave.png" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_residuals.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>This will produce new two new columns that reflect the residuals from
-your model. Click ‘Continue’, then ‘Options’. Tick the box next to
-‘Homogeneity tests’ to run Levene’s test. Click ‘Continue’ then
-‘OK’.</p>
+<p>Click ‘Continue’, then ‘Options’. Tick the box next to ‘Homogeneity
+tests’ to run Levene’s test. Click ‘Continue’ then ‘OK’.</p>
+<p>This process will produce four new columns that reflect the residuals
+from the model (2 predicted value columns, <code>PRE_1</code> and
+<code>PRE_2</code> and 2 standardised residual columns,
+<code>ZRE_1</code> and <code>ZRE_2</code>), as well as output the
+results from Levene’s test (and Mauchly’s test when relevant).</p>
 <p><span style="font-weight: bold; font-size: 14pt"> Normality
 </span></p>
 <p>To check normality, you’ll produce histograms and Q-Q plots using the
@@ -641,9 +644,9 @@ two residual columns to the ‘Variable(s)’ box. Click ‘Charts’, then
 ‘Histograms’ and tick ‘Show normal curve on histogram’. Click ‘Continue’
 and ‘OK’.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_histRes1.png" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_histRes2.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>These look generally normal. There’s a slight point in the right tail
-of the Baseline residuals that isn’t quite normal, but it’s not
-problematic. The Q-Q plots can also be checked. Navigate to
+<p>These look normal. There’s a slight point in the right tail of the
+Baseline residuals that isn’t quite normal, but it’s not problematic.
+The Q-Q plots can also be checked. Navigate to
 <em>Analyze&gt;Descriptive Statistics&gt;Q-Q Plots</em> and add the two
 residual columns to the ‘Variable(s)’ box. Click ‘OK’.</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_qqRes1.png" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_qqRes2.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -651,14 +654,30 @@ residual columns to the ‘Variable(s)’ box. Click ‘OK’.</p>
 assumption of normality can be considered to be met.</p>
 <p><span style="font-weight: bold; font-size: 14pt"> Homogeneity of
 Variance </span></p>
-<p>To check the homogeneity assumption, you can interpret the results of
-Levene’s test in your output:</p>
+<p>To check the homogeneity assumption, plot the corresponding residual
+and predicted value columns. Navigate to <em>Graphs&gt;Scatter/Dot</em>,
+select ‘Simple Scatter’, and then ‘Define’. Place the first Residuals
+column (<code>ZRE_1</code>) on the y-axis and the first Predicted Values
+(<code>PRE_1</code>) column on the x-axis, then click OK.</p>
+<p>In order for homogeneity to be assumed, the points should be
+distributed generally consistently above and below the residual value of
+0. One line of points shouldn’t be substantially longer or shorter than
+the others. The distribution of points on this plot looks generally
+homogeneous:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Repeat the process with <code>ZRE_2</code> and
+<code>PRE_2</code>:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred2.png" width="50%" style="display: block; margin: auto;" /></p>
+<p>Again, the points look generally homogeneous between levels, so the
+assumption of homogeneity of variance can be considered to be met.</p>
+<p>You can support this decision by interpreting the results of Levene’s
+test in your output:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_levenesTest.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>You’ll check the rows that say ‘Based on Mean’. All <span
+<p>Check the two rows that say ‘Based on Mean’. All <span
 class="math inline">\(p\)</span>-values are greater than the <span
 class="math inline">\(\alpha\)</span> threshold of .05, so the tests are
-not significant. This means that the assumption of homogeneity is
-met.</p>
+not significant. This further supports your decision that the assumption
+of homogeneity of variance is met.</p>
 <p><span style="font-weight: bold; font-size: 14pt"> Independence
 </span></p>
 <p>Assessing independence requires you to have an understanding of the
@@ -1020,17 +1039,17 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_a11d78a", 
+"character")), answers = list(structure(list(id = "lnr_ans_cbcff6b", 
     option = "One-Way ANOVA", value = "One-Way ANOVA", label = structure("One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d2846dc", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_35666fa", 
     option = "Repeated-Measures ANOVA", value = "Repeated-Measures ANOVA", 
     label = structure("Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_998c155", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_71a1725", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6e58f8", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bf0e9e", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1043,18 +1062,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1846191835.6403, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 180768224.415823, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3c19bb8", 
+"character")), answers = list(structure(list(id = "lnr_ans_fac7dd3", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_620c27", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5cc70a2", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1065,17 +1084,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 44160673.9794361, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1211448239.43588, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_cdebc91", 
+"character")), answers = list(structure(list(id = "lnr_ans_c0eb636", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fce118c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ccd6c13", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1086,7 +1105,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 980710654.543321, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1218006638.93282, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1094,7 +1113,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
     question = structure("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_4d66a32", 
+    "character")), answers = list(structure(list(id = "lnr_ans_650ca4d", 
         option = "128", value = 128, label = structure("128", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1105,7 +1124,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("You would need 128 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
         question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1957706814.58837, options = list(
+    allow_retry = FALSE, seed = 240837225.887851, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1113,7 +1132,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-1", 
     question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_4a7c27c", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b338646", 
         option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1124,7 +1143,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-1-answer", 
         question = "cyrFacAOV-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 36512265.9829976, options = list(
+    allow_retry = FALSE, seed = 516309293.759575, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1133,10 +1152,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrFacAOV-2", 
     question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_47ce52", 
+    "character")), answers = list(structure(list(id = "lnr_ans_cce9a33", 
         option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7190029", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_dc01b5a", 
         option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1147,14 +1166,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-2-answer", 
         question = "cyrFacAOV-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 528056594.754104, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 805140539.125077, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-3", 
     question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_938d614", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9bfa56", 
         option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1165,7 +1184,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-3-answer", 
         question = "cyrFacAOV-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 526286006.254929, options = list(
+    allow_retry = FALSE, seed = 603547993.718951, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
