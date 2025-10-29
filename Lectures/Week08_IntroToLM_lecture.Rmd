@@ -77,7 +77,7 @@ accent3 <- '#19424C'
 
 .pull-right[
 
-```{r, echo=F, message = F, fig.width=5, fig.height=3.5}
+```{r, echo=F, message = F, fig.height=4, fig.width=7}
 
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Data/distDat.csv')
 
@@ -97,7 +97,7 @@ $$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=3, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 sampleDat <- data.frame(Names=c('Alfred', 'Bernard', 'Clarence', 'Dorothy', 'Edna', 'Flora', 'Geraldine'),
                     daysInProgram=c(117, 99, 103, 95, 136, 126, 108),
                     maxDistance=c(8.53, 10.57, 8.01, 14.63, 27.03, 22.22, 6.77))
@@ -114,7 +114,6 @@ sampleDat <- data.frame(Names=c('Alfred', 'Bernard', 'Clarence', 'Dorothy', 'Edn
 ]
 
 ---
----
 count: false
 
 ## Variance Refresher
@@ -128,7 +127,7 @@ $$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=3, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   labs(x='Participant Name', y = 'Days In Program') + 
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
@@ -155,7 +154,7 @@ $$s^2_x = \frac{\sum_{i=1}^{n}{(x_i - \bar{x})}^2}{n-1}$$
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=3, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
                xend = sampleDat$Names, yend = mean(sampleDat$daysInProgram), linetype = "dashed",
@@ -175,14 +174,14 @@ p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
 
 .pull-right[
 
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
                xend = sampleDat$Names, yend = mean(sampleDat$daysInProgram), linetype = "dashed",
                colour= baseColor)
 ```
 
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p2 <- ggplot(sampleDat, aes(Names, maxDistance)) + geom_point(size=2, colour = accent2) +
   labs(x='Participant Name', y ='Max Distance (miles)') +
   theme(axis.text = element_text(size=10), axis.title = element_text(size=12, face = 'bold')) + 
@@ -222,14 +221,14 @@ $$Cov_{xy} = \frac{\sum_{i=1}^{n}{\color{#4CA384}{(x_i-\bar{x})}\color{#18778C}{
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
                xend = sampleDat$Names, yend = mean(sampleDat$daysInProgram), linetype = "dashed",
                colour= baseColor)
 ```
 
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p2
 ```
 ]
@@ -253,50 +252,52 @@ p2
 
 
 .pull-right[
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
                xend = sampleDat$Names, yend = mean(sampleDat$daysInProgram), linetype = "dashed",
                colour= baseColor)
 ```
 
-```{r, echo = F, fig.height=2.5, fig.width=5}
+```{r, echo = F, fig.height=3.25, fig.width=7}
 p2
 ```
 ]
 
+
 ---
 
 ## The Trouble with Covariance
-
-.pull-left[
-
-$$Cov_{xy}=\frac{\sum_{i=1}^n\color{#18778C}{(x_i-\bar{x})}(y_i-\bar{y})}{n-1}$$
-
 
 ```{r, echo = F}
 sampleDat$varX <- round(sampleDat$daysInProgram-mean(sampleDat$daysInProgram),2)
 sampleDat$varY <- round(sampleDat$maxDistance-mean(sampleDat$maxDistance), 2)
 sampleDat$varXY <- round(sampleDat$varX*sampleDat$varY, 2)
 row.names(sampleDat) <- NULL
-
 ```
 
-| Participant           |  $x_i - \bar{x}$      |
-|:----------------------|:---------------------:|
-| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` |
-| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` |
-| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` |
-| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` |
-| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` |
-| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` |
-| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` |
+.pull-left[
+
+$$Cov_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}=\frac{`r round(sum(sampleDat$varXY), 2)`}{7-1}=`r round(sum(sampleDat$varXY)/6, 2)`$$
+
+
+
+| Participant           |  $x_i - \bar{x}$      |    $y_i - \bar{y}$    | $(x_i - \bar{x})(y_i - \bar{y})$   |
+|:----------------------|:---------------------:|:---------------------:|:------------------------:|
+| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` | `r sampleDat$varY[1]` |  `r sampleDat$varXY[1]`  |
+| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` | `r sampleDat$varY[2]` |  `r sampleDat$varXY[2]`  |
+| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` | `r sampleDat$varY[3]` |  `r sampleDat$varXY[3]`  |
+| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` | `r sampleDat$varY[4]` |  `r sampleDat$varXY[4]`  |
+| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` | `r sampleDat$varY[5]` |  `r sampleDat$varXY[5]`  |
+| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` | `r sampleDat$varY[6]` |  `r sampleDat$varXY[6]`  |
+| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` | `r sampleDat$varY[7]` |  `r sampleDat$varXY[7]`  |
+|                       |                       |                       |  **`r round(sum(sampleDat$varXY), 2)`**|
+
 ]
 
+.pull-right.center[
 
-.pull-right[
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
+```{r, echo = F, fig.width=7, fig.height=3.25}
 (p3 <- p1 + geom_hline(yintercept = mean(sampleDat$daysInProgram)) +
   geom_segment(x = sampleDat$Names, y = sampleDat$daysInProgram, 
                xend = sampleDat$Names, yend = mean(sampleDat$daysInProgram), linetype = "dashed",
@@ -304,142 +305,8 @@ row.names(sampleDat) <- NULL
   geom_text(aes(label = sampleDat$varX), nudge_x = .2, y = mean(sampleDat$daysInProgram)+(sampleDat$varX/2)))
 ```
 
-]
-
----
-count: false
-
-## The Trouble with Covariance
-
-.pull-left[
-
-$$Cov_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})\color{#18778C}{(y_i-\bar{y})}}{n-1}$$
-
-| Participant           |  $x_i - \bar{x}$      |    $y_i - \bar{y}$    |
-|:----------------------|:---------------------:|:---------------------:|
-| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` | `r sampleDat$varY[1]` |
-| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` | `r sampleDat$varY[2]` |
-| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` | `r sampleDat$varY[3]` |
-| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` | `r sampleDat$varY[4]` |
-| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` | `r sampleDat$varY[5]` |
-| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` | `r sampleDat$varY[6]` |
-| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` | `r sampleDat$varY[7]` |
-]
-
-
-
-.pull-right[
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p3 
-```
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
+```{r, echo = F, fig.width=7, fig.height=3.25}
 (p4 <- p2 + geom_text(aes(label = sampleDat$varY), nudge_x = .35, y = mean(sampleDat$maxDistance)+(sampleDat$varY/2)))
-```
-
-]
-
----
-count: false
-
-## The Trouble with Covariance
-
-.pull-left[
-
-$$Cov_{xy}=\frac{\sum_{i=1}^n\color{#18778C}{(x_i-\bar{x})(y_i-\bar{y})}}{n-1}$$
-
-| Participant           |  $x_i - \bar{x}$      |    $y_i - \bar{y}$    | $(x_i - \bar{x})(y_i - \bar{y})$   |
-|:----------------------|:---------------------:|:---------------------:|:------------------------:|
-| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` | `r sampleDat$varY[1]` |  `r sampleDat$varXY[1]`  |
-| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` | `r sampleDat$varY[2]` |  `r sampleDat$varXY[2]`  |
-| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` | `r sampleDat$varY[3]` |  `r sampleDat$varXY[3]`  |
-| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` | `r sampleDat$varY[4]` |  `r sampleDat$varXY[4]`  |
-| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` | `r sampleDat$varY[5]` |  `r sampleDat$varXY[5]`  |
-| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` | `r sampleDat$varY[6]` |  `r sampleDat$varXY[6]`  |
-| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` | `r sampleDat$varY[7]` |  `r sampleDat$varXY[7]`  |
-
-
-]
-
-
-.pull-right[
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p3
-```
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p4
-```
-
-]
-
----
-count: false
-
-## The Trouble with Covariance
-
-.pull-left[
-
-$$Cov_{xy}=\frac{\color{#18778C}{\sum_{i=1}^n}(x_i-\bar{x})(y_i-\bar{y})}{n-1}$$
-
-
-| Participant           |  $x_i - \bar{x}$      |    $y_i - \bar{y}$    | $(x_i - \bar{x})(y_i - \bar{y})$   |
-|:----------------------|:---------------------:|:---------------------:|:------------------------:|
-| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` | `r sampleDat$varY[1]` |  `r sampleDat$varXY[1]`  |
-| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` | `r sampleDat$varY[2]` |  `r sampleDat$varXY[2]`  |
-| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` | `r sampleDat$varY[3]` |  `r sampleDat$varXY[3]`  |
-| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` | `r sampleDat$varY[4]` |  `r sampleDat$varXY[4]`  |
-| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` | `r sampleDat$varY[5]` |  `r sampleDat$varXY[5]`  |
-| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` | `r sampleDat$varY[6]` |  `r sampleDat$varXY[6]`  |
-| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` | `r sampleDat$varY[7]` |  `r sampleDat$varXY[7]`  |
-|                       |                       |                       |  **`r round(sum(sampleDat$varXY), 2)`**|
-
-]
-
-.pull-right[
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p3
-```
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p4
-```
-
-]
-
----
-
-## The Trouble with Covariance
-
-.pull-left[
-
-$$Cov_{xy}=\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}=\frac{`r round(sum(sampleDat$varXY), 2)`}{7-1}=`r round(sum(sampleDat$varXY)/6, 2)`$$
-
-
-| Participant           |  $x_i - \bar{x}$      |    $y_i - \bar{y}$    | $(x_i - \bar{x})(y_i - \bar{y})$   |
-|:----------------------|:---------------------:|:---------------------:|:------------------------:|
-| `r sampleDat$Names[1]`| `r sampleDat$varX[1]` | `r sampleDat$varY[1]` |  `r sampleDat$varXY[1]`  |
-| `r sampleDat$Names[2]`| `r sampleDat$varX[2]` | `r sampleDat$varY[2]` |  `r sampleDat$varXY[2]`  |
-| `r sampleDat$Names[3]`| `r sampleDat$varX[3]` | `r sampleDat$varY[3]` |  `r sampleDat$varXY[3]`  |
-| `r sampleDat$Names[4]`| `r sampleDat$varX[4]` | `r sampleDat$varY[4]` |  `r sampleDat$varXY[4]`  |
-| `r sampleDat$Names[5]`| `r sampleDat$varX[5]` | `r sampleDat$varY[5]` |  `r sampleDat$varXY[5]`  |
-| `r sampleDat$Names[6]`| `r sampleDat$varX[6]` | `r sampleDat$varY[6]` |  `r sampleDat$varXY[6]`  |
-| `r sampleDat$Names[7]`| `r sampleDat$varX[7]` | `r sampleDat$varY[7]` |  `r sampleDat$varXY[7]`  |
-|                       |                       |                       |  **`r round(sum(sampleDat$varXY), 2)`**|
-
-]
-
-.pull-right[
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p3
-```
-
-```{r, echo = F, fig.width=5, fig.height=2.5}
-p4
 ```
 
 ]
@@ -471,20 +338,19 @@ sampleDat$maxDistancekm <- sampleDat$maxDistance*1.61
 
 .pull-left[
 
-.center[**Miles**]
+.center[**Miles**
 
-```{r, echo = 5, fig.height=3.5, fig.width=5}
+```{r, echo = 5, fig.height=4, fig.width=7}
 p4
 ```
 
-
-]
+]]
 
 .pull-right[
 
-.center[**Kilometers**]
+.center[**Kilometers**
 
-```{r, echo = F, fig.height=3.5, fig.width=5}
+```{r, echo = F, fig.height=4, fig.width=7}
 sampleDat$varYkm <- round(sampleDat$maxDistancekm-mean(sampleDat$maxDistancekm),2)
 sampleDat$varXYkm <- round(sampleDat$varX*sampleDat$varYkm,2)
 
@@ -499,7 +365,7 @@ ggplot(sampleDat, aes(Names, maxDistancekm)) + geom_point(size=2, colour = accen
 ```
 
 
-
+]
 ]
 
 ---
@@ -550,7 +416,6 @@ $$Cov_{xy}=`r round(sum(sampleDat$varXYkm)/6, 2)`$$
 ]
 
 ---
-
 ## Correlation
 
 + Correlation allows you to compare continuous variables across different scales without the magnitude of the variables skewing your results.
@@ -559,22 +424,7 @@ $$Cov_{xy}=`r round(sum(sampleDat$varXYkm)/6, 2)`$$
 
 .f4[
 
-$$r=\frac{\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}}{\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\sqrt{\frac{\sum_{i=1}^n(y_i-\bar{y})^2}{n-1}}}$$
-]
-
-
----
-count: false
-
-## Correlation
-
-+ Correlation allows you to compare continuous variables across different scales without the magnitude of the variables skewing your results.
-
-+ **Pearson's correlation**, $r$, is the standardised version of covariance:
-
-.f4[
-
-$$r=\frac{\frac{\sum_{i=1}^n(x_i-\bar{x})(y_i-\bar{y})}{n-1}}{\sqrt{\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{n-1}}\sqrt{\frac{\sum_{i=1}^n(y_i-\bar{y})^2}{n-1}}} = \frac{Cov_{xy}}{s_xs_y}$$
+$$r = \frac{Cov_{xy}}{s_xs_y}$$
 ]
 
 ---
@@ -604,11 +454,6 @@ $$r=\frac{`r round(sum(sampleDat$varXY)/6, 2)`}{`r round(sd(sampleDat$daysInProg
 $$r=\frac{`r round(sum(sampleDat$varXYkm)/6, 2)`}{`r round(sd(sampleDat$daysInProgram),2)`\times`r round(sd(sampleDat$maxDistancekm),2)`}=`r round((sum(sampleDat$varXYkm)/6)/(sd(sampleDat$daysInProgram)*sd(sampleDat$maxDistancekm)), 2)`$$
 
 ]
-
----
-class: inverse, middle, center
-
-## Questions?
 
 ---
 ## Interpreting $r$
@@ -644,7 +489,7 @@ class: inverse, middle, center
   + More extreme values indicate a stronger association
 
 .center[
-```{r, echo = F, message = F, warning = F, fig.height=3.75, fig.width = 9}
+```{r, echo = F, message = F, warning = F, fig.height=4.25, fig.width = 9}
 set.seed(504)
 strCor <- rnorm_multi(n=200, mu = c(mean(dat$daysInProgram), mean(dat$maxDistance)), sd = c(sd(dat$daysInProgram),  sd(dat$maxDistance)), varnames = c('daysInProgram', 'maxDistance'), r = 0.8)
 strCor$maxDistance[strCor$maxDistance<=0] <- 5
@@ -698,8 +543,8 @@ corPlot + facet_grid(.~corrStrength) +
   
   + Negative values: as one variable increases, the other decreases
 
-.pull-left[
-```{r, echo = F, fig.height=3.5, fig.width=5, warning = F, message = F}
+.pull-left.center[
+```{r, echo = F, fig.height=3.75, fig.width=6, warning = F, message = F}
 set.seed(806)
 negCor <- rnorm_multi(n=200, mu = c(mean(dat$daysInProgram), mean(dat$maxDistance)), sd = c(sd(dat$daysInProgram),  sd(dat$maxDistance)), varnames = c('daysInProgram', 'maxDistance'), r = -0.5)
 negCor$maxDistance[negCor$maxDistance<=0] <- 5
@@ -714,7 +559,7 @@ ggplot(negCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(met
 ]
 
 .pull-right[
-```{r, echo = F, fig.height=3.5, fig.width=5, warning = F, message = F}
+```{r, echo = F, fig.height=3.75, fig.width=6, warning = F, message = F}
 ggplot(modCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(method = 'lm', se = F, colour = baseColor) + 
   labs(x='Days in Program', y = 'Max Distance (miles)') +
   scale_y_continuous(breaks = seq(0, 30, 10), limits = c(0, 35)) +
@@ -735,12 +580,10 @@ ggplot(modCor, aes(daysInProgram, maxDistance)) + geom_point() + geom_smooth(met
       
   + It is a standardized measure
 
-  
 ---
-  
 class: center, middle, inverse
-## Questions?
 
+## Questions?
 
 
 ---
@@ -974,7 +817,6 @@ lrMod <- lm(CourseAverage~StudyHours, dat)
 lrPlot
 ```
 ]]
-
 ---
 ## Linear Model Equation
 
@@ -989,11 +831,11 @@ dat$ID <- 1:nrow(dat)
 lrPlot + 
   geom_point(color = baseColor, size = 1) +
   annotate(geom = 'text', label = dat$labDat, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
-           size = 5, fontface = 'bold')
+           size = 5, fontface = 'bold') + 
+  annotate(geom='segment', x = dat$StudyHours, xend = dat$StudyHours, y = 43, yend = dat$CourseAverage, color = baseColor, 
+           linetype = 'dashed')
 ```
 ]]
-
---
 
 .pull-right[
 
@@ -1003,7 +845,6 @@ lrPlot +
 
 ]
 
-
 ---
 ## Linear Model Equation
 
@@ -1018,7 +859,9 @@ dat$ID <- 1:nrow(dat)
 lrPlot + 
   geom_point(color = baseColor, size = 1) +
   annotate(geom = 'text', label = dat$labDat, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
-           size = 5, fontface = 'bold')
+           size = 5, fontface = 'bold') + 
+  annotate(geom='segment', x = dat$StudyHours, xend = dat$StudyHours, y = 43, yend = dat$CourseAverage, color = baseColor, 
+           linetype = 'dashed')
 ```
 ]]
 
@@ -1047,7 +890,9 @@ dat$yHat <- round(lrMod$fitted.values,2)
 lrPlot + 
   geom_point(color = baseColor, size = 1) +
   annotate(geom = 'text', label = dat$yLabs, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
-           size = 5, fontface = 'bold')
+           size = 5, fontface = 'bold') + 
+  annotate(geom='segment', x = 1.38, xend = dat$StudyHours, y = dat$CourseAverage, yend = dat$CourseAverage, color = baseColor, 
+           linetype = 'dashed')
 ```
 ]]
 
@@ -1069,7 +914,9 @@ $$\color{#4CA384}{y_i} = \beta_0 + \beta_1x_i + \epsilon_i$$
 lrPlot + 
   geom_point(color = baseColor, size = 1) +
   annotate(geom = 'text', label = dat$yLabs, x = dat$StudyHours + .15, y = dat$CourseAverage, color = baseColor, 
-           size = 5, fontface = 'bold')
+           size = 5, fontface = 'bold') + 
+  annotate(geom='segment', x = 1.38, xend = dat$StudyHours, y = dat$CourseAverage, yend = dat$CourseAverage, color = baseColor, 
+           linetype = 'dashed')
 ```
 ]]
 
@@ -1437,25 +1284,6 @@ $$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$
 class: inverse, middle, center
 
 ## Questions?
-
----
-## Conducting a Linear Regression
-
-1. State your hypothesis
-
-2. Conduct a power analysis
-
-3. Check your data (visualisations/descriptives)
-
-4. Check assumptions
-
-5. Run the test
-
-6. Calculate the effect size/confidence intervals
-
-7. Interpret results
-
-8. Report
 
 ---
 ## Running a Linear Regression
