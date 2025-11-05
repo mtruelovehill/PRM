@@ -496,6 +496,83 @@ All checks look good, so you can move on to interpreting the primary results.
 </details>
 </div>
 
+## Run Correlations
+
+When performing regression, it is a good idea to check and report the associations between your predictors and the outcome. As you are looking for associations between continuous variables, you'll use a Pearson correlation in cases where variables are normally distributed, and Spearman's $\rho$ in cases where they are not. 
+
+Recall that $r$ (and $\rho$) has the following interpretation standards:
+
+| Strength     | Absolute Magnitude of $r$ |
+|:------------:|:-------------------------:|
+| Negligible   | $<$ .1                    |
+| Weak         | .1 - .3                   |
+| Moderate     | .3 - .5                   |
+| Strong       | $>$ .5                    |
+
+
+### Your Task
+
+<div class="nobullet">
+
++ [ ] $\ $ Run correlations and interpret the relationships between the variables that will be included in your regression model. 
+
+</div>
+
+```{r cyrCorr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the Pearson correlation value for the association between PhysicalActivity and Sleep? Please round your answer to two decimal places.",
+              answer(.20, correct = T),
+              message = "Pearson's r for the association between PhysicalActivity and Sleep is .20."), 
+     question_numeric("What is the Pearson correlation value for the association between SocialSupport and Wellbeing? Please round your answer to two decimal places.",
+              answer(.16, correct = T),
+              message = "Pearson's r for the association between SocialSupport and Wellbeing is .16."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariate*
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate to *Analyze > Correlate > Bivariate* and add each of your continuous variables (`Wellbeing`, `SocialSupport`, `Sleep`, and `PhysicalActivity`) to the 'Variables' box. Click 'Show only the lower diagonal'; this removes redundant information from the correlation matrix. Click 'Continue' and then 'OK'. 
+
+The output provides a correlation matrix with the value of $r$ and the p-value. Consider the correlations alongside the predefined thresholds, above.
+
+<b>Negligible associations:</b>
+
++ `SocialSupport` and `PhysicalActivity`
+
+<br>
+
+<b>Weak associations:</b>
+
++ `PhysicalActivity` and `Wellbeing`
++ `SocialSupport` and `Wellbeing`
++ `SocialSupport` and `Sleep`
+
+<br>
+
+<b>Moderate assocations:</b>
+
++ `PhysicalActivity` and `Sleep`
+
+<br>
+
+<b>Strong associations:</b>
+
++ `Sleep` and `Wellbeing`
+
+
+</details>
+</div>
+</br>
+
 ## Primary Analysis
 
 As you are testing whether multiple predictor variables can predict a single, continuous outcome, you'll use results from multiple linear regression to provide statistical support for your hypotheses. In this analysis, you'll test whether your overall model significantly predicts well-being. You'll then check the effects of each predictor individually. 

@@ -130,11 +130,11 @@ understanding.</p>
 <ol style="list-style-type: decimal">
 <li>Understand what is meant by ‘intercept’ and ‘slope’</li>
 <li>Identify hypotheses which may be tested using regression</li>
+<li>Run a power analysis for linear regression</li>
 <li>Test the assumptions of a regression</li>
 <li>Use SPSS to run multiple linear regression</li>
 <li>Properly interpret and report multiple linear regression
 analysis</li>
-<li>Run a power analysis for linear regression</li>
 <li>Produce an APA-style correlation matrix</li>
 </ol>
 </div>
@@ -212,7 +212,7 @@ Specifically, you measured participants’ well-being, their level of
 social support, their weekly physical activity, and their sleep per
 week. On each variable, higher scores correspond to higher levels.</p>
 <p>You can download the dataset from this experiment <a
-href="https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav">here</a>.
+href="https://mtruelovehill.github.io/PRM/Labs/RegressionLabData.sav">here</a>.
 It contains the following variables:</p>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -463,7 +463,7 @@ section.</p>
 <div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Open ‘Week8LabData.sav’</label></p></li>
+\)</span> Open ‘RegressionLabData.sav’</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Check that all variables are set as the correct measurement
 type.</label></p></li>
@@ -655,6 +655,122 @@ multicollinearity.</p>
 results.</p>
 </details>
 </div>
+</div>
+</div>
+<div id="section-run-correlations" class="section level2">
+<h2>Run Correlations</h2>
+<p>When performing regression, it is a good idea to check and report the
+associations between your predictors and the outcome. As you are looking
+for associations between continuous variables, you’ll use a Pearson
+correlation in cases where variables are normally distributed, and
+Spearman’s <span class="math inline">\(\rho\)</span> in cases where they
+are not.</p>
+<p>Recall that <span class="math inline">\(r\)</span> (and <span
+class="math inline">\(\rho\)</span>) has the following interpretation
+standards:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Strength</th>
+<th align="center">Absolute Magnitude of <span
+class="math inline">\(r\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Negligible</td>
+<td align="center"><span class="math inline">\(&lt;\)</span> .1</td>
+</tr>
+<tr class="even">
+<td align="center">Weak</td>
+<td align="center">.1 - .3</td>
+</tr>
+<tr class="odd">
+<td align="center">Moderate</td>
+<td align="center">.3 - .5</td>
+</tr>
+<tr class="even">
+<td align="center">Strong</td>
+<td align="center"><span class="math inline">\(&gt;\)</span> .5</td>
+</tr>
+</tbody>
+</table>
+<div id="section-your-task-2" class="section level3">
+<h3>Your Task</h3>
+<div class="nobullet">
+<ul class="task-list">
+<li><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run correlations and interpret the relationships between the
+variables that will be included in your regression model.</label></li>
+</ul>
+</div>
+<div class="panel-heading tutorial-quiz-title">Check Your Results</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrCorr-1" class="tutorial-question panel-body">
+<div id="cyrCorr-1-answer_container" class="shiny-html-output"></div>
+<div id="cyrCorr-1-message_container" class="shiny-html-output"></div>
+<div id="cyrCorr-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrCorr-2" class="tutorial-question panel-body">
+<div id="cyrCorr-2-answer_container" class="shiny-html-output"></div>
+<div id="cyrCorr-2-message_container" class="shiny-html-output"></div>
+<div id="cyrCorr-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
+</span>
+</summary>
+<p>To run a correlation, you’ll need to navigate to <em>Analyze &gt;
+Correlate &gt; Bivariate</em></p>
+</details>
+</div>
+<p></br></p>
+<div class="container">
+<details>
+<summary>
+<span style="font-weight: bold; font-size: 16pt"> Click here for the
+solution </span>
+</summary>
+<p>Navigate to <em>Analyze &gt; Correlate &gt; Bivariate</em> and add
+each of your continuous variables (<code>Wellbeing</code>,
+<code>SocialSupport</code>, <code>Sleep</code>, and
+<code>PhysicalActivity</code>) to the ‘Variables’ box. Click ‘Show only
+the lower diagonal’; this removes redundant information from the
+correlation matrix. Click ‘Continue’ and then ‘OK’.</p>
+<p>The output provides a correlation matrix with the value of <span
+class="math inline">\(r\)</span> and the p-value. Consider the
+correlations alongside the predefined thresholds, above.</p>
+<p><b>Negligible associations:</b></p>
+<ul>
+<li><code>SocialSupport</code> and <code>PhysicalActivity</code></li>
+</ul>
+<p><br></p>
+<p><b>Weak associations:</b></p>
+<ul>
+<li><code>PhysicalActivity</code> and <code>Wellbeing</code></li>
+<li><code>SocialSupport</code> and <code>Wellbeing</code></li>
+<li><code>SocialSupport</code> and <code>Sleep</code></li>
+</ul>
+<p><br></p>
+<p><b>Moderate assocations:</b></p>
+<ul>
+<li><code>PhysicalActivity</code> and <code>Sleep</code></li>
+</ul>
+<p><br></p>
+<p><b>Strong associations:</b></p>
+<ul>
+<li><code>Sleep</code> and <code>Wellbeing</code></li>
+</ul>
+</details>
+</div>
+<p></br></p>
 </div>
 </div>
 <div id="section-primary-analysis" class="section level2">
@@ -917,18 +1033,18 @@ output$regPlot <- renderPlotly({
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_5e13a79", 
+"character")), answers = list(structure(list(id = "lnr_ans_6f2a66a", 
     option = "Simple Linear Regression", value = "Simple Linear Regression", 
     label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8518fac", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_763cf56", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b638b55", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_81c013a", 
     option = "Pearson Correlation", value = "Pearson Correlation", 
     label = structure("Pearson Correlation", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c6fb25a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_180efd0", 
     option = "Multiple Linear Regression", value = "Multiple Linear Regression", 
     label = structure("Multiple Linear Regression", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -940,38 +1056,38 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Here, you’re looking at whether several continuous variables predict values on another continuous variables. Both a t-test and a Factorial ANOVA require a categorical dependent variable, and a Pearson correlation only looks at the association between two continuous variables. A simple linear regression is one in which a single variable predicts an outcome, and here there are 3 predictors. In this case, multiple linear regression is the best option.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-1-answer", 
     question = "cyu1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 909430845.076513, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 866980942.596281, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyu1-2", question = structure("Which of the following questions can be addressed using linear regression? Please select all that apply.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_f381957", 
+"character")), answers = list(structure(list(id = "lnr_ans_4a58d42", 
     option = "What is the association between age in years and weight in kg?", 
     value = "What is the association between age in years and weight in kg?", 
     label = structure("What is the association between age in years and weight in kg?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_78ae740", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5368f28", 
     option = "Is there a difference in vaping rates by age group?", 
     value = "Is there a difference in vaping rates by age group?", 
     label = structure("Is there a difference in vaping rates by age group?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3ab7906", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_217b489", 
     option = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
     value = "Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", 
     label = structure("Is there an association between season (Spring, Summer, Autumn, Winter) and the number of cyclists on the path through the Meadows?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8ce2fce", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8ff2234", 
     option = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", 
     value = "Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", 
     label = structure("Are scores on the Beck Depression Inventory associated with weekly physical activity (in hours)?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1327b85", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_675c6d8", 
     option = "Can scores on a standardised test predict University marks?", 
     value = "Can scores on a standardised test predict University marks?", 
     label = structure("Can scores on a standardised test predict University marks?", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_1fe6f2c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_eb3841a", 
     option = "Can the number of sweets one consumes per month predict the presence or absence of tooth decay?", 
     value = "Can the number of sweets one consumes per month predict the presence or absence of tooth decay?", 
     label = structure("Can the number of sweets one consumes per month predict the presence or absence of tooth decay?", html = TRUE, class = c("html", 
@@ -984,7 +1100,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 "character")), message = structure("Linear regression can actually address almost all of these questions. It’s super flexible! In SPSS, however, it’s a bit more complex to do regression analyses with categorical predictors, so in this course, we’ve been using ANOVA. The only research question that cannot be tested with linear regression is ‘Can the number of sweets one consumes per month predict the presence or absence of tooth decay?’, as this has a binary outcome variable (Tooth Decay: Yes/No). In the case of binary outcomes, a linear model is not appropriate; instead, you should use logistic regression.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-2-answer", 
     question = "cyu1-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1902588922.11404, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 750670119.150442, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
@@ -992,7 +1108,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
     question = structure("What is the R2 value associated with your sensitivity power analysis (i.e., what R2 value are you capable of detecting with 600 participants)? Please round your answer to 2 decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_392c60c", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4e68975", 
         option = "0.02", value = 0.02, label = structure("0.02", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1003,7 +1119,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("You are capable of detecting an R2 value of .02. The power analysis produced an f2 value of .02. You’ll need to convert f2 to R2. In this example, it’s basically identical, but this is not always the case.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
         question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1061771808.50557, options = list(
+    allow_retry = FALSE, seed = 47383234.9779355, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1011,7 +1127,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDesc-1", 
     question = structure("How many total participants are there in this dataset?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_6fc21f4", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2138972", 
         option = "600", value = 600, label = structure("600", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1022,7 +1138,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("There are 600 total participants.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrDesc-1-answer", 
         question = "cyrDesc-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 810757708.122462, options = list(
+    allow_retry = FALSE, seed = 899979425.080914, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1031,7 +1147,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDesc-2", 
     question = structure("How many participants preferred not to disclose their gender?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_122a5cf", 
+    "character")), answers = list(structure(list(id = "lnr_ans_d854907", 
         option = "10", value = 10, label = structure("10", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1042,7 +1158,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("10 participants chose not to disclose their gender.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrDesc-2-answer", 
         question = "cyrDesc-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 926203448.568703, options = list(
+    allow_retry = FALSE, seed = 513992789.260653, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1050,7 +1166,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrDesc-3", 
     question = structure("What is the mean well-being score? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_8f484ef", 
+    "character")), answers = list(structure(list(id = "lnr_ans_baa8ce0", 
         option = "18.2", value = 18.2, label = structure("18.2", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1061,7 +1177,46 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The mean score on the well-being scale is 18.20.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrDesc-3-answer", 
         question = "cyrDesc-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 109350304.44908, options = list(
+    allow_retry = FALSE, seed = 1041089417.5152, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrCorr-1", 
+    question = structure("What is the Pearson correlation value for the association between PhysicalActivity and Sleep? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_55b9478", 
+        option = "0.2", value = 0.2, label = structure("0.2", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Pearson’s r for the association between PhysicalActivity and Sleep is .20.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrCorr-1-answer", 
+        question = "cyrCorr-1"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 321144185.350456, options = list(
+        min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrCorr-2", 
+    question = structure("What is the Pearson correlation value for the association between SocialSupport and Wellbeing? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_cf05694", 
+        option = "0.16", value = 0.16, label = structure("0.16", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("Pearson’s r for the association between SocialSupport and Wellbeing is .16.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrCorr-2-answer", 
+        question = "cyrCorr-2"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 218736880.898143, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1070,22 +1225,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAnalysis-1", 
     question = structure("Which of the following statements reflects the accurate interpretation of adjusted R squared?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_d637b2f", 
+    "character")), answers = list(structure(list(id = "lnr_ans_e3f0aa0", 
         option = "Together, sleep, physical activity, and social support explain ~36% of the variance in test anxiety ratings.", 
         value = "Together, sleep, physical activity, and social support explain ~36% of the variance in test anxiety ratings.", 
         label = structure("Together, sleep, physical activity, and social support explain ~36% of the variance in test anxiety ratings.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2322973", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_f25c643", 
         option = "As the values of the significant predictors increase by 1 point, well-being scores increase by .36", 
         value = "As the values of the significant predictors increase by 1 point, well-being scores increase by .36", 
         label = structure("As the values of the significant predictors increase by 1 point, well-being scores increase by .36", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_dbe469f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_dc90e3a", 
         option = "There is a 36% likelihood that this model accurately predicts wellbeing.", 
         value = "There is a 36% likelihood that this model accurately predicts wellbeing.", 
         label = structure("There is a 36% likelihood that this model accurately predicts wellbeing.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_113e092", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7a41802", 
         option = "Wellbeing scores will be about 3.58 when each of the predictors are equal to 0.", 
         value = "Wellbeing scores will be about 3.58 when each of the predictors are equal to 0.", 
         label = structure("Wellbeing scores will be about 3.58 when each of the predictors are equal to 0.", html = TRUE, class = c("html", 
@@ -1098,21 +1253,21 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The adjusted R squared is the proportion of variance in the outcome accounted for by the predictor variables.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-1-answer", 
         question = "cyrAnalysis-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1377754271.85843, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 610114015.215894, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrAnalysis-2", 
     question = structure("Which of the following are significant predictors of well-being? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c7548df", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b157cbd", 
         option = "Sleep", value = "Sleep", label = structure("Sleep", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e45c48e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3da07a5", 
         option = "Physical Activity", value = "Physical Activity", 
         label = structure("Physical Activity", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6a5e3ec", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6ed2682", 
         option = "Social Support", value = "Social Support", 
         label = structure("Social Support", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1124,7 +1279,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("Both sleep and social support are significant predictors of well-being. The p-value associated with Physical Activity was .239, which is larger than our alpha threshold of .05, so this variable is not considered significant.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-2-answer", 
         question = "cyrAnalysis-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1312493290.38882, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1328022892.38159, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1132,17 +1287,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrAnalysis-3", 
     question = structure("Which of the following interpretations are correct? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_b784c43", 
+    "character")), answers = list(structure(list(id = "lnr_ans_71dcdb0", 
         option = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are held constant", 
         value = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are held constant", 
         label = structure("For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.37, when social support and physical activity are held constant", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a884108", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_27b35dd", 
         option = "As one's social support score increases by 1 SD, their well-being score will increase by 0.90 SD, when sleep and physical activity are held constant.", 
         value = "As one's social support score increases by 1 SD, their well-being score will increase by 0.90 SD, when sleep and physical activity are held constant.", 
         label = structure("As one’s social support score increases by 1 SD, their well-being score will increase by 0.90 SD, when sleep and physical activity are held constant.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8961a99", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_93eb940", 
         option = "Physical Activity has a positive relationship with well-being", 
         value = "Physical Activity has a positive relationship with well-being", 
         label = structure("Physical Activity has a positive relationship with well-being", html = TRUE, class = c("html", 
@@ -1155,17 +1310,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("Both sleep and social support are significant predictors of well-being, but as phsyical activity is not, we cannot claim that it has a relationship with well-being at all. The other two options with sleep and social support show the proper way to report unstandardized and standardized coefficients, respectively", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-3-answer", 
         question = "cyrAnalysis-3"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 960311434.05282, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1435861535.33137, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAnalysis-4", 
     question = structure("The overall model is significant.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a84008e", 
+    "character")), answers = list(structure(list(id = "lnr_ans_250f95d", 
         option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9788951", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_438a047", 
         option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1176,7 +1331,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The overall model test produced an F-statistic of 112.21 and a corresponding p-value of &lt; .001. This suggests that our combination of predictor variables significantly predict the scores on our well-being assessment.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-4-answer", 
         question = "cyrAnalysis-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1966594535.58423, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1464170742.81819, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

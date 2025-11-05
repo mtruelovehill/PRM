@@ -43,10 +43,10 @@ At the end of this lab, you will be able to:
 
 1. Understand what is meant by 'intercept' and 'slope'
 2. Identify hypotheses which may be tested using regression
-3. Test the assumptions of a regression
-4. Use SPSS to run multiple linear regression
-5. Properly interpret and report multiple linear regression analysis
-6. Run a power analysis for linear regression
+3. Run a power analysis for linear regression
+4. Test the assumptions of a regression
+5. Use SPSS to run multiple linear regression
+6. Properly interpret and report multiple linear regression analysis
 7. Produce an APA-style correlation matrix
 
 
@@ -77,7 +77,11 @@ The fit line of a regression model has two key characteristics:
 
 ### Your Task
 
+<div class="nobullet">
+
 + [ ] $\ $ Use the plot below to explore these two characteristics further.
+
+</div>
 
 <br>
 
@@ -126,10 +130,10 @@ You'll be working with data adapted from [this study](https://www.tandfonline.co
 
 In this experiment, you recruited a sample of university students and administered several scales to capture your variables of interest. Specifically, you measured participants' well-being, their level of social support, their weekly physical activity, and their sleep per week. On each variable, higher scores correspond to higher levels.
 
-You can download the dataset from this experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week8LabData.sav). It contains the following variables:
+You can download the dataset from this experiment [here](https://mtruelovehill.github.io/PRM/Labs/RegressionLabData.sav). It contains the following variables:
 
 ```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week8LabData.csv')
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/RegressionLabData.csv')
 
 datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Age in years',
@@ -168,10 +172,11 @@ quiz(caption = '',
 ```
 
 ### Your Tasks
-+ [ ] $\ $ State your research question(s) for this experiment.
+
+<div class="nobullet">
 + [ ] $\ $ Specify the predictor and outcome variables.
 + [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
-
+</div>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -185,11 +190,6 @@ With regression, it's common to refer to variables as predictors and outcomes ra
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-<b>Possible Research Questions:</b>
-
-Do physical activity, sleep, and social support significantly predict well-being in university students? 
-
 <br>
 
 <b>Predictors:</b> Physical Activity; Sleep; Social Support 
@@ -213,7 +213,7 @@ Here is an example of a hypothesis that references a specific predictor:
 
 $H_0:$ Sleep does not predict well-being in university students when controlling for the effects of physical activity and social support.
 
-$H_1:$ Sleep predicts well-being in university students when controlling for the effects of physical activity and social support.
+$H_1:$ Sleep predicts well-being in university students when controlling for the effects of physical activity and social support. Specifically, more sleep will be associated with a greater sense of well-being.
 
 <i> Statistical: </i>
 
@@ -225,6 +225,93 @@ $H_1: \beta_{x_i} \neq 0$
 </div>
 </br>
 
+## Power Analysis
+
+Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
+
+### Your Task
+
+<div class="nobullet">
+
++ [ ] $\ $ Run a **sensitivity** power analysis using $\alpha$ = .05 and power = .8 to determine the effect size ($R^2$) you're capable of detecting with 600 participants using a linear regression model with 3 predictors.
+
++ [ ] $\ $ Convert the $f^2$ value to $R^2$ using the following formula:
+
+</div>
+
+$$R^2 = \frac{f^2}{f^2+1}$$
+
+#### Bonus Task
+
+<div class="nobullet">
+
++ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the number of participants you need to detect a moderate effect ($R^2$ = .13) with a linear regression using 3 predictors. You can use the following formula to convert $R^2$ to $f^2$:
+
+</div>
+
+$$f^2 = \frac{R^2}{1-R^2}$$
+
+
+
+```{r cyrPower, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the R2 value associated with your sensitivity power analysis (i.e., what R2 value are you capable of detecting with 600 participants)? Please round your answer to 2 decimal places.",
+              answer(.02, correct=T),
+              message = "You are capable of detecting an R2 value of .02. The power analysis produced an f2 value of .02. You'll need to convert f2 to R2. In this example, it's basically identical, but this is not always the case."))
+```
+
+
+```{r, eval = F, echo = F}
+     question_numeric("How many participants do you need to detect an R2 of .13 with 3 predictors?",
+                      answer(77, correct = T),
+                      message = 'First, you need to convert R2 to f2. Using f2, the power calculation indicates that 77 participants are needed to detect this effect with 80% power and alpha = .05.')
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Webpower has an option through which you can enter the $R^2$ value and it will calculate $f^2$ for you.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+For the sensitivity analysis, navigate to the webpower site and choose 'Linear Regression' from the menu:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerMenu.png')
+```
+
+Enter in the relevant information and click 'Calculate' to get the results:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis1.png')
+```
+
+To figure out how this relates to the $R^2$ of your model, convert from $f^2$:
+
+$$R^2 = \frac{f^2}{f^2+1} = \frac{.02}{.02+1} = .02$$
+In this case, it's the same, but that won't always be true, so it's important to always convert between effect sizes.
+
+
+For the bonus power analysis, enter in the relevant information and click 'Calculate' to get the results:
+
+```{r, echo = F, fig.align= 'center', out.width = '50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis2.png')
+```
+
+Note that you can click 'Show' next to effect size and use the calculator there to get $f^2$ from $R^2$, or you can use the following equation:
+
+$$f^2 = \frac{R^2}{1-R^2} = \frac{.13}{1-.13} = .15$$
+Whatever you choose, you'll need 77 participants, given the other criteria.
+
+</details>
+</div>
+</br>
 
 ## Data Review
 
@@ -234,11 +321,16 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 ### Your Tasks
 
-+ [ ] $\ $ Open 'Week8LabData.sav'
+<div class="nobullet">
+
++ [ ] $\ $ Open 'RegressionLabData.sav'
 
 + [ ] $\ $ Check that all variables are set as the correct measurement type. 
 
 + [ ] $\ $ Check the descriptive statistics of your data
+
+</div>
+
 
 ```{r cyrDesc, echo = FALSE}
 quiz(caption = 'Check Your Results',
@@ -321,6 +413,8 @@ You can remember the requirements/assumptions of linear regression by rememberin
 
 ### Your Tasks
 
+<div class="nobullet">
+
 + [ ] $\ $ Decide whether your data meet the assumption of linearity
 
 + [ ] $\ $ Decide whether your data meet the assumption of normality
@@ -328,6 +422,8 @@ You can remember the requirements/assumptions of linear regression by rememberin
 + [ ] $\ $ Decide whether your data meet the assumption of equal variance
 
 + [ ] $\ $ Check whether your data exhibit multicollinearity
+
+</div>
 
 You can assume independence is met, as it's something that's accounted for through good study design rather than statistically.
 
@@ -400,6 +496,83 @@ All checks look good, so you can move on to interpreting the primary results.
 </details>
 </div>
 
+## Run Correlations
+
+When performing regression, it is a good idea to check and report the associations between your predictors and the outcome. As you are looking for associations between continuous variables, you'll use a Pearson correlation in cases where variables are normally distributed, and Spearman's $\rho$ in cases where they are not. 
+
+Recall that $r$ (and $\rho$) has the following interpretation standards:
+
+| Strength     | Absolute Magnitude of $r$ |
+|:------------:|:-------------------------:|
+| Negligible   | $<$ .1                    |
+| Weak         | .1 - .3                   |
+| Moderate     | .3 - .5                   |
+| Strong       | $>$ .5                    |
+
+
+### Your Task
+
+<div class="nobullet">
+
++ [ ] $\ $ Run correlations and interpret the relationships between the variables that will be included in your regression model. 
+
+</div>
+
+```{r cyrCorr, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the Pearson correlation value for the association between PhysicalActivity and Sleep? Please round your answer to two decimal places.",
+              answer(.20, correct = T),
+              message = "Pearson's r for the association between PhysicalActivity and Sleep is .20."), 
+     question_numeric("What is the Pearson correlation value for the association between SocialSupport and Wellbeing? Please round your answer to two decimal places.",
+              answer(.16, correct = T),
+              message = "Pearson's r for the association between SocialSupport and Wellbeing is .16."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To run a correlation, you'll need to navigate to *Analyze > Correlate > Bivariate*
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate to *Analyze > Correlate > Bivariate* and add each of your continuous variables (`Wellbeing`, `SocialSupport`, `Sleep`, and `PhysicalActivity`) to the 'Variables' box. Click 'Show only the lower diagonal'; this removes redundant information from the correlation matrix. Click 'Continue' and then 'OK'. 
+
+The output provides a correlation matrix with the value of $r$ and the p-value. Consider the correlations alongside the predefined thresholds, above.
+
+<b>Negligible associations:</b>
+
++ `SocialSupport` and `PhysicalActivity`
+
+<br>
+
+<b>Weak associations:</b>
+
++ `PhysicalActivity` and `Wellbeing`
++ `SocialSupport` and `Wellbeing`
++ `SocialSupport` and `Sleep`
+
+<br>
+
+<b>Moderate assocations:</b>
+
++ `PhysicalActivity` and `Sleep`
+
+<br>
+
+<b>Strong associations:</b>
+
++ `Sleep` and `Wellbeing`
+
+
+</details>
+</div>
+</br>
+
 ## Primary Analysis
 
 As you are testing whether multiple predictor variables can predict a single, continuous outcome, you'll use results from multiple linear regression to provide statistical support for your hypotheses. In this analysis, you'll test whether your overall model significantly predicts well-being. You'll then check the effects of each predictor individually. 
@@ -407,11 +580,15 @@ As you are testing whether multiple predictor variables can predict a single, co
 
 ### Your Tasks
 
+<div class="nobullet">
+
 + [ ] $\ $ Run multiple regression to test your hypotheses and interpret the overall model results with $\alpha$ = .05.
 
 + [ ] $\ $ Interpret the individual predictor results with $\alpha$ = .05.
 
 + [ ] $\ $ Compute the confidence intervals associated with each predictor
+
+</div>
 
 
 ```{r cyrAnalysis, echo = FALSE}
@@ -499,82 +676,6 @@ Note that even though we have a $\beta$ coefficient associated with `PhysicalAct
 </div>
 </br>
 
-## Power Analysis
-
-Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
-
-### Your Task
-
-+ [ ] $\ $ Run a **sensitivity** power analysis using $\alpha$ = .05 and power = .8 to determine the effect size ($R^2$) you're capable of detecting with 600 participants using a linear regression model with 3 predictors.
-
-+ [ ] $\ $ Convert the $f^2$ value to $R^2$ using the following formula:
-
-$$R^2 = \frac{f^2}{f^2+1}$$
-
-#### Bonus Task
-
-+ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the number of participants you need to detect a moderate effect ($R^2$ = .13) with a linear regression using 3 predictors. You can use the following formula to convert $R^2$ to $f^2$:
-
-$$f^2 = \frac{R^2}{1-R^2}$$
-
-
-
-```{r cyrPower, echo = FALSE}
-quiz(caption = 'Check Your Results',
-     question_numeric("What is the R2 value associated with your sensitivity power analysis (i.e., what R2 value are you capable of detecting with 600 participants)? Please round your answer to 2 decimal places.",
-              answer(.02, correct=T),
-              message = "You are capable of detecting an R2 value of .02. The power analysis produced an f2 value of .02. You can get this result by converting this value to R2 with the following equation: .02/(.02+1) = .02. In this case, it's basically identical, but this may not always be the case."),
-     question_numeric("How many participants do you need to detect an R2 of .13 with 3 predictors?",
-                      answer(77, correct = T),
-                      message = 'First, you need to convert R2 to f2 using the following equation: .13/(1-.13) = .15. Using this effect size, the power calculation indicates that 77 participants are needed to detect this effect with 80% power and alpha = .05.'))
-```
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-
-Webpower has an option through which you can enter the $R^2$ value and it will calculate $f^2$ for you.
-
-</details>
-</div>
-</br>
-
-
-<div class="container">
-<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-For the sensitivity analysis, navigate to the webpower site and choose 'Linear Regression' from the menu:
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerMenu.png')
-```
-
-Enter in the relevant information and click 'Calculate' to get the results:
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis1.png')
-```
-
-To figure out how this relates to the $R^2$ of your model, convert from $f^2$:
-
-$$R^2 = \frac{f^2}{f^2+1} = \frac{.02}{.02+1} = .02$$
-In this case, it's the same, but that won't always be true, so it's important to always convert between effect sizes.
-
-
-For the bonus power analysis, enter in the relevant information and click 'Calculate' to get the results:
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_powerAnalysis2.png')
-```
-
-Note that you can click 'Show' next to effect size and use the calculator there to get $f^2$ from $R^2$, or you can use the following equation:
-
-$$f^2 = \frac{R^2}{1-R^2} = \frac{.13}{1-.13} = .15$$
-Whatever you choose, you'll need 77 participants, given the other criteria.
-
-</details>
-</div>
-</br>
-
 
 ## Interpret & Report 
 
@@ -610,12 +711,6 @@ See [here](https://apastyle.apa.org/style-grammar-guidelines/tables-figures/samp
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
-
-In this study, we investigated the association between well-being in university students and the lifestyle factors of sleep, physical activity, and social support. We hypothesised that these factors would significantly predict scores on a well-being assessment. To test this, we performed multiple linear regression with wellbeing scores as an outcome variable and hours of sleep per week, hours of physical activity per week, and scores on a social support questionnaire as predictors. $\alpha$ was set at .05 for all analyses. A power analysis indicated that 600 participants would provide 80% power to detect an $R^2 = .02$ with $\alpha$ = .05 using a linear regression with 3 predictors.
-
-Our final sample consisted of 600 university students between the ages of 17 and 26 ($M$ = 21.49, $SD$ = 2.61; 297 females, 281 males, 7 nonbinary participants, 5 participants who indicated a gender other than these categories, and 10 who preferred not to disclose). The normality assumption was checked through visual assessment of a P-P plot of the residuals. Linearity and homoskedasticity were checked using a residuals by predicted values plot. VIF scores and correlations were used to evaluate the presence of multicollinearity. The data met all assumptions.
-
-Our results indicate that, altogether, sleep, physical activity, and social support significantly predicted well-being, $F$(3,596) = 112.21, $p$ < .001, explaining 36% of the variance in student well-being scores. Both hours of sleep, $\beta$ = .37, $p$ < .001, 95% CI = [0.34, 0.41], and social support, $\beta$ = .07, $p$ = .006, 95% CI = [0.02, 0.11], were significant predictors of well-being. Specifically, for every additional hour per week of sleep, student well-being scores increased by .37 points. For every additional point on the social support scale, student well-being scores increased by .07 points. Hours of physical activity per week was not a significant predictor of well-being, $\beta$ = .14, $p$ = .239, 95% CI = [-0.09, 0.36]. See Table 1 for descriptive data and correlations between all variables in the analysis.
 
 ```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week8_table.png')
