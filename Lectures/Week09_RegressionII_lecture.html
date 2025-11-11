@@ -51,7 +51,7 @@ class: center, middle, inverse, title-slide
 
 + Recall that an **interaction** occurs when the effects of one predictor/IV on the outcome/DV change across levels of a second predictor/IV. 
 
-+ We have already investigated categorical `\(\times\)` continuous interactions
++ We have already investigated categorical `\(\times\)` categorical interactions
 
 + We'll expand this to continuous `\(\times\)` continuous interactions:
 
@@ -153,7 +153,7 @@ Where:
 ---
 ### Effects in Linear Regression Models
 
-+ **Main Effect:** the effect of predictors `\(x\)` on the outcome variable when the others predictors are held constant
++ **Main Effect:** the effect of predictor `\(x\)` on the outcome variable when the others predictors are held constant
 
 + When an interaction is present, the effect of predictor `\(x\)` changes as `\(z\)` changes, so we no longer interpret `\(\beta_x\)` in this way.
 
@@ -476,26 +476,17 @@ class: center, inverse, middle
 
 
 ---
-count: false
 
-### Simple Slopes Analysis using PROCESS macro
+### Probing Interactions - Johnson-Neyman Analysis
 
 .pull-left[
-+ Simple Slopes analysis in SPSS is a complicated process, but it's much more straightforward if you use PROCESS.
++ A Johnson-Neyman analysis can be used to further probe interactions
 
-+ This is an installable add-on to SPSS that can be used for both moderation and mediation models.
-
-+ By default, it outputs the relationship between `\(x\)` and `\(y\)` at multiple levels of `\(z\)`, so you can see exactly where this relationship becomes significant.
-
-+ To download, please [click this link](https://processmacro.org/download.html)
-
++ It allows for the identification of regions of `\(z\)` where the relationship between `\(x\)` and `\(y\)` is significant
 ]
 
 .pull-right[
-
-![](images/jnResults.png)&lt;!-- --&gt;
-
-
+![](images/jnPlot.png)&lt;!-- --&gt;
 ]
 
 ---
