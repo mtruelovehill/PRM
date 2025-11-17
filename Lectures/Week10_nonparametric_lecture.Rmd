@@ -414,6 +414,7 @@ mp
 ---
 ### Interpretation of Spearman's $\rho$
 
+
 + Identical to Pearson's $r$
 
 + Values fall between -1 and 1, with values further from 0 indicating a stronger association
@@ -424,6 +425,7 @@ mp
 | .1 - .3 | Weak           |
 | .3 - .5 | Moderate       |
 | > .5    | Strong         |
+
 
 ---
 class: inverse, center, middle
@@ -592,6 +594,25 @@ knitr::include_graphics('images/TOIresults.png')
 ]
 
 ---
+## Nonparametric Tests in SPSS
+
++ For group comparisons & $\chi^2$:
+
+```{r, echo = F, out.width='80%'}
+knitr::include_graphics('images/nonparTestsSPSS.png')
+```
+
+---
+## Nonparametric Tests in SPSS
+
++ For associations with Spearman's $\rho$:
+
+```{r, echo = F, out.width='70%'}
+knitr::include_graphics('images/SpearmanSPSS.png')
+```
+
+---
+
 class: middle, center, inverse
 
 ## Questions?

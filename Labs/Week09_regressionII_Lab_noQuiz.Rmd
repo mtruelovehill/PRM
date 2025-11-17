@@ -69,7 +69,7 @@ datInfo %>%
 This week, you'll be investigating whether the effect of physical activity on well-being is moderated by sleep. You also would like to control for the effect of Social Support, which you identified during last week's lab. 
 
 
-```{r cyu1, echo = FALSE}
+```{r cyu1, echo = FALSE, eval = F}
 quiz(caption = '',
      question("Which test is most appropriate to address your research question, given the study design?",
               answer("Multiple Linear Regression with only main effects"),
@@ -284,7 +284,7 @@ Recall that your primary research question is *Does the effect of physical activ
 + [ ] $\ $ Interpret the results from the interaction and individual predictors with $\alpha$ = .05.
 
 
-```{r cyrAnalysis, echo = FALSE}
+```{r cyrAnalysis, echo = FALSE, eval = F}
 quiz(caption = 'Check Your Results',
      question_numeric('What is the value of the model F-statistic? Please round your answer to two decimal places.',
               answer('85.68', correct = T),
