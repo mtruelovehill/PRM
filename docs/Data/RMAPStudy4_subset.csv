@@ -1,0 +1,374 @@
+ID,AgeBracket,Gender,Ethnicity,HighestEducation,Perfectionism,Self-Construal,AGQ
+1,18-33,Female,Other white ethnic group,Undergraduate Degree,45,141,59
+2,18-33,Female,Other British,"Postgraduate Qualification, Masters",45,162,55
+3,18-33,Female,Other British,,36,136,62
+5,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",51,140,99
+6,,Female,Other British,Undergraduate Degree,25,145,66
+7,18-33,Female,Irish,Undergraduate Degree,45,133,73
+8,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,49,135,76
+9,,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",34,141,68
+10,,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,47,154,91
+11,18-33,Prefer not to say,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,61,141,110
+12,18-33,Female,Other British,Undergraduate Degree,36,119,66
+13,18-33,Female,,,47,150,129
+14,18-33,Female,Other British,Undergraduate Degree,59,146,95
+15,18-33,Non-binary / third gender,Other British,Undergraduate Degree,30,131,52
+16,33-48,Female,"Caribbean, Caribbean Scottish or Caribbean British",Undergraduate Degree,55,149,88
+19,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,56,142,87
+20,33-48,Female,Other (not listed),"Postgraduate Qualification, Masters",37,135,65
+21,33-48,Female,Other white ethnic group,"Postgraduate Qualification, Masters",48,144,115
+22,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,39,138,60
+23,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",47,155,127
+24,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,54,146,77
+25,18-33,Female,Other (not listed),,55,156,97
+26,18-33,Female,Other British,Undergraduate Degree,42,154,45
+27,33-48,Female,Mixed or Multiple Ethnic Groups,PhD or other professional qualification,55,140,77
+28,18-33,Female,Other British,"Postgraduate Qualification, Masters",33,141,83
+29,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",61,149,93
+30,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",40,132,61
+31,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,59,120,123
+32,,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,48,132,127
+33,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,37,152,72
+34,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,51,160,103
+35,18-33,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",61,130,105
+36,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,50,136,75
+37,18-33,Female,Other (not listed),Undergraduate Degree,64,128,120
+38,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,33,148,89
+39,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,51,138,99
+40,18-33,Female,Scottish,"Postgraduate Qualification, Masters",49,130,92
+41,33-48,Male,Other white ethnic group,"Postgraduate Qualification, Masters",17,143,43
+42,18-33,Female,Other (not listed),Undergraduate Degree,32,132,78
+43,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,46,136,66
+44,18-33,Female,Other white ethnic group,Undergraduate Degree,38,132,70
+45,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",22,128,114
+46,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",36,127,103
+47,18-33,Female,Other (not listed),Undergraduate Degree,51,136,109
+50,18-33,Female,"Arab, Arab Scottish or Arab British","Postgraduate Qualification, Masters",38,136,55
+51,18-33,Female,Mixed or Multiple Ethnic Groups,"Postgraduate Qualification, Masters",42,149,95
+52,18-33,Female,Other (not listed),Undergraduate Degree,48,109,84
+53,18-33,Female,Other white ethnic group,Undergraduate Degree,64,157,119
+54,18-33,Female,Other white ethnic group,Undergraduate Degree,46,144,76
+55,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",52,150,107
+56,18-33,Female,Polish,Undergraduate Degree,43,123,112
+57,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",63,136,100
+58,18-33,Female,"Chinese, Chinese Scottish or Chinese British",,49,129,124
+59,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",62,131,68
+60,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",41,147,90
+61,18-33,Female,Other British,Undergraduate Degree,35,138,60
+64,18-33,Female,Other British,Undergraduate Degree,43,110,0
+65,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",44,161,99
+66,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",23,125,108
+67,,,,,17,155,96
+68,33-48,Female,,,40,133,81
+69,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,37,139,68
+70,,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",54,143,124
+71,18-33,Male,"Indian, Indian Scottish or Indian British",Undergraduate Degree,56,140,142
+72,18-33,Female,,,46,130,53
+73,33-48,Female,Mixed or Multiple Ethnic Groups,"Postgraduate Qualification, Masters",54,143,124
+74,18-33,Female,Other British,"Postgraduate Qualification, Masters",49,128,90
+75,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",36,140,83
+76,33-48,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,36,152,128
+77,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,29,133,82
+78,18-33,Male,Other British,Undergraduate Degree,50,132,82
+81,18-33,Male,Other British,Undergraduate Degree,35,121,82
+82,18-33,Female,Other white ethnic group,Undergraduate Degree,46,156,83
+83,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,21,146,54
+84,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,33,135,103
+85,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",58,143,129
+87,18-33,Female,Other British,Undergraduate Degree,41,140,70
+88,18-33,Female,Other white ethnic group,Undergraduate Degree,55,142,122
+89,18-33,Male,Other white ethnic group,Undergraduate Degree,43,129,48
+90,,Female,,,48,140,101
+91,33-48,Female,Other white ethnic group,Undergraduate Degree,53,134,106
+92,18-33,Female,Other white ethnic group,Undergraduate Degree,46,156,111
+93,33-48,Female,"Chinese, Chinese Scottish or Chinese British",PhD or other professional qualification,39,143,126
+94,18-33,Male,Other white ethnic group,Undergraduate Degree,31,154,97
+95,,Female,,,33,143,88
+96,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",35,128,81
+97,18-33,Female,,,37,147,89
+99,33-48,Male,"African, African Scottish or African British","Postgraduate Qualification, Masters",49,141,88
+100,18-33,Female,Irish,"Postgraduate Qualification, Masters",40,133,83
+101,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,34,159,105
+102,,Female,Other white ethnic group,Undergraduate Degree,38,147,102
+103,,Female,,,55,147,86
+105,18-33,Female,Other British,Undergraduate Degree,21,172,99
+106,18-33,Female,Other British,"Postgraduate Qualification, Masters",59,146,128
+108,49-64,Female,Polish,PhD or other professional qualification,28,158,69
+109,18-33,Prefer not to say,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",45,128,128
+110,18-33,Female,"Arab, Arab Scottish or Arab British","Postgraduate Qualification, Masters",48,152,110
+111,,Female,Polish,"Postgraduate Qualification, Masters",53,144,121
+112,18-33,Female,,,53,170,43
+114,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",46,139,94
+115,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,52,149,106
+116,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,48,133,91
+117,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",45,135,93
+118,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,50,133,84
+119,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",31,149,99
+120,18-33,Female,Irish,"Postgraduate Qualification, Masters",52,124,50
+121,18-33,Female,Polish,Undergraduate Degree,47,130,143
+122,18-33,Male,Irish,Undergraduate Degree,38,137,97
+123,18-33,Female,Other British,,63,152,93
+124,18-33,Female,,,66,163,94
+125,18-33,Female,Other white ethnic group,Undergraduate Degree,59,147,104
+126,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,50,145,120
+127,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",43,130,107
+128,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",56,132,96
+129,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,51,166,70
+130,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",44,95,107
+131,18-33,Female,"Chinese, Chinese Scottish or Chinese British",,39,130,62
+132,,Female,,,37,130,98
+133,,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,48,129,101
+134,18-33,Male,Other white ethnic group,Undergraduate Degree,28,142,96
+135,,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",39,144,106
+136,18-33,Transgender Female,Other British,Undergraduate Degree,60,159,114
+137,18-33,Female,Other white ethnic group,Undergraduate Degree,45,128,66
+139,18-33,Prefer not to say,"Indian, Indian Scottish or Indian British",Undergraduate Degree,39,146,99
+140,18-33,Female,"Black, Black Scottish or Black British","Postgraduate Qualification, Masters",36,147,98
+141,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,46,109,86
+142,,Female,,,70,136,104
+143,,,,,40,138,104
+144,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,25,135,56
+145,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,58,141,101
+147,18-33,Female,Other (not listed),Undergraduate Degree,43,132,118
+148,18-33,Female,,,46,166,100
+149,18-33,Female,,,69,154,78
+150,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,42,118,105
+151,33-48,Female,Other British,Undergraduate Degree,53,153,109
+152,,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",59,148,63
+153,,Female,,,48,114,110
+154,18-33,Male,Scottish,Undergraduate Degree,29,111,119
+156,,Female,,,40,143,79
+157,18-33,Female,Other British,Undergraduate Degree,34,129,81
+161,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",41,147,107
+162,18-33,Female,"Arab, Arab Scottish or Arab British","Postgraduate Qualification, Masters",44,139,88
+163,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,31,149,93
+164,33-48,Female,"African, African Scottish or African British",PhD or other professional qualification,61,165,78
+165,18-33,Female,Other British,Undergraduate Degree,46,114,69
+166,18-33,Female,Other British,Undergraduate Degree,33,151,76
+167,18-33,Male,,,30,166,74
+168,18-33,Female,Other British,Undergraduate Degree,34,149,58
+169,18-33,Female,Other British,Undergraduate Degree,51,135,65
+170,18-33,Female,"Arab, Arab Scottish or Arab British",Undergraduate Degree,50,128,65
+171,33-48,Female,Other British,"Postgraduate Qualification, Masters",57,125,83
+172,18-33,Female,,,25,129,71
+173,18-33,Female,Other (not listed),Undergraduate Degree,46,136,54
+174,49-64,Female,Other white ethnic group,"Postgraduate Qualification, Masters",48,137,81
+175,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,26,118,51
+177,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",32,126,82
+179,18-33,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",46,150,65
+180,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",42,125,114
+182,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",50,152,114
+183,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",61,127,118
+184,,Female,,,25,147,84
+185,33-48,Transgender Male,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",57,145,111
+186,18-33,Non-binary / third gender,Other British,Undergraduate Degree,43,137,89
+187,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",47,126,108
+188,18-33,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",34,138,70
+189,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,33,147,107
+190,18-33,Female,,,50,137,100
+193,18-33,Female,Other white ethnic group,Undergraduate Degree,41,160,93
+194,18-33,Female,Irish,Undergraduate Degree,31,137,70
+195,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",59,143,76
+196,18-33,Female,Other (not listed),Undergraduate Degree,37,150,78
+197,18-33,Female,Other British,Undergraduate Degree,53,141,68
+198,18-33,Female,Other (not listed),Undergraduate Degree,33,144,82
+199,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,43,134,71
+201,18-33,Female,Scottish,Undergraduate Degree,54,145,80
+203,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,51,140,86
+204,33-48,Male,Other British,Undergraduate Degree,40,141,63
+205,18-33,Male,Other British,Undergraduate Degree,20,140,80
+206,18-33,Male,Other British,Undergraduate Degree,43,152,110
+208,18-33,Female,Scottish,Undergraduate Degree,47,131,72
+210,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",47,137,65
+211,18-33,Female,Other British,Undergraduate Degree,54,139,85
+213,,,,,66,152,56
+214,33-48,Male,Irish,Undergraduate Degree,22,121,56
+215,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",29,138,82
+218,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,39,144,69
+219,18-33,Female,Other British,"Postgraduate Qualification, Masters",62,140,55
+220,18-33,Female,,,53,166,95
+221,18-33,Female,Other British,Undergraduate Degree,48,133,109
+223,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",44,105,86
+224,18-33,Female,Scottish,"Postgraduate Qualification, Masters",36,129,68
+225,18-33,Female,"Arab, Arab Scottish or Arab British",Undergraduate Degree,57,137,83
+227,33-48,Female,Other British,"Postgraduate Qualification, Masters",47,129,100
+229,18-33,Male,Other British,Undergraduate Degree,29,157,82
+230,18-33,Female,Other white ethnic group,Undergraduate Degree,45,141,77
+232,18-33,Male,,,45,160,81
+233,18-33,Male,Scottish,Undergraduate Degree,56,114,76
+234,18-33,Female,Other (not listed),Undergraduate Degree,40,132,62
+235,18-33,Male,Other British,Undergraduate Degree,49,124,86
+236,18-33,Female,Other British,Undergraduate Degree,41,126,85
+237,18-33,Female,Polish,Undergraduate Degree,45,142,64
+238,18-33,Female,Other (not listed),Undergraduate Degree,69,146,131
+240,,Male,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,44,116,113
+241,,Female,Irish,Undergraduate Degree,55,141,103
+242,,,,,59,170,111
+243,18-33,Transgender Female,Scottish,Undergraduate Degree,55,134,80
+244,,Female,Scottish,Undergraduate Degree,54,142,148
+245,18-33,Female,Scottish,Undergraduate Degree,50,147,63
+246,18-33,Non-binary / third gender,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,73,113,127
+247,18-33,Male,Other British,Undergraduate Degree,31,135,78
+248,18-33,Female,Scottish,Undergraduate Degree,53,140,59
+249,18-33,Female,Mixed or Multiple Ethnic Groups,"Postgraduate Qualification, Masters",18,133,80
+250,18-33,Male,Other white ethnic group,Undergraduate Degree,29,165,66
+251,18-33,Female,Scottish,Undergraduate Degree,37,136,38
+252,18-33,Female,Scottish,Undergraduate Degree,52,145,116
+253,18-33,Female,Other white ethnic group,Undergraduate Degree,55,128,108
+254,18-33,Female,,,55,155,48
+255,18-33,Transgender Male,Scottish,Undergraduate Degree,50,113,83
+256,18-33,Female,Other British,"Postgraduate Qualification, Masters",61,138,96
+257,18-33,Female,Other white ethnic group,Undergraduate Degree,54,147,60
+258,18-33,Non-binary / third gender,,,30,119,122
+259,18-33,Female,Irish,Undergraduate Degree,34,137,100
+260,18-33,Male,Other British,"Postgraduate Qualification, Masters",49,144,100
+261,18-33,Female,Other British,Undergraduate Degree,17,127,66
+262,18-33,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",68,154,96
+263,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",61,145,131
+264,,Male,,,42,157,93
+265,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",30,122,57
+266,18-33,Female,Scottish,Undergraduate Degree,45,139,62
+267,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,27,139,82
+268,18-33,Female,Other (not listed),Undergraduate Degree,35,148,70
+269,33-48,Female,Other British,"Postgraduate Qualification, Masters",56,127,95
+270,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,47,157,89
+271,18-33,Female,"Arab, Arab Scottish or Arab British","Postgraduate Qualification, Masters",53,148,95
+272,18-33,Female,"Arab, Arab Scottish or Arab British","Postgraduate Qualification, Masters",35,130,83
+273,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",28,119,80
+274,18-33,Female,,,40,151,115
+276,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",48,118,139
+277,33-48,Female,Scottish,"Postgraduate Qualification, Masters",43,131,68
+279,18-33,Female,Irish,"Postgraduate Qualification, Masters",35,141,70
+280,18-33,Female,,,24,142,76
+281,33-48,Female,Other white ethnic group,"Postgraduate Qualification, Masters",59,155,67
+282,18-33,Non-binary / third gender,Other (not listed),"Postgraduate Qualification, Masters",43,137,76
+283,18-33,Female,Polish,Undergraduate Degree,32,132,66
+284,,,,,18,128,66
+285,18-33,Non-binary / third gender,Other white ethnic group,Undergraduate Degree,55,148,90
+286,18-33,Female,Scottish,"Postgraduate Qualification, Masters",30,156,68
+287,18-33,Female,,,47,129,92
+288,18-33,Female,Irish,Undergraduate Degree,30,142,64
+289,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",54,146,78
+290,18-33,Female,Scottish,Undergraduate Degree,37,153,69
+291,18-33,Female,Other British,Undergraduate Degree,54,132,64
+293,18-33,Female,,,46,133,96
+294,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",42,130,96
+295,18-33,Male,Other British,"Postgraduate Qualification, Masters",43,129,74
+296,18-33,Male,Mixed or Multiple Ethnic Groups,Undergraduate Degree,48,138,78
+297,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",33,129,83
+298,18-33,Male,Scottish,Undergraduate Degree,34,126,91
+299,18-33,Female,Mixed or Multiple Ethnic Groups,,43,133,100
+300,18-33,Female,Other (not listed),Undergraduate Degree,62,159,103
+301,18-33,Female,Other British,"Postgraduate Qualification, Masters",39,161,57
+302,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",30,127,65
+303,18-33,Male,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",57,145,90
+304,33-48,Female,Other British,"Postgraduate Qualification, Masters",28,130,57
+305,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,50,137,92
+306,18-33,Female,Other white ethnic group,Undergraduate Degree,57,178,98
+307,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,57,120,87
+308,18-33,Female,Other white ethnic group,Undergraduate Degree,44,140,81
+309,18-33,Female,Other British,"Postgraduate Qualification, Masters",48,127,63
+310,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",32,128,105
+311,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",41,142,88
+312,18-33,Male,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",47,144,85
+313,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,29,127,57
+315,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,28,139,85
+316,33-48,Female,Other white ethnic group,"Postgraduate Qualification, Masters",43,140,70
+317,18-33,Male,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",40,135,119
+318,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,44,136,100
+319,,Female,Other white ethnic group,"Postgraduate Qualification, Masters",55,146,74
+320,18-33,Female,Other white ethnic group,PhD or other professional qualification,46,128,88
+321,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,35,133,113
+322,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,56,118,129
+323,18-33,Male,Other British,Undergraduate Degree,48,149,131
+325,,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",45,153,83
+326,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",49,145,99
+327,18-33,Female,Other British,"Postgraduate Qualification, Masters",35,139,64
+328,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,58,151,93
+329,18-33,Female,Other British,Undergraduate Degree,50,143,86
+330,18-33,Female,Scottish,Undergraduate Degree,45,130,105
+331,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",60,149,118
+332,,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,39,148,110
+333,18-33,Male,Other (not listed),Undergraduate Degree,64,178,110
+334,18-33,Female,Other British,Undergraduate Degree,48,130,103
+335,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,59,130,86
+336,18-33,Female,Scottish,Undergraduate Degree,52,146,77
+337,18-33,Female,"Arab, Arab Scottish or Arab British",Undergraduate Degree,42,153,96
+338,18-33,Female,Other white ethnic group,Undergraduate Degree,55,145,83
+339,,Male,,,35,142,103
+340,33-48,Female,Other British,"Postgraduate Qualification, Masters",17,120,62
+341,18-33,Female,Other white ethnic group,Undergraduate Degree,49,120,65
+342,18-33,Female,Scottish,Undergraduate Degree,57,132,45
+343,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",34,153,80
+344,18-33,Female,Other white ethnic group,Undergraduate Degree,57,143,84
+346,,,,,26,127,41
+347,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,53,133,81
+348,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,55,159,112
+349,33-48,Non-binary / third gender,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",37,122,84
+350,18-33,Female,,,41,145,84
+351,18-33,Female,"African, African Scottish or African British","Postgraduate Qualification, Masters",56,137,86
+352,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",47,144,91
+353,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,57,139,85
+354,18-33,Male,"Pakistani, Pakistani Scottish or Pakistani British",Undergraduate Degree,53,152,98
+355,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",62,156,93
+356,18-33,Female,Scottish,Undergraduate Degree,48,128,90
+357,33-48,Female,Other British,PhD or other professional qualification,41,124,75
+358,33-48,Female,Scottish,Undergraduate Degree,59,142,87
+359,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",47,140,96
+360,49-64,Non-binary / third gender,Scottish,"Postgraduate Qualification, Masters",64,133,64
+362,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",50,140,97
+363,18-33,Female,,,35,113,66
+364,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,35,142,83
+365,33-48,Female,"Black, Black Scottish or Black British",Undergraduate Degree,16,133,73
+367,33-48,Female,Other white ethnic group,"Postgraduate Qualification, Masters",47,142,82
+368,18-33,Female,Irish,"Postgraduate Qualification, Masters",56,140,90
+370,18-33,Male,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,48,144,138
+371,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,58,136,139
+372,18-33,Female,Other white ethnic group,Undergraduate Degree,45,142,84
+373,18-33,Female,Scottish,Undergraduate Degree,48,116,103
+375,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,29,154,91
+376,33-48,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",32,129,137
+377,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",31,120,100
+379,18-33,Female,"Black, Black Scottish or Black British",Undergraduate Degree,53,134,58
+380,18-33,Female,Other white ethnic group,Undergraduate Degree,39,155,63
+381,18-33,Female,Scottish,"Postgraduate Qualification, Masters",38,136,71
+382,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,48,134,114
+383,,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,51,154,69
+384,18-33,Male,Irish,"Postgraduate Qualification, Masters",61,130,124
+385,,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,32,140,111
+386,18-33,Non-binary / third gender,"African, African Scottish or African British","Postgraduate Qualification, Masters",33,149,98
+387,18-33,Male,Other white ethnic group,Undergraduate Degree,27,130,85
+388,49-64,Female,Other British,Undergraduate Degree,44,137,98
+389,18-33,Female,Other British,Undergraduate Degree,42,142,79
+391,33-48,Female,,,30,131,86
+392,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,37,142,105
+393,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",63,121,124
+394,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",51,140,87
+395,18-33,Female,"Indian, Indian Scottish or Indian British","Postgraduate Qualification, Masters",49,123,71
+396,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,25,161,97
+397,18-33,Male,Other white ethnic group,"Postgraduate Qualification, Masters",55,157,71
+398,18-33,Female,Scottish,"Postgraduate Qualification, Masters",48,130,81
+399,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",35,139,120
+400,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,55,153,85
+401,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,39,149,83
+403,,,Scottish,"Postgraduate Qualification, Masters",38,122,62
+404,18-33,Female,Scottish,"Postgraduate Qualification, Masters",41,134,74
+405,33-48,Female,Other white ethnic group,Undergraduate Degree,47,134,59
+408,18-33,Male,Other (not listed),Undergraduate Degree,43,180,107
+409,18-33,Female,Mixed or Multiple Ethnic Groups,Undergraduate Degree,54,149,86
+410,18-33,Female,"Caribbean, Caribbean Scottish or Caribbean British",Undergraduate Degree,22,158,74
+411,18-33,Female,"Indian, Indian Scottish or Indian British",Undergraduate Degree,22,139,77
+413,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",49,143,87
+414,,Female,Other white ethnic group,Undergraduate Degree,30,129,72
+415,18-33,Female,"Chinese, Chinese Scottish or Chinese British",Undergraduate Degree,45,126,74
+416,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",53,138,124
+418,18-33,Female,"African, African Scottish or African British","Postgraduate Qualification, Masters",61,131,126
+419,18-33,Female,"African, African Scottish or African British","Postgraduate Qualification, Masters",54,141,71
+420,,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",63,104,89
+421,18-33,Non-binary / third gender,Mixed or Multiple Ethnic Groups,Undergraduate Degree,49,137,76
+422,33-48,Female,Scottish,Undergraduate Degree,42,122,96
+425,18-33,Female,"Chinese, Chinese Scottish or Chinese British","Postgraduate Qualification, Masters",54,153,87
+426,33-48,Female,,,20,142,57
+427,18-33,Female,Other white ethnic group,"Postgraduate Qualification, Masters",43,141,69
+428,,Female,,,55,136,111
+429,18-33,Female,Other (not listed),"Postgraduate Qualification, Masters",40,131,81

@@ -446,7 +446,7 @@ ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = 2, fill = baseColor, c
 ggplot(seDat, aes(MeanScore)) + geom_histogram(binwidth = .75, fill = baseColor, color = accent3) +
   scale_y_continuous(breaks=seq(0, 20, 5), limits = c(0, 20)) + 
   scale_x_continuous(breaks=seq(45, 80, 5), limits = c(45, 80)) +
-  labs('Mean Score', y = 'Count') +
+  labs(x = 'Mean Score', y = 'Count') +
   theme(axis.text = element_text(size = 12),
         axis.title = element_text(size = 14, face = 'bold')) +
   geom_vline(xintercept = mean(seDat$MeanScore), linetype = 'dashed', color = accent2, linewidth = 1) +

@@ -298,7 +298,7 @@ quiz(caption = 'Check Your Results',
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 To check normality, you can use histograms and Q-Q plots. You'll need to do this for each level of `Transport` separately. Navigate to *Analyze>DescriptiveStatistics>Explore* to do this. 
 
-To check independence, you'll need to consider the design of the study. To check homogeneity of variance, you can check results from Levene's test.
+To check independence, you'll need to consider the design of the study. In regards to homogeneity of variance, you can interpret the results of Welch's $t$-test, which doesn't hold this assumption.
 
 Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html) if you're lost. [This article](https://link.springer.com/article/10.3758/s13428-023-02072-x) to provide helpful guidance on why we check assumptions, and why certain assumption checking methods are more strongly recommended than others.
 

@@ -57,7 +57,7 @@ Participants viewed 10 photos per emotion, for a total of 50 photos. Photos were
 You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/Week5LabData1.csv). It contains the following variables:
 
 ```{r, echo = F}
-dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/Week5LabData1.csv')
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ANOVA1lab.csv')
 datInfo <- data.frame(VariableName = colnames(dat),
                       Description=c('Participant ID',
                                     'Levels: 1 = Female; 2 = Male',
