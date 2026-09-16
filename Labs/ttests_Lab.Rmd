@@ -55,7 +55,9 @@ dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ttestLabData.csv')
 datInfo <- data.frame(VariableName=colnames(dat),
                       Description=c('Levels: 0 = Male, 1 = Female', 'Infant age in weeks',
                                     'Transport Modality; Levels: 0 = Buggy; 1 = Backpack',
-                                    'Time infant spent vocalising (in seconds)'))
+                                    'Time infant spent vocalising (in seconds)',
+                                    'Time of infant-initiated conversation',
+                                    'Time of parent-initiated conversation'))
  
 datInfo %>%
   kbl(col.names=c('Variable Name', 'Description')) %>%
