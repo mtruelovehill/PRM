@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> t - tests </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> <span class="math inline"><em>t</em></span> - tests </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+### This Week's Key Topics
+
++ Types of `\(t\)`-tests and their assumptions
+
++ Conducting a power analysis for a `\(t\)`-test
+
++ Interpreting and reporting the results of a `\(t\)`-test
+
++ Computing and interpreting effect sizes for `\(t\)`-tests
+
+
+---
+### Differences between two means
+
+**Are the groups that produced these means different?**
+
+.pull-left[
+![](ttests_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+
+]
+
+--
+
+.pull-right[
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+
+]
+
+
+---
+### Differences between two means
+
+** Are the groups that produced these means different?**
+
+.pull-left[
+![](ttests_lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+
+]
+
+
+.pull-right[
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+### The `\(t\)`-test
+
++ `\(t\)`-tests account for both the mean and the variance of each group when determining whether groups significantly differ from each other. 
+
++ `\(t\)`-tests produce a `\(t\)`-statistic that reflects the standardised difference between two mean values
+
+--
+  
+`$$t = \frac{Value(s)\ Observed\ in\ Data- Value\ Expected\ Under\ Null\ Hypothesis}{Variation\ Measure}$$`
+--
+
++ `\(t\)`-tests require:
+
+  + A continuous dependent variable
+  
+  + A binary independent variable
+
+---
+### The `\(t\)`-test
+
+  
++ When a `\(t\)`-test is conducted:
+
+  + A `\(t\)`-value is computed using the collected data
+  
+  + A probability is calculated that reflects the likelihood of obtaining this value of `\(t\)` if the null were true
+
+  + The researcher uses this probability to make a decision whether to reject the null hypothesis
+
+---
+### Types of `\(t\)`-tests
+
+  + **One-sample `\(t\)`-test** tests the difference between a sample mean and a known mean
+  
+  + **Independent-sample `\(t\)`-test** tests the difference between two separate sample means
+  
+  + **Paired-samples `\(t\)`-test** tests the difference in a single sample at two points in time or across different conditions
+
+---
+### One-sample `\(t\)`-test
+
+`$$t = \frac{\bar{x}-\mu_0}{SE_\bar{x}}$$`
++ Compare a sample mean ( `\(\bar{x}\)` ) and a known mean ( `\(\mu_0\)` )
+
++ Used to check whether the sample mean is significantly different from a known value
+
+--
+
++ **Example research questions:**
+
+  + Are speeds along Road A significantly higher than the speed limit?
+  
+  + Do a beauty product's results last longer than 3 months?
+
+---
+### Independent-samples `\(t\)`-test
+
+`$$t = \frac{(\bar{x_1}-\bar{x_2})-(\mu_1 - \mu_2)}{\sqrt{\frac{s_p^2}{n_1}+\frac{s_p^2}{n2}}}$$`
+`\(s_p^2\)`: a pooled variance estimate that weights variance by sample size
+
+--
+
++ Compares the mean of group 1 ( `\(\bar{x_1}\)` ) to the mean of group 2 ( `\(\bar{x_2}\)` )
+
++ Used to determine whether there is a difference between two independently measured groups
+
+--
+
++ **Example research questions:**
+
+  + Are there differences in symptoms between the treatment group and the group that received a placebo?
+  
+  + Do inmates who are put in solitary confinement exhibit more aggressive behaviour than those who are not?
+  
+  + Are there differences in TBI rate between boxers and Muay Thai fighters?
+  
+---
+### Paired-samples `\(t\)`-test
+
+
+`$$t = \frac{\bar{d}-\mu_d}{SE_\bar{d}}$$`
+
+
++ where:
+
+  + `\(\bar{d}\)`: the mean of the individual difference scores (e.g. `\(d_i = x_{i1} - x_{i2}\)`)
+
+  + `\(\mu_d\)`: The hypothesised null mean difference
+
+  + `\(SE_\bar{d} = \frac{sd_\bar{d}}{\sqrt{n}}\)`
+
+--
+
++ Compares the mean of the same group of participants across two timepoints/conditions
+
+--
+
++ **Example research questions:**
+
+  + Does time of day affect one's attention span?
+  
+  + Is a new fitness routine effective in improving one's cardiovascular health?
+
+
+---
+### The `\(t\)` distribution
+
+.pull-left[
++ The `\(t\)`-distribution is the null distribution against which our calculated `\(t\)`-value is compared. 
+
++ The shape of the `\(t\)`-distribution depends on the degrees of freedom ( `\(df\)` ) of our data.
+]
+
+.pull-right[
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+### Degrees of freedom
+
++ The number of values/observations within the data that are free to vary and still allow you to get the same parameter estimate
+
+--
+
+.center[
+![](images/confused-confused-look.gif)&lt;!-- --&gt;
+]
+
+---
+count: false
+### Degrees of freedom
+
+
++ The number of values/observations within the data that are free to vary and still allow you to get the same parameter estimate
+
+**Non-Stats Example:**
++ Imagine you're out to dinner with 5 friends and the bill is £150.
+
++ 4 of the 5 guests can pay whatever they want, but 1 of the 5 must make up the difference.
+
++ In this case, there are 4 degrees of freedom. 4 friend's bills are free to vary, but the 5th is restricted based upon what the others decide to pay.
+
+---
+### Degrees of freedom
+
+
++ The number of values/observations within the data that are free to vary and still allow you to get the same parameter estimate
+
++ In statistics, degrees of freedom are typically calculated as: df = total observations - total parameters being estimated
+
+--
+
+**Stats Example:**
+
++ Imagine you have a sample of 10 participants and have calculated the average hours of sleep per night.
+
+
+--
+
+&gt; **Check your Understanding:** how many observations do you have?
+
+
+--
+
+
+&gt; What is the parameter/parameters being estimated?
+
+
+--
+
+
+&gt; What are your degrees of freedom?
+
+---
+count: false
+
+### Degrees of freedom
+
+
++ The number of values/observations within the data that are free to vary and still allow you to get the same parameter estimate
+
++ In statistics, degrees of freedom are typically calculated as: df = total observations - total parameters being estimated
+
+**Stats Example 2:**
+
++ Imagine you have a sample of 10 participants, split into two groups: treatment and placebo. You intend to compare the mean sleep of the treatment group to the mean of the placebo group.
+
+
+--
+
+&gt; **Check your Understanding:** how many observations do you have?
+
+
+--
+
+
+&gt; What is the parameter/parameters being estimated?
+
+
+--
+
+
+&gt; What are your degrees of freedom?
+
+
+---
+### Degrees of freedom for `\(t\)`-tests
+
++ **One-sample `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean of our data &lt;/span&gt;
+    + `\(df = n - 1\)`
+  
++ **Independent samples `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean of each of our two groups &lt;/span&gt;
+    + `\(df = n - 2\)`
+  
++ **Paired-samples `\(t\)`-test:** we estimate the &lt;span style = "color:#18778C"&gt; mean difference between observations &lt;/span&gt;
+    + `\(df = n - 1\)`
+
+
+???
+
+Imagine we have a set of 3 values and we know that the mean is 4. In this case, the parameter we wish to estimate is the mean, so there is 1 parameter. We have 3 values within our dataset. In this case, the degrees of freedom in this set is 2, because 3-1 is 2. To understand what this means in terms of 'free to vary', if we know the mean is 4, Value 1 could be anything...it could be 3 or 8, or 12. Value 2 could be the same, any value at all. But the third value is fixed, because it has to be whatever makes the mean equal to 4. So Value 1 and 2 are free to vary, but the 3rd value has a constraint, which is that it must be equal to whatever value makes the mean equal to 4. 
+
+---
+### The `\(t\)` distribution
+
+.pull-left[
++ The `\(t\)`-distribution is the null distribution against which our calculated `\(t\)`-value is compared. 
+
++ The shape of the `\(t\)`-distribution depends on the degrees of freedom ( `\(df\)` ) of our data.
+
++ Consider how the shape of the distribution changes as `\(df\)` increases
+
+]
+
+.pull-right[
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+
+]
+
+--
+
+&gt; **Test your Critical Thinking:** What does the change in shape suggest?
+
+---
+### Putting it all together
+
+.pull-left[
+Basically:
+
+1) The data are used to calculate a `\(t\)`-statistic
+
+]
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+### Putting it all together
+
+.pull-left[
+Basically:
+
+1) The data are used to calculate a `\(t\)`-statistic
+
+2) The `\(df\)` are used to identify the appropriate null distribution for comparison
+
+]
+
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+### Putting it all together
+
+.pull-left[
+Basically:
+
+1) The data are used to calculate a `\(t\)`-statistic
+
+2) The `\(df\)` are used to identify the appropriate null distribution for comparison
+
+3) The probability of getting the current `\(t\)`-statistic under the constraints of the null hypothesis is calculated
+
+]
+
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+
+### Conducting a `\(t\)`-test...or really, most inferential statistical tests
+
+1. State hypotheses
+
+2. Conduct a power analysis
+
+3. Check the data (visualisations/descriptive statistics)
+
+4. Check assumptions
+
+5. Run the test
+
+6. Interpret results
+
+7. Report
+
+---
+### Today's Practical Example
+
+.pull-left[
++ You're a researcher studying the association between anxiety and blood pressure in the elderly. 
+
++ You randomly assigned elderly participants with anxiety to either a waitlist or a therapy group and collected blood pressure data after two months of therapy
+
++ **Research Objective:** Determine whether there are differences in blood pressure between anxious elderly patients receiving therapy and those who are not. 
+]
+
+.pull-right.center[
+&lt;img src="images/bloodPressureResearch.jpg" alt="" width="60%" /&gt;
+]
+
+---
+### Step 1: State Hypotheses
+
+.pull-left[
+Null Hypothesis
++ There will be no difference in blood pressure between elderly anxiety patients who are in therapy and those who are not.
+`$$H_0: \mu_{waitlist} = \mu_{treatment}$$`
+]
+
+.pull-right[
+Alternative hypotheses may be *directional* or *nondirectional*
+
+.center[**Directional**]
+Elderly anxiety patients in therapy will have **lower** blood pressure than those not receiving anxiety treatment.
+
+`$$H_1: \mu_{waitlist} &lt; \mu_{treatment}$$`
+&lt;br&gt;
+
+.center[**Nondirectional**]
+Therapy will **have an effect** on blood pressure in elderly anxiety patients.
+
+`$$H_1: \mu_{waitlist} \neq \mu_{treatment}$$`
+]
+
+
+
+---
+### One-Tailed vs Two-Tailed Tests
+
++ The `\(t\)`-distribution has two tails, so `\(t\)`-tests may be one-tailed or two-tailed
+
+.pull-left[
+.center[**One-Tailed**: hypothesis is *directional*
+
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+]]
+
+--
+
+.pull-left.center[
+**Two-Tailed**: hypothesis is *directional* or *nondirectional*
+
+
+![](ttests_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+]
+
+---
+### One-Tailed vs Two-Tailed Tests
+
++ One-tailed tests 
+  + **Pro:** More powerful for capturing an effect in the expected direction (5% alpha threshold is constrained to a single tail)
+  + **Con:** Completely disregards any extreme results in the opposite direction
+  
++ Two-tailed tests
+  + **Pro:** Capable of capturing effects in either direction
+  + **Con:** Slightly less powerful (5% alpha threshold is split equally between 2-tails)
+
+
++ If you're unsure, it's better to default to a two-tailed test.
+
+---
+### Step 2 - Conduct a Power Analysis
+
++ Recall that power usually involves some combination of the following values:
+  
+  + `\(\alpha\)`
+  + Effect Size
+  + Power
+  + Sample Size
+  
++ You can use three of these values to solve for the fourth. 
+
++ In almost all cases, `\(\alpha = .05\)` and `\(Power = .8\)`
+
++ **Cohen's `\(d\)` ** is the typical effect size used when comparing two means
+
+---
+### Cohen's `\(d\)`
+
++ Cohen's `\(d\)` is the standardized difference between the means
+
+`$$d = \frac{\bar{x}_1 -\bar{x}_2}{s_{pooled}}$$`
+
+.pull-left[
++ `\(\bar{x}_1\)` = mean of group 1
++ `\(\bar{x}_2\)` = mean of group 2
++ `\(s_{pooled}\)` = pooled standard deviation
+]
+
+--
+
+.pull-right[
+
+`$$s_{pooled} = \sqrt{\frac{(n_1-1)s_1^2\ + (n_2-1)s_2^2}{n_1+n_2-2}}$$`
+
+]
+
+--
+
++ In other words, how many standard deviations separate the two mean values?
+
+&gt; **Check Your Understanding:** If the first group's mean is 15, the second group's mean is 10, and the pooled standard deviation is 5, what is Cohen's *d*? 
+
+---
+
+### Interpretation of Cohen's `\(d\)`
+
++ Proposed by Cohen (1998):
+
+
+| Strength | Absolute Magnitude of `\(d\)` |
+|:--------:|:-------------------------:|
+| Weak     | `\(\leq\)` .20                |
+| Moderate | `\(\approx\)` .50             |
+| Strong   | `\(\geq\)` .8                 |
+
+
+---
+### Step 2 - Conduct a Power Analysis for an independent-samples `\(t\)`-test
+
++ Many basic power analyses can be conducted using jamovi
+
++ Open jamovi and install a power module (e.g. `pamlj`)
+
+&gt; **Check Your Understanding**
+&gt; If you would like to compute the sample required to achieve 80% power to detect a moderate effect with `\(\alpha\)` = .05, would this be an a priori or sensitivity power analysis? Run this power analysis in jamovi. 
+
+--
+
+&gt; You are working with a secondary dataset that has 82 participants. If you want to compute the smallest effect size this sample is capable of detecting, would that be an a priori or sensitivity power analysis? Run this analysis in jamovi, given power = 80%, `\(\alpha\)` = .05 and assuming equally sized groups.
+
+
+
+---
+### Step 3: Check the Data
+
++ Compute descriptive statistics
+  + Continuous Data: Mean or Median and Standard Deviation or IQR.
+  + Categorical Data: Frequency Data (i.e. number per category)
+  
++ Look at relevant plots
+  + Check data distribution using histograms or bar charts
+
++ This can be done in jamovi with [these data](https://mtruelovehill.github.io/PRM/Data/BPdat.csv).
+
+---
+### Step 4: Check Assumptions
+
++ All parametric statistical tests have certain **assumptions**, or criteria for the data that must be met in order for the test to produce valid results
+
++ When assumptions are violated, the test's results may be inaccurate or unreliable.
+
+---
+
+### Step 4: Check Assumptions
+
+.pull-left[
++ **Normality:** Dependent data should be normally distributed
+]
+
+.pull-right[
+.center[**Normally Distributed**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-16-1.svg)&lt;!-- --&gt;
+
+
+.center[**Not so normally distributed**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+]
+
+---
+count: false
+### Step 4: Check Assumptions
+
+.pull-left[
++ **Normality:** Dependent data should be normally distributed
+  + Have a look at the histograms &amp; QQ-plots
+  + Check skewness and kurtosis values
+  + **Do not** rely on tests of normality...these may not provide accurate results 
+]
+
+.pull-right[
+.center[**Normally Distributed**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-18-1.svg)&lt;!-- --&gt;
+
+
+.center[**Not so normally distributed**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-19-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Step 4: Check Assumptions
+
+.pull-left[
++ **Normality:** Dependent data should be normally distributed
+  + Have a look at the histograms &amp; QQ-plots
+  + Check skewness and kurtosis values
+  + **Do not** rely on tests of normality...these may not provide accurate results 
+  
++ **Independence:** Observations should be sampled independently
+  + Consider study design
+  
+]
+
+---
+count: false
+### Step 4: Check Assumptions
+
+.pull-left[
++ **Normality:** Dependent data should be normally distributed
+  + Have a look at the histograms &amp; QQ-plots
+  + Check skewness and kurtosis values
+  + **Do not** rely on tests of normality...these may not provide accurate results 
+  
++ **Independence:** Observations should be sampled independently
+  + Consider study design
+
++ **Homogeneity of Variance:** Equal variance between the two groups
+
+]
+
+
+
+--
+
+.pull-right[
+.center[**Equal Variance**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+
+.center[**Not So Equal Variance**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+]
+ 
+---
+count: false
+### Step 4: Check Assumptions
+
+.pull-left[
++ **Normality:** Dependent data should be normally distributed
+  + Have a look at the histograms &amp; QQ-plots
+  + Check skewness and kurtosis values
+  + **Do not** rely on tests of normality...these may not provide accurate results 
+  
++ **Independence:** Observations should be sampled independently
+  + Consider study design
+
++ **Homogeneity of Variance:** Equal variance between the two groups
+  + Rather than [checking for heterogeneity](https://rips-irsp.com/articles/10.5334/irsp.82), default to Welch's `\(t\)`-test
+]
+
+
+.pull-right[
+.center[**Equal Variance**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-22-1.svg)&lt;!-- --&gt;
+
+.center[**Not So Equal Variance**]
+![](ttests_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+]
+
+
+
+
+---
+### Step 5: Run the Test
+.pull-left[
+&lt;img src="images/jamoviTtest.png" alt="" width="80%" /&gt;
+]
+
+--
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-25-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Step 6: Interpret Results
+
+![](images/tTestResults.png)&lt;!-- --&gt;
+
+--
+
+.pull-left[
+&gt; **Check Your Understanding:** Are the results significant? If so, how strong are they?
+
+]
+
+.pull-right[
+
+| Strength | Absolute Magnitude of `\(d\)` |
+|:--------:|:-------------------------:|
+| Weak     | `\(\leq\)` .20                |
+| Moderate | `\(\approx\)` .50             |
+| Strong   | `\(\geq\)` .8                 |
+
+]
+
+
+---
+### Step 7: Report
+
+.pull-left[
++ In the Methods, at least report:
+  + Type of test conducted
+  + Statistical software used
+  + Which descriptive statistics were used
+  + Which assumptions were assessed
+  + The `\(\alpha\)` threshold used
+  + The groups being compared
+
+
++ In the Results, at least report:
+  + Descriptive data for each group
+  + `\(t\)` statistic
+  + Degrees of freedom
+  + `\(p\)`-value
+  + Effect size and confidence intervals
+  + Directional interpretation (**ONLY** if results are significant)
+
+]
+
+--
+.pull-right[
+
+**Results Example:** 
+
+We conducted a **two-tailed independent-samples `\(t\)`-test** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; treatment &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt;systolic blood pressure (SBP) &lt;/span&gt;&lt;/b&gt;. There was a significant effect of treatment, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(t\)`(128) = -3.16, `\(p\)` = .002, 95% CI = [-4.68, -1.08], `\(d\)` = -.55 &lt;/span&gt;&lt;/b&gt;. Specifically, SBP in the treatment group was lower &lt;span style = "color:#19424C"&gt;&lt;b&gt; ( `\(M\)` = 136.97, `\(SD\)` = 4.86)&lt;/span&gt;&lt;/b&gt; than SBP in the placebo group &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 139.85, `\(SD\)` = 5.50)&lt;/span&gt;&lt;/b&gt;.
+
+]
+
+---
+## Running an Independent-Samples `\(t\)`-Test
+
+**Step 8: Report**
+
+.pull-left[
+
++ Figures are useful in helping readers visualise your results.
+
++ A **boxplot** is especially good for demonstrating results when you have a continuous DV and a categorical IV
+
++ In jamovi, you can find a boxplot option under `Exploration &gt; Descriptives` 
+
+]
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-27-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+### Running a paired-samples `\(t\)`-test
+
++ Research Question: Does therapy have an impact on blood pressure in elderly anxiety patients?
+
+**Hypotheses**
+
+.pull-left[
+Null Hypothesis
++ There will be no difference in blood pressure in elderly anxiety patients before and after they receive therapy.
+`$$H_0: \mu_{diff} = 0$$`
+]
+
+.pull-right[
+.center[**Directional**]
+The blood pressure of elderly anxiety patients will **decrease** after therapy.
+
+`$$H_1: \mu_{diff} &gt; 0$$`
+&lt;br&gt;
+
+.center[**Nondirectional**]
+Blood pressure in elderly anxiety patients **will differ** after therapy as compared to before therapy. 
+
+`$$H_1:\mu_{diff} \neq 0$$`
+]
+
+
+
+---
+### Running a paired-samples `\(t\)`-test
+
+**Power Analysis**
+
++ As before, check the sample required to achieve 80% power to detect a moderate effect ( `\(d\)` = 0.5) with `\(\alpha\)` = .05.
+
+---
+### Running a paired-samples `\(t\)`-test
+
+**Check the data**
+
++ Data for this example can be found [here](https://mtruelovehill.github.io/PRM/PRMcontent/Data/BPpairedDat.csv)
+
++ Note how data are organised in this spreadsheet.
+
+
+---
+### Running a paired-samples `\(t\)`-test
+
+**Check Assumptions**
+
++ Observations must be paired. 
+
++ Normality of difference scores
+  
+  + Have a look at the histograms &amp; QQ-plots
+  + Check skewness and kurtosis values
+  + May also run statistical tests of normality...but this is not recommended
+
++ Independence (of participants rather than observations)
+ 
+  + Consider study design
+
+--
+
+&gt; **Test your Critical Thinking:** Why is homogeneity of variance not an assumption of a paired-samples `\(t\)`-test?
+
+
+
+---
+## Running a paired-samples `\(t\)`-test
+
+**Run the test**
+
+.pull-left[
+&lt;img src="images/jamoviPairedT.png" alt="" width="80%" /&gt;
+]
+
+--
+
+.pull-right[
+![](ttests_lecture_files/figure-html/unnamed-chunk-29-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+### Running a paired-samples `\(t\)`-test
+
+**Interpret results**
+
+![](images/pairedTResults.png)&lt;!-- --&gt;
+
+--
+
+.pull-left[
+&gt; **Check Your Understanding:** Are the results significant? If so, how strong are they?
+
+]
+
+.pull-right[
+
+| Strength | Absolute Magnitude of `\(d\)` |
+|:--------:|:-------------------------:|
+| Weak     | `\(\leq\)` .20                |
+| Moderate | `\(\approx\)` .50             |
+| Strong   | `\(\geq\)` .8                 |
+
+]
+
+
+---
+### Running a paired-samples `\(t\)`-test
+
+**Report**
+
+We conducted a **two-tailed paired-samples `\(t\)`-test** to determine the effect of &lt;span style = "color:#9AD079"&gt; &lt;b&gt; treatment  &lt;/span&gt;&lt;/b&gt; on &lt;span style = "color:#9AD079"&gt; &lt;b&gt;systolic blood pressure (SBP) &lt;/span&gt;&lt;/b&gt;. There was a significant effect of treatment, &lt;span style = "color:#18778C"&gt;&lt;b&gt; `\(t\)`(128) = -6.32, `\(p\)` &lt; .001, 95% CI = [-12.05, -6.18], `\(d\)` = -1.07 &lt;/span&gt;&lt;/b&gt;. Specifically, SBP was lower before the medication was administered &lt;span style = "color:#19424C"&gt;&lt;b&gt; ( `\(M\)` = 138.60, `\(SD\)` = 6.67)&lt;/span&gt;&lt;/b&gt; than after taking the medication &lt;span style = "color:#19424C"&gt;&lt;b&gt;( `\(M\)` = 147.71, `\(SD\)` = 8.48)&lt;/span&gt;&lt;/b&gt;.
+
+
+---
+
+class: center, inverse, middle
+
+## Questions?
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
