@@ -30,25 +30,27 @@ In this week's lab, you'll be working with data simulated based on [this paper](
 At the end of this lab, you will be able to:
 
 1. Identify hypotheses which may be tested using $t$-tests
-2. Perform a power analysis for an independent-samples $t$-test
-3. Check assumptions for an independent-samples $t$-test
-4. Use SPSS to perform an independent-samples $t$-test
-5. Interpret results from an independent-samples $t$-test
+2. Perform a power analysis for both independent- and paired-samples $t$-tests
+3. Check assumptions for both independent- and paired-samples $t$-tests
+4. Use jamovi to perform both independent- and paired-samples $t$-tests
+5. Interpret results from both independent- and paired-samples $t$-tests
 
 If you complete the bonus material, you'll also be able to:
 
 1. Present your results as you would in an APA-style report
-2. Conduct an appropriate power analysis for a paired-samples $t$-test.
-3. Check assumptions for paired-samples $t$-tests
-4. Use SPSS to perform a paired-samples $t$-test
-5. Interpret results from a paired-samples $t$-test
-
+2. Interpret $t$-test results from an empirical journal article.
 
 ## Study Overview 
+Researchers want to investigate whether going on walks with babies impacts their vocalisation patterns. They have two objectives:
 
-Researchers wanted to test whether the amount of time an infant spent vocalising differed depending on whether parents used a buggy or a backpack to transport their infant. They recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the amount of time infants spent vocalising over the course of the walk.
+1. Test whether there is a difference between parent-initiated and infant-initiated speech in parents who walk with their babies.
 
-**You can download the dataset for this study [here.](https://mtruelovehill.github.io/PRM/Labs/ttestLabData.sav)** This dataset contains the following variables:
+2. Investigate whether time spent vocalising differs depending on whether the parent is carrying their infant in a backpack or pushing them in a buggy.
+
+The researchers recruited 36 participants and split them into a backpack group and a buggy group. They then sent participants on a 15-minute walk with their infant and recorded the amount of time infants spent vocalising over the course of the walk. They also recorded the time the infant spent vocalising when the parent initiated the speech, and the time the infant spent vocalising when the infant initiated the speech.
+
+
+**You can download the dataset for this study [here.](https://mtruelovehill.github.io/PRM/Labs/ttestLabData.csv)** This dataset contains the following variables:
 
 ```{r, echo = F}
 dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ttestLabData.csv')
@@ -70,18 +72,21 @@ datInfo %>%
 
 ### Your Tasks
 
+For both objectives:
+
 <div class="nobullet">
-+ [ ] $\ $ Identify the independent and dependent variables in this experiment
++ [ ] $\ $ Identify the independent and dependent variables
 
 + [ ] $\ $ State both the null and alternative hypothesis
 
-+ [ ] $\ $ Specify your hypothesis using statistical notation
++ [ ] $\ $ Specify the hypotheses using statistical notation
 </div>
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-If you need guidance on how to specify your hypothesis using statistical notation, [see the lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html)
+If you need guidance on how to specify your hypothesis using statistical notation, [see the lecture slides](https://mtruelovehill.github.io/PRM/Lectures/ttests_lecture.html)
 
 </details>
 </div>
@@ -91,6 +96,37 @@ If you need guidance on how to specify your hypothesis using statistical notatio
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
 <br>
+
+<span style = "font-weight: bold; font-size: 14pt"> Objective 1 </span>
+
+
+<b> Variables: </b>
+
+
+
+Independent Variable: Conversation Initiator
+
+Dependent Variable: Amount of Infant Vocalisation (in seconds)
+
+<br>
+
+<b>Hypotheses:</b>
+
+Null Hypothesis: There is no difference in infant vocalisation time whether the conversation is initiated by the infant or by the parent.
+
+Alternative Hypothesis: Infant vocalisation time changes depending on whether the parent or the infant initiates the conversation. 
+
+<br>
+
+<b>Hypotheses in Statistical Notation:</b>
+
+$H_0: \mu_{infantInitiated - parentInitiated} = 0$
+
+$H_1: \mu_{infantInitiated - parentInitiated} \neq 0$
+
+<br>
+
+<span style = "font-weight: bold; font-size: 14pt"> Objective 2 </span>
 
 <b> Variables: </b>
 
@@ -114,6 +150,8 @@ $H_0: Vocalisation_{buggy} = Vocalisation_{backpack}$
 
 $H_1: Vocalisation_{buggy} \neq Vocalisation_{backpack}$
 
+
+
 </details>
 </div>
 </br>
@@ -124,32 +162,50 @@ After deciding on your hypotheses but before gathering data, you should run a po
 
 Recall the effect size measure for $t$-tests, $d$:
 
-| Strength | Absolute Magnitude of $d$ |
-|:--------:|:-------------------------:|
-| Weak     | $\leq$ .20                |
-| Moderate | $\approx$ .50             |
-| Strong   | $\geq$ .8                 |
+```{r, echo = F}
+
+powerThres <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'),
+                         d = c('= 0.2', '~ 0.5', '≥ 0.8'))
+
+powerThres %>%
+  kbl(col.names=c('Strength', 'Absolute Magnitude of d'), align = c('l', 'c')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18) %>%
+  column_spec(1, bold = T, width = '4.5cm')
+
+```
+
+
 
 ### Your Task
 
 <div class="nobullet">
-+ [ ] $\ $ Run a power analysis using $\alpha$ = .05 and power = .8 to determine the sample size necessary to detect a moderate effect size. Assume you will have an equal number of participants in each group.
-</div>
++ [ ] $\ $ Run a power analysis to determine the sample size necessary to detect an effect size of $d$ = .35 for an independent-samples $t$-test. Assume $\alpha$ = .05, power = .8, and that you will have an equal number of participants in each group.
 
-Click [here to use WebPower to run your analysis](https://webpower.psychstat.org/wiki/models/index).
++ [ ] $\ $ Next, conduct a power analysis to determine the sample size necessary to detect an effect size of $d$ = .35 for a paired-samples $t$-test. As before, assume $\alpha$ = .05, power = .8.
+
+</div>
 
 ```{r powerQuiz, echo = F}
 
 quiz(caption = 'Check Your Results',
-     question_numeric('How many total participants do you need for this analysis, given the above parameters?',
-                      answer(128, correct = T),
-                      message = 'You need 64 participants in each group to have 80% power to detect a moderate effect with alpha = .05. This would be a total of 128 participants.'))
+     question_numeric('How many total participants did you need for the independent-samples t-test?',
+                      answer(130, correct = T),
+                      message = 'You need 130 participants in each group, or a total of 260 participants.'),
+     question_numeric('How many total participants did you need for the paired-samples t-test?',
+                      answer(67, correct = T),
+                      message = 'You need 67 total participants.'),
+     question('What is the strength of the effect size used in the power analysis?',
+              answer('Weak', correct = T),
+              answer('Moderate'),
+              answer('Strong'),
+              message = '.35 would be considered a weak effect.'))
 ```
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-This power analysis uses/outputs the number of participants in each group, rather than the total number of participants. 
+You can perform power analyses directly in jamovi. Click the power module and select *T-test*.
 
 </details>
 </div>
@@ -158,32 +214,36 @@ This power analysis uses/outputs the number of participants in each group, rathe
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-Navigate to the WebPower site. For $t$-tests, you'll be using one of these options, depending on whether your sample within each group will be equal or not.
+Select the power module in jamovi. 
+
+<span style = "font-weight: bold; font-size: 14pt"> Independent-Samples $t$-test </span>
+
+Check the tabs at the top and be sure you're on the *Independent Samples* tab. 
+Because you're calculating the target sample size, make sure the *Calculate* box is set to 'N'. Cohen's $d$ will be set to 0.35, and the relative size of groups is equal, so should be set to '1'. *Minimum desired power* is .80, and $\alpha$ is .05. If you're running a two-tailed test, *Tails* will be set as 'Two-tailed'.  
+
 
 ```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_powerOptions.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_indttests_powerParams.png')
+```
+
+If you've input all values correctly, you'll see the following output:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_indttests_powerOutput.png')
 ```
 
 
-<span style = "font-weight: bold; font-size: 14pt"> Study 1 </span>
 
-Because you're assuming an equal sample size within each group, you will click the first option: "Power of t-test." You'll leave the Sample Size option blank, as that's the value you want to calculate. You'll fill in the other options as follows:
+<span style = "font-weight: bold; font-size: 14pt"> Paired-Samples $t$-test </span>
 
-```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_powerParams.png')
-```
+Navigate to the *Paired samples* tab and and follow the same process as above. Note that there is no need to enter the group size, as it is assumed groups will be equal since the same participants are included in each group. 
 
-Because you'll be running an independent-samples $t$-test, the 'Type of Test' option will be 'Two sample.' 
+If you've entered the values properly, you will receive the following output:
 
 ```{r, echo = F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_powerOutput.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_pairedttests_powerOutput.png')
 ```
 
-Note that the sample size refers to the sample PER GROUP, not the total sample. In other words, to achieve 80% power to detect a moderate effect size with an alpha = .05, you would need 64 participants per group, or 128 total participants.
-
-To report these results, you could say something like
-
-"An a priori power analysis indicated that 128 participants (64 per group) was necessary to achieve 80% power to detect a moderate effect size ($d$ = .50) with $\alpha$ = .05 using an independent-samples $t$-test."
 
 </details>
 </div>
@@ -199,9 +259,9 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 ### Your Tasks
 
 <div class="nobullet">
-+ [ ] $\ $ Open 'ttestLabData.sav' in SPSS
++ [ ] $\ $ Open 'ttestLabData.sav' in jamovi
 
-+ [ ] $\ $ Check whether all variables imported into SPSS as the correct measurement type
++ [ ] $\ $ Check whether all variables imported into jamovi as the correct measurement type
 
 + [ ] $\ $ Add a key to `infantGender` and `Transport` variables so it is clear what 0 and 1 represent.
 
@@ -225,7 +285,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-You can check the variables and add a key to `infantGender` and `Transport` under the *Variable View* tab. To calculate descriptive statistics, navigate to *Analyze > Descriptive Statistics > Frequencies*. You'll need to check the mean, standard deviation, minimum, and maximum for continuous data and create frequency tables for categorical data.
+You can check the variables and add a key to `infantGender` and `Transport` under the *Variables* tab. To calculate descriptive statistics, navigate to *Analyses > Exploration > Descriptives*. You should check the mean, standard deviation, minimum, and maximum for continuous data and create frequency tables for categorical data.
 
 </details>
 </div>
@@ -234,28 +294,26 @@ You can check the variables and add a key to `infantGender` and `Transport` unde
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 
-When you check the data under *Variable View*, you'll see that all variables were imported as the proper measurement. Use the 'Values' column to add labels to the `infantGender` and `Transport` variables: 
+Navigate to the *Variables* tab, click through each of the variables, and check *Measure Type*. All variables will have imported as the proper measurement. To add labels to the `infantGender` and `Transport` variables, click each level in the corresponding 'Levels' box and replace the number with the proper label.
 
 ```{r, echo=F, fig.align='center', out.width='50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_addLabels.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_addVariableLabel.png')
 ```
 
 
-Next, produce frequency tables and descriptive statistics by navigating to *Analyze > Descriptive Statistics > Frequencies*. Add the 2 categorical variables, `infantGender` and `Transport`, to the *Variable(s)* box and make sure 'Display Frequency Tables' is checked, then click 'OK'. If this is done this properly (and you've correctly added variable keys), you'll see the following output:
+Next, produce frequency tables and descriptive statistics by navigating to *Analyses > Exploration > Descriptives*. Add the 2 categorical variables, `infantGender` and `Transport`, to the *Variables* box and check 'Frequency tables'. You can open the the *Statistics* tab and unclick all values there (except N and missing, which may provide helpful information if datasets are incomplete). If this is done this properly and you've correctly added variable labels, you'll see the following output:
 
 ```{r, echo=F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_frequencies.png')
 ```
 
-Here, you can see the frequencies of participants in each category. You might note that there were more male infants than females. You can see that there are equal participants in the 'Buggy' and 'Backpack' groups, as expected.
-
-After checking the categorical variables, you can check the continuous data. Open the *Frequencies* box once again and replace the categorical variables with the 2 continuous variables, `infantAge` and `vocalisationTime`. Uncheck 'Display Frequency Tables' and click the 'Statistics' box. Select 'Mean', 'Std. deviation', 'Maximum' and 'Minimum', then click 'Continue'. Click 'OK'. You should get the following table:
+Be sure to click out of the box to make sure the frequency data are saved in your output before running the next step. To compute descriptive statistics on the continuous varaiables, navigate back to *Analyses > Exploration > Descriptives*. Add the remaining four variables to the *Variables* box. You can open the the *Statistics* tab and check which values are preselected, adding or removing options as necessary. Once this is done, you should see the following output: 
 
 ```{r, echo=F, fig.align='center', out.width = '50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_descriptives.png')
 ```
 
-Have a look at the values here. There is no missing data, and the values seem reasonable, so you can move forward to the next step.
+Have a look at the values. You particularly want to check whether the values seem reasonable, given your knowledge of the variables. For example, if the maximum infant age was 157 months (i.e. ~13 years), this would be unusual and would require further investigation.  
 
 
 </details>
@@ -264,6 +322,7 @@ Have a look at the values here. There is no missing data, and the values seem re
 
 
 ## Checking Assumptions
+Assumptions should always be checked before test results are evaluated. If assumptions are violated, it could indicate that the statistical results are inaccurate. 
 
 The assumptions of an independent-samples $t$ test are:
 
@@ -274,16 +333,24 @@ The assumptions of an independent-samples $t$ test are:
 (3) The two groups (*Buggy* and *Backpack*) must exhibit approximately equal variance (homogeneity) in the dependent variable (`vocalisationTime`)
 
 
+The assumptions of a paired-samples $t$-test are:
+
+(1) The dependent variable (Initated Speech) must be normally distributed within each group (Parent and Infant)
+
+(2) Participants must be independent of each other
+
+(3) Values must be paired in some way
+
 ### Your Tasks
 
 <div class="nobullet">
-+ [ ] $\ $ Check whether your data meet the assumption of normality
++ [ ] $\ $ Check whether the independent-samples data meet the appropriate assumptions for an independent-samples $t$-test
 
-+ [ ] $\ $ Check whether your data meet the assumption of independence
-
-+ [ ] $\ $ Check whether your data meet the assumption of homogeneity
++ [ ] $\ $ Check whether the paired-samples data meet the appropriate assumptions for a paired-samples $t$-test
 
 </div>
+
+In this example, please assume that the study design was strong and there were no issues that could cause dependency between participants or observations.
 
 <br>
 
@@ -291,18 +358,18 @@ The assumptions of an independent-samples $t$ test are:
 quiz(caption = 'Check Your Results',
      question("At least one of the assumptions is violated.",
               answer("True"),
-              answer("False", correct = T),
-              message = "The normality plots show no major issues in normality, and Levene's test is not significant, indicating that homogeneity of variance can be assumed."))
+              answer("Fa`l`se", correct = T),
+              message = "The normality plots show no major issues in normality, independence can be assumed due to proper study design, and Welch's t-test should be used, so that issues with homogeneity of variance are not a concern."))
 ```
 
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
-To check normality, you can use histograms and Q-Q plots. You'll need to do this for each level of `Transport` separately. Navigate to *Analyze>DescriptiveStatistics>Explore* to do this. 
+To check normality, you can use histograms and Q-Q plots. You'll need to do this for each level of `Transport` separately. Navigate to *Analyses > Exploration > Descriptives* to do this. 
 
-To check independence, you'll need to consider the design of the study. To check homogeneity of variance, you can check results from Levene's test.
+To assess independence of observations/participants, you'll need to consider the design of the study. To account for potential homogeneity of variance, you should default to using Welch's $t$-test (see [Delacre et al., 2017](https://reference-global.com/download/article/10.5334/irsp.82.pdf)).
 
-Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week04_ttests_lecture.html) if you're lost. [This article](https://link.springer.com/article/10.3758/s13428-023-02072-x) to provide helpful guidance on why we check assumptions, and why certain assumption checking methods are more strongly recommended than others.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/ttests_lecture.html) if you're lost. [This article](https://link.springer.com/article/10.3758/s13428-023-02072-x) to provide helpful guidance on why we check assumptions, and why certain assumption checking methods are more strongly recommended than others.
 
 </details>
 </div>
@@ -314,36 +381,39 @@ Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures
 
 <br>
 
-<span style = "font-weight: bold; font-size: 14pt"> Checking Normality </span>
+<span style = "font-weight: bold; font-size: 14pt"> Independent-Samples $t$-tests </span>
 
-Normality can be assessed in multiple ways. Visual assessment is recommended, as the statistical tests can be overly sensitive, particularly with larger sample sizes. 
+<span style = "font-weight: bold; font-size: 12pt"> Checking Normality </span>
+Normality can be assessed in multiple ways. Visual assessment is recommended and should be used on this course, as the statistical tests can be overly sensitive, particularly with larger sample sizes. 
 
-To check the histograms and Q-Q plots of the dependent variable separated by Group, click *Analyze > Descriptive Statistics > Explore* and add your dependent variable, `vocalisationTime`,  to the 'Dependent List' box. Add your independent variable, `Transport`, to the Factor List box. At the bottom, change the 'Display' setting from 'Both' to 'Plots'. Click 'Plots', deselect 'Stem-and-Leaf' and select 'Histograms' instead. Tick the box that says 'Normality Plots with Tests'. Click 'Continue', then 'OK'.
-
-```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_buggyHist.png')
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_backpackHist.png')
-```
-
-`vocalisationTime` appears to be generally normal within each `Transport` group. There is no evidence of a significant normality violation. 
-
+To check the histograms and Q-Q plots of the dependent variable separated by Group, click *Analyze > Descriptive Statistics > Explore* and add your dependent variable, `vocalisationTime`,  to the *Variables* box. Add your independent variable, `Transport`, to the *Split by* box. Open the 'Plots' drop-down and select the following options:
 
 ```{r, echo = F, fig.align= 'center', out.width='75%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_buggyQQ.png')
-
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_backpackQQ.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_normalityOptions.png')
 ```
 
-Inspecting the Q-Q plots, you'll note that the points go very slightly off the line in the tails, but not in a concerning way. On the whole, these results indicate that the data have not violated the assumption of normality.
+You should get the following output:
 
-<span style = "font-weight: bold; font-size: 14pt"> Independence </span>
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_normalityPlots.png')
+```
 
-Assessing independence requires an understanding of the conditions under which the data were collected. The study design (between-participants) increases the likelihood that the observations are independent of each other. In this example, we'll consider this assumption met.
+`vocalisationTime` appears to be generally normal within each `Transport` group. There is no evidence of a significant normality violation. Inspecting the Q-Q plots, you'll note that the points go very slightly off the line in the tails, but not in a concerning way. On the whole, these results indicate that the data have not violated the assumption of normality.
 
-<span style = "font-weight: bold; font-size: 14pt"> Homogeneity of Variance </span>
+<span style = "font-weight: bold; font-size: 12pt"> Independence </span>
 
-Although this can be tested using Levene's test, this option has the same limitations as statistical tests of normality. Instead, a Welch's $t$-test can be used by default. This test accounts for heterogeity of variance, and so can be run even when the assumption is violated.
+Assessing independence requires an understanding of the conditions under which the data were collected. You were instructed to assume the design of the study is solid, with no issues that would cause dependency, so you may consider this assumption met.
+
+<span style = "font-weight: bold; font-size: 12pt"> Homogeneity of Variance </span>
+
+To address potential heterogeneity, Welch's $t$-test should be used by default. This test accounts for heterogeity of variance, and can be run regardless of whether the assumption is violated. Instructions for how to do this can be found in the next section.
+
+
+<span style = "font-weight: bold; font-size: 14pt"> Paired-Samples $t$-tests </span>
+
+<span style = "font-weight: bold; font-size: 12pt"> Checking Normality </span>
+To check normality, navigate to *Analyses > Exploration > Descriptives*. Add the `infantInitiated` and `parentInitiated` variables in the *Variables* box.
+
 
 </details>
 </div>
@@ -672,3 +742,6 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/ttests_
 </details>
 </div>
 </br>
+
+## Bonus Material: Interpret a Results Section
+
