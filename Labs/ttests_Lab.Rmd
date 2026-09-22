@@ -82,6 +82,22 @@ For both objectives:
 + [ ] $\ $ Specify the hypotheses using statistical notation
 </div>
 
+```{r testQuiz, echo = F}
+
+quiz(caption = 'Check Your Understanding',
+     question('Which statistical test should be used to evaluate Objective 1?',
+              answer('one-sample t-test'),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test', correct = T),
+              message = 'As the two groups of observations are not independent from each other (i.e. they come from the same family), a paired-samples t-test is needed.'),
+     question('Which statistical test should be used to evaluate Objective 2?',
+              answer('one-sample t-test'),
+              answer('independent-samples t-test', correct = T),
+              answer('paired-samples t-test'),
+              message = 'The two groups being compared (buggy users vs backpack users) are independent from each other, so an independent-samples t-test should be used.'))
+```
+
+
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -101,8 +117,6 @@ If you need guidance on how to specify your hypothesis using statistical notatio
 
 
 <b> Variables: </b>
-
-
 
 Independent Variable: Conversation Initiator
 
@@ -358,7 +372,7 @@ In this example, please assume that the study design was strong and there were n
 quiz(caption = 'Check Your Results',
      question("At least one of the assumptions is violated.",
               answer("True"),
-              answer("Fa`l`se", correct = T),
+              answer("False", correct = T),
               message = "The normality plots show no major issues in normality, independence can be assumed due to proper study design, and Welch's t-test should be used, so that issues with homogeneity of variance are not a concern."))
 ```
 
