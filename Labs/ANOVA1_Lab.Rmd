@@ -1,0 +1,697 @@
+---
+title: "Week 6: ANOVA I"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+## Intro to Today's Lab
+
+During today's lab, you'll apply the concepts discussed during this week's lecture. Each lab consists of a range of tasks, with corresponding questions you can answer. Please note that the questions are not required and not marked, although they do provide a helpful source of formative feedback that will help you gauge your understanding. 
+
+### Learning Objectives
+At the end of this lab, you will be able to:
+
+1. Identify hypotheses which may be tested using ANOVAs
+2. Check assumptions for a one-way ANOVA
+3. Use SPSS to perform one-way ANOVAs
+4. Run a power analysis for a one-way ANOVA
+5. Interpret and report results from one-way ANOVAs
+
+If you also complete the bonus material, you'll be able to:
+
+1. Run an appropriate power analysis for a repeated-measures ANOVAs
+2. Check assumptions for a repeated-measures ANOVA 
+3. Use SPSS to perform a repeated-measures ANOVAs
+4. Interpret and report results from repeated-measures ANOVAs
+
+
+## Overview
+
+You'll be working with data adapted from studies on emotion recognition (see [here](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243708)). Specifically, you're testing 2 research questions:
+
+**RQ1:** Does the region of the face covered affect a child's ability to recognize emotions conveyed by facial expressions?
+
+**RQ2:** Does the type of emotion being expressed affect a child's ability to recognize it?
+
+To investigate this, you recruited a sample of primary-school aged children. All participants were presented with photos of people making facial expressions associated with 5 different emotions (happiness, sadness, fear, anger, disgust). 
+
+However, participants were grouped into one of three conditions. Participants in the first condition viewed unobstructed faces. Participants in the second condition viewed faces wearing sunglasses so that the eyes were obstructed. Participants in the third condition viewed faces wearing masks so that the mouth was obstructed (see examples below).
+
+```{r, echo = F, out.width='90%', fig.align='center'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_expStimuli.png')
+```
+
+Photos were presented in random order for each participant. 
+
+You can download the dataset from the first experiment [here](https://mtruelovehill.github.io/PRM/Labs/ANOVA1lab.csv). It contains the following variables:
+
+```{r, echo = F}
+dat <- read.csv('https://mtruelovehill.github.io/PRM/Labs/ANOVA1lab.csv')
+datInfo <- data.frame(VariableName = colnames(dat),
+                      Description=c('Participant ID',
+                                    'Levels: 1 = Female; 2 = Male',
+                                    'Age in years',
+                                    'Levels: 0 = Control; 1 = Mouth Obstructed; 2 = Eyes Obstructed',
+                                    'Total number of correctly identified emotions; possible scores = 0 - 50',
+                                    'Percentage of correctly identified photos where subject was emoting happiness; possible scores = 0-100%',
+                                    'Percentage of correctly identified photos where the subject was emoting sadness; possible scores = 0-100%',
+                                    'Percentage of correctly identified photos where the subject was emoting fear; possible scores = 0-100%',
+                                    'Percentage of correctly identified photos where the subject was emoting anger; possible scores = 0-100%',
+                                    'Percentage of correctly identified photos where the subject was emoting disgust; possible scores = 0-100%'))
+
+datInfo %>%
+  kbl(col.names=c('Variable Name', 'Description')) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 18, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+```{r q1, echo = FALSE}
+quiz(caption = '',
+     question("Which test is most appropriate to address research question 1, given the study design?",
+              answer("t-test"),
+              answer("One-Way Between-Subjects ANOVA", correct = T),
+              answer("One-Way Repeated-Measures ANOVA"),
+              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used."),
+     question("Which test is most appropriate to address research question 2, given the study design?",
+              answer("t-test"),
+              answer("One-Way Between-Subjects ANOVA"),
+              answer("One-Way Repeated-Measures ANOVA", correct = T),
+              message = "In this case, all participants viewed photos of each emotion, so the same sample provided data across all levels of the independent variable. This means that the data are not independent of each other, so a repeated-measures ANOVA should be used."))
+```
+
+### Your Tasks
+
+<div class="nobullet">
++ [ ] $\ $ Identify the independent and dependent variables for each research question. 
++ [ ] $\ $ State the hypotheses for each research question, both using words and statistically.
+</div>
+
+<br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+To state hypotheses statistically, you should structure them in the framework of the statistical values being tested.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+
+<span style = "font-weight: bold; font-size 13"> Research Question 1 </span>
+
+<b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
+
+<b>Dependent Variable:</b> Correct Identifications of Emotion
+
+<br>
+
+<b>Hypotheses:</b>
+
+<i> General: </i>
+
+$H_0:$ Facial obstruction will not affect the ability of school-aged children to make emotion inferences.
+
+$H_1:$ Facial obstruction will affect the ability of school-aged children to make emotion inferences.
+
+
+<i> Statistical: </i>
+
+$H_0: \mu_{control} = \mu_{eyes} = \mu_{mouth}$
+
+$H_1:$ at least one $\mu \neq$ the other $\mu$s
+
+<br>
+
+<span style = "font-weight: bold; font-size 13"> Research Question 2 </span>
+
+<b>Independent Variable:</b> Type of Emotion (5 Levels: Happiness/Sadness/Fear/Anger/Disgust)
+
+<b>Dependent Variable:</b> Correct Identification of Emotion
+
+<br>
+
+<b>Hypotheses:</b>
+
+*General*
+
+$H_0$: The type of emotion being expressed does not affect a child's ability to recognise it. 
+
+$H_1:$ The type of emotion being expressed has an effect a child's ability to recognise it. 
+
+*Statistical*
+
+$H_0: Recognition_{happiness} = Recognition_{sadness} = Recognition_{anger} =$ \n $Recognition_{fear} = Recognition_{disgust}$
+
+$H_1:$ at least one $\mu \neq$ the others
+ 
+</details>
+</div>
+</br>
+
+## Power Analysis
+
+After deciding on your hypotheses, you should run a power analysis. You can either run an *a priori* power analysis to identify a target sample size or a *sensitivity* power analysis (if you already have a sample) to determine the minimum effect size your sample is capable of detecting.
+
+<br>
+
+Recall the suggested thresholds of the effect size measure for ANOVA, $\eta^2$:
+
+```{r, echo = F}
+
+eta2Tab <- data.frame(Strength = c('Weak', 'Moderate', 'Strong'), Magnitude = c(.01, .06, .14))
+
+eta2Tab %>%
+  kbl(col.names=c('Variable Name', paste('Magnitude of', "$\\eta^2$"))) %>%
+  kable_styling(full_width = F) %>%
+  row_spec(0, bold = T, color=baseColor, font_size = 16, align='l') %>%
+  column_spec(1, bold = T, width = '4.5cm')
+```
+
+
+
+### Your Task
+
+For each power analysis, please use the traditional power and alpha thresholds (0.8 and .05, respectively). 
+
+<div class="nobullet">
+
++ [ ] $\ $ Conduct a sensitivity power analysis for research question 1.
+
++ [ ] $\ $ Conduct an a priori power analysis for research question 2. Assume you expect a moderate effect.
+
+</div>
+
+
+```{r cyrPower, echo = F}
+quiz(caption = 'Check Your Results',
+     question_numeric("Consider Research Question 1. What is the minimum effect you can detect with your sample, given the above constraints? Please round your answer to two decimal places.",
+              answer("0.05", correct = T),
+              message = "With 180 participants, 3 conditions, and a between-subjects design, you can detect an effect of eta-squred = 0.05 or greater."),
+     question('Which of the following would provide sufficient power (80% or more) for a One-Way Repeated-Measures ANOVA with 5 conditions to detect a moderate effect (eta-squared = .06) with alpha = .05? Please select all that apply.',
+              answer('n = 49', correct = T),
+              answer('n = 36'),
+              answer('n = 102', correct = T),
+              answer('n = 45'),
+              answer('n = 54', correct = T),
+              answer('n = 68', correct = T),
+              random_answer_order = T,
+              message = "In order to achieve 80% power under the following constraints, a sample of at least 49 is required. Remember, increasing sample size also increases power. Any sample size greater than 49 will provide sufficient power to detect the effect (if it exists)."))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+<br>
+
+To conduct a power analysis for a between-subjects ANOVA, you will navigate to *Power > General Linear Model*. To conduct a power analysis for a within-subjects ANOVA, you should navigate to *Power > Factorial Designs*.
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+<br>
+
+<span style = "font-weight: bold; font-size: 14pt"> Research Question 1 </span>
+
+Navigate to the Power button and choose 'General Linear Model':
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisChoice.png')
+```
+<br>
+
+Because this is a sensitivity power analysis, change the *Calculate* option from 'N' to 'Effect Size'. Because this is a One-Way ANOVA, both the effect degrees of freedom and the overall model degrees of freedom will be the same and equal:
+
+$$k - 1$$ 
+
+where $k$ = the number of groups. The total sample size refers to the number of participants in your study, which you can find in the data ($n$ = 180). You should have entered in the suggested thresholds for $\alpha$ and power. You should get following results if you've entered everything properly:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayPower.png')
+```
+
+<br>
+
+<span style = "font-weight: bold; font-size: 14pt"> Research Question 2 </span>
+
+Navigate to the Power button and choose 'Factorial Designs':
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisRMchoice.png')
+```
+
+<br>
+
+For an a priori analysis, you can leave *Calculate* as 'N'. Because you expect a moderate effect, you'll need to update the effect size to reflect that. For a one-way ANOVA, $\eta^2$ and partial $\eta^2$ are the same, so you can enter the moderate threshold value of .06 here.
+
+Here, there are 5 conditions (happiness, sadness, anger, fear, disgust), so the effect degrees of freedom is $5-1 = 4$. There is only a single group (one set of participants who contributed data across all conditions). The study design is 'Within-subjects', and the effect of interest is 'only within', because you are looking at a single, within-subjects effect. You should see the following results:
+
+```{r, echo = F, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayRMPower.png')
+```
+
+</details>
+</div>
+
+## Data Review
+
+Before running any analyses, you should first check your data. In many cases, some kind of cleaning or data wrangling will be necessary. For instance, are there any missing values? Do you have any unexpected values or extreme outliers? Do you need to create a variable from the existing data (e.g., a summary metric for a cognitive task)? These things should be dealt with before conducting the analyses.
+
+Additionally, you'll need to compute descriptive data. You'll do this for both your main variables of interest and your sample's demographic data, as this must be included in the Sample portion of your Methods section. 
+
+### Your Tasks
+
+<div class="nobullet">
++ [ ] $\ $ Open 'ANOVA1lab.csv'
+
++ [ ] $\ $ Check whether all variables imported into jamovi as the correct measurement type. 
+
++ [ ] $\ $ Add a key to the `Gender` variable so that 1 = 'Female' and 2 = 'Male'.
+
++ [ ] $\ $ Add a key to the `Group` variable so that 0 = 'Control', 1 = 'Mouth Obstructed' and 2 = 'Eyes Obstructed'
+
++ [ ] $\ $ Check the descriptive statistics of your data
+
++ [ ] $\ $ Produce the proper plot to visualise the distribution of your dependent variable, `Correct`.
+
+</div>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+For continuous variables, often the descriptive statistics to be checked are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of the expected range. For categorical variables, it's good to check the frequency of participants in each group. It may also be useful to check the mode.
+
+The dependent variable, `Correct`, is continuous. Consider whether either a bar plot or a histogram is more appropriate for use with continuous variables. 
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+<span style = "font-weight: bold; font-size: 14pt"> Adjust Variable Measure Format </span>
+
+To check that the variables are labeled as the correct scale of measurement, navigate to the *Variables* tab and click through each variable, looking at the **Measure type** box. Note that jamovi has an option to set an ID variable, so this can be used here.
+
+* `ID` - ID
+
+* `Gender` - Nominal
+
+* `Age` - Continuous
+
+* `Group` - Nominal
+
+* `Correct` - Continuous
+
+* All emotion variables should be set as Continuous.
+
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Adding Labels to Variables </span>
+
+To associate a label with each value of a variable, you'll use the *Levels* box that comes up when you scroll through the variables in the step above.
+
+Select each level in the box and replace the number with its associated label (e.g. for `Gender`, replace 1 with 'Female'):
+
+```{r, echo = F, out.width='75%', fig.align='center'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_GenderLabels.png')
+```
+
+If you've done this properly, you'll see that each numeric value is now associated with a character label. Repeat this process for `Group`.
+
+<br>
+<span style = "font-weight: bold; font-size: 14pt"> Check Descriptive Statistics </span>
+
+**Categorical Variables:** The categorical variables are `Group` and `Gender`. Click *Analyses>Exploration> Descriptives*, then add these two variables to the 'Variables' box. Make sure 'Frequency tables' is checked. You can also deselect all values in the 'Statistics' tab, except for 'N' and 'Missing'. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_freqTables.png')
+```
+
+Note that if you set up the labels for the `Group` and `Gender` properly, these will appear in the frequency tables, rather than the numeric values they were originally assigned.
+
+**Continuous Variables:** The categorical variables are `Age`, `Correct`, and all 5 emotion variables. Click out of the output and then click *Analyses>Exploration>Descriptives* again. Add the continuous variables to the 'Variables' box. Under the *Statistics* tab, ensure 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum' are selected. You should see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_descStats.png')
+```
+
+<br>
+
+You can also tick 'Histogram' and 'Density' in the *Plots* tab to check the continuous distributions: 
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_corrHist.png')
+```
+
+Here, you can have a look at your dependent variables' distributions. There are no concerning outliers or unusual values, so you can move forward with assumptions checks.
+
+</details>
+</div>
+</br>
+
+## Conduct Between-Subjects ANOVA
+
+As you are comparing three independent means, you'll use results from a between-subjects One-Way ANOVA to provide statistical support for your Research Question 1 hypothesis. Recall that you're testing the following hypothesis:
+
+$H_1$ - At least one of the following is true: 
+
++ $\mu_{Control} \neq \mu_{EyesCovered}$
++ $\mu_{Control} \neq \mu_{MouthCovered}$
++ $\mu_{MouthCovered} \neq \mu_{EyesCovered}$
+
+The requirements/assumptions of a traditional (Fisher's) One-Way ANOVA are:
+
+(1) **Normality:** Residuals are normally distributed
+
+(2) **Independence of Observations:** Individual observations should not be dependent upon any others
+
+(3) **Homogeneity of Variance:** Variances within each group should be generally similar
+
+(4) The dependent/outcome variable must be continuous and the independent/predictor variable must be categorical
+
+
+### Your Tasks
+
+For each research question:
+
+<div class="nobullet">
+
++ [ ] $\ $ Assess and/or consider how to handle each assumption of a between-subjects One-Way ANOVA
+
++ [ ] $\ $ Run a One-way ANOVA to test your hypothesis and interpret the results with $\alpha$ = .05.
+
++ [ ] $\ $ Compute the effect sizes and confidence intervals associated with your analysis
+
+```{r cyrBSaov, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.",
+              answer(15.14, correct = T),
+              message = 'The F-statistic associated with this test is 15.14.'),
+     question_numeric('On average, how many emotional stimuli did participants in the Mouth Obstructed Group identify correctly? Please round your answer to two decimal places.',
+                      answer(15.73, correct = T),
+                      message = 'On average, participants in this group correctly identified 15.73 emotional stimuli.'),
+     question('Which of the following statements are true? Please select all that apply.',
+              answer('The control group performed significantly better than the Mouth Obstructed group', correct = T),
+              answer('The control group performed significantly better than the Eyes Obstructed group',
+                     correct = T),
+              answer('The Mouth Obstructed group performed significantly worse than the Eyes Obstructed group'),
+             answer("Facial Obstruction impacts a child's ability to identify emotions.", correct = T),
+             answer('The null hypothesis can be rejected.', correct = T)))
+```
+
+</div>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/ANOVAI_lecture.html#1) if you're lost.
+
+Because normality of residuals is required, the residuals must be saved as a new variable. This can be done under *Analyses>ANOVA>ANOVA*. You **cannot** do this with the *One-Way ANOVA* option.
+
+
+</details>
+</div>
+</br>
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+
+*Normality*
+To check the assumption of normality, click *Analyses>ANOVA>ANOVA* and add the dependent variable to the 'Dependent Variable' box and the independent variable to the 'Fixed Factors' box.  Scroll down to the 'Assumptions Checks' tab and tick 'Q-Q Plot'. Scroll down to 'Save' and tick 'Residuals'. Navigate back to the Data View and you'll see there is a new `Residuals` variable. Navigate to  *Analyses>Exploration>Descriptives* and place `Residuals` in the 'Variables' box. You can untick all the statistics options, and just select 'Histogram' and 'Density' in the Plots tab.
+
+If you've followed all the steps above, you should now have the following output:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_QQplot.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_histogram.png')
+```
+
+Remember that normally distributed data will be primarily clustered around the mean, with ends tapering off on either side. The histogram shows that the residuals generally follow this pattern. The Q-Q plots support this decision.
+
+
+<br>
+
+
+**Independence**
+
+Assessing independence requires you to have an understanding of the conditions under which your data were collected. Good study design increases the likelihood that the observations are independent of each other. For the purposes of this example, you can consider this assumption to be met.
+
+<br>
+
+**Homogeneity of Variance**
+
+Fisher's ANOVA requires homogeneity of variance between groups. When group sizes are equal, this test is highly robust to heterogeneity of variance. However, with unequal group sizes, violations of this assumption can be problematic and the test may produce inaccurate results if this assumption is violated. 
+
+There are a few options of assessing/dealing with homogeneity of variance in this case.
+
+(1) Welch's ANOVA is robust to violations of homogeneity. Rather than checking this assumption, Welch's ANOVA can be used by default. This can be set up by running the test using the *Analyses>ANOVA>One-Way ANOVA*. However, you cannot currently produce effect sizes for a Welch's ANOVA in jamovi, so you would need to rely on an external effect size calculator, such as [this one](https://fynman.com/tools/statistics/effect-size-calculator/).
+
+(2) Alternatively, you can use Levene's test to check for homogeneity in the *Analyses>ANOVA>ANOVA* tab. To do this, select 'Homogeneity test' under the 'Assumptions Checks' section. If the test is **not** significant, you can assume your data meet the requirement of homogeneity. Note that this test is subject to sample size, and could produce biased results when samples are especially large or small. However, it is a commonly used method of assessing heterogeneity and can be used for the purposes of this course. It should be used alongside visualisations of residuals plots, which can be produced under *Analyses>Regression>Linear Regression* (see the Fitted vs Residuals plot).
+
+<br>
+
+**Conducting a between-subjects One-Way ANOVA**
+
+Navigate to *Analyses>ANOVA>ANOVA*. Add your dependent variable to the 'Dependent Variables' box and your independent variable to the 'Fixed Factors' box. Under 'Effect Size', tick $\eta^2$, and under 'Post Hoc tests', move `Group` to the analysis box and select 'Tukey'. You can also select 'Cohen's d' under 'Effect Size'.
+
+
+If you've completed all steps above, you will see the following output:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_results.png')
+```
+
+
+</details>
+</div>
+
+## Conduct Repeated-Measures ANOVA
+
+To address Research Question 2, you will test for differences between 5 paired means. To do this, you'll use from a repeated-measures One-Way ANOVA. Recall that you're testing the following hypothesis:
+
+There is an effect of emotion type (levels: Happiness, Sadness, Anger, Fear, Disgust) on a child's ability to recognise emotions in masked individuals.
+
+$H_1:$ at least one $\mu \neq$ the other $\mu s$
+
+
+The requirements/assumptions of a Repeated-Measures One-Way ANOVA are:
+
+(1) **Normality:** Residuals are normally distributed
+
+(2) **Sphericity:** Variances within each group should be generally similar
+
+(3) The dependent/outcome variable must be continuous and the independent/predictor variable must be categorical
+
+(4) Observations must be matched/paired within individuals
+
+
+### Your Tasks
+
+<div class="nobullet">
++ [ ] $\ $ Assess and/or consider how to handle each assumption of a repeated-measures One-Way ANOVA
+
++ [ ] $\ $ Run a repeated-measures One-Way ANOVA to test your hypothesis and interpret the results with $\alpha$ = .05.
+
++ [ ] $\ $ Compute the effect sizes and confidence intervals associated with your analysis
+</div>
+
+```{r cyrRMaov, echo = FALSE}
+quiz(caption = 'Check Your Results',
+     question_numeric("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.",
+              answer(165.40, correct = T),
+              message = 'The F-statistic associated with this test is 165.40.'),
+     question('Which of the following is true?',
+              answer('The effect of emotion on recognition ability is weak'),
+              answer('The effect of emotion on recognition ability is moderate'),
+              answer('The effect of emotion on recognition ability is strong', correct = T),
+              message = 'The effect size associated with this analysis is 0.27, which corresponds to a strong effect.'),
+     question('True or False: Children were better at recognising happiness than anger.',
+              answer('True', correct = T),
+              answer('False'),
+              message = 'The posthoc results suggest children were better at recognising happiness than all other emotions, including anger (all ps < .001)'),
+     question('True or False: Children were worse at recognising sadness than fear',
+              answer('True'),
+              answer('False', correct = T),
+              message = 'The posthoc results suggest that there was a significant difference in recognition ability between sadness and fear (p < .001), but children were better at recognising sadness (Mean Score = 42.81) than fear (Mean Score = 35.61.'),
+     question('True or False: Children were better at recognising anger than disgust',
+              answer('True'),
+              answer('False', correct = T),
+              message = 'Although the mean values suggest children recognised anger more often than disgust, the difference between these values was not significant, so we cannot claim that children are better at recognising anger than disgust.'))
+```
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+jamovi doesn't have an option to save the residuals for a repeated-measures ANOVA, but you can use another method for assessing normality that can be found in *Analyses>ANOVA>Repeated Measures ANOVA*.
+
+</details>
+</div>
+</br>
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate to *Analyses>ANOVA>Repeated Measures ANOVA* and set up your model structure. In the 'Repeated Measures Factors' box, highlight 'RM Factor 1' and change the label to 'Emotion'. Highlight each level and change the name to the variable names (e.g. Happiness, Anger). Each time you change a level name, a new possible level will be added, so you can continue adding levels until all 5 are represented. Once this is done, drag the corresponding variables into their places in the 'Repeated Measures Cells' box. If you've done this properly, the set-up should look like this:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMsetup.png')
+```
+
+*Normality*
+To check the assumption of normality, scroll down to the 'Assumptions Checks' drop-down tab and tick 'Q-Q Plot'. 
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_rmQQplot.png')
+```
+
+The points on the Q-Q plot follow the diagonal closely, suggesting the data are distributed in the way that is expected for a normal distrubtion. 
+
+
+<br>
+
+
+**Independence**
+
+Independence is not assumed between responses, since all participants are providing multiple data points. However, independence is still assumed between participants. As with a between-subjects ANOVA, this is handled through good study design.
+
+<br>
+
+**Sphericity**
+
+Unfortunately, Mauchly's Test of Sphericity has the same disadvantages of Levene's test and should be interpreted in the context of sample size, visualisations, and standard deviation values when possible. However, it is a commonly used method to check this assumption. To check for sphericity in the data, tick the 'Sphericity tests' option under 'Assumptions Checks'. 
+
+As with Levene's test, the null hypothesis is that the assumption of sphericity is not violated, so a non-significant result ($p$ > .05) suggests we can consider this assumption to be met. 
+
+**Conducting a Repeated-Measures One-Way ANOVA**
+
+You should have already set up your model structure. Next, tick $\eta^2$ under 'Effect Size'. Under 'Post Hoc Tests', move 'Emotion' into the analysis box and tick 'Tukey'. To produce a plot of the results, use the 'Estimated Marginal Means' drop-down box. Move 'Emotion' into the 'Term 1' box and ensure that 'Marginal means plots' and 'Marginal means tables' are ticked under 'Output'. 
+
+If you've completed all the steps above properly, you'll get the following output for your Repeated-Measures One-Way ANOVA:
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMresults.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMposthocs.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMplot.png')
+```
+
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMemmTab.png')
+```
+
+
+</details>
+</div>
+</br>
+
+
+## Interpret & Report 
+
+Now that you've completed the analyses, write a mini results section describing your findings. In this section, please:
+
++ Give a brief description of your sample as you would in a methods section. 
+
++ Report your results and a provide interpretation in APA style. 
+
+
+<div class="container">
+<details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
+
+There are many ways you could write this up, but you'll need to at least include the following information:
+
++ alpha level
++ power analysis information (including effect size, sample size, power, and alpha)
++ number of participants (n)
++ participant demographics (mean age, age sd, and age range of sample; gender distribution of sample)
++ results from assumptions checks
++ descriptive data for each IV group (M and SD)
++ the type of test used
++ independent and dependent variables tested
++ $F$-statistic
++ degrees of freedom
++ p-values
++ effect sizes
++ posthoc results
+
+The proper style of reporting the results from an ANOVA looks like this:
+
+$F$([between groups $df$], [within groups $df$]) = [$F$-statistic], $p$ = [$p$-value], $\eta^2$ = [$\eta^2$ value].
+
+Note that the numbers inside the curly brackets refer to the degrees of freedom. ANOVA has two types of $df$ that should be reported. Please refer to the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/ANOVAI_lecture.html#1) for a specific example.
+
+</details>
+</div>
+</br>
+
+## Bonus Material: Interpret a Results Section
+<br>
+
+To answer these questions, please refer to [Ruba & Pollack, 2020.](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0243708)
+
+```{r resultsSection, echo = FALSE}
+quiz(caption = '',
+     question_numeric('What was the average age of the sample used in this study?',
+              answer(9.86, correct = T), 
+              message = 'The average age of this sample was 9.86 years'),
+     question('Which study design was used?',
+              answer("Repeated-Measures", correct = T),
+              answer('Between-Subjects'),
+              random_answer_order = T,
+              message = 'This study utilized a within-subjects/repeated-measures design.'),
+     question_numeric('Consider the effect of facial covering on emotion recognition. What was the effect size?',
+              answer(0.26, correct = T),
+              message = "The effect size associated with the effect of facial covering on emotion recognition was 0.26"),
+     question_numeric("What was the F-statistic associated with the effect of emotion on recognition?",
+              answer(30.46, correct = T),
+              message = 'The F-statistic was 30.46.'),
+     question_numeric('What was the mean recognition accuracy associated with stimuli in which faces wore masks?',
+              answer(0.24, correct = T),
+              message = 'The mean recognition accuracy associated with stimuli in which faces wore masks was 0.24'),
+     question_numeric('What was the standard deviation of recognition accuracy towards stimuli that were emoting fear?',
+              answer(0.39, correct = T),
+              message = "The standard deviation associated with stimuli emoting fear was 0.39."),
+     question_numeric('Consider the effect of emotion type on emotional recognition. How would you interpret this effect?',
+                      answer('There is no effect of emotion type on emotional recognition'),
+                      answer('There is a weak effect of emotion type on emotional recognition'),
+                      answer('There is a moderate effect of emotion type on emotional recognition'),
+                      answer('There is a strong effect of emotion type on emotional recognition', correct = T),
+                      message = 'The effect size associated with this effect is 0.28, which is indicative of a strong effect.'),
+     question_numeric('Consider the effect of emotion type on emotional recognition. What are the within-subjects (or error) degrees of freedom?',
+              answer(154, correct = T),
+              message = 'The first number corresponds to the between-subject, or model, degrees of freedom. The second number corresponds to the within-subject, or error, degrees of freedom. The within-subject degrees of freedom is 154.'))
+
+```
+
