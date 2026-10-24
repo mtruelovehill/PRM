@@ -27,17 +27,12 @@ During today's lab, you'll apply the concepts discussed during this week's lectu
 At the end of this lab, you will be able to:
 
 1. Identify hypotheses which may be tested using ANOVAs
-2. Check assumptions for a one-way ANOVA
-3. Use SPSS to perform one-way ANOVAs
-4. Run a power analysis for a one-way ANOVA
-5. Interpret and report results from one-way ANOVAs
+2. Run power analyses for One-Way ANOVAs
+3. Check assumptions for One-Way ANOVAs
+4. Use jamovi to perform One-Way ANOVAs
+5. Interpret and report results from One-Way ANOVAs
 
-If you also complete the bonus material, you'll be able to:
-
-1. Run an appropriate power analysis for a repeated-measures ANOVAs
-2. Check assumptions for a repeated-measures ANOVA 
-3. Use SPSS to perform a repeated-measures ANOVAs
-4. Interpret and report results from repeated-measures ANOVAs
+If you also complete the bonus material, you'll be able to interpret journal articles which report ANOVA results.
 
 
 ## Overview
