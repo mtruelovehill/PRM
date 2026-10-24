@@ -212,7 +212,7 @@ Total number of correctly identified emotions; possible scores = 0 - 50
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-ID
+Happiness
 </td>
 <td style="text-align:left;">
 Percentage of correctly identified photos where subject was emoting
@@ -221,7 +221,7 @@ happiness; possible scores = 0-100%
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Gender
+Sadness
 </td>
 <td style="text-align:left;">
 Percentage of correctly identified photos where the subject was emoting
@@ -230,7 +230,7 @@ sadness; possible scores = 0-100%
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Age
+Fear
 </td>
 <td style="text-align:left;">
 Percentage of correctly identified photos where the subject was emoting
@@ -239,7 +239,7 @@ fear; possible scores = 0-100%
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Group
+Anger
 </td>
 <td style="text-align:left;">
 Percentage of correctly identified photos where the subject was emoting
@@ -248,7 +248,7 @@ anger; possible scores = 0-100%
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-Correct
+Disgust
 </td>
 <td style="text-align:left;">
 Percentage of correctly identified photos where the subject was emoting
@@ -305,12 +305,11 @@ framework of the statistical values being tested.</p>
 solution </span>
 </summary>
 <p><br></p>
-<p><span style="font-weight: bold; font-size 13"> Research Question 1
+<p><span style="font-weight: bold; font-size: 14pt"> Research Question 1
 </span></p>
 <p><b>Independent Variable:</b> Region of Face Obstructed (3 levels:
 Control/Mouth/Eyes)</p>
-<p><b>Dependent Variable:</b> Correct Identifications of Emotion</p>
-<p><br></p>
+<p><b>Dependent Variable:</b> Identification Accuracy</p>
 <p><b>Hypotheses:</b></p>
 <p><i> General: </i></p>
 <p><span class="math inline">\(H_0:\)</span> Facial obstruction will not
@@ -322,16 +321,19 @@ inferences.</p>
 <p><i> Statistical: </i></p>
 <p><span class="math inline">\(H_0: \mu_{control} = \mu_{eyes} =
 \mu_{mouth}\)</span></p>
-<p><span class="math inline">\(H_1:\)</span> at least one <span
-class="math inline">\(\mu \neq\)</span> the other <span
-class="math inline">\(\mu\)</span>s</p>
+<p><span class="math inline">\(H_1:\)</span> at least one of the
+following is true:</p>
+<p><span class="math inline">\(\mu_{control}
+\neq  \mu_{eyes}\)</span></p>
+<p><span class="math inline">\(\mu_{control}
+\neq  \mu_{mouth}\)</span></p>
+<p><span class="math inline">\(\mu_{eyes} \neq  \mu_{mouth}\)</span></p>
 <p><br></p>
-<p><span style="font-weight: bold; font-size 13"> Research Question 2
+<p><span style="font-weight: bold; font-size: 14pt"> Research Question 2
 </span></p>
 <p><b>Independent Variable:</b> Type of Emotion (5 Levels:
 Happiness/Sadness/Fear/Anger/Disgust)</p>
-<p><b>Dependent Variable:</b> Correct Identification of Emotion</p>
-<p><br></p>
+<p><b>Dependent Variable:</b> Identification Accuracy</p>
 <p><b>Hypotheses:</b></p>
 <p><em>General</em></p>
 <p><span class="math inline">\(H_0\)</span>: The type of emotion being
@@ -453,7 +455,7 @@ solution </span>
 <p><span style="font-weight: bold; font-size: 14pt"> Research Question 1
 </span></p>
 <p>Navigate to the Power button and choose ‘General Linear Model’:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisChoice.png" alt="" width="50%" style="display: block; margin: auto;" />
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisChoice.png" alt="" width="80%" style="display: block; margin: auto;" />
 <br></p>
 <p>Because this is a sensitivity power analysis, change the
 <em>Calculate</em> option from ‘N’ to ‘Effect Size’. Because this is a
@@ -467,12 +469,12 @@ class="math inline">\(n\)</span> = 180). You should have entered in the
 suggested thresholds for <span class="math inline">\(\alpha\)</span> and
 power. You should get following results if you’ve entered everything
 properly:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayPower.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayPower.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Research Question 2
 </span></p>
 <p>Navigate to the Power button and choose ‘Factorial Designs’:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisRMchoice.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisRMchoice.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <p>For an a priori analysis, you can leave <em>Calculate</em> as ‘N’.
 Because you expect a moderate effect, you’ll need to update the effect
@@ -487,7 +489,7 @@ class="math inline">\(5-1 = 4\)</span>. There is only a single group
 The study design is ‘Within-subjects’, and the effect of interest is
 ‘only within’, because you are looking at a single, within-subjects
 effect. You should see the following results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayRMPower.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayRMPower.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
 </div>
@@ -521,10 +523,10 @@ correct measurement type.</label></p></li>
 ‘Control’, 1 = ‘Mouth Obstructed’ and 2 = ‘Eyes
 Obstructed’</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Check the descriptive statistics of your data</label></p></li>
+\)</span> Check the descriptive statistics of the data</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Produce the proper plot to visualise the distribution of your
-dependent variable, <code>Correct</code>.</label></p></li>
+\)</span> Produce the proper plot to visualise the distribution of the
+continuous variables.</label></p></li>
 </ul>
 </div>
 <div class="container">
@@ -539,9 +541,11 @@ minimum and maximum so you can easily identify values outside of the
 expected range. For categorical variables, it’s good to check the
 frequency of participants in each group. It may also be useful to check
 the mode.</p>
-<p>The dependent variable, <code>Correct</code>, is continuous. Consider
-whether either a bar plot or a histogram is more appropriate for use
-with continuous variables.</p>
+<p>The continuous variables are <code>Age</code>, <code>Correct</code>,
+<code>Happiness</code>, <code>Sadness</code>, <code>Anger</code>,
+<code>Fear</code>, and <code>Disgust</code>. Consider whether either a
+bar plot or a histogram is more appropriate for use with continuous
+variables.</p>
 </details>
 </div>
 <p></br></p>
@@ -602,9 +606,9 @@ continuous variables to the ‘Variables’ box. Under the
 <p>You can also tick ‘Histogram’ and ‘Density’ in the <em>Plots</em> tab
 to check the continuous distributions:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_corrHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p>Here, you can have a look at your dependent variables’ distributions.
-There are no concerning outliers or unusual values, so you can move
-forward with assumptions checks.</p>
+<p>Here, you can have a look at your continuous variables’
+distributions. There are no concerning outliers or unusual values, so
+you can move forward with assumptions checks.</p>
 </details>
 </div>
 <p></br></p>
@@ -702,7 +706,8 @@ with the <em>One-Way ANOVA</em> option.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p><em>Normality</em> To check the assumption of normality, click
+<p><em>Normality</em></p>
+<p>To check the assumption of normality, click
 <em>Analyses&gt;ANOVA&gt;ANOVA</em> and add the dependent variable to
 the ‘Dependent Variable’ box and the independent variable to the ‘Fixed
 Factors’ box. Scroll down to the ‘Assumptions Checks’ tab and tick ‘Q-Q
@@ -740,7 +745,7 @@ variance in this case.</p>
 <li><p>Welch’s ANOVA is robust to violations of homogeneity. Rather than
 checking this assumption, Welch’s ANOVA can be used by default. This can
 be set up by running the test using the <em>Analyses&gt;ANOVA&gt;One-Way
-ANOVA</em>. However, you cannot currently produce effect sizes for a
+ANOVA</em>. However, you cannot currently produce effect sizes for
 Welch’s ANOVA in jamovi, so you would need to rely on an external effect
 size calculator, such as <a
 href="https://fynman.com/tools/statistics/effect-size-calculator/">this
@@ -765,9 +770,14 @@ to the ‘Fixed Factors’ box. Under ‘Effect Size’, tick <span
 class="math inline">\(\eta^2\)</span>, and under ‘Post Hoc tests’, move
 <code>Group</code> to the analysis box and select ‘Tukey’. You can also
 select ‘Cohen’s d’ under ‘Effect Size’.</p>
+<p>You’ll also need to report the descriptive data for each group. To
+compute this, scroll down to the ‘Estimated Marginal Means’ tab and move
+<code>Group</code> into the ‘Term 1’ portion of the ‘Marginal Means’
+box. Make sure ‘Marginal means tables’ are ticked under ‘Output’.</p>
 <p>If you’ve completed all steps above, you will see the following
 output:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_results.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_EMmeans.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
 </div>
@@ -776,8 +786,8 @@ output:</p>
 class="section level2">
 <h2>Conduct Repeated-Measures ANOVA</h2>
 <p>To address Research Question 2, you will test for differences between
-5 paired means. To do this, you’ll use from a repeated-measures One-Way
-ANOVA. Recall that you’re testing the following hypothesis:</p>
+5 paired means. To do this, you’ll use results from a repeated-measures
+One-Way ANOVA. Recall that you’re testing the following hypothesis:</p>
 <p>There is an effect of emotion type (levels: Happiness, Sadness,
 Anger, Fear, Disgust) on a child’s ability to recognise emotions in
 masked individuals.</p>
@@ -881,9 +891,10 @@ Once this is done, drag the corresponding variables into their places in
 the ‘Repeated Measures Cells’ box. If you’ve done this properly, the
 set-up should look like this:</p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_RMsetup.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p><em>Normality</em> To check the assumption of normality, scroll down
-to the ‘Assumptions Checks’ drop-down tab and tick ‘Q-Q Plot’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_rmQQplot.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><em>Normality</em></p>
+<p>To check the assumption of normality, scroll down to the ‘Assumptions
+Checks’ drop-down tab and tick ‘Q-Q Plot’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_rmQQplot.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p>The points on the Q-Q plot follow the diagonal closely, suggesting
 the data are distributed in the way that is expected for a normal
 distrubtion.</p>
@@ -1085,14 +1096,14 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-1", question = structure("Which test is most appropriate to address research question 1, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_6c5402", 
+"character")), answers = list(structure(list(id = "lnr_ans_302b3d4", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b75e952", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_c9c3b50", 
     option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
     label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_37e74c2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_925fdc3", 
     option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
     label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1101,24 +1112,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used.", html = TRUE, class = c("html", 
+"character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way Between-Subjects ANOVA should be used.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-1-answer", 
     question = "q1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 661391929.692015, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1237924725.42355, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "q1-2", question = structure("Which test is most appropriate to address research question 2, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_1baacea", 
+"character")), answers = list(structure(list(id = "lnr_ans_c9fd2fb", 
     option = "t-test", value = "t-test", label = structure("t-test", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fb7748a", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3c83628", 
     option = "One-Way Between-Subjects ANOVA", value = "One-Way Between-Subjects ANOVA", 
     label = structure("One-Way Between-Subjects ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_b645b07", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8205af6", 
     option = "One-Way Repeated-Measures ANOVA", value = "One-Way Repeated-Measures ANOVA", 
     label = structure("One-Way Repeated-Measures ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1127,17 +1138,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
 "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
 "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-"character")), message = structure("In this case, all participants viewed photos of each emotion, so the same sample provided data across all levels of the independent variable. This means that the data are not independent of each other, so a repeated-measures ANOVA should be used.", html = TRUE, class = c("html", 
+"character")), message = structure("In this case, all participants viewed photos of each emotion, so the same sample provided data across all levels of the independent variable. This means that the data are not independent of each other, so a One-Way Repeated-Measures ANOVA should be used.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "q1-2-answer", 
     question = "q1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1248913917.91843, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1597584.99925607, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
     question = structure("Consider Research Question 1. What is the minimum effect you can detect with your sample, given the above constraints? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5f2ea75", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4389f50", 
         option = "0.05", value = "0.05", label = structure("0.05", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1148,7 +1159,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("With 180 participants, 3 conditions, and a between-subjects design, you can detect an effect of eta-squred = 0.05 or greater.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
         question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 212561261.901018, options = list(
+    allow_retry = FALSE, seed = 664313451.190655, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1157,22 +1168,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrPower-2", 
     question = structure("Which of the following would provide sufficient power (80% or more) for a One-Way Repeated-Measures ANOVA with 5 conditions to detect a moderate effect (eta-squared = .06) with alpha = .05? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_6a55b67", 
+    "character")), answers = list(structure(list(id = "lnr_ans_6710a1a", 
         option = "n = 49", value = "n = 49", label = structure("n = 49", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e2018b2", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_908ae63", 
         option = "n = 36", value = "n = 36", label = structure("n = 36", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a081f3c", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4b171e5", 
         option = "n = 102", value = "n = 102", label = structure("n = 102", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e79bedc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cba68bd", 
         option = "n = 45", value = "n = 45", label = structure("n = 45", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d0559dc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d4c1bfd", 
         option = "n = 54", value = "n = 54", label = structure("n = 54", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_464c4d6", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1ac7059", 
         option = "n = 68", value = "n = 68", label = structure("n = 68", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1183,14 +1194,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = structure("In order to achieve 80% power under the following constraints, a sample of at least 49 is required. Remember, increasing sample size also increases power. Any sample size greater than 49 will provide sufficient power to detect the effect (if it exists).", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-2-answer", 
         question = "cyrPower-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1864544892.13175, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1560719523.77323, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrBSaov-1", 
     question = structure("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_bf9a2ad", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4b65462", 
         option = "15.14", value = 15.14, label = structure("15.14", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1201,7 +1212,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 15.14.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrBSaov-1-answer", 
         question = "cyrBSaov-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1095410557.98991, options = list(
+    allow_retry = FALSE, seed = 538700395.749148, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1210,7 +1221,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrBSaov-2", 
     question = structure("On average, how many emotional stimuli did participants in the Mouth Obstructed Group identify correctly? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_2f3e7d6", 
+    "character")), answers = list(structure(list(id = "lnr_ans_2289914", 
         option = "15.73", value = 15.73, label = structure("15.73", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1221,7 +1232,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("On average, participants in this group correctly identified 15.73 emotional stimuli.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrBSaov-2-answer", 
         question = "cyrBSaov-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 2038848222.05059, options = list(
+    allow_retry = FALSE, seed = 1208469412.93726, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1229,27 +1240,27 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrBSaov-3", 
     question = structure("Which of the following statements are true? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_a1fadf5", 
+    "character")), answers = list(structure(list(id = "lnr_ans_35b9e1f", 
         option = "The control group performed significantly better than the Mouth Obstructed group", 
         value = "The control group performed significantly better than the Mouth Obstructed group", 
         label = structure("The control group performed significantly better than the Mouth Obstructed group", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d4fcfa4", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d8b5482", 
         option = "The control group performed significantly better than the Eyes Obstructed group", 
         value = "The control group performed significantly better than the Eyes Obstructed group", 
         label = structure("The control group performed significantly better than the Eyes Obstructed group", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_ad56baf", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_3a23e18", 
         option = "The Mouth Obstructed group performed significantly worse than the Eyes Obstructed group", 
         value = "The Mouth Obstructed group performed significantly worse than the Eyes Obstructed group", 
         label = structure("The Mouth Obstructed group performed significantly worse than the Eyes Obstructed group", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_13adc4f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_156c695", 
         option = "Facial Obstruction impacts a child's ability to identify emotions.", 
         value = "Facial Obstruction impacts a child's ability to identify emotions.", 
         label = structure("Facial Obstruction impacts a child’s ability to identify emotions.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6d63451", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a7e083a", 
         option = "The null hypothesis can be rejected.", value = "The null hypothesis can be rejected.", 
         label = structure("The null hypothesis can be rejected.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1261,7 +1272,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character")), message = NULL, post_message = NULL), ids = list(
         answer = "cyrBSaov-3-answer", question = "cyrBSaov-3"), 
     loading = NULL, random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 980314642.543505, options = list()), class = c("learnr_checkbox", 
+    seed = 105295073.950968, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1269,7 +1280,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrRMaov-1", 
     question = structure("What is the F-statistic associated with your analysis? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_f778d12", 
+    "character")), answers = list(structure(list(id = "lnr_ans_30f4a7b", 
         option = "165.4", value = 165.4, label = structure("165.4", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1280,24 +1291,24 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 165.40.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrRMaov-1-answer", 
         question = "cyrRMaov-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1021532119.52431, options = list(
+    allow_retry = FALSE, seed = 1700424222.20818, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrRMaov-2", question = structure("Which of the following is true?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_21e648f", 
+"character")), answers = list(structure(list(id = "lnr_ans_4db43f8", 
     option = "The effect of emotion on recognition ability is weak", 
     value = "The effect of emotion on recognition ability is weak", 
     label = structure("The effect of emotion on recognition ability is weak", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_93e6427", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a4665f6", 
     option = "The effect of emotion on recognition ability is moderate", 
     value = "The effect of emotion on recognition ability is moderate", 
     label = structure("The effect of emotion on recognition ability is moderate", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3ba61ce", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a4f3bd7", 
     option = "The effect of emotion on recognition ability is strong", 
     value = "The effect of emotion on recognition ability is strong", 
     label = structure("The effect of emotion on recognition ability is strong", html = TRUE, class = c("html", 
@@ -1310,17 +1321,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The effect size associated with this analysis is 0.27, which corresponds to a strong effect.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrRMaov-2-answer", 
     question = "cyrRMaov-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 146948322.431572, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1523037067.79078, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrRMaov-3", question = structure("True or False: Children were better at recognising happiness than anger.", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7162f5b", 
+"character")), answers = list(structure(list(id = "lnr_ans_d482acb", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_7c6234c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fdf3a63", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1331,16 +1342,16 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The posthoc results suggest children were better at recognising happiness than all other emotions, including anger (all ps &lt; .001)", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrRMaov-3-answer", 
     question = "cyrRMaov-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1667849403.72335, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 237997421.889174, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrRMaov-4", question = structure("True or False: Children were worse at recognising sadness than fear", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7e56eff", 
+"character")), answers = list(structure(list(id = "lnr_ans_e9e6bf8", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_200eb9", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2f5ff93", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1351,17 +1362,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("The posthoc results suggest that there was a significant difference in recognition ability between sadness and fear (p &lt; .001), but children were better at recognising sadness (Mean Score = 42.81) than fear (Mean Score = 35.61.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrRMaov-4-answer", 
     question = "cyrRMaov-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 287437073.366152, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 44218360.9794092, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrRMaov-5", question = structure("True or False: Children were better at recognising anger than disgust", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_d1b7486", 
+"character")), answers = list(structure(list(id = "lnr_ans_f5c8697", 
     option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8a5cda8", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2d0fc3e", 
     option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1372,14 +1383,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Although the mean values suggest children recognised anger more often than disgust, the difference between these values was not significant, so we cannot claim that children are better at recognising anger than disgust.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyrRMaov-5-answer", 
     question = "cyrRMaov-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 473923780.279312, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1123937283.47663, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-1", 
     question = structure("What was the average age of the sample used in this study?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_872d40c", 
+    "character")), answers = list(structure(list(id = "lnr_ans_6c9c475", 
         option = "9.86", value = 9.86, label = structure("9.86", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1390,7 +1401,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The average age of this sample was 9.86 years", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-1-answer", 
         question = "resultsSection-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1429099721.83452, options = list(
+    allow_retry = FALSE, seed = 1477543694.31196, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1399,11 +1410,11 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "resultsSection-2", 
     question = structure("Which study design was used?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_e2ca774", 
+    "character")), answers = list(structure(list(id = "lnr_ans_790da56", 
         option = "Repeated-Measures", value = "Repeated-Measures", 
         label = structure("Repeated-Measures", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2478aca", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1bd56b9", 
         option = "Between-Subjects", value = "Between-Subjects", 
         label = structure("Between-Subjects", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
@@ -1415,14 +1426,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("This study utilized a within-subjects/repeated-measures design.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-2-answer", 
         question = "resultsSection-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1958867217.08783, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 60562818.4717982, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-3", 
     question = structure("Consider the effect of facial covering on emotion recognition. What was the effect size?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_241d87f", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ba7500a", 
         option = "0.26", value = 0.26, label = structure("0.26", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1433,7 +1444,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the effect of facial covering on emotion recognition was 0.26", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-3-answer", 
         question = "resultsSection-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 491806931.770985, options = list(
+    allow_retry = FALSE, seed = 369516649.82793, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1442,7 +1453,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-4", 
     question = structure("What was the F-statistic associated with the effect of emotion on recognition?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_590c958", 
+    "character")), answers = list(structure(list(id = "lnr_ans_1744a6c", 
         option = "30.46", value = 30.46, label = structure("30.46", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1453,7 +1464,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic was 30.46.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-4-answer", 
         question = "resultsSection-4"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 380338601.822891, options = list(
+    allow_retry = FALSE, seed = 1368432282.36277, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1461,7 +1472,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-5", 
     question = structure("What was the mean recognition accuracy associated with stimuli in which faces wore masks?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_794b98c", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ff8e9d6", 
         option = "0.24", value = 0.24, label = structure("0.24", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1472,7 +1483,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The mean recognition accuracy associated with stimuli in which faces wore masks was 0.24", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-5-answer", 
         question = "resultsSection-5"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 659961572.192681, options = list(
+    allow_retry = FALSE, seed = 1661999018.22607, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1481,7 +1492,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-6", 
     question = structure("What was the standard deviation of recognition accuracy towards stimuli that were emoting fear?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_748ee05", 
+    "character")), answers = list(structure(list(id = "lnr_ans_d863bdc", 
         option = "0.39", value = 0.39, label = structure("0.39", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1492,7 +1503,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The standard deviation associated with stimuli emoting fear was 0.39.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-6-answer", 
         question = "resultsSection-6"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 251731586.382778, options = list(
+    allow_retry = FALSE, seed = 1121423384.4778, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1500,22 +1511,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-7", 
     question = structure("Consider the effect of emotion type on emotional recognition. How would you interpret this effect?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_d8ed2ec", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4f27da2", 
         option = "There is no effect of emotion type on emotional recognition", 
         value = "There is no effect of emotion type on emotional recognition", 
         label = structure("There is no effect of emotion type on emotional recognition", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_5add4ec", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4807d15", 
         option = "There is a weak effect of emotion type on emotional recognition", 
         value = "There is a weak effect of emotion type on emotional recognition", 
         label = structure("There is a weak effect of emotion type on emotional recognition", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_22a1f97", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_75b108b", 
         option = "There is a moderate effect of emotion type on emotional recognition", 
         value = "There is a moderate effect of emotion type on emotional recognition", 
         label = structure("There is a moderate effect of emotion type on emotional recognition", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_24d63c1", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4242f80", 
         option = "There is a strong effect of emotion type on emotional recognition", 
         value = "There is a strong effect of emotion type on emotional recognition", 
         label = structure("There is a strong effect of emotion type on emotional recognition", html = TRUE, class = c("html", 
@@ -1528,7 +1539,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with this effect is 0.28, which is indicative of a strong effect.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-7-answer", 
         question = "resultsSection-7"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 471093843.78063, options = list(
+    allow_retry = FALSE, seed = 1729428399.69467, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1537,7 +1548,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "resultsSection-8", 
     question = structure("Consider the effect of emotion type on emotional recognition. What are the within-subjects (or error) degrees of freedom?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_334344f", 
+    "character")), answers = list(structure(list(id = "lnr_ans_78d4d04", 
         option = "154", value = 154, label = structure("154", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1548,7 +1559,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The first number corresponds to the between-subject, or model, degrees of freedom. The second number corresponds to the within-subject, or error, degrees of freedom. The within-subject degrees of freedom is 154.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "resultsSection-8-answer", 
         question = "resultsSection-8"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 125786322.941426, options = list(
+    allow_retry = FALSE, seed = 1818989826.65297, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>

@@ -82,12 +82,12 @@ quiz(caption = '',
               answer("t-test"),
               answer("One-Way Between-Subjects ANOVA", correct = T),
               answer("One-Way Repeated-Measures ANOVA"),
-              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way ANOVA should be used."),
+              message = "While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, a t-test can only test the differences between two means. Here, you have 3 groups (control, eyes obstructed, and mouth obstructed), so a single t-test will not work. Both a one-way ANOVA and a repeated-measures ANOVA can test for differences between more than 2 means, but a repeated-measures ANOVA expects that the means are connected in some way (e.g., measured from the same participants over multiple timepoints). These means are independent of each other (collected from 3 separate groups of people), so a One-Way Between-Subjects ANOVA should be used."),
      question("Which test is most appropriate to address research question 2, given the study design?",
               answer("t-test"),
               answer("One-Way Between-Subjects ANOVA"),
               answer("One-Way Repeated-Measures ANOVA", correct = T),
-              message = "In this case, all participants viewed photos of each emotion, so the same sample provided data across all levels of the independent variable. This means that the data are not independent of each other, so a repeated-measures ANOVA should be used."))
+              message = "In this case, all participants viewed photos of each emotion, so the same sample provided data across all levels of the independent variable. This means that the data are not independent of each other, so a One-Way Repeated-Measures ANOVA should be used."))
 ```
 
 ### Your Tasks
@@ -112,13 +112,12 @@ To state hypotheses statistically, you should structure them in the framework of
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
 <br>
 
-<span style = "font-weight: bold; font-size 13"> Research Question 1 </span>
+<span style = "font-weight: bold; font-size: 14pt"> Research Question 1 </span>
 
 <b>Independent Variable:</b> Region of Face Obstructed (3 levels: Control/Mouth/Eyes)
 
-<b>Dependent Variable:</b> Correct Identifications of Emotion
+<b>Dependent Variable:</b> Identification Accuracy
 
-<br>
 
 <b>Hypotheses:</b>
 
@@ -133,17 +132,22 @@ $H_1:$ Facial obstruction will affect the ability of school-aged children to mak
 
 $H_0: \mu_{control} = \mu_{eyes} = \mu_{mouth}$
 
-$H_1:$ at least one $\mu \neq$ the other $\mu$s
+$H_1:$ at least one of the following is true:
+
+ $\mu_{control} \neq  \mu_{eyes}$
+
+ $\mu_{control} \neq  \mu_{mouth}$
+
+ $\mu_{eyes} \neq  \mu_{mouth}$
 
 <br>
 
-<span style = "font-weight: bold; font-size 13"> Research Question 2 </span>
+<span style = "font-weight: bold; font-size: 14pt"> Research Question 2 </span>
 
 <b>Independent Variable:</b> Type of Emotion (5 Levels: Happiness/Sadness/Fear/Anger/Disgust)
 
-<b>Dependent Variable:</b> Correct Identification of Emotion
+<b>Dependent Variable:</b> Identification Accuracy
 
-<br>
 
 <b>Hypotheses:</b>
 
@@ -231,7 +235,7 @@ To conduct a power analysis for a between-subjects ANOVA, you will navigate to *
 
 Navigate to the Power button and choose 'General Linear Model':
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='80%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisChoice.png')
 ```
 <br>
@@ -242,7 +246,7 @@ $$k - 1$$
 
 where $k$ = the number of groups. The total sample size refers to the number of participants in your study, which you can find in the data ($n$ = 180). You should have entered in the suggested thresholds for $\alpha$ and power. You should get following results if you've entered everything properly:
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='80%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayPower.png')
 ```
 
@@ -252,7 +256,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_
 
 Navigate to the Power button and choose 'Factorial Designs':
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='80%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_powerAnalysisRMchoice.png')
 ```
 
@@ -262,7 +266,7 @@ For an a priori analysis, you can leave *Calculate* as 'N'. Because you expect a
 
 Here, there are 5 conditions (happiness, sadness, anger, fear, disgust), so the effect degrees of freedom is $5-1 = 4$. There is only a single group (one set of participants who contributed data across all conditions). The study design is 'Within-subjects', and the effect of interest is 'only within', because you are looking at a single, within-subjects effect. You should see the following results:
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='80%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_oneWayRMPower.png')
 ```
 
@@ -286,9 +290,9 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 + [ ] $\ $ Add a key to the `Group` variable so that 0 = 'Control', 1 = 'Mouth Obstructed' and 2 = 'Eyes Obstructed'
 
-+ [ ] $\ $ Check the descriptive statistics of your data
++ [ ] $\ $ Check the descriptive statistics of the data
 
-+ [ ] $\ $ Produce the proper plot to visualise the distribution of your dependent variable, `Correct`.
++ [ ] $\ $ Produce the proper plot to visualise the distribution of the continuous variables.
 
 </div>
 
@@ -297,7 +301,7 @@ Additionally, you'll need to compute descriptive data. You'll do this for both y
 
 For continuous variables, often the descriptive statistics to be checked are mean and standard deviation. It's also useful to check the minimum and maximum so you can easily identify values outside of the expected range. For categorical variables, it's good to check the frequency of participants in each group. It may also be useful to check the mode.
 
-The dependent variable, `Correct`, is continuous. Consider whether either a bar plot or a histogram is more appropriate for use with continuous variables. 
+The continuous variables are `Age`, `Correct`, `Happiness`, `Sadness`, `Anger`, `Fear`, and `Disgust`. Consider whether either a bar plot or a histogram is more appropriate for use with continuous variables. 
 
 </details>
 </div>
@@ -361,7 +365,7 @@ You can also tick 'Histogram' and 'Density' in the *Plots* tab to check the cont
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_corrHist.png')
 ```
 
-Here, you can have a look at your dependent variables' distributions. There are no concerning outliers or unusual values, so you can move forward with assumptions checks.
+Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values, so you can move forward with assumptions checks.
 
 </details>
 </div>
@@ -436,6 +440,7 @@ Because normality of residuals is required, the residuals must be saved as a new
 
 
 *Normality*
+
 To check the assumption of normality, click *Analyses>ANOVA>ANOVA* and add the dependent variable to the 'Dependent Variable' box and the independent variable to the 'Fixed Factors' box.  Scroll down to the 'Assumptions Checks' tab and tick 'Q-Q Plot'. Scroll down to 'Save' and tick 'Residuals'. Navigate back to the Data View and you'll see there is a new `Residuals` variable. Navigate to  *Analyses>Exploration>Descriptives* and place `Residuals` in the 'Variables' box. You can untick all the statistics options, and just select 'Histogram' and 'Density' in the Plots tab.
 
 If you've followed all the steps above, you should now have the following output:
@@ -466,7 +471,7 @@ Fisher's ANOVA requires homogeneity of variance between groups. When group sizes
 
 There are a few options of assessing/dealing with homogeneity of variance in this case.
 
-(1) Welch's ANOVA is robust to violations of homogeneity. Rather than checking this assumption, Welch's ANOVA can be used by default. This can be set up by running the test using the *Analyses>ANOVA>One-Way ANOVA*. However, you cannot currently produce effect sizes for a Welch's ANOVA in jamovi, so you would need to rely on an external effect size calculator, such as [this one](https://fynman.com/tools/statistics/effect-size-calculator/).
+(1) Welch's ANOVA is robust to violations of homogeneity. Rather than checking this assumption, Welch's ANOVA can be used by default. This can be set up by running the test using the *Analyses>ANOVA>One-Way ANOVA*. However, you cannot currently produce effect sizes for Welch's ANOVA in jamovi, so you would need to rely on an external effect size calculator, such as [this one](https://fynman.com/tools/statistics/effect-size-calculator/).
 
 (2) Alternatively, you can use Levene's test to check for homogeneity in the *Analyses>ANOVA>ANOVA* tab. To do this, select 'Homogeneity test' under the 'Assumptions Checks' section. If the test is **not** significant, you can assume your data meet the requirement of homogeneity. Note that this test is subject to sample size, and could produce biased results when samples are especially large or small. However, it is a commonly used method of assessing heterogeneity and can be used for the purposes of this course. It should be used alongside visualisations of residuals plots, which can be produced under *Analyses>Regression>Linear Regression* (see the Fitted vs Residuals plot).
 
@@ -474,7 +479,9 @@ There are a few options of assessing/dealing with homogeneity of variance in thi
 
 **Conducting a between-subjects One-Way ANOVA**
 
-Navigate to *Analyses>ANOVA>ANOVA*. Add your dependent variable to the 'Dependent Variables' box and your independent variable to the 'Fixed Factors' box. Under 'Effect Size', tick $\eta^2$, and under 'Post Hoc tests', move `Group` to the analysis box and select 'Tukey'. You can also select 'Cohen's d' under 'Effect Size'.
+Navigate to *Analyses>ANOVA>ANOVA*. Add your dependent variable to the 'Dependent Variables' box and your independent variable to the 'Fixed Factors' box. Under 'Effect Size', tick $\eta^2$, and under 'Post Hoc tests', move `Group` to the analysis box and select 'Tukey'. You can also select 'Cohen's d' under 'Effect Size'. 
+
+You'll also need to report the descriptive data for each group. To compute this, scroll down to the 'Estimated Marginal Means' tab and move `Group` into the 'Term 1' portion of the 'Marginal Means' box. Make sure 'Marginal means tables' are ticked under 'Output'.
 
 
 If you've completed all steps above, you will see the following output:
@@ -483,13 +490,16 @@ If you've completed all steps above, you will see the following output:
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_results.png')
 ```
 
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_EMmeans.png')
+```
 
 </details>
 </div>
 
 ## Conduct Repeated-Measures ANOVA
 
-To address Research Question 2, you will test for differences between 5 paired means. To do this, you'll use from a repeated-measures One-Way ANOVA. Recall that you're testing the following hypothesis:
+To address Research Question 2, you will test for differences between 5 paired means. To do this, you'll use results from a repeated-measures One-Way ANOVA. Recall that you're testing the following hypothesis:
 
 There is an effect of emotion type (levels: Happiness, Sadness, Anger, Fear, Disgust) on a child's ability to recognise emotions in masked individuals.
 
@@ -561,9 +571,10 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_
 ```
 
 *Normality*
+
 To check the assumption of normality, scroll down to the 'Assumptions Checks' drop-down tab and tick 'Q-Q Plot'. 
 
-```{r, echo = F, fig.align= 'center', out.width='75%'}
+```{r, echo = F, fig.align= 'center', out.width='60%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaI_rmQQplot.png')
 ```
 
