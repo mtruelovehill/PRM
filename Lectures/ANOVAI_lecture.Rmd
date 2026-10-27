@@ -927,7 +927,7 @@ ggplot(aovDat, aes(Group, s2, fill = Group)) + geom_boxplot() +
 ---
 ### Assumptions of ANOVA
 
-+ **Normality:** Residuals should be normally distributed *within groups*
++ **Normality:** Residuals should be normally distributed
 
 --
   

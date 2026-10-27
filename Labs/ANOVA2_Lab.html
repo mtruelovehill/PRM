@@ -199,10 +199,18 @@ pre-intervention CAPS score (possible values = 0-80)
 </tr>
 <tr>
 <td style="text-align:left;width: 4.5cm; font-weight: bold;">
-CAPSFollowUp
+CAPSPost
 </td>
 <td style="text-align:left;">
 post-intervention CAPS score (possible values = 0-80)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4.5cm; font-weight: bold;">
+CAPSFollowUp
+</td>
+<td style="text-align:left;">
+CAPS score at 6 month follow-up
 </td>
 </tr>
 </tbody>
@@ -357,15 +365,24 @@ partial <span class="math inline">\(\eta^2\)</span> is used instead. It
 can be interpreted with the same thresholds.</p>
 <div id="section-your-task" class="section level3">
 <h3>Your Task</h3>
+<p>For all power analyses, use <span
+class="math inline">\(\alpha\)</span> = .05, power = .8, and a moderate
+effect size (<span class="math inline">\(\eta^2_p\)</span> = .06)</p>
 <div class="nobullet">
 <ul class="task-list">
-<li><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run an a priori power analysis using <span
-class="math inline">\(\alpha\)</span> = .05 and power = .8 to determine
-the sample size necessary to detect a moderate ( <span
-class="math inline">\(\eta^2_p\)</span> = .06) interaction effect
-between <code>TherapyGroup</code> and <code>Time</code> on CAPS
-score.</label></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run an a priori power analysis to determine the sample size
+necessary to detect the main effect of <code>TherapyGroup</code> on CAPS
+score.</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run an a priori power analysis to determine the sample size
+necessary to detect the main effect of <code>Time</code> on CAPS
+score.</label></p></li>
+<li><p><label><input type="checkbox" /><span class="math inline">\(\
+\)</span> Run an a priori power analysis to determine the sample size
+necessary to detect a moderate interaction effect between
+<code>TherapyGroup</code> and <code>Time</code> on CAPS
+score.</label></p></li>
 </ul>
 </div>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
@@ -386,9 +403,10 @@ score.</label></li>
 <p>Consider whether your independent variables are between-subjects,
 within-subjects, or a mix. This will impact which power analysis options
 you choose. Typically when reporting, it is sufficient to perform a
-power analysis for the most complex model, as this will require the
-largest sample. However, in this course, you should perform a power
-analysis for each effect.</p>
+power analysis for the most complex model (or the one for which you
+expect the weakest effect), as this will require the largest sample.
+However, on this course, you should perform a power analysis for each
+effect.</p>
 </details>
 </div>
 <p></br></p>
@@ -464,10 +482,10 @@ section.</p>
 <div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Open ‘Week6LabData1.sav’</label></p></li>
+\)</span> Open ‘ANOVA2lab.csv’</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Check whether all variables imported into SPSS as the correct
-measurement type.</label></p></li>
+\)</span> Check whether all variables imported into jamovi as the
+correct measurement type.</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Add labels to <code>TherapyGroup</code>: 0 = ‘Waitlist’; 1 =
 ‘VR Therapy’</label></p></li>
@@ -476,8 +494,8 @@ measurement type.</label></p></li>
 data.</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Produce the proper plot to visualise the distribution of your
-continuous variables, <code>Age</code>, <code>CAPSBaseline</code>, and
-<code>CAPSFollowUp</code>.</label></p></li>
+continuous variables, <code>Age</code>, <code>CAPSBaseline</code>,
+<code>CAPSpost</code>, and <code>CAPSFollowUp</code>.</label></p></li>
 </ul>
 </div>
 <div class="container">
@@ -502,61 +520,50 @@ solution </span>
 </summary>
 <p><span style="font-weight: bold; font-size: 14pt"> Adjust Variable
 Measure Format </span></p>
-<p>To check that your variables are labeled as the correct scale of
-measurement, look at the <strong>Measure</strong> column under the
-<em>Variable View</em> tab.</p>
+<p>To check that the variables are labeled as the correct scale of
+measurement, navigate to the <em>Variables</em> tab and click through
+each variable, looking at the <strong>Measure type</strong> box.</p>
 <ul>
 <li><p><code>Age</code> - Scale</p></li>
 <li><p><code>Gender</code> - Nominal</p></li>
 <li><p><code>TherapyGroup</code> - Nominal</p></li>
 <li><p><code>CAPSBaseline</code> - Scale</p></li>
+<li><p><code>CAPSPost</code> - Scale</p></li>
 <li><p><code>CAPSFollowUp</code> - Scale</p></li>
 </ul>
-<p>In this instance, SPSS assigned the proper measures by default. No
-changes are required.</p>
 <p><br></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Add Labels to
 <code>TherapyGroup</code> </span></p>
 <p>To associate a label with each value of a variable, you’ll use the
-<strong>Values</strong> column under the <strong>Variable View</strong>
-tab.</p>
-<p>Select the TherapyGroup x Values cell and click the dots to bring up
-the <em>Value Labels</em> box. Use the <span
-class="math inline">\(+\)</span> to add a new label. In the Value
-column, type 0, then in the Label column, type ‘Waitlist’. Repeat the
-process for the VR Therapy group.</p>
+<em>Levels</em> box that comes up when you scroll through the variables
+in the step above. Select each level in the box and replace the number
+with its associated label:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_levelLabels.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><span style="font-weight: bold; font-size: 14pt"> Check Descriptive
 Statistics &amp; Produce Distribution Plots </span></p>
-<p><strong>Categorical Variables:</strong> Your categorical variables
-are <code>TherapyGroup</code> and <code>Gender</code>. Click
-<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em>, then add
-these two variables to the ‘Variable(s)’ box. Make sure ‘Display
-frequency tables’ is checked, then click ‘OK’. You should see the
-following output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_updateFreqTables.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><strong>Categorical Variables:</strong> The categorical variables are
+<code>TherapyGroup</code> and <code>Gender</code>. Click
+<em>Analyses&gt;Exploration&gt;Descriptives</em>, then add these two
+variables to the ‘Variables’ box. Check ‘Frequency tables’. You should
+get the following output:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_freqTables.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Note that if you set up the labels for the <code>TherapyGroup</code>
 properly, these will appear in the frequency tables, rather than the
-numeric values you see in ‘Data View’.</p>
-<p><strong>Continuous Variables:</strong> Your categorical variables are
-<code>Age</code>, <code>CAPSBaseline</code>, and
-<code>CAPSFollowUp</code>. Click <em>Analyze&gt;Descriptive
-Statistics&gt;Frequencies</em>, then add these variables to the
-‘Variable(s)’ box. Make sure ‘Display frequency tables’ is not ticked,
-then click ‘Statistics’. Tick ‘Mean’, ‘Std. Deviation’, ‘Minimum’, and
-‘Maximum’. Click ‘Continue’, then click ‘Charts’. As these are
-continuous variables, you will visualise them using histograms. Click
-‘Histogram’, then tick ‘Show normal curve on histogram’. Click
-‘Continue’ and then ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_updateDescStat.png" alt="" width="40%" style="display: block; margin: auto;" /></p>
-<p>Here, you can have a look at your continuous variables’
-distributions. There are no concerning outliers or unusual values. Your
-age variable isn’t normally distributed, but as its not one of the
-variables being tested, this doesn’t matter. In fact, a uniform age
-distribution indicates you’re getting a good range of people from each
-age group in your sample.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ageHist.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_baselineHist.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_followUpHist.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+numeric values you see in ‘Data View’. If you haven’t done that, you can
+do it now and these tables will automatically update.</p>
+<p><strong>Continuous Variables:</strong> The categorical variables are
+<code>Age</code>, <code>CAPSBaseline</code>, <code>CAPSpost</code>, and
+<code>CAPSFollowUp</code>. Click
+<em>Analyses&gt;Exploration&gt;Descriptives</em>, then add these to the
+‘Variables’ box. Make sure ‘Frequency tables’ is not ticked, then click
+the ‘Statistics’ drop-down and Tick ‘Mean’, ‘Std. Deviation’, ‘Minimum’,
+and ‘Maximum’. In the ‘Plots’ drop-down, tick ‘Histogram’ and
+‘Density’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_descStats.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ageHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_baselineHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_postHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_followUpHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </details>
 </div>
 <p></br></p>
@@ -1031,18 +1038,18 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_cf9a475", 
+"character")), answers = list(structure(list(id = "lnr_ans_3432fbb", 
     option = "Between-Subjects One-Way ANOVA", value = "Between-Subjects One-Way ANOVA", 
     label = structure("Between-Subjects One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fa24758", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_900d729", 
     option = "Repeated-Measures One-Way ANOVA", value = "Repeated-Measures One-Way ANOVA", 
     label = structure("Repeated-Measures One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9b20f7c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_622b7a9", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_acc79b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4c61c45", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1055,18 +1062,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 381619991.322294, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1364483765.36461, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_bdd363b", 
+"character")), answers = list(structure(list(id = "lnr_ans_7398866", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e26e588", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_96510f6", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1077,17 +1084,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 421316696.803809, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 554518347.241782, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_2bb5b76", 
+"character")), answers = list(structure(list(id = "lnr_ans_62023bd", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ab2343c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_64ed361", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1098,7 +1105,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 639442430.702236, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1416973370.34017, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1106,18 +1113,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
     question = structure("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_cdac0f5", 
-        option = "128", value = 128, label = structure("128", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_572bc90", 
+        option = "79", value = 79, label = structure("79", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("You would need 128 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
+    "character")), message = structure("You would need 79 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
         question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 222171408.396543, options = list(
+    allow_retry = FALSE, seed = 1749636884.68526, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1125,7 +1132,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-1", 
     question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_906a2fb", 
+    "character")), answers = list(structure(list(id = "lnr_ans_25d6038", 
         option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1136,7 +1143,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-1-answer", 
         question = "cyrFacAOV-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1672099914.22137, options = list(
+    allow_retry = FALSE, seed = 590758212.724907, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1145,10 +1152,10 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrFacAOV-2", 
     question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_6006707", 
+    "character")), answers = list(structure(list(id = "lnr_ans_e8a4d1c", 
         option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_db1d133", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_af8d4d8", 
         option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1159,14 +1166,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-2-answer", 
         question = "cyrFacAOV-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1088451549.49315, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1983128330.07653, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-3", 
     question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c3c5ce5", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ed3e31f", 
         option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1177,7 +1184,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-3-answer", 
         question = "cyrFacAOV-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 453961520.788608, options = list(
+    allow_retry = FALSE, seed = 1090108063.49238, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>

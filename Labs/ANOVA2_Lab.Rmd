@@ -238,7 +238,7 @@ $$k-1$$
 where $k$ = the number of groups. Here, the degrees of freedom = 1. The design is 'Between-subjects', and the number of groups = $k$. Ensure power = .8 and $\alpha$ = .05. If you've entered all parameters properly, you should get the following results:
 
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME1power.png')
 ```
 
@@ -246,7 +246,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 $\eta^2_p$, power, and $\alpha$ remain the same. There are 3 levels in $IV_2$, so the degrees of freedom are now equal to 2. The design is within-subjects, and the number of groups is equal to 1. This power analysis is only for main effect 2, so 'Effect is only within' should be selected. Once all parameters have been entered, you'll get the following results:
 
 
-```{r, echo = F, fig.align='center', out.width='50%'}
+```{r, echo = F, fig.align='center', out.width='75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME2power.png')
 ```
 
@@ -341,26 +341,27 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 
 Note that if you set up the labels for the `TherapyGroup` properly, these will appear in the frequency tables, rather than the numeric values you see in 'Data View'. If you haven't done that, you can do it now and these tables will automatically update.
 
-**Continuous Variables:** The categorical variables are `Age`, `CAPSBaseline`, `CAPSpost`, and `CAPSFollowUp`. Click *Analyze>Descriptive Statistics>Frequencies*, then add these variables to the 'Variable(s)' box. Make sure 'Display frequency tables' is not ticked, then click 'Statistics'. Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. Click 'Continue', then click 'Charts'. As these are continuous variables, you will visualise them using histograms. Click 'Histogram', then tick 'Show normal curve on histogram'. Click 'Continue' and then 'OK'. 
+**Continuous Variables:** The categorical variables are `Age`, `CAPSBaseline`, `CAPSpost`, and `CAPSFollowUp`. Click *Analyses>Exploration>Descriptives*, then add these to the 'Variables' box. Make sure 'Frequency tables' is not ticked, then click the 'Statistics' drop-down and Tick 'Mean', 'Std. Deviation', 'Minimum', and 'Maximum'. In the 'Plots' drop-down, tick 'Histogram' and 'Density'. 
 
-```{r, echo = F, fig.align= 'center', out.width = '40%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_updateDescStat.png')
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_descStats.png')
 ```
 
-Here, you can have a look at your continuous variables' distributions. There are no concerning outliers or unusual values. Your age variable isn't normally distributed, but as its not one of the variables being tested, this doesn't matter. In fact, a uniform age distribution indicates you're getting a good range of people from each age group in your sample.
-
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ageHist.png')
 ```
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_baselineHist.png')
 ```
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
-knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_followUpHist.png')
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_postHist.png')
 ```
 
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_followUpHist.png')
+```
 
 </details>
 </div>
@@ -382,20 +383,20 @@ The requirements/assumptions of a Factorial ANOVA are:
 
 <div class="nobullet">
 
-+ [ ] $\ $ Decide whether your data meet the assumption of normality
++ [ ] $\ $ Assess and/or consider how to handle each assumption of a Mixed Factorial ANOVA
 
-+ [ ] $\ $ Decide whether your data meet the assumption of independence
++ [ ] $\ $  Run a Mixed Factorial ANOVA to test your hypothesis and interpret the results with $\alpha$ = .05.
 
-+ [ ] $\ $ Decide whether your data meet the assumption of homogeneity
++ [ ] $\ $ Compute the effect sizes associated with your analysis
 
 </div>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html) if you're lost.
+Have a look at the [lecture slides](https://mtruelovehill.github.io/PRM/Lectures/ANOVAII_lecture.html) if you're lost.
 
-You'll need to run the ANOVA in order to test the assumptions of normality and homogeneity. As you need to test normality and homogeneity using the residuals, you'll need to click the 'Save' button to produce both *Standardised Residuals* and *Predicted Values* when the test is run. 
+You'll need to run the ANOVA in order to check the assumptions of normality and homogeneity. Because there is a within-subjects effect included in this model, you'll need to navigate to *Analyses>ANOVA>Repeated Measures ANOVA*. 
 
 
 </details>
@@ -404,6 +405,17 @@ You'll need to run the ANOVA in order to test the assumptions of normality and h
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for the solution </span></summary>
+
+Navigate to *Analyses>ANOVA>Repeated Measures ANOVA* and set up your model structure. In the 'Repeated Measures Factors' box, highlight 'RM Factor 1' and change the label to 'Time'. Highlight each level and change the name to the variable names (e.g. Baseline). Each time you change a level name, a new possible level will be added, so you can continue adding levels until all 5 are represented. Once this is done, drag the corresponding variables into their places in the 'Repeated Measures Cells' box. Add `TherapyGroup` to the 'Between Subject Factors' box. If you've done this properly, the set-up should look like this:
+
+```{r, echo = F, fig.align= 'center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_modSetup.png')
+```
+
+
+
+
+
 
 To check the assumptions of normality and homogeneity, residuals and predicted values will need to be produced by running the ANOVA. See the Solution tab in [Primary Analysis] if you need a step-by-step guide on setting up the test. Once the test is set up, click the 'Save' option, and tick 'Unstandardized' in the Predicted Values box and 'Standardized' in the Residuals box.
 
