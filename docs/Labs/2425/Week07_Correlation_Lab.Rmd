@@ -12,7 +12,7 @@ runtime: shiny_prerendered
 library(learnr)
 library(tidyverse)
 library(kableExtra)
-library(e1701)
+#library(e1701)
 
 baseColor <- '#4CA384'
 accent1 <- '#9AD079'

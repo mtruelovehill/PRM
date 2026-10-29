@@ -193,7 +193,7 @@ jamovi labels the data as:
 The proper variable labels are:
 
   + `ID`: Nominal
-  + `AgeBracket`: Ordinal
+  + `AgeBracket`: Nominal
   + `Gender`: Nominal
   + `Ethnicity`: Nominal
   + `HighestEducation`: Ordinal
