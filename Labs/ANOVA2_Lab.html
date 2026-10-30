@@ -429,7 +429,7 @@ degrees of freedom = 1. The design is ‘Between-subjects’, and the number
 of groups = <span class="math inline">\(k\)</span>. Ensure power = .8
 and <span class="math inline">\(\alpha\)</span> = .05. If you’ve entered
 all parameters properly, you should get the following results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME1power.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME1power.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><strong>Main Effect 2</strong> <span
 class="math inline">\(\eta^2_p\)</span>, power, and <span
 class="math inline">\(\alpha\)</span> remain the same. There are 3
@@ -438,7 +438,7 @@ freedom are now equal to 2. The design is within-subjects, and the
 number of groups is equal to 1. This power analysis is only for main
 effect 2, so ‘Effect is only within’ should be selected. Once all
 parameters have been entered, you’ll get the following results:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME2power.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_ME2power.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><strong>Interaction Effect</strong> As before, <span
 class="math inline">\(\eta^2_p\)</span>, power, and <span
 class="math inline">\(\alpha\)</span> remain the same. You’ll need to
@@ -564,21 +564,27 @@ and ‘Maximum’. In the ‘Plots’ drop-down, tick ‘Histogram’ and
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_baselineHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_postHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_followUpHist.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>These plots reflect the raw values of the plotted variables, so they
+don’t need to be evaluated for normality. Rather, you should use them to
+determine whether there are unusual values in your sample that need to
+be investigated.</p>
 </details>
 </div>
 <p></br></p>
 </div>
 </div>
-<div id="section-check-assumptions" class="section level2">
-<h2>Check Assumptions</h2>
+<div id="section-primary-analysis" class="section level2">
+<h2>Primary Analysis</h2>
+<p>In this step, you’ll be checking assumptions and then running the
+formal analysis.</p>
 <p>The requirements/assumptions of a Factorial ANOVA are:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Normality:</strong> Residuals are normally
 distributed</p></li>
 <li><p><strong>Independence of Observations:</strong> Individual
 observations should not be dependent upon any others</p></li>
-<li><p><strong>Homogeneity of Variance:</strong> Variances within each
-level combination should be generally similar</p></li>
+<li><p><strong>Homogeneity of Variance/Sphericity:</strong> Variances
+within each level combination should be generally similar</p></li>
 <li><p>The dependent/outcome variable must be continuous and the
 independent/predictor variables must be categorical</p></li>
 </ol>
@@ -587,134 +593,11 @@ independent/predictor variables must be categorical</p></li>
 <div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Decide whether your data meet the assumption of
-normality</label></p></li>
+\)</span> Assess and/or consider how to handle each assumption of a
+Mixed Factorial ANOVA</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Decide whether your data meet the assumption of
-independence</label></p></li>
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Decide whether your data meet the assumption of
-homogeneity</label></p></li>
-</ul>
-</div>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for a hint
-</span>
-</summary>
-<p>Have a look at the <a
-href="https://mtruelovehill.github.io/PRM/Lectures/Week06_ANOVAII_lecture.html">lecture
-slides</a> if you’re lost.</p>
-<p>You’ll need to run the ANOVA in order to test the assumptions of
-normality and homogeneity. As you need to test normality and homogeneity
-using the residuals, you’ll need to click the ‘Save’ button to produce
-both <em>Standardised Residuals</em> and <em>Predicted Values</em> when
-the test is run.</p>
-</details>
-</div>
-<p></br></p>
-<div class="container">
-<details>
-<summary>
-<span style="font-weight: bold; font-size: 16pt"> Click here for the
-solution </span>
-</summary>
-<p>To check the assumptions of normality and homogeneity, residuals and
-predicted values will need to be produced by running the ANOVA. See the
-Solution tab in <a href="#section-primary-analysis">Primary Analysis</a>
-if you need a step-by-step guide on setting up the test. Once the test
-is set up, click the ‘Save’ option, and tick ‘Unstandardized’ in the
-Predicted Values box and ‘Standardized’ in the Residuals box.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_testSetupSave.png" alt="" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_residuals.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Continue’, then ‘Options’. Tick the box next to ‘Homogeneity
-tests’ to run Levene’s test. Click ‘Continue’ then ‘OK’.</p>
-<p>This process will produce four new columns that reflect the residuals
-from the model (2 predicted value columns, <code>PRE_1</code> and
-<code>PRE_2</code> and 2 standardised residual columns,
-<code>ZRE_1</code> and <code>ZRE_2</code>), as well as output the
-results from Levene’s test (and Mauchly’s test when relevant).</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Normality
-</span></p>
-<p>To check normality, you’ll produce histograms and Q-Q plots using the
-two new residual columns you created. Navigate to
-<em>Analyze&gt;Descriptive Statistics&gt;Frequencies</em> and add the
-two residual columns to the ‘Variable(s)’ box. Click ‘Charts’, then
-‘Histograms’ and tick ‘Show normal curve on histogram’. Click ‘Continue’
-and ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_histRes1.png" alt="" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_histRes2.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>These look normal. There’s a slight point in the right tail of the
-Baseline residuals that isn’t quite normal, but it’s not problematic.
-The Q-Q plots can also be checked. Navigate to
-<em>Analyze&gt;Descriptive Statistics&gt;Q-Q Plots</em> and add the two
-residual columns to the ‘Variable(s)’ box. Click ‘OK’.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_qqRes1.png" alt="" width="50%" style="display: block; margin: auto;" /><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_qqRes2.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>The Q-Q plots show no major violations of normality, so the
-assumption of normality can be considered to be met.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Homogeneity of
-Variance </span></p>
-<p>To check the homogeneity assumption, plot the corresponding residual
-and predicted value columns. Navigate to <em>Graphs&gt;Scatter/Dot</em>,
-select ‘Simple Scatter’, and then ‘Define’. Place the first Residuals
-column (<code>ZRE_1</code>) on the y-axis and the first Predicted Values
-(<code>PRE_1</code>) column on the x-axis, then click OK.</p>
-<p>In order for homogeneity to be assumed, the points should be
-distributed generally consistently above and below the residual value of
-0. One line of points shouldn’t be substantially longer or shorter than
-the others. The distribution of points on this plot looks generally
-homogeneous:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred1.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Repeat the process with <code>ZRE_2</code> and
-<code>PRE_2</code>:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_resVpred2.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Again, the points look generally homogeneous between levels, so the
-assumption of homogeneity of variance can be considered to be met.</p>
-<p>You can support this decision by interpreting the results of Levene’s
-test in your output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_levenesTest.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Check the two rows that say ‘Based on Mean’. All <span
-class="math inline">\(p\)</span>-values are greater than the <span
-class="math inline">\(\alpha\)</span> threshold of .05, so the tests are
-not significant. This further supports your decision that the assumption
-of homogeneity of variance is met.</p>
-<p><span style="font-weight: bold; font-size: 14pt"> Independence
-</span></p>
-<p>Assessing independence requires you to have an understanding of the
-conditions under which your data were collected. Between-subjects study
-designs increase the likelihood that the observations are independent of
-each other. Additionally, using an appropriate analysis for
-within-subjects variables (such as a repeated-measures ANOVA) ensures
-you’re accounting for within-subjects variance, so you can consider this
-assumption to be met.</p>
-</details>
-</div>
-</div>
-</div>
-<div id="section-primary-analysis" class="section level2">
-<h2>Primary Analysis</h2>
-<p>As you are testing the effect of two independent variables on a
-dependent variable, you’ll use results from a Factorial ANOVA with one
-between-subjects variable (<code>TherapyGroup</code>) and one
-within-subjects variable (Time: Baseline and Follow-up) to provide
-statistical support for your hypotheses. Recall that you’re testing the
-following effects:</p>
-<p><strong>Main Effect 1</strong></p>
-<p><span class="math inline">\(H_1: \mu_{waitlist} \neq
-\mu_{therapy}\)</span></p>
-<p><strong>Main Effect 2</strong></p>
-<p><span class="math inline">\(H_1: \mu_{baseline} \neq
-\mu_{follow-up}\)</span></p>
-<p><strong>Interaction Effect</strong></p>
-<p><span class="math inline">\(C =
-(\mu_{baseline}\times\mu_{waitlist}-\mu_{baseline}\times\mu_{therapy})-(\mu_{follow-up}\times\mu_{waitlist}-\mu_{follow-up}\times\mu_{therapy})\)</span></p>
-<p><span class="math inline">\(H_1: C \neq 0\)</span></p>
-<div id="section-your-tasks-3" class="section level3">
-<h3>Your Tasks</h3>
-<div class="nobullet">
-<ul class="task-list">
-<li><p><label><input type="checkbox" /><span class="math inline">\(\
-\)</span> Run a Factorial ANOVA to test your hypotheses and interpret
-the results with <span class="math inline">\(\alpha\)</span> =
+\)</span> Run a Mixed Factorial ANOVA to test your hypothesis and
+interpret the results with <span class="math inline">\(\alpha\)</span> =
 .05.</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Compute the effect sizes associated with your
@@ -746,16 +629,27 @@ analysis</label></p></li>
 <script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
 </div>
 </div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="cyrFacAOV-4" class="tutorial-question panel-body">
+<div id="cyrFacAOV-4-answer_container" class="shiny-html-output"></div>
+<div id="cyrFacAOV-4-message_container" class="shiny-html-output"></div>
+<div id="cyrFacAOV-4-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
 <div class="container">
 <details>
 <summary>
 <span style="font-weight: bold; font-size: 16pt"> Click here for a hint
 </span>
 </summary>
-<p>To run a Factorial ANOVA with a within-subjects variable, you should
-navigate to <em>Analyze&gt;General Linear Model&gt;Repeated
-Measures</em>. If you only had between-subjects variables, you would
-navigate to <em>Analyze&gt;General Linear Model&gt;Univariate</em>.</p>
+<p>Have a look at the <a
+href="https://mtruelovehill.github.io/PRM/Lectures/ANOVAII_lecture.html">lecture
+slides</a> if you’re lost.</p>
+<p>You’ll need to fit the ANOVA model in order to check the assumptions
+of normality and homogeneity. Because there is a within-subjects effect
+included in this model, navigate to <em>Analyses&gt;ANOVA&gt;Repeated
+Measures ANOVA</em>.</p>
 </details>
 </div>
 <p></br></p>
@@ -765,96 +659,100 @@ navigate to <em>Analyze&gt;General Linear Model&gt;Univariate</em>.</p>
 <span style="font-weight: bold; font-size: 16pt"> Click here for the
 solution </span>
 </summary>
-<p>Navigate to <em>Analyze&gt;General Linear Model&gt; Repeated
-Measures</em>. Your repeated measure variable is time, and there are two
-levels (Baseline and Follow-up) so set it up accordingly. Add the name
-of your measure (CAPS) if you’d like.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_RMfactors.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Define’, then add your Within-Subjects Variables,
-<code>CAPSBaseline</code> and <code>CAPSFollowUp</code>, and your
-Between-Subjects Variable, <code>TherapyGroup</code>.</p>
-<p>Now that you’ve added your variables, you can set up some other
-options for your analysis. In order to help you visualise your results,
-it’s helpful to look at a plot. Click ‘Plots’, then add
-<code>Time</code> to the ‘Horizontal Axis’ box (this sets the x-axis of
-your plot), and <code>TherapyGroup</code> to the ‘Separate Lines’ box.
-Click ‘Add’, and the plot will appear in the ‘Plots:’ box below. Make
-sure ‘Line Chart’ is selected and the ‘Include Error Bars’ box is
-ticked. I also like to tick ‘Include reference line for grand mean’, so
-that the mean of the dependent variable across all groups is shown.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_modelPlot.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Continue’, then click the ‘EM Means’ button to set up the
-simple effects analysis so that the interaction can be more easily
-interpreted. Add the interaction term (’TherapyGroup*Time’) to the
-‘Display Means For:’ box, then tick ‘Compare simple main effects’. To
-avoid Type I error inflation, you can use the confidence interval
-adjustment option. I default to ‘Bonferroni’. It’s more conservative
-(slightly higher chance of Type II error), but it also doesn’t have the
-assumptions of Sidak, so it can be used more generally.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_emMeans.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
-<p>Click ‘Continue’. If you haven’t already, you’ll need to produce the
-residuals from your model so that you can check normality. Click ‘Save’,
-then tick the Residuals box beside ‘Standardized’. See <a
-href="#section-check-assumptions">Check Assumptions</a> for more
-information.</p>
-<p>Finally, click ‘Options’, and select ‘Descriptive Statistics’ and
-‘Estimates of Effect Size’. Click ‘Continue’ and then ‘OK’ to run your
-model.</p>
-<p>There’s a lot of output to review (some of which you can ignore).</p>
-<p>The Descriptive Statistics box provides the mean, <span
-class="math inline">\(SD\)</span>, and <span
-class="math inline">\(n\)</span> for each possible combination of
-variables:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_FAdescStats.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p>You can ignore the multivariate tests table. You can also skip
-Mauchly’s test. Because you only have 2-levels of your within-subjects
-variable (<code>Time</code>), sphericity is assumed. Sphericity only
-needs to be tested when you have 3 or more levels.</p>
-<p>Have a look at the ‘Tests of Within-Subjects Effects’ table. Here,
-you can review the main effect of <code>Time</code>, as well as the
-interaction between <code>Time</code> and <code>TherapyGroup</code>. You
-can interpret the ‘Sphericity Assumed’ rows, since that assumption has
-been met.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_wsEffects.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p>The main effect of <code>Time</code> is not significant, as the <span
-class="math inline">\(p\)</span>-value associated with this test (.076)
-is greater than our <span class="math inline">\(\alpha\)</span>
-threshold of .05. However, the interaction between <code>Time</code> and
-<code>Therapy</code> group is significant.</p>
-<p>To check the main effect of <code>TherapyGroup</code>, have a look at
-the ‘Tests of Between-Subjects Effects’ table:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/week6_bsEffects.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p>This main effect is significant (<span
-class="math inline">\(p\)</span> = .010). However, while we can
-acknowledge it as being significant, we don’t typically interpret the
-main effect in the case of a significant interaction.</p>
-<p>To better understand the interaction, have a look at the Estimated
-Marginal Means Tables; specifically, have a look at the results under
-’1. TherapyGroup*Time’ section.</p>
-<p>The ‘Estimates’ table gives similar information to the
-previously-discussed ‘Descriptive Statistics’ table, but the ‘Pairwise
-Comparisons’ and ‘Univariate Tests’ table provide more information.</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_interaction.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
-<p>The ‘Pairwise Comparisons’ table shows you the difference in
-<code>CAPS</code> between therapy groups at each level in
-<code>Time</code>. Specifically, at baseline, CAPS scores from
-participants on the waitlist were only .48 points higher than those in
-the therapy group. This difference was not significant (<span
-class="math inline">\(p\)</span> = .834; see the full ANOVA results for
-this comparison in the ‘Univariate Tests’ table in the Time 1 row), so
-we can consider the scores between the two therapy groups generally
-equal at baseline.</p>
-<p>However, at follow-up, the mean CAPS score in the VR therapy group
-was 10.71 points lower than the mean CAPS score in the waitlist group.
-This difference was significant (<span class="math inline">\(p\)</span>
-&lt; .001; see the full ANOVA results for this comparison in the
-‘Univariate Tests’ table in the Time 2 row).</p>
-<p>To visualise these results, have a look at the ‘Profile Plots’
-output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_interactionPlot.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>Navigate to <em>Analyses&gt;ANOVA&gt;Repeated Measures ANOVA</em> and
+set up the model structure. In the ‘Repeated Measures Factors’ box,
+highlight ‘RM Factor 1’ and change the label to ‘Time’. Highlight each
+level and change the name to the variable names (e.g. Baseline). Each
+time you change a level name, a new possible level will be added, so you
+can continue adding levels until all 5 are represented. Once this is
+done, drag the corresponding variables into their places in the
+‘Repeated Measures Cells’ box. Add <code>TherapyGroup</code> to the
+‘Between Subject Factors’ box. If you’ve done this properly, the set-up
+should look like this:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_modSetup.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><em>Normality</em></p>
+<p>To check the assumption of normality, scroll down to the ‘Assumptions
+Checks’ drop-down tab and tick ‘Q-Q Plot’.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_QQplot.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
+<p>The points on the Q-Q plot follow the diagonal closely, suggesting
+the data are distributed in the way that is expected for a normal
+distrubtion.</p>
+<p><br></p>
+<p><strong>Independence</strong></p>
+<p>This is handled through good study design. For the purpose of this
+example, it can be considered to be met.</p>
+<p><br></p>
+<p><strong>Homogeneity of Variance</strong> To check homogeneity of
+variance for the between-subjects variable, select ‘Homogeneity Test’ in
+the ‘Assumptions Checks’ tab. All values of <span
+class="math inline">\(p\)</span> are &gt; .05, which suggests the
+assumption of homogeneity of variance is met.</p>
+<p><strong>Sphericity</strong> As with Levene’s test, the null
+hypothesis of Mauchly’s test is that the assumption of sphericity is not
+violated, so a non-significant result (<span
+class="math inline">\(p\)</span> &gt; .05) suggests we can consider this
+assumption to be met. Unfortunately, <span
+class="math inline">\(p\)</span> &lt; .001, which suggests sphericity is
+violated.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_mauchly.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>Because there is a violation of sphericity, a correction must be
+applied to the model results. Use the flow chart below to decide what
+correction must be applied:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaI_sphericity.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>Based on your decision, you will deselect ‘None’ from the ‘Sphericity
+Corrections’ box and select either ‘Greenhouse-Geisser’ or ‘Huynh-Feldt’
+based on the decision made using the flow chart above.</p>
+<p>Note that if Sphericity is not violated, you could just use the
+default results.</p>
+<p><strong>Evaluating Factorial ANOVA Results</strong></p>
+<p>Under ‘Effect Size’, select ‘Partial <span
+class="math inline">\(\eta^2\)</span>’. Scroll to the post-hoc tests tab
+and add the <code>Time</code> and interaction variables to the box on
+the right. You don’t need to conduct a post-hoc test for
+<code>Treatment</code> as it only has 2 levels. To visualise and gather
+descriptive data for the interaction, scroll to the ‘Estimated Marginal
+Means’ tab and add <strong>both</strong> variables included in the
+interaction to the ‘Term 1’ box. Scroll down and make sure both
+‘Marginal means plots’ and ‘Marginal means tables’ are checked.</p>
+<p>If you’ve done everything properly, you should see the following
+results:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_modResults.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>The within-subjects main effect of time is not significant, but the
+between-subjects main effect of therapy group is. The interaction effect
+is also significant, indicating that the effect of study time-point on
+CAPS score changes depending upon treatment group. You can also evaluate
+the strength of the effect of each of these variables according to the
+associated thresholds for <span
+class="math inline">\(eta^2\)</span>.</p>
+<p>Because there is a significant interaction, check the post-hoc
+results. The first section of results compare the CAPS at baseline to
+all other possible combinations of therapy group and time.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_intResultsBaseline.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
+<p>These results indicate a significant difference in CAPS scores
+between the waitlist group and baseline and the therapy group
+post-treatment. There’s also a significant difference between the
+treatment group’s baseline scores and their scores post-treatment and at
+follow-up.</p>
+<p>The second section compares the CAPS at follow-up to the remaining
+combinations of therapy group and treatment.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_intResultsPost.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
+<p>There is a significant difference between the waitlist and treatment
+group at Post-Treatment. There is also a significant difference in the
+waitlist group at post-treatment and the therapy group at follow-up.
+Finally, there is a significant difference between the therapy group
+post-treatment and the waitlist group at follow-up.</p>
+<p>The last comparison shows the difference between the therapy and
+waitlist groups at follow-up. This comparison is not significant.</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_intResultsfollowUp.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
+<p>You can also check the visualisation and descriptive data to get a
+clear picture of the direction of these differences:</p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_intPlot.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/anovaII_EMMs.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p>Altogether, the results suggest that the effects of the therapy
+improved symptoms immediately post-treatment, but did not extend to the
+6 month follow-up period.</p>
 </details>
 </div>
-<p></br></p>
 </div>
 </div>
 <div id="section-interpret-report" class="section level2">
@@ -1038,18 +936,18 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_3432fbb", 
+"character")), answers = list(structure(list(id = "lnr_ans_9076627", 
     option = "Between-Subjects One-Way ANOVA", value = "Between-Subjects One-Way ANOVA", 
     label = structure("Between-Subjects One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_900d729", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_13f8707", 
     option = "Repeated-Measures One-Way ANOVA", value = "Repeated-Measures One-Way ANOVA", 
     label = structure("Repeated-Measures One-Way ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_622b7a9", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4b42ee0", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_4c61c45", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3c951b0", 
     option = "You will need to run multiple tests to address the research question.", 
     value = "You will need to run multiple tests to address the research question.", 
     label = structure("You will need to run multiple tests to address the research question.", html = TRUE, class = c("html", 
@@ -1062,18 +960,18 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("While all of these tests are appropriate for use with categorical independent variables and continuous dependent variables, only the multiway ANOVA can test the effects of multiple independent variables at once. Here, you have 2 independent variables: Time (Baseline vs Follow-Up) and Treatment Group (VR Therapy vs Waitlist).", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-1-answer", 
     question = "tyo1-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1364483765.36461, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 287391156.866173, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-2", question = structure("What kind of variable is Treatment Group?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_7398866", 
+"character")), answers = list(structure(list(id = "lnr_ans_53de20e", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_96510f6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5a271f", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1084,17 +982,17 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Treatment Group is a between-subjects variable, because each individual is only placed in one group. There is no sample overlap between the Waitlist and Treatment groups.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-2-answer", 
     question = "tyo1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 554518347.241782, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1577766639.2653, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "tyo1-3", question = structure("What kind of variable is Time?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_62023bd", 
+"character")), answers = list(structure(list(id = "lnr_ans_311bf29", 
     option = "Between-Subjects", value = "Between-Subjects", 
     label = structure("Between-Subjects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_64ed361", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_43488ce", 
     option = "Within-Subjects", value = "Within-Subjects", label = structure("Within-Subjects", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1105,7 +1003,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Time is a within-subjects variable, because all participants provided data at both baseline and follow-up.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "tyo1-3-answer", 
     question = "tyo1-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1416973370.34017, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1023613276.52334, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
@@ -1113,7 +1011,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrPower-1", 
     question = structure("How many participants do you need to detect a moderate interaction effect with 80% power and alpha = .05?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_572bc90", 
+    "character")), answers = list(structure(list(id = "lnr_ans_dd0c445", 
         option = "79", value = 79, label = structure("79", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1124,26 +1022,26 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("You would need 79 total participants to detect the interaction effect, given the above constraints.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrPower-1-answer", 
         question = "cyrPower-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1749636884.68526, options = list(
+    allow_retry = FALSE, seed = 1816136060.6543, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-1", 
-    question = structure("What is the F-statistic associated with main effect 1 (Therapy Group)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_25d6038", 
-        option = "6.9", value = 6.9, label = structure("6.9", html = TRUE, class = c("html", 
+    question = structure("What is the F-statistic associated with the main effect of Therapy Group? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_e467823", 
+        option = "7.87", value = 7.87, label = structure("7.87", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The F-statistic associated with this test is 6.90. You’ll find this in the ‘Tests of Between-Subjects Effects’ table.", html = TRUE, class = c("html", 
+    "character")), message = structure("The F-statistic associated with this test is 7.87.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-1-answer", 
         question = "cyrFacAOV-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 590758212.724907, options = list(
+    allow_retry = FALSE, seed = 955962909.554845, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -1151,11 +1049,11 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrFacAOV-2", 
-    question = structure("Is the effect of Time (main effect 2) significant?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_e8a4d1c", 
+    question = structure("Is the main effect of Time significant?", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_4f749f0", 
         option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_af8d4d8", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_1110c7a", 
         option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -1163,29 +1061,51 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The p-value associated with Time can be found in the ‘Tests of Within-Subjects Effects’ table. It is .076, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
+    "character")), message = structure("The p-value associated with Time is .056, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-2-answer", 
         question = "cyrFacAOV-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1983128330.07653, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 2055613291.54278, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrFacAOV-3", 
-    question = structure("What is the effect size (partial eta-squared) associated with the interaction effect (Therapy Group x Time)? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_ed3e31f", 
-        option = "0.12", value = 0.12, label = structure("0.12", html = TRUE, class = c("html", 
+    question = structure("What is the effect size (partial eta-squared) associated with the interaction effect? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_9d06c9e", 
+        option = "0.06", value = 0.06, label = structure("0.06", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The effect size associated with the interaction effect is 0.12. You’ll find this in the ‘Tests of Within-Subjects Effects’ table.", html = TRUE, class = c("html", 
+    "character")), message = structure("The effect size associated with the interaction effect is 0.06.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-3-answer", 
         question = "cyrFacAOV-3"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1090108063.49238, options = list(
+    allow_retry = FALSE, seed = 191134152.410996, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
+"tutorial_question")), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrFacAOV-4", 
+    question = structure("True or False: No assumptions were violated.", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_3e3effe", 
+        option = "True", value = "True", label = structure("True", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2e0f741", 
+        option = "False", value = "False", label = structure("False", html = TRUE, class = c("html", 
+        "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+    "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+    "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+    "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+    "character")), message = structure("This is false; although most assumption held, the assumption of sphericity was violated.", html = TRUE, class = c("html", 
+    "character")), post_message = NULL), ids = list(answer = "cyrFacAOV-4-answer", 
+        question = "cyrFacAOV-4"), loading = NULL, random_answer_order = FALSE, 
+    allow_retry = FALSE, seed = 406014127.310935, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>
