@@ -45,7 +45,7 @@ In order to determine the effectiveness of the treatment, the following three ef
 **Interaction Effect:** Does the effect of time on CAPS scores of PTSD patients change depending upon treatment group?
 
 
-You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/ANOVAIILabData.csv)
+You can download the data for this week's lab [here.](https://mtruelovehill.github.io/PRM/Labs/ANOVA2lab.csv)
 
 This dataset contains the following variables:
 
@@ -150,7 +150,8 @@ $\mu_{post-treatment} \neq \mu_{follow-up}$
 
 **Interaction**
 
-$C = (\mu_{waitlist}\times\mu_{baseline}-\mu_{waitlist}\times\mu_{post-treatment}-\mu_{waitlist}\times\mu_{follow-up})-(\mu_{treatment}\times\mu_{baseline}-\mu_{treatment}\times\mu_{post-treatment}-\mu_{treatment}\times\mu_{follow-up})$
+$C = (\mu_{waitlist}\times\mu_{baseline}-\mu_{waitlist}\times\mu_{post-treatment}-\mu_{waitlist}\times\mu_{follow-up})-$
+$(\mu_{treatment}\times\mu_{baseline}-\mu_{treatment}\times\mu_{post-treatment}-\mu_{treatment}\times\mu_{follow-up})$
 
 
 The effect of Time on CAPs score will not dependent upon Treatment Group.
@@ -459,12 +460,14 @@ This is handled through good study design. For the purpose of this example, it c
 <br>
 
 **Homogeneity of Variance**
+
 To check homogeneity of variance for the between-subjects variable, select 'Homogeneity Test' in the 'Assumptions Checks' tab. All values of $p$ are > .05, which suggests the assumption of homogeneity of variance is met.
 
 **Sphericity**
+
 As with Levene's test, the null hypothesis of Mauchly's test is that the assumption of sphericity is not violated, so a non-significant result ($p$ > .05) suggests we can consider this assumption to be met. Unfortunately, $p$ < .001, which suggests sphericity is violated.
 
-```{r, echo = F, fig.align= 'center', out.width='75%'}
+```{r, echo = F, fig.align= 'center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_mauchly.png')
 ```
 
@@ -624,3 +627,37 @@ When interpreting results from ANCOVA, you should focus on the variables about w
 </details>
 </div>
 </br>
+
+## Bonus Material: Interpret a Results Section
+
+To answer these questions, please refer to [Difede et al., 2007.](https://www.academia.edu/88432898/Virtual_Reality_Exposure_Therapy_for_the_Treatment_of_Posttraumatic_Stress_Disorder_Following_September_11_2001)
+
+```{r resultsSection, echo = FALSE}
+quiz(caption = '',
+     question_numeric('How many participants were enrolled in the study?',
+              answer(21, correct = T), 
+              message = '21 participants were enrolled in the study (Treatment = 13; Waitlist = 8). Athough 25 total were evaluated, 4 were excluded.'),
+     question_numeric('What was the average age of participants in the treatment group?',
+              answer(40.92, correct = T),
+              message = 'The average age of participants in the treatment group was 40.92.'),
+     question('Which of the following best reflects the design of the study?',
+              answer('Between-Subjects'),
+              answer('Within-Subjects'),
+              answer('Mixed', correct = T),
+              message = 'This is best described as a mixed design. This study included both a within-subjects variable (time: pretreatment, posttreatment), and a between-subjects variable (treatment group: waitlist, virtual reality therapy)'),
+     question_numeric('What was the effect size of the interaction between time and treatment group on the CAPS score?',
+              answer(0.40, correct = T),
+              message = "The effect size associated with the interaction between time and treament group is 0.40"),
+     question_numeric("What was the mean CAPS score in the treatment group at 6 month follow-up?",
+              answer(27.3, correct = T),
+              message = 'The mean CAPS score in the treatment group at 6 month follow-up was 27.3.'),
+     question('Which of the following is true? Please select all that apply.',
+              answer('There was a significant difference in baseline CAPS scores between the treatment and waitlist groups'),
+              answer('The residual degrees of freedom in the interaction model for CAPS score is 1'),
+              answer('For the waitlist group, there was no significant difference in CAPS scores between timepoints', correct = T),
+              answer('There is a large effect of the interaction between time and treatment on CAPS scores', correct = T),
+              random_answer_order = T,
+              message = 'There was no significant difference in baseline scores between the treatment and waitlist groups. The residual degrees of freedom in the interaction model is 16. In the waitlist group, there is no significant difference in CAPS scores betweet timepoints. The eta-squared associated with the interaction effect is 0.40, which is considered a large effect.'))
+
+```
+
