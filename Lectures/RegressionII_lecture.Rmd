@@ -48,57 +48,12 @@ accent3 <- '#19424C'
 
 ### This Week's Key Topics
 
-+ Regression with multiple predictors
-
 + Interactions between two continuous variables
 
 + Simple slopes analysis
 
 + Centering variables
 
----
-## Multiple Predictors
-
-+ Regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
-
-+ However, when we include multiple predictors, those predictors are likely to correlate.
-
-+ Thus, a linear model with multiple predictors finds the optimal prediction of the outcome from several predictors, **taking into account their redundancy with one another**
-
-
----
-## Why Use Multiple Predictors?
-
-+ **Prediction:** multiple predictors may lead to improved prediction.
-
-+ **Theory testing:** often our theories suggest that multiple variables together contribute to variation in an outcome
-
-+ **Covariate control:** we might want to assess the effect of a specific predictor, controlling for the influence of others.
-  
-  + E.g., effect of revision time on course average score after removing effect of mathematical background
-
-
----
-## Multiple Predictors - Regression Equation
-
-+ It's very straightforward to expand the regression equation to account for multiple predictors:
-
-+ **One Predictor**: $y_i = \beta_0 + \beta_1x_i + \epsilon_i$
-
-+ **Multiple Predictors**: $y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$
-
-+ Still a single intercept ( $\beta_0$), but now there are individual $\beta$ coefficients for each predictor
-
----
-## Multiple Predictors - Interpretation
-
-$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$$
-
-+ $\beta_0$: The predicted value of the outcome variable when all predictors are equal to 0
-
-+ $\beta_j$: partial regression coefficients
-  
-  + They now reflect the change in the outcome variable for a one-unit change in the corresponding predictor **while holding all other predictors constant**
 
 ---
 class: inverse, middle, center
@@ -269,7 +224,6 @@ class: center, inverse, middle
 **Step 4: Check Assumptions - Remember LINE**
 
 + Linearity & Homogeneity of variance
-  + Multiple linear regression - plot the residuals against the predicted values
     
 + When you have multiple predictors, you should also check for multico**line**arity
   

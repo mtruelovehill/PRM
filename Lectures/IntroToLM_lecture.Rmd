@@ -58,6 +58,8 @@ accent3 <- '#19424C'
 
 + Key principles of least squares
 
++ Regression with multiple predictors
+
 ---
 ### Correlation
 
@@ -1419,6 +1421,51 @@ class: inverse, middle, center
 ## Questions?
 
 ---
+## Multiple Predictors
+
++ Regression is very flexible; you can test the effects of multiple predictors on the outcome at the same time.
+
++ However, when we include multiple predictors, those predictors are likely to correlate.
+
++ Thus, a linear model with multiple predictors finds the optimal prediction of the outcome from several predictors, **taking into account their redundancy with one another**
+
+
+---
+## Why Use Multiple Predictors?
+
++ **Prediction:** multiple predictors may lead to improved prediction.
+
++ **Theory testing:** often our theories suggest that multiple variables together contribute to variation in an outcome
+
++ **Covariate control:** we might want to assess the effect of a specific predictor, controlling for the influence of others.
+  
+  + E.g., effect of revision time on course average score after removing effect of mathematical background
+
+
+---
+## Multiple Predictors - Regression Equation
+
++ It's very straightforward to expand the regression equation to account for multiple predictors:
+
++ **One Predictor**: $y_i = \beta_0 + \beta_1x_i + \epsilon_i$
+
++ **Multiple Predictors**: $y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$
+
++ Still a single intercept ( $\beta_0$), but now there are individual $\beta$ coefficients for each predictor
+
+---
+## Multiple Predictors - Interpretation
+
+$$y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +... \beta_nx_{ni} + \epsilon_i$$
+
++ $\beta_0$: The predicted value of the outcome variable when all predictors are equal to 0
+
++ $\beta_j$: partial regression coefficients
+  
+  + They now reflect the change in the outcome variable for a one-unit change in the corresponding predictor **while holding all other predictors constant**
+  
+  
+---
 ### Step 1: State Your Hypotheses
 
 + Regression is flexible and can be used to test many types of hypotheses, using many types of data
@@ -1478,6 +1525,7 @@ class: inverse, middle, center
 
   + **L**inearity: Relationship between predictors & outcome should be linear
     + Simple linear regression - check the scatterplot
+    + Multiple linear regression - plot the residuals against the predicted values
   
 + **I**ndependence: Observations/individuals should be sampled independently
     + Consider study design
@@ -1487,7 +1535,15 @@ class: inverse, middle, center
 
 + **E**quality (Homogeneity) of Variance: equal variance across range of predictors and fitted values
     + Check the plot of residuals against predicted values
+
+---
+### Step 4: Check Assumptions
+
++ When you have multiple predictors, you should also check for multico**line**arity
   
+  + Check correlations between predictors and the *Variance Inflation Factor* 
+  + Correlations should be less than .8
+  + VIF values for each predictor should be less than 5
 
 ---
 ### Steps 5 & 6: Run the test & interpret results
