@@ -108,7 +108,7 @@ To state hypotheses statistically, you should structure them in the framework of
 
 <span style = "font-weight: bold; font-size: 14pt">Variables</span>
 
-<b>Independent Variables:</b> Time (2 levels: Baseline/Follow-up); Treatment Group (2 levels: Waitlist/VR Therapy)
+<b>Independent Variables:</b> Time (3 levels: Baseline/Post-Intervention/Follow-up); Treatment Group (2 levels: Waitlist/VR Therapy)
 
 <b>Dependent Variable:</b> CAPS score
 
@@ -217,7 +217,7 @@ quiz(caption = 'Check Your Results',
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
 
-Consider whether your independent variables are between-subjects, within-subjects, or a mix. This will impact which power analysis options you choose. Typically when reporting, it is sufficient to perform a power analysis for the most complex model (or the one for which you expect the weakest effect), as this will require the largest sample. However, on this course, you should perform a power analysis for each effect.
+Consider whether your independent variables are between-subjects, within-subjects, or a mix. This will impact which power analysis options you choose. Typically when reporting, it is sufficient to report the power analysis for the  model with the highest power constraints, as this will require the largest sample. However, on this course, you should perform a power analysis for each effect.
 
 </details>
 </div>
@@ -244,7 +244,7 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 ```
 
 **Main Effect 2**
-$\eta^2_p$, power, and $\alpha$ remain the same. There are 3 levels in $IV_2$, so the degrees of freedom are now equal to 2. The design is within-subjects, and the number of groups is equal to 1. This power analysis is only for main effect 2, so 'Effect is only within' should be selected. Once all parameters have been entered, you'll get the following results:
+$\eta^2_p$, power, and $\alpha$ remain the same. There are 3 levels in $IV_2$, so the degrees of freedom are now equal to 2. The design is within-subjects, and the number of groups is equal to the number of independent groups in the overall design (in this case, 2). This power analysis is only for main effect 2, so 'Effect is only within' should be selected. Once all parameters have been entered, you'll get the following results:
 
 
 ```{r, echo = F, fig.align='center', out.width='75%'}
@@ -252,20 +252,20 @@ knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII
 ```
 
 **Interaction Effect**
-As before, $\eta^2_p$, power, and $\alpha$ remain the same. You'll need to keep 'Within-subjects' design selected, because at least one effect is within-subjects. To calculate the degrees of freedom for the interaction effect, use the following equation:
+As before, $\eta^2_p$, power, and $\alpha$ remain the same. You'll also need to keep 'Within-subjects' design selected, because at least one effect is within-subjects, but now you need to select 'Effect is between-within interaction' under 'Effect Information'. To calculate the degrees of freedom for the interaction effect, use the following equation:
 
 $$(K-1)\times(J-1)$$
 where $K$ is the number of levels in $IV_1$ and $J$ is the number of levels in $IV_2$:
 
 $$(2-1)\times(3-1) = 2$$
-The total number of groups is equal to the number of levels in the between-subjects variable. Once you've entered everything properly, you should see the following results:
+The total number of groups for the effect (and in the design) is equal to the number of levels in the between-subjects variable. Once you've entered everything properly, you should see the following results:
 
 
 ```{r, echo = F, fig.align='center', out.width='50%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/anovaII_intPower.png')
 ```
 
-Here, the interaction effect actually requires fewer participants than the between-subjects main effect! However, it's because an interaction effect is rarely as strong as a main effect, so using a moderate effect threshold here may be overestimating. It is probably better to lower the expected effect size when running a power analysis for an interaction.
+Here, the interaction effect actually requires fewer participants than the between-subjects main effect! It requires the same sample size as the within-subject effect. This is actually not unexpected. Adding a within-subjects variable to an interaction actually increases its power as compared to between-subjects effects (if you're interested, see a discussion [here](https://www.mrc-cbu.cam.ac.uk/personal/rik.henson/personal/PowerForInteractions.html)). However, because an interaction effect is rarely as strong as a main effect, using a moderate effect threshold here may be overestimating. It is probably better to lower the expected effect size when running a power analysis for an interaction.
 
 </details>
 </div>
@@ -406,8 +406,8 @@ quiz(caption = 'Check Your Results',
               answer('No', correct = T),
               message = "The p-value associated with Time is .056, which is larger than the alpha threshold of .05, indicating the effect of Time is not significant."),
      question_numeric("What is the effect size (partial eta-squared) associated with the interaction effect? Please round your answer to two decimal places.",
-              answer(0.06, correct = T),
-              message = "The effect size associated with the interaction effect is 0.06."),
+              answer(0.08, correct = T),
+              message = "The effect size associated with the interaction effect is 0.08."),
      question('True or False: No assumptions were violated.',
               answer('True'),
               answer('False', correct = T),
