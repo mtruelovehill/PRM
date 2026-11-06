@@ -679,3 +679,37 @@ quiz(caption = 'Check Your Understanding',
               answer(61.54, correct=T),
               message = "The student's actual course mark would be 61.54. To get this, you could add the residual value to the predicted mark you computed in the question above, or you could use the full linear model equation: y = 39.09 + 6.15*3 + 4"))
 ```
+
+## Bonus: Interpret a Results Section
+
+To answer these questions, refer to [Moses et al., 2016](https://www.tandfonline.com/doi/pdf/10.1080/19496591.2016.1157488?casa_token=KqqNSiTRoRsAAAAA:QhO9mJDVherxFrqUfdQhgLIeqbccw9HNTyB0Z3Ef3lQOKjmw6UPAETyUw6HBoC_XhIhf9rnytNmk).
+
+```{r resSect, echo = FALSE}
+quiz(caption = 'Check Your Understanding',
+     question('What was the strength of the relationship between physical activity and social support in students in this sample?',
+              answer('There was no relationship between physical activity and social support', correct = T),
+              answer('There was a weak relationship between physical activity and social support'),
+              answer('There was a moderate relationship between physical activity and social support'),
+              answer('There was a strong relationship between physical activity and social support'),
+              message = "The correlation between physical activity and social support was .04, which suggests no real relationship (or a negligible relationship) between physical activity and social support. This information can be found in Table 1."),
+     question_numeric("What was the final sample size in this analysis?",
+              answer(201, correct=T),
+              message = "After exclusions, the final sample size was 201"),
+     question_numeric('What percentage of variance in well-being was accounted for by the full set of variables (both self-care and and demographic variables)?',
+                      answer(42, correct=T),
+                      message = '42% of the variance in wellbeing was accounted for by the full model. The self-care variables accounted for 38% of the variance, while the demographics accounted for 4%.'),
+     question_numeric('What was the model degrees of freedom in the model with the full set of variables?',
+                      answer(9, correct = T),
+                      message = 'The model degrees of freedom in the full model was 9.'),
+     question_numeric('How many predictors were included in the step 1 model?',
+                      answer(2, correct = T),
+                      message = 'There were two predictors included in the Step 1 Model - Gender and Age.'),
+     question('Which of the following interpretations is correct? Please select all that apply.',
+              answer('For every one-unit increase in sleep, wellbeing scores increased by 0.11', correct = T),
+              answer('In Model/Step 3, age significantly predicted wellbeing'),
+              answer('There was a positive association between physical activity and wellbeing'),
+              answer('For every 1 standard deviation increase in social support scores, wellbeing scores increased by .26 standard deviations.', correct = T),
+              answer('As acceptance scores increased by 1, wellbeing scores decreased by .21'),
+              random_answer_order = T,
+              message = "You can find this information in Table 2. The beta-coefficient associated with sleep is 0.11, so for every one-unit increase in sleep, wellbeing scores increased by 0.11', 'The 95% confidence interval for age in Model/Step 3 includes the null value of 0, which suggests that age does not significantly predict wellbeing in this model. Although the beta coefficient for physical activity is positive, because this result is not significant we cannot claim there is an association between physical activity and wellbeing in this sample. The standardized beta coefficient for social support was .26, which aligns with the interpretation of social support above. Because the beta coefficient associated with acceptance is positive, the above interpretation of acceptance is not quite right; instead, wellbeing scores increased by .21."))
+```
