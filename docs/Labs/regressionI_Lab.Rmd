@@ -503,7 +503,7 @@ Before interpreting model results, you must first confirm it meets the required 
 ```{r cyrAnalysis, echo = FALSE}
 quiz(caption = 'Check Your Results',
      question(' Which of the following statements reflects the accurate interpretation of adjusted R squared?',
-              answer('Together, sleep, physical activity, and social support explain ~36% of the variance in test anxiety ratings.', correct = T),
+              answer('Together, sleep, physical activity, and social support explain ~36% of the variance in wellbeing ratings.', correct = T),
               answer('As the values of the significant predictors increase by 1 point, well-being scores increase by .36'),
               answer('There is a 36% likelihood that this model accurately predicts wellbeing.'),
               answer('Wellbeing scores will be about .36 when each of the predictors are equal to 0.'),

@@ -1293,7 +1293,7 @@ yPoint <- predict(lrMod, newdata = data.frame(StudyHours=4))
 yendPoint <- round(yPoint+lrMod$coefficients[2],2)
 
 lrPlot + 
-  annotate('text', label = expression(beta[1]==4.67), x = 4.5, y = yendPoint+1, size = 5, color = baseColor, fontface = 'bold') +
+  annotate('text', label = expression(beta[1]==6.15), x = 4.5, y = yendPoint+1, size = 5, color = baseColor, fontface = 'bold') +
   annotate(geom = 'segment', x = 4, xend = 4, y = yPoint, yend = yendPoint, color = baseColor, size = 1) +
   annotate(geom = 'segment', x = 4, xend = 5, y = yendPoint, yend = yendPoint, color = baseColor, size = 1)
 ```
