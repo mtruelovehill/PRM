@@ -436,7 +436,7 @@ class: center, inverse, middle
 ---
 ### Today's Example
 
-+ Download the data for today's example [here]('https://mtruelovehill.github.io/PRM/Data/salaryDat.csv')
++ Download the data for today's example [here](https://mtruelovehill.github.io/PRM/Data/salaryDat.csv)
 
 + Key Variables:
   + `serv`: years of service at current place of employment
