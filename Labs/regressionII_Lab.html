@@ -233,6 +233,7 @@ lab.</p>
 </div>
 <div id="section-your-tasks" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Produce the appropriate regression equation for this
@@ -241,6 +242,7 @@ analysis</label></li>
 \)</span> State your hypotheses for this experiment, both using words
 and statistically.</label></li>
 </ul>
+</div>
 <div class="container">
 <details>
 <summary>
@@ -310,10 +312,12 @@ highly correlated with each other</p></li>
 </ol>
 <div id="section-your-tasks-1" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Evaluate each required assumption</label></li>
 </ul>
+</div>
 <div class="container">
 <details>
 <summary>
@@ -386,6 +390,7 @@ whether the overall model significantly predicts well-being. If so, the
 interaction and predictor effects can then be assessed.</p>
 <div id="section-your-tasks-2" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Mean-center the sleep variable, but set physical activity and
@@ -398,6 +403,7 @@ wellbeing.</label></p></li>
 \)</span> Evaluate the effects of the interaction and individual
 predictors.</label></p></li>
 </ul>
+</div>
 <div class="panel-heading tutorial-quiz-title">Check Your Results</div>
 <div class="panel panel-default tutorial-question-container">
 <div data-label="cyrAnalysis-1" class="tutorial-question panel-body">
@@ -453,7 +459,7 @@ individual effects can be evaluated.</p>
 ‘Covariates Scaling’ drop-down box and set both
 <code>SocialSupport</code> and <code>PhysicalActivity</code> to
 ‘Original’. Then, check the Parameter Estimates table in the output:</p>
-<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/regressionII_predEff.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="https://mtruelovehill.github.io/PRM/Labs/images/regressionII_predEff.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Results show that <code>SocialSupport</code>, <code>Sleep</code>, and
 the interaction term are significant.</p>
 </details>
@@ -467,6 +473,7 @@ the interaction term are significant.</p>
 taken so that it may be effectively interpreted.</p>
 <div id="section-your-tasks-3" class="section level3">
 <h3>Your Tasks</h3>
+<div class="nobullet">
 <ul class="task-list">
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Conduct a simple slopes analysis and produce the corresponding
@@ -474,6 +481,7 @@ plot</label></p></li>
 <li><p><label><input type="checkbox" /><span class="math inline">\(\
 \)</span> Generate and interpret a Johnson-Neyman plot</label></p></li>
 </ul>
+</div>
 <div class="container">
 <details>
 <summary>
@@ -552,6 +560,7 @@ distribution of sample)</li>
 class="math inline">\(M\)</span> &amp; <span
 class="math inline">\(SD\)</span>)</li>
 <li>the type of test used</li>
+<li>correlations between model variables</li>
 <li><span class="math inline">\(R^2\)</span> and its interpretation</li>
 <li>the overall model test results (<span
 class="math inline">\(F\)</span>, <span
@@ -562,7 +571,7 @@ class="math inline">\(B\)</span> or <span
 class="math inline">\(\beta\)</span>, appropriate interpretation, either
 the standard error or confidence intervals, <span
 class="math inline">\(p\)</span> values)</li>
-<li>results from the Johnson-Neyman/simple slopes analysis</li>
+<li>results from the simple slopes and Johnson-Neyman analysis</li>
 </ul>
 </details>
 </div>
@@ -602,19 +611,19 @@ session$onSessionEnded(function() {
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-1", question = structure("Which test is most appropriate to address your research question, given the study design?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_de307a3", 
+"character")), answers = list(structure(list(id = "lnr_ans_c7afe6", 
     option = "Multiple Linear Regression with only main effects", 
     value = "Multiple Linear Regression with only main effects", 
     label = structure("Multiple Linear Regression with only main effects", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_35c8d87", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8a88dd0", 
     option = "Factorial ANOVA", value = "Factorial ANOVA", label = structure("Factorial ANOVA", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_55b110c", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8972b5a", 
     option = "Simple Linear Regression", value = "Simple Linear Regression", 
     label = structure("Simple Linear Regression", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5fb11d6", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fac43e3", 
     option = "Multiple Linear Regression with an interaction", 
     value = "Multiple Linear Regression with an interaction", 
     label = structure("Multiple Linear Regression with an interaction", html = TRUE, class = c("html", 
@@ -627,26 +636,26 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("Here, you’re looking at whether one continuous predictor moderates the effect of another continuous predictor on the outcome. A Factorial ANOVA requires a categorical predictor/independent variable, and both simple linear regression and multiple linear regression with only main effects fail to test whether one variable moderates another. In this case, multiple linear regression with an interaction is the best option.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-1-answer", 
     question = "cyu1-1"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 495858155.769098, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 147998295.431083, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 
 
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyu1-2", question = structure("How many predictors are included in this model?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_47c7dfe", 
+"character")), answers = list(structure(list(id = "lnr_ans_f901eab", 
     option = "1", value = "1", label = structure("1", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_78e0d58", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fdccf14", 
     option = "2", value = "2", label = structure("2", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8bdc955", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_be60e1b", 
     option = "3", value = "3", label = structure("3", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9b4f34f", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_dcdfcfc", 
     option = "4", value = "4", label = structure("4", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_d96b3ee", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5e1560f", 
     option = "5", value = "5", label = structure("5", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -657,14 +666,14 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = structure("There are 4 predictors. The model will have 3 single predictors and an interaction, for a total of 4 predictors of well-being.", html = TRUE, class = c("html", 
 "character")), post_message = NULL), ids = list(answer = "cyu1-2-answer", 
     question = "cyu1-2"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 425755728.801742, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 1101546944.98705, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", label = "cyrAnalysis-1", 
     question = structure("What is the value of the model F-statistic? Please round your answer to two decimal places.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_c1e7329", 
+    "character")), answers = list(structure(list(id = "lnr_ans_c3d1d1f", 
         option = "85.68", value = "85.68", label = structure("85.68", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
@@ -675,7 +684,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
     "character")), message = structure("The overall model F-statistic is 85.68.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-1-answer", 
         question = "cyrAnalysis-1"), loading = NULL, random_answer_order = FALSE, 
-    allow_retry = FALSE, seed = 1992925797.07197, options = list(
+    allow_retry = FALSE, seed = 930800294.566562, options = list(
         min = NA, max = NA, step = NA, tolerance = 1.5e-08)), class = c("learnr_numeric", 
 "tutorial_question")), session = session)
 </script>
@@ -684,22 +693,22 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_numeric", labe
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "cyrAnalysis-2", 
     question = structure("Which of the following interpretations are correct? Please select all that apply.", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_649990e", 
+    "character")), answers = list(structure(list(id = "lnr_ans_ef67dfb", 
         option = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support is held constant in someone who reports no physical activity per week", 
         value = "For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support is held constant in someone who reports no physical activity per week", 
         label = structure("For every additional hour of sleep a participant gets per week, their well-being score will increase by 0.25, when social support is held constant in someone who reports no physical activity per week", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fee198d", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6ea8e6", 
         option = "As one's social support score increases by 1 pount, their well-being score will increase by .06 points, when sleep and physical activity are held constant.", 
         value = "As one's social support score increases by 1 pount, their well-being score will increase by .06 points, when sleep and physical activity are held constant.", 
         label = structure("As one’s social support score increases by 1 pount, their well-being score will increase by .06 points, when sleep and physical activity are held constant.", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d7abc6b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a265c7d", 
         option = "The interaction between sleep and physical activity explains 36% of the variance in student well-being.", 
         value = "The interaction between sleep and physical activity explains 36% of the variance in student well-being.", 
         label = structure("The interaction between sleep and physical activity explains 36% of the variance in student well-being.", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_663bb0e", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9a966c3", 
         option = "As physical activity increases by .13 hours per week, wellbeing increases by 1 point, while controlling for social support and sleep.", 
         value = "As physical activity increases by .13 hours per week, wellbeing increases by 1 point, while controlling for social support and sleep.", 
         label = structure("As physical activity increases by .13 hours per week, wellbeing increases by 1 point, while controlling for social support and sleep.", html = TRUE, class = c("html", 
@@ -709,40 +718,45 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", lab
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect. Be sure to select every correct answer.", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("The overall model, rather than just the interaction, explains 36% of the variance in well-being. The interpretations of social support and sleep are correct. There are two issues with the interpretation of physical activity. First, the effect of physical activity is not significant, so it should not be interpreted. Second, the interpretation is flipped. If the effect was significant, it would be interpreted in this way: ’As physical activity increases by 1 hour per week, wellbeing scores increase by by .13 points, while controlling for social support and sleep.", html = TRUE, class = c("html", 
+    "character")), message = structure("The overall model, rather than just the interaction, explains 36% of the variance in well-being. The interpretations of social support and sleep are correct. There are two issues with the interpretation of physical activity. First, the effect of physical activity is not significant, so it should not be interpreted. Second, the interpretation is flipped. If the effect was significant, it would be interpreted in this way: As physical activity increases by 1 hour per week, wellbeing scores increase by by .13 points, while controlling for social support and sleep.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-2-answer", 
         question = "cyrAnalysis-2"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 2087876750.52776, options = list()), class = c("learnr_checkbox", 
+    allow_retry = FALSE, seed = 1154389729.96245, options = list()), class = c("learnr_checkbox", 
 "tutorial_question")), session = session)
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "cyrAnalysis-3", 
     question = structure("Which of the following is the correct interpretation of the intercept?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_ff3632c", 
-        option = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
-        value = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
-        label = structure("Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
+    "character")), answers = list(structure(list(id = "lnr_ans_a4a2f2e", 
+        option = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", 
+        value = "Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", 
+        label = structure("Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7dbf9d6", 
-        option = "Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
-        value = "Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", 
-        label = structure("Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_58d3def", 
+        option = "Someone with an average amount of sleep, no weekly physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", 
+        value = "Someone with an average amount of sleep, no weekly physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", 
+        label = structure("Someone with an average amount of sleep, no weekly physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_b05615e", 
-        option = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", 
-        value = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", 
-        label = structure("Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04", html = TRUE, class = c("html", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_7a0efb8", 
+        option = "Someone with an average amount of social support and physical activity and no weekly sleep would be expected to have a well-being score of 16.55", 
+        value = "Someone with an average amount of social support and physical activity and no weekly sleep would be expected to have a well-being score of 16.55", 
+        label = structure("Someone with an average amount of social support and physical activity and no weekly sleep would be expected to have a well-being score of 16.55", html = TRUE, class = c("html", 
+        "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_397e5f", 
+        option = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 16.55", 
+        value = "Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 16.55", 
+        label = structure("Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 16.55", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
     "character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
     "character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
     "character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
     "character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
-    "character")), message = structure("Because sleep and physical activity are mean-centred, the intercept will be interpreted around the mean for these variables. Social support was not mean-centred, so the intercept still reflects the value of wellbeing when social support is 0.", html = TRUE, class = c("html", 
+    "character")), message = structure("Because sleep is mean-centred, the intercept will be interpreted around its mean. Social support and physical activity were not mean-centred, so the intercept still reflects the value of wellbeing when they are equal to 0.", html = TRUE, class = c("html", 
     "character")), post_message = NULL), ids = list(answer = "cyrAnalysis-3-answer", 
         question = "cyrAnalysis-3"), loading = NULL, random_answer_order = TRUE, 
-    allow_retry = FALSE, seed = 1482548671.80963, options = list()), class = c("learnr_radio", 
+    allow_retry = FALSE, seed = 58517011.4727509, options = list()), class = c("learnr_radio", 
 "tutorial_question")), session = session)
 </script>
 </p>

@@ -85,9 +85,13 @@ quiz(caption = '',
 ```
 
 ### Your Tasks
+
+<div class="nobullet">
+
 + [ ] $\ $ Produce the appropriate regression equation for this analysis
 + [ ] $\ $ State your hypotheses for this experiment, both using words and statistically.
 
+</div>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -150,8 +154,11 @@ Although assumptions were assessed last week, they were checked for the model th
 
 ### Your Tasks
 
+<div class="nobullet">
+
 + [ ] $\ $ Evaluate each required assumption
 
+</div>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
@@ -210,12 +217,15 @@ Recall that your primary research question is *Does the effect of physical activ
 
 ### Your Tasks
 
+<div class="nobullet">
+
 + [ ] $\ $ Mean-center the sleep variable, but set physical activity and social support to their original scale.
 
 + [ ] $\ $ Evaluate the overall model output and determine whether the combination of variables significantly predicts wellbeing. 
 
 + [ ] $\ $ Evaluate the effects of the interaction and individual predictors. 
 
+</div>
 
 ```{r cyrAnalysis, echo = FALSE}
 quiz(caption = 'Check Your Results',
@@ -227,14 +237,15 @@ quiz(caption = 'Check Your Results',
               answer("As one's social support score increases by 1 pount, their well-being score will increase by .06 points, when sleep and physical activity are held constant.", correct = T),
               answer('The interaction between sleep and physical activity explains 36% of the variance in student well-being.'),
               answer('As physical activity increases by .13 hours per week, wellbeing increases by 1 point, while controlling for social support and sleep.'),
-              message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. The interpretations of social support and sleep are correct. There are two issues with the interpretation of physical activity. First, the effect of physical activity is not significant, so it should not be interpreted. Second, the interpretation is flipped. If the effect was significant, it would be interpreted in this way: 'As physical activity increases by 1 hour per week, wellbeing scores increase by by .13 points, while controlling for social support and sleep.",
+              message = "The overall model, rather than just the interaction, explains 36% of the variance in well-being. The interpretations of social support and sleep are correct. There are two issues with the interpretation of physical activity. First, the effect of physical activity is not significant, so it should not be interpreted. Second, the interpretation is flipped. If the effect was significant, it would be interpreted in this way: As physical activity increases by 1 hour per week, wellbeing scores increase by by .13 points, while controlling for social support and sleep.",
               random_answer_order = T),
      question('Which of the following is the correct interpretation of the intercept?',
-              answer('Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04'),
-              answer('Someone with an average amount of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 17.04', correct = T),
-              answer('Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 17.04'),
+              answer('Someone with 0 hours of sleep and physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55'),
+              answer('Someone with an average amount of sleep, no weekly physical activity, and a score of 0 on the social support questionnaire would be expected to have a well-being score of 16.55', correct = T),
+              answer('Someone with an average amount of social support and physical activity and no weekly sleep would be expected to have a well-being score of 16.55'),
+              answer('Someone with an average amount of sleep, physical activity, and social support would be expected to have a well-being score of 16.55'),
               random_answer_order = T,
-              message = 'Because sleep and physical activity are mean-centred, the intercept will be interpreted around the mean for these variables. Social support was not mean-centred, so the intercept still reflects the value of wellbeing when social support is 0.'))
+              message = 'Because sleep is mean-centred, the intercept will be interpreted around its mean. Social support and physical activity were not mean-centred, so the intercept still reflects the value of wellbeing when they are equal to 0.'))
 ```
 
 <div class="container">
@@ -261,7 +272,7 @@ The $R^2_{adj}$ value indicates that the full model explains 36% of the variance
 Before doing this, adjust the scale of the predictors. Click the 'Covariates Scaling' drop-down box and set both `SocialSupport` and `PhysicalActivity` to 'Original'. Then, check the Parameter Estimates table in the output:
 
 
-```{r, echo = F, fig.align= 'center', out.width = '50%'}
+```{r, echo = F, fig.align= 'center', out.width = '75%'}
 knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/regressionII_predEff.png')
 ```
 
@@ -280,10 +291,13 @@ When there is a significant interaction, additional steps should be taken so tha
 
 ### Your Tasks
 
+<div class="nobullet">
+
 + [ ] $\ $ Conduct a simple slopes analysis and produce the corresponding plot
 
 + [ ] $\ $ Generate and interpret a Johnson-Neyman plot
 
+</div>
 
 <div class="container">
 <details><summary><span style = "font-weight: bold; font-size: 16pt"> Click here for a hint </span></summary>
