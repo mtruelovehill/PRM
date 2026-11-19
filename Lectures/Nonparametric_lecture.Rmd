@@ -135,8 +135,8 @@ ggplot(dat, aes(nonNormRes)) + geom_histogram(aes(y = after_stat(density)), fill
 **Normality**
 
 .pull-left.center[
-<span style = "color: #18778C"> Normal Enough Q-Q Plot </span>
-```{r, echo = F}
+<span style = "color: #18778C"> Super Normal Q-Q Plot </span>
+```{r, echo = F, fig.height=4}
 ggplot(dat, aes(sample = normResids)) + 
   stat_qq(distribution = qt, dparams = nrow(dat)-1, color = baseColor, alpha = .7) +
   stat_qq_line(distribution = qt, dparams = nrow(dat)-1, linewidth = 1, color = accent2) + 
@@ -151,7 +151,7 @@ ggplot(dat, aes(sample = normResids)) +
 
 .pull-right.center[
 <span style = "color: #18778C"> Non-normal Q-Q Plot </span>
-```{r, echo = F, out.width='75%'}
+```{r, echo = F, fig.height=4}
 ggplot(dat, aes(sample = nonNormRes)) + 
   stat_qq(distribution = qt, dparams = nrow(dat)-1, color = baseColor, alpha = .7) +
   stat_qq_line(distribution = qt, dparams = nrow(dat)-1, linewidth = 1, color = accent2) +
@@ -205,8 +205,17 @@ ggplot(dat, aes(bowtiePreds, bowtieResids)) + geom_point(color = accent1, size =
 
 .pull-left.center[
 <span style = "color: #18778C"> Homogeneity of Variance </span>
-```{r, echo = F}
-knitr::include_graphics('images/homogeneityCategorical.png')
+```{r, echo = F, fig.height=4}
+catRes <- resid(lm(y_homogeneity~x1Cat, dat))
+catPreds <- predict(lm(y_homogeneity~x1Cat, dat))
+
+ggplot(dat, aes(catPreds, catRes)) + geom_point(color = accent1, size = 2, alpha = .7) +
+  geom_hline(yintercept = 0, color = accent2, linewidth = 1) +
+  labs(x = 'Predicted/Fitted Values', y = 'Residuals') +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_text(size = 14, face = 'bold'))
+
 ```
 ]
 
@@ -214,8 +223,17 @@ knitr::include_graphics('images/homogeneityCategorical.png')
 
 .pull-right.center[
 <span style = "color: #18778C"> Heterogeneity of Variance </span>
-```{r, echo = F}
-knitr::include_graphics('images/heterogeneityCategorical.png')
+```{r, echo = F, fig.height=4}
+catRes <- resid(lm(bowtiePreds~x1Cat, dat))
+catPreds <- predict(lm(bowtiePreds~x1Cat, dat))
+
+ggplot(dat, aes(catPreds, catRes)) + geom_point(color = accent1, size = 2, alpha = .7) +
+  geom_hline(yintercept = 0, color = accent2, linewidth = 1) +
+  labs(x = 'Predicted/Fitted Values', y = 'Residuals') +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_text(size = 14, face = 'bold'))
+
 ```
 ]
 
@@ -226,8 +244,13 @@ knitr::include_graphics('images/heterogeneityCategorical.png')
 
 .pull-left.center[
 <span style = "color: #18778C"> Linearity </span>
-```{r, echo = F}
-knitr::include_graphics('images/homogeneityContinuous.png')
+```{r, echo = F, fig.height=4}
+ggplot(dat, aes(normPreds, normResids)) + geom_point(color = accent1, size = 2) +
+  geom_hline(yintercept = 0, color = accent2, linewidth = 1) +
+  labs(x = 'Predicted/Fitted Values', y = 'Residuals') +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_text(size = 14, face = 'bold'))
 ```
 ]
 
@@ -235,10 +258,22 @@ knitr::include_graphics('images/homogeneityContinuous.png')
 
 .pull-right.center[
 <span style = "color: #18778C"> Nonlinearity </span>
-```{r, echo = F}
-knitr::include_graphics('images/nonlinearity.png')
+```{r, echo = F, fig.height=4}
+set.seed(68)
+dat$ynl <- (dat$x1^2)+rnorm(nrow(dat), sd = 10)
+
+nlRes <- resid(lm(ynl~x1, dat))
+nlPreds <- predict(lm(ynl~x1, dat))
+
+ggplot(dat, aes(nlPreds, nlRes)) + geom_point(color = accent1, size = 2, alpha = .7) +
+  geom_hline(yintercept = 0, color = accent2, linewidth = 1) +
+  labs(x = 'Predicted/Fitted Values', y = 'Residuals') +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_text(size = 14, face = 'bold'))
 ```
 ]
+
 
 ---
 ### Why use nonparametric tests?
@@ -330,6 +365,7 @@ The Mann-Whitney test orders all values and compares the ranks between the two g
 .pull-right[
 
 ```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/mwU.png')
 knitr::include_graphics('images/mwResults.png')
 ```
 
@@ -676,16 +712,6 @@ class: middle, center, inverse
 
 <br>
 
-.pull-left[
-```{r, echo = F, eval=F}
-knitr::include_graphics('images/bernie.png')
-```
-]
-
-.pull-right[
-
 ```{r, echo = F}
 knitr::include_graphics('images/QRCode for PRM Feedback 26_27.png')
 ```
-
-]
