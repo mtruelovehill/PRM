@@ -386,6 +386,7 @@ knitr::include_graphics('images/mwResults.png')
 .pull-right[
 
 ```{r, echo = F, out.width='75%'}
+knitr::include_graphics('images/wsr.png')
 knitr::include_graphics('images/wsrResults.png')
 ```
 ]
