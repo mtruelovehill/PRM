@@ -40,17 +40,14 @@ class: center, middle, inverse, title-slide
 
 + Why use nonparametric tests?
 
-+ `\(\chi^2\)` for nominal categories
+.center[
+| Tests of Independent Group Differences | Tests of Paired Group Differences | Tests of Association or Distribution |
+|:--------------------------------------:|:---------------------------------:|:------------------------------------:|
+| Mann-Whitney U                         | Wilcoxon Signed-Rank              | Spearman's rho (`\(\rho\)`)              |
+| Kruskal-Wallis Test                    | Friedman's ANOVA                  | Chi-square (`\(\chi^2\)`) Goodness of Fit|
+|                                        |                                   | `\(\chi^2\)` Test of Independence        |
+]
 
-+ Tests for comparing two groups 
-  + Mann-Whitney test
-  + Wilcoxon signed-rank test
-
-+ Tests for comparing more than two groups 
-  + Kruskal-Wallis test
-  + Friedman's ANOVA
-
-+ Spearman's `\(\rho\)` for looking at continuous association
 
 ---
 ### Why use nonparametric tests?
@@ -164,11 +161,15 @@ class: center, middle, inverse, title-slide
 ---
 ### Why use nonparametric tests?
 
-+ Nonparametric tests don't make these assumptions about the population parameters, so results can be trusted even when data do not meet them.
 
-+ These tests are less powerful than parametric tests **when all assumptions are met**
++ Nonparametric tests don't hold these assumptions and can produce valid results when data violate them.
 
-+ However, if assumptions are violated, nonparametric tests can be *more* powerful.
+  + These tests are less powerful than parametric tests **when all assumptions are met**
+
+  + However, if assumptions are violated, nonparametric tests may be *more* powerful.
+
++ Should be used when dependent variable is ordinal (e.g., Likert Scale data) or data violate assumptions of normality. 
+
 
 
 ---
@@ -177,115 +178,127 @@ class: center, inverse, middle
 ## Questions?
 
 ---
-### Comparing 2 Groups 
+### Assessing Differences between Groups
 
-+ Testing differences between two groups with parametric tests involves a comparison of their means
++ **Parametric Tests:** Use means and standard deviations to identify group differences
 
-+ Testing differences with nonparametric tests compares the central tendency of the groups, but not using their means
-
-+ Rather than using the raw data points, these tests **rank** the values and then compare groups according to their ranks
-
-+ Should be used when dependent variable is ordinal (e.g., Likert Scale data) or violates assumptions of normality. 
++ **Nonparametric Tests:** Use *n* and rankings to identify group differences
 
 --
-
-+ **Mann-Whitney Test:** nonparametric equivalent to independent-samples `\(t\)`-test
-
-+ **Wilcoxon Signed-Rank Test:** nonparametric equivalent to paired-samples `\(t\)`-test
-
-
----
-### Comparing 2 Independent Groups - Mann-Whitney Test
 
 .pull-left[
 
-Consider the following values:
 
-| Group A | Group B |
-|:-------:|:-------:|
-| 4       |  8      |
-| 3       |  12     |
-| 7       |  2      |
-| 5       |  6      |
-
-&lt;br&gt;
-
-The Mann-Whitney test orders all values and compares the ranks between the two groups
+|Assessment | Preparedness|
+|:----------|------------:|
+|Exam       |            2|
+|Exam       |            3|
+|Exam       |            4|
+|Exam       |            3|
+|Essay      |            7|
+|Essay      |            5|
+|Essay      |            2|
+|Essay      |            4|
 
 ]
-
---
 
 .pull-right[
-
-|Group | Value | Rank |
-|:----:|:-----:|:----:|
-| B    |  12   | &lt;span style = "font-weight: bold; color: #18778C"&gt; 1 &lt;/span&gt;|
-| B    |  8    | &lt;span style = "font-weight: bold; color: #18778C"&gt; 2 &lt;/span&gt;|
-| A    |  7    | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 3 &lt;/span&gt;|
-| B    |  6    | &lt;span style = "font-weight: bold; color: #18778C"&gt; 4 &lt;/span&gt;|
-| A    |  5    | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 5 &lt;/span&gt;|
-| A    |  4    | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 6 &lt;/span&gt;|
-| A    |  3    | &lt;span style = "font-weight: bold; color: #18778C"&gt; 7 &lt;/span&gt;|
-| B    |  2    | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 8 &lt;/span&gt;|
-
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
 ]
 
-
 ---
-### Comparing 2 Independent Groups - Mann-Whitney Test
+### Comparing Independent Groups
+
 
 
 .pull-left[
 
-+ If there is a systematic difference between groups, it is expected that most of one group's ranks will be higher and most of the other's will be lower.
++ If one group is consistently ranked higher than the other, it suggests that a systematic difference exists between groups
 
-+ The Mann-Whitney Statistic, `\(U\)`, is computed using the differences between group ranks and size of each group
-
-+ Smaller `\(U\)`s provide stronger evidence against the null hypothesis
-
-  + i.e., it is more likely that there is a systematic difference between groups
++ Nonparametric tests of independent group differences evaluate the differences between group ranks and size of each group
   
 ]
 
 .pull-right[
 
-&lt;img src="images/mwU.png" alt="" width="75%" /&gt;&lt;img src="images/mwResults.png" alt="" width="75%" /&gt;
+|Assessment | Value | Rank |
+|:----------|:-----:|:----:|
+| Essay |  7  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 1 &lt;/span&gt;|
+| Essay |  5  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 2 &lt;/span&gt;|
+| Exam |  4  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 3 &lt;/span&gt;|
+| Essay |  4  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 4 &lt;/span&gt;|
+| Exam |  3  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 5 &lt;/span&gt;|
+| Exam |  3  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 6 &lt;/span&gt;|
+| Exam |  2  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 7 &lt;/span&gt;|
+| Essay |  2  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 8 &lt;/span&gt;|
 
 ]
 
+
 ---
-### Comparing 2 Dependent Groups - Wilcoxon Signed-Rank Test
+### Comparing Independent Groups
 
-.pull-left[
 
-+ Somewhat similar procedure to the Mann-Whitney Test, but ranks the differences between two groups when the observations are matched rather than ranks of raw values
+**Mann-Whitney: 2 Independent Groups**
+
+.center[
+&lt;img src="images/mwU.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Independent Groups
+
+
+**Kruskal-Wallis Test: 3+ Independent Groups**
+
+.center[
+&lt;img src="images/kruskalWallis.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Paired/Dependent Groups
+
++ Similar procedure to independent groups tests, but ranks the differences between two groups when the observations are matched
 
 + Assigns negative ranks or positive ranks depending upon which of the paired values is larger 
 
-+ Compares the negative and positive ranks to determine whether there is generally consistent change between the paired scores.
-]
 
-.pull-right[
 
-&lt;img src="images/wsrResults.png" alt="" width="75%" /&gt;
+&lt;br&gt;
+
+.center[
+
+|Exam Rating | Essay Rating | Difference | Rank | Sign |
+|:-----------|:------------:|:----------:|:----:|:----:|
+|2|7|-5|1|-|
+|6|3|3|2|+|
+|3|6|-3|2|-|
+|3|5|-2|4|-|
+|4|2|2|4|+|
+|3|4|-1|6|-|
+|5|4|1|6|+|
+
 ]
 
 ---
-### Comparing &gt; 2 Groups 
+### Comparing Paired/Dependent Groups
 
-+ **Kruskal-Wallis Test:** nonparametric equivalent to One-Way Between-Subjects ANOVA
 
-+ **Friedman's ANOVA:** nonparametric equivalent to One-Way Repeated-Measures ANOVA
+**Wilcoxon Signed-Rank Test: 2 Paired/Dependent Groups**
 
-+ These tests work similarly to those that compare two groups: 
-  + Kruskal-Wallis: Data are ranked and the ranks of the groups are compared across groups
-  + Friedman's ANOVA: Differences between groups are ranked and then these ranks are compared
-  
-+ If results are significant, nonparametric post-hoc tests can be used to determine which groups are driving the results:
-  + Dunn's Test for Kruskal-Wallis
-  + Pairwise Wilcoxon Signed-Rank Tests with Bonferroni Corrections for Friedman's ANOVA
-  
+.center[
+&lt;img src="images/wsrt.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Paired/Dependent Groups
+
+
+**Friedman's ANOVA: 3+ Paired/Dependent Groups**
+
+.center[
+&lt;img src="images/Friedmans.png" alt="" width="75%" /&gt;
+]
 
 ---
 class: middle, center, inverse
@@ -293,22 +306,22 @@ class: middle, center, inverse
 ## Questions?
 
 ---
-### Spearman's Correlation
+### Nonparametric Test of Association
 
-+ Spearman's `\(\rho\)` (or rank-order correlation) uses data on the rank-ordering of `\(x\)`, `\(y\)` responses for each individual.
-  
-+ Spearman's `\(\rho\)` is a nonparametric version of Pearson's `\(r\)`, so it doesn't require the same constraints on your data
++ Spearman's `\(\rho\)` is the nonparametric version of Pearson's `\(r\)`
 
-+ When would we choose to use the Spearman correlation?
-	+ If our data are naturally ranked data (e.g. a survey where the task is to rank foods and drinks in terms of preference)
-	+ Our data are ordinal (e.g., Likert Scales)
-	+ If the data are non-normal or skewed
-	+ If the data shows evidence of non-linearity
++ Spearman's `\(\rho\)` uses data on the rank-ordering of `\(x\)`, `\(y\)` responses for each individual.
+
++ When to choose Spearman's `\(\rho\)` over Pearson's `\(r\)`:
+	+ Data are naturally ranked (e.g. a survey where the task is to rank foods and drinks in terms of preference)
+	+ Data are ordinal (e.g., Likert Scales)
+	+ Data are non-normal or skewed
+	+ Data shows evidence of non-linearity
 
 ---
 ### Spearman's Correlation
 
-+ Spearman's is not testing for linear relations, it is testing for increasing monotonic relationship.
++ Spearman's is not testing for linear relationships, but for increasing monotonic relationship.
 
 --
 
@@ -318,115 +331,92 @@ class: middle, center, inverse
 
 .pull-left.center[
 **Perfectly Linear Relationship**
-![](Nonparametric_lecture_files/figure-html/unnamed-chunk-14-1.svg)&lt;!-- --&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
 
 ]
 
 .pull-right.center[
 **Perfectly Increasing Monotonic Relationship**
-![](Nonparametric_lecture_files/figure-html/unnamed-chunk-15-1.svg)&lt;!-- --&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
 
 ]
 
 ---
-### Monotonic Relationship
+### Spearman's Correlation
 
-+ **Perfect Monotonic Relationship:** The rank position of all observations on Variable A is the same as the rank position of all observations on Variable C.
++ **Perfect Monotonic Relationship:** The rank positions of `Prepared` ratings are the same as the rank positions of all `CourseQuality` ratings.
 
 .pull-left[
 
 &lt;table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; ID &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; C &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Rank_A &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; Rank_C &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Prepared &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CourseQuality &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; PreparedRank &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CourseQualityRank &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID4 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
    &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ID8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
 ]
 
-.pull-right[
-![](Nonparametric_lecture_files/figure-html/unnamed-chunk-17-1.svg)&lt;!-- --&gt;
+.pull-right.center[
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
 
 ]
 
 ---
-### Interpretation of Spearman's `\(\rho\)`
+### Spearman's Correlation
 
 
-+ Identical to Pearson's `\(r\)`
+&lt;img src="images/spearman.png" alt="" width="75%" /&gt;
 
-+ Values fall between -1 and 1, with values further from 0 indicating a stronger association
-
-| Value   | Interpretation |
-|:-------:|:--------------:|
-| &lt; .1    | Negligible     |
-| .1 - .3 | Weak           |
-| .3 - .5 | Moderate       |
-| &gt; .5    | Strong         |
-
++ Interpretation is identical to Pearson's `\(r\)` and same thresholds can be used
 
 ---
 class: inverse, center, middle
@@ -438,30 +428,24 @@ class: inverse, center, middle
 
 + Used for testing frequencies (counts) in categorical variables that have more than 2 levels
 
-  + ** `\(\chi^2\)` Goodness of Fit Test**: Are your data distributed in a way that you would expect?
-    + Do the actual number of observations in each group align with the number of observations you would expect to see in each group?
+  + ** `\(\chi^2\)` Goodness of Fit Test**: Are data distributed in an expected way?
 
   + ** `\(\chi^2\)` Test of Independence**: Are two categorical variables from a single population independent of each other?
-    + Is membership in variable 1 dependent upon membership in variable 2?
 
----
-### `\(\chi^2\)` Tests
+--
 
-+ In both instances, a `\(\chi^2\)` statistic is calculated and compared against an expected distribution
++ In both tests, a `\(\chi^2\)` statistic is calculated and compared against an expected distribution
 
 + The probability of a `\(\chi^2\)` as extreme as this value is calculated
 
-+ Using this probability, a decision is made in regards to whether this probability is extreme enough to provide solid evidence against the null hypothesis.
-
++ Using this probability, a decision is made in regards to the null hypothesis.
 
 ---
 ### `\(\chi^2\)` Goodness of Fit Test
 
 .pull-left[
 
-+ Tests the null hypothesis that the number of observations observed within groups of a variable are consistent with the number of observations expected
-
-+ Checks for consistency between frequencies across categories of a single variable
++ Tests the null hypothesis that the number of observations within groups of a variable are consistent with expectations
 
 + **Hypotheses:**
   + `\(H_0: n_i = m_i\)`
@@ -477,65 +461,75 @@ class: inverse, center, middle
 ]
 
 ---
-### How do we decide what is expected?
+### What is 'expected'?
 
 
-+ Based on an understanding of your variable, and how you would expect it to be distributed in the population.
++ Based on an understanding of the variable and how it is expected to be distributed in the population.
 
-  + Sometimes, you might expect counts to be evenly distributed across groups (number of times fair dice roll each number between 1 and 12)
+  + Sometimes, it may be reasonable to expect that observations are evenly distributed between groups 
+      + Number of times fair dice rolls each number between 1 and 12
 
-  + Others, you may expect counts to be distributed unevenly (e.g., handedness: 85% right-handed, 13% left-handed, 2% ambidextrous)
+  + Other times, there may be an expectation that groups are distributed unevenly 
+      + Handedness: 85% right-handed, 13% left-handed, 2% ambidextrous
   
-+ If the `\(\chi^2\)` value is significant, this means that your observations don't align with those expected given the null hypothesis.
++ If the `\(\chi^2\)` value is significant, the observed data don't align with what is expected under the null hypothesis.
 
 
 ---
 ### Example - `\(\chi^2\)` Goodness of Fit
 
 .pull-left[
-+ **Which days should a florist close the store?**
-
-  + A florist has just opened a shop and needs to decide which days they will be open.
-  
-  + They want to know whether there are certain days that more orders will come in.
-  
-  + `\(H_0\)`: Orders will be equal regardless of day of the week
-  
-  + `\(H_1\)`: The number of orders will be higher on some days than others.
-]
+.center[
+&lt;img src="images/Semmelweis.png" alt="" width="60%" /&gt;
+]]
 
 --
 
-|  Day    |  Number of Orders |
-|:-------:|:-----------------:|
-|Monday   | 54                |
-|Tuesday  | 39                |
-|Wednesday| 44                |
-|Thursday | 47                |
-|Friday   | 68                |
-|Saturday | 72                |
-|Sunday   | 53                |
+.pull-right[
+
+&lt;br&gt;
+
+|  Day    | Mortality of Mothers |
+|:-------:|:--------------------:|
+| Hospital          | 111        |
+| Teaching Hospital | 114        |
+| Midwifery Unit    | 32         |
+
+*Is the mortality rate distributed across facilities in a way we would expect?*
+
+]
 
 ---
 ### Example - `\(\chi^2\)` Goodness of Fit Results
 
 .pull-left[
+ 
+
+Null Hypothesis: The mortality rate between facilities is distributed as expected.
+  + In this case, if facility has nothing to do with mortality rate, we would expect the mortality rate to be similar between facilities.
+  + `\(H_0: n_{mortality} = m_{mortality}\)`
+  
+Alternative Hypothesis: The mortality rate between facilities is not distributed as expected
+  + `\(H_1: n_{mortality} \neq m_{mortality}\)`
+
+**Are there differences in mortality between facilities?**
+]
+.pull-right[
 .center[
-&lt;img src="images/chisqResults.png" alt="" width="60%" /&gt;
+&lt;img src="images/chisqResults.png" alt="" width="80%" /&gt;
 ]]
 
-.pull-right[
-**Which two days should the florist close the shop?**
-]
+---
+### Example - `\(\chi^2\)` Goodness of Fit Results
+
+&lt;img src="images/goodnessOfFit.png" alt="" width="75%" /&gt;
 
 ---
 ### `\(\chi^2\)` Test of Independence
 
 .pull-left[
 
-+ Checks whether two categorical variables from a single population are independent of each other.
-
-+ Checks for consistency between frequencies across categories of *two* variables
++ Tests whether two categorical variables from a single population are independent of each other.
 
 + **Hypotheses:**
   + `\(H_0:\)` Variable A is not associated with Variable B
@@ -546,59 +540,36 @@ class: inverse, center, middle
 .pull-right[
 ![](images/chisqTOI.png)&lt;!-- --&gt;
 ]
-
 ---
 ### Example - `\(\chi^2\)` Test of Independence
 
 .pull-left[
-+ **Does the best-selling flower type depends on the season?**
-
-  + The florist is trying to decide how best to stock their shop.
++ **Is maternal cause of death dependent on facility?**
   
-  + They want to know whether there are certain times of the year that some flowers sell better than others.
+  + `\(H_0\)`: Maternal cause of death will be independent of facility.
   
-  + `\(H_0\)`: Type of flowers being ordered will be independent of the current season
-  
-  + `\(H_1\)`: Type of flowers being ordered will depend on the current season
+  + `\(H_1\)`: Maternal cause of death will be dependent on facility.
 ]
 
 .pull-right[
 
-|  Season |  Tulips | Lilies | Roses |
-|:-------:|:-------:|:------:|:-----:|
-|Spring   | 288     | 202    |  183  |
-|Summer   | 225     | 207    |  174  |
-|Autumn   | 142     | 221    |  213  |
-|Winter   | 131     | 212    |  307  |
-
+|  Facility        |  Other Causes | Infection | Haemorrhage |
+|:-----------------|:-------------:|:---------:|:-----------:|
+|Hospital          | 34            | 48        | 18          |
+|Teaching Hospital | 11            | 77        | 12          |
+|Midwifery         | 38            | 12        | 50          |
 
 ]
 
 ---
 ### Example - `\(\chi^2\)` Test of Independence Results
 
-.pull-left[
 .center[
-&lt;img src="images/TOIresults.png" alt="" width="80%" /&gt;
-]]
-
-.pull-right[
-**Is the best-selling flower dependent upon the season?**
+&lt;img src="images/testOfIndendence.png" alt="" width="70%" /&gt;
 ]
 
----
-## Nonparametric Tests in SPSS
-
-+ For group comparisons &amp; `\(\chi^2\)`:
-
-&lt;img src="images/nonparTestsSPSS.png" alt="" width="80%" /&gt;
-
----
-## Nonparametric Tests in SPSS
-
-+ For associations with Spearman's `\(\rho\)`:
-
-&lt;img src="images/SpearmanSPSS.png" alt="" width="70%" /&gt;
+--
+So, did Semmelweise radically change the field of medicine with his discovery?
 
 ---
 
@@ -615,8 +586,9 @@ class: middle, center, inverse
 ---
 
 &lt;br&gt;
-
-![](images/QRCode for PRM Feedback 26_27.png)&lt;!-- --&gt;
+.center[
+&lt;img src="images/QRCode for PRM Feedback 26_27.png" alt="" width="50%" /&gt;
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

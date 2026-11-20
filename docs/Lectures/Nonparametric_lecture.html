@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title> Nonparametric Tests </title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Monica Truelove-Hill" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# <b> Nonparametric Tests </b>
+]
+.subtitle[
+## Psychological Research Methods:<br>Data Management &amp; Analysis<br><br>
+]
+.author[
+### Monica Truelove-Hill
+]
+.institute[
+### Department of Clinical Psychology<br>The University of Edinburgh
+]
+
+---
+
+
+
+
+
+
+
+
+
+### This Week's Key Topics
+
++ Why use nonparametric tests?
+
+.center[
+| Tests of Independent Group Differences | Tests of Paired Group Differences | Tests of Association or Distribution |
+|:--------------------------------------:|:---------------------------------:|:------------------------------------:|
+| Mann-Whitney U                         | Wilcoxon Signed-Rank              | Spearman's rho (`\(\rho\)`)              |
+| Kruskal-Wallis Test                    | Friedman's ANOVA                  | Chi-square (`\(\chi^2\)`) Goodness of Fit|
+|                                        |                                   | `\(\chi^2\)` Test of Independence        |
+]
+
+
+---
+### Why use nonparametric tests?
+
++ Thus far, all tests covered on the course have been **parametric tests**, which make assumptions about the *parameters* of the population from which the sample was drawn:
+
+  + Normality
+  
+  + Independence
+  
+  + Equal Variance/Homogeneity/Homoskedasticity/Sphericity
+  
+  + Linear relationship between variables
+  
+  + Continuous dependent variables
+  
+--
+
++ When assumptions are violated, it impacts the ability to draw accurate conclusions from our data.
+
++ Assumptions being violated doesn't **guarantee** the conclusions are inaccurate...it just makes it a bit more likely.
+
+---
+### Identifying assumptions violations
+
+**Normality**
+
+.pull-left.center[
+&lt;span style = "color: #18778C"&gt; Normal Enough Histogram &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-2-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.center[
+&lt;span style = "color: #18778C"&gt; Non-normal Histogram &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-3-1.svg)&lt;!-- --&gt;
+]
+
+
+
+---
+### Identifying assumptions violations
+
+**Normality**
+
+.pull-left.center[
+&lt;span style = "color: #18778C"&gt; Super Normal Q-Q Plot &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.center[
+&lt;span style = "color: #18778C"&gt; Non-normal Q-Q Plot &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-5-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Identifying assumptions violations
+
+**Homogeneity of Variance in Continuous Data**
+
+.pull-left.center[
+&lt;span style = "color: #18778C"&gt; Homogeneity of Variance/Homoskedasticity &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.center[
+&lt;span style = "color: #18778C"&gt; Heterogeneity of Variance/Heteroskedasticity &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Identifying assumptions violations
+
+**Homogeneity of Variance in Categorical Data**
+
+.pull-left.center[
+&lt;span style = "color: #18778C"&gt; Homogeneity of Variance &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-8-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.center[
+&lt;span style = "color: #18778C"&gt; Heterogeneity of Variance &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Identifying assumptions violations
+
+**Linearity**
+
+.pull-left.center[
+&lt;span style = "color: #18778C"&gt; Linearity &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-10-1.svg)&lt;!-- --&gt;
+]
+
+--
+
+.pull-right.center[
+&lt;span style = "color: #18778C"&gt; Nonlinearity &lt;/span&gt;
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+]
+
+
+---
+### Why use nonparametric tests?
+
+
++ Nonparametric tests don't hold these assumptions and can produce valid results when data violate them.
+
+  + These tests are less powerful than parametric tests **when all assumptions are met**
+
+  + However, if assumptions are violated, nonparametric tests may be *more* powerful.
+
++ Should be used when dependent variable is ordinal (e.g., Likert Scale data) or data violate assumptions of normality. 
+
+
+
+---
+class: center, inverse, middle
+
+## Questions?
+
+---
+### Assessing Differences between Groups
+
++ **Parametric Tests:** Use means and standard deviations to identify group differences
+
++ **Nonparametric Tests:** Use *n* and rankings to identify group differences
+
+--
+
+.pull-left[
+
+
+|Assessment | Preparedness|
+|:----------|------------:|
+|Exam       |            2|
+|Exam       |            3|
+|Exam       |            4|
+|Exam       |            3|
+|Essay      |            7|
+|Essay      |            5|
+|Essay      |            2|
+|Essay      |            4|
+
+]
+
+.pull-right[
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+]
+
+---
+### Comparing Independent Groups
+
+
+
+.pull-left[
+
++ If one group is consistently ranked higher than the other, it suggests that a systematic difference exists between groups
+
++ Nonparametric tests of independent group differences evaluate the differences between group ranks and size of each group
+  
+]
+
+.pull-right[
+
+|Assessment | Value | Rank |
+|:----------|:-----:|:----:|
+| Essay |  7  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 1 &lt;/span&gt;|
+| Essay |  5  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 2 &lt;/span&gt;|
+| Exam |  4  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 3 &lt;/span&gt;|
+| Essay |  4  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 4 &lt;/span&gt;|
+| Exam |  3  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 5 &lt;/span&gt;|
+| Exam |  3  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 6 &lt;/span&gt;|
+| Exam |  2  | &lt;span style = "font-weight: bold; color: #9AD079"&gt; 7 &lt;/span&gt;|
+| Essay |  2  | &lt;span style = "font-weight: bold; color: #18778C"&gt; 8 &lt;/span&gt;|
+
+]
+
+
+---
+### Comparing Independent Groups
+
+
+**Mann-Whitney: 2 Independent Groups**
+
+.center[
+&lt;img src="images/mwU.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Independent Groups
+
+
+**Kruskal-Wallis Test: 3+ Independent Groups**
+
+.center[
+&lt;img src="images/kruskalWallis.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Paired/Dependent Groups
+
++ Similar procedure to independent groups tests, but ranks the differences between two groups when the observations are matched
+
++ Assigns negative ranks or positive ranks depending upon which of the paired values is larger 
+
+
+
+&lt;br&gt;
+
+.center[
+
+|Exam Rating | Essay Rating | Difference | Rank | Sign |
+|:-----------|:------------:|:----------:|:----:|:----:|
+|2|7|-5|1|-|
+|6|3|3|2|+|
+|3|6|-3|2|-|
+|3|5|-2|4|-|
+|4|2|2|4|+|
+|3|4|-1|6|-|
+|5|4|1|6|+|
+
+]
+
+---
+### Comparing Paired/Dependent Groups
+
+
+**Wilcoxon Signed-Rank Test: 2 Paired/Dependent Groups**
+
+.center[
+&lt;img src="images/wsrt.png" alt="" width="75%" /&gt;
+]
+
+---
+### Comparing Paired/Dependent Groups
+
+
+**Friedman's ANOVA: 3+ Paired/Dependent Groups**
+
+.center[
+&lt;img src="images/Friedmans.png" alt="" width="75%" /&gt;
+]
+
+---
+class: middle, center, inverse
+
+## Questions?
+
+---
+### Nonparametric Test of Association
+
++ Spearman's `\(\rho\)` is the nonparametric version of Pearson's `\(r\)`
+
++ Spearman's `\(\rho\)` uses data on the rank-ordering of `\(x\)`, `\(y\)` responses for each individual.
+
++ When to choose Spearman's `\(\rho\)` over Pearson's `\(r\)`:
+	+ Data are naturally ranked (e.g. a survey where the task is to rank foods and drinks in terms of preference)
+	+ Data are ordinal (e.g., Likert Scales)
+	+ Data are non-normal or skewed
+	+ Data shows evidence of non-linearity
+
+---
+### Spearman's Correlation
+
++ Spearman's is not testing for linear relationships, but for increasing monotonic relationship.
+
+--
+
+  + What?
+
+--
+
+.pull-left.center[
+**Perfectly Linear Relationship**
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-20-1.svg)&lt;!-- --&gt;
+
+]
+
+.pull-right.center[
+**Perfectly Increasing Monotonic Relationship**
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-21-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+### Spearman's Correlation
+
++ **Perfect Monotonic Relationship:** The rank positions of `Prepared` ratings are the same as the rank positions of all `CourseQuality` ratings.
+
+.pull-left[
+
+&lt;table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Prepared &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CourseQuality &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; PreparedRank &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; CourseQualityRank &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+.pull-right.center[
+![](Nonparametric_lecture_files/figure-html/unnamed-chunk-23-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+### Spearman's Correlation
+
+
+&lt;img src="images/spearman.png" alt="" width="75%" /&gt;
+
++ Interpretation is identical to Pearson's `\(r\)` and same thresholds can be used
+
+---
+class: inverse, center, middle
+
+## Questions?
+
+---
+### `\(\chi^2\)` Tests
+
++ Used for testing frequencies (counts) in categorical variables that have more than 2 levels
+
+  + ** `\(\chi^2\)` Goodness of Fit Test**: Are data distributed in an expected way?
+
+  + ** `\(\chi^2\)` Test of Independence**: Are two categorical variables from a single population independent of each other?
+
+--
+
++ In both tests, a `\(\chi^2\)` statistic is calculated and compared against an expected distribution
+
++ The probability of a `\(\chi^2\)` as extreme as this value is calculated
+
++ Using this probability, a decision is made in regards to the null hypothesis.
+
+---
+### `\(\chi^2\)` Goodness of Fit Test
+
+.pull-left[
+
++ Tests the null hypothesis that the number of observations within groups of a variable are consistent with expectations
+
++ **Hypotheses:**
+  + `\(H_0: n_i = m_i\)`
+  + `\(H_1: n_i \neq m_i\)`
+
+    + `\(n_i\)` = the number of observations in category `\(i\)`
+    + `\(m_i\)` = the expected number of observations in category `\(i\)`
+
+]
+
+.pull-right[
+![](images/chisqObsExp.png)&lt;!-- --&gt;
+]
+
+---
+### What is 'expected'?
+
+
++ Based on an understanding of the variable and how it is expected to be distributed in the population.
+
+  + Sometimes, it may be reasonable to expect that observations are evenly distributed between groups 
+      + Number of times fair dice rolls each number between 1 and 12
+
+  + Other times, there may be an expectation that groups are distributed unevenly 
+      + Handedness: 85% right-handed, 13% left-handed, 2% ambidextrous
+  
++ If the `\(\chi^2\)` value is significant, the observed data don't align with what is expected under the null hypothesis.
+
+
+---
+### Example - `\(\chi^2\)` Goodness of Fit
+
+.pull-left[
+.center[
+&lt;img src="images/Semmelweis.png" alt="" width="60%" /&gt;
+]]
+
+--
+
+.pull-right[
+
+&lt;br&gt;
+
+|  Day    | Mortality of Mothers |
+|:-------:|:--------------------:|
+| Hospital          | 111        |
+| Teaching Hospital | 114        |
+| Midwifery Unit    | 32         |
+
+*Is the mortality rate distributed across facilities in a way we would expect?*
+
+]
+
+---
+### Example - `\(\chi^2\)` Goodness of Fit Results
+
+.pull-left[
+ 
+
+Null Hypothesis: The mortality rate between facilities is distributed as expected.
+  + In this case, if facility has nothing to do with mortality rate, we would expect the mortality rate to be similar between facilities.
+  + `\(H_0: n_{mortality} = m_{mortality}\)`
+  
+Alternative Hypothesis: The mortality rate between facilities is not distributed as expected
+  + `\(H_1: n_{mortality} \neq m_{mortality}\)`
+
+**Are there differences in mortality between facilities?**
+]
+.pull-right[
+.center[
+&lt;img src="images/chisqResults.png" alt="" width="80%" /&gt;
+]]
+
+---
+### Example - `\(\chi^2\)` Goodness of Fit Results
+
+&lt;img src="images/goodnessOfFit.png" alt="" width="75%" /&gt;
+
+---
+### `\(\chi^2\)` Test of Independence
+
+.pull-left[
+
++ Tests whether two categorical variables from a single population are independent of each other.
+
++ **Hypotheses:**
+  + `\(H_0:\)` Variable A is not associated with Variable B
+  + `\(H_1:\)` Variable A is associated with Variable B
+
+]
+
+.pull-right[
+![](images/chisqTOI.png)&lt;!-- --&gt;
+]
+---
+### Example - `\(\chi^2\)` Test of Independence
+
+.pull-left[
++ **Is maternal cause of death dependent on facility?**
+  
+  + `\(H_0\)`: Maternal cause of death will be independent of facility.
+  
+  + `\(H_1\)`: Maternal cause of death will be dependent on facility.
+]
+
+.pull-right[
+
+|  Facility        |  Other Causes | Infection | Haemorrhage |
+|:-----------------|:-------------:|:---------:|:-----------:|
+|Hospital          | 34            | 48        | 18          |
+|Teaching Hospital | 11            | 77        | 12          |
+|Midwifery         | 38            | 12        | 50          |
+
+]
+
+---
+### Example - `\(\chi^2\)` Test of Independence Results
+
+.center[
+&lt;img src="images/testOfIndendence.png" alt="" width="70%" /&gt;
+]
+
+--
+So, did Semmelweise radically change the field of medicine with his discovery?
+
+---
+
+class: middle, center, inverse
+
+## Questions?
+
+---
+
+class: middle, center, inverse
+
+## THANK YOU!!!!
+
+---
+
+&lt;br&gt;
+.center[
+&lt;img src="images/QRCode for PRM Feedback 26_27.png" alt="" width="50%" /&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "ratio": "16:9",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
