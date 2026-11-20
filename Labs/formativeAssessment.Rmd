@@ -1,0 +1,333 @@
+---
+title: "Week 10: Formative Assessment"
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: https://mtruelovehill.github.io/PRM/Labs/css/style.css
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(kableExtra)
+
+baseColor <- '#4CA384'
+accent1 <- '#9AD079'
+accent2 <- '#C4C6C7'
+accent3 <- '#19424C'
+```
+
+
+## Intro to Today's Lab
+
+During today's lab, you'll be working through the formative assessment. This assessment does not contribute to your course mark. It serves only as a check-in so that you are more aware of what areas you're confident in, and which areas you may need to revise further. The tutors will be available to clarify any feedback or provide further feedback as necessary. Good luck!
+
+
+## Selecting an Appropriate Test
+
+
+```{r selectingTest, echo = FALSE}
+quiz(caption = '',
+     question('At what level of measurement should the independent variables be when using a One-Way ANOVA? Please select any that apply.',
+              answer('Continuous'),
+              answer('Binary Categorical'),
+              answer('Categorical with 3 or more levels', correct = T),
+              message = 'A One-Way ANOVA requires categorical independent variables.'),
+     question('At what level of measurement does the independent variable need to be for a t-test? Please select any that apply.',
+              answer('Continuous'),
+              answer('Binary Categorical', correct = T),
+              answer('Categorical with 3 or more levels'),
+              message = 'A t-test requires the independent variable to be categorical. It could be nominal or ordinal, but there must only be two levels (binary).',
+              random_answer_order = T),
+     question("In which of the following cases would Pearson's correlation be most useful?",
+              answer('To test the association between two continuous variables', correct = T),
+              answer('To test the association between two ordinal variables'),
+              answer('To test whether one continuous variable predicts another'),
+              answer('To test whether there is a difference between two groups'),
+              answer('To test whether there is a difference between three or more groups'),
+              random_answer_order = T,
+              message = "Correlations can be used to test for an association between two variables. Pearson's correlation should be used when the two variables are continuous and normally distributed. Spearman's correlation is the nonparametric alternative, and should be used when data are not continuous or when they are not normally distributed."),
+     question('Researchers conduct a study into the effect of sleep deprivation on speed of processing in a driving simulator. They ask participants to complete a 15 minute driving simulation task. At the end of the task, they ask the participants a series of questions about the events in the simulation. Participants receive a score out of 25 representing the number of questions they get correct. The participants then spend the night in a room controlled by the research team where they are limited to three hours sleep. The next day, they complete the same task and get a second score. The team want to consider the difference in these scores. Which test is most appropriate?',
+              answer('One-Sample t-test'),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test', correct = T),
+              answer('One-Way Between-Subjects ANOVA'),
+              answer('One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('Simple Linear Regression'),
+              answer('Multiple Linear Regression'),
+              message = 'Here, you have a continuous dependent variable (score) and you are interested in evaluating differences between two means. As the same sample provides responses at both timepoints, this is a repeated-measures design with two groups (pre and post sleep-deprivation). A paired-samples t-test would be the best '),
+     question("You have designed an intervention for people who report high levels of loneliness, by which they engage in a certain number of volunteering activities per week. You take a sample and measure their loneliness levels on a continuous scale before the intervention. You then perform the intervention and measure their loneliness levels again afterwards. You also record their living situation (levels: alone/with roommates/with family or partner). You would like to determine whether the intervention had an effect on loneliness, and whether this effect was moderated by living situation. Which of the following best describes the test you would use?",
+               answer('1x3 Between-Subjects Factorial ANOVA'),
+               answer('1x3 Within-Subjects Factorial ANOVA'),
+               answer('1x3 Mixed Factorial ANOVA'),
+               answer('2x1 Between-Subjects Factorial ANOVA'),
+               answer('2x1 Within-Subjects Factorial ANOVA'),
+               answer('2x1 Mixed Factorial ANOVA'),
+               answer('2x3 Between-Subjects Factorial ANOVA'),
+               answer('2x3 Within-Subjects Factorial ANOVA'),
+               answer('2x3 Mixed Factorial ANOVA', correct = T),
+               message = "As you have one between-subjects variable (living situation) and one within-subjects variable (time), you would use a Mixed ANOVA. Your first variable, time, has 2 levels (pre- or post-intervention), and your second variable, living situation, has 3 levels (alone; with roommates; with family or partner), so your analysis would be a 2x3 Mixed Factorial ANOVA."),
+      question("A researcher wants to know whether her sample’s scores on a personality test are significantly different than 50. Which of the following statistical tests should she use?",
+              answer('One-Sample t-test', correct = T),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test'),
+              answer('One-Way Between-Subjects ANOVA'),
+              answer('One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('Simple Linear Regression'),
+              answer('Multiple Linear Regression'),
+              message = "The researcher is comparing her sample's mean to a single, pre-established value. A one-sample t-test would be the best method for testing this."),
+     question('You are testing the effects of parental involvement and bullying on emotional regulation in children. Parental involvement is measured by the number of parental interactions per week, and bullying as the number of times the child is bullied per week. Assume that emotional regulation is measured on a continuous scale. Which of the following analyses would best test for these effects?',
+              answer('One-Sample t-test'),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test'),
+              answer('2 One-Way Between-Subjects ANOVAs'),
+              answer('One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('2 Simple Linear Regressions'),
+              answer('Multiple Linear Regression', correct = T),
+              message = "Here, you want to investigate the relationship between 2 continuous predictors and a continuous outcome. For this type of analysis, you would use multiple linear regression. If you were to use separate analyses, you would (1) increase the chances of making a Type I error and (2) be unable to capture the effect of bullying on emotional regulation while controlling for parental interactions and vice versa."),
+     question('At what level of measurement do the independent variables (predictors) need to be for a linear regression? Please select any that apply.',
+              answer('Continuous', correct = T),
+              answer('Nominal', correct = T),
+              answer('Ordinal', correct = T),
+              answer('Binary', correct = T),
+              message = 'A linear regression can take predictors of any type. However, the outcome variable must be continuous (or have a large enough range that it approximates normality).'),
+     question('You are testing for group differences in nurse stress based on hospital size. You compare stress levels in nurses across 3 different hospital sizes (small, medium, and large). Assume that stress is a continuous variable. Which of the following analyses could be used to to test this association?',
+              answer('One-Sample t-test'),
+              answer('independent-samples t-test'),
+              answer('paired-samples t-test'),
+              answer('One-Way Between-Subjects ANOVA', correct = T),
+              answer('One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('Multiple Linear Regression'),
+              message = "Here, you have a continuous dependent variable, stress, that you want to compare across three categories of a single independent variable, hospital size. The best option of the given tests would be a One-Way ANOVA. Because you're comparing three separate samples (nurses who work in small hospitals, nurses who work in medium-sized hospitals, and nurses who work in large hospitals), you would use a Between-Subjects ANOVA"),
+     question('You have 2 continuous independent variables, sleep quality and stress level, and you want to test whether they significantly predict depression severity (measured on a continuous scale). You also want to know whether the effect of sleep quality on depression severity changes at different levels of stress. Which of the following tests is the most appropriate for testing this?',
+     answer('One-Sample t-test'),
+     answer('independent-samples t-test'),
+     answer('paired-samples t-test'),
+     answer('One-Way Between-Subjects ANOVA'),
+     answer('One-Way Repeated-Measures ANOVA'),
+     answer('Factorial ANOVA'),
+     answer('Simple Linear Regression'),
+     answer('Multiple Linear Regression', correct = T),
+     message = "Here, you want to investigate the relationship between 2 continuous predictors and a continuous outcome. You also want to determine whether there is an interaction between the 2 continuous predictors in their relationship with the outcome. For this type of analysis, you would use a multiple linear regression model with an interaction term."),
+     question("A researcher wants to investigate whether communication style (Levels: Passive; Aggressive; Passive-Agressive; Assertive) and attachment style (Levels: Secure; Anxious; Avoidant; Disorganised) affect relationship dissatisfaction, measured on a continuous scale. Which of the following statistical tests should he use?",
+              answer('2 One-Sample t-tests'),
+              answer('2 independent-samples t-tests'),
+              answer('2 paired-samples t-tests'),
+              answer('2 One-Way Between-Subjects ANOVAs'),
+              answer('2 One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA', correct = T),
+              answer('2 Simple Linear Regressions'),
+              message = "There are two categorical independent variables and a single continuous dependent variable. If you were to use two separate analyses, you would (1) increase the chances of making a Type I error and (2) be unable to capture the effect of communication style on relationship dissatisfaction while controlling for attachment style and vice versa. The best option here is a Factorial ANOVA. Specifically, this would be a 4x4 Between-Subjects ANOVA"),
+     question("A researcher investigates whether family history of substance abuse (Yes or No) is related to a continuous measure of substance use in substance abusers. Which test should they use?",
+              answer('One-Sample t-test'),
+              answer('Independent-samples t-test', correct = T),
+              answer('Paired-samples t-tests'),
+              answer('One-Way Between-Subjects ANOVA'),
+              answer('One-Way Repeated-Measures ANOVA'),
+              answer('Factorial ANOVA'),
+              answer('Simple Linear Regressions'),
+              message = "Here, the researcher will be comparing the frequency of substance use between two independent groups - those who have a family history of substance abuse, and those who do not. This can be checked with an independent-samples t-test."))
+```
+
+
+## Checking Assumptions
+
+```{r checkingAssumptions, echo = FALSE}
+quiz(caption = '',
+     question("True or False: We can test for the independence of observations using a qqplot.",
+              answer('True'),
+              answer('False', correct = T),
+              message = "False. A qqplot tests normality. There is no general test for independence, this is a design feature."),
+     question('If residuals show the same amount of variance across the range of measurement, they are referred to as...',
+              answer('Homogeneous/Homoskedastic', correct = T),
+              answer('Multicollinear'),
+              answer('Normally Distributed'),
+              answer('Independent'),
+              message = 'Homogeneity/Homoskedasticity indicates that the residuals have the same amount of variation across the range of measurement.  Heterogeneity/Heteroskedasticity indicates that the residuals have different amounts of variation across the range of measurement. Normal distribution of residuals refers to the distribution of the raw value of the residuals rather than their variance. Residuals may be normally distributed but heteroskedastic.',
+              random_answer_order = T),
+     question('You have the following model: y = beta0 + beta1x1 + beta2x2 + epsilon. Which of the following would be most appropriate to check whether this model meets the assumption of linearity?',
+              answer('individual scatterplots plotting y against each predictor'),
+              answer('a residuals by predicted values plot', correct = T),
+              answer('You could use either scatterplots or a residuals by predicted values plot'),
+              answer('You should use neither scatterplots nor a residuals by predicted values plot'),
+              message = 'While a scatterplot is useful for checking linearity in a regression model with a single predictor, when we have a model with multiple predictors, we need to know whether the relations are linear between each predictor and outcome, controlling for the other predictors. Individual scatterplots do not account for this, so a residuals by predicted values plot would be the best option for checking linearity in this example.'),
+     question('You plan to run a 2x3 Factorial ANOVA. Which of the following methods should you use to test normality? Please select all that apply.',
+              answer('Q-Q plot of the residuals', correct = T),
+              answer('histogram of the residuals', correct = T),
+              answer('histogram of the raw variable values'),
+              answer('residuals by predicted values plot'),
+              answer("Results from Levene's test"),
+              message = 'The assumption of factorial ANOVAs is that the residuals are normally distributed. You can check for normality by using Q-Q plots and histograms of the residuals.')
+     )
+```
+
+<br>
+
+You have the following residuals by predicted values plot:
+
+```{r, echo=FALSE, fig.align='center', out.width='50%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/week10_resPredPlot.png')
+```
+
+```{r checkingAssumptions2, echo = FALSE}
+quiz(caption = '',
+     question("Which of the following assumptions appear to be violated?",
+              answer('Normality'),
+              answer('Independence'),
+              answer('Multicollinearity'),
+              answer('Homogeneity of Variance', correct = T),
+              message = "You can use the residuals by predicted values plot to check for homogeneity of variance and linearity. If assumptions are met, the plot should look like a random cloud of points. Here, however, there is a distinct fan shape. This indicates that the homogeneity of variance assumption has been violated."))
+```
+
+## Interpreting Results
+
+```{r interpretation, echo = FALSE}
+quiz(caption = '',
+     question("Given the following information, which model is most likely to best predict the value of an outcome variable?",
+              answer('A model with high model variance and low residual variance.', correct = T),
+              answer('A model with high model variance and high residual variance.'),
+              answer('A model with low model variance and high residual variance.'),
+              answer('A model with low model variance and low residual variance.'),
+              message = "Model variance refers to the amount of variance in the outcome variable explained by the predictors in the model. Residual variance refers to the amount of variance that is cannot be explained by the predictors included in the model, otherwise known as the model's error.",
+              random_answer_order = T),
+     question("I check the effect size associated with my significant t-test and note that Cohen's D is equal to .18. Which of the following best describes the relationship between my groups?",
+              answer('There is no difference between the two groups'),
+              answer('There is a weak difference between the two groups', correct = T),
+              answer('There is a moderate difference between the two groups'),
+              answer('There is a strong difference between the two groups'),
+              message = "Recall the interpretation conventions for Cohen's D. A weak relationship is reflected by values less than or equal to 0.20, moderate relationships are reflected by values between 0.21 and 0.79, and strong relationships are reflected by relationships greater than or equal to 0.80."),
+     question("Which of the following statements is a proper interpretation of what a p-value measures?",
+              answer('The probability that the null hypothesis, H0, is true.'),
+              answer('The probability that the alternative hypothesis, H1, is true.'),
+              answer('The probability of seeing a test statistic as extreme, or more extreme, than the observed one, when H0 is true.', correct = T),
+              answer('The probability of seeing a test statistic equal to or greater than the observed one.'),
+              message = 'The p-value is the probability, computed assuming H0 to be true, of observing a test statistic at least as extreme as the observed one. We always compute "extreme" in the direction specified by the alternative hypothesis H1. If H1 includes the > symbol, the p-value is the probability of test statistics equal to or greater than than the observed one. If H1 includes the < symbol, the p-value is the probability of test statistics equal to or less than the observed one. If H1 includes the not equal symbol, the p-value is the probability in both directions (the probability of values equal to or more extreme than the observed statistic).'),
+     question("I run a hypothesis test. I set an alpha level of 0.01. My calculated test statistic has a associated p-value of 0.03. Which of the following is the correct decision?",
+              answer('Fail to reject the null hypothesis.', correct = T),
+              answer('Reject the null hypothesis'),
+              message = 'If p > alpha we fail to reject the null hypothesis. As 0.03 > 0.01, we do not reject H0.'))
+```
+
+Imagine that you are investigating the effect of class time (9AM, 10AM, 1PM, and 3PM) on test scores. You run a One-Way ANOVA and get these results:
+
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_classANOVA.png')
+```
+
+Use these to answer the following questions. Assume that you have set alpha = .05.:
+
+```{r interp2, echo = FALSE}
+quiz(caption = '',
+     question("There is a significant effect of class time on test score.",
+              answer('True'),
+              answer('False', correct = T),
+              message = "The F-statistic is less than 1 and the p-value is .879, which is greater than our alpha threshold of .05. This means that there is an 88% chance we would see results as extreme as this if the null hypothesis were true. Therefore, there is not enough evidence to claim that there is a significant effect of class time on test score."),
+     question_numeric("What is value of the F-statistic associated with this test? Please round your answer to two decimal places.",
+              answer(0.22, correct = T),
+              message = "The F-statistic associated with this test is 0.22. Please be sure to include the leading 0, as the F-statistic can exceed 1."),
+     question_numeric("You would report this result in the following format: F(___, ___) = 0.22, p = .879. Note the two blank spaces. What number goes in the first blank?",
+              answer(3, correct = T),
+              message = 'The first blank reflects the model degrees of freedom. jamovi calls labels this "df1". In this example, it is 3.'),
+     question_numeric("You would report this result in the following format: F(___, ___) = 0.22, p = .879. Note the two blank spaces. What number goes in the second blank?",
+              answer(48, correct = T),
+              message = 'The second blank reflects the residual degrees of freedom. jamovi calls labels this "df2". In this example, it is 48.'))
+```
+
+<br>
+
+Imagine that you run a Pearson correlation between age, study hours, and test score and get these results:
+
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_correlation.png')
+```
+
+```{r interp3, echo = FALSE}
+quiz(caption = '',
+     question("Which of the following interpretations is correct?",
+              answer('There is a weak association between study hours and test score.'),
+              answer('There is a moderate assocation between study hours and test score.'),
+              answer('There is a strong association between study hours and test score.', correct = T),
+              message = "Recall the interpretation conventions for a Pearson correlation: r values less than .1 are considered to reflect a negligible relationship, values between .1 and .3 are considered to reflect a weak relationship, values between .3 and .5 are considered to reflect a moderate relationship, and values greater than .5 are considered to reflect a strong relationship."),
+     question_numeric('What is the correlation between age and study hours? Please round your answer to two decimal places.',
+                      answer(0.07, correct = T),
+                      message = 'The correlation between age and hours of study is .07, which represents a negligible relationship between the two variables.'))
+```
+
+<br>
+
+You have conducted a study in public speakers to determine how their method of practicing a speech (repeating the speech aloud, reading the speech to themselves, or recording and watching themselves) affects their recognition of words found within the speech, and whether this association is impacted by whether they are an experienced public speaker or a novice. You test their recognition a few days after practicing begins. You run a 2x3 between-subjects ANOVA and get the following output. 
+
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_ANOVAdesc.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_btwnANOVA1.png')
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_btwnANOVA2.png')
+```
+
+```{r interp4, echo = FALSE}
+quiz(caption = '',
+     question("Which of the following is correct? Please select all that apply.",
+              answer('There is a significant effect of experience on word recognition.'),
+              answer('The method one used to practice significantly affected the total words recognised', correct = T),
+              answer("The effect of practice method on recognition is significantly different depending on one's experience."),
+              answer('Watching themselves give the speech led to participants remembering fewer words than reading the speech'),
+              answer('Participants remembered significantly more words when repeating the speech aloud than watching themselves give the speech.', correct = T),
+              message = "The main effects of practice method is significant (p value is less than .05), but the effect of experience and interaction between experience and method are not significant. The descriptive statistics indicate that participants remembered more words when repeating (M = 18.52) than watching the speech (M = 11.82), p = .004. There was no significant difference in recognition in participants who watched the speech and those who read the speech."))
+```
+
+<br>
+
+You regress scores from a Body Dissatisfaction Scale on continuous measures of Self-Esteem, Media Exposure, and Perfectionism. All variables are raw measures (no mean centering has been applied). You get the following results:
+
+```{r, echo=FALSE, fig.align='center', out.width='75%'}
+knitr::include_graphics('https://mtruelovehill.github.io/PRM/Labs/images/formative_regResults.png')
+```
+
+
+```{r interp5, echo = FALSE}
+quiz(caption = '',
+     question("Which of the following is the proper interpretation of the intercept?",
+              answer('When someone scores 0 on the self-esteem, media exposure, and perfectionism scales, their body dissatisfaction is expected to be 18.39', correct = T),
+              answer('Someone with average levels of self-esteem, media exposure, and perfectionism will have a body dissatisfaction rating of 18.39'),
+              answer('The model explains 18.39% of the variance when all predictors equal 0.'),
+              answer('For every one-unit increase in the predictors, we expect body dissatisfaction to increase by 18.39 points.'),
+              message = "The intercept reflects the value of the outcome variable when all predictors are equal to 0.",
+              random_answer_order = T),
+     question_numeric('How much variance in Body Dissatisfication is explained by self-esteem, perfectionism, and media exposure? Please round your answer to two decimal places.',
+              answer(.31, correct = T),
+              answer(31.00, correct = T),
+              message = 'Because this model has multiple predictors, the adjusted R-squared should be used to indicate how much variance the predictors explain in the outcome variable. In this instance, 31% (or .31) of the variance in body dissatisfaction is explained by the predictors.'),
+     question('True or False: The overall model is significant.',
+              answer('True', correct = T),
+              answer('False'),
+              message = 'The model p-value is < .001, which is less than the alpha threshold of .05, so this model significantly predicts body dissatisfaction.'),
+     question('Which of the following interpretations are correct? Please select all that apply.',
+              answer('For every 1-unit increase in perfectionism, body dissatisfaction scores increase by .12 points when holding self-esteem and media exposure constant.'),  
+              answer('Media exposure has a positive relationship with body dissatisfaction', correct = T),
+              answer('For every 1-unit increase in self-esteem, body dissatisfaction scores decrease by 1.28 points when holding perfectionism and media exposure constant.', correct = T),
+              message = 'The interpretations for media exposure and self-esteem are correct, but the interpretation for perfectionism is not. Because the association between perfectionism and body dissatisfaction is not significant, we cannot assume there is any relationship between the two variables.',
+              random_answer_order = T))
+```
+
+
+## Power Analysis
+
+Use jamovi's power module (Pamlj) to answer the following questions. 
+
+```{r power, echo = FALSE}
+quiz(caption = '',
+     question_numeric("What TOTAL sample size do you need to have 80% power to detect an effect of d = .3 at alpha = .05 for a two-tailed independent samples t-test with equal group sizes? Please round your answer to a whole number.",
+              answer(352, correct = T),
+              message = "You need 176 participants in EACH group to detect this effect, for a total of 352 participants."),
+     question_numeric('You are running a 2x4 between-subjects ANOVA. You are primarily interested in the interaction effect. What sample size do you need to have 80% power to detect an effect size of .04 with alpha = .05?',
+              answer(266, correct = T),
+              message = 'You must use the Factorial Designs power option. This is a between-subjects analysis, and the total number of groups in the analysis is equal to 2x4 = 8. The effect degrees of freedom for the interaction is (j-1)x(k-1), where j is the number of levels in variable 1 and k is the number of levels in variable 2. Here, the effect degrees of freedom are (2-1)x(4-1) = 3. You would need 266 participants to detect the effect, given the power and alpha constraints.'),
+     question_numeric('What is the total sample size necessary to detect an R-squared of .15 with 80% power and alpha = .05 using a linear regression model with 5 predictors?',
+              answer(79, correct = T),
+              message = "You must use the General Linear Model power option. R-squared is equivalent to eta-squared. The degrees of freedom in a linear regression (both model and effect) are equal to the number of predictors. A study with the provided parameters will require 79 participants to be sufficiently powered."))
+```
